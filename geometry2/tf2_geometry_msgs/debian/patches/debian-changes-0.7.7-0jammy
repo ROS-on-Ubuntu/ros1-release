@@ -1,0 +1,2807 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-tf2-geometry-msgs (0.7.7-0jammy) jammy; urgency=high
+Author: Tully Foote <tfoote@osrfoundation.org>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-tf2-geometry-msgs-0.7.7/CHANGELOG.rst
+@@ -0,0 +1,251 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package tf2_geometry_msgs
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++0.7.7 (2023-10-13)
++------------------
++
++0.7.6 (2022-10-11)
++------------------
++* remove method with misleading doc (`#534 <https://github.com/ros/geometry2/issues/534>`_)
++* Contributors: Wellington Castro
++
++0.7.5 (2020-09-01)
++------------------
++
++0.7.4 (2020-09-01)
++------------------
++
++0.7.3 (2020-08-25)
++------------------
++* Use list instead of set to make build reproducible (`#473 <https://github.com/ros/geometry2/issues/473>`_)
++* Contributors: Jochen Sprickerhof
++
++0.7.2 (2020-06-08)
++------------------
++
++0.7.1 (2020-05-13)
++------------------
++* import setup from setuptools instead of distutils-core (`#449 <https://github.com/ros/geometry2/issues/449>`_)
++* Contributors: Alejandro Hernández Cordero
++
++0.7.0 (2020-03-09)
++------------------
++* Replace kdl packages with rosdep keys (`#447 <https://github.com/ros/geometry2/issues/447>`_)
++* Bump CMake version to avoid CMP0048 warning (`#445 <https://github.com/ros/geometry2/issues/445>`_)
++* Make kdl headers available (`#419 <https://github.com/ros/geometry2/issues/419>`_)
++* FIx python3 compatibility for noetic (`#416 <https://github.com/ros/geometry2/issues/416>`_)
++* add <array> from STL (`#366 <https://github.com/ros/geometry2/issues/366>`_)
++* use ROS_DEPRECATED macro for portability (`#362 <https://github.com/ros/geometry2/issues/362>`_)
++  * use ROS_DEPRECATED for better portability
++  * change ROS_DEPRECATED position (`#5 <https://github.com/ros/geometry2/issues/5>`_)
++* Contributors: James Xu, Shane Loretz, Tully Foote
++
++0.6.5 (2018-11-16)
++------------------
++* Fix python3 import error
++* Contributors: Timon Engelke
++
++0.6.4 (2018-11-06)
++------------------
++
++0.6.3 (2018-07-09)
++------------------
++* Changed access to Vector to prevent memory leak (`#305 <https://github.com/ros/geometry2/issues/305>`_)
++* Added WrenchStamped transformation (`#302 <https://github.com/ros/geometry2/issues/302>`_)
++* Contributors: Denis Štogl, Markus Grimm
++
++0.6.2 (2018-05-02)
++------------------
++
++0.6.1 (2018-03-21)
++------------------
++
++0.6.0 (2018-03-21)
++------------------
++* Boilerplate for Sphinx (`#284 <https://github.com/ros/geometry2/issues/284>`_)
++  Fixes `#264 <https://github.com/ros/geometry2/issues/264>`_
++* tf2_geometry_msgs added doTransform implementations for not stamped types (`#262 <https://github.com/ros/geometry2/issues/262>`_)
++  * tf2_geometry_msgs added doTransform implementations for not stamped Point, Quaterion, Pose and Vector3 message types
++* New functionality to transform PoseWithCovarianceStamped messages. (`#282 <https://github.com/ros/geometry2/issues/282>`_)
++  * New functionality to transform PoseWithCovarianceStamped messages.
++* Contributors: Blake Anderson, Tully Foote, cwecht
++
++0.5.17 (2018-01-01)
++-------------------
++
++0.5.16 (2017-07-14)
++-------------------
++* remove explicit templating to standardize on overloading. But provide backwards compatibility with deprecation.
++* adding unit tests for conversions
++* Copy transform before altering it in do_transform_vector3 [issue 233] (`#235 <https://github.com/ros/geometry2/issues/235>`_)
++* store gtest return value as int (`#229 <https://github.com/ros/geometry2/issues/229>`_)
++* Document the lifetime of the returned reference for getFrameId and getTimestamp
++* tf2_geometry_msgs: using tf2::Transform in doTransform-functions, marked gmTransformToKDL as deprecated
++* Switch tf2_geometry_msgs to use package.xml format 2 (`#217 <https://github.com/ros/geometry2/issues/217>`_)
++* tf2_geometry_msgs: added missing conversion functions
++* Contributors: Christopher Wecht, Sebastian Wagner, Tully Foote, dhood, pAIgn10
++
++0.5.15 (2017-01-24)
++-------------------
++
++0.5.14 (2017-01-16)
++-------------------
++* Add doxygen documentation for tf2_geometry_msgs
++* Contributors: Jackie Kay
++
++0.5.13 (2016-03-04)
++-------------------
++* Add missing python_orocos_kdl dependency
++* make example into unit test
++* vector3 not affected by translation
++* Contributors: Daniel Claes, chapulina
++
++0.5.12 (2015-08-05)
++-------------------
++* Merge pull request `#112 <https://github.com/ros/geometry_experimental/issues/112>`_ from vrabaud/getYaw
++  Get yaw
++* add toMsg and fromMsg for QuaternionStamped
++* Contributors: Tully Foote, Vincent Rabaud
++
++0.5.11 (2015-04-22)
++-------------------
++
++0.5.10 (2015-04-21)
++-------------------
++
++0.5.9 (2015-03-25)
++------------------
++
++0.5.8 (2015-03-17)
++------------------
++* remove useless Makefile files
++* tf2 optimizations
++* add conversions of type between tf2 and geometry_msgs
++* fix ODR violations
++* Contributors: Vincent Rabaud
++
++0.5.7 (2014-12-23)
++------------------
++* fixing transitive dependency for kdl. Fixes `#53 <https://github.com/ros/geometry_experimental/issues/53>`_
++* Contributors: Tully Foote
++
++0.5.6 (2014-09-18)
++------------------
++
++0.5.5 (2014-06-23)
++------------------
++
++0.5.4 (2014-05-07)
++------------------
++
++0.5.3 (2014-02-21)
++------------------
++
++0.5.2 (2014-02-20)
++------------------
++
++0.5.1 (2014-02-14)
++------------------
++
++0.5.0 (2014-02-14)
++------------------
++
++0.4.10 (2013-12-26)
++-------------------
++
++0.4.9 (2013-11-06)
++------------------
++
++0.4.8 (2013-11-06)
++------------------
++
++0.4.7 (2013-08-28)
++------------------
++
++0.4.6 (2013-08-28)
++------------------
++
++0.4.5 (2013-07-11)
++------------------
++
++0.4.4 (2013-07-09)
++------------------
++* making repo use CATKIN_ENABLE_TESTING correctly and switching rostest to be a test_depend with that change.
++
++0.4.3 (2013-07-05)
++------------------
++
++0.4.2 (2013-07-05)
++------------------
++
++0.4.1 (2013-07-05)
++------------------
++
++0.4.0 (2013-06-27)
++------------------
++* moving convert methods back into tf2 because it does not have any ros dependencies beyond ros::Time which is already a dependency of tf2
++* Cleaning up unnecessary dependency on roscpp
++* converting contents of tf2_ros to be properly namespaced in the tf2_ros namespace
++* Cleaning up packaging of tf2 including:
++  removing unused nodehandle
++  cleaning up a few dependencies and linking
++  removing old backup of package.xml
++  making diff minimally different from tf version of library
++* Restoring test packages and bullet packages.
++  reverting 3570e8c42f9b394ecbfd9db076b920b41300ad55 to get back more of the packages previously implemented
++  reverting 04cf29d1b58c660fdc999ab83563a5d4b76ab331 to fix `#7 <https://github.com/ros/geometry_experimental/issues/7>`_
++
++0.3.6 (2013-03-03)
++------------------
++
++0.3.5 (2013-02-15 14:46)
++------------------------
++* 0.3.4 -> 0.3.5
++
++0.3.4 (2013-02-15 13:14)
++------------------------
++* 0.3.3 -> 0.3.4
++
++0.3.3 (2013-02-15 11:30)
++------------------------
++* 0.3.2 -> 0.3.3
++
++0.3.2 (2013-02-15 00:42)
++------------------------
++* 0.3.1 -> 0.3.2
++
++0.3.1 (2013-02-14)
++------------------
++* 0.3.0 -> 0.3.1
++
++0.3.0 (2013-02-13)
++------------------
++* switching to version 0.3.0
++* add setup.py
++* added setup.py etc to tf2_geometry_msgs
++* adding tf2 dependency to tf2_geometry_msgs
++* adding tf2_geometry_msgs to groovy-devel (unit tests disabled)
++* fixing groovy-devel
++* removing bullet and kdl related packages
++* disabling tf2_geometry_msgs due to missing kdl dependency
++* catkinizing geometry-experimental
++* catkinizing tf2_geometry_msgs
++* add twist, wrench and pose conversion to kdl, fix message to message conversion by adding specific conversion functions
++* merge tf2_cpp and tf2_py into tf2_ros
++* Got transform with types working in python
++* A working first version of transforming and converting between different types
++* Moving from camelCase to undescores to be in line with python style guides
++* Fixing tests now that Buffer creates a NodeHandle
++* add posestamped
++* import vector3stamped
++* add support for Vector3Stamped and PoseStamped
++* add support for PointStamped geometry_msgs
++* add regression tests for geometry_msgs point, vector and pose
++* Fixing missing export, compiling version of buffer_client test
++* add bullet transforms, and create tests for bullet and kdl
++* working transformations of messages
++* add support for PoseStamped message
++* test for pointstamped
++* add PointStamped message transform methods
++* transform for vector3stamped message
+--- /dev/null
++++ ros-noetic-tf2-geometry-msgs-0.7.7/CMakeLists.txt
+@@ -0,0 +1,52 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(tf2_geometry_msgs)
++
++find_package(orocos_kdl)
++find_package(catkin REQUIRED COMPONENTS geometry_msgs tf2_ros tf2)
++find_package(Boost COMPONENTS thread REQUIRED)
++
++# Issue #53
++find_library(KDL_LIBRARY REQUIRED NAMES orocos-kdl HINTS ${orocos_kdl_LIBRARY_DIRS})
++
++catkin_package(
++   LIBRARIES ${KDL_LIBRARY}
++   INCLUDE_DIRS include
++   DEPENDS orocos_kdl
++   CATKIN_DEPENDS  geometry_msgs tf2_ros tf2)
++
++
++include_directories(include
++                    ${catkin_INCLUDE_DIRS}
++)
++
++link_directories(${orocos_kdl_LIBRARY_DIRS})
++
++
++
++install(DIRECTORY include/${PROJECT_NAME}/
++  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
++)
++
++catkin_python_setup()
++
++if(CATKIN_ENABLE_TESTING)
++
++catkin_add_gtest(test_tomsg_frommsg test/test_tomsg_frommsg.cpp)
++target_include_directories(test_tomsg_frommsg PUBLIC ${orocos_kdl_INCLUDE_DIRS})
++target_link_libraries(test_tomsg_frommsg ${catkin_LIBRARIES} ${GTEST_LIBRARIES} ${orocos_kdl_LIBRARIES})
++
++find_package(catkin REQUIRED COMPONENTS geometry_msgs rostest tf2_ros tf2)
++
++add_executable(test_geometry_msgs EXCLUDE_FROM_ALL test/test_tf2_geometry_msgs.cpp)
++target_include_directories(test_geometry_msgs PUBLIC ${orocos_kdl_INCLUDE_DIRS})
++target_link_libraries(test_geometry_msgs ${catkin_LIBRARIES} ${GTEST_LIBRARIES} ${orocos_kdl_LIBRARIES})
++add_rostest(${CMAKE_CURRENT_SOURCE_DIR}/test/test.launch)
++add_rostest(${CMAKE_CURRENT_SOURCE_DIR}/test/test_python.launch)
++
++
++if(TARGET tests)
++  add_dependencies(tests test_geometry_msgs)
++endif()
++
++
++endif()
+--- /dev/null
++++ ros-noetic-tf2-geometry-msgs-0.7.7/conf.py
+@@ -0,0 +1,290 @@
++# -*- coding: utf-8 -*-
++#
++# tf2_geometry_msgs documentation build configuration file, created by
++# sphinx-quickstart on Tue Feb 13 15:34:25 2018.
++#
++# This file is execfile()d with the current directory set to its
++# containing dir.
++#
++# Note that not all possible configuration values are present in this
++# autogenerated file.
++#
++# All configuration values have a default; values that are commented out
++# serve to show the default.
++
++import sys
++import os
++
++# If extensions (or modules to document with autodoc) are in another directory,
++# add these directories to sys.path here. If the directory is relative to the
++# documentation root, use os.path.abspath to make it absolute, like shown here.
++#sys.path.insert(0, os.path.abspath('.'))
++
++# -- General configuration ------------------------------------------------
++
++# If your documentation needs a minimal Sphinx version, state it here.
++#needs_sphinx = '1.0'
++
++# Add any Sphinx extension module names here, as strings. They can be
++# extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
++# ones.
++extensions = [
++    'sphinx.ext.autodoc',
++    'sphinx.ext.doctest',
++    'sphinx.ext.intersphinx',
++    'sphinx.ext.todo',
++    'sphinx.ext.pngmath',
++    'sphinx.ext.viewcode',
++]
++
++# Add any paths that contain templates here, relative to this directory.
++templates_path = ['_templates']
++
++# The suffix(es) of source filenames.
++# You can specify multiple suffix as a list of string:
++# source_suffix = ['.rst', '.md']
++source_suffix = '.rst'
++
++# The encoding of source files.
++#source_encoding = 'utf-8-sig'
++
++# The master toctree document.
++master_doc = 'index'
++
++# General information about the project.
++project = u'tf2_geometry_msgs'
++copyright = u'2018, Open Source Robotics Foundation, Inc.'
++author = u'Tully Foote'
++
++# The version info for the project you're documenting, acts as replacement for
++# |version| and |release|, also used in various other places throughout the
++# built documents.
++#
++# The short X.Y version.
++version = u'0.1'
++# The full version, including alpha/beta/rc tags.
++release = u'0.1'
++
++# The language for content autogenerated by Sphinx. Refer to documentation
++# for a list of supported languages.
++#
++# This is also used if you do content translation via gettext catalogs.
++# Usually you set "language" from the command line for these cases.
++language = None
++
++# There are two options for replacing |today|: either, you set today to some
++# non-false value, then it is used:
++#today = ''
++# Else, today_fmt is used as the format for a strftime call.
++#today_fmt = '%B %d, %Y'
++
++# List of patterns, relative to source directory, that match files and
++# directories to ignore when looking for source files.
++exclude_patterns = ['_build']
++
++# The reST default role (used for this markup: `text`) to use for all
++# documents.
++#default_role = None
++
++# If true, '()' will be appended to :func: etc. cross-reference text.
++#add_function_parentheses = True
++
++# If true, the current module name will be prepended to all description
++# unit titles (such as .. function::).
++#add_module_names = True
++
++# If true, sectionauthor and moduleauthor directives will be shown in the
++# output. They are ignored by default.
++#show_authors = False
++
++# The name of the Pygments (syntax highlighting) style to use.
++pygments_style = 'sphinx'
++
++# A list of ignored prefixes for module index sorting.
++#modindex_common_prefix = []
++
++# If true, keep warnings as "system message" paragraphs in the built documents.
++#keep_warnings = False
++
++# -- Options for HTML output ---------------------------------------------------
++
++# The theme to use for HTML and HTML Help pages.  Major themes that come with
++# Sphinx are currently 'default' and 'sphinxdoc'.
++html_theme = 'default'
++
++# Theme options are theme-specific and customize the look and feel of a theme
++# further.  For a list of options available for each theme, see the
++# documentation.
++#html_theme_options = {}
++
++# Add any paths that contain custom themes here, relative to this directory.
++#html_theme_path = []
++
++# The name for this set of Sphinx documents.  If None, it defaults to
++# "<project> v<release> documentation".
++#html_title = None
++
++# A shorter title for the navigation bar.  Default is the same as html_title.
++#html_short_title = None
++
++# The name of an image file (relative to this directory) to place at the top
++# of the sidebar.
++#html_logo = None
++
++# The name of an image file (relative to this directory) to use as a favicon of
++# the docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
++# pixels large.
++#html_favicon = None
++
++# Add any paths that contain custom static files (such as style sheets) here,
++# relative to this directory. They are copied after the builtin static files,
++# so a file named "default.css" will overwrite the builtin "default.css".
++html_static_path = ['_static']
++
++# Add any extra paths that contain custom files (such as robots.txt or
++# .htaccess) here, relative to this directory. These files are copied
++# directly to the root of the documentation.
++#html_extra_path = []
++
++# If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
++# using the given strftime format.
++#html_last_updated_fmt = '%b %d, %Y'
++
++# If true, SmartyPants will be used to convert quotes and dashes to
++# typographically correct entities.
++#html_use_smartypants = True
++
++# Custom sidebar templates, maps document names to template names.
++#html_sidebars = {}
++
++# Additional templates that should be rendered to pages, maps page names to
++# template names.
++#html_additional_pages = {}
++
++# If false, no module index is generated.
++#html_domain_indices = True
++
++# If false, no index is generated.
++#html_use_index = True
++
++# If true, the index is split into individual pages for each letter.
++#html_split_index = False
++
++# If true, links to the reST sources are added to the pages.
++#html_show_sourcelink = True
++
++# If true, "Created using Sphinx" is shown in the HTML footer. Default is True.
++#html_show_sphinx = True
++
++# If true, "(C) Copyright ..." is shown in the HTML footer. Default is True.
++#html_show_copyright = True
++
++# If true, an OpenSearch description file will be output, and all pages will
++# contain a <link> tag referring to it.  The value of this option must be the
++# base URL from which the finished HTML is served.
++#html_use_opensearch = ''
++
++# This is the file name suffix for HTML files (e.g. ".xhtml").
++#html_file_suffix = None
++
++# Language to be used for generating the HTML full-text search index.
++# Sphinx supports the following languages:
++#   'da', 'de', 'en', 'es', 'fi', 'fr', 'hu', 'it', 'ja'
++#   'nl', 'no', 'pt', 'ro', 'ru', 'sv', 'tr'
++#html_search_language = 'en'
++
++# A dictionary with options for the search language support, empty by default.
++# Now only 'ja' uses this config value
++#html_search_options = {'type': 'default'}
++
++# The name of a javascript file (relative to the configuration directory) that
++# implements a search results scorer. If empty, the default will be used.
++#html_search_scorer = 'scorer.js'
++
++# Output file base name for HTML help builder.
++htmlhelp_basename = 'tf2_geometry_msgsdoc'
++
++# -- Options for LaTeX output ---------------------------------------------
++
++latex_elements = {
++# The paper size ('letterpaper' or 'a4paper').
++#'papersize': 'letterpaper',
++
++# The font size ('10pt', '11pt' or '12pt').
++#'pointsize': '10pt',
++
++# Additional stuff for the LaTeX preamble.
++#'preamble': '',
++
++# Latex figure (float) alignment
++#'figure_align': 'htbp',
++}
++
++# Grouping the document tree into LaTeX files. List of tuples
++# (source start file, target name, title,
++#  author, documentclass [howto, manual, or own class]).
++latex_documents = [
++    (master_doc, 'tf2_geometry_msgs.tex', u'tf2\\_geometry\\_msgs Documentation',
++     u'Tully Foote', 'manual'),
++]
++
++# The name of an image file (relative to this directory) to place at the top of
++# the title page.
++#latex_logo = None
++
++# For "manual" documents, if this is true, then toplevel headings are parts,
++# not chapters.
++#latex_use_parts = False
++
++# If true, show page references after internal links.
++#latex_show_pagerefs = False
++
++# If true, show URL addresses after external links.
++#latex_show_urls = False
++
++# Documents to append as an appendix to all manuals.
++#latex_appendices = []
++
++# If false, no module index is generated.
++#latex_domain_indices = True
++
++
++# -- Options for manual page output ---------------------------------------
++
++# One entry per manual page. List of tuples
++# (source start file, name, description, authors, manual section).
++man_pages = [
++    (master_doc, 'tf2_geometry_msgs', u'tf2_geometry_msgs Documentation',
++     [author], 1)
++]
++
++# If true, show URL addresses after external links.
++#man_show_urls = False
++
++
++# -- Options for Texinfo output -------------------------------------------
++
++# Grouping the document tree into Texinfo files. List of tuples
++# (source start file, target name, title, author,
++#  dir menu entry, description, category)
++texinfo_documents = [
++    (master_doc, 'tf2_geometry_msgs', u'tf2_geometry_msgs Documentation',
++     author, 'tf2_geometry_msgs', 'One line description of project.',
++     'Miscellaneous'),
++]
++
++# Documents to append as an appendix to all manuals.
++#texinfo_appendices = []
++
++# If false, no module index is generated.
++#texinfo_domain_indices = True
++
++# How to display URL addresses: 'footnote', 'no', or 'inline'.
++#texinfo_show_urls = 'footnote'
++
++# If true, do not generate a @detailmenu in the "Top" node's menu.
++#texinfo_no_detailmenu = False
++
++
++# Example configuration for intersphinx: refer to the Python standard library.
++intersphinx_mapping = {'https://docs.python.org/': None}
+--- /dev/null
++++ ros-noetic-tf2-geometry-msgs-0.7.7/include/tf2_geometry_msgs/tf2_geometry_msgs.h
+@@ -0,0 +1,1057 @@
++/*
++ * Copyright (c) 2008, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++/** \author Wim Meeussen */
++
++#ifndef TF2_GEOMETRY_MSGS_H
++#define TF2_GEOMETRY_MSGS_H
++
++#include <tf2/convert.h>
++#include <tf2/LinearMath/Quaternion.h>
++#include <tf2/LinearMath/Transform.h>
++#include <geometry_msgs/PointStamped.h>
++#include <geometry_msgs/QuaternionStamped.h>
++#include <geometry_msgs/TransformStamped.h>
++#include <geometry_msgs/Vector3Stamped.h>
++#include <geometry_msgs/Pose.h>
++#include <geometry_msgs/PoseStamped.h>
++#include <geometry_msgs/PoseWithCovarianceStamped.h>
++#include <geometry_msgs/Wrench.h>
++#include <geometry_msgs/WrenchStamped.h>
++#include <kdl/frames.hpp>
++
++#include <array>
++
++#include "ros/macros.h"
++
++namespace tf2
++{
++
++/** \brief Convert a TransformStamped message to a KDL frame.
++ * \param t TransformStamped message to convert.
++ * \return The converted KDL Frame.
++ * \deprecated
++ */
++inline
++ROS_DEPRECATED KDL::Frame gmTransformToKDL(const geometry_msgs::TransformStamped& t);
++inline
++KDL::Frame gmTransformToKDL(const geometry_msgs::TransformStamped& t)
++  {
++    return KDL::Frame(KDL::Rotation::Quaternion(t.transform.rotation.x, t.transform.rotation.y, 
++						t.transform.rotation.z, t.transform.rotation.w),
++		      KDL::Vector(t.transform.translation.x, t.transform.translation.y, t.transform.translation.z));
++  }
++
++
++/*************/
++/** Vector3 **/
++/*************/
++
++/** \brief Convert a tf2 Vector3 type to its equivalent geometry_msgs representation.
++ * This function is a specialization of the toMsg template defined in tf2/convert.h.
++ * \param in A tf2 Vector3 object.
++ * \return The Vector3 converted to a geometry_msgs message type.
++ */
++inline
++geometry_msgs::Vector3 toMsg(const tf2::Vector3& in)
++{
++  geometry_msgs::Vector3 out;
++  out.x = in.getX();
++  out.y = in.getY();
++  out.z = in.getZ();
++  return out;
++}
++
++/** \brief Convert a Vector3 message to its equivalent tf2 representation.
++ * This function is a specialization of the fromMsg template defined in tf2/convert.h.
++ * \param in A Vector3 message type.
++ * \param out The Vector3 converted to a tf2 type.
++ */
++inline
++void fromMsg(const geometry_msgs::Vector3& in, tf2::Vector3& out)
++{
++  out = tf2::Vector3(in.x, in.y, in.z);
++}
++
++
++/********************/
++/** Vector3Stamped **/
++/********************/
++
++/** \brief Extract a timestamp from the header of a Vector message.
++ * This function is a specialization of the getTimestamp template defined in tf2/convert.h.
++ * \param t VectorStamped message to extract the timestamp from.
++ * \return The timestamp of the message. The lifetime of the returned reference
++ * is bound to the lifetime of the argument.
++ */
++template <>
++inline
++  const ros::Time& getTimestamp(const geometry_msgs::Vector3Stamped& t) {return t.header.stamp;}
++
++/** \brief Extract a frame ID from the header of a Vector message.
++ * This function is a specialization of the getFrameId template defined in tf2/convert.h.
++ * \param t VectorStamped message to extract the frame ID from.
++ * \return A string containing the frame ID of the message. The lifetime of the
++ * returned reference is bound to the lifetime of the argument.
++ */
++template <>
++inline
++  const std::string& getFrameId(const geometry_msgs::Vector3Stamped& t) {return t.header.frame_id;}
++
++
++/** \brief Trivial "conversion" function for Vector3 message type.
++ * This function is a specialization of the toMsg template defined in tf2/convert.h.
++ * \param in A Vector3Stamped message.
++ * \return The input argument.
++ */
++inline
++geometry_msgs::Vector3Stamped toMsg(const geometry_msgs::Vector3Stamped& in)
++{
++  return in;
++}
++
++/** \brief Trivial "conversion" function for Vector3 message type.
++ * This function is a specialization of the fromMsg template defined in tf2/convert.h.
++ * \param msg A Vector3Stamped message.
++ * \param out The input argument.
++ */
++inline
++void fromMsg(const geometry_msgs::Vector3Stamped& msg, geometry_msgs::Vector3Stamped& out)
++{
++  out = msg;
++}
++
++/** \brief Convert as stamped tf2 Vector3 type to its equivalent geometry_msgs representation.
++ * This function is a specialization of the toMsg template defined in tf2/convert.h.
++ * \param in An instance of the tf2::Vector3 specialization of the tf2::Stamped template.
++ * \return The Vector3Stamped converted to a geometry_msgs Vector3Stamped message type.
++ */
++inline
++geometry_msgs::Vector3Stamped toMsg(const tf2::Stamped<tf2::Vector3>& in)
++{
++  geometry_msgs::Vector3Stamped out;
++  out.header.stamp = in.stamp_;
++  out.header.frame_id = in.frame_id_;
++  out.vector.x = in.getX();
++  out.vector.y = in.getY();
++  out.vector.z = in.getZ();
++  return out;
++}
++
++/** \brief Convert a Vector3Stamped message to its equivalent tf2 representation.
++ * This function is a specialization of the fromMsg template defined in tf2/convert.h.
++ * \param msg A Vector3Stamped message.
++ * \param out The Vector3Stamped converted to the equivalent tf2 type.
++ */
++inline
++void fromMsg(const geometry_msgs::Vector3Stamped& msg, tf2::Stamped<tf2::Vector3>& out)
++{
++  out.stamp_ = msg.header.stamp;
++  out.frame_id_ = msg.header.frame_id;
++  out.setData(tf2::Vector3(msg.vector.x, msg.vector.y, msg.vector.z));
++}
++
++
++/***********/
++/** Point **/
++/***********/
++
++/** \brief Convert a tf2 Vector3 type to its equivalent geometry_msgs representation.
++ * This function is a specialization of the toMsg template defined in tf2/convert.h.
++ * \param in A tf2 Vector3 object.
++ * \return The Vector3 converted to a geometry_msgs message type.
++ */
++inline
++geometry_msgs::Point& toMsg(const tf2::Vector3& in, geometry_msgs::Point& out)
++{
++  out.x = in.getX();
++  out.y = in.getY();
++  out.z = in.getZ();
++  return out;
++}
++
++/** \brief Convert a Vector3 message to its equivalent tf2 representation.
++ * This function is a specialization of the fromMsg template defined in tf2/convert.h.
++ * \param in A Vector3 message type.
++ * \param out The Vector3 converted to a tf2 type.
++ */
++inline
++void fromMsg(const geometry_msgs::Point& in, tf2::Vector3& out)
++{
++  out = tf2::Vector3(in.x, in.y, in.z);
++}
++
++
++/******************/
++/** PointStamped **/
++/******************/
++
++/** \brief Extract a timestamp from the header of a Point message.
++ * This function is a specialization of the getTimestamp template defined in tf2/convert.h.
++ * \param t PointStamped message to extract the timestamp from.
++ * \return The timestamp of the message. The lifetime of the returned reference
++ * is bound to the lifetime of the argument.
++ */
++template <>
++inline
++  const ros::Time& getTimestamp(const geometry_msgs::PointStamped& t)  {return t.header.stamp;}
++
++/** \brief Extract a frame ID from the header of a Point message.
++ * This function is a specialization of the getFrameId template defined in tf2/convert.h.
++ * \param t PointStamped message to extract the frame ID from.
++ * \return A string containing the frame ID of the message. The lifetime of the
++ * returned reference is bound to the lifetime of the argument.
++ */
++template <>
++inline
++  const std::string& getFrameId(const geometry_msgs::PointStamped& t)  {return t.header.frame_id;}
++
++/** \brief Trivial "conversion" function for Point message type.
++ * This function is a specialization of the toMsg template defined in tf2/convert.h.
++ * \param in A PointStamped message.
++ * \return The input argument.
++ */
++inline
++geometry_msgs::PointStamped toMsg(const geometry_msgs::PointStamped& in)
++{
++  return in;
++}
++
++/** \brief Trivial "conversion" function for Point message type.
++ * This function is a specialization of the fromMsg template defined in tf2/convert.h.
++ * \param msg A PointStamped message.
++ * \param out The input argument.
++ */
++inline
++void fromMsg(const geometry_msgs::PointStamped& msg, geometry_msgs::PointStamped& out)
++{
++  out = msg;
++}
++
++/** \brief Convert as stamped tf2 Vector3 type to its equivalent geometry_msgs representation.
++ * This function is a specialization of the toMsg template defined in tf2/convert.h.
++ * \param in An instance of the tf2::Vector3 specialization of the tf2::Stamped template.
++ * \return The Vector3Stamped converted to a geometry_msgs PointStamped message type.
++ */
++inline
++geometry_msgs::PointStamped toMsg(const tf2::Stamped<tf2::Vector3>& in, geometry_msgs::PointStamped & out)
++{
++  out.header.stamp = in.stamp_;
++  out.header.frame_id = in.frame_id_;
++  out.point.x = in.getX();
++  out.point.y = in.getY();
++  out.point.z = in.getZ();
++  return out;
++}
++
++/** \brief Convert a PointStamped message to its equivalent tf2 representation.
++ * This function is a specialization of the fromMsg template defined in tf2/convert.h.
++ * \param msg A PointStamped message.
++ * \param out The PointStamped converted to the equivalent tf2 type.
++ */
++inline
++void fromMsg(const geometry_msgs::PointStamped& msg, tf2::Stamped<tf2::Vector3>& out)
++{
++  out.stamp_ = msg.header.stamp;
++  out.frame_id_ = msg.header.frame_id;
++  out.setData(tf2::Vector3(msg.point.x, msg.point.y, msg.point.z));
++}
++
++
++/****************/
++/** Quaternion **/
++/****************/
++
++/** \brief Convert a tf2 Quaternion type to its equivalent geometry_msgs representation.
++ * This function is a specialization of the toMsg template defined in tf2/convert.h.
++ * \param in A tf2 Quaternion object.
++ * \return The Quaternion converted to a geometry_msgs message type.
++ */
++inline
++geometry_msgs::Quaternion toMsg(const tf2::Quaternion& in)
++{
++  geometry_msgs::Quaternion out;
++  out.w = in.getW();
++  out.x = in.getX();
++  out.y = in.getY();
++  out.z = in.getZ();
++  return out;
++}
++
++/** \brief Convert a Quaternion message to its equivalent tf2 representation.
++ * This function is a specialization of the fromMsg template defined in tf2/convert.h.
++ * \param in A Quaternion message type.
++ * \param out The Quaternion converted to a tf2 type.
++ */
++inline
++void fromMsg(const geometry_msgs::Quaternion& in, tf2::Quaternion& out)
++{
++  // w at the end in the constructor
++  out = tf2::Quaternion(in.x, in.y, in.z, in.w);
++}
++
++
++/***********************/
++/** QuaternionStamped **/
++/***********************/
++
++/** \brief Extract a timestamp from the header of a Quaternion message.
++ * This function is a specialization of the getTimestamp template defined in tf2/convert.h.
++ * \param t QuaternionStamped message to extract the timestamp from.
++ * \return The timestamp of the message. The lifetime of the returned reference
++ * is bound to the lifetime of the argument.
++ */
++template <>
++inline
++const ros::Time& getTimestamp(const geometry_msgs::QuaternionStamped& t)  {return t.header.stamp;}
++
++/** \brief Extract a frame ID from the header of a Quaternion message.
++ * This function is a specialization of the getFrameId template defined in tf2/convert.h.
++ * \param t QuaternionStamped message to extract the frame ID from.
++ * \return A string containing the frame ID of the message. The lifetime of the
++ * returned reference is bound to the lifetime of the argument.
++ */
++template <>
++inline
++const std::string& getFrameId(const geometry_msgs::QuaternionStamped& t)  {return t.header.frame_id;}
++
++/** \brief Trivial "conversion" function for Quaternion message type.
++ * This function is a specialization of the toMsg template defined in tf2/convert.h.
++ * \param in A QuaternionStamped message.
++ * \return The input argument.
++ */
++inline
++geometry_msgs::QuaternionStamped toMsg(const geometry_msgs::QuaternionStamped& in)
++{
++  return in;
++}
++
++/** \brief Trivial "conversion" function for Quaternion message type.
++ * This function is a specialization of the fromMsg template defined in tf2/convert.h.
++ * \param msg A QuaternionStamped message.
++ * \param out The input argument.
++ */
++inline
++void fromMsg(const geometry_msgs::QuaternionStamped& msg, geometry_msgs::QuaternionStamped& out)
++{
++  out = msg;
++}
++
++/** \brief Convert as stamped tf2 Quaternion type to its equivalent geometry_msgs representation.
++ * This function is a specialization of the toMsg template defined in tf2/convert.h.
++ * \param in An instance of the tf2::Quaternion specialization of the tf2::Stamped template.
++ * \return The QuaternionStamped converted to a geometry_msgs QuaternionStamped message type.
++ */
++inline
++geometry_msgs::QuaternionStamped toMsg(const tf2::Stamped<tf2::Quaternion>& in)
++{
++  geometry_msgs::QuaternionStamped out;
++  out.header.stamp = in.stamp_;
++  out.header.frame_id = in.frame_id_;
++  out.quaternion.w = in.getW();
++  out.quaternion.x = in.getX();
++  out.quaternion.y = in.getY();
++  out.quaternion.z = in.getZ();
++  return out;
++}
++
++template <>
++inline
++ROS_DEPRECATED geometry_msgs::QuaternionStamped toMsg(const tf2::Stamped<tf2::Quaternion>& in);
++
++
++//Backwards compatibility remove when forked for Lunar or newer
++template <>
++inline
++geometry_msgs::QuaternionStamped toMsg(const tf2::Stamped<tf2::Quaternion>& in)
++{
++  return toMsg(in);
++}
++
++/** \brief Convert a QuaternionStamped message to its equivalent tf2 representation.
++ * This function is a specialization of the fromMsg template defined in tf2/convert.h.
++ * \param in A QuaternionStamped message type.
++ * \param out The QuaternionStamped converted to the equivalent tf2 type.
++ */
++inline
++void fromMsg(const geometry_msgs::QuaternionStamped& in, tf2::Stamped<tf2::Quaternion>& out)
++{
++  out.stamp_ = in.header.stamp;
++  out.frame_id_ = in.header.frame_id;
++  tf2::Quaternion tmp;
++  fromMsg(in.quaternion, tmp);
++  out.setData(tmp);
++}
++
++template<>
++inline
++ROS_DEPRECATED void fromMsg(const geometry_msgs::QuaternionStamped& in, tf2::Stamped<tf2::Quaternion>& out);
++
++//Backwards compatibility remove when forked for Lunar or newer
++template<>
++inline
++void fromMsg(const geometry_msgs::QuaternionStamped& in, tf2::Stamped<tf2::Quaternion>& out)
++{
++    fromMsg(in, out);
++}
++
++/**********/
++/** Pose **/
++/**********/
++
++/** \brief Convert a tf2 Transform type to an equivalent geometry_msgs Pose message.
++ * \param in A tf2 Transform object.
++ * \param out The Transform converted to a geometry_msgs Pose message type.
++ */
++inline
++geometry_msgs::Pose& toMsg(const tf2::Transform& in, geometry_msgs::Pose& out)
++{
++  toMsg(in.getOrigin(), out.position);
++  out.orientation = toMsg(in.getRotation());
++  return out;
++}
++
++/** \brief Convert a geometry_msgs Pose message to an equivalent tf2 Transform type.
++ * \param in A Pose message.
++ * \param out The Pose converted to a tf2 Transform type.
++ */
++inline
++void fromMsg(const geometry_msgs::Pose& in, tf2::Transform& out)
++{
++  out.setOrigin(tf2::Vector3(in.position.x, in.position.y, in.position.z));
++  // w at the end in the constructor
++  out.setRotation(tf2::Quaternion(in.orientation.x, in.orientation.y, in.orientation.z, in.orientation.w));
++}
++
++
++
++/*****************/
++/** PoseStamped **/
++/*****************/
++
++/** \brief Extract a timestamp from the header of a Pose message.
++ * This function is a specialization of the getTimestamp template defined in tf2/convert.h.
++ * \param t PoseStamped message to extract the timestamp from.
++ * \return The timestamp of the message.
++ */
++template <>
++inline
++  const ros::Time& getTimestamp(const geometry_msgs::PoseStamped& t)  {return t.header.stamp;}
++
++/** \brief Extract a frame ID from the header of a Pose message.
++ * This function is a specialization of the getFrameId template defined in tf2/convert.h.
++ * \param t PoseStamped message to extract the frame ID from.
++ * \return A string containing the frame ID of the message.
++ */
++template <>
++inline
++  const std::string& getFrameId(const geometry_msgs::PoseStamped& t)  {return t.header.frame_id;}
++
++/** \brief Trivial "conversion" function for Pose message type.
++ * This function is a specialization of the toMsg template defined in tf2/convert.h.
++ * \param in A PoseStamped message.
++ * \return The input argument.
++ */
++inline
++geometry_msgs::PoseStamped toMsg(const geometry_msgs::PoseStamped& in)
++{
++  return in;
++}
++
++/** \brief Trivial "conversion" function for Pose message type.
++ * This function is a specialization of the toMsg template defined in tf2/convert.h.
++ * \param msg A PoseStamped message.
++ * \param out The input argument.
++ */
++inline
++void fromMsg(const geometry_msgs::PoseStamped& msg, geometry_msgs::PoseStamped& out)
++{
++  out = msg;
++}
++
++/** \brief Convert as stamped tf2 Pose type to its equivalent geometry_msgs representation.
++ * This function is a specialization of the toMsg template defined in tf2/convert.h.
++ * \param in An instance of the tf2::Pose specialization of the tf2::Stamped template.
++ * \return The PoseStamped converted to a geometry_msgs PoseStamped message type.
++ */
++inline
++geometry_msgs::PoseStamped toMsg(const tf2::Stamped<tf2::Transform>& in, geometry_msgs::PoseStamped & out)
++{
++  out.header.stamp = in.stamp_;
++  out.header.frame_id = in.frame_id_;
++  toMsg(in.getOrigin(), out.pose.position);
++  out.pose.orientation = toMsg(in.getRotation());
++  return out;
++}
++
++/** \brief Convert a PoseStamped message to its equivalent tf2 representation.
++ * This function is a specialization of the fromMsg template defined in tf2/convert.h.
++ * \param msg A PoseStamped message.
++ * \param out The PoseStamped converted to the equivalent tf2 type.
++ */
++inline
++void fromMsg(const geometry_msgs::PoseStamped& msg, tf2::Stamped<tf2::Transform>& out)
++{
++  out.stamp_ = msg.header.stamp;
++  out.frame_id_ = msg.header.frame_id;
++  tf2::Transform tmp;
++  fromMsg(msg.pose, tmp);
++  out.setData(tmp);
++}
++
++/*******************************/
++/** PoseWithCovarianceStamped **/
++/*******************************/
++
++/** \brief Extract a timestamp from the header of a PoseWithCovarianceStamped message.
++ * This function is a specialization of the getTimestamp template defined in tf2/convert.h.
++ * \param t PoseWithCovarianceStamped message to extract the timestamp from.
++ * \return The timestamp of the message.
++ */
++template <>
++inline
++  const ros::Time& getTimestamp(const geometry_msgs::PoseWithCovarianceStamped& t)  {return t.header.stamp;}
++
++/** \brief Extract a frame ID from the header of a PoseWithCovarianceStamped message.
++ * This function is a specialization of the getFrameId template defined in tf2/convert.h.
++ * \param t PoseWithCovarianceStamped message to extract the frame ID from.
++ * \return A string containing the frame ID of the message.
++ */
++template <>
++inline
++  const std::string& getFrameId(const geometry_msgs::PoseWithCovarianceStamped& t)  {return t.header.frame_id;}
++
++/** \brief Trivial "conversion" function for PoseWithCovarianceStamped message type.
++ * This function is a specialization of the toMsg template defined in tf2/convert.h.
++ * \param in A PoseWithCovarianceStamped message.
++ * \return The input argument.
++ */
++inline
++geometry_msgs::PoseWithCovarianceStamped toMsg(const geometry_msgs::PoseWithCovarianceStamped& in)
++{
++  return in;
++}
++
++/** \brief Trivial "conversion" function for PoseWithCovarianceStamped message type.
++ * This function is a specialization of the toMsg template defined in tf2/convert.h.
++ * \param msg A PoseWithCovarianceStamped message.
++ * \param out The input argument.
++ */
++inline
++void fromMsg(const geometry_msgs::PoseWithCovarianceStamped& msg, geometry_msgs::PoseWithCovarianceStamped& out)
++{
++  out = msg;
++}
++
++/** \brief Convert as stamped tf2 PoseWithCovarianceStamped type to its equivalent geometry_msgs representation.
++ * This function is a specialization of the toMsg template defined in tf2/convert.h.
++ * \param in An instance of the tf2::Pose specialization of the tf2::Stamped template.
++ * \return The PoseWithCovarianceStamped converted to a geometry_msgs PoseWithCovarianceStamped message type.
++ */
++inline
++geometry_msgs::PoseWithCovarianceStamped toMsg(const tf2::Stamped<tf2::Transform>& in, geometry_msgs::PoseWithCovarianceStamped & out)
++{
++  out.header.stamp = in.stamp_;
++  out.header.frame_id = in.frame_id_;
++  toMsg(in.getOrigin(), out.pose.pose.position);
++  out.pose.pose.orientation = toMsg(in.getRotation());
++  return out;
++}
++
++/** \brief Convert a PoseWithCovarianceStamped message to its equivalent tf2 representation.
++ * This function is a specialization of the fromMsg template defined in tf2/convert.h.
++ * \param msg A PoseWithCovarianceStamped message.
++ * \param out The PoseWithCovarianceStamped converted to the equivalent tf2 type.
++ */
++inline
++void fromMsg(const geometry_msgs::PoseWithCovarianceStamped& msg, tf2::Stamped<tf2::Transform>& out)
++{
++  out.stamp_ = msg.header.stamp;
++  out.frame_id_ = msg.header.frame_id;
++  tf2::Transform tmp;
++  fromMsg(msg.pose, tmp);
++  out.setData(tmp);
++}
++
++/***************/
++/** Transform **/
++/***************/
++
++/** \brief Convert a tf2 Transform type to its equivalent geometry_msgs representation.
++ * This function is a specialization of the toMsg template defined in tf2/convert.h.
++ * \param in A tf2 Transform object.
++ * \return The Transform converted to a geometry_msgs message type.
++ */
++inline
++geometry_msgs::Transform toMsg(const tf2::Transform& in)
++{
++  geometry_msgs::Transform out;
++  out.translation = toMsg(in.getOrigin());
++  out.rotation = toMsg(in.getRotation());
++  return out;
++}
++
++/** \brief Convert a Transform message to its equivalent tf2 representation.
++ * This function is a specialization of the toMsg template defined in tf2/convert.h.
++ * \param in A Transform message type.
++ * \param out The Transform converted to a tf2 type.
++ */
++inline
++void fromMsg(const geometry_msgs::Transform& in, tf2::Transform& out)
++{
++  tf2::Vector3 v;
++  fromMsg(in.translation, v);
++  out.setOrigin(v);
++  // w at the end in the constructor
++  tf2::Quaternion q;
++  fromMsg(in.rotation, q);
++  out.setRotation(q);
++}
++
++
++/**********************/
++/** TransformStamped **/
++/**********************/
++
++/** \brief Extract a timestamp from the header of a Transform message.
++ * This function is a specialization of the getTimestamp template defined in tf2/convert.h.
++ * \param t TransformStamped message to extract the timestamp from.
++ * \return The timestamp of the message.
++ */
++template <>
++inline
++const ros::Time& getTimestamp(const geometry_msgs::TransformStamped& t)  {return t.header.stamp;}
++
++/** \brief Extract a frame ID from the header of a Transform message.
++ * This function is a specialization of the getFrameId template defined in tf2/convert.h.
++ * \param t TransformStamped message to extract the frame ID from.
++ * \return A string containing the frame ID of the message.
++ */
++template <>
++inline
++const std::string& getFrameId(const geometry_msgs::TransformStamped& t)  {return t.header.frame_id;}
++
++/** \brief Trivial "conversion" function for Transform message type.
++ * This function is a specialization of the toMsg template defined in tf2/convert.h.
++ * \param in A TransformStamped message.
++ * \return The input argument.
++ */
++inline
++geometry_msgs::TransformStamped toMsg(const geometry_msgs::TransformStamped& in)
++{
++  return in;
++}
++/** \brief Trivial "conversion" function for TransformStamped message type.
++ * This function is a specialization of the toMsg template defined in tf2/convert.h.
++ * \param msg A TransformStamped message.
++ * \param out The input argument.
++ */
++inline
++void fromMsg(const geometry_msgs::TransformStamped& msg, geometry_msgs::TransformStamped& out)
++{
++  out = msg;
++}
++
++/** \brief Convert as stamped tf2 Transform type to its equivalent geometry_msgs representation.
++ * This function is a specialization of the toMsg template defined in tf2/convert.h.
++ * \param in An instance of the tf2::Transform specialization of the tf2::Stamped template.
++ * \return The tf2::Stamped<tf2::Transform> converted to a geometry_msgs TransformStamped message type.
++ */
++inline
++geometry_msgs::TransformStamped toMsg(const tf2::Stamped<tf2::Transform>& in)
++{
++  geometry_msgs::TransformStamped out;
++  out.header.stamp = in.stamp_;
++  out.header.frame_id = in.frame_id_;
++  out.transform.translation = toMsg(in.getOrigin());
++  out.transform.rotation = toMsg(in.getRotation());
++  return out;
++}
++
++
++/** \brief Convert a TransformStamped message to its equivalent tf2 representation.
++ * This function is a specialization of the fromMsg template defined in tf2/convert.h.
++ * \param msg A TransformStamped message.
++ * \param out The TransformStamped converted to the equivalent tf2 type.
++ */
++inline
++void fromMsg(const geometry_msgs::TransformStamped& msg, tf2::Stamped<tf2::Transform>& out)
++{
++  out.stamp_ = msg.header.stamp;
++  out.frame_id_ = msg.header.frame_id;
++  tf2::Transform tmp;
++  fromMsg(msg.transform, tmp);
++  out.setData(tmp);
++}
++
++/** \brief Apply a geometry_msgs TransformStamped to an geometry_msgs Point type.
++ * This function is a specialization of the doTransform template defined in tf2/convert.h.
++ * \param t_in The point to transform, as a Point3 message.
++ * \param t_out The transformed point, as a Point3 message.
++ * \param transform The timestamped transform to apply, as a TransformStamped message.
++ */
++template <>
++inline
++  void doTransform(const geometry_msgs::Point& t_in, geometry_msgs::Point& t_out, const geometry_msgs::TransformStamped& transform)
++  {
++    tf2::Transform t;
++    fromMsg(transform.transform, t);
++    tf2::Vector3 v_in;
++    fromMsg(t_in, v_in);
++    tf2::Vector3 v_out = t * v_in;
++    toMsg(v_out, t_out);
++  }
++
++/** \brief Apply a geometry_msgs TransformStamped to an stamped geometry_msgs Point type.
++ * This function is a specialization of the doTransform template defined in tf2/convert.h.
++ * \param t_in The point to transform, as a timestamped Point3 message.
++ * \param t_out The transformed point, as a timestamped Point3 message.
++ * \param transform The timestamped transform to apply, as a TransformStamped message.
++ */
++template <>
++inline
++  void doTransform(const geometry_msgs::PointStamped& t_in, geometry_msgs::PointStamped& t_out, const geometry_msgs::TransformStamped& transform)
++  {
++    doTransform(t_in.point, t_out.point, transform);
++    t_out.header.stamp = transform.header.stamp;
++    t_out.header.frame_id = transform.header.frame_id;
++  }
++
++/** \brief Apply a geometry_msgs TransformStamped to an geometry_msgs Quaternion type.
++ * This function is a specialization of the doTransform template defined in tf2/convert.h.
++ * \param t_in The quaternion to transform, as a Quaternion3 message.
++ * \param t_out The transformed quaternion, as a Quaternion3 message.
++ * \param transform The timestamped transform to apply, as a TransformStamped message.
++ */
++template <>
++inline
++void doTransform(const geometry_msgs::Quaternion& t_in, geometry_msgs::Quaternion& t_out, const geometry_msgs::TransformStamped& transform)
++{
++  tf2::Quaternion t, q_in;
++  fromMsg(transform.transform.rotation, t);
++  fromMsg(t_in, q_in);
++
++  tf2::Quaternion q_out = t * q_in;
++  t_out = toMsg(q_out);
++}
++
++/** \brief Apply a geometry_msgs TransformStamped to an stamped geometry_msgs Quaternion type.
++ * This function is a specialization of the doTransform template defined in tf2/convert.h.
++ * \param t_in The quaternion to transform, as a timestamped Quaternion3 message.
++ * \param t_out The transformed quaternion, as a timestamped Quaternion3 message.
++ * \param transform The timestamped transform to apply, as a TransformStamped message.
++ */
++template <>
++inline
++void doTransform(const geometry_msgs::QuaternionStamped& t_in, geometry_msgs::QuaternionStamped& t_out, const geometry_msgs::TransformStamped& transform)
++{
++  doTransform(t_in.quaternion, t_out.quaternion, transform);
++  t_out.header.stamp = transform.header.stamp;
++  t_out.header.frame_id = transform.header.frame_id;
++}
++
++
++/** \brief Apply a geometry_msgs TransformStamped to an geometry_msgs Pose type.
++* This function is a specialization of the doTransform template defined in tf2/convert.h.
++* \param t_in The pose to transform, as a Pose3 message.
++* \param t_out The transformed pose, as a Pose3 message.
++* \param transform The timestamped transform to apply, as a TransformStamped message.
++*/
++template <>
++inline
++void doTransform(const geometry_msgs::Pose& t_in, geometry_msgs::Pose& t_out, const geometry_msgs::TransformStamped& transform)
++{
++  tf2::Vector3 v;
++  fromMsg(t_in.position, v);
++  tf2::Quaternion r;
++  fromMsg(t_in.orientation, r);
++
++  tf2::Transform t;
++  fromMsg(transform.transform, t);
++  tf2::Transform v_out = t * tf2::Transform(r, v);
++  toMsg(v_out, t_out);
++}
++
++/** \brief Apply a geometry_msgs TransformStamped to an stamped geometry_msgs Pose type.
++* This function is a specialization of the doTransform template defined in tf2/convert.h.
++* \param t_in The pose to transform, as a timestamped Pose3 message.
++* \param t_out The transformed pose, as a timestamped Pose3 message.
++* \param transform The timestamped transform to apply, as a TransformStamped message.
++*/
++template <>
++inline
++void doTransform(const geometry_msgs::PoseStamped& t_in, geometry_msgs::PoseStamped& t_out, const geometry_msgs::TransformStamped& transform)
++{
++  doTransform(t_in.pose, t_out.pose, transform);
++  t_out.header.stamp = transform.header.stamp;
++  t_out.header.frame_id = transform.header.frame_id;
++}
++
++/** \brief Transform the covariance matrix of a PoseWithCovarianceStamped message to a new frame.
++* \param t_in The covariance matrix to transform.
++* \param transform The timestamped transform to apply, as a TransformStamped message.
++* \return The transformed covariance matrix.
++*/
++inline
++geometry_msgs::PoseWithCovariance::_covariance_type transformCovariance(const geometry_msgs::PoseWithCovariance::_covariance_type& cov_in, const tf2::Transform& transform)
++{
++  /**
++   * To transform a covariance matrix:
++   * 
++   * [R 0] COVARIANCE [R' 0 ]
++   * [0 R]            [0  R']
++   * 
++   * Where:
++   * 	R is the rotation matrix (3x3).
++   * 	R' is the transpose of the rotation matrix.
++   * 	COVARIANCE is the 6x6 covariance matrix to be transformed.
++   */ 
++  
++  // get rotation matrix transpose  
++  const tf2::Matrix3x3  R_transpose = transform.getBasis().transpose();
++  
++  // convert the covariance matrix into four 3x3 blocks
++  const tf2::Matrix3x3 cov_11(cov_in[0], cov_in[1], cov_in[2],
++			      cov_in[6], cov_in[7], cov_in[8],
++			      cov_in[12], cov_in[13], cov_in[14]);
++  const tf2::Matrix3x3 cov_12(cov_in[3], cov_in[4], cov_in[5],
++			      cov_in[9], cov_in[10], cov_in[11],
++			      cov_in[15], cov_in[16], cov_in[17]);
++  const tf2::Matrix3x3 cov_21(cov_in[18], cov_in[19], cov_in[20],
++			      cov_in[24], cov_in[25], cov_in[26],
++			      cov_in[30], cov_in[31], cov_in[32]);
++  const tf2::Matrix3x3 cov_22(cov_in[21], cov_in[22], cov_in[23],
++			      cov_in[27], cov_in[28], cov_in[29],
++			      cov_in[33], cov_in[34], cov_in[35]);
++  
++  // perform blockwise matrix multiplication
++  const tf2::Matrix3x3 result_11 = transform.getBasis()*cov_11*R_transpose;
++  const tf2::Matrix3x3 result_12 = transform.getBasis()*cov_12*R_transpose;
++  const tf2::Matrix3x3 result_21 = transform.getBasis()*cov_21*R_transpose;
++  const tf2::Matrix3x3 result_22 = transform.getBasis()*cov_22*R_transpose;
++  
++  // form the output
++  geometry_msgs::PoseWithCovariance::_covariance_type output;
++  output[0] = result_11[0][0];
++  output[1] = result_11[0][1];
++  output[2] = result_11[0][2];
++  output[6] = result_11[1][0];
++  output[7] = result_11[1][1];
++  output[8] = result_11[1][2];
++  output[12] = result_11[2][0];
++  output[13] = result_11[2][1];
++  output[14] = result_11[2][2];
++  
++  output[3] = result_12[0][0];
++  output[4] = result_12[0][1];
++  output[5] = result_12[0][2];
++  output[9] = result_12[1][0];
++  output[10] = result_12[1][1];
++  output[11] = result_12[1][2];
++  output[15] = result_12[2][0];
++  output[16] = result_12[2][1];
++  output[17] = result_12[2][2];
++  
++  output[18] = result_21[0][0];
++  output[19] = result_21[0][1];
++  output[20] = result_21[0][2];
++  output[24] = result_21[1][0];
++  output[25] = result_21[1][1];
++  output[26] = result_21[1][2];
++  output[30] = result_21[2][0];
++  output[31] = result_21[2][1];
++  output[32] = result_21[2][2];
++  
++  output[21] = result_22[0][0];
++  output[22] = result_22[0][1];
++  output[23] = result_22[0][2];
++  output[27] = result_22[1][0];
++  output[28] = result_22[1][1];
++  output[29] = result_22[1][2];
++  output[33] = result_22[2][0];
++  output[34] = result_22[2][1];
++  output[35] = result_22[2][2];
++  
++  return output;
++}
++
++/** \brief Apply a geometry_msgs TransformStamped to an geometry_msgs PoseWithCovarianceStamped type.
++* This function is a specialization of the doTransform template defined in tf2/convert.h.
++* \param t_in The pose to transform, as a timestamped PoseWithCovarianceStamped message.
++* \param t_out The transformed pose, as a timestamped PoseWithCovarianceStamped message.
++* \param transform The timestamped transform to apply, as a TransformStamped message.
++*/
++template <>
++inline
++void doTransform(const geometry_msgs::PoseWithCovarianceStamped& t_in, geometry_msgs::PoseWithCovarianceStamped& t_out, const geometry_msgs::TransformStamped& transform)
++{
++  tf2::Vector3 v;
++  fromMsg(t_in.pose.pose.position, v);
++  tf2::Quaternion r;
++  fromMsg(t_in.pose.pose.orientation, r);
++
++  tf2::Transform t;
++  fromMsg(transform.transform, t);
++  tf2::Transform v_out = t * tf2::Transform(r, v);
++  toMsg(v_out, t_out.pose.pose);
++  t_out.header.stamp = transform.header.stamp;
++  t_out.header.frame_id = transform.header.frame_id;
++
++  t_out.pose.covariance = transformCovariance(t_in.pose.covariance, t);
++}
++
++/** \brief Apply a geometry_msgs TransformStamped to an geometry_msgs Transform type.
++ * This function is a specialization of the doTransform template defined in tf2/convert.h.
++ * \param t_in The frame to transform, as a timestamped Transform3 message.
++ * \param t_out The frame transform, as a timestamped Transform3 message.
++ * \param transform The timestamped transform to apply, as a TransformStamped message.
++ */
++template <>
++inline
++void doTransform(const geometry_msgs::TransformStamped& t_in, geometry_msgs::TransformStamped& t_out, const geometry_msgs::TransformStamped& transform)
++  {
++    tf2::Transform input;
++    fromMsg(t_in.transform, input);
++
++    tf2::Transform t;
++    fromMsg(transform.transform, t);
++    tf2::Transform v_out = t * input;
++
++    t_out.transform = toMsg(v_out);
++    t_out.header.stamp = transform.header.stamp;
++    t_out.header.frame_id = transform.header.frame_id;
++  }
++
++/** \brief Apply a geometry_msgs TransformStamped to an geometry_msgs Vector type.
++ * This function is a specialization of the doTransform template defined in tf2/convert.h.
++ * \param t_in The vector to transform, as a Vector3 message.
++ * \param t_out The transformed vector, as a Vector3 message.
++ * \param transform The timestamped transform to apply, as a TransformStamped message.
++ */
++template <>
++inline
++  void doTransform(const geometry_msgs::Vector3& t_in, geometry_msgs::Vector3& t_out, const geometry_msgs::TransformStamped& transform)
++  {
++    tf2::Transform t;
++    fromMsg(transform.transform, t);
++    tf2::Vector3 v_out = t.getBasis() * tf2::Vector3(t_in.x, t_in.y, t_in.z);
++    t_out.x = v_out[0];
++    t_out.y = v_out[1];
++    t_out.z = v_out[2];
++  }
++
++/** \brief Apply a geometry_msgs TransformStamped to an stamped geometry_msgs Vector type.
++ * This function is a specialization of the doTransform template defined in tf2/convert.h.
++ * \param t_in The vector to transform, as a timestamped Vector3 message.
++ * \param t_out The transformed vector, as a timestamped Vector3 message.
++ * \param transform The timestamped transform to apply, as a TransformStamped message.
++ */
++template <>
++inline
++  void doTransform(const geometry_msgs::Vector3Stamped& t_in, geometry_msgs::Vector3Stamped& t_out, const geometry_msgs::TransformStamped& transform)
++  {
++    doTransform(t_in.vector, t_out.vector, transform);
++    t_out.header.stamp = transform.header.stamp;
++    t_out.header.frame_id = transform.header.frame_id;
++  }
++
++
++/**********************/
++/*** WrenchStamped ****/
++/**********************/
++template <>
++inline
++const ros::Time& getTimestamp(const geometry_msgs::WrenchStamped& t) {return t.header.stamp;}
++
++
++template <>
++inline
++const std::string& getFrameId(const geometry_msgs::WrenchStamped& t) {return t.header.frame_id;}
++
++
++inline
++geometry_msgs::WrenchStamped toMsg(const geometry_msgs::WrenchStamped& in)
++{
++  return in;
++}
++
++inline
++void fromMsg(const geometry_msgs::WrenchStamped& msg, geometry_msgs::WrenchStamped& out)
++{
++  out = msg;
++}
++
++
++inline
++geometry_msgs::WrenchStamped toMsg(const tf2::Stamped<std::array<tf2::Vector3, 2>>& in, geometry_msgs::WrenchStamped & out)
++{
++  out.header.stamp = in.stamp_;
++  out.header.frame_id = in.frame_id_;
++  out.wrench.force = toMsg(in[0]);
++  out.wrench.torque = toMsg(in[1]);
++  return out;
++}
++
++
++inline
++void fromMsg(const geometry_msgs::WrenchStamped& msg, tf2::Stamped<std::array<tf2::Vector3, 2>>& out)
++{
++  out.stamp_ = msg.header.stamp;
++  out.frame_id_ = msg.header.frame_id;
++  tf2::Vector3 tmp;
++  fromMsg(msg.wrench.force, tmp);
++  tf2::Vector3 tmp1;
++  fromMsg(msg.wrench.torque, tmp1);
++  std::array<tf2::Vector3, 2> tmp_array;
++  tmp_array[0] = tmp;
++  tmp_array[1] = tmp1;
++  out.setData(tmp_array);
++}
++
++template<>
++inline
++void doTransform(const geometry_msgs::Wrench& t_in, geometry_msgs::Wrench& t_out, const geometry_msgs::TransformStamped& transform)
++{
++  doTransform(t_in.force, t_out.force, transform);
++  doTransform(t_in.torque, t_out.torque, transform);
++}
++
++
++template<>
++inline
++void doTransform(const geometry_msgs::WrenchStamped& t_in, geometry_msgs::WrenchStamped& t_out, const geometry_msgs::TransformStamped& transform)
++{
++  doTransform(t_in.wrench, t_out.wrench, transform);
++  t_out.header.stamp = transform.header.stamp;
++  t_out.header.frame_id = transform.header.frame_id;
++}
++
++} // namespace
++
++#endif // TF2_GEOMETRY_MSGS_H
+--- /dev/null
++++ ros-noetic-tf2-geometry-msgs-0.7.7/index.rst
+@@ -0,0 +1,17 @@
++Welcome to tf2_geometry_msgs's documentation!
++=============================================
++
++Contents:
++
++.. toctree::
++   :maxdepth: 2
++
++
++
++Indices and tables
++==================
++
++* :ref:`genindex`
++* :ref:`modindex`
++* :ref:`search`
++
+--- /dev/null
++++ ros-noetic-tf2-geometry-msgs-0.7.7/mainpage.dox
+@@ -0,0 +1,19 @@
++/**
++\mainpage
++\htmlinclude manifest.html
++
++\b tf2_geometry_msgs contains functions for converting between various geometry_msgs data types.
++
++This library is an implementation of the templated conversion interface specified in tf/convert.h.
++It offers conversion and transform convenience functions between various geometry_msgs data types,
++such as Vector, Point, Pose, Transform, Quaternion, etc.
++
++See the <A HREF="http://wiki.ros.org/tf2/Tutorials/Migration/DataConversions">Conversions overview</A>
++wiki page for more information about datatype conversion in tf2.
++
++\section codeapi Code API 
++
++This library consists of one header only, tf2_geometry_msgs/tf2_geometry_msgs.h, which consists mostly of
++specializations of template functions defined in tf2/convert.h.
++
++*/
+--- /dev/null
++++ ros-noetic-tf2-geometry-msgs-0.7.7/package.xml
+@@ -0,0 +1,27 @@
++<package format="2">
++  <name>tf2_geometry_msgs</name>
++  <version>0.7.7</version>
++  <description>
++    tf2_geometry_msgs
++  </description>
++  <author>Wim Meeussen</author>
++  <maintainer email="tfoote@osrfoundation.org">Tully Foote</maintainer>
++  <license>BSD</license>
++
++  <url type="website">http://www.ros.org/wiki/tf2_ros</url>
++    
++  <buildtool_depend version_gte="0.5.68">catkin</buildtool_depend>
++
++  <depend>geometry_msgs</depend>
++  <depend>liborocos-kdl-dev</depend>
++  <depend>tf2</depend>
++  <depend>tf2_ros</depend>
++
++  <build_depend>python3-pykdl</build_depend>
++ 
++  <exec_depend>python3-pykdl</exec_depend>
++
++  <test_depend>ros_environment</test_depend>
++  <test_depend>rostest</test_depend>
++</package>
++
+--- /dev/null
++++ ros-noetic-tf2-geometry-msgs-0.7.7/rosdoc.yaml
+@@ -0,0 +1,7 @@
++ - builder: doxygen
++   name: C++ API
++   output_dir: c++
++   file_patterns: '*.c *.cpp *.h *.cc *.hh *.dox'
++ - builder: sphinx
++   name: Python API
++   output_dir: python
+--- /dev/null
++++ ros-noetic-tf2-geometry-msgs-0.7.7/scripts/test.py
+@@ -0,0 +1,100 @@
++#!/usr/bin/env python
++
++import unittest
++import rospy
++import PyKDL
++import tf2_ros
++import tf2_geometry_msgs
++from geometry_msgs.msg import TransformStamped, PointStamped, Vector3Stamped, PoseStamped, WrenchStamped
++
++class GeometryMsgs(unittest.TestCase):
++    def test_transform(self):
++        b = tf2_ros.Buffer()
++        t = TransformStamped()
++        t.transform.translation.x = 1
++        t.transform.rotation.x = 1
++        t.header.stamp = rospy.Time(2.0)
++        t.header.frame_id = 'a'
++        t.child_frame_id = 'b'
++        b.set_transform(t, 'eitan_rocks')
++        out = b.lookup_transform('a','b', rospy.Time(2.0), rospy.Duration(2.0))
++        self.assertEqual(out.transform.translation.x, 1)
++        self.assertEqual(out.transform.rotation.x, 1)
++        self.assertEqual(out.header.frame_id, 'a')
++        self.assertEqual(out.child_frame_id, 'b')
++
++        v = PointStamped()
++        v.header.stamp = rospy.Time(2)
++        v.header.frame_id = 'a'
++        v.point.x = 1
++        v.point.y = 2
++        v.point.z = 3
++        out = b.transform(v, 'b')
++        self.assertEqual(out.point.x, 0)
++        self.assertEqual(out.point.y, -2)
++        self.assertEqual(out.point.z, -3)
++
++        v = PoseStamped()
++        v.header.stamp = rospy.Time(2)
++        v.header.frame_id = 'a'
++        v.pose.position.x = 1
++        v.pose.position.y = 2
++        v.pose.position.z = 3
++        v.pose.orientation.x = 1
++        out = b.transform(v, 'b')
++        self.assertEqual(out.pose.position.x, 0)
++        self.assertEqual(out.pose.position.y, -2)
++        self.assertEqual(out.pose.position.z, -3)
++
++        # Translation shouldn't affect Vector3
++        t = TransformStamped()
++        t.transform.translation.x = 1
++        t.transform.translation.y = 2
++        t.transform.translation.z = 3
++        t.transform.rotation.w = 1
++        v = Vector3Stamped()
++        v.vector.x = 1
++        v.vector.y = 0
++        v.vector.z = 0
++        out = tf2_geometry_msgs.do_transform_vector3(v, t)
++        self.assertEqual(out.vector.x, 1)
++        self.assertEqual(out.vector.y, 0)
++        self.assertEqual(out.vector.z, 0)
++
++        # Rotate Vector3 180 deg about y
++        t = TransformStamped()
++        t.transform.translation.x = 1
++        t.transform.translation.y = 2
++        t.transform.translation.z = 3
++        t.transform.rotation.y = 1
++
++        v = Vector3Stamped()
++        v.vector.x = 1
++        v.vector.y = 0
++        v.vector.z = 0
++
++        out = tf2_geometry_msgs.do_transform_vector3(v, t)
++        self.assertEqual(out.vector.x, -1)
++        self.assertEqual(out.vector.y, 0)
++        self.assertEqual(out.vector.z, 0)
++
++        v = WrenchStamped()
++        v.wrench.force.x = 1
++        v.wrench.force.y = 0
++        v.wrench.force.z = 0
++        v.wrench.torque.x = 1
++        v.wrench.torque.y = 0
++        v.wrench.torque.z = 0
++
++        out = tf2_geometry_msgs.do_transform_wrench(v, t)
++        self.assertEqual(out.wrench.force.x, -1)
++        self.assertEqual(out.wrench.force.y, 0)
++        self.assertEqual(out.wrench.force.z, 0)
++        self.assertEqual(out.wrench.torque.x, -1)
++        self.assertEqual(out.wrench.torque.y, 0)
++        self.assertEqual(out.wrench.torque.z, 0)
++
++if __name__ == '__main__':
++    import rosunit
++    rospy.init_node('test_tf2_geometry_msgs_python')
++    rosunit.unitrun("test_tf2_geometry_msgs", "test_tf2_geometry_msgs_python", GeometryMsgs)
+--- /dev/null
++++ ros-noetic-tf2-geometry-msgs-0.7.7/setup.py
+@@ -0,0 +1,13 @@
++#!/usr/bin/env python
++
++from setuptools import setup
++from catkin_pkg.python_setup import generate_distutils_setup
++
++d = generate_distutils_setup(
++    packages=['tf2_geometry_msgs'],
++    package_dir={'': 'src'},
++    requires=['rospy','geometry_msgs','tf2_ros','orocos_kdl']
++)
++
++setup(**d)
++
+--- /dev/null
++++ ros-noetic-tf2-geometry-msgs-0.7.7/src/tf2_geometry_msgs/__init__.py
+@@ -0,0 +1 @@
++from .tf2_geometry_msgs import *
+--- /dev/null
++++ ros-noetic-tf2-geometry-msgs-0.7.7/src/tf2_geometry_msgs/tf2_geometry_msgs.py
+@@ -0,0 +1,110 @@
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions are met:
++#
++#     * Redistributions of source code must retain the above copyright
++#       notice, this list of conditions and the following disclaimer.
++#     * Redistributions in binary form must reproduce the above copyright
++#       notice, this list of conditions and the following disclaimer in the
++#       documentation and/or other materials provided with the distribution.
++#     * Neither the name of the Willow Garage, Inc. nor the names of its
++#       contributors may be used to endorse or promote products derived from
++#       this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++# author: Wim Meeussen
++
++from geometry_msgs.msg import PoseStamped, Vector3Stamped, PointStamped, WrenchStamped
++import PyKDL
++import rospy
++import tf2_ros
++import copy
++
++def to_msg_msg(msg):
++    return msg
++
++tf2_ros.ConvertRegistration().add_to_msg(Vector3Stamped, to_msg_msg)
++tf2_ros.ConvertRegistration().add_to_msg(PoseStamped, to_msg_msg)
++tf2_ros.ConvertRegistration().add_to_msg(PointStamped, to_msg_msg)
++
++def from_msg_msg(msg):
++    return msg
++
++tf2_ros.ConvertRegistration().add_from_msg(Vector3Stamped, from_msg_msg)
++tf2_ros.ConvertRegistration().add_from_msg(PoseStamped, from_msg_msg)
++tf2_ros.ConvertRegistration().add_from_msg(PointStamped, from_msg_msg)
++
++def transform_to_kdl(t):
++    return PyKDL.Frame(PyKDL.Rotation.Quaternion(t.transform.rotation.x, t.transform.rotation.y,
++                                                 t.transform.rotation.z, t.transform.rotation.w),
++                       PyKDL.Vector(t.transform.translation.x,
++                                    t.transform.translation.y,
++                                    t.transform.translation.z))
++
++
++# PointStamped
++def do_transform_point(point, transform):
++    p = transform_to_kdl(transform) * PyKDL.Vector(point.point.x, point.point.y, point.point.z)
++    res = PointStamped()
++    res.point.x = p[0]
++    res.point.y = p[1]
++    res.point.z = p[2]
++    res.header = transform.header
++    return res
++tf2_ros.TransformRegistration().add(PointStamped, do_transform_point)
++
++
++# Vector3Stamped
++def do_transform_vector3(vector3, transform):
++    transform = copy.deepcopy(transform)
++    transform.transform.translation.x = 0;
++    transform.transform.translation.y = 0;
++    transform.transform.translation.z = 0;
++    p = transform_to_kdl(transform) * PyKDL.Vector(vector3.vector.x, vector3.vector.y, vector3.vector.z)
++    res = Vector3Stamped()
++    res.vector.x = p[0]
++    res.vector.y = p[1]
++    res.vector.z = p[2]
++    res.header = transform.header
++    return res
++tf2_ros.TransformRegistration().add(Vector3Stamped, do_transform_vector3)
++
++# PoseStamped
++def do_transform_pose(pose, transform):
++    f = transform_to_kdl(transform) * PyKDL.Frame(PyKDL.Rotation.Quaternion(pose.pose.orientation.x, pose.pose.orientation.y,
++                                                                          pose.pose.orientation.z, pose.pose.orientation.w),
++                                                PyKDL.Vector(pose.pose.position.x, pose.pose.position.y, pose.pose.position.z))
++    res = PoseStamped()
++    res.pose.position.x = f[(0, 3)]
++    res.pose.position.y = f[(1, 3)]
++    res.pose.position.z = f[(2, 3)]
++    (res.pose.orientation.x, res.pose.orientation.y, res.pose.orientation.z, res.pose.orientation.w) = f.M.GetQuaternion()
++    res.header = transform.header
++    return res
++tf2_ros.TransformRegistration().add(PoseStamped, do_transform_pose)
++
++# WrenchStamped
++def do_transform_wrench(wrench, transform):
++    force = Vector3Stamped()
++    torque = Vector3Stamped()
++    force.vector = wrench.wrench.force
++    torque.vector = wrench.wrench.torque
++    res = WrenchStamped()
++    res.wrench.force = do_transform_vector3(force, transform).vector
++    res.wrench.torque = do_transform_vector3(torque, transform).vector
++    res.header = transform.header
++    return res
++tf2_ros.TransformRegistration().add(WrenchStamped, do_transform_wrench)
+--- /dev/null
++++ ros-noetic-tf2-geometry-msgs-0.7.7/test/test.launch
+@@ -0,0 +1,3 @@
++<launch>
++  <test test-name="test_tf_geometry_msgs" pkg="tf2_geometry_msgs" type="test_geometry_msgs" time-limit="120" />
++</launch>
+\ No newline at end of file
+--- /dev/null
++++ ros-noetic-tf2-geometry-msgs-0.7.7/test/test_python.launch
+@@ -0,0 +1,3 @@
++<launch>
++  <test test-name="test_tf_geometry_msgs_python" pkg="tf2_geometry_msgs" type="test.py" time-limit="120"  launch-prefix="python$(env ROS_PYTHON_VERSION)"/>
++</launch>
+--- /dev/null
++++ ros-noetic-tf2-geometry-msgs-0.7.7/test/test_tf2_geometry_msgs.cpp
+@@ -0,0 +1,380 @@
++/*
++ * Copyright (c) 2008, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++/** \author Wim Meeussen */
++
++
++#include <tf2_geometry_msgs/tf2_geometry_msgs.h>
++#include <tf2_ros/transform_listener.h>
++#include <ros/ros.h>
++#include <gtest/gtest.h>
++#include <tf2_ros/buffer.h>
++#include <tf2_geometry_msgs/tf2_geometry_msgs.h>
++
++tf2_ros::Buffer* tf_buffer;
++geometry_msgs::TransformStamped t;
++static const double EPS = 1e-3;
++
++
++TEST(TfGeometry, Frame)
++{
++  geometry_msgs::PoseStamped v1;
++  v1.pose.position.x = 1;
++  v1.pose.position.y = 2;
++  v1.pose.position.z = 3;
++  v1.pose.orientation.x = 1;
++  v1.header.stamp = ros::Time(2);
++  v1.header.frame_id = "A";
++
++  // simple api
++  geometry_msgs::PoseStamped v_simple = tf_buffer->transform(v1, "B", ros::Duration(2.0));
++  EXPECT_NEAR(v_simple.pose.position.x, -9, EPS);
++  EXPECT_NEAR(v_simple.pose.position.y, 18, EPS);
++  EXPECT_NEAR(v_simple.pose.position.z, 27, EPS);
++  EXPECT_NEAR(v_simple.pose.orientation.x, 0.0, EPS);
++  EXPECT_NEAR(v_simple.pose.orientation.y, 0.0, EPS);
++  EXPECT_NEAR(v_simple.pose.orientation.z, 0.0, EPS);
++  EXPECT_NEAR(v_simple.pose.orientation.w, 1.0, EPS);
++  
++  // advanced api
++  geometry_msgs::PoseStamped v_advanced = tf_buffer->transform(v1, "B", ros::Time(2.0),
++							      "A", ros::Duration(3.0));
++  EXPECT_NEAR(v_advanced.pose.position.x, -9, EPS);
++  EXPECT_NEAR(v_advanced.pose.position.y, 18, EPS);
++  EXPECT_NEAR(v_advanced.pose.position.z, 27, EPS);
++  EXPECT_NEAR(v_advanced.pose.orientation.x, 0.0, EPS);
++  EXPECT_NEAR(v_advanced.pose.orientation.y, 0.0, EPS);
++  EXPECT_NEAR(v_advanced.pose.orientation.z, 0.0, EPS);
++  EXPECT_NEAR(v_advanced.pose.orientation.w, 1.0, EPS);
++}
++
++TEST(TfGeometry, PoseWithCovarianceStamped)
++{
++  geometry_msgs::PoseWithCovarianceStamped v1;
++  v1.pose.pose.position.x = 1;
++  v1.pose.pose.position.y = 2;
++  v1.pose.pose.position.z = 3;
++  v1.pose.pose.orientation.x = 1;
++  v1.header.stamp = ros::Time(2);
++  v1.header.frame_id = "A";
++  v1.pose.covariance[0] = 1;
++  v1.pose.covariance[7] = 1;
++  v1.pose.covariance[14] = 1;
++  v1.pose.covariance[21] = 1;
++  v1.pose.covariance[28] = 1;
++  v1.pose.covariance[35] = 1;
++  
++  // simple api
++  const geometry_msgs::PoseWithCovarianceStamped v_simple = tf_buffer->transform(v1, "B", ros::Duration(2.0));
++  EXPECT_NEAR(v_simple.pose.pose.position.x, -9, EPS);
++  EXPECT_NEAR(v_simple.pose.pose.position.y, 18, EPS);
++  EXPECT_NEAR(v_simple.pose.pose.position.z, 27, EPS);
++  EXPECT_NEAR(v_simple.pose.pose.orientation.x, 0.0, EPS);
++  EXPECT_NEAR(v_simple.pose.pose.orientation.y, 0.0, EPS);
++  EXPECT_NEAR(v_simple.pose.pose.orientation.z, 0.0, EPS);
++  EXPECT_NEAR(v_simple.pose.pose.orientation.w, 1.0, EPS);
++  
++  // no rotation in this transformation, so no change to covariance
++  EXPECT_NEAR(v_simple.pose.covariance[0], 1.0, EPS);
++  EXPECT_NEAR(v_simple.pose.covariance[7], 1.0, EPS);
++  EXPECT_NEAR(v_simple.pose.covariance[14], 1.0, EPS);
++  EXPECT_NEAR(v_simple.pose.covariance[21], 1.0, EPS);
++  EXPECT_NEAR(v_simple.pose.covariance[28], 1.0, EPS);
++  EXPECT_NEAR(v_simple.pose.covariance[35], 1.0, EPS);
++  
++  // advanced api
++  const geometry_msgs::PoseWithCovarianceStamped v_advanced = tf_buffer->transform(v1, "B", ros::Time(2.0),
++							      "A", ros::Duration(3.0));
++  EXPECT_NEAR(v_advanced.pose.pose.position.x, -9, EPS);
++  EXPECT_NEAR(v_advanced.pose.pose.position.y, 18, EPS);
++  EXPECT_NEAR(v_advanced.pose.pose.position.z, 27, EPS);
++  EXPECT_NEAR(v_advanced.pose.pose.orientation.x, 0.0, EPS);
++  EXPECT_NEAR(v_advanced.pose.pose.orientation.y, 0.0, EPS);
++  EXPECT_NEAR(v_advanced.pose.pose.orientation.z, 0.0, EPS);
++  EXPECT_NEAR(v_advanced.pose.pose.orientation.w, 1.0, EPS);
++  
++  // no rotation in this transformation, so no change to covariance
++  EXPECT_NEAR(v_advanced.pose.covariance[0], 1.0, EPS);
++  EXPECT_NEAR(v_advanced.pose.covariance[7], 1.0, EPS);
++  EXPECT_NEAR(v_advanced.pose.covariance[14], 1.0, EPS);
++  EXPECT_NEAR(v_advanced.pose.covariance[21], 1.0, EPS);
++  EXPECT_NEAR(v_advanced.pose.covariance[28], 1.0, EPS);
++  EXPECT_NEAR(v_advanced.pose.covariance[35], 1.0, EPS);
++  
++  /** now add rotation to transform to test the effect on covariance **/
++  
++  // rotate pi/2 radians about x-axis
++  geometry_msgs::TransformStamped t_rot;
++  t_rot.transform.rotation = tf2::toMsg(tf2::Quaternion(tf2::Vector3(1,0,0), M_PI/2));
++  t_rot.header.stamp = ros::Time(2.0);
++  t_rot.header.frame_id = "A";
++  t_rot.child_frame_id = "rotated";
++  tf_buffer->setTransform(t_rot, "rotation_test");
++  
++  // need to put some covariance in the matrix
++  v1.pose.covariance[1] = 1;
++  v1.pose.covariance[6] = 1;
++  v1.pose.covariance[12] = 1;
++  
++  // perform rotation
++  const geometry_msgs::PoseWithCovarianceStamped v_rotated = tf_buffer->transform(v1, "rotated", ros::Duration(2.0));
++
++  // the covariance matrix should now be transformed
++  EXPECT_NEAR(v_rotated.pose.covariance[0], 1.0, EPS);
++  EXPECT_NEAR(v_rotated.pose.covariance[1], 0.0, EPS);
++  EXPECT_NEAR(v_rotated.pose.covariance[2],-1.0, EPS);
++  EXPECT_NEAR(v_rotated.pose.covariance[6], 1.0, EPS);
++  EXPECT_NEAR(v_rotated.pose.covariance[7], 1.0, EPS);
++  EXPECT_NEAR(v_rotated.pose.covariance[8], 0.0, EPS);
++  EXPECT_NEAR(v_rotated.pose.covariance[12],-1.0, EPS);
++  EXPECT_NEAR(v_rotated.pose.covariance[13], 0.0, EPS);
++  EXPECT_NEAR(v_rotated.pose.covariance[14], 1.0, EPS);
++  
++  // set buffer back to original transform
++  tf_buffer->setTransform(t, "test");
++}
++  
++TEST(TfGeometry, Transform)
++{
++  geometry_msgs::TransformStamped v1;
++  v1.transform.translation.x = 1;
++  v1.transform.translation.y = 2;
++  v1.transform.translation.z = 3;
++  v1.transform.rotation.x = 1;
++  v1.header.stamp = ros::Time(2);
++  v1.header.frame_id = "A";
++
++  // simple api
++  geometry_msgs::TransformStamped v_simple = tf_buffer->transform(v1, "B", ros::Duration(2.0));
++  EXPECT_NEAR(v_simple.transform.translation.x, -9, EPS);
++  EXPECT_NEAR(v_simple.transform.translation.y, 18, EPS);
++  EXPECT_NEAR(v_simple.transform.translation.z, 27, EPS);
++  EXPECT_NEAR(v_simple.transform.rotation.x, 0.0, EPS);
++  EXPECT_NEAR(v_simple.transform.rotation.y, 0.0, EPS);
++  EXPECT_NEAR(v_simple.transform.rotation.z, 0.0, EPS);
++  EXPECT_NEAR(v_simple.transform.rotation.w, 1.0, EPS);
++  
++
++  // advanced api
++  geometry_msgs::TransformStamped v_advanced = tf_buffer->transform(v1, "B", ros::Time(2.0),
++							      "A", ros::Duration(3.0));
++  EXPECT_NEAR(v_advanced.transform.translation.x, -9, EPS);
++  EXPECT_NEAR(v_advanced.transform.translation.y, 18, EPS);
++  EXPECT_NEAR(v_advanced.transform.translation.z, 27, EPS);
++  EXPECT_NEAR(v_advanced.transform.rotation.x, 0.0, EPS);
++  EXPECT_NEAR(v_advanced.transform.rotation.y, 0.0, EPS);
++  EXPECT_NEAR(v_advanced.transform.rotation.z, 0.0, EPS);
++  EXPECT_NEAR(v_advanced.transform.rotation.w, 1.0, EPS);
++}
++
++TEST(TfGeometry, Vector)
++{
++  geometry_msgs::Vector3Stamped v1, res;
++  v1.vector.x = 1;
++  v1.vector.y = 2;
++  v1.vector.z = 3;
++  v1.header.stamp = ros::Time(2.0);
++  v1.header.frame_id = "A";
++
++  // simple api
++  geometry_msgs::Vector3Stamped v_simple = tf_buffer->transform(v1, "B", ros::Duration(2.0));
++  EXPECT_NEAR(v_simple.vector.x, 1, EPS);
++  EXPECT_NEAR(v_simple.vector.y, -2, EPS);
++  EXPECT_NEAR(v_simple.vector.z, -3, EPS);
++
++  // advanced api
++  geometry_msgs::Vector3Stamped v_advanced = tf_buffer->transform(v1, "B", ros::Time(2.0),
++								 "A", ros::Duration(3.0));
++  EXPECT_NEAR(v_advanced.vector.x, 1, EPS);
++  EXPECT_NEAR(v_advanced.vector.y, -2, EPS);
++  EXPECT_NEAR(v_advanced.vector.z, -3, EPS);
++}
++
++
++TEST(TfGeometry, Point)
++{
++  geometry_msgs::PointStamped v1, res;
++  v1.point.x = 1;
++  v1.point.y = 2;
++  v1.point.z = 3;
++  v1.header.stamp = ros::Time(2.0);
++  v1.header.frame_id = "A";
++
++  // simple api
++  geometry_msgs::PointStamped v_simple = tf_buffer->transform(v1, "B", ros::Duration(2.0));
++  EXPECT_NEAR(v_simple.point.x, -9, EPS);
++  EXPECT_NEAR(v_simple.point.y, 18, EPS);
++  EXPECT_NEAR(v_simple.point.z, 27, EPS);
++
++  // advanced api
++  geometry_msgs::PointStamped v_advanced = tf_buffer->transform(v1, "B", ros::Time(2.0),
++								 "A", ros::Duration(3.0));
++  EXPECT_NEAR(v_advanced.point.x, -9, EPS);
++  EXPECT_NEAR(v_advanced.point.y, 18, EPS);
++  EXPECT_NEAR(v_advanced.point.z, 27, EPS);
++}
++
++TEST(TfGeometry, doTransformPoint)
++{
++  geometry_msgs::Point v1, res;
++  v1.x = 2;
++  v1.y = 1;
++  v1.z = 3;
++
++  geometry_msgs::TransformStamped trafo;
++  trafo.transform.translation.x = -1;
++  trafo.transform.translation.y = 2;
++  trafo.transform.translation.z = -3;
++  trafo.transform.rotation = tf2::toMsg(tf2::Quaternion(tf2::Vector3(0,0,1), -M_PI / 2.0));
++
++  tf2::doTransform(v1, res, trafo);
++
++  EXPECT_NEAR(res.x, 0, EPS);
++  EXPECT_NEAR(res.y, 0, EPS);
++  EXPECT_NEAR(res.z, 0, EPS);
++}
++
++TEST(TfGeometry, doTransformQuaterion)
++{
++  geometry_msgs::Quaternion v1, res;
++  v1.w = 1;
++
++  geometry_msgs::TransformStamped trafo;
++  trafo.transform.translation.x = -1;
++  trafo.transform.translation.y = 2;
++  trafo.transform.translation.z = -3;
++  trafo.transform.rotation = tf2::toMsg(tf2::Quaternion(tf2::Vector3(0,0,1), -M_PI / 2.0));
++
++  tf2::doTransform(v1, res, trafo);
++
++  EXPECT_NEAR(res.x, trafo.transform.rotation.x, EPS);
++  EXPECT_NEAR(res.y, trafo.transform.rotation.y, EPS);
++  EXPECT_NEAR(res.z, trafo.transform.rotation.z, EPS);
++  EXPECT_NEAR(res.w, trafo.transform.rotation.w, EPS);
++}
++
++TEST(TfGeometry, doTransformPose)
++{
++  geometry_msgs::Pose v1, res;
++  v1.position.x = 2;
++  v1.position.y = 1;
++  v1.position.z = 3;
++  v1.orientation.w = 1;
++
++  geometry_msgs::TransformStamped trafo;
++  trafo.transform.translation.x = -1;
++  trafo.transform.translation.y = 2;
++  trafo.transform.translation.z = -3;
++  trafo.transform.rotation = tf2::toMsg(tf2::Quaternion(tf2::Vector3(0,0,1), -M_PI / 2.0));
++
++  tf2::doTransform(v1, res, trafo);
++
++  EXPECT_NEAR(res.position.x, 0, EPS);
++  EXPECT_NEAR(res.position.y, 0, EPS);
++  EXPECT_NEAR(res.position.z, 0, EPS);
++
++  EXPECT_NEAR(res.orientation.x, trafo.transform.rotation.x, EPS);
++  EXPECT_NEAR(res.orientation.y, trafo.transform.rotation.y, EPS);
++  EXPECT_NEAR(res.orientation.z, trafo.transform.rotation.z, EPS);
++  EXPECT_NEAR(res.orientation.w, trafo.transform.rotation.w, EPS);
++}
++
++TEST(TfGeometry, doTransformVector3)
++{
++  geometry_msgs::Vector3 v1, res;
++  v1.x = 2;
++  v1.y = 1;
++  v1.z = 3;
++
++  geometry_msgs::TransformStamped trafo;
++  trafo.transform.translation.x = -1;
++  trafo.transform.translation.y = 2;
++  trafo.transform.translation.z = -3;
++  trafo.transform.rotation = tf2::toMsg(tf2::Quaternion(tf2::Vector3(0,0,1), -M_PI / 2.0));
++
++  tf2::doTransform(v1, res, trafo);
++
++  EXPECT_NEAR(res.x, 1, EPS);
++  EXPECT_NEAR(res.y, -2, EPS);
++  EXPECT_NEAR(res.z, 3, EPS);
++}
++
++TEST(TfGeometry, doTransformWrench)
++{
++ geometry_msgs::Wrench v1, res;
++ v1.force.x = 2;
++ v1.force.y = 1;
++ v1.force.z = 3;
++ v1.torque.x = 2;
++ v1.torque.y = 1;
++ v1.torque.z = 3;
++
++ geometry_msgs::TransformStamped trafo;
++ trafo.transform.translation.x = -1;
++ trafo.transform.translation.y = 2;
++ trafo.transform.translation.z = -3;
++ trafo.transform.rotation = tf2::toMsg(tf2::Quaternion(tf2::Vector3(0,0,1), -M_PI / 2.0));
++
++ tf2::doTransform(v1, res, trafo);
++ EXPECT_NEAR(res.force.x, 1, EPS);
++ EXPECT_NEAR(res.force.y, -2, EPS);
++ EXPECT_NEAR(res.force.z, 3, EPS);
++
++ EXPECT_NEAR(res.torque.x, 1, EPS);
++ EXPECT_NEAR(res.torque.y, -2, EPS);
++ EXPECT_NEAR(res.torque.z, 3, EPS);
++}
++
++int main(int argc, char **argv){
++  testing::InitGoogleTest(&argc, argv);
++  ros::init(argc, argv, "test");
++  ros::NodeHandle n;
++
++  tf_buffer = new tf2_ros::Buffer();
++  tf_buffer->setUsingDedicatedThread(true);
++  
++  // populate buffer
++  t.transform.translation.x = 10;
++  t.transform.translation.y = 20;
++  t.transform.translation.z = 30;
++  t.transform.rotation.x = 1;
++  t.header.stamp = ros::Time(2.0);
++  t.header.frame_id = "A";
++  t.child_frame_id = "B";
++  tf_buffer->setTransform(t, "test");
++
++  int ret = RUN_ALL_TESTS();
++  delete tf_buffer;
++  return ret;
++}
++
++
++
++
++
+--- /dev/null
++++ ros-noetic-tf2-geometry-msgs-0.7.7/test/test_tomsg_frommsg.cpp
+@@ -0,0 +1,405 @@
++/*
++ * Copyright (c) 2008, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++/** \author Wim Meeussen */
++
++
++#include <tf2_geometry_msgs/tf2_geometry_msgs.h>
++#include <gtest/gtest.h>
++
++static const double EPS = 1e-6;
++
++tf2::Vector3 get_tf2_vector()
++{
++  return tf2::Vector3(1.0, 2.0, 3.0);
++}
++
++geometry_msgs::Vector3& value_initialize(geometry_msgs::Vector3 &m1)
++{
++  m1.x = 1;
++  m1.y = 2;
++  m1.z = 3;
++  return m1;
++}
++
++std_msgs::Header& value_initialize(std_msgs::Header & h)
++{
++  h.stamp = ros::Time(10);
++  h.frame_id = "foobar";
++  return h;
++}
++
++geometry_msgs::Vector3Stamped& value_initialize(geometry_msgs::Vector3Stamped &m1)
++{
++  value_initialize(m1.header);
++  value_initialize(m1.vector);
++  return m1;
++}
++
++geometry_msgs::Point& value_initialize(geometry_msgs::Point &m1)
++{
++  m1.x = 1;
++  m1.y = 2;
++  m1.z = 3;
++  return m1;
++}
++
++geometry_msgs::PointStamped& value_initialize(geometry_msgs::PointStamped &m1)
++{
++  value_initialize(m1.header);
++  value_initialize(m1.point);
++  return m1;
++}
++
++geometry_msgs::Quaternion & value_initialize(geometry_msgs::Quaternion &m1)
++{
++  m1.x = 0;
++  m1.y = 0;
++  m1.z = 0.7071067811;
++  m1.w = 0.7071067811;
++  return m1;
++}
++
++geometry_msgs::QuaternionStamped& value_initialize(geometry_msgs::QuaternionStamped &m1)
++{
++  value_initialize(m1.header);
++  value_initialize(m1.quaternion);
++  return m1;
++}
++
++geometry_msgs::Pose & value_initialize(geometry_msgs::Pose & m1)
++{
++  value_initialize(m1.position);
++  value_initialize(m1.orientation);
++  return m1;
++}
++
++geometry_msgs::PoseStamped& value_initialize(geometry_msgs::PoseStamped &m1)
++{
++  value_initialize(m1.header);
++  value_initialize(m1.pose);
++  return m1;
++}
++
++geometry_msgs::Transform & value_initialize(geometry_msgs::Transform & m1)
++{
++  value_initialize(m1.translation);
++  value_initialize(m1.rotation);
++  return m1;
++}
++
++geometry_msgs::TransformStamped& value_initialize(geometry_msgs::TransformStamped &m1)
++{
++  value_initialize(m1.header);
++  value_initialize(m1.transform);
++  return m1;
++}
++
++void expect_near(const std_msgs::Header & h1, const std_msgs::Header & h2)
++{
++  EXPECT_NEAR(h1.stamp.toSec(), h2.stamp.toSec(), EPS);
++  EXPECT_STREQ(h1.frame_id.c_str(), h2.frame_id.c_str());
++}
++
++/*
++ * Vector3
++ */
++void expect_near(const geometry_msgs::Vector3 & v1, const tf2::Vector3 & v2)
++{
++  EXPECT_NEAR(v1.x, v2.x(), EPS);
++  EXPECT_NEAR(v1.y, v2.y(), EPS);
++  EXPECT_NEAR(v1.z, v2.z(), EPS);
++}
++
++void expect_near(const geometry_msgs::Vector3 & v1, const geometry_msgs::Vector3 & v2)
++{
++  EXPECT_NEAR(v1.x, v2.x, EPS);
++  EXPECT_NEAR(v1.y, v2.y, EPS);
++  EXPECT_NEAR(v1.z, v2.z, EPS);
++}
++
++void expect_near(const tf2::Vector3 & v1, const tf2::Vector3 & v2)
++{
++  EXPECT_NEAR(v1.x(), v2.x(), EPS);
++  EXPECT_NEAR(v1.y(), v2.y(), EPS);
++  EXPECT_NEAR(v1.z(), v2.z(), EPS);
++}
++
++void expect_near(const geometry_msgs::Vector3Stamped & p1, const geometry_msgs::Vector3Stamped & p2)
++{
++  expect_near(p1.header, p2.header);
++  expect_near(p1.vector, p2.vector);
++}
++
++/*
++ * Point
++ */
++void expect_near(const geometry_msgs::Point & p1, const tf2::Vector3 & v2)
++{
++  EXPECT_NEAR(p1.x, v2.x(), EPS);
++  EXPECT_NEAR(p1.y, v2.y(), EPS);
++  EXPECT_NEAR(p1.z, v2.z(), EPS);
++}
++
++void expect_near(const geometry_msgs::Point & p1, const geometry_msgs::Point & v2)
++{
++  EXPECT_NEAR(p1.x, v2.x, EPS);
++  EXPECT_NEAR(p1.y, v2.y, EPS);
++  EXPECT_NEAR(p1.z, v2.z, EPS);
++}
++
++void expect_near(const geometry_msgs::PointStamped & p1, const geometry_msgs::PointStamped & p2)
++{
++  expect_near(p1.header, p2.header);
++  expect_near(p1.point, p2.point);
++}
++
++
++/*
++ * Quaternion
++ */
++void expect_near(const geometry_msgs::Quaternion & q1, const tf2::Quaternion & v2)
++{
++  EXPECT_NEAR(q1.x, v2.x(), EPS);
++  EXPECT_NEAR(q1.y, v2.y(), EPS);
++  EXPECT_NEAR(q1.z, v2.z(), EPS);
++}
++
++void expect_near(const geometry_msgs::Quaternion & q1, const geometry_msgs::Quaternion & v2)
++{
++  EXPECT_NEAR(q1.x, v2.x, EPS);
++  EXPECT_NEAR(q1.y, v2.y, EPS);
++  EXPECT_NEAR(q1.z, v2.z, EPS);
++}
++
++void expect_near(const geometry_msgs::QuaternionStamped & p1, const geometry_msgs::QuaternionStamped & p2)
++{
++  expect_near(p1.header, p2.header);
++  expect_near(p1.quaternion, p2.quaternion);
++}
++
++/*
++ * Pose
++ */
++void expect_near(const geometry_msgs::Pose & p, const tf2::Transform & t)
++{
++  expect_near(p.position, t.getOrigin());
++  expect_near(p.orientation, t.getRotation());
++}
++
++void expect_near(const geometry_msgs::Pose & p1, const geometry_msgs::Pose & p2)
++{
++  expect_near(p1.position, p2.position);
++  expect_near(p1.orientation, p2.orientation);
++}
++
++void expect_near(const geometry_msgs::PoseStamped & p1, const geometry_msgs::PoseStamped & p2)
++{
++  expect_near(p1.header, p2.header);
++  expect_near(p1.pose, p2.pose);
++}
++
++/*
++ * Transform
++ */
++void expect_near(const geometry_msgs::Transform & p, const tf2::Transform & t)
++{
++  expect_near(p.translation, t.getOrigin());
++  expect_near(p.rotation, t.getRotation());
++}
++
++void expect_near(const geometry_msgs::Transform & p1, const geometry_msgs::Transform & p2)
++{
++  expect_near(p1.translation, p2.translation);
++  expect_near(p1.rotation, p2.rotation);
++}
++
++void expect_near(const geometry_msgs::TransformStamped & p1, const geometry_msgs::TransformStamped & p2)
++{
++  expect_near(p1.header, p2.header);
++  expect_near(p1.transform, p2.transform);
++}
++
++/*
++ * Stamped templated expect_near
++ */
++
++template <typename T>
++void expect_near(const tf2::Stamped<T>& s1, const tf2::Stamped<T>& s2)
++{
++ expect_near((T)s1, (T)s2);
++}
++
++/*********************
++ * Tests
++ *********************/
++ 
++TEST(tf2_geometry_msgs, Vector3)
++{
++  geometry_msgs::Vector3 m1;
++  value_initialize(m1);
++  tf2::Vector3 v1;
++  fromMsg(m1, v1);
++  SCOPED_TRACE("m1 v1");
++  expect_near(m1, v1);
++  geometry_msgs::Vector3 m2 = toMsg(v1);
++  SCOPED_TRACE("m1 m2");
++  expect_near(m1, m2);
++}
++
++TEST(tf2_geometry_msgs, Point)
++{
++  geometry_msgs::Point m1;
++  value_initialize(m1);
++  tf2::Vector3 v1;
++  SCOPED_TRACE("m1 v1");
++  fromMsg(m1, v1);
++  expect_near(m1, v1);
++  geometry_msgs::Point m2 = toMsg(v1, m2);
++  SCOPED_TRACE("m1 m2");
++  expect_near(m1, m2);
++}
++
++TEST(tf2_geometry_msgs, Quaternion)
++{
++  geometry_msgs::Quaternion m1;
++  value_initialize(m1);
++  tf2::Quaternion q1;
++  SCOPED_TRACE("m1 q1");
++  fromMsg(m1, q1);
++  expect_near(m1, q1);
++  geometry_msgs::Quaternion m2 = toMsg(q1);
++  SCOPED_TRACE("m1 m2");
++  expect_near(m1, m2);
++}
++
++TEST(tf2_geometry_msgs, Pose)
++{
++  geometry_msgs::Pose m1;
++  value_initialize(m1);
++  tf2::Transform t1;
++  fromMsg(m1, t1);
++  SCOPED_TRACE("m1 t1");
++  expect_near(m1, t1);
++  geometry_msgs::Pose m2 = toMsg(t1, m2);
++  SCOPED_TRACE("m1 m2");
++  expect_near(m1, m2);
++}
++
++TEST(tf2_geometry_msgs, Transform)
++{
++  geometry_msgs::Transform m1;
++  value_initialize(m1);
++  tf2::Transform t1;
++  fromMsg(m1, t1);
++  SCOPED_TRACE("m1 t1");
++  expect_near(m1, t1);
++  geometry_msgs::Transform m2 = toMsg(t1);
++  SCOPED_TRACE("m1 m2");
++  expect_near(m1, m2);
++}
++
++TEST(tf2_geometry_msgs, Vector3Stamped)
++{
++  geometry_msgs::Vector3Stamped m1;
++  value_initialize(m1);
++  tf2::Stamped<tf2::Vector3> v1;
++  fromMsg(m1, v1);
++  SCOPED_TRACE("m1 v1");
++  // expect_near(m1, v1);
++  geometry_msgs::Vector3Stamped m2;
++  m2 = toMsg(v1);
++  SCOPED_TRACE("m1 m2");
++  expect_near(m1, m2);
++}
++
++TEST(tf2_geometry_msgs, PointStamped)
++{
++  geometry_msgs::PointStamped m1;
++  value_initialize(m1);
++  tf2::Stamped<tf2::Vector3> v1;
++  fromMsg(m1, v1);
++  SCOPED_TRACE("m1 v1");
++  // expect_near(m1, v1); //TODO implement cross verification explicityly
++  geometry_msgs::PointStamped m2;
++  m2 = toMsg(v1, m2);
++  SCOPED_TRACE("m1 m2");
++  expect_near(m1, m2);
++}
++
++TEST(tf2_geometry_msgs, QuaternionStamped)
++{
++  geometry_msgs::QuaternionStamped m1;
++  value_initialize(m1);
++  tf2::Stamped<tf2::Quaternion> v1;
++  fromMsg(m1, v1);
++  SCOPED_TRACE("m1 v1");
++  // expect_near(m1, v1); //TODO implement cross verification explicityly
++  geometry_msgs::QuaternionStamped m2;
++  m2 = tf2::toMsg(v1);
++  SCOPED_TRACE("m1 m2");
++  expect_near(m1, m2);
++}
++
++TEST(tf2_geometry_msgs, PoseStamped)
++{
++  geometry_msgs::PoseStamped m1;
++  value_initialize(m1);
++  tf2::Stamped<tf2::Transform> v1;
++  SCOPED_TRACE("m1 v1");
++  fromMsg(m1, v1);
++  // expect_near(m1, v1); //TODO implement cross verification explicityly
++  geometry_msgs::PoseStamped m2;
++  m2 = tf2::toMsg(v1, m2);
++  SCOPED_TRACE("m1 m2");
++  expect_near(m1, m2);
++}
++
++TEST(tf2_geometry_msgs, TransformStamped)
++{
++  geometry_msgs::TransformStamped m1;
++  value_initialize(m1);
++  tf2::Stamped<tf2::Transform> v1;
++  fromMsg(m1, v1);
++  SCOPED_TRACE("m1 v1");
++  // expect_near(m1, v1);
++  geometry_msgs::TransformStamped m2;
++  m2 = tf2::toMsg(v1);
++  SCOPED_TRACE("m1 m2");
++  expect_near(m1, m2);
++}
++
++
++
++
++int main(int argc, char **argv){
++  testing::InitGoogleTest(&argc, argv);
++  int ret = RUN_ALL_TESTS();
++  return ret;
++}

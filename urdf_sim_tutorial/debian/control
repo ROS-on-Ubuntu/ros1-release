@@ -1,0 +1,12 @@
+Source: ros-noetic-urdf-sim-tutorial
+Section: misc
+Priority: optional
+Maintainer: David V. Lu!! <davidvlu@gmail.com>
+Build-Depends: debhelper (>= 9.0.0), ros-noetic-catkin
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-noetic-urdf-sim-tutorial
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-noetic-controller-manager, ros-noetic-diff-drive-controller, ros-noetic-gazebo-ros, ros-noetic-gazebo-ros-control, ros-noetic-joint-state-controller, ros-noetic-position-controllers, ros-noetic-robot-state-publisher, ros-noetic-rqt-robot-steering, ros-noetic-rviz, ros-noetic-urdf-tutorial, ros-noetic-xacro
+Description: The urdf_sim_tutorial package

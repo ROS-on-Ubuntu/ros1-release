@@ -1,0 +1,193 @@
+ros-noetic-rqt-launch (0.4.9-0jammy) jammy; urgency=high
+
+  * fix shebang line for Python 3 (#24 <https://github.com/ros-visualization/rqt_launch/issues/24>)
+  * refactor get spawn count text (#23 <https://github.com/ros-visualization/rqt_launch/issues/23>)
+  * bump CMake minimum version to avoid CMP0048 warning
+  * autopep8 (#19 <https://github.com/ros-visualization/rqt_launch/issues/19>)
+  * add Ryan Sinnet co-maintainer, update the current maintainer contact info
+
+ -- Isaac I.Y. Saito <iisaito@kinugarage.com>  Mon, 12 Oct 2020 16:00:00 -0000
+
+ros-noetic-rqt-launch (0.4.8-0jammy) jammy; urgency=high
+
+
+
+ -- Isaac I.Y. Saito <iisaito@kinugarage.com>  Sun, 23 Apr 2017 16:00:00 -0000
+
+ros-noetic-rqt-launch (0.4.7-0jammy) jammy; urgency=high
+
+
+
+ -- Isaac I.Y. Saito <iisaito@kinugarage.com>  Wed, 01 Mar 2017 16:00:00 -0000
+
+ros-noetic-rqt-launch (0.4.6-0jammy) jammy; urgency=high
+
+
+
+ -- Isaac I.Y. Saito <iisaito@kinugarage.com>  Sun, 26 Feb 2017 16:00:00 -0000
+
+ros-noetic-rqt-launch (0.4.5-0jammy) jammy; urgency=high
+
+  * remove __slots__ declaration preventing the plugin to load (#423 <https://github.com/ros-visualization/rqt_common_plugins/pull/423>)
+
+ -- Isaac I.Y. Saito <iisaito@kinugarage.com>  Thu, 02 Feb 2017 16:00:00 -0000
+
+ros-noetic-rqt-launch (0.4.4-0jammy) jammy; urgency=high
+
+  * add button to load all params in a launch config onto parameter server (#341 <https://github.com/ros-visualization/rqt_common_plugins/issues/341>)
+
+ -- Isaac I.Y. Saito <iisaito@kinugarage.com>  Mon, 23 Jan 2017 16:00:00 -0000
+
+ros-noetic-rqt-launch (0.4.3-0jammy) jammy; urgency=high
+
+
+
+ -- Isaac I.Y. Saito <iisaito@kinugarage.com>  Tue, 01 Nov 2016 16:00:00 -0000
+
+ros-noetic-rqt-launch (0.4.2-0jammy) jammy; urgency=high
+
+
+
+ -- Isaac I.Y. Saito <iisaito@kinugarage.com>  Sun, 18 Sep 2016 16:00:00 -0000
+
+ros-noetic-rqt-launch (0.4.1-0jammy) jammy; urgency=high
+
+
+
+ -- Isaac I.Y. Saito <iisaito@kinugarage.com>  Sun, 15 May 2016 16:00:00 -0000
+
+ros-noetic-rqt-launch (0.4.0-0jammy) jammy; urgency=high
+
+  * Support Qt 5 (in Kinetic and higher) as well as Qt 4 (in Jade and earlier) (#359 <https://github.com/ros-visualization/rqt_common_plugins/pull/359>)
+
+ -- Isaac I.Y. Saito <iisaito@kinugarage.com>  Tue, 26 Apr 2016 16:00:00 -0000
+
+ros-noetic-rqt-launch (0.3.13-0jammy) jammy; urgency=high
+
+
+
+ -- Isaac I.Y. Saito <iisaito@kinugarage.com>  Mon, 07 Mar 2016 16:00:00 -0000
+
+ros-noetic-rqt-launch (0.3.12-0jammy) jammy; urgency=high
+
+
+
+ -- Isaac I.Y. Saito <iisaito@kinugarage.com>  Thu, 23 Jul 2015 16:00:00 -0000
+
+ros-noetic-rqt-launch (0.3.11-0jammy) jammy; urgency=high
+
+
+
+ -- Isaac I.Y. Saito <iisaito@kinugarage.com>  Wed, 29 Apr 2015 16:00:00 -0000
+
+ros-noetic-rqt-launch (0.3.10-0jammy) jammy; urgency=high
+
+  * update plugin scripts to use full name to avoid future naming collisions
+
+ -- Isaac I.Y. Saito <iisaito@kinugarage.com>  Tue, 30 Sep 2014 16:00:00 -0000
+
+ros-noetic-rqt-launch (0.3.9-0jammy) jammy; urgency=high
+
+
+
+ -- Isaac I.Y. Saito <iisaito@kinugarage.com>  Sun, 17 Aug 2014 16:00:00 -0000
+
+ros-noetic-rqt-launch (0.3.8-0jammy) jammy; urgency=high
+
+
+
+ -- Isaac I.Y. Saito <iisaito@kinugarage.com>  Mon, 14 Jul 2014 16:00:00 -0000
+
+ros-noetic-rqt-launch (0.3.7-0jammy) jammy; urgency=high
+
+  * export architecture_independent flag in package.xml (#254 <https://github.com/ros-visualization/rqt_common_plugins/issues/254>)
+
+ -- Isaac I.Y. Saito <iisaito@kinugarage.com>  Thu, 10 Jul 2014 16:00:00 -0000
+
+ros-noetic-rqt-launch (0.3.6-0jammy) jammy; urgency=high
+
+
+
+ -- Isaac I.Y. Saito <iisaito@kinugarage.com>  Sun, 01 Jun 2014 16:00:00 -0000
+
+ros-noetic-rqt-launch (0.3.5-0jammy) jammy; urgency=high
+
+
+
+ -- Isaac I.Y. Saito <iisaito@kinugarage.com>  Tue, 06 May 2014 16:00:00 -0000
+
+ros-noetic-rqt-launch (0.3.4-0jammy) jammy; urgency=high
+
+
+
+ -- Isaac I.Y. Saito <iisaito@kinugarage.com>  Mon, 27 Jan 2014 16:00:00 -0000
+
+ros-noetic-rqt-launch (0.3.3-0jammy) jammy; urgency=high
+
+  * add groups for rqt plugins, renamed some plugins (#167 <https://github.com/ros-visualization/rqt_common_plugins/issues/167>)
+  * mark rqt_launch and rqt_reconfigure as experimental (#167 <https://github.com/ros-visualization/rqt_common_plugins/issues/167>)
+
+ -- Isaac I.Y. Saito <iisaito@kinugarage.com>  Tue, 07 Jan 2014 16:00:00 -0000
+
+ros-noetic-rqt-launch (0.3.2-0jammy) jammy; urgency=high
+
+
+
+ -- Isaac I.Y. Saito <iisaito@kinugarage.com>  Sun, 13 Oct 2013 16:00:00 -0000
+
+ros-noetic-rqt-launch (0.3.1-0jammy) jammy; urgency=high
+
+  * add stop-all-nodes button
+
+ -- Isaac I.Y. Saito <iisaito@kinugarage.com>  Tue, 08 Oct 2013 16:00:00 -0000
+
+ros-noetic-rqt-launch (0.3.0-0jammy) jammy; urgency=high
+
+
+
+ -- Isaac I.Y. Saito <iisaito@kinugarage.com>  Tue, 27 Aug 2013 16:00:00 -0000
+
+ros-noetic-rqt-launch (0.2.17-0jammy) jammy; urgency=high
+
+
+
+ -- Isaac I.Y. Saito <iisaito@kinugarage.com>  Wed, 03 Jul 2013 16:00:00 -0000
+
+ros-noetic-rqt-launch (0.2.16-0jammy) jammy; urgency=high
+
+
+
+ -- Isaac I.Y. Saito <iisaito@kinugarage.com>  Tue, 09 Apr 2013 05:33:00 -0000
+
+ros-noetic-rqt-launch (0.2.15-0jammy) jammy; urgency=high
+
+
+
+ -- Isaac I.Y. Saito <iisaito@kinugarage.com>  Mon, 08 Apr 2013 16:02:00 -0000
+
+ros-noetic-rqt-launch (0.2.14-0jammy) jammy; urgency=high
+
+  * Fix; Start-Stop buttons now reflect nodes status, except when they crashed
+
+ -- Isaac I.Y. Saito <iisaito@kinugarage.com>  Wed, 13 Mar 2013 16:00:00 -0000
+
+ros-noetic-rqt-launch (0.2.13-0jammy) jammy; urgency=high
+
+  * Nodes are stop-able now.
+  * Capable to add node widgets as children of nodes.
+
+ -- Isaac I.Y. Saito <iisaito@kinugarage.com>  Mon, 11 Mar 2013 14:14:00 -0000
+
+ros-noetic-rqt-launch (0.2.12-0jammy) jammy; urgency=high
+
+
+
+ -- Isaac I.Y. Saito <iisaito@kinugarage.com>  Mon, 11 Mar 2013 05:56:00 -0000
+
+ros-noetic-rqt-launch (0.2.11-0jammy) jammy; urgency=high
+
+  * first release of this package into groovy
+
+ -- Isaac I.Y. Saito <iisaito@kinugarage.com>  Thu, 07 Mar 2013 16:00:00 -0000
+
+

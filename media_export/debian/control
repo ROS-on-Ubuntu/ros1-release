@@ -1,0 +1,12 @@
+Source: ros-noetic-media-export
+Section: misc
+Priority: optional
+Maintainer: William Woodall <william@osrfoundation.org>
+Build-Depends: debhelper (>= 9.0.0), ros-noetic-catkin
+Homepage: http://ros.org/wiki/media_export
+Standards-Version: 3.9.2
+
+Package: ros-noetic-media-export
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, 
+Description: Placeholder package enabling generic export of media paths.

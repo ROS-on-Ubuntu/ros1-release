@@ -1,0 +1,23 @@
+ros-noetic-media-export (0.3.0-0jammy) jammy; urgency=high
+
+  * Bump CMake version to avoid CMP0048 warning (#2 <https://github.com/ros/media_export/issues/2>)
+  * Contributors: Shane Loretz
+
+ -- William Woodall <william@osrfoundation.org>  Sun, 08 Mar 2020 16:00:00 -0000
+
+ros-noetic-media-export (0.2.0-0jammy) jammy; urgency=high
+
+  * set myself (william) as maintainer
+  * Contributors: William Woodall
+
+ -- William Woodall <william@osrfoundation.org>  Sun, 23 Mar 2014 16:00:00 -0000
+
+ros-noetic-media-export (0.1.0-0jammy) jammy; urgency=high
+
+  * fixed catkin_project() -> catkin_package()
+  * initial commit
+  * Contributors: Dave Hershberger
+
+ -- William Woodall <william@osrfoundation.org>  Wed, 14 Aug 2013 16:00:00 -0000
+
+

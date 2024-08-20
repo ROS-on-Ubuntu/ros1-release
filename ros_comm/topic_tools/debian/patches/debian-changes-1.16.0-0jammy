@@ -1,0 +1,4650 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-topic-tools (1.16.0-0jammy) jammy; urgency=high
+Author: Michael Carroll <michael@openrobotics.org>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/CHANGELOG.rst
+@@ -0,0 +1,270 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package topic_tools
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++1.16.0 (2023-02-15)
++-------------------
++
++1.15.15 (2022-11-23)
++--------------------
++* Move @jacobperron from maintainer to author (`#2302 <https://github.com/ros/ros_comm/issues/2302>`_)
++* Set TCP_NODELAY. (`#2293 <https://github.com/ros/ros_comm/issues/2293>`_)
++* Contributors: Rik Baehnemann, Shane Loretz
++
++1.15.14 (2022-01-06)
++--------------------
++
++1.15.13 (2021-09-22)
++--------------------
++
++1.15.12 (2021-09-21)
++--------------------
++
++1.15.11 (2021-04-06)
++--------------------
++
++1.15.10 (2021-03-18)
++--------------------
++
++1.15.9 (2020-10-16)
++-------------------
++* Update maintainers (`#2075 <https://github.com/ros/ros_comm/issues/2075>`_)
++* Fix compatibility issue with boost 1.73 and above (`#2023 <https://github.com/ros/ros_comm/issues/2023>`_)
++* Contributors: Sean Yen, Shane Loretz
++
++1.15.8 (2020-07-23)
++-------------------
++* add latch param to throttle (`#1944 <https://github.com/ros/ros_comm/issues/1944>`_)
++
++1.15.7 (2020-05-28)
++-------------------
++
++1.15.6 (2020-05-21)
++-------------------
++
++1.15.5 (2020-05-15)
++-------------------
++* avoid infinite recursion in rosrun tab completion when rosbash is not installed (`#1948 <https://github.com/ros/ros_comm/issues/1948>`_)
++* fix bare pointer in topic_tools::ShapeShifter (`#1722 <https://github.com/ros/ros_comm/issues/1722>`_)
++
++1.15.4 (2020-03-19)
++-------------------
++
++1.15.3 (2020-02-28)
++-------------------
++
++1.15.2 (2020-02-25)
++-------------------
++
++1.15.1 (2020-02-24)
++-------------------
++* use setuptools instead of distutils (`#1870 <https://github.com/ros/ros_comm/issues/1870>`_)
++
++1.15.0 (2020-02-21)
++-------------------
++* fix flakyness of transform test (`#1890 <https://github.com/ros/ros_comm/issues/1890>`_)
++
++1.14.4 (2020-02-20)
++-------------------
++* bump CMake minimum version to avoid CMP0048 warning (`#1869 <https://github.com/ros/ros_comm/issues/1869>`_)
++* use node namespace when looking up topic  (`#1663 <https://github.com/ros/ros_comm/issues/1663>`_)
++* more Windows test code fixes (`#1727 <https://github.com/ros/ros_comm/issues/1727>`_)
++* more Python 3 compatibility (`#1795 <https://github.com/ros/ros_comm/issues/1795>`_)
++* relay: fix boost::lock exception (`#1696 <https://github.com/ros/ros_comm/issues/1696>`_)
++* relay_field: add --tcpnodely (`#1682 <https://github.com/ros/ros_comm/issues/1682>`_)
++* switch to yaml.safe_load(_all) to prevent YAMLLoadWarning (`#1688 <https://github.com/ros/ros_comm/issues/1688>`_)
++* fix flaky hztests (`#1661 <https://github.com/ros/ros_comm/issues/1661>`_)
++* transform: create publisher before subscriber, because callback may use the publisher (`#1669 <https://github.com/ros/ros_comm/issues/1669>`_)
++* duplicate test nodes which aren't available to other packages, add missing dependencies (`#1611 <https://github.com/ros/ros_comm/issues/1611>`_)
++* mux: do not dereference the end-iterator (`#1579 <https://github.com/ros/ros_comm/issues/1579>`_)
++* fix topic_tools environment hook (`#1486 <https://github.com/ros/ros_comm/issues/1486>`_)
++* mux: add ~latch option (`#1489 <https://github.com/ros/ros_comm/issues/1489>`_)
++
++1.14.3 (2018-08-06)
++-------------------
++
++1.14.2 (2018-06-06)
++-------------------
++
++1.14.1 (2018-05-21)
++-------------------
++
++1.14.0 (2018-05-21)
++-------------------
++* throttling when rostime jump backward (`#1397 <https://github.com/ros/ros_comm/issues/1397>`_)
++* check that output topic is valid in demux (`#1367 <https://github.com/ros/ros_comm/issues/1367>`_)
++* add latch functionality to topic_tools/transform (`#1341 <https://github.com/ros/ros_comm/issues/1341>`_)
++
++1.13.6 (2018-02-05)
++-------------------
++* replace deprecated syntax (backticks with repr()) (`#1259 <https://github.com/ros/ros_comm/issues/1259>`_)
++
++1.13.5 (2017-11-09)
++-------------------
++
++1.13.4 (2017-11-02)
++-------------------
++
++1.13.3 (2017-10-25)
++-------------------
++* add initial_topic param (`#1199 <https://github.com/ros/ros_comm/issues/1199>`_)
++* make demux more agile (`#1196 <https://github.com/ros/ros_comm/issues/1196>`_)
++* add stealth mode for topic_tools/relay (`#1155 <https://github.com/ros/ros_comm/issues/1155>`_)
++
++1.13.2 (2017-08-15)
++-------------------
++
++1.13.1 (2017-07-27)
++-------------------
++
++1.13.0 (2017-02-22)
++-------------------
++
++1.12.7 (2017-02-17)
++-------------------
++
++1.12.6 (2016-10-26)
++-------------------
++
++1.12.5 (2016-09-30)
++-------------------
++
++1.12.4 (2016-09-19)
++-------------------
++
++1.12.3 (2016-09-17)
++-------------------
++* add abstract class to implement connection based transport (`#713 <https://github.com/ros/ros_comm/pull/713>`_)
++
++1.12.2 (2016-06-03)
++-------------------
++
++1.12.1 (2016-04-18)
++-------------------
++* use directory specific compiler flags (`#785 <https://github.com/ros/ros_comm/pull/785>`_)
++
++1.12.0 (2016-03-18)
++-------------------
++
++1.11.18 (2016-03-17)
++--------------------
++* fix CMake warning about non-existing targets
++
++1.11.17 (2016-03-11)
++--------------------
++* add --wait-for-start option to relay_field script (`#728 <https://github.com/ros/ros_comm/pull/728>`_)
++* use boost::make_shared instead of new for constructing boost::shared_ptr (`#740 <https://github.com/ros/ros_comm/issues/740>`_)
++
++1.11.16 (2015-11-09)
++--------------------
++
++1.11.15 (2015-10-13)
++--------------------
++
++1.11.14 (2015-09-19)
++--------------------
++* new tool "relay_field" which allows relay topic fields to another topic (`#639 <https://github.com/ros/ros_comm/pull/639>`_)
++* allow transform to be used with ros arguments and in a launch file (`#644 <https://github.com/ros/ros_comm/issues/644>`_)
++* add --wait-for-start option to transform script (`#646 <https://github.com/ros/ros_comm/pull/646>`_)
++
++1.11.13 (2015-04-28)
++--------------------
++
++1.11.12 (2015-04-27)
++--------------------
++
++1.11.11 (2015-04-16)
++--------------------
++
++1.11.10 (2014-12-22)
++--------------------
++
++1.11.9 (2014-08-18)
++-------------------
++
++1.11.8 (2014-08-04)
++-------------------
++
++1.11.7 (2014-07-18)
++-------------------
++
++1.11.6 (2014-07-10)
++-------------------
++
++1.11.5 (2014-06-24)
++-------------------
++
++1.11.4 (2014-06-16)
++-------------------
++* Python 3 compatibility (`#426 <https://github.com/ros/ros_comm/issues/426>`_)
++
++1.11.3 (2014-05-21)
++-------------------
++* add demux program and related scripts (`#407 <https://github.com/ros/ros_comm/issues/407>`_)
++
++1.11.2 (2014-05-08)
++-------------------
++
++1.11.1 (2014-05-07)
++-------------------
++* add transform tool allowing to perform Python operations between message fields taken from several topics (`ros/rosdistro#398 <https://github.com/ros/ros_comm/issues/398>`_)
++
++1.11.0 (2014-03-04)
++-------------------
++* make rostest in CMakeLists optional (`ros/rosdistro#3010 <https://github.com/ros/rosdistro/issues/3010>`_)
++* use catkin_install_python() to install Python scripts (`#361 <https://github.com/ros/ros_comm/issues/361>`_)
++
++1.10.0 (2014-02-11)
++-------------------
++* remove use of __connection header
++
++1.9.54 (2014-01-27)
++-------------------
++
++1.9.53 (2014-01-14)
++-------------------
++
++1.9.52 (2014-01-08)
++-------------------
++
++1.9.51 (2014-01-07)
++-------------------
++
++1.9.50 (2013-10-04)
++-------------------
++
++1.9.49 (2013-09-16)
++-------------------
++
++1.9.48 (2013-08-21)
++-------------------
++
++1.9.47 (2013-07-03)
++-------------------
++* check for CATKIN_ENABLE_TESTING to enable configure without tests
++
++1.9.46 (2013-06-18)
++-------------------
++
++1.9.45 (2013-06-06)
++-------------------
++
++1.9.44 (2013-03-21)
++-------------------
++* fix install destination for dll's under Windows
++
++1.9.43 (2013-03-13)
++-------------------
++
++1.9.42 (2013-03-08)
++-------------------
++
++1.9.41 (2013-01-24)
++-------------------
++
++1.9.40 (2013-01-13)
++-------------------
++
++1.9.39 (2012-12-29)
++-------------------
++* first public release for Groovy
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/CMakeLists.txt
+@@ -0,0 +1,120 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(topic_tools)
++
++if(NOT WIN32)
++  set_directory_properties(PROPERTIES COMPILE_OPTIONS "-Wall;-Wextra")
++endif()
++
++find_package(catkin COMPONENTS cpp_common message_generation rosconsole roscpp rostime std_msgs xmlrpcpp)
++catkin_python_setup()
++
++include_directories(include)
++include_directories(${catkin_INCLUDE_DIRS})
++
++add_service_files(DIRECTORY srv
++  FILES
++  MuxAdd.srv
++  MuxDelete.srv
++  MuxList.srv
++  MuxSelect.srv
++  DemuxAdd.srv
++  DemuxDelete.srv
++  DemuxList.srv
++  DemuxSelect.srv)
++
++generate_messages(DEPENDENCIES std_msgs)
++
++catkin_package(
++  INCLUDE_DIRS include
++  LIBRARIES topic_tools
++  CATKIN_DEPENDS message_runtime rosconsole roscpp std_msgs xmlrpcpp
++ )
++
++catkin_add_env_hooks(20.transform SHELLS bash DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/env-hooks)
++
++add_library(topic_tools src/shape_shifter.cpp src/parse.cpp)
++target_link_libraries(topic_tools ${catkin_LIBRARIES})
++
++add_executable(switch_mux src/switch_mux.cpp)
++target_link_libraries(switch_mux topic_tools ${catkin_LIBRARIES})
++
++add_executable(mux src/mux.cpp)
++target_link_libraries(mux topic_tools ${catkin_LIBRARIES})
++add_dependencies(topic_tools ${${PROJECT_NAME}_EXPORTED_TARGETS})
++
++add_executable(demux src/demux.cpp)
++target_link_libraries(demux topic_tools ${catkin_LIBRARIES})
++add_dependencies(topic_tools ${${PROJECT_NAME}_EXPORTED_TARGETS})
++
++add_executable(relay src/relay.cpp)
++target_link_libraries(relay topic_tools ${catkin_LIBRARIES})
++
++add_executable(drop src/drop.cpp)
++target_link_libraries(drop topic_tools ${catkin_LIBRARIES})
++
++add_executable(throttle src/throttle.cpp)
++target_link_libraries(throttle topic_tools ${catkin_LIBRARIES})
++
++install(TARGETS topic_tools
++  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
++  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
++  RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION})
++
++install(TARGETS switch_mux mux demux relay drop throttle
++  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
++  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
++  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
++
++install(DIRECTORY include/${PROJECT_NAME}/
++  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
++  FILES_MATCHING PATTERN "*.h")
++
++catkin_install_python(PROGRAMS
++  scripts/mux_add
++  scripts/mux_delete
++  scripts/mux_list
++  scripts/mux_select
++  scripts/relay_field
++  scripts/transform
++  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
++
++#Testing
++if(CATKIN_ENABLE_TESTING)
++  find_package(rostest)
++  find_package(rosunit)
++  catkin_add_gtest(${PROJECT_NAME}-utest test/utest.cpp)
++  if(TARGET ${PROJECT_NAME}-utest)
++    target_link_libraries(${PROJECT_NAME}-utest topic_tools)
++  endif()
++
++  if(GTEST_FOUND)
++    include_directories(${GTEST_INCLUDE_DIRS})
++    add_executable(${PROJECT_NAME}-test_shapeshifter EXCLUDE_FROM_ALL test/test_shapeshifter.cpp)
++    target_link_libraries(${PROJECT_NAME}-test_shapeshifter ${GTEST_LIBRARIES} topic_tools)
++  endif()
++  if(TARGET tests)
++    add_dependencies(tests ${PROJECT_NAME}-test_shapeshifter)
++  endif()
++
++  add_rostest(test/shapeshifter.test)
++  add_rostest(test/throttle.test)
++  add_rostest(test/throttle_simtime.test)
++  add_rostest(test/throttle_simtime_loop.test)
++  add_rostest(test/drop.test)
++  add_rostest(test/relay.test)
++  add_rostest(test/relay_stealth.test)
++  add_rostest(test/lazy_transport.test)
++  add_rostest(test/mux_initial_none.test)
++  add_rostest(test/mux_initial_other.test)
++  add_rostest(test/transform.test)
++  ## Latched test disabled until underlying issue in roscpp is resolved,
++  ## #3385, #3434.
++  #rosbuild_add_rostest(test/relay_latched.test)
++  add_rostest(test/mux.test)
++  add_rostest(test/switch_mux.test)
++  add_rostest(test/switch_mux_leading_slash.test)
++  add_rostest(test/switch_mux_none.test)
++  #rosbuild_add_rostest(test/mux_add.test)
++
++  catkin_add_nosetests(test/args.py)
++endif()
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/demos/test_drop
+@@ -0,0 +1,5 @@
++#!/bin/bash
++xterm -e "source ~/.bashrc && rosrun roscpp_tutorials talker" &
++xterm -e "source ~/.bashrc && rosrun roscpp_tutorials listener chatter:=chatter_drop" &
++# this will make it drop 2 out of 3 messages
++rosrun topic_tools drop chatter 2 3
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/demos/test_mux
+@@ -0,0 +1,9 @@
++#!/bin/bash
++#xterm -e "roscore" &
++#sleep 2
++xterm -e "source ~/.bashrc && roscd roscpp_tutorials/bin; ./talker" &
++sleep 2
++xterm -e "source ~/.bashrc && roscd roscpp_tutorials/bin; ./talker __name:=talker2 chatter:=chatter2" &
++xterm -e "source ~/.bashrc && roscd roscpp_tutorials/bin; ./listener chatter:=chat" &
++./mux chat chatter chatter2
++#valgrind -v ./mux chat chatter chatter2
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/demos/test_relay
+@@ -0,0 +1,6 @@
++#!/bin/bash
++#xterm -e "roscore" &
++#sleep 2
++xterm -e "source ~/.bashrc && roscd roscpp_tutorials/bin; ./talker" &
++xterm -e "source ~/.bashrc && roscd roscpp_tutorials/bin; ./listener chatter:=chatter_relay" &
++./relay chatter
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/demos/test_throttle
+@@ -0,0 +1,6 @@
++#!/bin/bash
++xterm -e "source ~/.bashrc && rosrun roscpp_tutorials talker" &
++xterm -e "source ~/.bashrc && rosrun roscpp_tutorials listener chatter:=chatter_throttle" &
++# this will make it drop 2 out of 3 messages
++#valgrind rosrun topic_tools throttle chatter 50 1
++valgrind ./throttle chatter 50 1
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/env-hooks/20.transform.bash
+@@ -0,0 +1,42 @@
++function _roscomplete_node_transform
++{
++    local arg opts
++    COMPREPLY=()
++    arg="${COMP_WORDS[COMP_CWORD]}"
++    local cword=$COMP_CWORD
++    for a in $(seq $((COMP_CWORD-1))); do
++        if [ -z "${COMP_WORDS[a]//-*}" ]; then
++            ((cword--))
++        fi
++    done
++    local words=(${COMP_WORDS[@]//-*})
++
++    if [[ $cword == 3 ]]; then
++        opts=`rostopic list 2> /dev/null`
++        COMPREPLY=($(compgen -W "$opts" -- ${arg}))
++    elif [[ $cword == 5 ]]; then
++        opts=`rosmsg list 2> /dev/null`
++        COMPREPLY=($(compgen -W "$opts" -- ${arg}))
++    fi
++}
++
++_sav_transform_roscomplete_rosrun=$(complete | { grep -w rosrun || test $? = 1; } | awk '{print $3}')
++
++function is_transform_node
++{
++    local words=(${COMP_WORDS[@]//-*})
++    [ ${#words[@]} -gt 2 ] && \
++    [ "${words[1]}" = "topic_tools" ] && \
++    [ "${words[2]}" = "transform" ]
++}
++
++function _roscomplete_rosrun_transform
++{
++    if is_transform_node; then
++        _roscomplete_node_transform
++    elif [[ "$_sav_transform_roscomplete_rosrun" != "_roscomplete_rosrun_transform" ]]; then
++        eval "$_sav_transform_roscomplete_rosrun"
++    fi
++}
++
++complete -F "_roscomplete_rosrun_transform" "rosrun"
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/include/topic_tools/macros.h
+@@ -0,0 +1,46 @@
++/*
++ * Copyright (C) 2008, Willow Garage, Inc.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *   * Redistributions of source code must retain the above copyright notice,
++ *     this list of conditions and the following disclaimer.
++ *   * Redistributions in binary form must reproduce the above copyright
++ *     notice, this list of conditions and the following disclaimer in the
++ *     documentation and/or other materials provided with the distribution.
++ *   * Neither the names of Stanford University or Willow Garage, Inc. nor the names of its
++ *     contributors may be used to endorse or promote products derived from
++ *     this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#ifndef TOPIC_TOOLS_MACROS_H_
++#define TOPIC_TOOLS_MACROS_H_
++
++#include <ros/macros.h> // for the DECL's
++
++// Import/export for windows dll's and visibility for gcc shared libraries.
++
++#ifdef ROS_BUILD_SHARED_LIBS // ros is being built around shared libraries
++  #ifdef topic_tools_EXPORTS // we are building a shared lib/dll
++    #define TOPIC_TOOLS_DECL ROS_HELPER_EXPORT
++  #else // we are using shared lib/dll
++    #define TOPIC_TOOLS_DECL ROS_HELPER_IMPORT
++  #endif
++#else // ros is being built around static libraries
++  #define TOPIC_TOOLS_DECL
++#endif
++
++#endif /* TOPIC_TOOLS_MACROS_H_ */
++
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/include/topic_tools/parse.h
+@@ -0,0 +1,40 @@
++// Copyright (c) 2009, Willow Garage, Inc.
++// All rights reserved.
++// 
++// Redistribution and use in source and binary forms, with or without
++// modification, are permitted provided that the following conditions are met:
++// 
++//     * Redistributions of source code must retain the above copyright
++//       notice, this list of conditions and the following disclaimer.
++//     * Redistributions in binary form must reproduce the above copyright
++//       notice, this list of conditions and the following disclaimer in the
++//       documentation and/or other materials provided with the distribution.
++//     * Neither the name of Willow Garage, Inc. nor the names of its
++//       contributors may be used to endorse or promote products derived from
++//       this software without specific prior written permission.
++// 
++// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++// POSSIBILITY OF SUCH DAMAGE.
++
++// Reusable parser routines
++
++#include <string>
++#include "macros.h"
++
++namespace topic_tools
++{
++
++// Strip any leading namespace qualification from a topic (or other kind
++// of) ROS name
++TOPIC_TOOLS_DECL bool getBaseName(const std::string& full_name, std::string& base_name);
++
++}
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/include/topic_tools/shape_shifter.h
+@@ -0,0 +1,236 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++*
++*  Copyright (c) 2009, Willow Garage, Inc.
++*  All rights reserved.
++*
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++*
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of Willow Garage, Inc. nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++*
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++********************************************************************/
++
++#ifndef TOPIC_TOOLS_SHAPE_SHIFTER_H
++#define TOPIC_TOOLS_SHAPE_SHIFTER_H
++
++#include "ros/ros.h"
++#include "ros/console.h"
++#include "ros/assert.h"
++#include <vector>
++#include <string>
++#include <string.h>
++
++#include <ros/message_traits.h>
++#include "macros.h"
++
++namespace topic_tools
++{
++ 
++class ShapeShifterException : public ros::Exception
++{
++public:
++  ShapeShifterException(const std::string& msg)
++    : ros::Exception(msg)  {}
++};
++
++
++class TOPIC_TOOLS_DECL ShapeShifter
++{
++public:
++  typedef boost::shared_ptr<ShapeShifter> Ptr;
++  typedef boost::shared_ptr<ShapeShifter const> ConstPtr;
++
++  static bool uses_old_API_;
++
++  // Constructor and destructor
++  ShapeShifter();
++  virtual ~ShapeShifter();
++
++  // Helpers for inspecting shapeshifter
++  std::string const& getDataType()          const;
++  std::string const& getMD5Sum()            const;
++  std::string const& getMessageDefinition() const;
++
++  void morph(const std::string& md5sum, const std::string& datatype, const std::string& msg_def,
++             const std::string& latching);
++
++  // Helper for advertising
++  ros::Publisher advertise(ros::NodeHandle& nh, const std::string& topic, uint32_t queue_size_, bool latch=false, 
++                           const ros::SubscriberStatusCallback &connect_cb=ros::SubscriberStatusCallback()) const;
++
++  //! Call to try instantiating as a particular type
++  template<class M> 
++  boost::shared_ptr<M> instantiate() const;
++
++  //! Write serialized message contents out to a stream
++  template<typename Stream>
++  void write(Stream& stream) const;
++
++  template<typename Stream>
++  void read(Stream& stream);
++
++  //! Return the size of the serialized message
++  uint32_t size() const;
++
++private:
++
++  std::string md5, datatype, msg_def, latching;
++  bool typed;
++
++  std::vector<uint8_t> msgBuf;
++};
++  
++}
++
++
++// Message traits allow shape shifter to work with the new serialization API
++namespace ros {
++namespace message_traits {
++
++template <> struct IsMessage<topic_tools::ShapeShifter> : TrueType { };
++template <> struct IsMessage<const topic_tools::ShapeShifter> : TrueType { };
++
++template<>
++struct MD5Sum<topic_tools::ShapeShifter>
++{
++  static const char* value(const topic_tools::ShapeShifter& m) { return m.getMD5Sum().c_str(); }
++
++  // Used statically, a shapeshifter appears to be of any type
++  static const char* value() { return "*"; }
++};
++
++template<>
++struct DataType<topic_tools::ShapeShifter>
++{
++  static const char* value(const topic_tools::ShapeShifter& m) { return m.getDataType().c_str(); }
++
++  // Used statically, a shapeshifter appears to be of any type
++  static const char* value() { return "*"; }
++};
++
++template<>
++struct Definition<topic_tools::ShapeShifter>
++{
++  static const char* value(const topic_tools::ShapeShifter& m) { return m.getMessageDefinition().c_str(); }
++};
++
++} // namespace message_traits
++
++
++namespace serialization
++{
++
++template<>
++struct Serializer<topic_tools::ShapeShifter>
++{
++  template<typename Stream>
++  inline static void write(Stream& stream, const topic_tools::ShapeShifter& m) {
++    m.write(stream);
++  }
++
++  template<typename Stream>
++  inline static void read(Stream& stream, topic_tools::ShapeShifter& m)
++  {
++    m.read(stream);
++  }
++
++  inline static uint32_t serializedLength(const topic_tools::ShapeShifter& m) {
++    return m.size();
++  }
++};
++
++
++template<>
++struct PreDeserialize<topic_tools::ShapeShifter>
++{
++  static void notify(const PreDeserializeParams<topic_tools::ShapeShifter>& params)
++  {
++    std::string md5      = (*params.connection_header)["md5sum"];
++    std::string datatype = (*params.connection_header)["type"];
++    std::string msg_def  = (*params.connection_header)["message_definition"];
++    std::string latching  = (*params.connection_header)["latching"];
++
++    params.message->morph(md5, datatype, msg_def, latching);
++  }
++};
++
++} // namespace serialization
++
++} //namespace ros
++
++
++
++// Template implementations:
++
++namespace topic_tools
++{
++
++  //
++  //  only used in testing, seemingly
++  //
++template<class M> 
++boost::shared_ptr<M> ShapeShifter::instantiate() const
++{
++  if (!typed)
++    throw ShapeShifterException("Tried to instantiate message from an untyped shapeshifter.");
++  
++  if (ros::message_traits::datatype<M>() != getDataType())
++    throw ShapeShifterException("Tried to instantiate message without matching datatype.");
++  
++  if (ros::message_traits::md5sum<M>() != getMD5Sum())
++    throw ShapeShifterException("Tried to instantiate message without matching md5sum.");
++  
++  boost::shared_ptr<M> p(boost::make_shared<M>());
++
++  // The IStream never modifies its data, and nothing else has access to this
++  // object, so the const_cast here is ok
++  ros::serialization::IStream s(const_cast<unsigned char*>(msgBuf.data()),
++                                msgBuf.size());
++  ros::serialization::deserialize(s, *p);
++
++  return p;
++}
++
++template<typename Stream>
++void ShapeShifter::write(Stream& stream) const {
++  if (msgBuf.size() > 0)
++    memcpy(stream.advance(msgBuf.size()), msgBuf.data(), msgBuf.size());
++}
++
++template<typename Stream>
++void ShapeShifter::read(Stream& stream)
++{
++  stream.getLength();
++  stream.getData();
++
++  // stash this message in our buffer
++  msgBuf.resize(stream.getLength());
++  memcpy(msgBuf.data(), stream.getData(), stream.getLength());
++}
++
++} // namespace topic_tools
++
++
++#endif
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/package.xml
+@@ -0,0 +1,45 @@
++<package>
++  <name>topic_tools</name>
++  <version>1.16.0</version>
++  <description>
++    Tools for directing, throttling, selecting, and otherwise messing with
++    ROS topics at a meta level. None of the programs in this package actually
++    know about the topics whose streams they are altering; instead, these
++    tools deal with messages as generic binary blobs. This means they can be
++    applied to any ROS topic.
++  </description>
++  <maintainer email="michael@openrobotics.org">Michael Carroll</maintainer>
++  <maintainer email="sloretz@openrobotics.org">Shane Loretz</maintainer>
++  <license>BSD</license>
++
++  <url>http://ros.org/wiki/topic_tools</url>
++  <author>Morgan Quigley</author>
++  <author>Brian Gerkey</author>
++  <author email="dthomas@osrfoundation.org">Dirk Thomas</author>
++  <author email="jacob@openrobotics.org">Jacob Perron</author>
++
++  <buildtool_depend version_gte="0.5.78">catkin</buildtool_depend>
++
++  <build_depend>cpp_common</build_depend>
++  <build_depend>message_generation</build_depend>
++  <build_depend>rosconsole</build_depend>
++  <build_depend>roscpp</build_depend>
++  <build_depend>rostest</build_depend>
++  <build_depend>rostime</build_depend>
++  <build_depend>rosunit</build_depend>
++  <build_depend>std_msgs</build_depend>
++  <build_depend>xmlrpcpp</build_depend>
++
++  <run_depend>message_runtime</run_depend>
++  <run_depend>rosconsole</run_depend>
++  <run_depend>roscpp</run_depend>
++  <run_depend>rostime</run_depend>
++  <run_depend>std_msgs</run_depend>
++  <run_depend>xmlrpcpp</run_depend>
++
++  <test_depend>rosbash</test_depend>
++  <!--
++  tests need this dependency but rostopic dep. on rosbag deps. on topic_tools
++  <test_depend>rostopic</test_depend>
++  -->
++</package>
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/python/topic_tools/__init__.py
+@@ -0,0 +1,79 @@
++import rospy
++
++
++__all__ = ('LazyTransport',)
++
++
++# define a new metaclass which overrides the '__call__' function
++# See: http://martyalchin.com/2008/jan/10/simple-plugin-framework/
++class MetaLazyTransport(type):
++
++    def __call__(cls, *args, **kwargs):
++        """Called when you call LazyTransport()"""
++        obj = type.__call__(cls, *args, **kwargs)
++        obj._post_init()
++        return obj
++
++
++class LazyTransport(rospy.SubscribeListener):
++    __metaclass__ = MetaLazyTransport
++
++    def __init__(self):
++        super(LazyTransport, self).__init__()
++        self._publishers = []
++        # self._connection_status has 3 meanings
++        # - None: never been subscribed
++        # - False: currently not subscribed but has been subscribed before
++        # - True: currently subscribed
++        self._connection_status = None
++        rospy.Timer(rospy.Duration(5),
++                    self._warn_never_subscribed_cb, oneshot=True)
++
++    def _post_init(self):
++        if not rospy.get_param('~lazy', True):
++            self.subscribe()
++            self._connection_status = True
++
++    def _warn_never_subscribed_cb(self, timer_event):
++        if self._connection_status is None:
++            rospy.logwarn(
++                '[{name}] subscribes topics only with'
++                " child subscribers. Set '~lazy' as False"
++                ' to have it always transport message.'
++                .format(name=rospy.get_name()))
++
++    def subscribe(self):
++        raise NotImplementedError('Please overwrite this method')
++
++    def unsubscribe(self):
++        raise NotImplementedError('Please overwrite this method')
++
++    def peer_subscribe(self, *args, **kwargs):
++        rospy.logdebug('[{topic}] is subscribed'.format(topic=args[0]))
++        if self._connection_status is not True:
++            self.subscribe()
++            self._connection_status = True
++
++    def peer_unsubscribe(self, *args, **kwargs):
++        rospy.logdebug('[{topic}] is unsubscribed'.format(topic=args[0]))
++        if not rospy.get_param('~lazy', True):
++            return  # do not unsubscribe
++        if self._connection_status in [None, False]:
++            return  # no need to unsubscribe
++        for pub in self._publishers:
++            if pub.get_num_connections() > 0:
++                break
++        else:
++            self.unsubscribe()
++            self._connection_status = False
++
++    def advertise(self, *args, **kwargs):
++        # subscriber_listener should be 'self'
++        # to detect connection and disconnection of the publishing topics
++        assert len(args) < 3 or args[2] is None
++        assert kwargs.get('subscriber_listener') is None
++        kwargs['subscriber_listener'] = self
++
++        pub = rospy.Publisher(*args, **kwargs)
++        self._publishers.append(pub)
++        return pub
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/sample/simple_lazy_transport.py
+@@ -0,0 +1,29 @@
++#!/usr/bin/env python
++
++import roslib.message
++import rospy
++
++from topic_tools import LazyTransport
++
++
++class SimpleLazyTransport(LazyTransport):
++    def __init__(self):
++        super(self.__class__, self).__init__()
++        msg_name = rospy.get_param('~msg_name')
++        self.msg_class = roslib.message.get_message_class(msg_name)
++        self._pub = self.advertise('~output', self.msg_class, queue_size=1)
++
++    def subscribe(self):
++        self._sub = rospy.Subscriber('~input', self.msg_class, self._process)
++
++    def unsubscribe(self):
++        self._sub.unregister()
++
++    def _process(self, img_msg):
++        self._pub.publish(img_msg)
++
++
++if __name__ == '__main__':
++    rospy.init_node('simple_transport')
++    app = SimpleLazyTransport()
++    rospy.spin()
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/scripts/demux_add
+@@ -0,0 +1,68 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import sys
++import os
++import string
++
++import rospy
++
++# imports the DemuxAdd service 
++from topic_tools.srv import DemuxAdd
++
++USAGE = 'USAGE: demux_add DEMUX_NAME TOPIC'
++
++def call_srv(m, t):
++    # There's probably a nicer rospy way of doing this
++    s = m + '/add'
++    print("Waiting for service \"%s\""%(s))
++    rospy.wait_for_service(s)
++    print("Adding \"%s\" to demux \"%s\""%(t, m))
++    try:
++        srv = rospy.ServiceProxy(s, DemuxAdd)
++        return srv(t)
++    except rospy.ServiceException, e:
++        print("Service call failed: %s"%e)
++
++def usage():
++    return "%s "%sys.argv[0]
++
++if __name__ == "__main__":
++    args = rospy.myargv()
++    if len(args) != 3:
++        print(USAGE)
++        sys.exit(1)
++
++    m = args[1]
++    t = args[2]
++    call_srv(m, t)
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/scripts/demux_delete
+@@ -0,0 +1,67 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import sys
++import os
++
++import rospy
++
++# imports the DemuxDelete service 
++from topic_tools.srv import DemuxDelete
++
++USAGE = 'USAGE: demux_delete DEMUX_NAME TOPIC'
++
++def call_srv(m, t):
++    # There's probably a nicer rospy way of doing this
++    s = m + '/delete'
++    print("Waiting for service \"%s\""%(s))
++    rospy.wait_for_service(s)
++    print("Deleting \"%s\" from demux \"%s\""%(t, m))
++    try:
++        srv = rospy.ServiceProxy(s, DemuxDelete)
++        return srv(t)
++    except rospy.ServiceException, e:
++        print("Service call failed: %s"%e)
++
++def usage():
++    return "%s "%sys.argv[0]
++
++if __name__ == "__main__":
++    args = rospy.myargv()
++    if len(args) != 3:
++        print(USAGE)
++        sys.exit(1)
++
++    m = args[1]
++    t = args[2]
++    call_srv(m, t)
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/scripts/demux_list
+@@ -0,0 +1,70 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import sys
++import os
++import string
++
++import rospy
++
++# imports the DemuxList service 
++from topic_tools.srv import DemuxList
++
++USAGE = 'USAGE: demux_list DEMUX_NAME'
++
++def call_srv(m):
++    # There's probably a nicer rospy way of doing this
++    s = m + '/list'
++    print("Waiting for service \"%s\""%(s))
++    rospy.wait_for_service(s)
++    print("Listing topics from demux \"%s\""%(m))
++    try:
++        srv = rospy.ServiceProxy(s, DemuxList)
++        resp = srv()
++        if resp:
++            print(resp.topics)
++        return resp
++    except rospy.ServiceException, e:
++        print("Service call failed: %s"%e)
++
++def usage():
++    return "%s "%sys.argv[0]
++
++if __name__ == "__main__":
++    args = rospy.myargv()
++    if len(args) != 2:
++        print(USAGE)
++        sys.exit(1)
++
++    m = args[1]
++    call_srv(m)
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/scripts/demux_select
+@@ -0,0 +1,68 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import sys
++import os
++import string
++
++import rospy
++
++# imports the DemuxSelect service 
++from topic_tools.srv import DemuxSelect
++
++USAGE = 'USAGE: demux_select DEMUX_NAME TOPIC'
++
++def call_srv(m, t):
++    # There's probably a nicer rospy way of doing this
++    s = m + '/select'
++    print("Waiting for service \"%s\""%(s))
++    rospy.wait_for_service(s)
++    print("Selecting \"%s\" at demux \"%s\""%(t, m))
++    try:
++        srv = rospy.ServiceProxy(s, DemuxSelect)
++        return srv(t)
++    except rospy.ServiceException, e:
++        print("Service call failed: %s"%e)
++
++def usage():
++    return "%s "%sys.argv[0]
++
++if __name__ == "__main__":
++    args = rospy.myargv()
++    if len(args) != 3:
++        print(USAGE)
++        sys.exit(1)
++
++    m = args[1]
++    t = args[2]
++    call_srv(m, t)
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/scripts/mux_add
+@@ -0,0 +1,68 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import sys
++import os
++import string
++
++import rospy
++
++# imports the MuxAdd service 
++from topic_tools.srv import MuxAdd
++
++USAGE = 'USAGE: mux_add MUX_NAME TOPIC'
++
++def call_srv(m, t):
++    # There's probably a nicer rospy way of doing this
++    s = m + '/add'
++    print("Waiting for service \"%s\""%(s))
++    rospy.wait_for_service(s)
++    print("Adding \"%s\" to mux \"%s\""%(t, m))
++    try:
++        srv = rospy.ServiceProxy(s, MuxAdd)
++        return srv(t)
++    except rospy.ServiceException as e:
++        print("Service call failed: %s"%e)
++
++def usage():
++    return "%s "%sys.argv[0]
++
++if __name__ == "__main__":
++    args = rospy.myargv()
++    if len(args) != 3:
++        print(USAGE)
++        sys.exit(1)
++
++    m = args[1]
++    t = args[2]
++    call_srv(m, t)
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/scripts/mux_delete
+@@ -0,0 +1,67 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import sys
++import os
++
++import rospy
++
++# imports the MuxDelete service 
++from topic_tools.srv import MuxDelete
++
++USAGE = 'USAGE: mux_delete MUX_NAME TOPIC'
++
++def call_srv(m, t):
++    # There's probably a nicer rospy way of doing this
++    s = m + '/delete'
++    print("Waiting for service \"%s\""%(s))
++    rospy.wait_for_service(s)
++    print("Deleting \"%s\" from mux \"%s\""%(t, m))
++    try:
++        srv = rospy.ServiceProxy(s, MuxDelete)
++        return srv(t)
++    except rospy.ServiceException as e:
++        print("Service call failed: %s"%e)
++
++def usage():
++    return "%s "%sys.argv[0]
++
++if __name__ == "__main__":
++    args = rospy.myargv()
++    if len(args) != 3:
++        print(USAGE)
++        sys.exit(1)
++
++    m = args[1]
++    t = args[2]
++    call_srv(m, t)
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/scripts/mux_list
+@@ -0,0 +1,70 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import sys
++import os
++import string
++
++import rospy
++
++# imports the MuxList service 
++from topic_tools.srv import MuxList
++
++USAGE = 'USAGE: mux_list MUX_NAME'
++
++def call_srv(m):
++    # There's probably a nicer rospy way of doing this
++    s = m + '/list'
++    print("Waiting for service \"%s\""%(s))
++    rospy.wait_for_service(s)
++    print("Listing topics from mux \"%s\""%(m))
++    try:
++        srv = rospy.ServiceProxy(s, MuxList)
++        resp = srv()
++        if resp:
++            print(resp.topics)
++        return resp
++    except rospy.ServiceException as e:
++        print("Service call failed: %s"%e)
++
++def usage():
++    return "%s "%sys.argv[0]
++
++if __name__ == "__main__":
++    args = rospy.myargv()
++    if len(args) != 2:
++        print(USAGE)
++        sys.exit(1)
++
++    m = args[1]
++    call_srv(m)
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/scripts/mux_select
+@@ -0,0 +1,68 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import sys
++import os
++import string
++
++import rospy
++
++# imports the MuxSelect service 
++from topic_tools.srv import MuxSelect
++
++USAGE = 'USAGE: mux_select MUX_NAME TOPIC'
++
++def call_srv(m, t):
++    # There's probably a nicer rospy way of doing this
++    s = m + '/select'
++    print("Waiting for service \"%s\""%(s))
++    rospy.wait_for_service(s)
++    print("Selecting \"%s\" at mux \"%s\""%(t, m))
++    try:
++        srv = rospy.ServiceProxy(s, MuxSelect)
++        return srv(t)
++    except rospy.ServiceException as e:
++        print("Service call failed: %s"%e)
++
++def usage():
++    return("%s "%sys.argv[0])
++
++if __name__ == "__main__":
++    args = rospy.myargv()
++    if len(args) != 3:
++        print(USAGE)
++        sys.exit(1)
++
++    m = args[1]
++    t = args[2]
++    call_srv(m, t)
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/scripts/relay_field
+@@ -0,0 +1,118 @@
++#!/usr/bin/env python
++# -*- coding: utf-8 -*-
++
++"""
++Allows to take a topic or one of its fields and output it on another topic
++or fields.
++
++The operations are done on the message, which is taken in the variable 'm'.
++
++Example:
++    $ rosrun topic_tools relay_field /chatter /header std_msgs/Header
++      "seq: 0
++       stamp:
++         secs: 0
++         nsecs: 0
++         frame_id: m.data"
++"""
++
++from __future__ import print_function
++import argparse
++import sys
++import copy
++
++import yaml
++
++import roslib
++import rospy
++import rostopic
++import genpy
++import std_msgs
++
++__author__ = 'www.kentaro.wada@gmail.com (Kentaro Wada)'
++
++
++def _eval_in_dict_impl(dict_, globals_, locals_):
++    res = copy.deepcopy(dict_)
++    for k, v in res.items():
++        type_ = type(v)
++        if type_ is dict:
++            res[k] = _eval_in_dict_impl(v, globals_, locals_)
++        elif (type_ is str) or (type_ is unicode):
++            try:
++                res[k] = eval(v, globals_, locals_)
++            except NameError:
++                pass
++            except SyntaxError:
++                pass
++    return res
++
++
++class RelayField(object):
++    def __init__(self):
++        parser = argparse.ArgumentParser(
++            formatter_class=argparse.RawTextHelpFormatter,
++            description=(
++                'Allows to relay field data from one topic to another.\n\n'
++                'Usage:\n\trosrun topic_tools relay_field '
++                '<input> <output topic> <output type> '
++                '<expression on m>\n\n'
++                'Example:\n\trosrun topic_tools relay_field '
++                '/chatter /header std_msgs/Header\n\t'
++                '"seq: 0\n\t stamp:\n\t   secs: 0\n\t   nsecs: 0\n\t   '
++                'frame_id: m.data"\n\n'
++                )
++            )
++        parser.add_argument('input', help='Input topic or topic field.')
++        parser.add_argument('output_topic', help='Output topic.')
++        parser.add_argument('output_type', help='Output topic type.')
++        parser.add_argument(
++            'expression',
++            help='Python expression to apply on the input message \'m\'.'
++            )
++        parser.add_argument(
++            '--wait-for-start', action='store_true',
++            help='Wait for input messages.'
++            )
++        parser.add_argument(
++            '--tcpnodelay', dest='tcp_nodelay', action='store_true',
++            help='use the TCP_NODELAY transport hint when subscribing to topics'
++            )
++
++        # get and strip out ros args first                                                                                                                      
++        argv = rospy.myargv()
++        args = parser.parse_args(argv[1:])
++
++        self.expression = args.expression
++
++        input_class, input_topic, self.input_fn = rostopic.get_topic_class(
++            args.input, blocking=args.wait_for_start)
++        if input_topic is None:
++            print('ERROR: Wrong input topic (or topic field): %s' % args.input,
++                  file=sys.stderr)
++            sys.exit(1)
++
++        self.output_class = roslib.message.get_message_class(args.output_type)
++
++        self.sub = rospy.Subscriber(input_topic, input_class, self.callback, tcp_nodelay=args.tcp_nodelay)
++        self.pub = rospy.Publisher(args.output_topic, self.output_class,
++                                   queue_size=1)
++
++    def callback(self, m):
++        if self.input_fn is not None:
++            m = self.input_fn(m)
++
++        msg_generation = yaml.safe_load(self.expression)
++        pub_args = _eval_in_dict_impl(msg_generation, None, {'m': m})
++
++        now = rospy.get_rostime()
++        keys = {'now': now, 'auto': std_msgs.msg.Header(stamp=now)}
++        msg = self.output_class()
++        genpy.message.fill_message_args(msg, [pub_args], keys=keys)
++        self.pub.publish(msg)
++
++
++if __name__ == '__main__':
++    rospy.init_node('relay_field', anonymous=True)
++    app = RelayField()
++    rospy.spin()
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/scripts/transform
+@@ -0,0 +1,122 @@
++#!/usr/bin/env python
++# -*- coding: utf-8 -*-
++
++"""
++@author: enriquefernandez
++
++Allows to take a topic or one of it fields and output it on another topic
++after performing a valid python operation.
++
++The operations are done on the message, which is taken in the variable 'm'.
++
++* Examples (note that numpy is imported by default):
++$ rosrun topic_tools transform /imu/orientation/x /x_str std_msgs/String 'str(m)'
++$ rosrun topic_tools transform /imu/orientation/x /x_in_degrees std_msgs/Float64 -- '-numpy.rad2deg(m)'
++$ rosrun topic_tools transform /imu/orientation /norm std_msgs/Float64 'numpy.sqrt(numpy.sum(numpy.array([m.x, m.y, m.z, m.w])))'
++$ rosrun topic_tools transform /imu/orientation /norm std_msgs/Float64 'numpy.linalg.norm([m.x, m.y, m.z, m.w])'
++$ rosrun topic_tools transform /imu/orientation /euler geometry_msgs/Vector3 'tf.transformations.euler_from_quaternion([m.x, m.y, m.z, m.w])' --import tf
++"""
++
++from __future__ import print_function
++
++import roslib
++import rospy
++import rostopic
++
++import argparse
++import importlib
++import sys
++
++
++class TopicOp:
++
++    def __init__(self):
++        parser = argparse.ArgumentParser(
++            formatter_class=argparse.RawTextHelpFormatter,
++            description='Apply a Python operation to a topic.\n\n'
++                        'A node is created that subscribes to a topic,\n'
++                        'applies a Python expression to the topic (or topic\n'
++                        'field) message \'m\', and publishes the result\n'
++                        'through another topic.\n\n'
++                        'Usage:\n\trosrun topic_tools transform '
++                        '<input> <output topic> <output type> '
++                        '[<expression on m>] [--import numpy tf]\n\n'
++                        'Example:\n\trosrun topic_tools transform /imu/orientation '
++                        '/norm std_msgs/Float64 '
++                        '\'sqrt(sum(array([m.x, m.y, m.z, m.w])))\'')
++        parser.add_argument('input', help='Input topic or topic field.')
++        parser.add_argument('output_topic', help='Output topic.')
++        parser.add_argument('output_type', help='Output topic type.')
++        parser.add_argument(
++            'expression', default='m',
++            help='Python expression to apply on the input message \'m\'.'
++        )
++        parser.add_argument(
++            '-i', '--import', dest='modules', nargs='+', default=['numpy'],
++            help='List of Python modules to import.'
++        )
++        parser.add_argument(
++            '--wait-for-start', action='store_true',
++            help='Wait for input messages.'
++        )
++        parser.add_argument(
++            '--latch', action='store_true',
++            help='Set publisher to latched.'
++        )
++        parser.add_argument(
++            '--tcpnodelay', dest='tcp_nodelay', action='store_true',
++            help='Set TCP_NODELAY transport hint when subscribing to topics.'
++        )
++
++        # get and strip out ros args first
++        argv = rospy.myargv()
++        args = parser.parse_args(argv[1:])
++
++        self.modules = {}
++        for module in args.modules:
++            try:
++                mod = importlib.import_module(module)
++            except ImportError:
++                print('Failed to import module: %s' % module, file=sys.stderr)
++            else:
++                self.modules[module] = mod
++
++        self.expression = args.expression
++
++        input_topic_in_ns = args.input
++        if not input_topic_in_ns.startswith('/'):
++            input_topic_in_ns = rospy.get_namespace() + args.input
++
++        input_class, input_topic, self.input_fn = rostopic.get_topic_class(
++            input_topic_in_ns, blocking=args.wait_for_start)
++        if input_topic is None:
++            print('ERROR: Wrong input topic (or topic field): %s' % input_topic_in_ns, file=sys.stderr)
++            sys.exit(1)
++
++        self.output_class = roslib.message.get_message_class(args.output_type)
++
++        self.pub = rospy.Publisher(args.output_topic, self.output_class, queue_size=1, latch=args.latch)
++        self.sub = rospy.Subscriber(input_topic, input_class, self.callback, tcp_nodelay=args.tcp_nodelay)
++
++    def callback(self, m):
++        if self.input_fn is not None:
++            m = self.input_fn(m)
++
++        try:
++            res = eval("{}".format(self.expression), self.modules, {'m': m})
++        except NameError as e:
++            print("Expression using variables other than 'm': %s" % e.message, file=sys.stderr)
++        except UnboundLocalError as e:
++            print('Wrong expression:%s' % e.message, file=sys.stderr)
++        except Exception:
++            raise
++        else:
++            if not isinstance(res, (list, tuple)):
++                res = [res]
++            self.pub.publish(*res)
++
++
++if __name__ == '__main__':
++    rospy.init_node('transform', anonymous=True)
++    app = TopicOp()
++    rospy.spin()
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/setup.py
+@@ -0,0 +1,10 @@
++from setuptools import setup
++from catkin_pkg.python_setup import generate_distutils_setup
++
++
++setup_args = generate_distutils_setup(
++    packages=['topic_tools'],
++    package_dir={'': 'python'})
++
++
++setup(**setup_args)
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/src/demux.cpp
+@@ -0,0 +1,312 @@
++///////////////////////////////////////////////////////////////////////////////
++// demux is a generic ROS topic demultiplexer: one input topic is fanned out
++// to 1 of N output topics. A service is provided to select between the outputs
++//
++// Copyright (C) 2009, Morgan Quigley
++// Copyright (C) 2014, Andreas Hermann
++//
++// Redistribution and use in source and binary forms, with or without
++// modification, are permitted provided that the following conditions are met:
++//   * Redistributions of source code must retain the above copyright notice,
++//     this list of conditions and the following disclaimer.
++//   * Redistributions in binary form must reproduce the above copyright
++//     notice, this list of conditions and the following disclaimer in the
++//     documentation and/or other materials provided with the distribution.
++//   * Neither the name of Stanford University nor the names of its
++//     contributors may be used to endorse or promote products derived from
++//     this software without specific prior written permission.
++//
++// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++// POSSIBILITY OF SUCH DAMAGE.
++/////////////////////////////////////////////////////////////////////////////
++
++
++#include <cstdio>
++#include <vector>
++#include <list>
++#include "ros/console.h"
++#include "std_msgs/String.h"
++#include "topic_tools/DemuxSelect.h"
++#include "topic_tools/DemuxAdd.h"
++#include "topic_tools/DemuxList.h"
++#include "topic_tools/DemuxDelete.h"
++#include "topic_tools/shape_shifter.h"
++#include "topic_tools/parse.h"
++
++using std::string;
++using std::vector;
++using std::list;
++using namespace topic_tools;
++
++const static string g_none_topic = "__none";
++
++static ros::NodeHandle *g_node = NULL;
++
++static string g_input_topic;
++static ros::Subscriber g_sub; // the input toppic
++static ros::Publisher g_pub_selected; // publishes name of selected publisher toppic
++
++struct pub_info_t
++{
++  std::string topic_name;
++  ros::Publisher *pub;
++};
++
++void in_cb(const boost::shared_ptr<ShapeShifter const>& msg);
++
++static list<struct pub_info_t> g_pubs; // the list of publishers
++static list<struct pub_info_t>::iterator g_selected = g_pubs.end();
++
++bool sel_srv_cb( topic_tools::DemuxSelect::Request  &req,
++                 topic_tools::DemuxSelect::Response &res )
++{
++  bool ret = false;
++  if (g_selected != g_pubs.end()) {
++    res.prev_topic = g_selected->topic_name;
++  }
++  else
++    res.prev_topic = string("");
++
++  // see if it's the magical '__none' topic, in which case we open the circuit
++  if (req.topic == g_none_topic)
++  {
++    ROS_INFO("demux selected to no output.");
++
++    g_selected = g_pubs.end();
++    ret = true;
++  }
++  else
++  {
++    ROS_INFO("trying to switch demux to %s", req.topic.c_str());
++    // spin through our vector of inputs and find this guy
++    for (list<struct pub_info_t>::iterator it = g_pubs.begin();
++	 it != g_pubs.end();
++	 ++it)
++    {
++      if (ros::names::resolve(it->topic_name) == ros::names::resolve(req.topic))
++      {
++        g_selected = it;
++        ROS_INFO("demux selected output: [%s]", it->topic_name.c_str());
++        ret = true;
++        break;
++      }
++    }
++    if(!ret)
++    {
++    	ROS_WARN("Failed to switch to non-existing topic %s in demux.", req.topic.c_str());
++    }
++  }
++
++  if(ret)
++  {
++    std_msgs::String t;
++    t.data = req.topic;
++    g_pub_selected.publish(t);
++  }
++
++  return ret;
++}
++
++void in_cb(const boost::shared_ptr<ShapeShifter const>& msg)
++{
++  ROS_DEBUG("Received an incoming msg ...");
++  // when a message is incoming, check, if the requested publisher is already existing.
++  // if not, create it with the information available from the incoming message.
++  bool selected_added = false;
++  for (list<struct pub_info_t>::iterator it = g_pubs.begin(); it != g_pubs.end(); ++it) {
++    if (!it->pub)
++    {
++      if (it->topic_name == g_selected->topic_name)
++      {
++        selected_added = true;
++      }
++
++      try
++      {
++        it->pub = new ros::Publisher(msg->advertise(*g_node, it->topic_name, 10, false));
++      }
++      catch (ros::InvalidNameException& e)
++      {
++        ROS_WARN("failed to add topic '%s' to demux, because it's an invalid name: %s",
++                 it->topic_name.c_str(), e.what());
++        return;
++      }
++
++      ROS_INFO("Added publisher %s to demux!", it->topic_name.c_str());
++    }
++  }
++
++  if (selected_added)
++  {
++    // This is needed, because it takes some time before publisher is registered and can send out messages.
++    ROS_INFO("Sleeping 0.5 sec.");
++    ros::Duration(0.5).sleep();
++  }
++
++  // check that we have a valid topic
++  if (!g_selected->pub) return;
++
++  // finally: send out the message over the active publisher
++  g_selected->pub->publish(msg);
++  ROS_DEBUG("... and sent it out again!");
++}
++
++bool list_topic_cb(topic_tools::DemuxList::Request& req,
++	 	   topic_tools::DemuxList::Response& res)
++{
++  (void)req;
++  for (list<struct pub_info_t>::iterator it = g_pubs.begin();
++       it != g_pubs.end();
++       ++it)
++  {
++    res.topics.push_back(it->topic_name);
++  }
++
++  return true;
++}
++
++bool add_topic_cb(topic_tools::DemuxAdd::Request& req,
++		  topic_tools::DemuxAdd::Response& res)
++{
++  (void)res;
++  // Check that it's not already in our list
++  ROS_INFO("trying to add %s to demux", req.topic.c_str());
++
++  // Can't add the __none topic
++  if(req.topic == g_none_topic)
++  {
++    ROS_WARN("failed to add topic %s to demux, because it's reserved for special use",
++	     req.topic.c_str());
++    return false;
++  }
++
++  // spin through our vector of inputs and find this guy
++  for (list<struct pub_info_t>::iterator it = g_pubs.begin();
++       it != g_pubs.end();
++       ++it)
++  {
++    if (ros::names::resolve(it->topic_name) == ros::names::resolve(req.topic))
++    {
++      ROS_WARN("tried to add a topic that demux was already publishing: [%s]",
++	       it->topic_name.c_str());
++      return false;
++    }
++  }
++
++  struct pub_info_t pub_info;
++  pub_info.topic_name = ros::names::resolve(req.topic);
++  pub_info.pub = NULL;
++  g_pubs.push_back(pub_info);
++
++  ROS_INFO("PRE added %s to demux", req.topic.c_str());
++
++  return true;
++}
++
++bool del_topic_cb(topic_tools::DemuxDelete::Request& req,
++		  topic_tools::DemuxDelete::Response& res)
++{
++  (void)res;
++  // Check that it's in our list
++  ROS_INFO("trying to delete %s from demux", req.topic.c_str());
++  // spin through our vector of inputs and find this guy
++  for (list<struct pub_info_t>::iterator it = g_pubs.begin();
++       it != g_pubs.end();
++       ++it)
++  {
++    if (ros::names::resolve(it->topic_name) == ros::names::resolve(req.topic))
++    {
++      // Can't delete the currently selected input, #2863
++      if(it == g_selected)
++      {
++        ROS_WARN("tried to delete currently selected topic %s from demux", req.topic.c_str());
++        return false;
++      }
++      if (it->pub)
++        it->pub->shutdown();
++      delete it->pub;
++      g_pubs.erase(it);
++      ROS_INFO("deleted topic %s from demux", req.topic.c_str());
++      return true;
++    }
++  }
++
++  ROS_WARN("tried to delete non-published topic %s from demux", req.topic.c_str());
++  return false;
++}
++
++int main(int argc, char **argv)
++{
++  vector<string> args;
++  ros::removeROSArgs(argc, (const char**)argv, args);
++
++  if (args.size() < 3)
++  {
++    printf("\nusage: demux IN_TOPIC OUT_TOPIC1 [OUT_TOPIC2 [...]]\n\n");
++    return 1;
++  }
++  std::string topic_name;
++  if(!getBaseName(args[1], topic_name))
++    return 1;
++  ros::init(argc, argv, topic_name + string("_demux"),
++            ros::init_options::AnonymousName);
++  vector<string> topics;
++  for (unsigned int i = 2; i < args.size(); i++)
++    topics.push_back(args[i]);
++  ros::NodeHandle n;
++  g_node = &n;
++  g_input_topic = args[1];
++  // Put our API into the "demux" namespace, which the user should usually remap
++  ros::NodeHandle demux_nh("demux"), pnh("~");
++
++  // Latched publisher for selected output topic name
++  g_pub_selected = demux_nh.advertise<std_msgs::String>(string("selected"), 1, true);
++
++  for (size_t i = 0; i < topics.size(); i++)
++  {
++    struct pub_info_t pub_info;
++    pub_info.topic_name = ros::names::resolve(topics[i]);
++    pub_info.pub = NULL;
++    g_pubs.push_back(pub_info);
++    ROS_INFO("PRE added %s to demux", topics[i].c_str());
++  }
++  g_selected = g_pubs.begin(); // select first topic to start
++  std_msgs::String t;
++  t.data = g_selected->topic_name;
++  g_pub_selected.publish(t);
++
++  // Create the one subscriber
++  g_sub = ros::Subscriber(n.subscribe<ShapeShifter>(g_input_topic, 10, boost::bind(in_cb, boost::placeholders::_1)));
++
++
++  // New service
++  ros::ServiceServer ss_select = demux_nh.advertiseService(string("select"), sel_srv_cb);
++  ros::ServiceServer ss_add = demux_nh.advertiseService(string("add"), add_topic_cb);
++  ros::ServiceServer ss_list = demux_nh.advertiseService(string("list"), list_topic_cb);
++  ros::ServiceServer ss_del = demux_nh.advertiseService(string("delete"), del_topic_cb);
++
++  // Run
++  ros::spin();
++
++  // Destruction
++  for (list<struct pub_info_t>::iterator it = g_pubs.begin();
++       it != g_pubs.end();
++       ++it)
++  {
++    if (it->pub)
++      it->pub->shutdown();
++    delete it->pub;
++  }
++
++  g_pubs.clear();
++  return 0;
++}
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/src/drop.cpp
+@@ -0,0 +1,93 @@
++///////////////////////////////////////////////////////////////////////////////
++// drop will (intentionally) drop X out of every Y messages that hits it
++//
++// Copyright (C) 2009, Morgan Quigley
++//
++// Redistribution and use in source and binary forms, with or without
++// modification, are permitted provided that the following conditions are met:
++//   * Redistributions of source code must retain the above copyright notice,
++//     this list of conditions and the following disclaimer.
++//   * Redistributions in binary form must reproduce the above copyright
++//     notice, this list of conditions and the following disclaimer in the
++//     documentation and/or other materials provided with the distribution.
++//   * Neither the name of Stanford University nor the names of its
++//     contributors may be used to endorse or promote products derived from
++//     this software without specific prior written permission.
++//
++// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++// POSSIBILITY OF SUCH DAMAGE.
++/////////////////////////////////////////////////////////////////////////////
++
++#include <cstdlib>
++#include <cstdio>
++#include "topic_tools/shape_shifter.h"
++#include "topic_tools/parse.h"
++
++using std::string;
++using std::vector;
++using namespace topic_tools;
++
++static ros::NodeHandle *g_node = NULL;
++static int g_x = 0, g_y = 1;
++static bool g_advertised = false;
++static string g_output_topic;
++static ros::Publisher g_pub;
++
++void in_cb(const boost::shared_ptr<ShapeShifter const>& msg)
++{
++  static int s_count = 0;
++  if (!g_advertised)
++  {
++    g_pub = msg->advertise(*g_node, g_output_topic, 10);
++    g_advertised = true;
++    printf("advertised as %s\n", g_output_topic.c_str());
++  }
++  if (s_count >= g_x)
++    g_pub.publish(msg);
++  ++s_count;
++  if (s_count >= g_y)
++    s_count = 0;
++}
++
++#define USAGE "\nusage: drop IN_TOPIC X Y [OUT_TOPIC]\n\n" \
++              " This program will drop X out of every Y messages from IN_TOPIC,\n" \
++              " forwarding the rest to OUT_TOPIC if given, else to a topic \n" \
++              " named IN_TOPIC_drop\n\n"
++int main(int argc, char **argv)
++{
++  if(argc < 2)
++  {
++    puts(USAGE);
++    return 1;
++  }
++  std::string topic_name;
++  if(!getBaseName(string(argv[1]), topic_name))
++    return 1;
++  ros::init(argc, argv, topic_name + string("_drop"),
++            ros::init_options::AnonymousName);
++  if ((argc != 4 && argc != 5) || atoi(argv[2]) < 0 || atoi(argv[3]) < 1)
++  {
++    puts(USAGE);
++    return 1;
++  }
++  if (argc == 4)
++    g_output_topic = string(argv[1]) + string("_drop");
++  else // argc == 5
++    g_output_topic = string(argv[4]);
++  ros::NodeHandle n;
++  g_node = &n;
++  g_x = atoi(argv[2]);
++  g_y = atoi(argv[3]);
++  ros::Subscriber sub = n.subscribe<ShapeShifter>(string(argv[1]), 10, in_cb);
++  ros::spin();
++  return 0;
++}
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/src/mux.cpp
+@@ -0,0 +1,383 @@
++///////////////////////////////////////////////////////////////////////////////
++// demux is a generic ROS topic demultiplexer: one input topic is fanned out
++// to 1 of N output topics. A service is provided to select between the outputs
++//
++// Copyright (C) 2009, Morgan Quigley
++//
++// Redistribution and use in source and binary forms, with or without
++// modification, are permitted provided that the following conditions are met:
++//   * Redistributions of source code must retain the above copyright notice,
++//     this list of conditions and the following disclaimer.
++//   * Redistributions in binary form must reproduce the above copyright
++//     notice, this list of conditions and the following disclaimer in the
++//     documentation and/or other materials provided with the distribution.
++//   * Neither the name of Stanford University nor the names of its
++//     contributors may be used to endorse or promote products derived from
++//     this software without specific prior written permission.
++//
++// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++// POSSIBILITY OF SUCH DAMAGE.
++/////////////////////////////////////////////////////////////////////////////
++
++
++#include <cstdio>
++#include <vector>
++#include <list>
++#include "ros/console.h"
++#include "std_msgs/String.h"
++#include "topic_tools/MuxSelect.h"
++#include "topic_tools/MuxAdd.h"
++#include "topic_tools/MuxList.h"
++#include "topic_tools/MuxDelete.h"
++#include "topic_tools/shape_shifter.h"
++#include "topic_tools/parse.h"
++
++using std::string;
++using std::vector;
++using std::list;
++using namespace topic_tools;
++
++const static string g_none_topic = "__none";
++
++static ros::NodeHandle *g_node = NULL;
++static bool g_lazy = false;
++static bool g_latch = false;
++static bool g_advertised = false;
++static string g_output_topic;
++static ros::Publisher g_pub;
++static ros::Publisher g_pub_selected;
++
++struct sub_info_t
++{
++  std::string topic_name;
++  ros::Subscriber *sub;
++  ShapeShifter* msg;
++};
++
++void in_cb(const boost::shared_ptr<ShapeShifter const>& msg, ShapeShifter* s);
++
++static list<struct sub_info_t> g_subs;
++static list<struct sub_info_t>::iterator g_selected = g_subs.end();
++
++void conn_cb(const ros::SingleSubscriberPublisher&)
++{
++  // If we're in lazy subscribe mode, and the first subscriber just
++  // connected, then subscribe
++  if(g_lazy && g_selected != g_subs.end() && !g_selected->sub)
++  {
++    ROS_DEBUG("lazy mode; resubscribing to %s", g_selected->topic_name.c_str());
++    g_selected->sub = new ros::Subscriber(g_node->subscribe<ShapeShifter>(g_selected->topic_name, 10, boost::bind(in_cb, boost::placeholders::_1, g_selected->msg)));
++  }
++}
++
++bool sel_srv_cb( topic_tools::MuxSelect::Request  &req,
++                 topic_tools::MuxSelect::Response &res )
++{
++  bool ret = false;
++  if (g_selected != g_subs.end()) {
++    res.prev_topic = g_selected->topic_name;
++
++    // Unsubscribe to old topic if lazy
++    if (g_lazy) {
++      ROS_DEBUG("Unsubscribing to %s, lazy", res.prev_topic.c_str());
++      if (g_selected->sub)
++        g_selected->sub->shutdown();
++      delete g_selected->sub;
++      g_selected->sub = NULL;
++    }
++  }
++  else
++    res.prev_topic = string("");
++
++  // see if it's the magical '__none' topic, in which case we open the circuit
++  if (req.topic == g_none_topic)
++  {
++    ROS_INFO("mux selected to no input.");
++
++    g_selected = g_subs.end();
++    ret = true;
++  }
++  else
++  {
++    ROS_INFO("trying to switch mux to %s", req.topic.c_str());
++    // spin through our vector of inputs and find this guy
++    for (list<struct sub_info_t>::iterator it = g_subs.begin();
++	 it != g_subs.end();
++	 ++it)
++    {
++      if (ros::names::resolve(it->topic_name) == ros::names::resolve(req.topic))
++      {
++        g_selected = it;
++        ROS_INFO("mux selected input: [%s]", it->topic_name.c_str());
++        ret = true;
++        
++        if (!g_selected->sub && (!g_advertised || (g_advertised && g_pub.getNumSubscribers()))) {
++          g_selected->sub = new ros::Subscriber(g_node->subscribe<ShapeShifter>(g_selected->topic_name, 10, boost::bind(in_cb, boost::placeholders::_1, g_selected->msg)));
++        }
++      }
++    }
++  }
++  
++  if(ret)
++  {
++    std_msgs::String t;
++    t.data = req.topic;
++    g_pub_selected.publish(t);
++  }
++
++  return ret;
++}
++
++bool sel_srv_cb_dep( topic_tools::MuxSelect::Request  &req,
++		     topic_tools::MuxSelect::Response &res )
++{
++  ROS_WARN("the <topic>_select service is deprecated; use mux/select instead");
++  return sel_srv_cb(req,res);
++}
++
++
++void in_cb(const boost::shared_ptr<ShapeShifter const>& msg,
++           ShapeShifter* s)
++{
++  if (!g_advertised)
++  {
++    ROS_INFO("advertising");
++    g_pub = msg->advertise(*g_node, g_output_topic, 10, g_latch, conn_cb);
++    g_advertised = true;
++    
++    // If lazy, unregister from all but the selected topic
++    if (g_lazy) {
++      for (static list<struct sub_info_t>::iterator it = g_subs.begin(); it != g_subs.end(); ++it) {
++        if (it != g_selected) {
++          ROS_INFO("Unregistering from %s", it->topic_name.c_str());
++          if (it->sub)
++            it->sub->shutdown();
++          delete it->sub;
++          it->sub = NULL;
++        }
++	    	}
++    }
++  }
++  
++  if (g_selected == g_subs.end() || s != g_selected->msg)
++    return;
++  
++  // If we're in lazy subscribe mode, and nobody's listening, then unsubscribe
++  if (g_lazy && !g_pub.getNumSubscribers() && g_selected != g_subs.end()) {
++    ROS_INFO("lazy mode; unsubscribing");
++    g_selected->sub->shutdown();
++    delete g_selected->sub;
++    g_selected->sub = NULL;
++  }
++  else
++    g_pub.publish(msg);
++}
++
++bool list_topic_cb(topic_tools::MuxList::Request& req,
++	 	   topic_tools::MuxList::Response& res)
++{
++  (void)req;
++  for (list<struct sub_info_t>::iterator it = g_subs.begin();
++       it != g_subs.end();
++       ++it)
++  {
++    res.topics.push_back(it->topic_name);
++  }
++
++  return true;
++}
++
++bool add_topic_cb(topic_tools::MuxAdd::Request& req,
++		  topic_tools::MuxAdd::Response& res)
++{
++  (void)res;
++  // Check that it's not already in our list
++  ROS_INFO("trying to add %s to mux", req.topic.c_str());
++  
++  // Can't add the __none topic
++  if(req.topic == g_none_topic)
++  {
++    ROS_WARN("failed to add topic %s to mux, because it's reserved for special use",
++	     req.topic.c_str());
++    return false;
++  }
++
++  // spin through our vector of inputs and find this guy
++  for (list<struct sub_info_t>::iterator it = g_subs.begin();
++       it != g_subs.end();
++       ++it)
++  {
++    if (ros::names::resolve(it->topic_name) == ros::names::resolve(req.topic))
++    {
++      ROS_WARN("tried to add a topic that mux was already listening to: [%s]", 
++	       it->topic_name.c_str());
++      return false;
++    }
++  }
++
++  struct sub_info_t sub_info;
++  sub_info.msg = new ShapeShifter;
++  sub_info.topic_name = ros::names::resolve(req.topic);
++  try
++  {
++    if (g_lazy)
++      sub_info.sub = NULL;
++    else
++      sub_info.sub = new ros::Subscriber(g_node->subscribe<ShapeShifter>(sub_info.topic_name, 10, boost::bind(in_cb, boost::placeholders::_1, sub_info.msg)));
++  }
++  catch(ros::InvalidNameException& e)
++  {
++    ROS_WARN("failed to add topic %s to mux, because it's an invalid name: %s",
++	     req.topic.c_str(), e.what());
++    delete sub_info.msg;
++    return false;
++  }
++  g_subs.push_back(sub_info);
++
++  ROS_INFO("added %s to mux", req.topic.c_str());
++
++  return true;
++}
++
++bool del_topic_cb(topic_tools::MuxDelete::Request& req,
++		  topic_tools::MuxDelete::Response& res)
++{
++  (void)res;
++  // Check that it's in our list
++  ROS_INFO("trying to delete %s from mux", req.topic.c_str());
++  // spin through our vector of inputs and find this guy
++  for (list<struct sub_info_t>::iterator it = g_subs.begin();
++       it != g_subs.end();
++       ++it)
++  {
++    if (ros::names::resolve(it->topic_name) == ros::names::resolve(req.topic))
++    {
++      // Can't delete the currently selected input, #2863
++      if(it == g_selected)
++      {
++        ROS_WARN("tried to delete currently selected topic %s from mux", req.topic.c_str());
++        return false;
++      }
++      if (it->sub)
++        it->sub->shutdown();
++      delete it->sub;
++      delete it->msg;
++      g_subs.erase(it);
++      ROS_INFO("deleted topic %s from mux", req.topic.c_str());
++      return true;
++    }
++  }
++
++  ROS_WARN("tried to delete non-subscribed topic %s from mux", req.topic.c_str());
++  return false;
++}
++
++int main(int argc, char **argv)
++{
++  vector<string> args;
++  ros::removeROSArgs(argc, (const char**)argv, args);
++
++  if (args.size() < 3)
++  {
++    printf("\nusage: mux OUT_TOPIC IN_TOPIC1 [IN_TOPIC2 [...]]\n\n");
++    return 1;
++  }
++  std::string topic_name;
++  if(!getBaseName(args[1], topic_name))
++    return 1;
++  ros::init(argc, argv, topic_name + string("_mux"),
++            ros::init_options::AnonymousName);
++  vector<string> topics;
++  for (unsigned int i = 2; i < args.size(); i++)
++    topics.push_back(args[i]);
++  ros::NodeHandle n;
++  g_node = &n;
++  g_output_topic = args[1];
++  // Put our API into the "mux" namespace, which the user should usually remap
++  ros::NodeHandle mux_nh("mux"), pnh("~");
++  pnh.getParam("lazy", g_lazy);
++  pnh.getParam("latch", g_latch);
++
++  // Latched publisher for selected input topic name
++  g_pub_selected = mux_nh.advertise<std_msgs::String>(string("selected"), 1, true);
++
++  for (size_t i = 0; i < topics.size(); i++)
++  {
++    struct sub_info_t sub_info;
++    sub_info.msg = new ShapeShifter;
++    sub_info.topic_name = ros::names::resolve(topics[i]);
++    sub_info.sub = new ros::Subscriber(n.subscribe<ShapeShifter>(sub_info.topic_name, 10, boost::bind(in_cb, boost::placeholders::_1, sub_info.msg)));
++
++    g_subs.push_back(sub_info);
++  }
++
++  // Set initial input topic from optional param, defaults to second argument
++  std::string initial_topic;
++  pnh.getParam("initial_topic", initial_topic);
++  std_msgs::String t;
++  if (initial_topic.empty()) // If param is not set, default to first in list
++  {
++    g_selected = g_subs.begin();
++    t.data = g_selected->topic_name;
++  }
++  else if (initial_topic == g_none_topic) // Set no initial input if param was __none
++  {
++    ROS_INFO("mux selected to no input.");
++    g_selected = g_subs.end();
++    t.data = g_none_topic;
++  }
++  else // Attempt to set initial topic if it is in the list
++  {
++    ROS_INFO("trying to switch mux to %s", initial_topic.c_str());
++    // spin through our vector of inputs and find this guy
++    for (list<struct sub_info_t>::iterator it = g_subs.begin();
++	 it != g_subs.end();
++	 ++it)
++    {
++      if (ros::names::resolve(it->topic_name) == ros::names::resolve(initial_topic))
++      {
++        g_selected = it;
++        t.data = initial_topic;
++        ROS_INFO("mux selected input: [%s]", it->topic_name.c_str());
++        break;
++      }
++    }
++    if (t.data.empty()) // If it wasn't in the list, default to no input. Or should we crash here?
++    {
++      g_selected = g_subs.end();
++      t.data = g_none_topic;
++    }
++  }
++  g_pub_selected.publish(t);
++
++  // Backward compatibility
++  ros::ServiceServer ss = n.advertiseService(g_output_topic + string("_select"), sel_srv_cb_dep);
++  // New service
++  ros::ServiceServer ss_select = mux_nh.advertiseService(string("select"), sel_srv_cb);
++  ros::ServiceServer ss_add = mux_nh.advertiseService(string("add"), add_topic_cb);
++  ros::ServiceServer ss_list = mux_nh.advertiseService(string("list"), list_topic_cb);
++  ros::ServiceServer ss_del = mux_nh.advertiseService(string("delete"), del_topic_cb);
++  ros::spin();
++  for (list<struct sub_info_t>::iterator it = g_subs.begin();
++       it != g_subs.end();
++       ++it)
++  {
++    if (it->sub)
++      it->sub->shutdown();
++    delete it->sub;
++    delete it->msg;
++  }
++
++  g_subs.clear();
++  return 0;
++}
++
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/src/parse.cpp
+@@ -0,0 +1,66 @@
++// Copyright (c) 2009, Willow Garage, Inc.
++// All rights reserved.
++// 
++// Redistribution and use in source and binary forms, with or without
++// modification, are permitted provided that the following conditions are met:
++// 
++//     * Redistributions of source code must retain the above copyright
++//       notice, this list of conditions and the following disclaimer.
++//     * Redistributions in binary form must reproduce the above copyright
++//       notice, this list of conditions and the following disclaimer in the
++//       documentation and/or other materials provided with the distribution.
++//     * Neither the name of Willow Garage, Inc. nor the names of its
++//       contributors may be used to endorse or promote products derived from
++//       this software without specific prior written permission.
++// 
++// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++// POSSIBILITY OF SUCH DAMAGE.
++
++// Reusable parser routines
++
++#include "topic_tools/parse.h"
++
++#include <ros/console.h>
++
++namespace topic_tools
++{
++
++// Strip any leading namespace qualification from a topic (or other kind
++// of) ROS name
++bool 
++getBaseName(const std::string& full_name, std::string& base_name)
++{
++  std::string tmp = full_name;
++  int i = tmp.rfind('/');
++  // Strip off trailing slahes (are those legal anyway?)
++  while((tmp.size() > 0) && (i >= (int)(tmp.size() - 1)))
++  {
++    tmp = tmp.substr(0,tmp.size()-1);
++    i = tmp.rfind('/');
++  }
++
++  if(tmp.size() == 0)
++  {
++    ROS_ERROR("Base name extracted from \"%s\" is an empty string", 
++              full_name.c_str());
++    return false;
++  }
++
++  if(i < 0)
++    base_name = tmp;
++  else
++    base_name = tmp.substr(i+1, tmp.size()-i-1);
++
++  return true;
++}
++
++}
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/src/relay.cpp
+@@ -0,0 +1,187 @@
++///////////////////////////////////////////////////////////////////////////////
++// relay just passes messages on. it can be useful if you're trying to ensure
++// that a message doesn't get sent twice over a wireless link, by having the 
++// relay catch the message and then do the fanout on the far side of the 
++// wireless link.
++//
++// Copyright (C) 2009, Morgan Quigley
++//
++// Redistribution and use in source and binary forms, with or without
++// modification, are permitted provided that the following conditions are met:
++//   * Redistributions of source code must retain the above copyright notice,
++//     this list of conditions and the following disclaimer.
++//   * Redistributions in binary form must reproduce the above copyright
++//     notice, this list of conditions and the following disclaimer in the
++//     documentation and/or other materials provided with the distribution.
++//   * Neither the name of Stanford University nor the names of its
++//     contributors may be used to endorse or promote products derived from
++//     this software without specific prior written permission.
++//
++// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++// POSSIBILITY OF SUCH DAMAGE.
++/////////////////////////////////////////////////////////////////////////////
++
++
++#include <cstdio>
++#include "topic_tools/shape_shifter.h"
++#include "topic_tools/parse.h"
++
++using std::string;
++using std::vector;
++using namespace topic_tools;
++
++ros::NodeHandle *g_node = NULL;
++bool g_advertised = false;
++string g_input_topic;
++string g_output_topic;
++string g_monitor_topic;
++ros::Publisher g_pub;
++ros::Subscriber* g_sub;
++bool g_lazy;
++bool g_stealth;
++ros::TransportHints g_th;
++
++void conn_cb(const ros::SingleSubscriberPublisher&);
++void in_cb(const ros::MessageEvent<ShapeShifter>& msg_event);
++
++void subscribe()
++{
++  g_sub = new ros::Subscriber(g_node->subscribe(g_input_topic, 10, &in_cb, g_th));
++}
++
++void unsubscribe()
++{
++  if (g_sub)
++  {
++    delete g_sub;
++    g_sub = NULL;
++  }
++}
++
++void conn_cb(const ros::SingleSubscriberPublisher&)
++{
++  // If we're in lazy subscribe mode, and the first subscriber just
++  // connected, then subscribe, #3389.
++  if(g_lazy && !g_stealth && !g_sub)
++  {
++    ROS_DEBUG("lazy mode; resubscribing");
++    subscribe();
++  }
++}
++
++void in_cb(const ros::MessageEvent<ShapeShifter>& msg_event)
++{
++  boost::shared_ptr<ShapeShifter const> const &msg = msg_event.getConstMessage();
++  boost::shared_ptr<const ros::M_string> const& connection_header = msg_event.getConnectionHeaderPtr();
++
++  if (!g_advertised)
++  {
++    // If the input topic is latched, make the output topic latched, #3385.
++    bool latch = false;
++    if (connection_header)
++    {
++      ros::M_string::const_iterator it = connection_header->find("latching");
++      if((it != connection_header->end()) && (it->second == "1"))
++      {
++        ROS_DEBUG("input topic is latched; latching output topic to match");
++        latch = true;
++      }
++    }
++    g_pub = msg->advertise(*g_node, g_output_topic, 10, latch, conn_cb);
++    g_advertised = true;
++    ROS_INFO("advertised as %s\n", g_output_topic.c_str());
++  }
++  // If we're in lazy subscribe mode, and nobody's listening, 
++  // then unsubscribe, #3389.
++  if((g_lazy || g_stealth) && !g_pub.getNumSubscribers())
++  {
++    ROS_DEBUG("lazy mode; unsubscribing");
++    unsubscribe();
++  }
++  else
++    g_pub.publish(msg);
++}
++
++void timer_cb(const ros::TimerEvent&)
++{
++  if (!g_advertised) return;
++  
++  // get subscriber num of ~monitor_topic
++  XmlRpc::XmlRpcValue req(ros::this_node::getName()), res, data;
++  if (!ros::master::execute("getSystemState", req, res, data, false))
++  {
++    ROS_ERROR("Failed to communicate with rosmaster");
++    return;
++  }
++
++  int subscriber_num = 0;
++  XmlRpc::XmlRpcValue sub_info = data[1];
++  for (int i = 0; i < sub_info.size(); ++i)
++  {
++    string topic_name = sub_info[i][0];
++    if (topic_name != g_monitor_topic) continue;
++    XmlRpc::XmlRpcValue& subscribers = sub_info[i][1];
++    for (int j = 0; j < subscribers.size(); ++j)
++    {
++      if (subscribers[j] != ros::this_node::getName()) ++subscriber_num;
++    }
++    break;
++  }
++
++  // if no node subscribes to ~monitor, do unsubscribe
++  if (g_sub && subscriber_num == 0) unsubscribe();
++  // if any other nodes subscribe ~monitor, do subscribe
++  else if (!g_sub && subscriber_num > 0) subscribe();
++}
++
++int main(int argc, char **argv)
++{
++  if (argc < 2)
++  {
++    printf("\nusage: relay IN_TOPIC [OUT_TOPIC]\n\n");
++    return 1;
++  }
++  std::string topic_name;
++  if(!getBaseName(string(argv[1]), topic_name))
++    return 1;
++  ros::init(argc, argv, topic_name + string("_relay"),
++            ros::init_options::AnonymousName);
++  if (argc == 2)
++    g_output_topic = string(argv[1]) + string("_relay");
++  else // argc == 3
++    g_output_topic = string(argv[2]);
++  g_input_topic = string(argv[1]);
++  ros::NodeHandle n;
++  g_node = &n;
++  
++  ros::NodeHandle pnh("~");
++  bool unreliable = false;
++  pnh.getParam("unreliable", unreliable);
++  pnh.getParam("lazy", g_lazy);
++  if (unreliable)
++    g_th.unreliable().reliable(); // Prefers unreliable, but will accept reliable.
++
++  pnh.param<bool>("stealth", g_stealth, false);
++  ros::Timer monitor_timer;
++  if (g_stealth)
++  {
++    double monitor_rate;
++    pnh.param<string>("monitor_topic", g_monitor_topic, g_input_topic);
++    pnh.param<double>("monitor_rate", monitor_rate, 1.0);
++    monitor_timer = n.createTimer(ros::Duration(monitor_rate), &timer_cb);
++  }
++
++  subscribe();
++  ros::spin();
++  return 0;
++}
++
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/src/shape_shifter.cpp
+@@ -0,0 +1,77 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++*
++*  Copyright (c) 2009, Willow Garage, Inc.
++*  All rights reserved.
++*
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++*
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of Willow Garage, Inc. nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++*
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++********************************************************************/
++
++#include <topic_tools/shape_shifter.h>
++
++using namespace topic_tools;
++
++bool ShapeShifter::uses_old_API_ = false;
++
++ShapeShifter::ShapeShifter() : typed(false) {}
++
++ShapeShifter::~ShapeShifter() {}
++
++std::string const& ShapeShifter::getDataType()          const { return datatype; }
++
++
++std::string const& ShapeShifter::getMD5Sum()            const { return md5;   }
++
++
++std::string const& ShapeShifter::getMessageDefinition() const { return msg_def;  }
++
++
++void ShapeShifter::morph(const std::string& _md5sum, const std::string& _datatype, const std::string& _msg_def,
++                         const std::string& _latching)
++{
++  md5 = _md5sum;
++  datatype = _datatype;
++  msg_def = _msg_def;
++  latching = _latching;
++  typed = md5 != "*";
++}
++
++
++ros::Publisher ShapeShifter::advertise(ros::NodeHandle& nh, const std::string& topic, uint32_t queue_size_, bool latch, const ros::SubscriberStatusCallback &connect_cb) const
++{
++  ros::AdvertiseOptions opts(topic, queue_size_, getMD5Sum(), getDataType(), getMessageDefinition(), connect_cb);
++  opts.latch = latch;
++
++  return nh.advertise(opts);
++}
++
++
++uint32_t ShapeShifter::size() const
++{
++  return msgBuf.size();
++}
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/src/switch_mux.cpp
+@@ -0,0 +1,73 @@
++///////////////////////////////////////////////////////////////////////////////
++// The mux package provides a generic multiplexer
++//
++// Copyright (C) 2008, Morgan Quigley
++//
++// Redistribution and use in source and binary forms, with or without 
++// modification, are permitted provided that the following conditions are met:
++//   * Redistributions of source code must retain the above copyright notice, 
++//     this list of conditions and the following disclaimer.
++//   * Redistributions in binary form must reproduce the above copyright 
++//     notice, this list of conditions and the following disclaimer in the 
++//     documentation and/or other materials provided with the distribution.
++//   * Neither the name of Stanford University nor the names of its 
++//     contributors may be used to endorse or promote products derived from 
++//     this software without specific prior written permission.
++//   
++// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
++// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
++// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
++// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
++// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
++// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
++// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
++// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
++// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
++// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
++// POSSIBILITY OF SUCH DAMAGE.
++/////////////////////////////////////////////////////////////////////////////
++
++
++#include <cstdio>
++#include "ros/console.h"
++#include "ros/ros.h"
++#include "topic_tools/MuxSelect.h"
++#include "topic_tools/parse.h"
++using namespace std;
++using namespace ros;
++using namespace topic_tools;
++
++int main(int argc, char **argv)
++{
++  ROS_WARN("topic_tools/switch_mux is deprecated; please use topic_tools/mux_select instead");
++  if (argc < 3)
++  {
++    printf("usage: switch MUXED_TOPIC SELECT_TOPIC\n");
++    return 1;
++  }
++  std::string topic_name;
++  if(!getBaseName(string(argv[1]), topic_name))
++    return 1;
++  ros::init(argc, argv, topic_name + string("_switcher"));
++  ros::NodeHandle nh;
++  string srv_name = string(argv[1]) + "_select";
++  ROS_INFO("Waiting for service %s...\n", srv_name.c_str());
++  ros::service::waitForService(srv_name, -1);
++  ros::ServiceClient client = nh.serviceClient<MuxSelect>(srv_name);
++  MuxSelect cmd;
++  cmd.request.topic = argv[2];
++  if (client.call(cmd))
++  {
++    ROS_INFO("muxed topic %s successfully switched from %s to %s",
++             argv[1], cmd.response.prev_topic.c_str(),
++             cmd.request.topic.c_str());
++    return 0;
++  }
++  else
++  {
++    ROS_ERROR("failed to switch muxed topic %s to %s",
++              argv[1], cmd.request.topic.c_str());
++    return 1;
++  }
++}
++
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/src/throttle.cpp
+@@ -0,0 +1,250 @@
++///////////////////////////////////////////////////////////////////////////////
++// throttle will transform a topic to have a limited number of bytes per second
++//
++// Copyright (C) 2009, Morgan Quigley
++//
++// Redistribution and use in source and binary forms, with or without
++// modification, are permitted provided that the following conditions are met:
++//   * Redistributions of source code must retain the above copyright notice,
++//     this list of conditions and the following disclaimer.
++//   * Redistributions in binary form must reproduce the above copyright
++//     notice, this list of conditions and the following disclaimer in the
++//     documentation and/or other materials provided with the distribution.
++//   * Neither the name of Stanford University nor the names of its
++//     contributors may be used to endorse or promote products derived from
++//     this software without specific prior written permission.
++//
++// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++// POSSIBILITY OF SUCH DAMAGE.
++/////////////////////////////////////////////////////////////////////////////
++
++
++// this could be made a lot smarter by trying to analyze and predict the
++// message stream density, etc., rather than just being greedy and stuffing
++// the output as fast as it can. 
++
++#include <cstdio>
++#include <cstdlib>
++#include <deque>
++#include "topic_tools/shape_shifter.h"
++#include "topic_tools/parse.h"
++
++using std::string;
++using std::vector;
++using std::deque;
++using namespace topic_tools;
++
++// TODO: move all these globals into a reasonable local scope
++ros::NodeHandle *g_node = NULL;
++uint32_t g_bps = 0; // bytes per second, not bits!
++ros::Duration g_period; // minimum inter-message period
++double g_window = 1.0; // 1 second window for starters
++bool g_advertised = false;
++string g_output_topic;
++string g_input_topic;
++ros::Publisher g_pub;
++ros::Subscriber* g_sub;
++bool g_use_messages;
++ros::Time g_last_time;
++bool g_use_wallclock;
++bool g_lazy;
++bool g_force_latch = false;
++bool g_force_latch_value = true;
++ros::TransportHints g_th;
++
++class Sent
++{
++public:
++  double t;
++  uint32_t len;
++  Sent(double _t, uint32_t _len) : t(_t), len(_len) { }
++};
++deque<Sent> g_sent;
++
++void conn_cb(const ros::SingleSubscriberPublisher&);
++void in_cb(const ros::MessageEvent<ShapeShifter>& msg_event);
++
++void subscribe()
++{
++  g_sub = new ros::Subscriber(g_node->subscribe(g_input_topic, 10, &in_cb, g_th));
++}
++
++void conn_cb(const ros::SingleSubscriberPublisher&)
++{
++  // If we're in lazy subscribe mode, and the first subscriber just
++  // connected, then subscribe, #3546
++  if(g_lazy && !g_sub)
++  {
++    ROS_DEBUG("lazy mode; resubscribing");
++    subscribe();
++  }
++}
++
++bool is_latching(const boost::shared_ptr<const ros::M_string>& connection_header)
++{
++  if (connection_header)
++  {
++    ros::M_string::const_iterator it = connection_header->find("latching");
++    if ((it != connection_header->end()) && (it->second == "1"))
++    {
++      ROS_DEBUG("input topic is latched; latching output topic to match");
++      return true;
++    }
++  }
++
++  return false;
++}
++
++void in_cb(const ros::MessageEvent<ShapeShifter>& msg_event)
++{
++  boost::shared_ptr<ShapeShifter const> const &msg = msg_event.getConstMessage();
++  boost::shared_ptr<const ros::M_string> const& connection_header = msg_event.getConnectionHeaderPtr();
++
++  if (!g_advertised)
++  {
++    const bool latch = g_force_latch ? g_force_latch_value : is_latching(connection_header);
++    g_pub = msg->advertise(*g_node, g_output_topic, 10, latch, conn_cb);
++    g_advertised = true;
++    printf("advertised as %s\n", g_output_topic.c_str());
++  }
++  // If we're in lazy subscribe mode, and nobody's listening, 
++  // then unsubscribe, #3546.
++  if(g_lazy && !g_pub.getNumSubscribers())
++  {
++    ROS_DEBUG("lazy mode; unsubscribing");
++    delete g_sub;
++    g_sub = NULL;
++  }
++  else
++  {
++    if(g_use_messages)
++    {
++      ros::Time now;
++      if(g_use_wallclock)
++        now.fromSec(ros::WallTime::now().toSec());
++      else
++        now = ros::Time::now();
++      if (g_last_time > now)
++      {
++        ROS_WARN("Detected jump back in time, resetting throttle period to now for.");
++        g_last_time = now;
++      }
++      if((now - g_last_time) > g_period)
++      {
++        g_pub.publish(msg);
++        g_last_time = now;
++      }
++    }
++    else
++    {
++      // pop the front of the queue until it's within the window
++      ros::Time now;
++      if(g_use_wallclock)
++        now.fromSec(ros::WallTime::now().toSec());
++      else
++        now = ros::Time::now();
++      const double t = now.toSec();
++      while (!g_sent.empty() && g_sent.front().t < t - g_window)
++        g_sent.pop_front();
++      // sum up how many bytes are in the window
++      uint32_t bytes = 0;
++      for (deque<Sent>::iterator i = g_sent.begin(); i != g_sent.end(); ++i)
++        bytes += i->len;
++      if (bytes < g_bps)
++      {
++        g_pub.publish(msg);
++        g_sent.push_back(Sent(t, msg->size()));
++      }
++    }
++  }
++}
++
++#define USAGE "\nusage: \n"\
++           "  throttle messages IN_TOPIC MSGS_PER_SEC [OUT_TOPIC]]\n"\
++           "OR\n"\
++           "  throttle bytes IN_TOPIC BYTES_PER_SEC WINDOW [OUT_TOPIC]]\n\n"\
++           "  This program will drop messages from IN_TOPIC so that either: the \n"\
++           "  average bytes per second on OUT_TOPIC, averaged over WINDOW \n"\
++           "  seconds, remains below BYTES_PER_SEC, or: the minimum inter-message\n"\
++           "  period is 1/MSGS_PER_SEC. The messages are output \n"\
++           "  to OUT_TOPIC, or (if not supplied), to IN_TOPIC_throttle.\n\n"
++
++int main(int argc, char **argv)
++{
++  if(argc < 3)
++  {
++    puts(USAGE);
++    return 1;
++  }
++
++  g_input_topic = string(argv[2]);
++
++  std::string topic_name;
++  if(!getBaseName(string(argv[2]), topic_name))
++    return 1;
++
++  ros::init(argc, argv, topic_name + string("_throttle"),
++            ros::init_options::AnonymousName);
++  bool unreliable = false;
++  ros::NodeHandle pnh("~");
++  pnh.getParam("wall_clock", g_use_wallclock);
++  pnh.getParam("unreliable", unreliable);
++  pnh.getParam("lazy", g_lazy);
++  g_force_latch = pnh.getParam("force_latch", g_force_latch_value);
++
++  if (unreliable)
++    g_th.unreliable().reliable(); // Prefers unreliable, but will accept reliable.
++
++  if(!strcmp(argv[1], "messages"))
++    g_use_messages = true;
++  else if(!strcmp(argv[1], "bytes"))
++    g_use_messages = false;
++  else
++  {
++    puts(USAGE);
++    return 1;
++  }
++
++  if(g_use_messages && argc == 5)
++    g_output_topic = string(argv[4]);
++  else if(!g_use_messages && argc == 6)
++    g_output_topic = string(argv[5]);
++  else
++    g_output_topic = g_input_topic + "_throttle";
++
++  if(g_use_messages)
++  {
++    if(argc < 4)
++    {
++      puts(USAGE);
++      return 1;
++    }
++    g_period = ros::Duration(1.0/atof(argv[3]));
++  }
++  else
++  {
++    if(argc < 5)
++    {
++      puts(USAGE);
++      return 1;
++    }
++    g_bps = atoi(argv[3]);
++    g_window = atof(argv[4]);
++  }
++
++  ros::NodeHandle n;
++  g_node = &n;
++  subscribe();
++  ros::spin();
++  return 0;
++}
++
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/srv/DemuxAdd.srv
+@@ -0,0 +1,2 @@
++string topic
++---
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/srv/DemuxDelete.srv
+@@ -0,0 +1,3 @@
++string topic
++---
++
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/srv/DemuxList.srv
+@@ -0,0 +1,2 @@
++---
++string[] topics
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/srv/DemuxSelect.srv
+@@ -0,0 +1,3 @@
++string topic
++---
++string prev_topic
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/srv/MuxAdd.srv
+@@ -0,0 +1,2 @@
++string topic
++---
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/srv/MuxDelete.srv
+@@ -0,0 +1,3 @@
++string topic
++---
++
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/srv/MuxList.srv
+@@ -0,0 +1,2 @@
++---
++string[] topics
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/srv/MuxSelect.srv
+@@ -0,0 +1,3 @@
++string topic
++---
++string prev_topic
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/test/args.py
+@@ -0,0 +1,73 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Author: Brian Gerkey
++
++# Test that arg-parsing works
++
++PKG = 'topic_tools'
++
++import unittest
++import os
++import sys
++from subprocess import call
++
++rosrun_script = 'rosrun.bat' if sys.platform == 'win32' else 'rosrun'
++
++class TopicToolsTestCase(unittest.TestCase):
++
++    def test_drop_invalid(self):
++        cmd = [rosrun_script, 'topic_tools', 'drop']
++        self.assertNotEquals(0, call(cmd))
++        self.assertNotEquals(0, call(cmd + ['//', '1', '2', 'output']))
++        self.assertNotEquals(0, call(cmd + ['input', '1', '2', 'output', 'extra']))
++        self.assertNotEquals(0, call(cmd + ['input', '-1', '2', 'output']))
++        self.assertNotEquals(0, call(cmd + ['input', '1', '0', 'output']))
++
++    def test_mux_invalid(self):
++        cmd = [rosrun_script, 'topic_tools', 'mux']
++        self.assertNotEquals(0, call(cmd))
++        self.assertNotEquals(0, call(cmd + ['//', 'input']))
++
++    def test_switch_mux_invalid(self):
++        cmd = [rosrun_script, 'topic_tools', 'switch_mux']
++        self.assertNotEquals(0, call(cmd))
++        self.assertNotEquals(0, call(cmd + ['//', 'input']))
++
++    def test_relay_invalid(self):
++        cmd = [rosrun_script, 'topic_tools', 'relay']
++        self.assertNotEquals(0, call(cmd))
++        self.assertNotEquals(0, call(cmd + ['//', 'input']))
++
++if __name__ == "__main__":
++    import rostest
++    rostest.unitrun(PKG, 'topic_tools_arg_parsing', TopicToolsTestCase)
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/test/delete_mux.test
+@@ -0,0 +1,14 @@
++<!-- Testing the condition described in #2863 -->
++<launch>
++  <node pkg="topic_tools" type="mux" name="mux"
++        args="a b c" output="screen"/>
++  <node pkg="topic_tools" type="test_mux_delete_add.py" 
++        name="test_mux_delete_add" />
++  <test test-name="delete_mux_hztest" pkg="rostest" type="hztest" retry="3">
++    <param name="topic" value="a"/>
++    <param name="hz" value="5.0"/>
++    <param name="hzerror" value="0.5"/>
++    <param name="test_duration" value="2.0" />
++  </test>
++
++</launch>
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/test/drop.test
+@@ -0,0 +1,25 @@
++<launch>
++  <node pkg="rostopic" type="rostopic" name="rostopic_pub" 
++        args="pub -r 10 input std_msgs/String chatter"/>
++
++  <!-- Automatic output name -->
++  <node pkg="topic_tools" type="drop" name="drop"
++        args="input 1 2"/>
++  <test test-name="drop_hztest" pkg="rostest" type="hztest" retry="3">
++    <param name="topic" value="input_drop"/>
++    <param name="hz" value="5.0"/>
++    <param name="hzerror" value="0.5"/>
++    <param name="test_duration" value="2.0" />
++  </test>
++
++  <!-- Explicit output name -->
++  <node pkg="topic_tools" type="drop" name="drop_explicit"
++        args="input 1 2 output"/>
++  <test test-name="drop_hztest_explicit" pkg="rostest" type="hztest" retry="3">
++    <param name="topic" value="output"/>
++    <param name="hz" value="5.0"/>
++    <param name="hzerror" value="0.5"/>
++    <param name="test_duration" value="2.0" />
++  </test>
++
++</launch>
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/test/lazy_transport.test
+@@ -0,0 +1,28 @@
++<launch>
++
++  <node pkg="rostopic" type="rostopic" name="input"
++        args="pub /input std_msgs/String 'data: spam' -r 10">
++  </node>
++
++  <node name="simple_lazy_string_transport"
++        pkg="topic_tools" type="simple_lazy_transport.py">
++    <remap from="~input" to="input" />
++    <param name="~lazy" value="true" />
++    <rosparam>
++      msg_name: std_msgs/String
++    </rosparam>
++  </node>
++
++  <test test-name="test_lazy_transport"
++        name="test_lazy_transport"
++        pkg="topic_tools" type="test_lazy_transport.py"
++        retry="3">
++    <remap from="~input" to="simple_lazy_string_transport/output" />
++    <rosparam>
++      input_topic_type: std_msgs/String
++      check_connected_topics: [simple_lazy_string_transport/output, input]
++      wait_for_connection: 3
++    </rosparam>
++  </test>
++
++</launch>
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/test/mux.test
+@@ -0,0 +1,17 @@
++<launch>
++  <node pkg="rostopic" type="rostopic" name="rostopic_pub1" 
++        args="pub -r 10 input1 std_msgs/String input1"/>
++  <node pkg="rostopic" type="rostopic" name="rostopic_pub2" 
++        args="pub -r 5 input2 std_msgs/String input2"/>
++
++  <!-- Explicit output name -->
++  <node pkg="topic_tools" type="mux" name="mux_explicit" output="screen"
++        args="output input1 input2"/>
++  <test test-name="mux_hztest_explicit" pkg="rostest" type="hztest" retry="3">
++    <param name="topic" value="output"/>
++    <param name="hz" value="10.0"/>
++    <param name="hzerror" value="0.5"/>
++    <param name="test_duration" value="2.0" />
++  </test>
++
++</launch>
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/test/mux_add.test
+@@ -0,0 +1,10 @@
++<launch>
++  <node pkg="rostopic" type="rostopic" name="rostopic_pub1" 
++        args="pub -r 10 input1 std_msgs/String input"/>
++
++  <node pkg="topic_tools" type="mux" name="mux_explicit" output="screen"
++        args="output input"/>
++  <test test-name="mux_services" pkg="test_topic_tools" type="test_mux_services.py"/>
++
++</launch>
++
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/test/mux_initial_none.test
+@@ -0,0 +1,20 @@
++<launch>
++  <node pkg="rostopic" type="rostopic" name="rostopic_pub1"
++        args="pub -r 10 input1 std_msgs/String input1"/>
++  <node pkg="rostopic" type="rostopic" name="rostopic_pub2"
++        args="pub -r 5 input2 std_msgs/String input2"/>
++
++  <!-- Initial topic is __none -->
++  <node pkg="topic_tools" type="mux" name="mux_initial_none" output="screen"
++        args="output input1 input2">
++    <param name="initial_topic" value="__none" />
++  </node>
++
++  <!-- Test that mux initially has no input because initial_topic param is set to __none -->
++  <test test-name="mux_initial_topic_none_test" pkg="rostest" type="hztest" retry="3">
++    <param name="topic" value="output"/>
++    <param name="hz" value="0"/>
++    <param name="hzerror" value="0"/>
++    <param name="test_duration" value="1.0" />
++  </test>
++</launch>
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/test/mux_initial_other.test
+@@ -0,0 +1,21 @@
++<launch>
++  <node pkg="rostopic" type="rostopic" name="rostopic_pub1"
++        args="pub -r 10 input1 std_msgs/String input1"/>
++  <node pkg="rostopic" type="rostopic" name="rostopic_pub2"
++        args="pub -r 5 input2 std_msgs/String input2"/>
++
++  <!-- Initial topic non default -->
++  <node pkg="topic_tools" type="mux" name="mux_explicit" output="screen"
++        args="output input1 input2">
++    <param name="initial_topic" value="input2" />
++  </node>
++
++  <!-- Test that initialy mux chooses input2 as specified in param -->
++  <test test-name="mux_hztest_explicit" pkg="rostest" type="hztest" retry="3">
++    <param name="topic" value="output"/>
++    <param name="hz" value="5.0"/>
++    <param name="hzerror" value="0.5"/>
++    <param name="test_duration" value="1.0" />
++  </test>
++
++</launch>
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/test/relay.test
+@@ -0,0 +1,25 @@
++<launch>
++  <node pkg="rostopic" type="rostopic" name="rostopic_pub" 
++        args="pub -r 10 input std_msgs/String chatter"/>
++
++  <!-- Automatic output name -->
++  <node pkg="topic_tools" type="relay" name="relay"
++        args="input"/>
++  <test test-name="relay_hztest" pkg="rostest" type="hztest" retry="3">
++    <param name="topic" value="input_relay"/>
++    <param name="hz" value="10.0"/>
++    <param name="hzerror" value="0.5"/>
++    <param name="test_duration" value="2.0" />
++  </test>
++
++  <!-- Explicit output name -->
++  <node pkg="topic_tools" type="relay" name="relay_explicit"
++        args="input output"/>
++  <test test-name="relay_hztest_explicit" pkg="rostest" type="hztest" retry="3">
++    <param name="topic" value="output"/>
++    <param name="hz" value="10.0"/>
++    <param name="hzerror" value="0.5"/>
++    <param name="test_duration" value="2.0" />
++  </test>
++
++</launch>
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/test/relay_latched.test
+@@ -0,0 +1,7 @@
++<launch>
++  <node pkg="rostopic" type="rostopic" name="rostopic_pub" 
++        args="pub input std_msgs/String chatter"/>
++  <node pkg="topic_tools" type="relay" name="relay"
++        args="input output"/>
++  <test test-name="relay_latched" pkg="test_topic_tools" type="test_one_message.py" time-limit="10"/>
++</launch>
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/test/relay_stealth.test
+@@ -0,0 +1,21 @@
++<launch>
++  <node name="topic_pub" pkg="rostopic" type="rostopic"
++	args="pub -r 10 /original_topic std_msgs/String foo" />
++  <node name="topic_relay" pkg="topic_tools" type="relay"
++	args="/original_topic /original_topic/relay">
++    <rosparam>
++      lazy: true
++    </rosparam>
++  </node>
++  <test test-name="test_relay_stealth"
++	pkg="topic_tools" type="test_relay_stealth.py" />
++
++  <node name="relay_stealth" pkg="topic_tools" type="relay"
++	args="/original_topic/relay /relay_stealth/output"
++	output="screen">
++    <rosparam>
++      stealth: true
++      monitor_topic: /original_topic/relay
++    </rosparam>
++  </node>
++</launch>
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/test/shapeshifter.test
+@@ -0,0 +1,6 @@
++<launch>
++  <node pkg="rostopic" type="rostopic" name="rostopic_pub" 
++        args="pub -r 10 input std_msgs/String chatter"/>
++
++  <test test-name="test_shapeshifter" pkg="topic_tools" type="topic_tools-test_shapeshifter"/>
++</launch>
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/test/switch_mux.test
+@@ -0,0 +1,19 @@
++<launch>
++  <node pkg="rostopic" type="rostopic" name="rostopic_pub1" 
++        args="pub -r 10 input1 std_msgs/String chatter"/>
++  <node pkg="rostopic" type="rostopic" name="rostopic_pub2" 
++        args="pub -r 5 input2 std_msgs/String chatter"/>
++
++  <!-- Explicit output name -->
++  <node pkg="topic_tools" type="mux" name="mux_explicit"
++        args="output input1 input2"/>
++  <node pkg="topic_tools" type="mux_select" name="mux_select" 
++        args="mux input2"/>
++  <test test-name="switch_mux_hztest_explicit" pkg="rostest" type="hztest" retry="3">
++    <param name="topic" value="output"/>
++    <param name="hz" value="5.0"/>
++    <param name="hzerror" value="0.5"/>
++    <param name="test_duration" value="2.0"/>
++  </test>
++
++</launch>
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/test/switch_mux_leading_slash.test
+@@ -0,0 +1,19 @@
++<launch>
++  <node pkg="rostopic" type="rostopic" name="rostopic_pub1" 
++        args="pub -r 10 input1 std_msgs/String chatter"/>
++  <node pkg="rostopic" type="rostopic" name="rostopic_pub2" 
++        args="pub -r 5 input2 std_msgs/String chatter"/>
++
++  <!-- Explicit output name -->
++  <node pkg="topic_tools" type="mux" name="mux_explicit"
++        args="output input1 input2"/>
++  <node pkg="topic_tools" type="mux_select" name="mux_select" 
++        args="mux /input2"/>
++  <test test-name="switch_mux_leading_slash_hztest_explicit" pkg="rostest" type="hztest" retry="3">
++    <param name="topic" value="output"/>
++    <param name="hz" value="5.0"/>
++    <param name="hzerror" value="0.5"/>
++    <param name="test_duration" value="2.0" />
++  </test>
++
++</launch>
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/test/switch_mux_none.test
+@@ -0,0 +1,19 @@
++<launch>
++  <node pkg="rostopic" type="rostopic" name="rostopic_pub1" 
++        args="pub -r 10 input1 std_msgs/String chatter"/>
++  <node pkg="rostopic" type="rostopic" name="rostopic_pub2" 
++        args="pub -r 5 input2 std_msgs/String chatter"/>
++
++  <!-- Explicit output name -->
++  <node pkg="topic_tools" type="mux" name="mux_explicit"
++        args="output input1 input2"/>
++  <node pkg="topic_tools" type="mux_select" name="mux_select" 
++        args="mux __none"/>
++  <test test-name="switch_mux_none_hztest_explicit" pkg="rostest" type="hztest" retry="3">
++    <param name="topic" value="output"/>
++    <param name="hz" value="0.0"/>
++    <param name="hzerror" value="0.5"/>
++    <param name="test_duration" value="2.0" />
++  </test>
++
++</launch>
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/test/test_lazy_transport.py
+@@ -0,0 +1,64 @@
++#!/usr/bin/env python
++
++import os
++import sys
++
++import unittest
++
++import rosgraph
++import rospy
++import rosmsg
++import roslib
++
++
++PKG = 'topic_tools'
++NAME = 'test_lazy_transport'
++
++
++class TestLazyTransport(unittest.TestCase):
++
++    def __init__(self, *args):
++        super(self.__class__, self).__init__(*args)
++        rospy.init_node(NAME)
++
++    def test_no_subscribers(self):
++        check_connected_topics = rospy.get_param('~check_connected_topics')
++        master = rosgraph.Master('/test_connection')
++        _, sub, _ = master.getSystemState()
++        # Check assumed topics are not there
++        master = rosgraph.Master('test_connection')
++        _, subscriptions, _ = master.getSystemState()
++        for check_topic in check_connected_topics:
++            for topic, sub_node in subscriptions:
++                if topic == rospy.get_namespace() + check_topic:
++                    raise ValueError('Found topic: {}'.format(check_topic))
++
++    def test_subscriber_appears(self):
++        topic_type = rospy.get_param('~input_topic_type')
++        check_connected_topics = rospy.get_param('~check_connected_topics')
++        wait_time = rospy.get_param('~wait_for_connection', 0)
++        msg_class = roslib.message.get_message_class(topic_type)
++        # Subscribe topic and bond connection
++        sub = rospy.Subscriber('~input', msg_class,
++                               self._cb_test_subscriber_appears)
++        print('Waiting for connection for {} sec.'.format(wait_time))
++        rospy.sleep(wait_time)
++        # Check assumed topics are there
++        master = rosgraph.Master('test_connection')
++        _, subscriptions, _ = master.getSystemState()
++        for check_topic in check_connected_topics:
++            for topic, sub_node in subscriptions:
++                if topic == rospy.get_namespace() + check_topic:
++                    break
++            else:
++                raise ValueError('Topic Not Found: {}'
++                                 .format(rospy.get_namespace() + check_topic))
++        sub.unregister()
++
++    def _cb_test_subscriber_appears(self, msg):
++        pass
++
++
++if __name__ == "__main__":
++    import rostest
++    rostest.rosrun(PKG, NAME, TestLazyTransport)
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/test/test_mux_delete_add.py
+@@ -0,0 +1,74 @@
++#!/usr/bin/env python
++
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Author: Brian Gerkey
++
++PKG = 'topic_tools'
++
++import rospy
++
++from topic_tools.srv import MuxAdd
++from topic_tools.srv import MuxDelete
++from topic_tools.srv import MuxList
++from topic_tools.srv import MuxSelect
++from std_msgs.msg import String
++
++def go():
++    rospy.init_node('chatter')
++
++    rospy.wait_for_service('mux/add', 5)
++    rospy.wait_for_service('mux/delete', 5)
++    rospy.wait_for_service('mux/list', 5)
++    rospy.wait_for_service('mux/select', 5)
++
++    add_srv = rospy.ServiceProxy('mux/add', MuxAdd)
++    delete_srv = rospy.ServiceProxy('mux/delete', MuxDelete)
++    list_srv = rospy.ServiceProxy('mux/list', MuxList)
++    select_srv = rospy.ServiceProxy('mux/select', MuxSelect)
++
++    b_pub = rospy.Publisher('b', String)
++
++    # Execute the sequence given in #2863
++    select_srv('c')
++    delete_srv('b')
++    add_srv('b')
++    select_srv('b')
++
++    # Now start publishing on b
++    while not rospy.is_shutdown():
++        b_pub.publish('foo')
++        rospy.sleep(0.2)
++
++if __name__ == "__main__":
++    go()
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/test/test_mux_services.py
+@@ -0,0 +1,107 @@
++#!/usr/bin/env python
++
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Author: Brian Gerkey
++
++PKG = 'topic_tools'
++
++import unittest
++import rospy
++
++from topic_tools.srv import MuxAdd
++from topic_tools.srv import MuxDelete
++from topic_tools.srv import MuxList
++from topic_tools.srv import MuxSelect
++
++class MuxServiceTestCase(unittest.TestCase):
++    def make_srv_proxies(self):
++        try:
++            rospy.wait_for_service('mux/add', 5)
++            rospy.wait_for_service('mux/delete', 5)
++            rospy.wait_for_service('mux/list', 5)
++            rospy.wait_for_service('mux/select', 5)
++        except rospy.ROSException as e:
++            self.fail('failed to find a required service: ' + repr(e))
++
++        add_srv = rospy.ServiceProxy('mux/add', MuxAdd)
++        delete_srv = rospy.ServiceProxy('mux/delete', MuxDelete)
++        list_srv = rospy.ServiceProxy('mux/list', MuxList)
++        select_srv = rospy.ServiceProxy('mux/select', MuxSelect)
++
++        return (add_srv, delete_srv, list_srv, select_srv)
++            
++    def test_add_delete_list(self):
++        add_srv, delete_srv, list_srv, select_srv = self.make_srv_proxies()
++        # Check initial condition
++        topics = list_srv().topics
++        self.assertEquals(set(topics), set(['/input']))
++        # Add a topic and make sure it's there
++        add_srv('/new_input')
++        topics = list_srv().topics
++        self.assertEquals(set(topics), set(['/input', '/new_input']))
++        # Try to add the same topic again, make sure it fails, and that
++        # nothing changes.
++        try:
++            add_srv('/new_input')
++        except rospy.ServiceException:
++            pass
++        else:
++            self.fail('service call should have thrown an exception')
++        topics = list_srv().topics
++        self.assertEquals(set(topics), set(['/input', '/new_input']))
++        # Select a topic, then try to delete it, make sure it fails, and
++        # that nothing changes.
++        select_srv('/input')
++        try:
++            delete_srv('/input')
++        except rospy.ServiceException:
++            pass
++        else:
++            self.fail('service call should have thrown an exception')
++        topics = list_srv().topics
++        self.assertEquals(set(topics), set(['/input', '/new_input']))
++        # Select nothing, to allow deletion
++        select_srv('__none')
++        # Delete topics
++        delete_srv('/input')
++        topics = list_srv().topics
++        self.assertEquals(set(topics), set(['/new_input']))
++        delete_srv('/new_input')
++        topics = list_srv().topics
++        self.assertEquals(set(topics), set([]))
++
++if __name__ == "__main__":
++    import rostest
++    rostest.unitrun(PKG, 'mux_services', MuxServiceTestCase)
++
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/test/test_one_message.py
+@@ -0,0 +1,60 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import unittest
++import rospy
++import rostest
++import sys
++from std_msgs.msg import *
++
++class LatchedSub(unittest.TestCase):
++
++  def msg_cb(self, msg):
++    self.success = True
++
++
++  def test_latched_sub(self):
++    rospy.init_node('random_sub')
++
++    self.success = False
++
++    sub = rospy.Subscriber("output", String, self.msg_cb)
++
++    while not self.success:
++      rospy.sleep(rospy.Duration.from_sec(0.5))
++
++    self.assertEqual(self.success, True)
++
++if __name__ == '__main__':
++  rostest.rosrun('rosbag', 'latched_sub', LatchedSub, sys.argv)
++
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/test/test_relay_stealth.py
+@@ -0,0 +1,45 @@
++#!/usr/bin/env python
++# -*- coding: utf-8 -*-
++
++import rospy
++import unittest
++from std_msgs.msg import String
++
++
++class TestRelayStealth(unittest.TestCase):
++    def out_callback(self, msg):
++        self.out_msg_count += 1
++
++    def monitor_callback(self, msg):
++        self.monitor_msg_count += 1
++
++    def test_stealth_relay(self):
++        self.out_msg_count = 0
++        self.monitor_msg_count = 0
++        sub_out = rospy.Subscriber("/relay_stealth/output", String,
++                                   self.out_callback, queue_size=1)
++        for i in range(5):
++            if sub_out.get_num_connections() == 0:
++                rospy.sleep(1)
++        self.assertTrue(sub_out.get_num_connections() > 0)
++
++        rospy.sleep(5)
++        self.assertEqual(self.out_msg_count, 0)
++
++        sub_monitor = rospy.Subscriber("/original_topic/relay", String,
++                                       self.monitor_callback, queue_size=1)
++        rospy.sleep(5)
++        self.assertGreater(self.monitor_msg_count, 0)
++        self.assertGreater(self.out_msg_count, 0)
++
++        cnt = self.out_msg_count
++        sub_monitor.unregister()
++
++        rospy.sleep(3)
++        self.assertLess(abs(cnt - self.out_msg_count), 30)
++
++
++if __name__ == '__main__':
++    import rostest
++    rospy.init_node("test_relay_stealth")
++    rostest.rosrun("topic_tools", "test_relay_stealth", TestRelayStealth)
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/test/test_shapeshifter.cpp
+@@ -0,0 +1,170 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++*
++*  Copyright (c) 2009, Willow Garage, Inc.
++*  All rights reserved.
++*
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++*
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of Willow Garage, Inc. nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++*
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++********************************************************************/
++
++// Bring in my package's API, which is what I'm testing
++#include "ros/ros.h"
++#include "topic_tools/shape_shifter.h"
++#include "std_msgs/String.h"
++#include "std_msgs/Int32.h"
++
++// Bring in gtest
++#include <gtest/gtest.h>
++
++class ShapeShifterSubscriber : public testing::Test
++{
++  public:
++
++  bool success;
++
++  void messageCallbackInt(const topic_tools::ShapeShifter::ConstPtr& msg)
++  {
++    try {
++      std_msgs::Int32::Ptr s = msg->instantiate<std_msgs::Int32>();
++    } catch (topic_tools::ShapeShifterException& e)
++    {
++      success = true;
++    }
++  }
++
++  void messageCallbackString(const topic_tools::ShapeShifter::ConstPtr& msg)
++  {
++    try {
++      std_msgs::String::Ptr s = msg->instantiate<std_msgs::String>();
++      if (s->data == "chatter")
++        success = true;
++    } catch (topic_tools::ShapeShifterException& e)
++    {
++
++    }
++  }
++
++  void messageCallbackLoopback(const topic_tools::ShapeShifter::ConstPtr& msg)
++  {
++    try {
++      std_msgs::String::Ptr s = msg->instantiate<std_msgs::String>();
++      printf("Got data: %s", s->data.c_str());
++      if (s->data == "abc123")
++        success = true;
++    } catch (topic_tools::ShapeShifterException& e)
++    {
++        printf("Instantiate failed!\n");
++    }
++  }
++  
++protected:
++  ShapeShifterSubscriber() {}
++
++  void SetUp()
++  {
++    success = false;
++  }
++
++  void TearDown()  {}
++};
++
++
++TEST_F(ShapeShifterSubscriber, testInstantiateString)
++{
++  ros::NodeHandle nh;
++  ros::Subscriber sub = nh.subscribe<topic_tools::ShapeShifter>("input",1,&ShapeShifterSubscriber::messageCallbackString, (ShapeShifterSubscriber*)this);
++
++  ros::Time t1(ros::Time::now()+ros::Duration(10.0));
++
++  while(ros::Time::now() < t1 && !success)
++  {
++    ros::WallDuration(0.01).sleep();
++    ros::spinOnce();
++  }
++
++  EXPECT_FALSE(topic_tools::ShapeShifter::uses_old_API_);
++
++  if(success)
++    SUCCEED();
++  else
++    FAIL();
++}
++
++TEST_F(ShapeShifterSubscriber, testInstantiateInt)
++{
++  ros::NodeHandle nh;
++  ros::Subscriber sub = nh.subscribe<topic_tools::ShapeShifter>("input",1,&ShapeShifterSubscriber::messageCallbackInt, (ShapeShifterSubscriber*)this);
++
++  ros::Time t1(ros::Time::now()+ros::Duration(10.0));
++
++  while(ros::Time::now() < t1 && !success)
++  {
++    ros::WallDuration(0.01).sleep();
++    ros::spinOnce();
++  }
++
++  EXPECT_FALSE(topic_tools::ShapeShifter::uses_old_API_);
++
++  if(success)
++    SUCCEED();
++  else
++    FAIL();
++}
++
++TEST_F(ShapeShifterSubscriber, testLoopback)
++{
++  ros::NodeHandle nh;
++  ros::Subscriber sub = nh.subscribe<topic_tools::ShapeShifter>("loopback",1,&ShapeShifterSubscriber::messageCallbackLoopback, (ShapeShifterSubscriber*)this);
++
++  ros::Time t1(ros::Time::now()+ros::Duration(10.0));
++
++  ros::Publisher pub = nh.advertise<std_msgs::String>("loopback", 1);
++  std_msgs::String s;
++  s.data = "abc123";
++  pub.publish(s);
++
++  while(ros::Time::now() < t1 && !success)
++  {
++    ros::WallDuration(0.01).sleep();
++    ros::spinOnce();
++  }
++
++  EXPECT_FALSE(topic_tools::ShapeShifter::uses_old_API_);
++
++  if(success)
++    SUCCEED();
++  else
++    FAIL();
++}
++
++int main(int argc, char **argv){
++    ros::init(argc, argv, "test_shapeshifter");
++
++    testing::InitGoogleTest(&argc, argv);
++    return RUN_ALL_TESTS();
++}
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/test/test_throttle_simtime_loop.py
+@@ -0,0 +1,126 @@
++#!/usr/bin/env python
++# -*- coding: utf-8 -*-
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2018, JSK Robotics Lab.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Author: Yuki Furuta <furushchev@jsk.imi.i.u-tokyo.ac.jp>
++
++import threading
++import rospy
++from std_msgs.msg import String
++from rosgraph_msgs.msg import Clock
++import time
++from unittest import TestCase
++
++
++class ClockPublisher(threading.Thread):
++    def __init__(self):
++        super(ClockPublisher, self).__init__()
++        self.finished = threading.Event()
++        self.interval = 0.1
++        self.pub_clock = rospy.Publisher("/clock", Clock, queue_size=1)
++        self.reset(time.time())
++
++    def run(self):
++        while not self.finished.is_set():
++            self.finished.wait(self.interval)
++            self.pub_clock.publish(self.clock)
++            self.clock.clock += rospy.Duration(self.interval)
++        self.finished.set()
++
++    def stop(self):
++        self.finished.set()
++
++    def reset(self, seconds=0):
++        self.clock = Clock(
++            clock=rospy.Time.from_seconds(seconds))
++
++
++class TestThrottleSimtimeLoop(TestCase):
++    def setUp(self):
++        self.clock_pub = ClockPublisher()
++        self.clock_pub.start()
++        time.sleep(1)
++        self.input_count = 0
++        self.throttle_count = 0
++        self.sub_throttle = rospy.Subscriber(
++            "input_throttle", String, self.callback_throttle, queue_size=1)
++        self.sub_input = rospy.Subscriber(
++            "input", String, self.callback_input, queue_size=1)
++
++    def tearDown(self):
++        self.clock_pub.stop()
++
++    def callback_throttle(self, msg):
++        self.throttle_count += 1
++
++    def callback_input(self, msg):
++        self.input_count += 1
++
++    def test_throttle_loop(self):
++        # wait for throttled message
++        for i in range(100):
++            if self.throttle_count > 0:
++                break
++            time.sleep(0.1)
++        self.assertGreater(
++            self.input_count, 0,
++            "Input message comes before rostime moves backward")
++        self.assertGreater(
++            self.throttle_count, 0,
++            "Throttle message comes before rostime moves backward")
++
++        # reset /clock (rostime moves backward)
++        self.clock_pub.reset()
++        time.sleep(0.1)
++
++        # wait for throttled message
++        self.input_count = 0
++        self.throttle_count = 0
++        for i in range(100):
++            if self.throttle_count > 0:
++                break
++            time.sleep(0.1)
++        self.assertGreater(
++            self.input_count, 0,
++            "Input message comes after rostime moved backward")
++        self.assertGreater(
++            self.throttle_count, 0,
++            "Throttle message comes after rostime moved backward")
++
++
++if __name__ == '__main__':
++    import rostest
++    rospy.init_node("test_throttle_simtime_loop")
++    rostest.rosrun("topic_tools",
++                   "test_throttle_simtime_loop",
++                   TestThrottleSimtimeLoop)
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/test/test_transform.py
+@@ -0,0 +1,58 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import unittest
++import rospy
++import rostest
++import sys
++from std_msgs.msg import *
++
++
++PKG = 'topic_tools'
++NAME = 'transform_sub'
++
++
++class TransformSub(unittest.TestCase):
++
++  def test_transform_sub(self):
++    rospy.init_node(NAME)
++    value = rospy.get_param("~value", 1.0)
++
++    try:
++        msg = rospy.wait_for_message("input", Float32, 1.0)
++        self.assertEqual(msg.data, value)
++    except rospy.ROSException as e:
++        self.fail(str(e))
++
++if __name__ == '__main__':
++  rostest.rosrun(PKG, NAME, TransformSub, sys.argv)
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/test/throttle.test
+@@ -0,0 +1,42 @@
++<launch>
++  <node pkg="rostopic" type="rostopic" name="rostopic_pub" 
++        args="pub -r 20 input std_msgs/String chatter"/>
++
++  <!-- Automatic output name -->
++  <node pkg="topic_tools" type="throttle" name="throttle"
++        args="messages input 5"/>
++  <test test-name="throttle_hztest" pkg="rostest" type="hztest" retry="3">
++    <param name="topic" value="input_throttle"/>
++    <param name="hz" value="5.0"/>
++    <param name="hzerror" value="1.0"/>
++    <param name="test_duration" value="2.0" />
++  </test>
++
++  <!-- Explicit output name -->
++  <node pkg="topic_tools" type="throttle" name="throttle_explicit"
++        args="messages input 5 output"/>
++  <test test-name="throttle_hztest_explicit" pkg="rostest" type="hztest" retry="3">
++    <param name="topic" value="output"/>
++    <param name="hz" value="5.0"/>
++    <param name="hzerror" value="1.0"/>
++    <param name="test_duration" value="2.0" />
++  </test>
++
++  <!-- Test byte-based throttling.  Note that the desired rate for the
++  hztest is a function of both the requested bytes/second and the length of
++  the string being published:
++    10 msg/sec = 110 B/sec / 11 B/msg 
++  (11 = 4-byte length + 7 characters in "chatter")
++  It would be more direct to test the bandwidth directly, but hztest 
++  doesn't do that.  -->
++  <node pkg="topic_tools" type="throttle" name="throttle_bytes"
++        args="bytes input 110 1 output_bytes"/>
++  <test test-name="throttle_hztest_bytes" pkg="rostest" type="hztest" retry="3">
++    <param name="topic" value="output_bytes"/>
++    <param name="hz" value="10.0"/>
++    <!-- Wider tolerance because we're seeing occasional under-minimum failures -->
++    <param name="hzerror" value="1.5"/>
++    <param name="test_duration" value="4.0" />
++  </test>
++
++</launch>
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/test/throttle_simtime.test
+@@ -0,0 +1,18 @@
++<launch>
++  <param name="use_sim_time" value="True"/>
++  <node pkg="rostopic" type="rostopic" name="rostopic_pub" 
++        args="pub -r 20 input std_msgs/String chatter"/>
++
++  <!-- Automatic output name -->
++  <node pkg="topic_tools" type="throttle" name="throttle"
++        args="messages input 5">
++    <param name="wall_clock" value="True"/>
++  </node>
++  <test test-name="throttle_simtime_hztest" pkg="rostest" type="hztest" retry="3">
++    <param name="topic" value="input_throttle"/>
++    <param name="hz" value="5.0"/>
++    <param name="hzerror" value="1.0"/>
++    <param name="wall_clock" value="True"/>
++    <param name="test_duration" value="2.0" />
++  </test>
++</launch>
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/test/throttle_simtime_loop.test
+@@ -0,0 +1,9 @@
++<launch>
++  <param name="use_sim_time" value="true"/>
++  <node pkg="rostopic" type="rostopic" name="rostopic_pub"
++        args="pub -r 20 input std_msgs/String chatter"/>
++  <node pkg="topic_tools" type="throttle" name="throttle"
++        args="messages input 5" output="screen"/>
++  <test test-name="throttle_simtime_loop"
++        pkg="topic_tools" type="test_throttle_simtime_loop.py" />
++</launch>
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/test/transform.test
+@@ -0,0 +1,31 @@
++<?xml version="1.0"?>
++<launch>
++  <!-- root namespace -->
++  <node pkg="rostopic" type="rostopic" name="rostopic_pub"
++        args="pub -r 2 /num1 std_msgs/Float32 'data: 1.0'"/>
++  <node pkg="topic_tools" type="transform" name="transform"
++        args="--wait-for-start /num1 /num2 std_msgs/Float32 'm.data * 3.0'"/>
++
++  <test test-name="transform_" pkg="topic_tools"
++      type="test_transform.py" time-limit="3.0"
++      retry="3">
++    <remap from="input" to="/num2" />
++    <param name="value" value="3.0" />
++  </test>
++
++  <!-- Test in namespace  -->
++  <group ns="foo" >
++    <node pkg="rostopic" type="rostopic" name="rostopic_pub"
++        args="pub -r 2 num3 std_msgs/Float32 'data: 3.0'" />
++    <node pkg="topic_tools" type="transform" name="transform"
++        args="--wait-for-start num3 num4 std_msgs/Float32 'm.data * 2.0'"/>
++
++    <test test-name="transform_ns" pkg="topic_tools"
++        type="test_transform.py" time-limit="3.0"
++        retry="3">
++      <remap from="input" to="num4" />
++      <param name="value" value="6.0" />
++    </test>
++  </group>
++
++</launch>
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/test/utest.cpp
+@@ -0,0 +1,94 @@
++// Copyright (c) 2009, Willow Garage, Inc.
++// All rights reserved.
++// 
++// Redistribution and use in source and binary forms, with or without
++// modification, are permitted provided that the following conditions are met:
++// 
++//     * Redistributions of source code must retain the above copyright
++//       notice, this list of conditions and the following disclaimer.
++//     * Redistributions in binary form must reproduce the above copyright
++//       notice, this list of conditions and the following disclaimer in the
++//       documentation and/or other materials provided with the distribution.
++//     * Neither the name of Willow Garage, Inc. nor the names of its
++//       contributors may be used to endorse or promote products derived from
++//       this software without specific prior written permission.
++// 
++// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++// POSSIBILITY OF SUCH DAMAGE.
++
++#include "topic_tools/parse.h"
++
++#include <gtest/gtest.h>
++
++TEST(GetBaseName, simpleName)
++{
++  std::string in("foo");
++  std::string expected("foo");
++  std::string out;
++
++  ASSERT_TRUE(topic_tools::getBaseName(in, out));
++  ASSERT_EQ(expected, out);
++}
++
++TEST(GetBaseName, leadingSlash)
++{
++  std::string in("/foo");
++  std::string expected("foo");
++  std::string out;
++
++  ASSERT_TRUE(topic_tools::getBaseName(in, out));
++  ASSERT_EQ(expected, out);
++}
++
++TEST(GetBaseName, trailingSlash)
++{
++  std::string in("foo/");
++  std::string expected("foo");
++  std::string out;
++
++  ASSERT_TRUE(topic_tools::getBaseName(in, out));
++  ASSERT_EQ(expected, out);
++}
++
++TEST(GetBaseName, multipleLevels)
++{
++  std::string in("bar/bat/baz/foo");
++  std::string expected("foo");
++  std::string out;
++
++  ASSERT_TRUE(topic_tools::getBaseName(in, out));
++  ASSERT_EQ(expected, out);
++}
++
++TEST(GetBaseName, multipleSlashes)
++{
++  std::string in("//bar///bat/baz/foo///");
++  std::string expected("foo");
++  std::string out;
++
++  ASSERT_TRUE(topic_tools::getBaseName(in, out));
++  ASSERT_EQ(expected, out);
++}
++
++TEST(GetBaseName, emptyName)
++{
++  std::string in("///");
++  std::string out;
++
++  ASSERT_FALSE(topic_tools::getBaseName(in, out));
++}
++
++int main(int argc, char **argv)
++{
++  testing::InitGoogleTest(&argc, argv);
++  return RUN_ALL_TESTS();
++}
+--- /dev/null
++++ ros-noetic-topic-tools-1.16.0/topic_tools.dox
+@@ -0,0 +1,8 @@
++/**
++
++@mainpage
++
++@htmlinclude manifest.html
++
++*/
++

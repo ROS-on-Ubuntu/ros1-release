@@ -1,0 +1,13 @@
+Source: ros-noetic-rqt-graph
+Section: misc
+Priority: optional
+Maintainer: Dirk Thomas <dthomas@osrfoundation.org>
+Build-Depends: debhelper (>= 9.0.0), ros-noetic-catkin
+Homepage: http://wiki.ros.org/rqt_graph
+Standards-Version: 3.9.2
+
+Package: ros-noetic-rqt-graph
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, python3-rospkg, ros-noetic-python-qt-binding (>= 0.2.19), ros-noetic-qt-dotgraph, ros-noetic-rosgraph, ros-noetic-rosgraph-msgs, ros-noetic-roslib, ros-noetic-rosnode, ros-noetic-rospy, ros-noetic-rosservice, ros-noetic-rostopic, ros-noetic-rqt-gui, ros-noetic-rqt-gui-py
+Description: rqt_graph provides a GUI plugin for visualizing the ROS computation graph.
+ Its components are made generic so that other packages where you want to achieve graph representation can depend upon this pkg (use rqt_dep to find out the pkgs that depend. rqt_dep itself depends on rqt_graph too).

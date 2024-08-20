@@ -1,0 +1,4795 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-rosgraph (1.16.0-0jammy) jammy; urgency=high
+ .
+   * Fix determining supported kernel version for HTTP 1.1 (#2202 <https://github.com/ros/ros_comm/issues/2202>)
+   * Contributors: Martin Pecka
+Author: Michael Carroll <michael@openrobotics.org>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-rosgraph-1.16.0/CHANGELOG.rst
+@@ -0,0 +1,287 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package rosgraph
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++1.16.0 (2023-02-15)
++-------------------
++* Fix determining supported kernel version for HTTP 1.1 (`#2202 <https://github.com/ros/ros_comm/issues/2202>`_)
++* Contributors: Martin Pecka
++
++1.15.15 (2022-11-23)
++--------------------
++* Move @jacobperron from maintainer to author (`#2302 <https://github.com/ros/ros_comm/issues/2302>`_)
++* Contributors: Shane Loretz
++
++1.15.14 (2022-01-06)
++--------------------
++
++1.15.13 (2021-09-22)
++--------------------
++
++1.15.12 (2021-09-21)
++--------------------
++* Fix memory leak in rosgraph for kernel < 4.16 and Python 3 (`#2165 <https://github.com/ros/ros_comm/issues/2165>`_)
++* Contributors: Alexis Schad
++
++1.15.11 (2021-04-06)
++--------------------
++
++1.15.10 (2021-03-18)
++--------------------
++* Fix HTTP for kernel < 4.16 (`#2132 <https://github.com/ros/ros_comm/issues/2132>`_)
++* Contributors: Jesse Ikawa
++
++1.15.9 (2020-10-16)
++-------------------
++* Update maintainers (`#2075 <https://github.com/ros/ros_comm/issues/2075>`_)
++* Fix spelling (`#2066 <https://github.com/ros/ros_comm/issues/2066>`_)
++* Contributors: Shane Loretz, tomoya
++
++1.15.8 (2020-07-23)
++-------------------
++
++1.15.7 (2020-05-28)
++-------------------
++
++1.15.6 (2020-05-21)
++-------------------
++
++1.15.5 (2020-05-15)
++-------------------
++
++1.15.4 (2020-03-19)
++-------------------
++
++1.15.3 (2020-02-28)
++-------------------
++
++1.15.2 (2020-02-25)
++-------------------
++* add timestamp formatting for rosconsole (`#1892 <https://github.com/ros/ros_comm/issues/1892>`_)
++
++1.15.1 (2020-02-24)
++-------------------
++* use setuptools instead of distutils (`#1870 <https://github.com/ros/ros_comm/issues/1870>`_)
++
++1.15.0 (2020-02-21)
++-------------------
++
++1.14.4 (2020-02-20)
++-------------------
++* add default ROS_MASTER_URI (`#1666 <https://github.com/ros/ros_comm/issues/1666>`_)
++* fix test which fails on Noetic (`#1891 <https://github.com/ros/ros_comm/issues/1891>`_)
++* bump CMake minimum version to avoid CMP0048 warning (`#1869 <https://github.com/ros/ros_comm/issues/1869>`_)
++* [Windows] Python 3 compatibility (`#1819 <https://github.com/ros/ros_comm/issues/1819>`_)
++* fix escape sequences in regular expressions (`#1837 <https://github.com/ros/ros_comm/issues/1837>`_)
++* fix RospyLogger findCaller arguments in Python 3.8 (`#1838 <https://github.com/ros/ros_comm/issues/1838>`_)
++* [Windows] make test code to be more portable (`#1726 <https://github.com/ros/ros_comm/issues/1726>`_)
++* fix Coverity forward null (`#1787 <https://github.com/ros/ros_comm/issues/1787>`_)
++* make log config from rosgraph optional (`#1797 <https://github.com/ros/ros_comm/issues/1797>`_)
++* use condition attributes to specify Python 2 and 3 dependencies (`#1792 <https://github.com/ros/ros_comm/issues/1792>`_)
++* add is_legal_remap() to rosgraph to make remap-detection more precise (`#1683 <https://github.com/ros/ros_comm/issues/1683>`_)
++* more Python 3 compatibility (`#1783 <https://github.com/ros/ros_comm/issues/1783>`_)
++* more Python 3 compatibility (`#1782 <https://github.com/ros/ros_comm/issues/1782>`_)
++* switch to yaml.safe_load(_all) to prevent YAMLLoadWarning (`#1688 <https://github.com/ros/ros_comm/issues/1688>`_)
++* use urlparse for parsing the port, whick makes ipv6 possible (`#1698 <https://github.com/ros/ros_comm/issues/1698>`_)
++* fix paths (and regex for paths) comparison issues (`#1592 <https://github.com/ros/ros_comm/issues/1592>`_)
++* fix various test problems (`#1601 <https://github.com/ros/ros_comm/issues/1601>`_)
++* fix typos: awhile -> a while (`#1534 <https://github.com/ros/ros_comm/issues/1534>`_)
++
++1.14.3 (2018-08-06)
++-------------------
++
++1.14.2 (2018-06-06)
++-------------------
++
++1.14.1 (2018-05-21)
++-------------------
++
++1.14.0 (2018-05-21)
++-------------------
++* use HTTP/1.1 in XMLRPC Server (`#1287 <https://github.com/ros/ros_comm/issues/1287>`_)
++
++1.13.6 (2018-02-05)
++-------------------
++* fix search strategy for python_logging config (`#1292 <https://github.com/ros/ros_comm/issues/1292>`_)
++
++1.13.5 (2017-11-09)
++-------------------
++
++1.13.4 (2017-11-02)
++-------------------
++
++1.13.3 (2017-10-25)
++-------------------
++* use defined error codes rather than hardcoded integers (`#1174 <https://github.com/ros/ros_comm/issues/1174>`_)
++* improve logger tests (`#1144 <https://github.com/ros/ros_comm/issues/1144>`_)
++
++1.13.2 (2017-08-15)
++-------------------
++* fix stack frame identification in rospy logging (`#1141 <https://github.com/ros/ros_comm/issues/1141>`_, regression from 1.13.1)
++* make RospyLogger.findCaller compatible with Python 3 (`#1121 <https://github.com/ros/ros_comm/issues/1121>`_)
++
++1.13.1 (2017-07-27)
++-------------------
++* improve message when `roslogging` cannot change permissions (`#1068 <https://github.com/ros/ros_comm/issues/1068>`_)
++* allow python_logging.yaml for logging configuration (`#1061 <https://github.com/ros/ros_comm/issues/1061>`_)
++* write log for class method with class name (`#1043 <https://github.com/ros/ros_comm/issues/1043>`_)
++
++1.13.0 (2017-02-22)
++-------------------
++
++1.12.7 (2017-02-17)
++-------------------
++
++1.12.6 (2016-10-26)
++-------------------
++* change rospy default rosconsole format for consistency with roscpp (`#879 <https://github.com/ros/ros_comm/pull/879>`_)
++* increase request_queue_size for xmlrpc server (`#849 <https://github.com/ros/ros_comm/issues/849>`_)
++
++1.12.5 (2016-09-30)
++-------------------
++
++1.12.4 (2016-09-19)
++-------------------
++
++1.12.3 (2016-09-17)
++-------------------
++* add 'Darwin' to unix-like platforms improving address resolution (`#846 <https://github.com/ros/ros_comm/pull/846>`_)
++* use logging Formatter, enabling printing exception info with exc_info=1 (`#828 <https://github.com/ros/ros_comm/pull/828>`_)
++* add `__contains_\_`, which is a better spelling of `has` (`#754 <https://github.com/ros/ros_comm/pull/754>`_)
++
++1.12.2 (2016-06-03)
++-------------------
++* avoid creating a latest symlink for the root of the log dir (`#795 <https://github.com/ros/ros_comm/pull/795>`_)
++
++1.12.1 (2016-04-18)
++-------------------
++* fix str conversion in encode_ros_handshake_header (`#792 <https://github.com/ros/ros_comm/pull/792>`_)
++
++1.12.0 (2016-03-18)
++-------------------
++
++1.11.18 (2016-03-17)
++--------------------
++
++1.11.17 (2016-03-11)
++--------------------
++* fix raising classes not derived from `Exception` which caused a TypeError (`#761 <https://github.com/ros/ros_comm/pull/761>`_)
++* fix handshake header with Python 3 (`#759 <https://github.com/ros/ros_comm/issues/759>`_)
++* fix encoding of header fields (`#704 <https://github.com/ros/ros_comm/issues/704>`_)
++
++1.11.16 (2015-11-09)
++--------------------
++
++1.11.15 (2015-10-13)
++--------------------
++
++1.11.14 (2015-09-19)
++--------------------
++* create a symlink to the latest log directory (`#659 <https://github.com/ros/ros_comm/pull/659>`_)
++
++1.11.13 (2015-04-28)
++--------------------
++
++1.11.12 (2015-04-27)
++--------------------
++
++1.11.11 (2015-04-16)
++--------------------
++
++1.11.10 (2014-12-22)
++--------------------
++* rosconsole format for rospy (`#517 <https://github.com/ros/ros_comm/issues/517>`_)
++* fix exception at roscore startup if python has IPv6 disabled (`#515 <https://github.com/ros/ros_comm/issues/515>`_)
++
++1.11.9 (2014-08-18)
++-------------------
++
++1.11.8 (2014-08-04)
++-------------------
++
++1.11.7 (2014-07-18)
++-------------------
++
++1.11.6 (2014-07-10)
++-------------------
++
++1.11.5 (2014-06-24)
++-------------------
++
++1.11.4 (2014-06-16)
++-------------------
++* Python 3 compatibility (`#426 <https://github.com/ros/ros_comm/issues/426>`_, `#427 <https://github.com/ros/ros_comm/issues/427>`_, `#429 <https://github.com/ros/ros_comm/issues/429>`_)
++
++1.11.3 (2014-05-21)
++-------------------
++
++1.11.2 (2014-05-08)
++-------------------
++
++1.11.1 (2014-05-07)
++-------------------
++* add architecture_independent flag in package.xml (`#391 <https://github.com/ros/ros_comm/issues/391>`_)
++
++1.11.0 (2014-03-04)
++-------------------
++* use catkin_install_python() to install Python scripts (`#361 <https://github.com/ros/ros_comm/issues/361>`_)
++
++1.10.0 (2014-02-11)
++-------------------
++
++1.9.54 (2014-01-27)
++-------------------
++
++1.9.53 (2014-01-14)
++-------------------
++
++1.9.52 (2014-01-08)
++-------------------
++
++1.9.51 (2014-01-07)
++-------------------
++* allow different 127. addresses than 127.0.0.1 (`#315 <https://github.com/ros/ros_comm/issues/315>`_)
++* work around for nose 1.3.0 bug (`#323 <https://github.com/ros/ros_comm/issues/323>`_)
++
++1.9.50 (2013-10-04)
++-------------------
++
++1.9.49 (2013-09-16)
++-------------------
++
++1.9.48 (2013-08-21)
++-------------------
++
++1.9.47 (2013-07-03)
++-------------------
++* check for CATKIN_ENABLE_TESTING to enable configure without tests
++
++1.9.46 (2013-06-18)
++-------------------
++
++1.9.45 (2013-06-06)
++-------------------
++* add warnings for obviously wrong environment variables ROS_HOSTNAME and ROS_IP (`#134 <https://github.com/ros/ros_comm/issues/134>`_)
++* fix exception on netifaces.ifaddresses() (`#211 <https://github.com/ros/ros_comm/issues/211>`_, `#213 <https://github.com/ros/ros_comm/issues/213>`_) (regression from 1.9.42)
++
++1.9.44 (2013-03-21)
++-------------------
++
++1.9.43 (2013-03-13)
++-------------------
++
++1.9.42 (2013-03-08)
++-------------------
++* replace custom code with Python module netifaces (`#130 <https://github.com/ros/ros_comm/issues/130>`_)
++* make dependencies on rospy optional by refactoring RosStreamHandler to rosgraph (`#179 <https://github.com/ros/ros_comm/issues/179>`_)
++
++1.9.41 (2013-01-24)
++-------------------
++
++1.9.40 (2013-01-13)
++-------------------
++* add colorization for rospy log output (`#3691 <https://code.ros.org/trac/ros/ticket/3691>`_)
++
++1.9.39 (2012-12-29)
++-------------------
++* first public release for Groovy
+--- /dev/null
++++ ros-noetic-rosgraph-1.16.0/CMakeLists.txt
+@@ -0,0 +1,20 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(rosgraph)
++find_package(catkin REQUIRED)
++catkin_package()
++
++catkin_python_setup()
++
++# logging config file goes in both etc and package layout (for now).
++# want to get rid of package layout copy, but need to be able to
++# locate etc first.
++install(FILES conf/python_logging.conf
++  DESTINATION ${CATKIN_GLOBAL_ETC_DESTINATION}/ros)
++install(FILES conf/python_logging.conf
++  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/conf)
++catkin_install_python(PROGRAMS scripts/rosgraph
++  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
++
++if(CATKIN_ENABLE_TESTING)
++  catkin_add_nosetests(test)
++endif()
+--- /dev/null
++++ ros-noetic-rosgraph-1.16.0/conf/python_logging.conf
+@@ -0,0 +1,35 @@
++[loggers]
++keys=root, rosout
++
++[handlers]
++keys=fileHandler,streamHandler
++
++[formatters]
++keys=defaultFormatter
++
++[logger_root]
++level=INFO
++handlers=fileHandler
++
++[logger_rosout]
++level=INFO
++handlers=streamHandler
++propagate=1
++qualname=rosout
++
++[handler_fileHandler]
++class=handlers.RotatingFileHandler
++level=DEBUG
++formatter=defaultFormatter
++# log filename, mode, maxBytes, backupCount
++args=(os.environ['ROS_LOG_FILENAME'],'a', 50000000, 4)
++
++[handler_streamHandler]
++class=rosgraph.roslogging.RosStreamHandler
++level=DEBUG
++formatter=defaultFormatter
++# colorize output flag
++args=(True,)
++
++[formatter_defaultFormatter]
++format=[%(name)s][%(levelname)s] %(asctime)s: %(message)s
+--- /dev/null
++++ ros-noetic-rosgraph-1.16.0/package.xml
+@@ -0,0 +1,40 @@
++<?xml version="1.0"?>
++<?xml-model
++  href="http://download.ros.org/schema/package_format3.xsd"
++  schematypens="http://www.w3.org/2001/XMLSchema"?>
++<package format="3">
++ <name>rosgraph</name>
++  <version>1.16.0</version>
++  <description>
++    rosgraph contains the rosgraph command-line tool, which prints
++    information about the ROS Computation Graph. It also provides an
++    internal library that can be used by graphical tools.
++  </description>
++  <maintainer email="michael@openrobotics.org">Michael Carroll</maintainer>
++  <maintainer email="sloretz@openrobotics.org">Shane Loretz</maintainer>
++  <license>BSD</license>
++
++  <url type="website">http://wiki.ros.org/rosgraph</url>
++  <url type="bugtracker">https://github.com/ros/ros_comm/issues</url>
++  <url type="repository">https://github.com/ros/ros_comm</url>
++  <author>Ken Conley</author>
++  <author email="dthomas@osrfoundation.org">Dirk Thomas</author>
++  <author email="jacob@openrobotics.org">Jacob Perron</author>
++
++  <buildtool_depend version_gte="0.5.78">catkin</buildtool_depend>
++
++  <exec_depend condition="$ROS_PYTHON_VERSION == 2">python-netifaces</exec_depend>
++  <exec_depend condition="$ROS_PYTHON_VERSION == 3">python3-netifaces</exec_depend>
++  <exec_depend condition="$ROS_PYTHON_VERSION == 2">python-rospkg</exec_depend>
++  <exec_depend condition="$ROS_PYTHON_VERSION == 3">python3-rospkg</exec_depend>
++  <exec_depend condition="$ROS_PYTHON_VERSION == 2">python-yaml</exec_depend>
++  <exec_depend condition="$ROS_PYTHON_VERSION == 3">python3-yaml</exec_depend>
++
++  <test_depend condition="$ROS_PYTHON_VERSION == 2">python-mock</test_depend>
++  <test_depend condition="$ROS_PYTHON_VERSION == 3">python3-mock</test_depend>
++
++  <export>
++    <rosdoc config="rosdoc.yaml"/>
++    <architecture_independent/>
++  </export>
++</package>
+--- /dev/null
++++ ros-noetic-rosgraph-1.16.0/rosdoc.yaml
+@@ -0,0 +1 @@
++ - builder: epydoc
+--- /dev/null
++++ ros-noetic-rosgraph-1.16.0/scripts/rosgraph
+@@ -0,0 +1,38 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id: rosgraph 3804 2009-02-11 02:16:00Z rob_wheeler $
++
++import rosgraph.rosgraph_main
++rosgraph.rosgraph_main.rosgraph_main()
++
+--- /dev/null
++++ ros-noetic-rosgraph-1.16.0/setup.py
+@@ -0,0 +1,11 @@
++from setuptools import setup
++from catkin_pkg.python_setup import generate_distutils_setup
++
++d = generate_distutils_setup(
++    packages=['rosgraph', 'rosgraph.impl'],
++    package_dir={'': 'src'},
++    scripts=['scripts/rosgraph'],
++    requires=['rospkg']
++)
++
++setup(**d)
+--- /dev/null
++++ ros-noetic-rosgraph-1.16.0/src/rosgraph/__init__.py
+@@ -0,0 +1,56 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import sys
++
++from . rosenv import get_master_uri, ROS_MASTER_URI, ROS_NAMESPACE, ROS_HOSTNAME, ROS_IP, ROS_IPV6
++from . masterapi import Master, MasterFailure, MasterError, MasterException
++from . masterapi import is_online as is_master_online
++
++# bring in names submodule
++from . import names
++
++def myargv(argv=None):
++    """
++    Remove ROS remapping arguments from sys.argv arguments.
++    
++    :returns: copy of sys.argv with ROS remapping arguments removed, ``[str]``
++    """
++    if argv is None:
++        argv = sys.argv
++    return [a for a in argv if not names.REMAP in a]
++
++__all__ = ['myargv',
++        'get_master_uri', 'ROS_MASTER_URI', 'ROS_NAMESPACE', 'ROS_HOSTNAME', 'ROS_IP', 'ROS_IPV6',
++        'Master', 'MasterFailure', 'MasterError', 'MasterException',
++        'is_master_online']
++
+--- /dev/null
++++ ros-noetic-rosgraph-1.16.0/src/rosgraph/impl/__init__.py
+@@ -0,0 +1,34 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id: __init__.py 5735 2009-08-20 21:31:27Z sfkwc $
++
+--- /dev/null
++++ ros-noetic-rosgraph-1.16.0/src/rosgraph/impl/graph.py
+@@ -0,0 +1,582 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id$
++
++from __future__ import print_function
++
++"""
++Data structures and library for representing ROS Computation Graph state.
++"""
++
++import sys
++import time
++import itertools
++import random
++import logging
++import traceback
++try:
++    from xmlrpc.client import ServerProxy
++except ImportError:
++    from xmlrpclib import ServerProxy
++import socket
++
++import rosgraph.masterapi
++
++logger = logging.getLogger('rosgraph.graph')
++
++_ROS_NAME = '/rosviz'
++
++def topic_node(topic):
++    """
++    In order to prevent topic/node name aliasing, we have to remap
++    topic node names. Currently we just prepend a space, which is
++    an illegal ROS name and thus not aliased.
++    @return str: topic mapped to a graph node name.
++    """
++    return ' ' + topic
++def node_topic(node):
++    """
++    Inverse of topic_node
++    @return str: undo topic_node() operation
++    """
++    return node[1:]
++
++class BadNode(object):
++    """
++    Data structure for storing info about a 'bad' node
++    """
++    
++    ## no connectivity
++    DEAD = 0
++    ## intermittent connectivity
++    WONKY = 1
++    
++    def __init__(self, name, type, reason):
++        """
++        @param type: DEAD | WONKY
++        @type  type: int
++        """
++        self.name =name
++        self.reason = reason
++        self.type = type
++
++class EdgeList(object):
++    """
++    Data structure for storing Edge instances
++    """
++    __slots__ = ['edges_by_start', 'edges_by_end']
++    def __init__(self):
++        # in order to make it easy to purge edges, we double-index them
++        self.edges_by_start = {}
++        self.edges_by_end = {}        
++
++    def __iter__(self):
++        return itertools.chain(*[v for v in self.edges_by_start.values()])
++    
++    def has(self, edge):
++        return edge in self
++
++    def __contains__(self, edge):
++        """
++        @return: True if edge is in edge list
++        @rtype: bool
++        """
++        key = edge.key
++        return key in self.edges_by_start and \
++               edge in self.edges_by_start[key]
++        
++    def add(self, edge):
++        """
++        Add an edge to our internal representation. not multi-thread safe
++        @param edge: edge to add
++        @type  edge: Edge
++        """
++        # see note in __init__
++        def update_map(map, key, edge):
++            if key in map:
++                l = map[key]
++                if not edge in l:
++                    l.append(edge)
++                    return True
++                else:
++                    return False
++            else:
++                map[key] = [edge]
++                return True
++            
++        updated = update_map(self.edges_by_start, edge.key, edge)
++        updated = update_map(self.edges_by_end, edge.rkey, edge) or updated
++        return updated
++        
++    def add_edges(self, start, dest, direction, label=''):
++        """
++        Create Edge instances for args and add resulting edges to edge
++        list. Convenience method to avoid repetitve logging, etc...
++        @param edge_list: data structure to add edge to
++        @type  edge_list: EdgeList
++        @param start: name of start node. If None, warning will be logged and add fails
++        @type  start: str
++        @param dest: name of start node. If None, warning will be logged and add fails
++        @type  dest: str
++        @param direction: direction string (i/o/b)
++        @type  direction: str
++        @return: True if update occurred
++        @rtype: bool
++        """
++        
++        # the warnings should generally be temporary, occurring of the
++        # master/node information becomes stale while we are still
++        # doing an update
++        updated = False        
++        if not start:
++            logger.warn("cannot add edge: cannot map start [%s] to a node name", start)
++        elif not dest:
++            logger.warn("cannot add edge: cannot map dest [%s] to a node name", dest)
++        else:
++            for args in edge_args(start, dest, direction, label):
++                updated = self.add(Edge(*args)) or updated
++        return updated
++
++    def delete_all(self, node):
++        """
++        Delete all edges that start or end at node
++        @param node: name of node
++        @type  node: str
++        """
++        def matching(map, pref):
++            return [map[k] for k in map.keys() if k.startswith(pref)]
++        
++        pref = node+"|"
++        edge_lists = matching(self.edges_by_start, pref) + matching(self.edges_by_end, pref)
++        for el in edge_lists:
++            for e in el:
++                self.delete(e)
++        
++    def delete(self, edge):
++        # see note in __init__
++        def update_map(map, key, edge):
++            if key in map:
++                edges = map[key]
++                if edge in edges:
++                    edges.remove(edge)
++                    return True
++        update_map(self.edges_by_start, edge.key, edge)
++        update_map(self.edges_by_end, edge.rkey, edge)
++    
++class Edge(object):
++    """
++    Data structure for representing ROS node graph edge
++    """
++    
++    __slots__ = ['start', 'end', 'label', 'key', 'rkey']
++    def __init__(self, start, end, label=''):
++        self.start = start
++        self.end = end
++        self.label = label
++        self.key = "%s|%s"%(self.start, self.label)
++        # reverse key, indexed from end
++        self.rkey = "%s|%s"%(self.end, self.label)        
++
++    def __ne__(self, other):
++        return self.start != other.start or self.end != other.end
++    def __str__(self):
++        return "%s->%s"%(self.start, self.end)
++    def __eq__(self, other):
++        return self.start == other.start and self.end == other.end
++
++def edge_args(start, dest, direction, label):
++    """
++    compute argument ordering for Edge constructor based on direction flag
++    @param direction str: 'i', 'o', or 'b' (in/out/bidir) relative to \a start
++    @param start str: name of starting node
++    @param start dest: name of destination node 
++    """
++    edge_args = []
++    if direction in ['o', 'b']:
++        edge_args.append((start, dest, label))
++    if direction in ['i', 'b']:
++        edge_args.append((dest, start, label))
++    return edge_args
++
++
++class Graph(object):
++    """
++    Utility class for polling ROS statistics from running ROS graph.
++    Not multi-thread-safe    
++    """
++    
++    def __init__(self, node_ns='/', topic_ns='/'):
++        self.master = rosgraph.masterapi.Master(_ROS_NAME)
++
++        self.node_ns = node_ns or '/'
++        self.topic_ns = topic_ns or '/'
++
++        # ROS nodes
++        self.nn_nodes = set([])
++        # ROS topic nodes
++        self.nt_nodes = set([])
++
++        # ROS nodes that aren't responding quickly
++        self.bad_nodes = {}
++        import threading
++        self.bad_nodes_lock = threading.Lock()
++        
++        # ROS services
++        self.srvs = set([])
++        # ROS node->node transport connections
++        self.nn_edges = EdgeList()
++        # ROS node->topic connections        
++        self.nt_edges = EdgeList()        
++        # ROS all node->topic connections, including empty
++        self.nt_all_edges = EdgeList()        
++
++        # node names to URI map
++        self.node_uri_map = {} # { node_name_str : uri_str }
++        # reverse map URIs to node names
++        self.uri_node_map = {} # { uri_str : node_name_str }
++
++        # time we last contacted master
++        self.last_master_refresh = 0
++        self.last_node_refresh = {}
++        
++        # time we last communicated with master
++        # seconds until master data is considered stale
++        self.master_stale = 5.0 
++        # time we last communicated with node
++        # seconds until node data is considered stale
++        self.node_stale = 5.0 #seconds
++
++
++    def set_master_stale(self, stale_secs):
++        """
++        @param stale_secs: seconds that data is considered fresh
++        @type  stale_secs: double
++        """
++        self.master_stale = stale_secs
++        
++    def set_node_stale(self, stale_secs):
++        """
++        @param stale_secs: seconds that data is considered fresh
++        @type  stale_secs: double
++        """
++        self.node_stale = stale_secs
++
++    def _master_refresh(self):
++        """
++        @return: True if nodes information was updated
++        @rtype: bool
++        """
++        logger.debug("master refresh: starting")
++        updated = False
++        try:
++            val = self.master.getSystemState()
++        except rosgraph.masterapi.MasterException as e:
++            print("Unable to contact master", str(e), file=sys.stderr)
++            logger.error("unable to contact master: %s", str(e))
++            return False
++
++        pubs, subs, srvs = val
++
++        nodes = []
++        nt_all_edges = self.nt_all_edges
++        nt_nodes = self.nt_nodes
++        for state, direction in ((pubs, 'o'), (subs, 'i')):
++            for topic, l in state:
++                if topic.startswith(self.topic_ns):
++                    nodes.extend([n for n in l if n.startswith(self.node_ns)])
++                    nt_nodes.add(topic_node(topic))
++                    for node in l:
++                        updated = nt_all_edges.add_edges(
++                            node, topic_node(topic), direction) or updated
++
++        nodes = set(nodes)
++
++        srvs = set([s for s, _ in srvs])
++        purge = None
++        if nodes ^ self.nn_nodes:
++            purge = self.nn_nodes - nodes
++            self.nn_nodes = nodes
++            updated = True
++        if srvs ^ self.srvs:
++            self.srvs = srvs
++            updated = True
++
++        if purge:
++            logger.debug("following nodes and related edges will be purged: %s", ','.join(purge))
++            for p in purge:
++                logger.debug('purging edges for node %s', p)
++                self.nn_edges.delete_all(p)
++                self.nt_edges.delete_all(p)
++                self.nt_all_edges.delete_all(p)                    
++            
++        logger.debug("master refresh: done, updated[%s]", updated)
++        return updated
++        
++    def _mark_bad_node(self, node, reason):
++        try:
++            # bad nodes are updated in a separate thread, so lock
++            self.bad_nodes_lock.acquire()
++            if node in self.bad_nodes:
++                self.bad_nodes[node].type = BadNode.DEAD
++            else:
++                self.bad_nodes[node] = (BadNode(node, BadNode.DEAD, reason))                
++        finally:
++            self.bad_nodes_lock.release()
++
++    def _unmark_bad_node(self, node, reason):
++        """
++        Promotes bad node to 'wonky' status.
++        """
++        try:
++            # bad nodes are updated in a separate thread, so lock
++            self.bad_nodes_lock.acquire()
++            bad = self.bad_nodes[node]
++            bad.type = BadNode.WONKY
++        finally:
++            self.bad_nodes_lock.release()        
++    
++    def _node_refresh_businfo(self, node, api, bad_node=False):
++        """
++        Retrieve bus info from the node and update nodes and edges as appropriate
++        @param node: node name
++        @type  node: str
++        @param api: XML-RPC proxy
++        @type  api: ServerProxy
++        @param bad_node: If True, node has connectivity issues and
++        should be treated differently
++        @type  bad_node: bool
++        """
++        try:
++            logger.debug("businfo: contacting node [%s] for bus info", node)
++            
++            # unmark bad node, though it stays on the bad list
++            if bad_node:
++                self._unmark_bad_node(node)            
++            # Lower the socket timeout as we cannot abide by slow HTTP timeouts.
++            # If a node cannot meet this timeout, it goes on the bad list
++            # TODO: override transport instead.
++            old_timeout = socket.getdefaulttimeout()
++            if bad_node:
++                #even stricter timeout for bad_nodes right now
++                socket.setdefaulttimeout(0.2)
++            else:
++                socket.setdefaulttimeout(1.0)
++                
++            code, msg, bus_info = api.getBusInfo(_ROS_NAME)
++            
++            socket.setdefaulttimeout(old_timeout)
++        except Exception as e:
++            # node is (still) bad
++            self._mark_bad_node(node, str(e))
++            code = -1
++            msg = traceback.format_exc()
++
++        updated = False
++        if code != 1:
++            logger.error("cannot get stats info from node [%s]: %s", node, msg)
++        else:
++            # [[connectionId1, destinationId1, direction1, transport1, ...]... ]
++            for info in bus_info:
++                # #3579 bad node, ignore
++                if len(info) < 5:
++                    continue
++                
++                connection_id = info[0]
++                dest_id       = info[1]
++                direction     = info[2]
++                transport     = info[3]
++                topic         = info[4]
++                if len(info) > 5:
++                    connected = info[5]
++                else:
++                    connected = True #backwards compatibility
++
++                if connected and topic.startswith(self.topic_ns):
++                    # blindly add as we will be able to catch state change via edges.
++                    # this currently means we don't cleanup topics
++                    self.nt_nodes.add(topic_node(topic))
++
++                    # update node->topic->node graph edges
++                    updated = self.nt_edges.add_edges(node, topic_node(topic), direction) or updated
++
++                    # update node->node graph edges
++                    if dest_id.startswith('http://'):
++                        #print("FOUND URI", dest_id)
++                        dest_name = self.uri_node_map.get(dest_id, None)
++                        updated = self.nn_edges.add_edges(node, dest_name, direction, topic) or updated
++                else:
++                    #TODO: anyting to do here?
++                    pass
++        return updated
++                    
++    def _node_refresh(self, node, bad_node=False):
++        """
++        Contact node for stats/connectivity information
++        @param node: name of node to contact
++        @type  node: str
++        @param bad_node: if True, node has connectivity issues
++        @type  bad_node: bool
++        @return: True if node was successfully contacted
++        @rtype  bool
++        """
++        # TODO: I'd like for master to provide this information in
++        # getSystemState() instead to prevent the extra connection per node
++        updated = False
++        uri = self._node_uri_refresh(node)
++        try:
++            if uri:
++                api = ServerProxy(uri)
++                updated = self._node_refresh_businfo(node, api, bad_node)
++        except KeyError as e:
++            logger.warn('cannot contact node [%s] as it is not in the lookup table'%node)
++        return updated
++
++    def _node_uri_refresh(self, node):
++        try:
++            uri = self.master.lookupNode(node)
++        except:
++            msg = traceback.format_exc()
++            logger.warn("master reported error in node lookup: %s"%msg)
++            return None
++        # update maps
++        self.node_uri_map[node] = uri
++        self.uri_node_map[uri] = node
++        return uri
++    
++    def _node_uri_refresh_all(self):
++        """
++        Build self.node_uri_map and self.uri_node_map using master as a
++        lookup service. This will make N requests to the master for N
++        nodes, so this should only be used sparingly
++        """
++        for node in self.nn_nodes:
++            self._node_uri_refresh(node)
++
++    def bad_update(self):
++        """
++        Update loop for nodes with bad connectivity. We box them separately
++        so that we can maintain the good performance of the normal update loop.
++        Once a node is on the bad list it stays there.
++        """
++        last_node_refresh = self.last_node_refresh
++
++        # nodes left to check
++        try:
++            self.bad_nodes_lock.acquire()
++            # make copy due to multithreading
++            update_queue = self.bad_nodes.values()[:]
++        finally:
++            self.bad_nodes_lock.release()
++
++        # return value. True if new data differs from old
++        updated = False
++        # number of nodes we checked
++        num_nodes = 0
++
++        start_time = time.time()
++        while update_queue:
++            # figure out the next node to contact
++            next = update_queue.pop()
++            # rate limit talking to any particular node
++            if time.time() > (last_node_refresh.get(next, 0.0) + self.node_stale):
++                updated = self._node_refresh(next.name, True) or updated
++                # include in random offset (max 1/5th normal update interval)
++                # to help spread out updates
++                last_node_refresh[next] = time.time() + (random.random() * self.node_stale / 5.0)
++                num_nodes += 1
++
++            # small yield to keep from torquing the processor
++            time.sleep(0.01)
++        end_time = time.time()
++        #print("Update (bad nodes) took %ss for %s nodes"%((end_time-start_time), num_nodes))
++        logger.debug("ROS stats (bad nodes) update took %ss"%(end_time-start_time))
++        return updated
++            
++    def update(self):
++        """
++        Update all the stats. This method may take a while to complete as it will
++        communicate with all nodes + master.
++        """
++        
++        last_node_refresh = self.last_node_refresh
++        
++        # nodes left to check
++        update_queue = None
++        # True if there are still more stats to fetch this cycle
++        work_to_do = True
++        # return value. True if new data differs from old
++        updated = False
++        # number of nodes we checked
++        num_nodes = 0
++
++        start_time = time.time()
++        while work_to_do:
++
++            # each time through the loop try to talk to either the master
++            # or a node. stop when we have talked to everybody.
++
++            # get a new node list from the master
++            if time.time() > (self.last_master_refresh + self.master_stale):
++                updated = self._master_refresh()
++                if self.last_master_refresh == 0:
++                    # first time we contact the master, also refresh our full lookup tables
++                    self._node_uri_refresh_all()
++
++                self.last_master_refresh = time.time()
++            # contact the nodes for stats
++            else:
++                # initialize update_queue based on most current nodes list
++                if update_queue is None:
++                    update_queue = list(self.nn_nodes)
++                # no nodes left to contact
++                elif not update_queue:
++                    work_to_do = False
++                # contact next node
++                else:
++                    # figure out the next node to contact
++                    next = update_queue.pop()
++                    # rate limit talking to any particular node
++                    if time.time() > (last_node_refresh.get(next, 0.0) + self.node_stale):
++                        updated = self._node_refresh(next) or updated
++                        # include in random offset (max 1/5th normal update interval)
++                        # to help spread out updates
++                        last_node_refresh[next] = time.time() + (random.random() * self.node_stale / 5.0)
++                        num_nodes += 1
++
++            # small yield to keep from torquing the processor
++            time.sleep(0.01)
++        end_time = time.time()
++        #print("Update took %ss for %s nodes"%((end_time-start_time), num_nodes))
++        logger.debug("ROS stats update took %ss"%(end_time-start_time))
++        return updated
++    
+--- /dev/null
++++ ros-noetic-rosgraph-1.16.0/src/rosgraph/masterapi.py
+@@ -0,0 +1,481 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id: masterapi.py 9672 2010-05-11 21:57:40Z kwc $
++"""
++Python adapter for calling ROS Master API. While it is trivial to call the 
++Master directly using XML-RPC, this API provides a safer abstraction in the event
++the Master API is changed.
++"""
++
++try:
++    from xmlrpc.client import ServerProxy  # Python 3.x
++except ImportError:
++    from xmlrpclib import ServerProxy  # Python 2.x
++
++from . names import make_caller_id
++from . rosenv import get_master_uri
++from . network import parse_http_host_and_port
++
++class MasterException(Exception):
++    """
++    Base class of ROS-master related errors.
++    """
++    pass
++
++class MasterFailure(MasterException):
++    """
++    Call to Master failed. This generally indicates an internal error
++    in the Master and that the Master may be in an inconsistent state.
++    """
++    pass
++
++class MasterError(MasterException):
++    """
++    Master returned an error code, which indicates an error in the
++    arguments passed to the Master.
++    """
++    pass
++
++# backwards compat
++ROSMasterException = MasterException
++Error = MasterError
++Failure = MasterFailure
++
++def is_online(master_uri=None):
++    """
++    @param master_uri: (optional) override environment's ROS_MASTER_URI
++    @type  master_uri: str
++    @return: True if Master is available
++    """
++    return Master('rosgraph', master_uri=master_uri).is_online()
++
++class Master(object):
++    """
++    API for interacting with the ROS master. Although the Master is
++    relatively simple to interact with using the XMLRPC API, this
++    abstraction layer provides protection against future updates. It
++    also provides a streamlined API with builtin return code checking
++    and caller_id passing.
++    """
++    
++    def __init__(self, caller_id, master_uri=None):
++        """
++        :param caller_id: name of node to use in calls to master, ``str``
++        :param master_uri: (optional) override default ROS master URI, ``str``
++        :raises: :exc:`ValueError` If ROS master uri not set properly
++        """
++
++        if master_uri is None:
++            master_uri = get_master_uri()
++        self._reinit(master_uri)
++
++        self.caller_id = make_caller_id(caller_id) #resolve
++        if self.caller_id[-1] == '/':
++            self.caller_id = self.caller_id[:-1]
++        
++    def _reinit(self, master_uri):
++        """
++        Internal API for reinitializing this handle to be a new master
++
++        :raises: :exc:`ValueError` If ROS master uri not set
++        """
++        if master_uri is None:
++            raise ValueError("ROS master URI is not set")
++        # #1730 validate URL for better error messages
++        try:
++            parse_http_host_and_port(master_uri)
++        except ValueError:
++            raise ValueError("invalid master URI: %s"%(master_uri))
++
++        self.master_uri = master_uri
++        self.handle = ServerProxy(self.master_uri)
++        
++    def is_online(self):
++        """
++        Check if Master is online.
++
++        NOTE: this is not part of the actual Master API. This is a convenience function.
++        
++        @param master_uri: (optional) override environment's ROS_MASTER_URI
++        @type  master_uri: str
++        @return: True if Master is available
++        """
++        try:
++            self.getPid()
++            return True
++        except:
++            return False
++
++    def _succeed(self, args):
++        """
++        Check master return code and return the value field.
++        
++        @param args: master return value
++        @type  args: (int, str, XMLRPCLegalValue)
++        @return: value field of args (master return value)
++        @rtype: XMLRPCLegalValue
++        @raise rosgraph.masterapi.Error: if Master returns ERROR.
++        @raise rosgraph.masterapi.Failure: if Master returns FAILURE.
++        """
++        code, msg, val = args
++        if code == 1:
++            return val
++        elif code == -1:
++            raise Error(msg)
++        else:
++            raise Failure(msg)            
++
++    ################################################################################
++    # PARAM SERVER
++
++    def deleteParam(self, key):
++        """
++        Parameter Server: delete parameter
++        @param key: parameter name
++        @type  key: str
++        @return: 0
++        @rtype: int
++        """
++        return self._succeed(self.handle.deleteParam(self.caller_id, key))
++        
++    def setParam(self, key, value):
++        """
++        Parameter Server: set parameter.  NOTE: if value is a
++        dictionary it will be treated as a parameter tree, where key
++        is the parameter namespace. For example:::
++          {'x':1,'y':2,'sub':{'z':3}}
++
++        will set key/x=1, key/y=2, and key/sub/z=3. Furthermore, it
++        will replace all existing parameters in the key parameter
++        namespace with the parameters in value. You must set
++        parameters individually if you wish to perform a union update.
++        
++        @param key: parameter name
++        @type  key: str
++        @param value: parameter value.
++        @type  value: XMLRPCLegalValue
++        @return: 0
++        @rtype: int
++        """
++        return self._succeed(self.handle.setParam(self.caller_id, key, value))
++
++    def getParam(self, key):
++        """
++        Retrieve parameter value from server.
++        @param key: parameter to lookup. If key is a namespace,
++        getParam() will return a parameter tree.
++        @type  key: str
++        getParam() will return a parameter tree.
++
++        @return: parameterValue. If key is a namespace,
++            the return value will be a dictionary, where each key is a
++            parameter in that namespace. Sub-namespaces are also
++            represented as dictionaries.
++        @rtype: XMLRPCLegalValue
++        """
++        return self._succeed(self.handle.getParam(self.caller_id, key))
++
++    def searchParam(self, key):
++        """
++        Search for parameter key on parameter server. Search starts in caller's namespace and proceeds
++        upwards through parent namespaces until Parameter Server finds a matching key.
++
++        searchParam's behavior is to search for the first partial match.
++        For example, imagine that there are two 'robot_description' parameters::
++          
++           /robot_description
++             /robot_description/arm
++             /robot_description/base
++           /pr2/robot_description
++             /pr2/robot_description/base
++
++        If I start in the namespace /pr2/foo and search for
++        'robot_description', searchParam will match
++        /pr2/robot_description. If I search for 'robot_description/arm'
++        it will return /pr2/robot_description/arm, even though that
++        parameter does not exist (yet).
++
++        @param key: parameter key to search for.
++        @type  key: str
++        @return: foundKey
++        @rtype: str
++        """
++        return self._succeed(self.handle.searchParam(self.caller_id, key))
++
++    def subscribeParam(self, caller_api, key):
++        """
++        Retrieve parameter value from server and subscribe to updates to that param. See
++        paramUpdate() in the Node API. 
++        @param key: parameter to lookup.
++        @type  key: str
++        @param caller_api: API URI for paramUpdate callbacks.
++        @type  caller_api: str
++        @return: parameterValue. parameterValue is an empty dictionary if the parameter has not been set yet.
++        @rtype: XMLRPCLegalValue
++        """
++        return self._succeed(self.handle.subscribeParam(self.caller_id, caller_api, key))
++
++    def unsubscribeParam(self, caller_api, key):
++        """
++        Retrieve parameter value from server and subscribe to updates to that param. See
++        paramUpdate() in the Node API. 
++        @param key: parameter to lookup.
++        @type  key: str
++        @param caller_api: API URI for paramUpdate callbacks.
++        @type  caller_api: str
++        @return: numUnsubscribed. If numUnsubscribed is zero it means that the caller was not subscribed to the parameter.
++        @rtype: int
++        """        
++        return self._succeed(self.handle.unsubscribeParam(self.caller_id, caller_api, key))
++
++    def hasParam(self, key):
++        """
++        Check if parameter is stored on server. 
++        @param key: parameter to check
++        @type  key: str
++        @return: [code, statusMessage, hasParam]
++        @rtype: [int, str, bool]
++        """
++        return self._succeed(self.handle.hasParam(self.caller_id, key))
++
++    def getParamNames(self):
++        """
++        Get list of all parameter names stored on this server.
++        This does not adjust parameter names for caller's scope.
++        
++        @return: [code, statusMessage, parameterNameList]
++        @rtype: [int, str, [str]]
++        """
++        return self._succeed(self.handle.getParamNames(self.caller_id))     
++            
++        
++    ################################################################################
++        
++    def getPid(self):
++        """
++        Get the PID of this server
++        @return: serverProcessPID
++        @rtype: int
++        @raise rosgraph.masterapi.Error: if Master returns ERROR.
++        @raise rosgraph.masterapi.Failure: if Master returns FAILURE.
++        """
++        return self._succeed(self.handle.getPid(self.caller_id))
++
++    def getUri(self):
++        """
++        Get the URI of this Master
++        @return: masterUri
++        @rtype: str
++        @raise rosgraph.masterapi.Error: if Master returns ERROR.
++        @raise rosgraph.masterapi.Failure: if Master returns FAILURE.
++        """
++        return self._succeed(self.handle.getUri(self.caller_id))
++    
++    def registerService(self, service, service_api, caller_api):
++        """
++        Register the caller as a provider of the specified service.
++        @param service str: Fully-qualified name of service 
++        @param service_api str: Service URI 
++        @param caller_api str: XML-RPC URI of caller node 
++        @return: ignore
++        @rtype: int
++        @raise rosgraph.masterapi.Error: if Master returns ERROR.
++        @raise rosgraph.masterapi.Failure: if Master returns FAILURE.
++        """        
++        return self._succeed(self.handle.registerService(self.caller_id, service, service_api, caller_api))
++    
++    def lookupService(self, service):
++        """
++        Lookup all provider of a particular service.
++        @param service: fully-qualified name of service to lookup.
++        @type: service: str
++        @return (int, str, str): (code, message, serviceUrl). service URL is provides
++           and address and port of the service.  Fails if there is no provider.
++        @raise rosgraph.masterapi.Error: if Master returns ERROR.
++        @raise rosgraph.masterapi.Failure: if Master returns FAILURE.
++        """
++        return self._succeed(self.handle.lookupService(self.caller_id, service))
++    
++
++    def unregisterService(self, service, service_api):
++        """
++        Unregister the caller as a provider of the specified service.
++        @param service: Fully-qualified name of service
++        @type  service: str
++        @param service_api: API URI of service to unregister. Unregistration will only occur if current
++           registration matches.
++        @type  service_api: str
++        @return: (code, message, numUnregistered). Number of unregistrations (either 0 or 1).
++           If this is zero it means that the caller was not registered as a service provider.
++           The call still succeeds as the intended final state is reached.
++        @rtype: (int, str, int)
++        @raise rosgraph.masterapi.Error: if Master returns ERROR.
++        @raise rosgraph.masterapi.Failure: if Master returns FAILURE.
++        """
++        return self._succeed(self.handle.unregisterService(self.caller_id, service, service_api))
++    
++
++    def registerSubscriber(self, topic, topic_type, caller_api):
++        """
++        Subscribe the caller to the specified topic. In addition to receiving
++        a list of current publishers, the subscriber will also receive notifications
++        of new publishers via the publisherUpdate API.        
++        @param topic str: Fully-qualified name of topic to subscribe to. 
++        @param topic_type: Datatype for topic. Must be a package-resource name, i.e. the .msg name.
++        @type  topic_type: str
++        @param caller_api: XML-RPC URI of caller node for new publisher notifications
++        @type  caller_api: str
++        @return: (code, message, publishers). Publishers is a list of XMLRPC API URIs
++           for nodes currently publishing the specified topic.
++        @rtype: (int, str, list(str))
++        @raise rosgraph.masterapi.Error: if Master returns ERROR.
++        @raise rosgraph.masterapi.Failure: if Master returns FAILURE.
++        """
++        return self._succeed(self.handle.registerSubscriber(self.caller_id, topic, topic_type, caller_api))
++    
++
++    def unregisterSubscriber(self, topic, caller_api):
++        """
++        Unregister the caller as a publisher of the topic.
++        @param topic: Fully-qualified name of topic to unregister.
++        @type  topic: str
++        @param caller_api: API URI of service to unregister. Unregistration will only occur if current
++        @type  caller_api: str
++           registration matches.    
++        @return: (code, statusMessage, numUnsubscribed). 
++          If numUnsubscribed is zero it means that the caller was not registered as a subscriber.
++          The call still succeeds as the intended final state is reached.
++        @rtype: (int, str, int)
++        @raise rosgraph.masterapi.Error: if Master returns ERROR.
++        @raise rosgraph.masterapi.Failure: if Master returns FAILURE.
++        """
++        return self._succeed(self.handle.unregisterSubscriber(self.caller_id, topic, caller_api))
++    
++    def registerPublisher(self, topic, topic_type, caller_api):
++        """
++        Register the caller as a publisher the topic.
++        @param topic: Fully-qualified name of topic to register.
++        @type  topic: str
++        @param topic_type: Datatype for topic. Must be a
++        package-resource name, i.e. the .msg name.
++        @type  topic_type: str
++        @param caller_api str: ROS caller XML-RPC API URI
++        @type  caller_api: str
++        @return: subscriberApis.
++        List of current subscribers of topic in the form of XMLRPC URIs.
++        @rtype: [str]
++        @raise rosgraph.masterapi.Error: if Master returns ERROR.
++        @raise rosgraph.masterapi.Failure: if Master returns FAILURE.
++        """
++        return self._succeed(self.handle.registerPublisher(self.caller_id, topic, topic_type, caller_api))
++    
++    def unregisterPublisher(self, topic, caller_api):
++        """
++        Unregister the caller as a publisher of the topic.
++        @param topic: Fully-qualified name of topic to unregister.
++        @type  topic: str
++        @param caller_api str: API URI of service to
++           unregister. Unregistration will only occur if current
++           registration matches.
++        @type  caller_api: str
++        @return: numUnregistered. 
++           If numUnregistered is zero it means that the caller was not registered as a publisher.
++           The call still succeeds as the intended final state is reached.
++        @rtype: int
++        @raise rosgraph.masterapi.Error: if Master returns ERROR.
++        @raise rosgraph.masterapi.Failure: if Master returns FAILURE.
++        """            
++        return self._succeed(self.handle.unregisterPublisher(self.caller_id, topic, caller_api))        
++
++    def lookupNode(self, node_name):
++        """
++        Get the XML-RPC URI of the node with the associated
++        name/caller_id.  This API is for looking information about
++        publishers and subscribers. Use lookupService instead to lookup
++        ROS-RPC URIs.
++        @param node: name of node to lookup
++        @type  node: str
++        @return: URI
++        @rtype: str
++        @raise rosgraph.masterapi.Error: if Master returns ERROR.
++        @raise rosgraph.masterapi.Failure: if Master returns FAILURE.
++        """
++        return self._succeed(self.handle.lookupNode(self.caller_id, node_name))        
++        
++    def getPublishedTopics(self, subgraph):
++        """
++        Get list of topics that can be subscribed to. This does not return topics that have no publishers.
++        See L{getSystemState()} to get more comprehensive list.
++        @param subgraph: Restrict topic names to match within the specified subgraph. Subgraph namespace
++           is resolved relative to the caller's namespace. Use '' to specify all names.
++        @type  subgraph: str
++        @return: [[topic1, type1]...[topicN, typeN]]
++        @rtype: [[str, str],]
++        @raise rosgraph.masterapi.Error: if Master returns ERROR.
++        @raise rosgraph.masterapi.Failure: if Master returns FAILURE.
++        """
++        return self._succeed(self.handle.getPublishedTopics(self.caller_id, subgraph))        
++    
++    def getTopicTypes(self): 
++        """
++        Retrieve list topic names and their types.
++
++        New in ROS 1.2.
++
++        @rtype: (int, str, [[str,str]] )
++        @return: (code, statusMessage, topicTypes). topicTypes is a list of [topicName, topicType] pairs.
++        """
++        return self._succeed(self.handle.getTopicTypes(self.caller_id))
++    
++    def getSystemState(self): 
++        """
++        Retrieve list representation of system state (i.e. publishers, subscribers, and services).
++        @rtype: [[str,[str]], [str,[str]], [str,[str]]]
++        @return: systemState
++
++           System state is in list representation::
++             [publishers, subscribers, services].
++        
++           publishers is of the form::
++             [ [topic1, [topic1Publisher1...topic1PublisherN]] ... ]
++        
++           subscribers is of the form::
++             [ [topic1, [topic1Subscriber1...topic1SubscriberN]] ... ]
++        
++           services is of the form::
++             [ [service1, [service1Provider1...service1ProviderN]] ... ]
++
++        @raise rosgraph.masterapi.Error: if Master returns ERROR.
++        @raise rosgraph.masterapi.Failure: if Master returns FAILURE.
++        """
++        return self._succeed(self.handle.getSystemState(self.caller_id))
+--- /dev/null
++++ ros-noetic-rosgraph-1.16.0/src/rosgraph/names.py
+@@ -0,0 +1,340 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id: names.py 14589 2011-08-07 18:30:21Z kwc $
++
++"""
++Library for manipulating ROS Names. See U{http://ros.org/wiki/Names}.
++"""
++
++import os
++import sys
++
++from .rosenv import ROS_NAMESPACE
++
++#TODO: why are these here?
++MSG_EXT = '.msg'
++SRV_EXT = '.srv'
++
++SEP = '/'
++GLOBALNS = '/'
++PRIV_NAME = '~'
++REMAP = ":="
++ANYTYPE = '*'
++
++if sys.hexversion > 0x03000000: #Python3
++    def isstring(s):
++        return isinstance(s, str) #Python 3.x
++else:
++    def isstring(s):
++        """
++        Small helper version to check an object is a string in a way that works
++        for both Python 2 and 3
++        """
++        return isinstance(s, basestring) #Python 2.x
++
++def get_ros_namespace(env=None, argv=None):
++    """
++    @param env: environment dictionary (defaults to os.environ)
++    @type  env: dict
++    @param argv: command-line arguments (defaults to sys.argv)
++    @type  argv: [str]
++    @return: ROS namespace of current program
++    @rtype: str
++    """    
++    #we force command-line-specified namespaces to be globally scoped
++    if argv is None:
++        argv = sys.argv
++    for a in argv:
++        if a.startswith('__ns:='):
++            return make_global_ns(a[len('__ns:='):])
++    if env is None:
++        env = os.environ
++    return make_global_ns(env.get(ROS_NAMESPACE, GLOBALNS))
++
++def make_caller_id(name):
++    """
++    Resolve a local name to the caller ID based on ROS environment settings (i.e. ROS_NAMESPACE)
++
++    @param name: local name to calculate caller ID from, e.g. 'camera', 'node'
++    @type  name: str
++    @return: caller ID based on supplied local name
++    @rtype: str
++    """    
++    return make_global_ns(ns_join(get_ros_namespace(), name))
++
++def make_global_ns(name):
++    """
++    Convert name to a global name with a trailing namespace separator.
++    
++    @param name: ROS resource name. Cannot be a ~name.
++    @type  name: str
++    @return str: name as a global name, e.g. 'foo' -> '/foo/'.
++        This does NOT resolve a name.
++    @rtype: str
++    @raise ValueError: if name is a ~name 
++    """    
++    if is_private(name):
++        raise ValueError("cannot turn [%s] into a global name"%name)
++    if not is_global(name):
++        name = SEP + name
++    if name[-1] != SEP:
++        name = name + SEP
++    return name
++
++def is_global(name):
++    """
++    Test if name is a global graph resource name.
++    
++    @param name: must be a legal name in canonical form
++    @type  name: str
++    @return: True if name is a globally referenced name (i.e. /ns/name)
++    @rtype: bool
++    """    
++    return name and name[0] == SEP
++
++def is_private(name):
++    """
++    Test if name is a private graph resource name.
++    
++    @param name: must be a legal name in canonical form
++    @type  name: str
++    @return bool: True if name is a privately referenced name (i.e. ~name)
++    """    
++    return name and name[0] == PRIV_NAME
++
++def namespace(name):
++    """
++    Get the namespace of name. The namespace is returned with a
++    trailing slash in order to favor easy concatenation and easier use
++    within the global context.
++        
++    @param name: name to return the namespace of. Must be a legal
++        name. NOTE: an empty name will return the global namespace.
++    @type  name: str
++    @return str: Namespace of name. For example, '/wg/node1' returns '/wg/'. The
++        global namespace is '/'. 
++    @rtype: str
++    @raise ValueError: if name is invalid
++    """    
++    "map name to its namespace"
++    if name is None: 
++        raise ValueError('name')
++    if not isstring(name):
++        raise TypeError('name')
++    if not name:
++        return SEP
++    elif name[-1] == SEP:
++        name = name[:-1]
++    return name[:name.rfind(SEP)+1] or SEP
++
++def ns_join(ns, name):
++    """
++    Join a namespace and name. If name is unjoinable (i.e. ~private or
++    /global) it will be returned without joining
++
++    @param ns: namespace ('/' and '~' are both legal). If ns is the empty string, name will be returned.
++    @type  ns: str
++    @param name str: a legal name
++    @return str: name concatenated to ns, or name if it is
++        unjoinable.
++    @rtype: str
++    """    
++    if is_private(name) or is_global(name):
++        return name
++    if ns == PRIV_NAME:
++        return PRIV_NAME + name
++    if not ns: 
++        return name
++    if ns[-1] == SEP:
++        return ns + name
++    return ns + SEP + name
++
++def load_mappings(argv):
++    """
++    Load name mappings encoded in command-line arguments. This will filter
++    out any parameter assignment mappings.
++
++    @param argv: command-line arguments
++    @type  argv: [str]
++    @return: name->name remappings. 
++    @rtype: dict {str: str}
++    """    
++    mappings = {}
++    for arg in argv:
++        if is_legal_remap(arg):
++            try:
++                src, dst = [x.strip() for x in arg.split(REMAP)]
++                if src and dst:
++                    if len(src) > 1 and src[0] == '_' and src[1] != '_':
++                        #ignore parameter assignment mappings
++                        pass
++                    else:
++                        mappings[src] = dst
++            except:
++                #TODO: remove
++                sys.stderr.write("ERROR: Invalid remapping argument '%s'\n"%arg)
++    return mappings
++
++
++################################################################################
++# NAME VALIDATORS
++
++import re
++
++#~,/, or ascii char followed by (alphanumeric, _, /)
++NAME_LEGAL_CHARS_P = re.compile(r'^[\~\/A-Za-z][\w\/]*$')
++def is_legal_name(name):
++    """
++    Check if name is a legal ROS name for graph resources
++    (alphabetical character followed by alphanumeric, underscore, or
++    forward slashes). This constraint is currently not being enforced,
++    but may start getting enforced in later versions of ROS.
++
++    @param name: Name
++    @type  name: str
++    """    
++    # should we enforce unicode checks?
++    if name is None:
++        return False
++    # empty string is a legal name as it resolves to namespace
++    if name == '':
++        return True
++    m = NAME_LEGAL_CHARS_P.match(name)
++    return m is not None and m.group(0) == name and not '//' in name
++    
++BASE_NAME_LEGAL_CHARS_P = re.compile(r'^[A-Za-z][\w]*$') #ascii char followed by (alphanumeric, _)
++def is_legal_base_name(name):
++    """
++    Validates that name is a legal base name for a graph resource. A base name has
++    no namespace context, e.g. "node_name".
++    """
++    if name is None:
++        return False
++    m = BASE_NAME_LEGAL_CHARS_P.match(name)
++    return m is not None and m.group(0) == name
++
++REMAP_PATTERN = re.compile(r'^([\~\/A-Za-z]|_|__)[\w\/]*' + REMAP + '.*')
++
++def is_legal_remap(arg):
++    """
++    Validates that arg is a legal remap according to U{http://wiki.ros.org/Remapping%20Arguments}.
++    """
++    if arg is None:
++        return False
++    m = REMAP_PATTERN.match(arg)
++    return m is not None and m.group(0) == arg
++
++def canonicalize_name(name):
++    """
++    Put name in canonical form. Extra slashes '//' are removed and
++    name is returned without any trailing slash, e.g. /foo/bar
++    @param name: ROS name
++    @type  name: str
++    """
++    if not name or name == SEP:
++        return name
++    elif name[0] == SEP:
++        return '/' + '/'.join([x for x in name.split(SEP) if x])
++    else:
++        return '/'.join([x for x in name.split(SEP) if x])        
++
++def resolve_name(name, namespace_, remappings=None):
++    """
++    Resolve a ROS name to its global, canonical form. Private ~names
++    are resolved relative to the node name. 
++
++    @param name: name to resolve.
++    @type  name: str
++    @param namespace_: node name to resolve relative to.
++    @type  namespace_: str
++    @param remappings: Map of resolved remappings. Use None to indicate no remapping.
++    @return: Resolved name. If name is empty/None, resolve_name
++    returns parent namespace_. If namespace_ is empty/None,
++    @rtype: str
++    """
++    if not name: #empty string resolves to parent of the namespace_
++        return namespace(namespace_)
++
++    name = canonicalize_name(name)
++    if name[0] == SEP: #global name
++        resolved_name = name
++    elif is_private(name): #~name
++        # #3044: be careful not to accidentally make rest of name global
++        resolved_name = canonicalize_name(namespace_ + SEP + name[1:])
++    else: #relative
++        resolved_name = namespace(namespace_) + name
++
++    #Mappings override general namespace-based resolution
++    # - do this before canonicalization as remappings are meant to
++    #   match the name as specified in the code
++    if remappings and resolved_name in remappings:
++        return remappings[resolved_name]
++    else:
++        return resolved_name
++
++def script_resolve_name(script_name, name):
++    """
++    Name resolver for scripts. Supports :envvar:`ROS_NAMESPACE`.  Does not
++    support remapping arguments.
++
++    :param name: name to resolve, ``str``
++    :param script_name: name of script. script_name must not
++      contain a namespace., ``str``
++    :returns: resolved name, ``str``
++    """
++    if not name: #empty string resolves to namespace
++        return get_ros_namespace()
++    #Check for global name: /foo/name resolves to /foo/name
++    if is_global(name):
++        return name
++    #Check for private name: ~name resolves to /caller_id/name
++    elif is_private(name):
++        return ns_join(make_caller_id(script_name), name[1:])
++    return get_ros_namespace() + name
++
++def anonymous_name(id):
++    """
++    Generate a ROS-legal 'anonymous' name
++
++    @param id: prefix for anonymous name
++    @type  id: str
++    """
++    import socket, random
++    name = "%s_%s_%s_%s"%(id, socket.gethostname(), os.getpid(), random.randint(0, sys.maxsize))
++    # RFC 952 allows hyphens, IP addrs can have '.'s, both
++    # of which are illegal for ROS names. For good
++    # measure, screen ipv6 ':'. 
++    name = name.replace('.', '_')
++    name = name.replace('-', '_')                
++    return name.replace(':', '_')
++
+--- /dev/null
++++ ros-noetic-rosgraph-1.16.0/src/rosgraph/network.py
+@@ -0,0 +1,419 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id: network.py 15125 2011-10-06 02:51:15Z kwc $
++
++"""
++Network APIs for ROS-based systems, including IP address and ROS
++TCP header libraries. Because ROS-based runtimes must respect the
++ROS_IP and ROS_HOSTNAME environment variables, ROS-specific APIs
++are necessary for correctly retrieving local IP address
++information.
++"""
++
++import logging
++import os
++import socket
++import struct
++import sys
++import platform
++
++try:
++    from cStringIO import StringIO #Python 2.x
++    python3 = 0
++except ImportError:
++    from io import BytesIO #Python 3.x
++    python3 = 1
++
++try:
++    import urllib.parse as urlparse
++except ImportError:
++    import urlparse
++
++from .rosenv import ROS_IP, ROS_HOSTNAME, ROS_IPV6
++
++SIOCGIFCONF = 0x8912
++SIOCGIFADDR = 0x8915
++if platform.system() == 'FreeBSD':
++    SIOCGIFADDR = 0xc0206921
++    if platform.architecture()[0] == '64bit':
++        SIOCGIFCONF = 0xc0106924
++    else:
++        SIOCGIFCONF = 0xc0086924
++
++logger = logging.getLogger('rosgraph.network')
++
++def parse_http_host_and_port(url):
++    """
++    Convenience routine to handle parsing and validation of HTTP URL
++    port due to the fact that Python only provides easy accessors in
++    Python 2.5 and later. Validation checks that the protocol and host
++    are set.
++    
++    :param url: URL to parse, ``str``
++    :returns: hostname and port number in URL or 80 (default), ``(str, int)``
++    :raises: :exc:`ValueError` If the url does not validate
++    """
++    if not url:
++        raise ValueError('not a valid URL')        
++    p = urlparse.urlparse(url)
++    if not p.scheme or not p.hostname:
++        raise ValueError('not a valid URL')
++    port = p.port if p.port else 80
++    return p.hostname, port
++    
++def _is_unix_like_platform():
++    """
++    :returns: true if the platform conforms to UNIX/POSIX-style APIs
++    @rtype: bool
++    """
++    return platform.system() in ['Linux', 'FreeBSD', 'Darwin']
++
++def get_address_override():
++    """
++    :returns: ROS_IP/ROS_HOSTNAME override or None, ``str``
++    :raises: :exc:`ValueError` If ROS_IP/ROS_HOSTNAME/__ip/__hostname are invalidly specified
++    """
++    # #998: check for command-line remappings first
++    # TODO IPV6: check for compatibility
++    for arg in sys.argv:
++        if arg.startswith('__hostname:=') or arg.startswith('__ip:='):
++            try:
++                _, val = arg.split(':=')
++                return val
++            except: #split didn't unpack properly
++                raise ValueError("invalid ROS command-line remapping argument '%s'"%arg)
++
++    # check ROS_HOSTNAME and ROS_IP environment variables, which are
++    # aliases for each other
++    if ROS_HOSTNAME in os.environ:
++        hostname = os.environ[ROS_HOSTNAME]
++        if hostname == '':
++            msg = 'invalid ROS_HOSTNAME (an empty string)'
++            sys.stderr.write(msg + '\n')
++            logger.warn(msg)
++        else:
++            parts = urlparse.urlparse(hostname)
++            if parts.scheme:
++                msg = 'invalid ROS_HOSTNAME (protocol ' + ('and port ' if parts.port else '') + 'should not be included)'
++                sys.stderr.write(msg + '\n')
++                logger.warn(msg)
++            elif hostname.find(':') != -1:
++                # this can not be checked with urlparse()
++                # since it does not extract the port for a hostname like "foo:1234"
++                msg = 'invalid ROS_HOSTNAME (port should not be included)'
++                sys.stderr.write(msg + '\n')
++                logger.warn(msg)
++        return hostname
++    elif ROS_IP in os.environ:
++        ip = os.environ[ROS_IP]
++        if ip == '':
++            msg = 'invalid ROS_IP (an empty string)'
++            sys.stderr.write(msg + '\n')
++            logger.warn(msg)
++        elif ip.find('://') != -1:
++            msg = 'invalid ROS_IP (protocol should not be included)'
++            sys.stderr.write(msg + '\n')
++            logger.warn(msg)
++        elif ip.find('.') != -1 and ip.rfind(':') > ip.rfind('.'):
++            msg = 'invalid ROS_IP (port should not be included)'
++            sys.stderr.write(msg + '\n')
++            logger.warn(msg)
++        elif ip.find('.') == -1 and ip.find(':') == -1:
++            msg = 'invalid ROS_IP (must be a valid IPv4 or IPv6 address)'
++            sys.stderr.write(msg + '\n')
++            logger.warn(msg)
++        return ip
++    return None
++
++def is_local_address(hostname):
++    """
++    :param hostname: host name/address, ``str``
++    :returns True: if hostname maps to a local address, False otherwise. False conditions include invalid hostnames.
++    """
++    try:
++        if use_ipv6():
++            reverse_ips = [host[4][0] for host in socket.getaddrinfo(hostname, 0, 0, 0, socket.SOL_TCP)]
++        else:
++            reverse_ips = [host[4][0] for host in socket.getaddrinfo(hostname, 0, socket.AF_INET, 0, socket.SOL_TCP)]
++    except socket.error:
++        return False
++    local_addresses = ['localhost'] + get_local_addresses()
++    # 127. check is due to #1260
++    if ([ip for ip in reverse_ips if (ip.startswith('127.') or ip == '::1')] != []) or (set(reverse_ips) & set(local_addresses) != set()):
++        return True
++    return False
++    
++def get_local_address():
++    """
++    :returns: default local IP address (e.g. eth0). May be overridden by ROS_IP/ROS_HOSTNAME/__ip/__hostname, ``str``
++    """
++    override = get_address_override()
++    if override:
++        return override
++    addrs = get_local_addresses()
++    if len(addrs) == 1:
++        return addrs[0]
++    for addr in addrs:
++        # pick first non 127/8 address
++        if not addr.startswith('127.') and not addr == '::1':
++            return addr
++    else: # loopback
++        if use_ipv6():
++            return '::1'
++        else:
++            return '127.0.0.1'
++
++# cache for performance reasons
++_local_addrs = None
++def get_local_addresses():
++    """
++    :returns: known local addresses. Not affected by ROS_IP/ROS_HOSTNAME, ``[str]``
++    """
++    # cache address data as it can be slow to calculate
++    global _local_addrs
++    if _local_addrs is not None:
++        return _local_addrs
++
++    local_addrs = None
++    if _is_unix_like_platform():
++        # unix-only branch
++        v4addrs = []
++        v6addrs = []
++        import netifaces
++        for iface in netifaces.interfaces():
++            try:
++                ifaddrs = netifaces.ifaddresses(iface)
++            except ValueError:
++                # even if interfaces() returns an interface name
++                # ifaddresses() might raise a ValueError
++                # https://bugs.launchpad.net/ubuntu/+source/netifaces/+bug/753009
++                continue
++            if socket.AF_INET in ifaddrs:
++                v4addrs.extend([addr['addr'] for addr in ifaddrs[socket.AF_INET]])
++            if socket.AF_INET6 in ifaddrs:
++                v6addrs.extend([addr['addr'] for addr in ifaddrs[socket.AF_INET6]])
++        if use_ipv6():
++            local_addrs = v6addrs + v4addrs
++        else:
++            local_addrs = v4addrs
++    else:
++        # cross-platform branch, can only resolve one address
++        if use_ipv6():
++            local_addrs = [host[4][0] for host in socket.getaddrinfo(socket.gethostname(), 0, 0, 0, socket.SOL_TCP)]
++        else:
++            local_addrs = [host[4][0] for host in socket.getaddrinfo(socket.gethostname(), 0, socket.AF_INET, 0, socket.SOL_TCP)]
++    _local_addrs = local_addrs
++    return local_addrs
++
++def use_ipv6():
++    return ROS_IPV6 in os.environ and os.environ[ROS_IPV6] == 'on'
++
++def get_bind_address(address=None):
++    """
++    :param address: (optional) address to compare against, ``str``
++    :returns: address TCP/IP sockets should use for binding. This is
++      generally 0.0.0.0, but if \a address or ROS_IP/ROS_HOSTNAME is set
++      to localhost it will return 127.0.0.1, ``str``
++    """
++    if address is None:
++        address = get_address_override()
++    if address and (address == 'localhost' or address.startswith('127.') or address == '::1' ):
++        #localhost or 127/8
++        if use_ipv6():
++            return '::1'
++        elif address.startswith('127.'):
++            return address
++        else:
++            return '127.0.0.1' #loopback
++    else:
++        if use_ipv6():
++            return '::'
++        else:
++            return '0.0.0.0'
++
++# #528: semi-complicated logic for determining XML-RPC URI
++def get_host_name():
++    """
++    Determine host-name for use in host-name-based addressing (e.g. XML-RPC URIs):
++     - if ROS_IP/ROS_HOSTNAME is set, use that address
++     - if the hostname returns a non-localhost value, use that
++     - use whatever L{get_local_address()} returns
++    """
++    hostname = get_address_override()
++    if not hostname:
++        try:
++            hostname = socket.gethostname()
++        except:
++            pass
++        if not hostname or hostname == 'localhost' or hostname.startswith('127.'):
++            hostname = get_local_address()
++    return hostname
++
++def create_local_xmlrpc_uri(port):
++    """
++    Determine the XMLRPC URI for local servers. This handles the search
++    logic of checking ROS environment variables, the known hostname,
++    and local interface IP addresses to determine the best possible
++    URI.
++    
++    :param port: port that server is running on, ``int``
++    :returns: XMLRPC URI, ``str``
++    """
++    #TODO: merge logic in rosgraph.xmlrpc with this routine
++    # in the future we may not want to be locked to http protocol nor root path
++    return 'http://%s:%s/'%(get_host_name(), port)
++
++
++## handshake utils ###########################################
++
++class ROSHandshakeException(Exception):
++    """
++    Exception to represent errors decoding handshake
++    """
++    pass
++
++def decode_ros_handshake_header(header_str):
++    """
++    Decode serialized ROS handshake header into a Python dictionary
++
++    header is a list of string key=value pairs, each prefixed by a
++    4-byte length field. It is preceded by a 4-byte length field for
++    the entire header.
++    
++    :param header_str: encoded header string. May contain extra data at the end, ``str``
++    :returns: key value pairs encoded in \a header_str, ``{str: str}``
++    """
++    (size, ) = struct.unpack('<I', header_str[0:4])
++    size += 4 # add in 4 to include size of size field
++    header_len = len(header_str)
++    if size > header_len:
++        raise ROSHandshakeException("Incomplete header. Expected %s bytes but only have %s"%((size+4), header_len))
++
++    d = {}
++    start = 4
++    while start < size:
++        (field_size, ) = struct.unpack('<I', header_str[start:start+4])
++        if field_size == 0:
++            raise ROSHandshakeException("Invalid 0-length handshake header field")
++        start += field_size + 4
++        if start > size:
++            raise ROSHandshakeException("Invalid line length in handshake header: %s"%size)
++        line = header_str[start-field_size:start]
++        
++        #python3 compatibility
++        if python3 == 1:
++            line = line.decode()
++        
++        idx = line.find("=")
++        if idx < 0:
++            raise ROSHandshakeException("Invalid line in handshake header: [%s]"%line)
++        key = line[:idx]
++        value = line[idx+1:]
++        d[key.strip()] = value
++    return d
++    
++def read_ros_handshake_header(sock, b, buff_size):
++    """
++    Read in tcpros header off the socket \a sock using buffer \a b.
++    
++    :param sock: socket must be in blocking mode, ``socket``
++    :param b: buffer to use, ``StringIO`` for Python2, ``BytesIO`` for Python 3
++    :param buff_size: incoming buffer size to use, ``int``
++    :returns: key value pairs encoded in handshake, ``{str: str}``
++    :raises: :exc:`ROSHandshakeException` If header format does not match expected
++    """
++    header_str = None
++    while not header_str:
++        d = sock.recv(buff_size)
++        if not d:
++            raise ROSHandshakeException("connection from sender terminated before handshake header received. %s bytes were received. Please check sender for additional details."%b.tell())
++        b.write(d)
++        btell = b.tell()
++        if btell > 4:
++            # most likely we will get the full header in the first recv, so
++            # not worth tiny optimizations possible here
++            bval = b.getvalue()
++            (size,) = struct.unpack('<I', bval[0:4])
++            if btell - 4 >= size:
++                header_str = bval
++                    
++                # memmove the remnants of the buffer back to the start
++                leftovers = bval[size+4:]
++                b.truncate(len(leftovers))
++                b.seek(0)
++                b.write(leftovers)
++                header_recvd = True
++                    
++    # process the header
++    return decode_ros_handshake_header(bval)
++
++def encode_ros_handshake_header(header):
++    """
++    Encode ROS handshake header as a byte string. Each header
++    field is a string key value pair. The encoded header is
++    prefixed by a length field, as is each field key/value pair.
++    key/value pairs a separated by a '=' equals sign.
++
++    FORMAT: (4-byte length + [4-byte field length + field=value ]*)
++
++    :param header: header field keys/values, ``dict``
++    :returns: header encoded as byte string, ``bytes``
++    """
++    str_cls = str if python3 else unicode
++    
++    # encode all unicode keys in the header. Ideally, the type of these would be specified by the api
++    encoded_header = {}
++    for k, v in header.items():
++        if isinstance(k, str_cls):
++            k = k.encode('utf-8')
++        if isinstance(v, str_cls):
++            v = v.encode('utf-8')
++        encoded_header[k] = v
++
++    fields = [k + b"=" + v for k, v in sorted(encoded_header.items())]
++    s = b''.join([struct.pack('<I', len(f)) + f for f in fields])
++    
++    return struct.pack('<I', len(s)) + s
++                                        
++def write_ros_handshake_header(sock, header):
++    """
++    Write ROS handshake header header to socket sock
++
++    :param sock: socket to write to (must be in blocking mode), ``socket.socket``
++    :param header: header field keys/values, ``{str : str}``
++    :returns: Number of bytes sent (for statistics), ``int``
++    """
++    s = encode_ros_handshake_header(header)
++    sock.sendall(s)
++    return len(s) #STATS
++    
+--- /dev/null
++++ ros-noetic-rosgraph-1.16.0/src/rosgraph/rosenv.py
+@@ -0,0 +1,76 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import os
++import sys
++
++ROS_MASTER_URI   = "ROS_MASTER_URI"
++
++ROS_IP           ="ROS_IP"
++ROS_IPV6         ="ROS_IPV6"
++ROS_HOSTNAME     ="ROS_HOSTNAME"
++ROS_NAMESPACE    ="ROS_NAMESPACE"
++
++DEFAULT_MASTER_PORT = 11311  # default port for master's to bind to
++DEFAULT_MASTER_URI = 'http://localhost:%s/' % DEFAULT_MASTER_PORT
++
++def get_master_uri(env=None, argv=None):
++    """
++    Get the :envvar:`ROS_MASTER_URI` setting from the command-line args or
++    environment, command-line args takes precedence.
++
++    :param env: override environment dictionary, ``dict``
++    :param argv: override ``sys.argv``, ``[str]``
++    :raises: :exc:`ValueError` If :envvar:`ROS_MASTER_URI` value is invalidly
++      specified 
++    """    
++    if env is None:
++        env = os.environ
++    if argv is None:
++        argv = sys.argv
++    
++    for arg in argv:
++        if arg.startswith('__master:='):
++            val = None
++            try:
++                _, val = arg.split(':=')
++            except:
++                pass
++            
++            # we ignore required here because there really is no
++            # correct return value as the configuration is bad
++            # rather than unspecified
++            if not val:
++                raise ValueError("__master remapping argument '%s' improperly specified"%arg)
++            return val
++    return env.get(ROS_MASTER_URI, DEFAULT_MASTER_URI)
++        
+--- /dev/null
++++ ros-noetic-rosgraph-1.16.0/src/rosgraph/rosgraph_main.py
+@@ -0,0 +1,103 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++from __future__ import print_function
++
++import sys
++import time
++
++from . import roslogging
++from . import masterapi
++
++from .impl import graph
++
++def fullusage():
++    print("""rosgraph is a command-line tool for debugging the ROS Computation Graph.
++
++Usage:
++\trosgraph
++""")
++    
++def rosgraph_main():
++    if len(sys.argv) == 1:
++        pass
++    elif len(sys.argv) == 2 and (sys.argv[1] == '-h' or sys.argv[1] == '--help'):
++        fullusage()
++        return
++    else:
++        fullusage()
++        sys.exit(-1)
++    
++    roslogging.configure_logging('rosgraph')
++
++    # make sure master is available
++    master = masterapi.Master('rosgraph')
++    try:
++        master.getPid()
++    except:
++        print("ERROR: Unable to communicate with master!", file=sys.stderr)
++        return
++        
++    g = graph.Graph()
++    try:
++        while 1:
++          g.update()
++
++          if not g.nn_nodes and not g.srvs:
++              print("empty")
++          else:
++              print('\n')
++          if g.nn_nodes:
++              print('Nodes:')
++              for n in g.nn_nodes:
++                  prefix = n + '|'
++                  print('  ' + n + ' :')
++                  print('    Inbound:')
++                  for k in g.nn_edges.edges_by_end.keys():
++                      if k.startswith(prefix):
++                          for c in g.nn_edges.edges_by_end[k]:
++                              print('      ' + c.start)
++                  print('    Outbound:')
++                  for k in g.nn_edges.edges_by_start.keys():
++                      if k.startswith(prefix):
++                          for c in g.nn_edges.edges_by_start[k]:
++                              print('      ' + c.end)
++          if g.srvs:
++              print('Services:')
++              for s in g.srvs:
++                  print('  ' + s)
++
++          time.sleep(1.0)
++    except KeyboardInterrupt:
++        pass
++
+--- /dev/null
++++ ros-noetic-rosgraph-1.16.0/src/rosgraph/roslogging.py
+@@ -0,0 +1,298 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++"""
++Library for configuring python logging to standard ROS locations (e.g. ROS_LOG_DIR).
++"""
++
++import os
++import sys
++import time
++import logging
++import logging.config
++import inspect
++import datetime
++
++import yaml
++
++import rospkg
++from rospkg.environment import ROS_LOG_DIR
++
++class LoggingException(Exception): pass
++
++class RospyLogger(logging.getLoggerClass()):
++    def findCaller(self, *args, **kwargs):
++        """
++        Find the stack frame of the caller so that we can note the source
++        file name, line number, and function name with class name if possible.
++        """
++        file_name, lineno, func_name = super(RospyLogger, self).findCaller(*args, **kwargs)[:3]
++        file_name = os.path.normcase(file_name)
++
++        f = inspect.currentframe()
++        if f is not None:
++            f = f.f_back
++        while hasattr(f, "f_code"):
++            # Search for the right frame using the data already found by parent class.
++            co = f.f_code
++            filename = os.path.normcase(co.co_filename)
++            if filename == file_name and f.f_lineno == lineno and co.co_name == func_name:
++                break
++            if f.f_back:
++                f = f.f_back
++
++        # Jump up two more frames, as the logger methods have been double wrapped.
++        if f is not None and f.f_back and f.f_code and f.f_code.co_name == '_base_logger':
++            f = f.f_back
++            if f.f_back:
++                f = f.f_back
++        co = f.f_code
++        func_name = co.co_name
++
++        # Now extend the function name with class name, if available.
++        try:
++            class_name = f.f_locals['self'].__class__.__name__
++            func_name = '%s.%s' % (class_name, func_name)
++        except KeyError:  # if the function is unbound, there is no self.
++            pass
++
++        if sys.version_info > (3, 2):
++            # Dummy last argument to match Python3 return type
++            return co.co_filename, f.f_lineno, func_name, None
++        else:
++            return co.co_filename, f.f_lineno, func_name
++
++logging.setLoggerClass(RospyLogger)
++
++def renew_latest_logdir(logfile_dir):
++    log_dir = os.path.dirname(logfile_dir)
++    latest_dir = os.path.join(log_dir, 'latest')
++    if os.path.lexists(latest_dir):
++        if not os.path.islink(latest_dir):
++            return False
++        os.remove(latest_dir)
++    os.symlink(logfile_dir, latest_dir)
++    return True
++
++def configure_logging(logname, level=logging.INFO, filename=None, env=None):
++    """
++    Configure Python logging package to send log files to ROS-specific log directory
++    :param logname str: name of logger, ``str``
++    :param filename: filename to log to. If not set, a log filename
++        will be generated using logname, ``str``
++    :param env: override os.environ dictionary, ``dict``
++    :returns: log file name, ``str``
++    :raises: :exc:`LoggingException` If logging cannot be configured as specified
++    """
++    if env is None:
++        env = os.environ
++
++    logname = logname or 'unknown'
++    log_dir = rospkg.get_log_dir(env=env)
++    
++    # if filename is not explicitly provided, generate one using logname
++    if not filename:
++        log_filename = os.path.join(log_dir, '%s-%s.log'%(logname, os.getpid()))
++    else:
++        log_filename = os.path.join(log_dir, filename)
++
++    logfile_dir = os.path.dirname(log_filename)
++    if not os.path.exists(logfile_dir):
++        try:
++            makedirs_with_parent_perms(logfile_dir)
++        except OSError:
++            # cannot print to screen because command-line tools with output use this
++            if os.path.exists(logfile_dir):
++                # We successfully created the logging folder, but could not change
++                # permissions of the new folder to the same as the parent folder
++                sys.stderr.write("WARNING: Could not change permissions for folder [%s], make sure that the parent folder has correct permissions.\n"%logfile_dir)
++            else:
++                # Could not create folder
++                sys.stderr.write("WARNING: cannot create log directory [%s]. Please set %s to a writable location.\n"%(logfile_dir, ROS_LOG_DIR))
++            return None
++    elif os.path.isfile(logfile_dir):
++        raise LoggingException("Cannot save log files: file [%s] is in the way"%logfile_dir)
++
++    # the log dir itself should not be symlinked as latest
++    if logfile_dir != log_dir:
++        if sys.platform not in ['win32']:
++            try:
++                success = renew_latest_logdir(logfile_dir)
++                if not success:
++                    sys.stderr.write("INFO: cannot create a symlink to latest log directory\n")
++            except OSError as e:
++                sys.stderr.write("INFO: cannot create a symlink to latest log directory: %s\n" % e)
++
++    config_file = os.environ.get('ROS_PYTHON_LOG_CONFIG_FILE')
++    if not config_file:
++        # search for logging config file in ROS_HOME, ROS_ETC_DIR or relative
++        # to the rosgraph package directory.
++        config_dirs = [os.path.join(rospkg.get_ros_home(), 'config'),
++                       rospkg.get_etc_ros_dir()]
++        try:
++            config_dirs.append(os.path.join(
++                rospkg.RosPack().get_path('rosgraph'), 'conf'))
++        except rospkg.common.ResourceNotFound:
++            pass
++        for config_dir in config_dirs:
++            for extension in ('conf', 'yaml'):
++                f = os.path.join(config_dir,
++                                 'python_logging{}{}'.format(os.path.extsep,
++                                                             extension))
++                if os.path.isfile(f):
++                    config_file = f
++                    break
++            if config_file is not None:
++                break
++
++    if config_file is None or not os.path.isfile(config_file):
++        # logging is considered soft-fail
++        sys.stderr.write("WARNING: cannot load logging configuration file, logging is disabled\n")
++        logging.getLogger(logname).setLevel(logging.CRITICAL)
++        return log_filename
++    
++    # pass in log_filename as argument to pylogging.conf
++    os.environ['ROS_LOG_FILENAME'] = log_filename
++    if config_file.endswith(('.yaml', '.yml')):
++        with open(config_file) as f:
++            dict_conf = yaml.safe_load(f)
++        dict_conf.setdefault('version', 1)
++        logging.config.dictConfig(dict_conf)
++    else:
++        # #3625: disabling_existing_loggers=False
++        logging.config.fileConfig(config_file, disable_existing_loggers=False)
++
++    return log_filename
++
++
++def makedirs_with_parent_perms(p):
++    """
++    Create the directory using the permissions of the nearest
++    (existing) parent directory. This is useful for logging, where a
++    root process sometimes has to log in the user's space.
++    :param p: directory to create, ``str``
++    """    
++    p = os.path.abspath(p)
++    parent = os.path.dirname(p)
++    # recurse upwards, checking to make sure we haven't reached the
++    # top
++    if not os.path.exists(p) and p and parent != p:
++        makedirs_with_parent_perms(parent)
++        s = os.stat(parent)
++        os.mkdir(p)
++
++        # if perms of new dir don't match, set anew
++        s2 = os.stat(p)
++        if s.st_uid != s2.st_uid or s.st_gid != s2.st_gid:
++            os.chown(p, s.st_uid, s.st_gid)
++        if s.st_mode != s2.st_mode:
++            os.chmod(p, s.st_mode)    
++
++_logging_to_rospy_names = {
++    'DEBUG': ('DEBUG', '\033[32m'),
++    'INFO': ('INFO', None),
++    'WARNING': ('WARN', '\033[33m'),
++    'ERROR': ('ERROR', '\033[31m'),
++    'CRITICAL': ('FATAL', '\033[31m')
++}
++_color_reset = '\033[0m'
++_defaultFormatter = logging.Formatter()
++
++class RosStreamHandler(logging.Handler):
++    def __init__(self, colorize=True, stdout=None, stderr=None):
++        super(RosStreamHandler, self).__init__()
++        self._stdout = stdout or sys.stdout
++        self._stderr = stderr or sys.stderr
++        self._colorize = colorize
++        try:
++            from rospy.rostime import get_time, is_wallclock
++            self._get_time = get_time
++            self._is_wallclock = is_wallclock
++        except ImportError:
++            self._get_time = None
++            self._is_wallclock = None
++
++    def emit(self, record):
++        level, color = _logging_to_rospy_names[record.levelname]
++        record_message = _defaultFormatter.format(record)
++        msg = os.environ.get(
++            'ROSCONSOLE_FORMAT', '[${severity}] [${time}]: ${message}')
++        msg = msg.replace('${severity}', level)
++        msg = msg.replace('${message}', str(record_message))
++
++        # walltime tag
++        msg = msg.replace('${walltime}', '%f' % time.time())  # for performance reasons
++
++        while '${walltime:' in msg:
++            tag_end_index = msg.index('${walltime:') + len('${walltime:')
++            time_format = msg[tag_end_index: msg.index('}', tag_end_index)]
++            time_str = time.strftime(time_format)
++            msg = msg.replace('${walltime:' + time_format + '}', time_str)
++
++        msg = msg.replace('${thread}', str(record.thread))
++        msg = msg.replace('${logger}', str(record.name))
++        msg = msg.replace('${file}', str(record.pathname))
++        msg = msg.replace('${line}', str(record.lineno))
++        msg = msg.replace('${function}', str(record.funcName))
++        try:
++            from rospy import get_name
++            node_name = get_name()
++        except ImportError:
++            node_name = '<unknown_node_name>'
++        msg = msg.replace('${node}', node_name)
++
++        # time tag
++        time_str = '%f' % time.time()
++        if self._get_time is not None and not self._is_wallclock():
++            time_str += ', %f' % self._get_time()
++        msg = msg.replace('${time}', time_str)   # for performance reasons
++
++        while '${time:' in msg:
++            tag_end_index = msg.index('${time:') + len('${time:')
++            time_format = msg[tag_end_index: msg.index('}', tag_end_index)]
++            time_str = time.strftime(time_format)
++
++            if self._get_time is not None and not self._is_wallclock():
++                time_str += ', %f' % self._get_time()
++
++            msg = msg.replace('${time:' + time_format + '}', time_str)
++
++        msg += '\n'
++        if record.levelno < logging.WARNING:
++            self._write(self._stdout, msg, color)
++        else:
++            self._write(self._stderr, msg, color)
++
++    def _write(self, fd, msg, color):
++        if self._colorize and color and hasattr(fd, 'isatty') and fd.isatty():
++            msg = color + msg + _color_reset
++        fd.write(msg)
+--- /dev/null
++++ ros-noetic-rosgraph-1.16.0/src/rosgraph/xmlrpc.py
+@@ -0,0 +1,334 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id: xmlrpc.py 15336 2011-11-07 20:43:00Z kwc $
++
++from __future__ import print_function
++
++"""
++Common XML-RPC for higher-level libraries running XML-RPC libraries in
++ROS. In particular, this library provides common handling for URI
++calculation based on ROS environment variables.
++
++The common entry point for most libraries is the L{XmlRpcNode} class.
++"""
++
++import errno
++import logging
++import platform
++import re
++import select
++import socket
++
++try:
++    import _thread
++except ImportError:
++    import thread as _thread
++
++import traceback
++
++try:
++    from xmlrpc.server import SimpleXMLRPCServer, SimpleXMLRPCRequestHandler #Python 3.x
++except ImportError:
++    from SimpleXMLRPCServer import SimpleXMLRPCServer #Python 2.x
++    from SimpleXMLRPCServer import SimpleXMLRPCRequestHandler #Python 2.x
++
++try:
++    import socketserver
++except ImportError:
++    import SocketServer as socketserver
++
++import rosgraph.network
++
++def isstring(s):
++    """Small helper version to check an object is a string in a way that works
++    for both Python 2 and 3
++    """
++    try:
++        return isinstance(s, basestring)
++    except NameError:
++        return isinstance(s, str)
++
++
++def _support_http_1_1():
++    """
++    Determine whether HTTP 1.1 should be enabled for XMLRPC communications.
++
++    This will be true on non-Linux systems, and on Linux kernels at least as
++    new as 4.16. Linux kernels 4.15 and older cause significant performance
++    degradation in the roscore when using HTTP 1.1
++    """
++    if platform.system() != 'Linux':
++        return True
++    minimum_supported_major, minimum_supported_minor = (4, 16)
++    release = platform.release().split('.')
++    platform_major = int(release[0])
++    platform_minor = int(re.sub('[^0-9].*$', '', release[1]))
++    if platform_major < minimum_supported_major:
++        return False
++    if platform_major > minimum_supported_major:
++        return True
++    if (platform_major == minimum_supported_major and
++        platform_minor < minimum_supported_minor):
++        return False
++    return True
++
++
++class SilenceableXMLRPCRequestHandler(SimpleXMLRPCRequestHandler):
++    if _support_http_1_1():
++        protocol_version = 'HTTP/1.1'
++
++    def log_message(self, format, *args):
++        if 0:
++            SimpleXMLRPCRequestHandler.log_message(self, format, *args)
++    
++class ThreadingXMLRPCServer(socketserver.ThreadingMixIn, SimpleXMLRPCServer):
++    """
++    Adds ThreadingMixin to SimpleXMLRPCServer to support multiple concurrent
++    requests via threading. Also makes logging toggleable.
++    """
++
++    daemon_threads = True
++
++    def __init__(self, addr, log_requests=1):
++        """
++        Overrides SimpleXMLRPCServer to set option to allow_reuse_address.
++        """
++        # allow_reuse_address defaults to False in Python 2.4.  We set it 
++        # to True to allow quick restart on the same port.  This is equivalent 
++        # to calling setsockopt(SOL_SOCKET,SO_REUSEADDR,1)
++        self.allow_reuse_address = True
++        # Increase request_queue_size to handle issues with many simultaneous
++        # connections in OSX 10.11
++        self.request_queue_size = min(socket.SOMAXCONN, 128)
++        if rosgraph.network.use_ipv6():
++            logger = logging.getLogger('xmlrpc')
++            # The XMLRPC library does not support IPv6 out of the box
++            # We have to monipulate private members and duplicate
++            # code from the constructor.
++            # TODO IPV6: Get this into SimpleXMLRPCServer 
++            SimpleXMLRPCServer.__init__(self, addr, SilenceableXMLRPCRequestHandler, log_requests,  bind_and_activate=False)
++            self.address_family = socket.AF_INET6
++            self.socket = socket.socket(self.address_family, self.socket_type)
++            logger.info('binding ipv6 xmlrpc socket to' + str(addr))
++            # TODO: set IPV6_V6ONLY to 0:
++            # self.socket.setsockopt(socket.IPPROTO_IPV6, socket.IPV6_V6ONLY, 0)
++            self.server_bind()
++            self.server_activate()
++            logger.info('bound to ' + str(self.socket.getsockname()[0:2]))
++        else:
++            SimpleXMLRPCServer.__init__(self, addr, SilenceableXMLRPCRequestHandler, log_requests)
++
++    def handle_error(self, request, client_address):
++        """
++        override ThreadingMixin, which sends errors to stderr
++        """
++        if logging and traceback:
++            logger = logging.getLogger('xmlrpc')
++            if logger:
++                logger.error(traceback.format_exc())
++
++
++# ForkingMixIn and the Forking classes mentioned below are only available on POSIX platforms.
++if hasattr(socketserver, "ForkingMixIn"):
++    class ForkingXMLRPCServer(socketserver.ForkingMixIn, SimpleXMLRPCServer):
++        """
++        Adds ThreadingMixin to SimpleXMLRPCServer to support multiple concurrent
++        requests via forking. Also makes logging toggleable.      
++        """
++        def __init__(self, addr, request_handler=SilenceableXMLRPCRequestHandler, log_requests=1):
++            SimpleXMLRPCServer.__init__(self, addr, request_handler, log_requests)
++    
++
++class XmlRpcHandler(object):
++    """
++    Base handler API for handlers used with XmlRpcNode. Public methods will be 
++    exported as XML RPC methods.
++    """
++
++    def _ready(self, uri):
++        """
++        callback into handler to inform it of XML-RPC URI
++        """
++        pass
++    
++    def _shutdown(self, reason):
++        """
++        callback into handler to inform it of shutdown
++        """
++        pass
++
++class XmlRpcNode(object):
++    """
++    Generic XML-RPC node. Handles the additional complexity of binding
++    an XML-RPC server to an arbitrary port. 
++    XmlRpcNode is initialized when the uri field has a value.
++    """
++
++    def __init__(self, port=0, rpc_handler=None, on_run_error=None):
++        """
++        XML RPC Node constructor
++        :param port: port to use for starting XML-RPC API. Set to 0 or omit to bind to any available port, ``int``
++        :param rpc_handler: XML-RPC API handler for node, `XmlRpcHandler`
++        :param on_run_error: function to invoke if server.run() throws
++          Exception. Server always terminates if run() throws, but this
++          enables cleanup routines to be invoked if server goes down, as
++          well as include additional debugging. ``fn(Exception)``
++        """
++        super(XmlRpcNode, self).__init__()
++
++        self.handler = rpc_handler
++        self.uri = None # initialize the property now so it can be tested against, will be filled in later
++        self.server = None
++        if port and isstring(port):
++            port = int(port)
++        self.port = port
++        self.is_shutdown = False
++        self.on_run_error = on_run_error
++
++    def shutdown(self, reason):
++        """
++        Terminate i/o connections for this server.
++
++        :param reason: human-readable debug string, ``str``
++        """
++        self.is_shutdown = True
++        if self.server:
++            server = self.server
++            handler = self.handler
++            self.handler = self.server = self.port = self.uri = None
++            if handler:
++                handler._shutdown(reason)
++            if server:
++                server.socket.close()
++                server.server_close()
++                
++    def start(self):
++        """
++        Initiate a thread to run the XML RPC server. Uses thread.start_new_thread.
++        """
++        _thread.start_new_thread(self.run, ())
++
++    def set_uri(self, uri):
++        """
++        Sets the XML-RPC URI. Defined as a separate method as a hood
++        for subclasses to bootstrap initialization. Should not be called externally.
++
++        :param uri: XMLRPC URI, ``str``
++        """
++        self.uri = uri
++        
++    def run(self):
++        try:
++            self._run()
++        except Exception as e:
++            if self.is_shutdown:
++                pass
++            elif self.on_run_error is not None:
++               self.on_run_error(e)
++            else:
++                raise
++
++    # separated out for easier testing
++    def _run_init(self):
++        logger = logging.getLogger('xmlrpc')            
++        try:
++            log_requests = 0
++            port = self.port or 0 #0 = any
++
++            bind_address = rosgraph.network.get_bind_address()
++            logger.info("XML-RPC server binding to %s:%d" % (bind_address, port))
++            
++            self.server = ThreadingXMLRPCServer((bind_address, port), log_requests)
++            self.port = self.server.server_address[1] #set the port to whatever server bound to
++            if not self.port:
++                self.port = self.server.socket.getsockname()[1] #Python 2.4
++
++            assert self.port, "Unable to retrieve local address binding"
++
++            # #528: semi-complicated logic for determining XML-RPC URI
++            # - if ROS_IP/ROS_HOSTNAME is set, use that address
++            # - if the hostname returns a non-localhost value, use that
++            # - use whatever rosgraph.network.get_local_address() returns
++            uri = None
++            override = rosgraph.network.get_address_override()
++            if override:
++                uri = 'http://%s:%s/'%(override, self.port)
++            else:
++                try:
++                    hostname = socket.gethostname()
++                    if hostname and not hostname == 'localhost' and not hostname.startswith('127.') and hostname != '::':
++                        uri = 'http://%s:%s/'%(hostname, self.port)
++                except:
++                    pass
++            if not uri:
++                uri = 'http://%s:%s/'%(rosgraph.network.get_local_address(), self.port)
++            self.set_uri(uri)
++            
++            logger.info("Started XML-RPC server [%s]", self.uri)
++
++            self.server.register_multicall_functions()
++            self.server.register_instance(self.handler)
++
++        except socket.error as e:
++            if e.errno == errno.EADDRINUSE:
++                msg = "ERROR: Unable to start XML-RPC server, port %s is already in use"%self.port
++            else:
++                msg = "ERROR: Unable to start XML-RPC server: %s" % e.strerror
++            logger.error(msg)
++            print(msg)
++            raise #let higher level catch this
++
++        if self.handler is not None:
++            self.handler._ready(self.uri)
++        logger.info("xml rpc node: starting XML-RPC server")
++        
++    def _run(self):
++        """
++        Main processing thread body.
++        :raises: :exc:`socket.error` If server cannot bind
++        
++        """
++        self._run_init()
++        while not self.is_shutdown:
++            try:
++                self.server.serve_forever()
++            except (IOError, select.error) as e:
++                # check for interrupted call, which can occur if we're
++                # embedded in a program using signals.  All other
++                # exceptions break _run.
++                if self.is_shutdown:
++                    pass
++                elif e.errno != errno.EINTR:
++                    self.is_shutdown = True
++                    logging.getLogger('xmlrpc').error("serve forever IOError: %s, %s"%(e.errno, e.strerror))
++                    
+--- /dev/null
++++ ros-noetic-rosgraph-1.16.0/test/test_myargv.py
+@@ -0,0 +1,47 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2011, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import sys
++
++def test_myargv():
++    orig_argv = sys.argv
++    try:
++        from rosgraph import myargv
++        args = myargv()
++        assert args == sys.argv
++        assert ['foo', 'bar', 'baz'] == myargv(['foo','bar', 'baz'])
++        assert ['-foo', 'bar', '-baz'] == myargv(['-foo','bar', '-baz'])
++            
++        assert ['foo'] == myargv(['foo','bar:=baz'])
++        assert ['foo'] == myargv(['foo','-bar:=baz'])
++    finally:
++        sys.argv = orig_argv
+--- /dev/null
++++ ros-noetic-rosgraph-1.16.0/test/test_names.py
+@@ -0,0 +1,327 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import os
++import sys
++  
++def test_get_ros_namespace():
++    if 'ROS_NAMESPACE' in os.environ:
++        rosns = os.environ['ROS_NAMESPACE']
++        del os.environ['ROS_NAMESPACE']
++    else:
++        rosns = None
++    sysargv = sys.argv
++
++    from rosgraph.names import get_ros_namespace
++    try:
++        sys.argv = []
++        assert '/' == get_ros_namespace()
++        assert '/' == get_ros_namespace(argv=[])
++        assert '/' == get_ros_namespace(env={})
++        assert '/' == get_ros_namespace(env={}, argv=[])
++
++        os.environ['ROS_NAMESPACE'] = 'unresolved'
++        assert '/unresolved/' == get_ros_namespace()
++        assert '/unresolved/' == get_ros_namespace(env={'ROS_NAMESPACE': 'unresolved'})
++        sys.argv = ['foo', '__ns:=unresolved_override']
++        assert '/unresolved_override/' == get_ros_namespace(env={'ROS_NAMESPACE': 'unresolved'})
++        assert '/override2/' == get_ros_namespace(env={'ROS_NAMESPACE': 'unresolved'}, argv=['foo', '__ns:=override2'])
++
++        sys.argv = []
++        os.environ['ROS_NAMESPACE'] = '/resolved/'
++        assert '/resolved/' == get_ros_namespace()
++        assert '/resolved/' == get_ros_namespace(env={'ROS_NAMESPACE': '/resolved'})
++
++        del os.environ['ROS_NAMESPACE']
++
++        sys.argv = ['foo', '__ns:=unresolved_ns']
++        assert '/unresolved_ns/' == get_ros_namespace()
++        assert '/unresolved_ns2/' == get_ros_namespace(argv=['foo', '__ns:=unresolved_ns2'])
++        sys.argv = ['foo', '__ns:=/resolved_ns/']
++        assert '/resolved_ns/' == get_ros_namespace()
++        assert '/resolved_ns2/' == get_ros_namespace(argv=['foo', '__ns:=resolved_ns2'])
++    finally:
++        sys.argv = sysargv
++
++        # restore
++        if rosns:
++            os.environ['ROS_NAMESPACE'] = rosns
++
++def test_make_global_ns():
++    from rosgraph.names import make_global_ns
++
++    for n in ['~foo']:
++        try:
++            make_global_ns(n)
++            assert False, "make_global_ns should fail on %s"%n
++        except ValueError: pass
++
++    assert '/foo/' == make_global_ns('foo')
++    assert '/' == make_global_ns('')
++    assert '/foo/' == make_global_ns('/foo')
++    assert '/foo/' == make_global_ns('/foo/')
++    assert '/foo/bar/' == make_global_ns('/foo/bar')
++    assert '/foo/bar/' == make_global_ns('/foo/bar/')
++
++def test_make_caller_id():
++    from rosgraph.names import make_caller_id
++    if 'ROS_NAMESPACE' is os.environ:
++        rosns = os.environ['ROS_NAMESPACE']
++        del os.environ['ROS_NAMESPACE']
++    else:
++        rosns = None
++
++    for n in ['~name']:
++        try:
++            make_caller_id('~name') # illegal
++            assert False, "make_caller_id should fail on %s"%n
++        except ValueError:
++            pass
++    
++    assert '/node/' == make_caller_id('node')
++    assert '/bar/node/' == make_caller_id('bar/node')
++    assert '/bar/node/' == make_caller_id('/bar/node')
++
++    os.environ['ROS_NAMESPACE'] = '/test/'
++    assert '/test/node/' == make_caller_id('node')
++    assert '/test/bar/node/' == make_caller_id('bar/node')
++    assert '/bar/node/' == make_caller_id('/bar/node')
++    
++    # restore
++    if rosns:
++        os.environ['ROS_NAMESPACE'] = rosns
++  
++def test_is_global():
++    from rosgraph.names import is_global
++    try:
++        is_global(None)
++        assert False, "is_global should raise exception on invalid param"
++    except: pass
++    tests = ['/', '/global', '/global2']
++    for t in tests:
++        assert is_global(t)
++    fails = ['', 'not_global', 'not/global']
++    for t in fails:
++        assert not is_global(t)
++    
++def test_is_private():
++    from rosgraph.names import is_private
++    try:
++        is_private(None)
++        assert False, "is_private should raise exception on invalid param"
++    except: pass
++    tests = ['~name', '~name/sub']
++    for t in tests:
++        assert is_private(t)
++    fails = ['', 'not_private', 'not/private', 'not/~private', '/not/~private']
++    for t in fails:
++        assert not is_private(t)
++      
++def test_namespace():
++    from rosgraph.names import namespace
++    try:
++        namespace(1)
++        assert False, "1"
++    except TypeError: pass
++    try:
++        namespace(None)
++        assert False, "None"
++    except ValueError: pass
++    assert '/'== namespace('')
++    assert '/'== namespace('/')
++    assert '/'== namespace('/foo')
++    assert '/'== namespace('/foo/')
++    assert '/foo/'== namespace('/foo/bar')
++    assert '/foo/'== namespace('/foo/bar/')
++    assert '/foo/bar/'== namespace('/foo/bar/baz')
++    assert '/foo/bar/'== namespace('/foo/bar/baz/')
++
++    # unicode tests
++    assert u'/'== namespace(u'')
++    assert u'/'== namespace(u'/')
++    assert u'/foo/bar/'== namespace(u'/foo/bar/baz/')
++
++def test_nsjoin():
++    from rosgraph.names import ns_join
++
++    # private and global names cannot be joined
++    assert '~name' == ns_join('/foo', '~name')
++    assert '/name' == ns_join('/foo', '/name')
++    assert '~name' == ns_join('~', '~name')
++    assert '/name' == ns_join('/', '/name')
++
++    # ns can be '~' or '/'
++    assert '~name' == ns_join('~', 'name')
++    assert '/name' == ns_join('/', 'name')
++
++    assert '/ns/name' == ns_join('/ns', 'name')
++    assert '/ns/name' == ns_join('/ns/', 'name')
++    assert '/ns/ns2/name' == ns_join('/ns', 'ns2/name')
++    assert '/ns/ns2/name' == ns_join('/ns/', 'ns2/name')
++
++    # allow ns to be empty
++    assert 'name' == ns_join('', 'name')
++    
++
++def test_load_mappings():
++    from rosgraph.names import load_mappings
++    assert {} == load_mappings([])
++    assert {} == load_mappings(['foo'])
++    assert {} == load_mappings([':='])
++    assert {} == load_mappings([':=:='])
++    assert {} == load_mappings(['f:='])
++    assert {} == load_mappings([':=b'])
++    assert {} == load_mappings(['foo:=bar:=baz'])
++    # should ignore node param assignments
++    assert {} == load_mappings(['_foo:=bar'])
++    
++    assert {'foo': 'bar'} == load_mappings(['foo:=bar'])
++    # should allow double-underscore names
++    assert {'__foo': 'bar'} == load_mappings(['__foo:=bar'])
++    assert {'foo': 'bar'} == load_mappings(['./f', '-x', '--blah', 'foo:=bar'])
++    assert {'a': '1', 'b': '2', 'c': '3'} == load_mappings(['c:=3', 'c:=', ':=3', 'a:=1', 'b:=2'])
++
++def test_is_legal_name():
++    from rosgraph.names import is_legal_name
++    failures = [None,
++                'foo++', 'foo-bar', '#foo',
++                'hello\n', '\t', ' name', 'name ',
++                'f//b',
++                '1name', 'foo\\']
++    for f in failures:
++        assert not is_legal_name(f), f
++    tests = ['',
++             'f', 'f1', 'f_', 'f/', 'foo', 'foo_bar', 'foo/bar', 'foo/bar/baz',
++             '~f', '~a/b/c',
++             '~/f',
++             '/a/b/c/d', '/']
++    for t in tests:
++        assert is_legal_name(t), "[%s]"%t
++
++def test_is_legal_base_name():
++    from rosgraph.names import is_legal_base_name
++    failures = [None, '', 'hello\n', '\t', 'foo++', 'foo-bar', '#foo',
++                'f/', 'foo/bar', '/', '/a',
++                'f//b',
++                '~f', '~a/b/c',                
++                ' name', 'name ',
++                '1name', 'foo\\']
++    for f in failures:
++        assert not is_legal_base_name(f), f
++    tests = ['f', 'f1', 'f_', 'foo', 'foo_bar']
++    for t in tests:
++        assert is_legal_base_name(t), "[%s]"%t
++
++def test_resolve_name():
++      from rosgraph.names import resolve_name
++      # TODO: test with remappings
++      tests = [
++          ('', '/', '/'),
++          ('', '/node', '/'),
++          ('', '/ns1/node', '/ns1/'),
++
++          ('foo', '', '/foo'),
++          ('foo/', '', '/foo'),
++          ('/foo', '', '/foo'),
++          ('/foo/', '', '/foo'),
++          ('/foo', '/', '/foo'),
++          ('/foo/', '/', '/foo'),
++          ('/foo', '/bar', '/foo'),
++          ('/foo/', '/bar', '/foo'),
++
++          ('foo', '/ns1/ns2', '/ns1/foo'),
++          ('foo', '/ns1/ns2/', '/ns1/foo'),
++          ('foo', '/ns1/ns2/ns3/', '/ns1/ns2/foo'),
++          ('foo/', '/ns1/ns2', '/ns1/foo'),
++          ('/foo', '/ns1/ns2', '/foo'),
++          ('foo/bar', '/ns1/ns2', '/ns1/foo/bar'),
++          ('foo//bar', '/ns1/ns2', '/ns1/foo/bar'),
++          ('foo/bar', '/ns1/ns2/ns3', '/ns1/ns2/foo/bar'),
++          ('foo//bar//', '/ns1/ns2/ns3', '/ns1/ns2/foo/bar'),
++
++          ('~foo', '/', '/foo'),            
++          ('~foo', '/node', '/node/foo'),            
++          ('~foo', '/ns1/ns2', '/ns1/ns2/foo'),            
++          ('~foo/', '/ns1/ns2', '/ns1/ns2/foo'),            
++          ('~foo/bar', '/ns1/ns2', '/ns1/ns2/foo/bar'),
++
++          # #3044
++          ('~/foo', '/', '/foo'),            
++          ('~/foo', '/node', '/node/foo'),            
++          ('~/foo', '/ns1/ns2', '/ns1/ns2/foo'),            
++          ('~/foo/', '/ns1/ns2', '/ns1/ns2/foo'),            
++          ('~/foo/bar', '/ns1/ns2', '/ns1/ns2/foo/bar'),
++
++          ]
++      for name, node_name, v in tests:
++          assert v == resolve_name(name, node_name)
++
++def test_anonymous_name():
++    from rosgraph.names import anonymous_name, is_legal_name
++    val = anonymous_name('foo')
++    assert 'foo' in val
++    assert 'foo' != val
++    assert val != anonymous_name('foo')
++    assert not '/' in val
++    assert is_legal_name(val)
++    
++    
++def test_script_resolve_name():
++    from rosgraph.names import script_resolve_name, get_ros_namespace, ns_join
++
++    assert '/global' == script_resolve_name('/myscript', '/global')
++    val = script_resolve_name('/myscript', '')    
++    assert get_ros_namespace() == val, val
++    val = script_resolve_name('/myscript', 'foo')    
++    assert ns_join(get_ros_namespace(), 'foo') == val, val
++    assert '/myscript/private' == script_resolve_name('/myscript', '~private')    
++    
++def test_canonicalize_name():
++    from rosgraph.names import canonicalize_name
++    tests = [
++        ('', ''),
++        ('/', '/'),
++        ('foo', 'foo'),          
++        ('/foo', '/foo'),          
++        ('/foo/', '/foo'),
++        ('/foo/bar', '/foo/bar'),
++        ('/foo/bar/', '/foo/bar'),
++        ('/foo/bar//', '/foo/bar'),
++        ('/foo//bar', '/foo/bar'),
++        ('//foo/bar', '/foo/bar'),
++        ('foo/bar', 'foo/bar'),
++        ('foo//bar', 'foo/bar'),
++        ('foo/bar/', 'foo/bar'),
++        ('/foo/bar', '/foo/bar'),
++        ]
++    for t, v in tests:
++        assert v == canonicalize_name(t)
+--- /dev/null
++++ ros-noetic-rosgraph-1.16.0/test/test_network.py
+@@ -0,0 +1,251 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import os
++import struct
++import sys
++
++import unittest
++
++class MockSock(object):
++    def __init__(self, data=''):
++        self.data = data
++    def recv(self):
++        d = self.data
++        self.data = ''
++        return d
++    def sendall(self, d):
++        self.data = self.data + d
++    def send(self, d):
++        self.data = self.data + d
++        return len(d)
++    
++    
++class NetworkTest(unittest.TestCase):
++  
++    def test_encode_ros_handshake_header(self):
++        from rosgraph.network import encode_ros_handshake_header
++        d = {}
++        assert struct.pack('<I', 0) == encode_ros_handshake_header(d)
++        s = b"a=b"
++        d['a'] = 'b'
++        encoded = struct.pack('<I', len(s))+s
++        assert struct.pack('<I', len(encoded))+encoded == \
++            encode_ros_handshake_header({'a': 'b'})
++        d['c'] = 'd' 
++        s = b"c=d"
++        encoded = encoded+struct.pack('<I', len(s))+s    
++        assert struct.pack('<I', len(encoded))+encoded == \
++            encode_ros_handshake_header(d)
++        d['rawtype'] = '#line 1\nline 2\nline 3\nline\t4\r\r\n'
++        s = b"rawtype=#line 1\nline 2\nline 3\nline\t4\r\r\n"
++        encoded = encoded+struct.pack('<I', len(s))+s        
++        assert struct.pack('<I', len(encoded))+encoded == \
++            encode_ros_handshake_header(d)
++        if sys.version_info > (3, 0):
++            assert \
++                encode_ros_handshake_header(
++                    {'a': 'b', 'c': 'd', 'e': 'f'}) == \
++                encode_ros_handshake_header(
++                    {b'a': 'b', 'c': b'd', b'e': b'f'})
++        else:
++            assert \
++                encode_ros_handshake_header(
++                    {'a': 'b', 'c': 'd', 'e': 'f'}) == \
++                encode_ros_handshake_header(
++                    {u'a': 'b', 'c': u'd', u'e': u'f'})
++
++      
++    def test_decode_ros_handshake_header(self):
++        from rosgraph.network import decode_ros_handshake_header, ROSHandshakeException
++    
++        invalids = [b"field1",b"",]
++        # prepend field length
++        invalids = [(struct.pack('<I', len(s)) + s) for s in invalids]
++        # prepend message length
++        invalids = [(struct.pack('<I', len(s)) + s) for s in invalids]
++        
++        # invalid message length prefix
++        valid = b"a=b"
++        valid = struct.pack('<I', len(valid)) + valid
++        invalids.append(struct.pack('<I', 123)+valid)
++        # invalid field length prefix
++        invalid = struct.pack('<I', 123) + b'a=b'
++        invalids.append(struct.pack("<I", len(invalid)) + invalid)
++        
++        for i in invalids:
++            try:
++                decode_ros_handshake_header(i)
++                assert False, "should have failed: %s"%i
++            except ROSHandshakeException: pass
++        
++        assert {} == decode_ros_handshake_header(struct.pack('<I', 0))
++        # single-field tests
++        tests = [
++            (b"a=b", {'a': 'b'}),
++            # whitespace in keys is ignored
++            (b" a =b", {'a': 'b'}),
++            (b'newlines=\n\n\n\n', {'newlines': '\n\n\n\n'}),
++            (b'equals=foo=bar=car', {'equals': 'foo=bar=car'}),
++            (b"spaces=one two three four",{'spaces': 'one two three four'}),
++          ]
++        for s, d in tests:
++            # add in length fields
++            s = struct.pack('<I', len(s)+4) + struct.pack('<I', len(s)) + s      
++            assert d == decode_ros_handshake_header(s)
++        
++        # multi-field tests
++        tests = [ {'a': 'b', 'c': 'd'},
++                  {'spaces': '    ', 'tabs': '\t\t\t\t', 'equals': '====='},
++                  ]
++        for t in tests:
++            s = b''
++            for k, v in t.items():
++                f = "%s=%s"%(k, v)
++                f = f.encode()
++                s += struct.pack('<I', len(f)) + f
++            s = struct.pack('<I', len(s)) + s
++            assert t == decode_ros_handshake_header(s)
++            # make sure that decode ignores extra past header len
++            assert t == decode_ros_handshake_header(s+s)
++    
++    def test_parse_http_host_and_port(self):
++        from rosgraph.network import parse_http_host_and_port
++        invalid = ['', 'http://', 'http://localhost:bar', None]
++        for t in invalid:
++            try:
++                parse_http_host_and_port(t)
++                assert False, "should have failed: %s"%t
++            except ValueError:
++                pass
++    
++        assert ('localhost', 80) == parse_http_host_and_port('http://localhost')
++        assert ('localhost', 1234) == parse_http_host_and_port('http://localhost:1234')
++        assert ('localhost', 1) == parse_http_host_and_port('http://localhost:1')
++        assert ('willowgarage.com', 1) == parse_http_host_and_port('http://willowgarage.com:1')
++        assert ('FEDC:BA98:7654:3210:FEDC:BA98:7654:3210'.lower(), 81) == parse_http_host_and_port('http://[FEDC:BA98:7654:3210:FEDC:BA98:7654:3210]:81')
++    
++    def test_get_local_address(self):
++        # mostly a tripwire test
++        from rosgraph.network import get_local_address
++        a = get_local_address()
++        assert a
++    
++        # now test address override
++        os.environ['ROS_IP'] = 'bar'
++        assert 'bar' == get_local_address()
++        os.environ['ROS_HOSTNAME'] = 'foo'
++        assert 'foo' == get_local_address()
++    
++        try:
++            real_argv = sys.argv[:]
++            sys.argv = real_argv[:] + ['__ip:=1.2.3.4']
++            assert '1.2.3.4' == get_local_address()
++            sys.argv = real_argv[:] + ['__hostname:=bar']      
++            assert 'bar' == get_local_address()
++        finally:
++            sys.argv = real_argv
++        
++    def test_get_local_addresses(self):
++        # mostly a tripwire test
++        from rosgraph.network import get_local_addresses
++        addrs = get_local_addresses()
++        assert type(addrs) == list
++        assert len(addrs)
++    
++        # should be unaffected
++        os.environ['ROS_IP'] = 'bar'
++        assert addrs == get_local_addresses()
++        os.environ['ROS_HOSTNAME'] = 'foo'
++        assert addrs == get_local_addresses()
++    
++    def test_get_bind_address(self):
++        from rosgraph.network import get_bind_address
++        assert '0.0.0.0' == get_bind_address('foo')
++        assert '127.0.0.1' == get_bind_address('localhost')
++        assert '127.0.1.1' == get_bind_address('127.0.1.1')
++    
++        # now test address override
++        os.environ['ROS_IP'] = 'bar'
++        assert '0.0.0.0' == get_bind_address()       
++        assert '0.0.0.0' == get_bind_address('foo')
++        os.environ['ROS_IP'] = 'localhost'
++        assert '127.0.0.1' == get_bind_address()
++        assert '0.0.0.0' == get_bind_address('foo')
++        os.environ['ROS_HOSTNAME'] = 'bar'
++        assert '0.0.0.0' == get_bind_address()
++        assert '0.0.0.0' == get_bind_address('foo')
++        os.environ['ROS_HOSTNAME'] = 'localhost'
++        assert '127.0.0.1' == get_bind_address()  
++        assert '0.0.0.0' == get_bind_address('foo')
++    
++    def test_get_host_name(self):
++        from rosgraph.network import get_host_name
++        
++        os.environ['ROS_IP'] = 'foo'
++        assert 'foo' == get_host_name()
++        os.environ['ROS_HOSTNAME'] = 'bar'
++        assert 'bar' == get_host_name()
++    
++        try:
++            real_argv = sys.argv[:]
++            sys.argv = real_argv[:] + ['__ip:=1.2.3.4']
++            assert '1.2.3.4' == get_host_name()
++            sys.argv = real_argv[:] + ['__hostname:=baz']      
++            assert 'baz' == get_host_name()
++        finally:
++          sys.argv = real_argv
++        
++    def test_create_local_xmlrpc_uri(self):
++        from rosgraph.network import parse_http_host_and_port, create_local_xmlrpc_uri
++        os.environ['ROS_HOSTNAME'] = 'localhost'    
++        assert ('localhost', 1234) == parse_http_host_and_port(create_local_xmlrpc_uri(1234))
++    
++    def setUp(self):
++        self._ros_hostname = self._ros_ip = None
++        if 'ROS_HOSTNAME' in os.environ:
++            self._ros_hostname = os.environ['ROS_HOSTNAME']
++            del os.environ['ROS_HOSTNAME']
++        if 'ROS_IP' in os.environ:
++            self._ros_ip = os.environ['ROS_IP']
++            del os.environ['ROS_IP']
++    
++    def tearDown(self):
++        if 'ROS_HOSTNAME' in os.environ:
++            del os.environ['ROS_HOSTNAME']
++        if 'ROS_IP' in os.environ:
++            del os.environ['ROS_IP']
++        if self._ros_hostname:
++            os.environ['ROS_HOSTNAME'] = self._ros_hostname 
++        if self._ros_ip:
++            os.environ['ROS_IP'] = self._ros_ip
++    
+--- /dev/null
++++ ros-noetic-rosgraph-1.16.0/test/test_rosenv.py
+@@ -0,0 +1,78 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2011, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import os
++import sys
++
++def test_vars():
++    import rosgraph.rosenv
++    assert 'ROS_MASTER_URI' == rosgraph.rosenv.ROS_MASTER_URI
++    assert rosgraph.rosenv.ROS_IP == 'ROS_IP'
++    assert rosgraph.rosenv.ROS_HOSTNAME == 'ROS_HOSTNAME'
++    assert rosgraph.rosenv.ROS_NAMESPACE == 'ROS_NAMESPACE'
++    
++def test_get_master_uri():
++    from rosgraph.rosenv import get_master_uri
++    val = get_master_uri()
++    if 'ROS_MASTER_URI' in os.environ:
++        assert val == os.environ['ROS_MASTER_URI']
++
++    # environment override
++    val = get_master_uri(env=dict(ROS_MASTER_URI='foo'))
++    assert val == 'foo'
++
++    # argv override precedence, first arg wins
++    val = get_master_uri(env=dict(ROS_MASTER_URI='foo'), argv=['__master:=bar', '__master:=bar2'])
++    assert val == 'bar'
++
++    import rosgraph.rosenv
++    # empty env
++    assert rosgraph.rosenv.DEFAULT_MASTER_URI == get_master_uri(env={})
++    
++    # invalid argv
++    try:
++        val = get_master_uri(argv=['__master:='])
++        assert False, "should have failed"
++    except ValueError:
++        pass
++    # invalid argv
++    try:
++        val = get_master_uri(argv=['__master:=foo:=bar'])
++        assert False, "should have failed"
++    except ValueError:
++        pass
++
++    
++    
++
++    
++    
+--- /dev/null
++++ ros-noetic-rosgraph-1.16.0/test/test_rosgraph_command_offline.py
+@@ -0,0 +1,63 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import os
++import sys 
++import unittest
++import time
++        
++from subprocess import Popen, PIPE, check_call, call
++
++class TestRosgraphOffline(unittest.TestCase):
++
++    def setUp(self):
++        pass
++
++    ## test that the rosmsg command works
++    def test_cmd_help(self):
++        cmd = 'rosgraph'
++        output = Popen([cmd, '-h'], stdout=PIPE).communicate()[0]
++        self.assert_('Usage' in output.decode())
++            
++    def test_offline(self):
++        cmd = 'rosgraph'
++
++        # point at a different 'master'
++        env = os.environ.copy()
++        env['ROS_MASTER_URI'] = 'http://localhost:11312'
++        kwds = { 'env': env, 'stdout': PIPE, 'stderr': PIPE}
++
++        msg = "ERROR: Unable to communicate with master!" + os.linesep
++
++        output = Popen([cmd], **kwds).communicate()
++        self.assertEquals(msg, output[1].decode())
+--- /dev/null
++++ ros-noetic-rosgraph-1.16.0/test/test_rosgraph_masterapi_offline.py
+@@ -0,0 +1,398 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import os
++import sys
++import unittest
++
++import rosgraph.masterapi
++
++_ID = '/caller_id'
++_MASTER_URI = 'http://localhost:12345'
++
++class MasterMock(object):
++    """
++    Mock for testing Master without using actual master
++    """
++    
++    def __init__(self):
++        self.call = None
++        self.return_val = None
++
++    def getMasterUri(self, caller_id):
++        self.call = ('getMasterUri', caller_id)
++        return self.return_val
++    
++    def getPid(self, caller_id):
++        self.call = ('getPid', caller_id)
++        return self.return_val
++
++    def getUri(self, caller_id):
++        self.call = ('getUri', caller_id)
++        return self.return_val
++    
++    def registerService(self, caller_id, service, service_api, caller_api):
++        self.call = ('registerService', caller_id, service, service_api, caller_api)
++        return self.return_val
++    
++    def lookupService(self, caller_id, service):
++        self.call = ('lookupService', caller_id, service)
++        return self.return_val
++
++    def unregisterService(self, caller_id, service, service_api):
++        self.call = ('unregisterService', caller_id, service, service_api)
++        return self.return_val
++
++    def registerSubscriber(self, caller_id, topic, topic_type, caller_api):
++        self.call = ('registerSubscriber', caller_id, topic, topic_type, caller_api)
++        return self.return_val
++
++    def unregisterSubscriber(self, caller_id, topic, caller_api):
++        self.call = ('unregisterSubscriber', caller_id, topic, caller_api)
++        return self.return_val
++    
++    def registerPublisher(self, caller_id, topic, topic_type, caller_api):
++        self.call = ('registerPublisher', caller_id, topic, topic_type, caller_api)
++        return self.return_val
++    
++    def unregisterPublisher(self, caller_id, topic, caller_api):
++        self.call = ('unregisterPublisher', caller_id, topic, caller_api)
++        return self.return_val
++
++    def lookupNode(self, caller_id, node_name):
++        self.call = ('lookupNode', caller_id, node_name)
++        return self.return_val
++
++    def getPublishedTopics(self, caller_id, subgraph):
++        self.call = ('getPublishedTopics', caller_id, subgraph)
++        return self.return_val
++
++    def getTopicTypes(self, caller_id):
++        self.call = ('getTopicTypes', caller_id)
++        return self.return_val
++    
++    def getSystemState(self, caller_id):
++        self.call = ('getSystemState', caller_id)
++        return self.return_val
++
++    def getParam(self, caller_id, p):
++        self.call = ('getParam', caller_id, p)
++        return self.return_val
++
++    def hasParam(self, caller_id, p):
++        self.call = ('hasParam', caller_id, p)
++        return self.return_val
++
++    def deleteParam(self, caller_id, p):
++        self.call = ('deleteParam', caller_id, p)
++        return self.return_val
++
++    def searchParam(self, caller_id, p):
++        self.call = ('searchParam', caller_id, p)
++        return self.return_val
++
++    def setParam(self, caller_id, p, v):
++        self.call = ('setParam', caller_id, p, v)
++        return self.return_val
++
++    def subscribeParam(self, caller_id, api, p):
++        self.call = ('subscribeParam', caller_id, api, p)
++        return self.return_val
++
++    def unsubscribeParam(self, caller_id, api, p):
++        self.call = ('unsubscribeParam', caller_id, api, p)
++        return self.return_val
++    
++    def getParamNames(self, caller_id):
++        self.call = ('getParamNames', caller_id)
++        return self.return_val
++    
++class MasterApiOfflineTest(unittest.TestCase):
++  
++    def setUp(self):
++        self.m = rosgraph.masterapi.Master(_ID, master_uri = _MASTER_URI)
++        # replace xmlrpclib server proxy with mock
++        self.m.handle = MasterMock()
++
++    def throw_failure(self, attr, args, ret_val):
++        self.m.handle.return_val = ret_val
++        f = getattr(self.m, attr)
++        try:
++            f(*args)
++            self.fail("[%s] should have thrown Failure with args [%s], ret_val [%s]"%(attr, str(args), str(ret_val)))
++        except rosgraph.masterapi.Failure:
++            pass
++
++    def throw_error(self, attr, args, ret_val):
++        self.m.handle.return_val = ret_val
++        f = getattr(self.m, attr)
++        try:
++            f(*args)
++            self.fail("[%s] should have thrown Error with args [%s], ret_val [%s]"%(attr, str(args), str(ret_val)))
++        except rosgraph.masterapi.Error:
++            pass
++        
++    def test_Master(self):
++        # test constructor args
++        m = rosgraph.masterapi.Master(_ID, master_uri = 'http://localhost:12345')
++        self.assertEquals(_ID, m.caller_id)
++        self.assertEquals(_MASTER_URI, m.master_uri)        
++
++        reset_uri = False
++        if 'ROS_MASTER_URI' not in os.environ:
++            os.environ['ROS_MASTER_URI'] = 'http://localhost:21311'
++
++        try:
++            m = rosgraph.masterapi.Master(_ID)
++            self.assertEquals(os.environ['ROS_MASTER_URI'], m.master_uri)
++
++            id = '/some/other/id'
++            m = rosgraph.masterapi.Master(id)
++            self.assertEquals(id, m.caller_id)
++        finally:
++            if reset_uri:
++                del os.environ['ROS_MASTER_URI']
++                
++    def test_getPid(self):
++        h = self.m.handle
++        r = 1235
++        h.return_val = (1, '', r)
++        self.assertEquals(r, self.m.getPid())
++        self.assertEquals(('getPid',_ID), h.call)
++        self.throw_failure('getPid', (), (0, '', r))
++        self.throw_error('getPid', (), (-1, '', r))
++
++    def test_getPid(self):
++        h = self.m.handle
++        r = 'http://foo:1234'
++        h.return_val = (1, '', r)
++        self.assertEquals(r, self.m.getUri())
++        self.assertEquals(('getUri',_ID), h.call)
++        self.throw_failure('getUri', (), (0, '', r))
++        self.throw_error('getUri', (), (-1, '', r))
++
++    def test_lookupService(self):
++        h = self.m.handle
++        r = 'rosrpc://localhost:12345'
++        h.return_val = (1, '', r)
++        self.assertEquals(r, self.m.lookupService('/bar/service'))
++        self.assertEquals(('lookupService',_ID, '/bar/service'), h.call)
++        self.throw_failure('lookupService', ('/bar/service',), (0, '', r))
++        self.throw_error('lookupService', ('/bar/service',), (-1, '', r))
++
++    def test_registerService(self):
++        h = self.m.handle
++        r = 11
++        h.return_val = (1, '', r)
++        self.assertEquals(r, self.m.registerService('/bar/service', 'rosrpc://localhost:9812', 'http://localhost:893'))
++        self.assertEquals(('registerService',_ID, '/bar/service', 'rosrpc://localhost:9812', 'http://localhost:893'), h.call)
++        args = ('/bar/service', 'rosrpc://localhost:9812', 'http://localhost:893')
++        self.throw_failure('registerService', args, (0, '', r))
++        self.throw_error('registerService', args, (-1, '', r))
++
++    def test_unregisterService(self):
++        h = self.m.handle
++        r = 1
++        h.return_val = (1, '', r)
++        self.assertEquals(r, self.m.unregisterService('/bar/service', 'rosrpc://localhost:9812'))
++        self.assertEquals(('unregisterService',_ID, '/bar/service', 'rosrpc://localhost:9812'), h.call)
++        args = ('/bar/service', 'rosrpc://localhost:9812')
++        self.throw_failure('unregisterService', args, (0, '', r))
++        self.throw_error('unregisterService', args, (-1, '', r))
++        
++    def test_registerSubscriber(self):
++        h = self.m.handle
++        r = ['http://localhost:1234', 'http://localhost:98127']
++        h.return_val = (1, '', r)
++        self.assertEquals(r, self.m.registerSubscriber('/foo/node', 'std_msgs/String', 'http://localhost:9812'))
++        self.assertEquals(('registerSubscriber',_ID, '/foo/node', 'std_msgs/String', 'http://localhost:9812'), h.call)
++        args = ('/foo/node', 'std_msgs/String', 'http://localhost:9812')
++        self.throw_failure('registerSubscriber', args, (0, '', r))
++        self.throw_error('registerSubscriber', args, (-1, '', r))
++
++    def test_unregisterSubscriber(self):
++        h = self.m.handle
++        r = 1
++        h.return_val = (1, '', r)
++        self.assertEquals(r, self.m.unregisterSubscriber('/foo/node', 'http://localhost:9812'))
++        self.assertEquals(('unregisterSubscriber',_ID, '/foo/node', 'http://localhost:9812'), h.call)
++        args = ('/foo/node', 'http://localhost:9812')
++        self.throw_failure('unregisterSubscriber', args, (0, '', r))
++        self.throw_error('unregisterSubscriber', args, (-1, '', r))
++
++    def test_registerPublisher(self):
++        h = self.m.handle
++        r = 5
++        h.return_val = (1, '', r)
++        self.assertEquals(r, self.m.registerPublisher('/foo/node', 'std_msgs/String', 'http://localhost:9812'))
++        self.assertEquals(('registerPublisher',_ID, '/foo/node', 'std_msgs/String', 'http://localhost:9812'), h.call)
++        args = ('/foo/node', 'std_msgs/String', 'http://localhost:9812')
++        self.throw_failure('registerPublisher', args, (0, '', r))
++        self.throw_error('registerPublisher', args, (-1, '', r))
++
++    def test_unregisterPublisher(self):
++        h = self.m.handle
++        r = 10
++        h.return_val = (1, '', r)
++        self.assertEquals(r, self.m.unregisterPublisher('/foo/node', 'http://localhost:9812'))
++        self.assertEquals(('unregisterPublisher',_ID, '/foo/node', 'http://localhost:9812'), h.call)
++        args = ('/foo/node', 'http://localhost:9812')
++        self.throw_failure('unregisterPublisher', args, (0, '', r))
++        self.throw_error('unregisterPublisher', args, (-1, '', r))
++
++    def test_lookupNode(self):
++        h = self.m.handle
++        r = 'http://localhost:123'
++        h.return_val = (1, '', r)
++        self.assertEquals(r, self.m.lookupNode('/foo/node'))
++        self.assertEquals(('lookupNode',_ID, '/foo/node'), h.call)
++        args = ('/foo/node',)
++        self.throw_failure('lookupNode', args, (0, '', r))
++        self.throw_error('lookupNode', args, (-1, '', r))
++        
++    def test_getPublishedTopics(self):
++        h = self.m.handle
++        r = [ ['foo', 'bar'], ['baz', 'blah'] ]
++        h.return_val = (1, '', r)
++        self.assertEquals(r, self.m.getPublishedTopics('/foo'))
++        self.assertEquals(('getPublishedTopics',_ID, '/foo'), h.call)
++        args = ('/baz',)
++        self.throw_failure('getPublishedTopics', args, (0, '', r))
++        self.throw_error('getPublishedTopics', args, (-1, '', r))
++        
++    def test_getTopicTypes(self):
++        h = self.m.handle
++        r = [ ['/foo', 'std_msgs/String'], ['/baz', 'std_msgs/Int32'] ]
++        h.return_val = (1, '', r)
++        self.assertEquals(r, self.m.getTopicTypes())
++        self.assertEquals(('getTopicTypes',_ID), h.call)
++        self.throw_failure('getTopicTypes', (), (0, '', r))
++        self.throw_error('getTopicTypes', (), (-1, '', r))
++        
++
++    def test_getSystemState(self):
++        h = self.m.handle
++        r = [ [], [], [] ]
++        h.return_val = (1, '', r)
++        self.assertEquals(r, self.m.getSystemState())
++        self.assertEquals(('getSystemState', _ID), h.call)        
++        self.throw_failure('getSystemState', (), (0, '', r))
++        self.throw_error('getSystemState', (), (-1, '', r))
++
++    ################################################################################
++    # PARAM SERVER API TESTS
++
++    def test_getParam(self):
++        h = self.m.handle
++        r = 1
++        h.return_val = (1, '', r)
++        p = '/test_param'
++        self.assertEquals(r, self.m.getParam(p))
++        self.assertEquals(('getParam', _ID, p), h.call)
++        args = (p,)
++        self.throw_failure('getParam', args, (0, '', r))
++        self.throw_error('getParam', args, (-1, '', r))
++
++    def test_getParamNames(self):
++        h = self.m.handle
++        r = [ '/foo' ]
++        h.return_val = (1, '', r)
++        self.assertEquals(r, self.m.getParamNames())
++        self.assertEquals(('getParamNames', _ID), h.call)        
++        self.throw_failure('getParamNames', (), (0, '', r))
++        self.throw_error('getParamNames', (), (-1, '', r))
++        
++    def test_hasParam(self):
++        h = self.m.handle
++        r = True
++        h.return_val = (1, '', r)
++        p = '/test_param'
++        self.assertEquals(r, self.m.hasParam(p))
++        self.assertEquals(('hasParam', _ID, p), h.call)
++        self.throw_failure('hasParam', (p,), (0, '', r))
++        self.throw_error('hasParam', (p,), (-1, '', r))
++
++    def test_searchParam(self):
++        h = self.m.handle
++        r = '/foo'
++        h.return_val = (1, '', r)
++        p = '/test_param'
++        self.assertEquals(r, self.m.searchParam(p))
++        self.assertEquals(('searchParam', _ID, p), h.call)
++        self.throw_failure('searchParam', (p,), (0, '', r))
++        self.throw_error('searchParam', (p,), (-1, '', r))
++
++    def test_deleteParam(self):
++        h = self.m.handle
++        r = '/foo'
++        h.return_val = (1, '', r)
++        p = '/test_param'
++        self.assertEquals(r, self.m.deleteParam(p))
++        self.assertEquals(('deleteParam', _ID, p), h.call)        
++        self.throw_failure('deleteParam', (p,), (0, '', r))
++        self.throw_error('deleteParam', (p,), (-1, '', r))
++
++    def test_is_online(self):
++        self.failIf(rosgraph.masterapi.is_online(master_uri="http://fake:12345"))
++
++        self.m.handle.return_val = (1, '', 1235)
++        self.assert_(self.m.is_online())
++        
++    def test_subscribeParam(self):
++        h = self.m.handle
++        r = 1
++        h.return_val = (1, '', r)
++        args = ('http://bar:12345', '/test_param')
++        self.assertEquals(r, self.m.subscribeParam(*args))
++        self.assertEquals(('subscribeParam', _ID, args[0], args[1]), h.call)
++        self.throw_failure('subscribeParam', args, (0, '', r))
++        self.throw_error('subscribeParam', args, (-1, '', r))
++
++    def test_unsubscribeParam(self):
++        h = self.m.handle
++        r = 1
++        h.return_val = (1, '', r)
++        args = ('http://bar:12345', '/test_param')
++        self.assertEquals(r, self.m.unsubscribeParam(*args))
++        self.assertEquals(('unsubscribeParam', _ID, args[0], args[1]), h.call)
++        self.throw_failure('unsubscribeParam', args, (0, '', r))
++        self.throw_error('unsubscribeParam', args, (-1, '', r))
++
++    def test_setParam(self):
++        h = self.m.handle
++        r = 1
++        h.return_val = (1, '', r)
++        args = ('/test_set_param', 'foo')
++        self.assertEquals(r, self.m.setParam(*args))
++        self.assertEquals(('setParam', _ID, args[0], args[1]), h.call)
++        self.throw_failure('setParam', args, (0, '', r))
++        self.throw_error('setParam', args, (-1, '', r))
+--- /dev/null
++++ ros-noetic-rosgraph-1.16.0/test/test_roslogging.py
+@@ -0,0 +1,135 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2016, Kentaro Wada.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import logging
++import os
++try:
++    from cStringIO import StringIO
++except ImportError:
++    from io import StringIO
++import sys
++
++import re
++from nose.tools import assert_regexp_matches
++import rosgraph.roslogging
++
++
++os.environ['ROSCONSOLE_FORMAT'] = ' '.join([
++    '${severity}',
++    '${message}',
++    '${walltime}',
++    '${walltime:%Y-%m-%d %H:%M:%S}',
++    '${thread}',
++    '${logger}',
++    '${file}',
++    '${line}',
++    '${function}',
++    '${node}',
++    '${time}',
++    '${time:%Y-%m-%d %H:%M:%S}',
++])
++rosgraph.roslogging.configure_logging('test_rosgraph', logging.INFO)
++loginfo = logging.getLogger('rosout').info
++rosout_logger = logging.getLogger('rosout')
++assert isinstance(rosout_logger.handlers[0], rosgraph.roslogging.RosStreamHandler)
++default_ros_handler = rosout_logger.handlers[0]
++
++# Remap stdout for testing
++try:
++    from cStringIO import StringIO
++except ImportError:
++    from io import StringIO
++
++lout = StringIO()
++lerr = StringIO()
++test_ros_handler = rosgraph.roslogging.RosStreamHandler(colorize=False, stdout=lout, stderr=lerr)
++
++try:
++    # hack to replace the stream handler with a debug version
++    rosout_logger.removeHandler(default_ros_handler)
++    rosout_logger.addHandler(test_ros_handler)
++
++    loginfo('on module')
++
++    def logging_on_function():
++        loginfo('on function')
++
++    logging_on_function()
++
++    class LoggingOnClass(object):
++
++        def __init__(self):
++            loginfo('on method')
++
++    LoggingOnClass()
++
++    def test_rosconsole__logging_format():
++        this_file = os.path.abspath(__file__)
++        # this is necessary to avoid test fails because of .pyc cache file
++        base, ext = os.path.splitext(this_file)
++        if ext == '.pyc':
++            this_file = base + '.py'
++
++        for i, loc in enumerate(['module', 'function', 'method']):
++            if loc == 'module':
++                function = '<module>'
++            elif loc == 'function':
++                function = 'logging_on_function'
++            elif loc == 'method':
++                function = 'LoggingOnClass.__init__'
++            else:
++                raise ValueError
++
++            log_out = ' '.join([
++                'INFO',
++                'on ' + loc,
++                r'[0-9]*\.[0-9]*',
++                r'[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}',
++                '[0-9]*',
++                'rosout',
++                re.escape(this_file),
++                '[0-9]*',
++                function,
++                # depending if rospy.get_name() is available
++                '(/unnamed|<unknown_node_name>)',
++                r'[0-9]*\.[0-9]*',
++                r'[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}',
++            ])
++            assert_regexp_matches(lout.getvalue().splitlines()[i], log_out)
++
++finally:
++
++    # restoring default ros handler
++    rosout_logger.removeHandler(test_ros_handler)
++    rosout_logger.addHandler(default_ros_handler)
++    # lout and lerr need to stay open while test is running
++
+--- /dev/null
++++ ros-noetic-rosgraph-1.16.0/test/test_roslogging_user_logger.py
+@@ -0,0 +1,153 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2016, Kentaro Wada.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++"""
++Test for rosgraph.roslogger with custom logger defined by user,
++to ensure the custom logger won't be overwritten by RospyLogger defined
++in rosgraph.roslogger.
++"""
++
++import logging
++import os
++try:
++    from cStringIO import StringIO
++except ImportError:
++    from io import StringIO
++import sys
++
++from nose.tools import assert_regexp_matches
++
++import rosgraph.roslogging
++
++
++# set user defined custom logger
++class UserCustomLogger(logging.Logger):
++    def findCaller(self, stack_info=False, stacklevel=1):
++        """Returns static caller.
++
++        This method is being overwritten in rosgraph.roslogging.
++        """
++        if sys.version_info > (3, 2):
++            # Dummy last argument to match Python3 return type
++            return '<filename>', '<lineno>', '<func_name>', None
++        else:
++            return '<filename>', '<lineno>', '<func_name>'
++
++    def _log(self, level, msg, args, exc_info=None, extra=None):
++        """Write log with ROS_IP.
++
++        This method is not being overwritten in rosgraph.roslogging.
++        """
++        ros_ip = os.environ.get('ROS_IP', '<unknown ros_ip>')
++        msg = '%s %s' % (ros_ip, msg)
++        logging.Logger._log(self, level, msg, args, exc_info, extra)
++
++
++def setup_module():
++    logging.setLoggerClass(UserCustomLogger)
++
++
++def teardown_module():
++    logging.setLoggerClass(rosgraph.roslogging.RospyLogger)
++
++
++def test_roslogging_user_logger():
++    os.environ['ROS_IP'] = '127.0.0.1'
++    os.environ['ROSCONSOLE_FORMAT'] = ' '.join([
++        '${severity}',
++        '${message}',
++        '${walltime}',
++        '${walltime:%Y-%m-%d %H:%M:%S}',
++        '${thread}',
++        '${logger}',
++        '${file}',
++        '${line}',
++        '${function}',
++        '${node}',
++        '${time}',
++        '${time:%Y-%m-%d %H:%M:%S}',
++    ])
++    rosgraph.roslogging.configure_logging('test_rosgraph', logging.INFO)
++    loginfo = logging.getLogger('rosout.custom_logger_test').info
++
++    # Remap stdout for testing
++    try:
++        from cStringIO import StringIO
++    except ImportError:
++        from io import StringIO
++    lout = StringIO()
++    lerr = StringIO()
++    test_ros_handler = rosgraph.roslogging.RosStreamHandler(colorize=False, stdout=lout, stderr=lerr)
++
++    custom_logger = logging.getLogger('rosout.custom_logger_test')
++    assert len(custom_logger.handlers) == 0
++
++    # log messages will be propagated to parent
++    rosout_logger = logging.getLogger('rosout')
++    assert isinstance(rosout_logger.handlers[0], rosgraph.roslogging.RosStreamHandler)
++    default_ros_handler = rosout_logger.handlers[0]
++
++    # hack to replace the stream handler with a debug version
++    rosout_logger.removeHandler(default_ros_handler)
++    rosout_logger.addHandler(test_ros_handler)
++
++    try:
++        # Logging
++        msg = 'Hello world.'
++        loginfo(msg)
++
++        log_expected = ' '.join([
++            'INFO',
++            os.environ['ROS_IP'],
++            msg,
++            r'[0-9]*\.[0-9]*',
++            r'[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}',
++            '[0-9]*',
++            'rosout.custom_logger_test',
++            '<filename>',
++            '<lineno>',
++            '<func_name>',
++            # depending if rospy.get_name() is available
++            '(/unnamed|<unknown_node_name>)',
++            r'[0-9]*\.[0-9]*',
++            r'[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}',
++        ])
++        assert_regexp_matches(lout.getvalue().strip(), log_expected)
++
++    finally:
++        # restoring default ros handler
++        logging.getLogger('rosout').removeHandler(test_ros_handler)
++        logging.getLogger('rosout').addHandler(default_ros_handler)
++        lout.close()
++        lerr.close()
++
++
+--- /dev/null
++++ ros-noetic-rosgraph-1.16.0/test/test_xmlrpc.py
+@@ -0,0 +1,84 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import os
++import sys
++import time
++import mock
++
++def test_XmlRpcHandler():
++    from rosgraph.xmlrpc import XmlRpcHandler    
++    # tripwire
++    h = XmlRpcHandler()
++    # noop
++    h._ready('http://localhost:1234')
++    
++def test_XmlRpcNode():
++    from rosgraph.xmlrpc import XmlRpcNode, XmlRpcHandler
++    # not a very comprehensive test (yet)
++    #port, handler
++    tests = [
++        (None, None, None),
++        (8080, None, 8080),
++        ('8080', None, 8080),
++        (u'8080', None, 8080),
++      ]
++    
++    for port, handler,true_port in tests:
++        n = XmlRpcNode(port, handler)
++        assert true_port == n.port
++        assert handler == n.handler
++        assert None == n.uri
++        assert None == n.server
++        n.set_uri('http://fake:1234')
++        assert 'http://fake:1234' == n.uri
++
++        n.start()
++        start = time.time()
++        while not n.uri and time.time() - start < 5.:
++            time.sleep(0.00001) #poll for XMLRPC init
++
++        assert n.uri
++        n.shutdown('test case')
++
++    # get coverage on run init
++    n = XmlRpcNode(0, XmlRpcHandler())
++    n._run_init()
++    n.shutdown('test case')
++
++    # mock in server in order to play with _run()
++    n.server = mock.Mock()
++    n.is_shutdown = False
++    n._run_init = mock.Mock()
++    n.server.serve_forever.side_effect = IOError(1, 'boom')
++    n._run()
++

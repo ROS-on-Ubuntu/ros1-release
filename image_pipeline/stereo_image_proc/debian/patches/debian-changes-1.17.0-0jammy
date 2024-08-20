@@ -1,0 +1,2943 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-stereo-image-proc (1.17.0-0jammy) jammy; urgency=high
+ .
+   * Switch to hpp headers of pluginlib
+   * Drop old C++ standard compiler flag
+   * Switch to new boost/bind/bind.hpp
+   * Contributors: Jochen Sprickerhof
+Author: Vincent Rabaud <vincent.rabaud@gmail.com>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-stereo-image-proc-1.17.0/CHANGELOG.rst
+@@ -0,0 +1,161 @@
++1.17.0 (2022-10-17)
++-------------------
++* Switch to hpp headers of pluginlib
++* Drop old C++ standard compiler flag
++* Switch to new boost/bind/bind.hpp
++* Contributors: Jochen Sprickerhof
++
++1.16.0 (2021-11-12)
++-------------------
++* Fix includes
++  In the following commit in vision_opencv, the include
++  opencv2/calib3d/calib3d.hpp was removed from pinhole_camera_model.h :
++  https://github.com/ros-perception/vision_opencv/commit/51ca54354a8353fc728fcc8bd8ead7d2b6cf7444
++  Since we indirectly depended on this include, we now have to add it
++  directly.
++* support rgba8 and bgra8 encodings by skipping alpha channel
++* downsampling original img / upsampling disparity img
++* Contributors: Avinash Thakur, Martin Günther, choi0330
++
++1.15.3 (2020-12-11)
++-------------------
++* remove email blasts from steve macenski (`#595 <https://github.com/ros-perception/image_pipeline/issues/595>`_)
++* Contributors: Steve Macenski
++
++1.15.2 (2020-05-19)
++-------------------
++
++1.15.1 (2020-05-18)
++-------------------
++
++1.15.0 (2020-05-14)
++-------------------
++* Python 3 compatibility (`#530 <https://github.com/ros-perception/image_pipeline/issues/530>`_)
++* cmake_minimum_required to 3.0.2
++* Adapted to OpenCV4
++* import setup from setuptools instead of distutils-core
++* updated install locations for better portability. (`#500 <https://github.com/ros-perception/image_pipeline/issues/500>`_)
++* Contributors: Joshua Whitley, Sean Yen
++
++1.14.0 (2020-01-12)
++-------------------
++* Expand range for min_disparity and disparity_range. (`#431 <https://github.com/ros-perception/image_pipeline/issues/431>`_)
++* Contributors: Terry Welsh, Tim Übelhör
++
++1.13.0 (2019-06-12)
++-------------------
++* Merge pull request `#375 <https://github.com/ros-perception/image_pipeline/issues/375>`_ from fizyr-forks/opencv4
++* Fix OpenCV4 compatibility.
++* Merge pull request `#338 <https://github.com/ros-perception/image_pipeline/issues/338>`_ from k-okada/arg_sync
++* add approximate_sync args in stereo_image_proc.launch
++* Merge pull request `#395 <https://github.com/ros-perception/image_pipeline/issues/395>`_ from ros-perception/steve_maintain
++* adding autonomoustuff mainainer
++* adding stevemacenski as maintainer to get emails
++* Merge pull request `#392 <https://github.com/ros-perception/image_pipeline/issues/392>`_ from bknight-i3drobotics/patch-1
++* Fix typo
++  Typo in line: 14. Changed 'sterel algorithm' to 'stereo algorithm'
++* add approximate_sync args in stereo_image_proc.launch
++* Contributors: Hans Gaiser, Joshua Whitley, Kei Okada, Steven Macenski, Yoshito Okada, bknight-i3drobotics, stevemacenski
++
++1.12.23 (2018-05-10)
++--------------------
++* Removed unused mutable scratch buffers (`#315 <https://github.com/ros-perception/image_pipeline/issues/315>`_)
++  The uint32_t buffers conflicted with newer release of OpenCV3, as explained here https://github.com/ros-perception/image_pipeline/issues/310
++* Contributors: Miquel Massot
++
++1.12.22 (2017-12-08)
++--------------------
++
++1.12.21 (2017-11-05)
++--------------------
++* Updated fix for traits change. (`#303 <https://github.com/ros-perception/image_pipeline/issues/303>`_)
++* Fix C++11 compilation
++  This fixes `#292 <https://github.com/ros-perception/image_pipeline/issues/292>`_ and `#291 <https://github.com/ros-perception/image_pipeline/issues/291>`_
++* Contributors: Mike Purvis, Vincent Rabaud
++
++1.12.20 (2017-04-30)
++--------------------
++* fix doc jobs
++  This is a proper fix for `#233 <https://github.com/ros-perception/image_pipeline/issues/233>`_
++* address gcc6 build error
++  With gcc6, compiling fails with `stdlib.h: No such file or directory`,
++  as including '-isystem /usr/include' breaks with gcc6, cf.,
++  https://gcc.gnu.org/bugzilla/show_bug.cgi?id=70129.
++  This commit addresses this issue for this package in the same way
++  it was addressed in various other ROS packages. A list of related
++  commits and pull requests is at:
++  https://github.com/ros/rosdistro/issues/12783
++  Signed-off-by: Lukas Bulwahn <lukas.bulwahn@oss.bmw-carit.de>
++* Contributors: Lukas Bulwahn, Vincent Rabaud
++
++1.12.19 (2016-07-24)
++--------------------
++
++1.12.18 (2016-07-12)
++--------------------
++
++1.12.17 (2016-07-11)
++--------------------
++
++1.12.16 (2016-03-19)
++--------------------
++* clean OpenCV dependency in package.xml
++* Contributors: Vincent Rabaud
++
++1.12.15 (2016-01-17)
++--------------------
++* simplify OpenCV3 conversion
++* Contributors: Vincent Rabaud
++
++1.12.14 (2015-07-22)
++--------------------
++* add StereoSGBM and it can be chosen from dynamic_reconfigure
++* Contributors: Ryohei Ueda
++
++1.12.13 (2015-04-06)
++--------------------
++* get code to compile with OpenCV3
++* modify pointcloud data format of stereo_image_proc using point_cloud2_iterator
++* Contributors: Hiroaki Yaguchi, Vincent Rabaud
++
++1.12.12 (2014-12-31)
++--------------------
++
++1.12.11 (2014-10-26)
++--------------------
++
++1.12.10 (2014-09-28)
++--------------------
++
++1.12.9 (2014-09-21)
++-------------------
++* get code to compile with OpenCV3
++  fixes `#96 <https://github.com/ros-perception/image_pipeline/issues/96>`_
++* Contributors: Vincent Rabaud
++
++1.12.8 (2014-08-19)
++-------------------
++
++1.12.6 (2014-07-27)
++-------------------
++
++1.12.4 (2014-04-28)
++-------------------
++
++1.12.3 (2014-04-12)
++-------------------
++
++1.12.2 (2014-04-08)
++-------------------
++
++1.12.0 (2014-04-04)
++-------------------
++* remove PointCloud1 nodelets
++
++1.11.5 (2013-12-07 13:42:55 +0100)
++----------------------------------
++- fix compilation on OSX (#50)
++
++1.11.4 (2013-11-23 13:10:55 +0100)
++----------------------------------
++- convert images to MONO8 when computing disparity if needed (#49)
+--- /dev/null
++++ ros-noetic-stereo-image-proc-1.17.0/CMakeLists.txt
+@@ -0,0 +1,55 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(stereo_image_proc)
++
++find_package(catkin REQUIRED cv_bridge dynamic_reconfigure image_geometry image_proc image_transport message_filters nodelet sensor_msgs stereo_msgs)
++find_package(Boost REQUIRED COMPONENTS thread)
++
++# Dynamic reconfigure support
++generate_dynamic_reconfigure_options(cfg/Disparity.cfg)
++
++catkin_package(
++  CATKIN_DEPENDS image_geometry image_proc sensor_msgs stereo_msgs
++  INCLUDE_DIRS include
++  LIBRARIES ${PROJECT_NAME}
++)
++
++include_directories(include)
++
++find_package(OpenCV REQUIRED)
++include_directories(${catkin_INCLUDE_DIRS} ${OpenCV_INCLUDE_DIRS})
++
++# See note in image_proc/CMakeLists.txt
++add_definitions(-DOPENCV_TRAITS_ENABLE_DEPRECATED)
++
++# Nodelet library
++add_library(${PROJECT_NAME} src/libstereo_image_proc/processor.cpp src/nodelets/disparity.cpp src/nodelets/point_cloud2.cpp)
++target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES}
++                                      ${OpenCV_LIBRARIES}
++)
++add_dependencies(${PROJECT_NAME} ${PROJECT_NAME}_gencfg)
++install(TARGETS ${PROJECT_NAME}
++        ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
++        LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
++        RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
++)
++install(FILES nodelet_plugins.xml
++        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
++)
++
++# Standalone node
++add_executable(stereoimageproc_exe src/nodes/stereo_image_proc.cpp)
++target_link_libraries(stereoimageproc_exe stereo_image_proc)
++SET_TARGET_PROPERTIES(stereoimageproc_exe PROPERTIES OUTPUT_NAME stereo_image_proc)
++install(TARGETS stereoimageproc_exe
++        DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
++)
++
++# install the launch file
++install(DIRECTORY launch
++        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/
++)
++
++# install the include directory
++install(DIRECTORY include/${PROJECT_NAME}/
++        DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
++)
+--- /dev/null
++++ ros-noetic-stereo-image-proc-1.17.0/cfg/Disparity.cfg
+@@ -0,0 +1,39 @@
++#! /usr/bin/env python
++
++# Declare parameters that control stereo processing
++
++PACKAGE='stereo_image_proc'
++
++from dynamic_reconfigure.parameter_generator_catkin import *
++
++gen = ParameterGenerator()
++
++stereo_algo_enum = gen.enum([gen.const("StereoBM", int_t, 0, "Block Matching"),
++                               gen.const("StereoSGBM", int_t, 1, "SemiGlobal Block Matching")],
++                               "stereo algorithm")
++gen.add("stereo_algorithm", int_t, 0, "stereo algorithm", 0, 0, 1,
++        edit_method = stereo_algo_enum)
++# disparity block matching pre-filtering parameters
++gen.add("prefilter_size", int_t, 0, "Normalization window size, pixels", 9, 5, 255)
++gen.add("prefilter_cap",  int_t, 0, "Bound on normalized pixel values", 31, 1, 63)
++
++# disparity block matching correlation parameters
++gen.add("correlation_window_size", int_t, 0, "SAD correlation window width, pixels", 15, 5, 255)
++gen.add("min_disparity",           int_t, 0, "Disparity to begin search at, pixels (may be negative)", 0, -2048, 2048)
++gen.add("disparity_range",         int_t, 0, "Number of disparities to search, pixels", 64, 32, 4096)
++# TODO What about trySmallerWindows?
++
++# disparity block matching post-filtering parameters
++# NOTE: Making uniqueness_ratio int_t instead of double_t to work around dynamic_reconfigure gui issue
++gen.add("uniqueness_ratio",  double_t, 0, "Filter out if best match does not sufficiently exceed the next-best match", 15, 0, 100)
++gen.add("texture_threshold", int_t,    0, "Filter out if SAD window response does not exceed texture threshold", 10, 0, 10000)
++gen.add("speckle_size",      int_t,    0, "Reject regions smaller than this size, pixels", 100, 0, 1000)
++gen.add("speckle_range",     int_t,    0, "Max allowed difference between detected disparities", 4, 0, 31)
++gen.add("fullDP", bool_t, 0, "Run the full variant of the algorithm, only available in SGBM", False)
++gen.add("P1", double_t, 0, "The first parameter controlling the disparity smoothness, only available in SGBM", 200, 0, 4000)
++gen.add("P2", double_t, 0, "The second parameter controlling the disparity smoothness., only available in SGBM", 400, 0, 4000)
++gen.add("disp12MaxDiff", int_t, 0, "Maximum allowed difference (in integer pixel units) in the left-right disparity check, only available in SGBM", 0, 0, 128)
++# First string value is node name, used only for generating documentation
++# Second string value ("Disparity") is name of class and generated
++#    .h file, with "Config" added, so class DisparityConfig
++exit(gen.generate(PACKAGE, "stereo_image_proc", "Disparity"))
+--- /dev/null
++++ ros-noetic-stereo-image-proc-1.17.0/doc/mainpage.dox
+@@ -0,0 +1,14 @@
++/**
++
++@mainpage
++
++@htmlinclude manifest.html
++
++@b stereo_image_proc contains a node for performing rectification and
++color processing on the raw images produced by a pair of stereo cameras.
++It also produces 3d stereo outputs - the disparity image and point cloud.
++See http://www.ros.org/wiki/stereo_image_proc for documentation.
++
++Currently this package has no public code API.
++
++*/
+--- /dev/null
++++ ros-noetic-stereo-image-proc-1.17.0/doc/stereo_frames.svg
+@@ -0,0 +1,1052 @@
++<?xml version="1.0" encoding="UTF-8" standalone="no"?>
++<!-- Created with Inkscape (http://www.inkscape.org/) -->
++
++<svg
++   xmlns:dc="http://purl.org/dc/elements/1.1/"
++   xmlns:cc="http://creativecommons.org/ns#"
++   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
++   xmlns:svg="http://www.w3.org/2000/svg"
++   xmlns="http://www.w3.org/2000/svg"
++   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
++   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
++   sodipodi:docname="stereo_frames.svg"
++   inkscape:version="0.47pre4 r22446"
++   version="1.1"
++   id="svg2"
++   height="1052.3622047"
++   width="744.09448819">
++  <sodipodi:namedview
++     id="base"
++     pagecolor="#ffffff"
++     bordercolor="#666666"
++     borderopacity="1.0"
++     inkscape:pageopacity="1"
++     inkscape:pageshadow="2"
++     inkscape:zoom="0.90509668"
++     inkscape:cx="180.41471"
++     inkscape:cy="618.77172"
++     inkscape:document-units="px"
++     inkscape:current-layer="layer1"
++     showgrid="false"
++     inkscape:snap-grids="true"
++     inkscape:snap-to-guides="true"
++     inkscape:window-width="1448"
++     inkscape:window-height="1152"
++     inkscape:window-x="976"
++     inkscape:window-y="107"
++     inkscape:window-maximized="0">
++    <sodipodi:guide
++       position="0,0"
++       orientation="0,744.09448"
++       id="guide3683" />
++    <sodipodi:guide
++       position="744.09448,0"
++       orientation="-1052.3622,0"
++       id="guide3685" />
++    <sodipodi:guide
++       position="744.09448,1052.3622"
++       orientation="0,-744.09448"
++       id="guide3687" />
++    <sodipodi:guide
++       position="0,1052.3622"
++       orientation="1052.3622,0"
++       id="guide3689" />
++    <sodipodi:guide
++       position="0,0"
++       orientation="0,744.09448"
++       id="guide3691" />
++    <sodipodi:guide
++       position="744.09448,0"
++       orientation="-1052.3622,0"
++       id="guide3693" />
++    <sodipodi:guide
++       position="744.09448,1052.3622"
++       orientation="0,-744.09448"
++       id="guide3695" />
++    <sodipodi:guide
++       position="0,1052.3622"
++       orientation="1052.3622,0"
++       id="guide3697" />
++  </sodipodi:namedview>
++  <defs
++     id="defs4">
++    <marker
++       inkscape:stockid="Arrow2Mend"
++       orient="auto"
++       refY="0.0"
++       refX="0.0"
++       id="Arrow2Mend"
++       style="overflow:visible;">
++      <path
++         id="path3733"
++         style="font-size:12.0;fill-rule:evenodd;stroke-width:0.62500000;stroke-linejoin:round;"
++         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
++         transform="scale(0.6) rotate(180) translate(0,0)" />
++    </marker>
++    <marker
++       inkscape:stockid="Arrow1Lend"
++       orient="auto"
++       refY="0.0"
++       refX="0.0"
++       id="Arrow1Lend"
++       style="overflow:visible;">
++      <path
++         id="path3709"
++         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
++         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;marker-start:none;"
++         transform="scale(0.8) rotate(180) translate(12.5,0)" />
++    </marker>
++    <inkscape:perspective
++       sodipodi:type="inkscape:persp3d"
++       inkscape:vp_x="48.535565 : 28.02202 : 0"
++       inkscape:vp_y="-19.704059 : 11.376144 : 0"
++       inkscape:vp_z="5.7301869e-16 : 9.3584146 : 0"
++       inkscape:persp3d-origin="156.5601 : 640.75245 : 1"
++       id="perspective10" />
++    <inkscape:perspective
++       id="perspective3614"
++       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
++       inkscape:vp_z="1 : 0.5 : 1"
++       inkscape:vp_y="0 : 1000 : 0"
++       inkscape:vp_x="0 : 0.5 : 1"
++       sodipodi:type="inkscape:persp3d" />
++    <inkscape:perspective
++       id="perspective3638"
++       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
++       inkscape:vp_z="1 : 0.5 : 1"
++       inkscape:vp_y="0 : 1000 : 0"
++       inkscape:vp_x="0 : 0.5 : 1"
++       sodipodi:type="inkscape:persp3d" />
++    <inkscape:perspective
++       id="perspective3660"
++       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
++       inkscape:vp_z="1 : 0.5 : 1"
++       inkscape:vp_y="0 : 1000 : 0"
++       inkscape:vp_x="0 : 0.5 : 1"
++       sodipodi:type="inkscape:persp3d" />
++    <marker
++       inkscape:stockid="Arrow1Lend2"
++       orient="auto"
++       refY="0.0"
++       refX="0.0"
++       id="Arrow1Lend2"
++       style="overflow:visible;">
++      <path
++         id="path4160"
++         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
++         style="marker-start:none;stroke:#ff0000;stroke-width:1.0pt;fill:#ff0000;fill-rule:evenodd"
++         transform="scale(0.8) rotate(180) translate(12.5,0)" />
++    </marker>
++    <inkscape:perspective
++       sodipodi:type="inkscape:persp3d"
++       inkscape:vp_x="0 : 0.5 : 1"
++       inkscape:vp_y="0 : 1000 : 0"
++       inkscape:vp_z="1 : 0.5 : 1"
++       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
++       id="perspective4232" />
++    <marker
++       inkscape:stockid="Arrow1Lend2"
++       orient="auto"
++       refY="0"
++       refX="0"
++       id="Arrow1Lend2-3"
++       style="overflow:visible">
++      <path
++         id="path4160-4"
++         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
++         style="fill:#ff0000;fill-rule:evenodd;stroke:#ff0000;stroke-width:1pt;marker-start:none"
++         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
++    </marker>
++    <inkscape:perspective
++       sodipodi:type="inkscape:persp3d"
++       inkscape:vp_x="0 : 0.5 : 1"
++       inkscape:vp_y="0 : 1000 : 0"
++       inkscape:vp_z="1 : 0.5 : 1"
++       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
++       id="perspective4260" />
++    <marker
++       inkscape:stockid="Arrow1Lend2"
++       orient="auto"
++       refY="0"
++       refX="0"
++       id="Arrow1Lend2-5"
++       style="overflow:visible">
++      <path
++         id="path4160-1"
++         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
++         style="fill:#ff0000;fill-rule:evenodd;stroke:#ff0000;stroke-width:1pt;marker-start:none"
++         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
++    </marker>
++    <marker
++       inkscape:stockid="Arrow1Lend2U"
++       orient="auto"
++       refY="0.0"
++       refX="0.0"
++       id="Arrow1Lend2U"
++       style="overflow:visible;">
++      <path
++         id="path4306"
++         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
++         style="fill-rule:evenodd;marker-start:none;stroke:#00ff00;stroke-width:1.0pt;fill:#00ff00"
++         transform="scale(0.8) rotate(180) translate(12.5,0)" />
++    </marker>
++    <inkscape:perspective
++       id="perspective4379"
++       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
++       inkscape:vp_z="1 : 0.5 : 1"
++       inkscape:vp_y="0 : 1000 : 0"
++       inkscape:vp_x="0 : 0.5 : 1"
++       sodipodi:type="inkscape:persp3d" />
++    <marker
++       inkscape:stockid="Arrow1Lend2"
++       orient="auto"
++       refY="0"
++       refX="0"
++       id="Arrow1Lend2-8"
++       style="overflow:visible">
++      <path
++         id="path4160-7"
++         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
++         style="fill:#ff0000;fill-rule:evenodd;stroke:#ff0000;stroke-width:1pt;marker-start:none"
++         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
++    </marker>
++    <marker
++       inkscape:stockid="Arrow1Lend2W"
++       orient="auto"
++       refY="0.0"
++       refX="0.0"
++       id="Arrow1Lend2W"
++       style="overflow:visible;">
++      <path
++         id="path4430"
++         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
++         style="fill-rule:evenodd;marker-start:none;stroke:#00ff00;stroke-width:1.0pt;fill:#00ff00"
++         transform="scale(0.8) rotate(180) translate(12.5,0)" />
++    </marker>
++    <marker
++       inkscape:stockid="Arrow1Lend2Uq"
++       orient="auto"
++       refY="0.0"
++       refX="0.0"
++       id="Arrow1Lend2Uq"
++       style="overflow:visible;">
++      <path
++         id="path4433"
++         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
++         style="marker-start:none;stroke:#ff0000;stroke-width:1.0pt;fill:#ff0000;fill-rule:evenodd"
++         transform="scale(0.8) rotate(180) translate(12.5,0)" />
++    </marker>
++    <marker
++       inkscape:stockid="Arrow1Lend2T"
++       orient="auto"
++       refY="0.0"
++       refX="0.0"
++       id="Arrow1Lend2T"
++       style="overflow:visible;">
++      <path
++         id="path4436"
++         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
++         style="fill-rule:evenodd;marker-start:none;stroke:#0000ff;stroke-width:1.0pt;fill:#0000ff"
++         transform="scale(0.8) rotate(180) translate(12.5,0)" />
++    </marker>
++    <inkscape:perspective
++       sodipodi:type="inkscape:persp3d"
++       inkscape:vp_x="0 : 0.5 : 1"
++       inkscape:vp_y="0 : 1000 : 0"
++       inkscape:vp_z="1 : 0.5 : 1"
++       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
++       id="perspective6100" />
++    <inkscape:perspective
++       sodipodi:type="inkscape:persp3d"
++       inkscape:vp_x="0 : 0.5 : 1"
++       inkscape:vp_y="0 : 1000 : 0"
++       inkscape:vp_z="1 : 0.5 : 1"
++       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
++       id="perspective6125" />
++    <inkscape:perspective
++       sodipodi:type="inkscape:persp3d"
++       inkscape:vp_x="0 : 0.5 : 1"
++       inkscape:vp_y="0 : 1000 : 0"
++       inkscape:vp_z="1 : 0.5 : 1"
++       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
++       id="perspective6154" />
++    <inkscape:perspective
++       sodipodi:type="inkscape:persp3d"
++       inkscape:vp_x="0 : 0.5 : 1"
++       inkscape:vp_y="0 : 1000 : 0"
++       inkscape:vp_z="1 : 0.5 : 1"
++       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
++       id="perspective6176" />
++    <inkscape:perspective
++       sodipodi:type="inkscape:persp3d"
++       inkscape:vp_x="0 : 0.5 : 1"
++       inkscape:vp_y="0 : 1000 : 0"
++       inkscape:vp_z="1 : 0.5 : 1"
++       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
++       id="perspective6176-1" />
++    <inkscape:perspective
++       sodipodi:type="inkscape:persp3d"
++       inkscape:vp_x="0 : 0.5 : 1"
++       inkscape:vp_y="0 : 1000 : 0"
++       inkscape:vp_z="1 : 0.5 : 1"
++       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
++       id="perspective6176-2" />
++    <inkscape:perspective
++       sodipodi:type="inkscape:persp3d"
++       inkscape:vp_x="0 : 0.5 : 1"
++       inkscape:vp_y="0 : 1000 : 0"
++       inkscape:vp_z="1 : 0.5 : 1"
++       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
++       id="perspective6176-9" />
++    <inkscape:perspective
++       sodipodi:type="inkscape:persp3d"
++       inkscape:vp_x="0 : 0.5 : 1"
++       inkscape:vp_y="0 : 1000 : 0"
++       inkscape:vp_z="1 : 0.5 : 1"
++       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
++       id="perspective6176-4" />
++    <inkscape:perspective
++       sodipodi:type="inkscape:persp3d"
++       inkscape:vp_x="0 : 0.5 : 1"
++       inkscape:vp_y="0 : 1000 : 0"
++       inkscape:vp_z="1 : 0.5 : 1"
++       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
++       id="perspective6176-6" />
++    <inkscape:perspective
++       sodipodi:type="inkscape:persp3d"
++       inkscape:vp_x="0 : 0.5 : 1"
++       inkscape:vp_y="0 : 1000 : 0"
++       inkscape:vp_z="1 : 0.5 : 1"
++       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
++       id="perspective6176-0" />
++    <inkscape:perspective
++       sodipodi:type="inkscape:persp3d"
++       inkscape:vp_x="0 : 0.5 : 1"
++       inkscape:vp_y="0 : 1000 : 0"
++       inkscape:vp_z="1 : 0.5 : 1"
++       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
++       id="perspective6176-5" />
++    <inkscape:perspective
++       sodipodi:type="inkscape:persp3d"
++       inkscape:vp_x="0 : 0.5 : 1"
++       inkscape:vp_y="0 : 1000 : 0"
++       inkscape:vp_z="1 : 0.5 : 1"
++       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
++       id="perspective6176-8" />
++    <inkscape:perspective
++       sodipodi:type="inkscape:persp3d"
++       inkscape:vp_x="0 : 0.5 : 1"
++       inkscape:vp_y="0 : 1000 : 0"
++       inkscape:vp_z="1 : 0.5 : 1"
++       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
++       id="perspective6176-7" />
++    <inkscape:perspective
++       sodipodi:type="inkscape:persp3d"
++       inkscape:vp_x="0 : 0.5 : 1"
++       inkscape:vp_y="0 : 1000 : 0"
++       inkscape:vp_z="1 : 0.5 : 1"
++       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
++       id="perspective6176-3" />
++    <inkscape:perspective
++       sodipodi:type="inkscape:persp3d"
++       inkscape:vp_x="0 : 0.5 : 1"
++       inkscape:vp_y="0 : 1000 : 0"
++       inkscape:vp_z="1 : 0.5 : 1"
++       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
++       id="perspective6176-04" />
++    <inkscape:perspective
++       sodipodi:type="inkscape:persp3d"
++       inkscape:vp_x="0 : 0.5 : 1"
++       inkscape:vp_y="0 : 1000 : 0"
++       inkscape:vp_z="1 : 0.5 : 1"
++       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
++       id="perspective6176-31" />
++    <inkscape:perspective
++       sodipodi:type="inkscape:persp3d"
++       inkscape:vp_x="0 : 0.5 : 1"
++       inkscape:vp_y="0 : 1000 : 0"
++       inkscape:vp_z="1 : 0.5 : 1"
++       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
++       id="perspective6176-00" />
++    <inkscape:perspective
++       sodipodi:type="inkscape:persp3d"
++       inkscape:vp_x="0 : 0.5 : 1"
++       inkscape:vp_y="0 : 1000 : 0"
++       inkscape:vp_z="1 : 0.5 : 1"
++       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
++       id="perspective6176-75" />
++    <inkscape:perspective
++       sodipodi:type="inkscape:persp3d"
++       inkscape:vp_x="0 : 0.5 : 1"
++       inkscape:vp_y="0 : 1000 : 0"
++       inkscape:vp_z="1 : 0.5 : 1"
++       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
++       id="perspective6176-84" />
++    <inkscape:perspective
++       sodipodi:type="inkscape:persp3d"
++       inkscape:vp_x="0 : 0.5 : 1"
++       inkscape:vp_y="0 : 1000 : 0"
++       inkscape:vp_z="1 : 0.5 : 1"
++       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
++       id="perspective6176-78" />
++    <inkscape:perspective
++       sodipodi:type="inkscape:persp3d"
++       inkscape:vp_x="0 : 0.5 : 1"
++       inkscape:vp_y="0 : 1000 : 0"
++       inkscape:vp_z="1 : 0.5 : 1"
++       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
++       id="perspective6176-12" />
++    <inkscape:perspective
++       sodipodi:type="inkscape:persp3d"
++       inkscape:vp_x="0 : 0.5 : 1"
++       inkscape:vp_y="0 : 1000 : 0"
++       inkscape:vp_z="1 : 0.5 : 1"
++       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
++       id="perspective6176-09" />
++    <inkscape:perspective
++       sodipodi:type="inkscape:persp3d"
++       inkscape:vp_x="0 : 0.5 : 1"
++       inkscape:vp_y="0 : 1000 : 0"
++       inkscape:vp_z="1 : 0.5 : 1"
++       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
++       id="perspective6176-85" />
++    <inkscape:perspective
++       sodipodi:type="inkscape:persp3d"
++       inkscape:vp_x="0 : 0.5 : 1"
++       inkscape:vp_y="0 : 1000 : 0"
++       inkscape:vp_z="1 : 0.5 : 1"
++       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
++       id="perspective6176-096" />
++    <inkscape:perspective
++       sodipodi:type="inkscape:persp3d"
++       inkscape:vp_x="0 : 0.5 : 1"
++       inkscape:vp_y="0 : 1000 : 0"
++       inkscape:vp_z="1 : 0.5 : 1"
++       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
++       id="perspective6380" />
++    <inkscape:perspective
++       sodipodi:type="inkscape:persp3d"
++       inkscape:vp_x="0 : 0.5 : 1"
++       inkscape:vp_y="0 : 1000 : 0"
++       inkscape:vp_z="1 : 0.5 : 1"
++       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
++       id="perspective6405" />
++    <inkscape:perspective
++       sodipodi:type="inkscape:persp3d"
++       inkscape:vp_x="0 : 0.5 : 1"
++       inkscape:vp_y="0 : 1000 : 0"
++       inkscape:vp_z="1 : 0.5 : 1"
++       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
++       id="perspective6430" />
++    <marker
++       inkscape:stockid="Arrow1Lend2Wh"
++       orient="auto"
++       refY="0.0"
++       refX="0.0"
++       id="Arrow1Lend2Wh"
++       style="overflow:visible;">
++      <path
++         id="path6517"
++         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
++         style="marker-start:none;stroke:#008c00;stroke-width:1.0pt;fill:#008c00;fill-rule:evenodd"
++         transform="scale(0.8) rotate(180) translate(12.5,0)" />
++    </marker>
++    <marker
++       inkscape:stockid="Arrow1Lend2Whr"
++       orient="auto"
++       refY="0.0"
++       refX="0.0"
++       id="Arrow1Lend2Whr"
++       style="overflow:visible;">
++      <path
++         id="path8029"
++         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
++         style="fill-rule:evenodd;marker-start:none;stroke:#145914;stroke-width:1.0pt;fill:#145914"
++         transform="scale(0.8) rotate(180) translate(12.5,0)" />
++    </marker>
++    <marker
++       inkscape:stockid="Arrow1Lend2WhrR"
++       orient="auto"
++       refY="0.0"
++       refX="0.0"
++       id="Arrow1Lend2WhrR"
++       style="overflow:visible;">
++      <path
++         id="path8280"
++         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
++         style="marker-start:none;stroke:#146f14;stroke-width:1.0pt;fill:#146f14;fill-rule:evenodd"
++         transform="scale(0.8) rotate(180) translate(12.5,0)" />
++    </marker>
++  </defs>
++  <metadata
++     id="metadata7">
++    <rdf:RDF>
++      <cc:Work
++         rdf:about="">
++        <dc:format>image/svg+xml</dc:format>
++        <dc:type
++           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
++        <dc:title></dc:title>
++      </cc:Work>
++    </rdf:RDF>
++  </metadata>
++  <g
++     inkscape:label="Layer 1"
++     inkscape:groupmode="layer"
++     id="layer1">
++    <g
++       sodipodi:type="inkscape:box3d"
++       style="fill:none;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
++       id="g2816"
++       inkscape:perspectiveID="#perspective10"
++       inkscape:corner0="2.8178928 : 0.8637518 : 0 : 1"
++       inkscape:corner7="0.55750066 : -0.059673562 : 4.6741689 : 1"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90">
++      <path
++         sodipodi:type="inkscape:box3dside"
++         id="path2822"
++         style="fill:#8686bf;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
++         inkscape:box3dsidetype="3"
++         d="m 276.3087,322.82052 -109.70941,63.34075 18.19523,10.50502 109.70941,-63.34075 z" />
++      <path
++         sodipodi:type="inkscape:box3dside"
++         id="path2818"
++         style="fill:#353564;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
++         inkscape:box3dsidetype="6"
++         d="m 276.3087,322.82052 18.19523,10.50502 0,-43.74281 -18.19523,-10.50502 z" />
++      <path
++         sodipodi:type="inkscape:box3dside"
++         id="path2820"
++         style="fill:#4d4d9f;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
++         inkscape:box3dsidetype="5"
++         d="m 276.3087,322.82052 -109.70941,63.34075 0,-43.74281 109.70941,-63.34075 z" />
++      <path
++         sodipodi:type="inkscape:box3dside"
++         id="path2826"
++         style="fill:#afafde;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
++         inkscape:box3dsidetype="13"
++         d="m 294.50393,333.32554 -109.70941,63.34075 0,-43.74281 109.70941,-63.34075 z" />
++      <path
++         sodipodi:type="inkscape:box3dside"
++         id="path2824"
++         style="fill:#d7d7ff;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
++         inkscape:box3dsidetype="14"
++         d="m 166.59929,386.16127 18.19523,10.50502 0,-43.74281 -18.19523,-10.50502 z" />
++      <path
++         sodipodi:type="inkscape:box3dside"
++         id="path2828"
++         style="fill:#e9e9ff;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
++         inkscape:box3dsidetype="11"
++         d="m 276.3087,279.07771 -109.70941,63.34075 18.19523,10.50502 109.70941,-63.34075 z" />
++    </g>
++    <path
++       sodipodi:type="arc"
++       style="fill:none;stroke:#000000;stroke-width:4.91616058;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
++       id="path2832"
++       sodipodi:cx="330.35144"
++       sodipodi:cy="506.56415"
++       sodipodi:rx="36.460194"
++       sodipodi:ry="36.460194"
++       d="m 301.02132,528.22262 a 36.460194,36.460194 0 0 1 56.93665,-45.47496"
++       transform="matrix(0.20341077,-0.11743871,0,0.20341077,203.32922,260.48884)"
++       sodipodi:start="2.5055324"
++       sodipodi:end="5.5713574"
++       sodipodi:open="true"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <path
++       sodipodi:type="arc"
++       style="fill:#969696;fill-opacity:1;stroke:#000000;stroke-width:4.91616058;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
++       id="path2832-0"
++       sodipodi:cx="330.35144"
++       sodipodi:cy="506.56415"
++       sodipodi:rx="36.460194"
++       sodipodi:ry="36.460194"
++       d="m 366.81163,506.56415 a 36.460194,36.460194 0 1 1 -72.92038,0 36.460194,36.460194 0 1 1 72.92038,0 z"
++       transform="matrix(0.20341077,-0.11743871,0,0.20341077,216.01427,267.97508)"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <path
++       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
++       d="m 275.72505,316.5193 13.34955,7.70736"
++       id="path3628"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <path
++       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
++       d="m 264.68329,332.654 13.34956,7.70737"
++       id="path3628-5"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <path
++       sodipodi:type="arc"
++       style="fill:none;stroke:#000000;stroke-width:4.91616058;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
++       id="path2832-7"
++       sodipodi:cx="330.35144"
++       sodipodi:cy="506.56415"
++       sodipodi:rx="36.460194"
++       sodipodi:ry="36.460194"
++       d="m 301.02132,528.22262 a 36.460194,36.460194 0 0 1 56.93665,-45.47496"
++       transform="matrix(0.20341077,-0.11743871,0,0.20341077,143.47395,295.98382)"
++       sodipodi:start="2.5055324"
++       sodipodi:end="5.5713574"
++       sodipodi:open="true"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <path
++       sodipodi:type="arc"
++       style="fill:#969696;fill-opacity:1;stroke:#000000;stroke-width:4.91616058;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
++       id="path2832-0-0"
++       sodipodi:cx="330.35144"
++       sodipodi:cy="506.56415"
++       sodipodi:rx="36.460194"
++       sodipodi:ry="36.460194"
++       d="m 366.81163,506.56415 a 36.460194,36.460194 0 1 1 -72.92038,0 36.460194,36.460194 0 1 1 72.92038,0 z"
++       transform="matrix(0.20341077,-0.11743871,0,0.20341077,156.15901,303.47006)"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <path
++       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
++       d="m 215.86979,352.01428 13.34955,7.70737"
++       id="path3628-1"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <path
++       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
++       d="m 204.82803,368.14898 13.34955,7.70737"
++       id="path3628-5-1"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <path
++       style="fill:none;stroke:#0000ff;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Lend2T)"
++       d="m 284.17077,333.01784 29.0667,16.78166"
++       id="path3701"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <path
++       style="fill:none;stroke:#ff0000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Lend2Uq)"
++       d="m 285.22266,333.20729 -29.0667,16.78166"
++       id="path3701-2"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <path
++       style="stroke-linejoin:miter;marker-end:url(#Arrow1Lend2WhrR);stroke-opacity:1;stroke:#146f14;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-width:1;fill:none"
++       d="m 284.93511,333.61469 10e-6,33.999"
++       id="path3701-3"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <text
++       id="text6088"
++       y="358.95593"
++       x="244.14062"
++       style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:arial;-inkscape-font-specification:arial"
++       xml:space="preserve"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90"><tspan
++         style="font-size:16px"
++         y="358.95593"
++         x="244.14062"
++         id="tspan6090"
++         sodipodi:role="line">X</tspan></text>
++    <text
++       id="text6088-7"
++       y="383.92856"
++       x="279.78824"
++       style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:arial;-inkscape-font-specification:arial"
++       xml:space="preserve"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90"><tspan
++         style="font-size:16px"
++         y="383.92856"
++         x="279.78824"
++         id="tspan6090-7"
++         sodipodi:role="line">Y</tspan></text>
++    <text
++       id="text6088-7-5"
++       y="348.25049"
++       x="318.85449"
++       style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:arial;-inkscape-font-specification:arial"
++       xml:space="preserve"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90"><tspan
++         style="font-size:16px"
++         y="348.25049"
++         x="318.85449"
++         id="tspan6090-7-5"
++         sodipodi:role="line">Z</tspan></text>
++    <path
++       transform="matrix(0.10083494,0,0,0.10083494,332.84897,346.72344)"
++       d="m 357.03125,454.31531 a 23.828125,23.828125 0 1 1 -47.65625,0 23.828125,23.828125 0 1 1 47.65625,0 z"
++       sodipodi:ry="23.828125"
++       sodipodi:rx="23.828125"
++       sodipodi:cy="454.31531"
++       sodipodi:cx="333.20312"
++       id="path6144"
++       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:9.91719723;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
++       sodipodi:type="arc"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <path
++       transform="matrix(0.10083494,0,0,0.10083494,332.34729,371.2285)"
++       d="m 357.03125,454.31531 a 23.828125,23.828125 0 1 1 -47.65625,0 23.828125,23.828125 0 1 1 47.65625,0 z"
++       sodipodi:ry="23.828125"
++       sodipodi:rx="23.828125"
++       sodipodi:cy="454.31531"
++       sodipodi:cx="333.20312"
++       id="path6144-3"
++       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:9.91719723;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
++       sodipodi:type="arc"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <path
++       transform="matrix(0.10083494,0,0,0.10083494,325.31604,420.44725)"
++       d="m 357.03125,454.31531 a 23.828125,23.828125 0 1 1 -47.65625,0 23.828125,23.828125 0 1 1 47.65625,0 z"
++       sodipodi:ry="23.828125"
++       sodipodi:rx="23.828125"
++       sodipodi:cy="454.31531"
++       sodipodi:cx="333.20312"
++       id="path6144-3-6"
++       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:9.91719723;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
++       sodipodi:type="arc"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <path
++       transform="matrix(0.10083494,0,0,0.10083494,319.06604,458.7285)"
++       d="m 357.03125,454.31531 a 23.828125,23.828125 0 1 1 -47.65625,0 23.828125,23.828125 0 1 1 47.65625,0 z"
++       sodipodi:ry="23.828125"
++       sodipodi:rx="23.828125"
++       sodipodi:cy="454.31531"
++       sodipodi:cx="333.20312"
++       id="path6144-3-2"
++       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:9.91719723;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
++       sodipodi:type="arc"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <path
++       transform="matrix(0.10083494,0,0,0.10083494,296.40979,416.541)"
++       d="m 357.03125,454.31531 a 23.828125,23.828125 0 1 1 -47.65625,0 23.828125,23.828125 0 1 1 47.65625,0 z"
++       sodipodi:ry="23.828125"
++       sodipodi:rx="23.828125"
++       sodipodi:cy="454.31531"
++       sodipodi:cx="333.20312"
++       id="path6144-3-0"
++       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:9.91719723;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
++       sodipodi:type="arc"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <path
++       transform="matrix(0.10083494,0,0,0.10083494,303.23236,385.93822)"
++       d="m 357.03125,454.31531 a 23.828125,23.828125 0 1 1 -47.65625,0 23.828125,23.828125 0 1 1 47.65625,0 z"
++       sodipodi:ry="23.828125"
++       sodipodi:rx="23.828125"
++       sodipodi:cy="454.31531"
++       sodipodi:cx="333.20312"
++       id="path6144-3-4"
++       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:9.91719723;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
++       sodipodi:type="arc"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <path
++       transform="matrix(0.10083494,0,0,0.10083494,294.06604,404.82225)"
++       d="m 357.03125,454.31531 a 23.828125,23.828125 0 1 1 -47.65625,0 23.828125,23.828125 0 1 1 47.65625,0 z"
++       sodipodi:ry="23.828125"
++       sodipodi:rx="23.828125"
++       sodipodi:cy="454.31531"
++       sodipodi:cx="333.20312"
++       id="path6144-3-3"
++       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:9.91719723;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
++       sodipodi:type="arc"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <path
++       transform="matrix(0.10083494,0,0,0.10083494,337.03479,396.2285)"
++       d="m 357.03125,454.31531 a 23.828125,23.828125 0 1 1 -47.65625,0 23.828125,23.828125 0 1 1 47.65625,0 z"
++       sodipodi:ry="23.828125"
++       sodipodi:rx="23.828125"
++       sodipodi:cy="454.31531"
++       sodipodi:cx="333.20312"
++       id="path6144-3-8"
++       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:9.91719723;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
++       sodipodi:type="arc"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <path
++       transform="matrix(0.10083494,0,0,0.10083494,315.15979,367.07225)"
++       d="m 357.03125,454.31531 a 23.828125,23.828125 0 1 1 -47.65625,0 23.828125,23.828125 0 1 1 47.65625,0 z"
++       sodipodi:ry="23.828125"
++       sodipodi:rx="23.828125"
++       sodipodi:cy="454.31531"
++       sodipodi:cx="333.20312"
++       id="path6144-3-7"
++       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:9.91719723;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
++       sodipodi:type="arc"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <path
++       transform="matrix(0.10083494,0,0,0.10083494,275.31604,362.63475)"
++       d="m 357.03125,454.31531 a 23.828125,23.828125 0 1 1 -47.65625,0 23.828125,23.828125 0 1 1 47.65625,0 z"
++       sodipodi:ry="23.828125"
++       sodipodi:rx="23.828125"
++       sodipodi:cy="454.31531"
++       sodipodi:cx="333.20312"
++       id="path6144-3-61"
++       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:9.91719723;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
++       sodipodi:type="arc"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <path
++       transform="matrix(0.10083494,0,0,0.10083494,269.84729,399.3535)"
++       d="m 357.03125,454.31531 a 23.828125,23.828125 0 1 1 -47.65625,0 23.828125,23.828125 0 1 1 47.65625,0 z"
++       sodipodi:ry="23.828125"
++       sodipodi:rx="23.828125"
++       sodipodi:cy="454.31531"
++       sodipodi:cx="333.20312"
++       id="path6144-3-08"
++       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:9.91719723;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
++       sodipodi:type="arc"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <path
++       transform="matrix(0.10083494,0,0,0.10083494,283.12854,438.416)"
++       d="m 357.03125,454.31531 a 23.828125,23.828125 0 1 1 -47.65625,0 23.828125,23.828125 0 1 1 47.65625,0 z"
++       sodipodi:ry="23.828125"
++       sodipodi:rx="23.828125"
++       sodipodi:cy="454.31531"
++       sodipodi:cx="333.20312"
++       id="path6144-3-1"
++       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:9.91719723;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
++       sodipodi:type="arc"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <path
++       transform="matrix(0.10083494,0,0,0.10083494,283.12854,394.666)"
++       d="m 357.03125,454.31531 a 23.828125,23.828125 0 1 1 -47.65625,0 23.828125,23.828125 0 1 1 47.65625,0 z"
++       sodipodi:ry="23.828125"
++       sodipodi:rx="23.828125"
++       sodipodi:cy="454.31531"
++       sodipodi:cx="333.20312"
++       id="path6144-3-28"
++       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:9.91719723;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
++       sodipodi:type="arc"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <path
++       transform="matrix(0.10083494,0,0,0.10083494,296.40979,355.6035)"
++       d="m 357.03125,454.31531 a 23.828125,23.828125 0 1 1 -47.65625,0 23.828125,23.828125 0 1 1 47.65625,0 z"
++       sodipodi:ry="23.828125"
++       sodipodi:rx="23.828125"
++       sodipodi:cy="454.31531"
++       sodipodi:cx="333.20312"
++       id="path6144-3-9"
++       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:9.91719723;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
++       sodipodi:type="arc"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <path
++       transform="matrix(0.10083494,0,0,0.10083494,348.54098,373.23985)"
++       d="m 357.03125,454.31531 a 23.828125,23.828125 0 1 1 -47.65625,0 23.828125,23.828125 0 1 1 47.65625,0 z"
++       sodipodi:ry="23.828125"
++       sodipodi:rx="23.828125"
++       sodipodi:cy="454.31531"
++       sodipodi:cx="333.20312"
++       id="path6144-3-5"
++       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:9.91719723;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
++       sodipodi:type="arc"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <path
++       transform="matrix(0.10083494,0,0,0.10083494,361.25354,399.3535)"
++       d="m 357.03125,454.31531 a 23.828125,23.828125 0 1 1 -47.65625,0 23.828125,23.828125 0 1 1 47.65625,0 z"
++       sodipodi:ry="23.828125"
++       sodipodi:rx="23.828125"
++       sodipodi:cy="454.31531"
++       sodipodi:cx="333.20312"
++       id="path6144-3-11"
++       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:9.91719723;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
++       sodipodi:type="arc"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <path
++       transform="matrix(0.10083494,0,0,0.10083494,347.19104,421.2285)"
++       d="m 357.03125,454.31531 a 23.828125,23.828125 0 1 1 -47.65625,0 23.828125,23.828125 0 1 1 47.65625,0 z"
++       sodipodi:ry="23.828125"
++       sodipodi:rx="23.828125"
++       sodipodi:cy="454.31531"
++       sodipodi:cx="333.20312"
++       id="path6144-3-83"
++       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:9.91719723;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
++       sodipodi:type="arc"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <path
++       transform="matrix(0.10083494,0,0,0.10083494,358.90979,453.25975)"
++       d="m 357.03125,454.31531 a 23.828125,23.828125 0 1 1 -47.65625,0 23.828125,23.828125 0 1 1 47.65625,0 z"
++       sodipodi:ry="23.828125"
++       sodipodi:rx="23.828125"
++       sodipodi:cy="454.31531"
++       sodipodi:cx="333.20312"
++       id="path6144-3-18"
++       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:9.91719723;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
++       sodipodi:type="arc"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <path
++       transform="matrix(0.10083494,0,0,0.10083494,380.00354,429.82225)"
++       d="m 357.03125,454.31531 a 23.828125,23.828125 0 1 1 -47.65625,0 23.828125,23.828125 0 1 1 47.65625,0 z"
++       sodipodi:ry="23.828125"
++       sodipodi:rx="23.828125"
++       sodipodi:cy="454.31531"
++       sodipodi:cx="333.20312"
++       id="path6144-3-45"
++       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:9.91719723;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
++       sodipodi:type="arc"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <path
++       transform="matrix(0.10083494,0,0,0.10083494,390.94104,374.3535)"
++       d="m 357.03125,454.31531 a 23.828125,23.828125 0 1 1 -47.65625,0 23.828125,23.828125 0 1 1 47.65625,0 z"
++       sodipodi:ry="23.828125"
++       sodipodi:rx="23.828125"
++       sodipodi:cy="454.31531"
++       sodipodi:cx="333.20312"
++       id="path6144-3-60"
++       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:9.91719723;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
++       sodipodi:type="arc"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <path
++       transform="matrix(0.10083494,0,0,0.10083494,310.01185,334.81709)"
++       d="m 357.03125,454.31531 a 23.828125,23.828125 0 1 1 -47.65625,0 23.828125,23.828125 0 1 1 47.65625,0 z"
++       sodipodi:ry="23.828125"
++       sodipodi:rx="23.828125"
++       sodipodi:cy="454.31531"
++       sodipodi:cx="333.20312"
++       id="path6144-3-32"
++       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:9.91719723;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
++       sodipodi:type="arc"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <path
++       transform="matrix(0.10083494,0,0,0.10083494,357.34729,365.75975)"
++       d="m 357.03125,454.31531 a 23.828125,23.828125 0 1 1 -47.65625,0 23.828125,23.828125 0 1 1 47.65625,0 z"
++       sodipodi:ry="23.828125"
++       sodipodi:rx="23.828125"
++       sodipodi:cy="454.31531"
++       sodipodi:cx="333.20312"
++       id="path6144-3-89"
++       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:9.91719723;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
++       sodipodi:type="arc"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <path
++       transform="matrix(0.10083494,0,0,0.10083494,356.57277,350.98105)"
++       d="m 357.03125,454.31531 a 23.828125,23.828125 0 1 1 -47.65625,0 23.828125,23.828125 0 1 1 47.65625,0 z"
++       sodipodi:ry="23.828125"
++       sodipodi:rx="23.828125"
++       sodipodi:cy="454.31531"
++       sodipodi:cx="333.20312"
++       id="path6144-3-12"
++       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:9.91719723;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
++       sodipodi:type="arc"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++    <text
++       id="text6088-7-6"
++       y="250.38168"
++       x="268.0455"
++       style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:arial;-inkscape-font-specification:arial"
++       xml:space="preserve"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90"><tspan
++         style="font-size:16px;text-align:center;text-anchor:middle"
++         y="250.38168"
++         x="268.0455"
++         id="tspan6090-7-3"
++         sodipodi:role="line">Left</tspan><tspan
++         style="font-size:16px;text-align:center;text-anchor:middle"
++         y="270.38168"
++         x="268.0455"
++         sodipodi:role="line"
++         id="tspan8465">Imager</tspan></text>
++    <text
++       id="text6088-7-6-1"
++       y="297.09918"
++       x="176.94826"
++       style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:arial;-inkscape-font-specification:arial"
++       xml:space="preserve"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90"><tspan
++         style="font-size:16px;text-align:center;text-anchor:middle"
++         y="297.09918"
++         x="176.94826"
++         id="tspan6090-7-3-8"
++         sodipodi:role="line">Right</tspan><tspan
++         style="font-size:16px;text-align:center;text-anchor:middle"
++         y="317.09918"
++         x="176.94826"
++         sodipodi:role="line"
++         id="tspan8463">Imager</tspan></text>
++    <text
++       id="text6088-7-6-8"
++       y="376.31558"
++       x="355.49841"
++       style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:arial;-inkscape-font-specification:arial"
++       xml:space="preserve"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90"><tspan
++         style="font-size:16px"
++         y="376.31558"
++         x="355.49841"
++         id="tspan6090-7-3-2"
++         sodipodi:role="line">Point Cloud</tspan></text>
++    <path
++       style="fill:none;stroke:#323232;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1,3;stroke-dashoffset:0;marker-mid:none;marker-end:url(#Arrow2Mend)"
++       d="m 283.87636,333.58322 50.50373,94.02457"
++       id="path7100"
++       inkscape:export-filename="/wg/arc/vpradeep/ros-64/pkgs-trunk/image_pipeline/stereo_image_proc/docs/stereo_frames.png"
++       inkscape:export-xdpi="90"
++       inkscape:export-ydpi="90" />
++  </g>
++</svg>
+--- /dev/null
++++ ros-noetic-stereo-image-proc-1.17.0/include/stereo_image_proc/processor.h
+@@ -0,0 +1,300 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++* 
++*  Copyright (c) 2008, Willow Garage, Inc.
++*  All rights reserved.
++* 
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++* 
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++* 
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++#ifndef STEREO_IMAGE_PROC_PROCESSOR_H
++#define STEREO_IMAGE_PROC_PROCESSOR_H
++
++#include <image_proc/processor.h>
++#include <image_geometry/stereo_camera_model.h>
++#include <opencv2/calib3d/calib3d.hpp>
++#include <stereo_msgs/DisparityImage.h>
++#include <sensor_msgs/PointCloud.h>
++#include <sensor_msgs/PointCloud2.h>
++
++namespace stereo_image_proc {
++
++struct StereoImageSet
++{
++  image_proc::ImageSet left;
++  image_proc::ImageSet right;
++  stereo_msgs::DisparityImage disparity;
++  sensor_msgs::PointCloud points;
++  sensor_msgs::PointCloud2 points2;
++};
++
++class StereoProcessor
++{
++public:
++  
++  StereoProcessor()
++#if CV_MAJOR_VERSION >= 3
++  {
++    block_matcher_ = cv::StereoBM::create();
++    sg_block_matcher_ = cv::StereoSGBM::create(1, 1, 10);
++#else
++    : block_matcher_(cv::StereoBM::BASIC_PRESET),
++      sg_block_matcher_()
++  {
++#endif
++  }
++
++  enum StereoType
++  {
++    BM, SGBM
++  };
++
++  enum {
++    LEFT_MONO        = 1 << 0,
++    LEFT_RECT        = 1 << 1,
++    LEFT_COLOR       = 1 << 2,
++    LEFT_RECT_COLOR  = 1 << 3,
++    RIGHT_MONO       = 1 << 4,
++    RIGHT_RECT       = 1 << 5,
++    RIGHT_COLOR      = 1 << 6,
++    RIGHT_RECT_COLOR = 1 << 7,
++    DISPARITY        = 1 << 8,
++    POINT_CLOUD      = 1 << 9,
++    POINT_CLOUD2     = 1 << 10,
++
++    LEFT_ALL = LEFT_MONO | LEFT_RECT | LEFT_COLOR | LEFT_RECT_COLOR,
++    RIGHT_ALL = RIGHT_MONO | RIGHT_RECT | RIGHT_COLOR | RIGHT_RECT_COLOR,
++    STEREO_ALL = DISPARITY | POINT_CLOUD | POINT_CLOUD2,
++    ALL = LEFT_ALL | RIGHT_ALL | STEREO_ALL
++  };
++
++  inline
++  StereoType getStereoType() const {return current_stereo_algorithm_;}
++  inline
++  void setStereoType(StereoType type) {current_stereo_algorithm_ = type;}
++
++  int getInterpolation() const;
++  void setInterpolation(int interp);
++
++  // Disparity pre-filtering parameters
++
++  int getPreFilterSize() const;
++  void setPreFilterSize(int size);
++
++  int getPreFilterCap() const;
++  void setPreFilterCap(int cap);
++
++  // Disparity correlation parameters
++
++  int getCorrelationWindowSize() const;
++  void setCorrelationWindowSize(int size);
++
++  int getMinDisparity() const;
++  void setMinDisparity(int min_d);
++
++  int getDisparityRange() const;
++  void setDisparityRange(int range); // Number of pixels to search
++
++  // Disparity post-filtering parameters
++
++  int getTextureThreshold() const;
++  void setTextureThreshold(int threshold);
++
++  float getUniquenessRatio() const;
++  void setUniquenessRatio(float ratio);
++
++  int getSpeckleSize() const;
++  void setSpeckleSize(int size);
++
++  int getSpeckleRange() const;
++  void setSpeckleRange(int range);
++
++  // SGBM only
++  int getSgbmMode() const;
++  void setSgbmMode(int fullDP);
++
++  int getP1() const;
++  void setP1(int P1);
++
++  int getP2() const;
++  void setP2(int P2);
++
++  int getDisp12MaxDiff() const;
++  void setDisp12MaxDiff(int disp12MaxDiff);
++
++  // Do all the work!
++  bool process(const sensor_msgs::ImageConstPtr& left_raw,
++               const sensor_msgs::ImageConstPtr& right_raw,
++               const image_geometry::StereoCameraModel& model,
++               StereoImageSet& output, int flags) const;
++
++  void processDisparity(const cv::Mat& left_rect, const cv::Mat& right_rect,
++                        const image_geometry::StereoCameraModel& model,
++                        stereo_msgs::DisparityImage& disparity) const;
++
++  void processPoints(const stereo_msgs::DisparityImage& disparity,
++                     const cv::Mat& color, const std::string& encoding,
++                     const image_geometry::StereoCameraModel& model,
++                     sensor_msgs::PointCloud& points) const;
++  void processPoints2(const stereo_msgs::DisparityImage& disparity,
++                      const cv::Mat& color, const std::string& encoding,
++                      const image_geometry::StereoCameraModel& model,
++                      sensor_msgs::PointCloud2& points) const;
++
++private:
++  image_proc::Processor mono_processor_;
++  
++  mutable cv::Mat_<int16_t> disparity16_; // scratch buffer for 16-bit signed disparity image
++#if CV_MAJOR_VERSION >= 3
++  mutable cv::Ptr<cv::StereoBM> block_matcher_; // contains scratch buffers for block matching
++  mutable cv::Ptr<cv::StereoSGBM> sg_block_matcher_;
++#else
++  mutable cv::StereoBM block_matcher_; // contains scratch buffers for block matching
++  mutable cv::StereoSGBM sg_block_matcher_;
++#endif
++  StereoType current_stereo_algorithm_;
++  // scratch buffer for dense point cloud
++  mutable cv::Mat_<cv::Vec3f> dense_points_;
++};
++
++
++inline int StereoProcessor::getInterpolation() const
++{
++  return mono_processor_.interpolation_;
++}
++
++inline void StereoProcessor::setInterpolation(int interp)
++{
++  mono_processor_.interpolation_ = interp;
++}
++
++// For once, a macro is used just to avoid errors
++#define STEREO_IMAGE_PROC_OPENCV2(GET, SET, TYPE, PARAM) \
++inline TYPE StereoProcessor::GET() const \
++{ \
++  if (current_stereo_algorithm_ == BM) \
++    return block_matcher_.state->PARAM; \
++  return sg_block_matcher_.PARAM; \
++} \
++ \
++inline void StereoProcessor::SET(TYPE param) \
++{ \
++  block_matcher_.state->PARAM = param; \
++  sg_block_matcher_.PARAM = param; \
++}
++
++#define STEREO_IMAGE_PROC_OPENCV3(GET, SET, TYPE, GET_OPENCV, SET_OPENCV) \
++inline TYPE StereoProcessor::GET() const \
++{ \
++  if (current_stereo_algorithm_ == BM) \
++    return block_matcher_->GET_OPENCV(); \
++  return sg_block_matcher_->GET_OPENCV(); \
++} \
++\
++inline void StereoProcessor::SET(TYPE param) \
++{ \
++  block_matcher_->SET_OPENCV(param); \
++  sg_block_matcher_->SET_OPENCV(param); \
++}
++
++#if CV_MAJOR_VERSION >= 3
++STEREO_IMAGE_PROC_OPENCV3(getPreFilterCap, setPreFilterCap, int, getPreFilterCap, setPreFilterCap)
++STEREO_IMAGE_PROC_OPENCV3(getCorrelationWindowSize, setCorrelationWindowSize, int, getBlockSize, setBlockSize)
++STEREO_IMAGE_PROC_OPENCV3(getMinDisparity, setMinDisparity, int, getMinDisparity, setMinDisparity)
++STEREO_IMAGE_PROC_OPENCV3(getDisparityRange, setDisparityRange, int, getNumDisparities, setNumDisparities)
++STEREO_IMAGE_PROC_OPENCV3(getUniquenessRatio, setUniquenessRatio, float, getUniquenessRatio, setUniquenessRatio)
++STEREO_IMAGE_PROC_OPENCV3(getSpeckleSize, setSpeckleSize, int, getSpeckleWindowSize, setSpeckleWindowSize)
++STEREO_IMAGE_PROC_OPENCV3(getSpeckleRange, setSpeckleRange, int, getSpeckleRange, setSpeckleRange)
++#else
++STEREO_IMAGE_PROC_OPENCV2(getPreFilterCap, setPreFilterCap, int, preFilterCap)
++STEREO_IMAGE_PROC_OPENCV2(getCorrelationWindowSize, setCorrelationWindowSize, int, SADWindowSize)
++STEREO_IMAGE_PROC_OPENCV2(getMinDisparity, setMinDisparity, int, minDisparity)
++STEREO_IMAGE_PROC_OPENCV2(getDisparityRange, setDisparityRange, int, numberOfDisparities)
++STEREO_IMAGE_PROC_OPENCV2(getUniquenessRatio, setUniquenessRatio, float, uniquenessRatio)
++STEREO_IMAGE_PROC_OPENCV2(getSpeckleSize, setSpeckleSize, int, speckleWindowSize)
++STEREO_IMAGE_PROC_OPENCV2(getSpeckleRange, setSpeckleRange, int, speckleRange)
++#endif
++
++#define STEREO_IMAGE_PROC_BM_ONLY_OPENCV2(GET, SET, TYPE, PARAM) \
++inline TYPE StereoProcessor::GET() const \
++{ \
++  return block_matcher_.state->PARAM; \
++} \
++\
++inline void StereoProcessor::SET(TYPE param) \
++{ \
++  block_matcher_.state->PARAM = param; \
++}
++
++#define STEREO_IMAGE_PROC_SGBM_ONLY_OPENCV2(GET, SET, TYPE, PARAM) \
++inline TYPE StereoProcessor::GET() const \
++{ \
++  return sg_block_matcher_.PARAM; \
++} \
++\
++inline void StereoProcessor::SET(TYPE param) \
++{ \
++  sg_block_matcher_.PARAM = param; \
++}
++
++#define STEREO_IMAGE_PROC_ONLY_OPENCV3(MEMBER, GET, SET, TYPE, GET_OPENCV, SET_OPENCV) \
++inline TYPE StereoProcessor::GET() const \
++{ \
++  return MEMBER->GET_OPENCV(); \
++} \
++\
++inline void StereoProcessor::SET(TYPE param) \
++{ \
++  MEMBER->SET_OPENCV(param); \
++}
++
++// BM only
++#if CV_MAJOR_VERSION >= 3
++STEREO_IMAGE_PROC_ONLY_OPENCV3(block_matcher_, getPreFilterSize, setPreFilterSize, int, getPreFilterSize, setPreFilterSize)
++STEREO_IMAGE_PROC_ONLY_OPENCV3(block_matcher_, getTextureThreshold, setTextureThreshold, int, getTextureThreshold, setTextureThreshold)
++#else
++STEREO_IMAGE_PROC_BM_ONLY_OPENCV2(getPreFilterSize, setPreFilterSize, int, preFilterSize)
++STEREO_IMAGE_PROC_BM_ONLY_OPENCV2(getTextureThreshold, setTextureThreshold, int, textureThreshold)
++#endif
++
++// SGBM specific
++#if CV_MAJOR_VERSION >= 3
++// getSgbmMode can return MODE_SGBM = 0, MODE_HH = 1. FullDP == 1 was MODE_HH so we're good
++STEREO_IMAGE_PROC_ONLY_OPENCV3(sg_block_matcher_, getSgbmMode, setSgbmMode, int, getMode, setMode)
++STEREO_IMAGE_PROC_ONLY_OPENCV3(sg_block_matcher_, getP1, setP1, int, getP1, setP1)
++STEREO_IMAGE_PROC_ONLY_OPENCV3(sg_block_matcher_, getP2, setP2, int, getP2, setP2)
++STEREO_IMAGE_PROC_ONLY_OPENCV3(sg_block_matcher_, getDisp12MaxDiff, setDisp12MaxDiff, int, getDisp12MaxDiff, setDisp12MaxDiff)
++#else
++STEREO_IMAGE_PROC_SGBM_ONLY_OPENCV2(getSgbmMode, setSgbmMode, int, fullDP)
++STEREO_IMAGE_PROC_SGBM_ONLY_OPENCV2(getP1, setP1, int, P1)
++STEREO_IMAGE_PROC_SGBM_ONLY_OPENCV2(getP2, setP2, int, P2)
++STEREO_IMAGE_PROC_SGBM_ONLY_OPENCV2(getDisp12MaxDiff, setDisp12MaxDiff, int, disp12MaxDiff)
++#endif
++
++} //namespace stereo_image_proc
++
++#endif
+--- /dev/null
++++ ros-noetic-stereo-image-proc-1.17.0/launch/stereo_image_proc.launch
+@@ -0,0 +1,41 @@
++<!-- Launch in the camera namespace containing "image_raw" and "camera_info" -->
++<launch>
++
++  <arg name="manager" /> <!-- Must be globally qualified -->
++  <arg name="respawn" default="false" />
++  <arg name="left" default="left" />
++  <arg name="right" default="right" />
++  <arg name="downsampling_factor" value="1" />
++  <arg name="approximate_sync" default="false" />
++
++  <arg     if="$(arg respawn)" name="bond" value="" />
++  <arg unless="$(arg respawn)" name="bond" value="--no-bond" />
++
++  <!-- Basic processing for left camera -->
++  <include file="$(find image_proc)/launch/image_proc.launch"
++	   ns="$(arg left)">
++    <arg name="manager" value="$(arg manager)" />
++    <arg name="respawn" value="$(arg respawn)" />
++  </include>
++
++  <!-- Basic processing for right camera -->
++  <include file="$(find image_proc)/launch/image_proc.launch"
++	   ns="$(arg right)">
++    <arg name="manager" value="$(arg manager)" />
++    <arg name="respawn" value="$(arg respawn)" />
++  </include>
++
++  <!-- Disparity image -->
++  <node pkg="nodelet" type="nodelet" name="disparity"
++        args="load stereo_image_proc/disparity $(arg manager) $(arg bond)"
++	respawn="$(arg respawn)" >
++    <param name="approximate_sync" value="$(arg approximate_sync)" />
++  </node>
++
++  <!-- PointCloud2 -->
++  <node pkg="nodelet" type="nodelet" name="point_cloud2"
++        args="load stereo_image_proc/point_cloud2 $(arg manager) $(arg bond)"
++	respawn="$(arg respawn)" >
++    <param name="approximate_sync" value="$(arg approximate_sync)" />
++  </node>
++</launch>
+--- /dev/null
++++ ros-noetic-stereo-image-proc-1.17.0/nodelet_plugins.xml
+@@ -0,0 +1,11 @@
++<library path="lib/libstereo_image_proc">
++
++  <class name="stereo_image_proc/disparity" type="stereo_image_proc::DisparityNodelet" base_class_type="nodelet::Nodelet">
++    <description>Nodelet to perform stereo processing on a pair of rectified image streams, producing disparity images</description>
++  </class>
++
++  <class name="stereo_image_proc/point_cloud2" type="stereo_image_proc::PointCloud2Nodelet" base_class_type="nodelet::Nodelet">
++    <description>Nodelet to produce XYZRGB PointCloud2 messages</description>
++  </class>
++
++</library>
+--- /dev/null
++++ ros-noetic-stereo-image-proc-1.17.0/package.xml
+@@ -0,0 +1,41 @@
++<package>
++  <name>stereo_image_proc</name>
++  <version>1.17.0</version>
++  <description>Stereo and single image rectification and disparity processing.</description>
++  <author>Patrick Mihelich</author>
++  <author>Kurt Konolige</author>
++  <author>Jeremy Leibs</author>
++  <maintainer email="vincent.rabaud@gmail.com">Vincent Rabaud</maintainer>
++  <maintainer email="software@autonomoustuff.com">Autonomoustuff team</maintainer>
++  <license>BSD</license>
++  <url>http://www.ros.org/wiki/stereo_image_proc</url>
++
++  <export>
++    <rosdoc config="rosdoc.yaml" />
++    <nodelet plugin="${prefix}/nodelet_plugins.xml" />
++  </export>
++
++  <buildtool_depend>catkin</buildtool_depend>
++
++  <test_depend>rostest</test_depend>
++  
++  <build_depend>cv_bridge</build_depend>
++  <build_depend>dynamic_reconfigure</build_depend>
++  <build_depend>image_geometry</build_depend>
++  <build_depend>image_proc</build_depend>
++  <build_depend>image_transport</build_depend>
++  <build_depend>message_filters</build_depend>
++  <build_depend>nodelet</build_depend>
++  <build_depend>sensor_msgs</build_depend>
++  <build_depend>stereo_msgs</build_depend>
++
++  <run_depend>cv_bridge</run_depend>
++  <run_depend>dynamic_reconfigure</run_depend>
++  <run_depend>image_geometry</run_depend>
++  <run_depend>image_proc</run_depend>
++  <run_depend>image_transport</run_depend>
++  <run_depend>message_filters</run_depend>
++  <run_depend>nodelet</run_depend>
++  <run_depend>sensor_msgs</run_depend>
++  <run_depend>stereo_msgs</run_depend>
++</package>
+--- /dev/null
++++ ros-noetic-stereo-image-proc-1.17.0/rosdoc.yaml
+@@ -0,0 +1,4 @@
++ - builder: doxygen
++   name: C++ API
++   output_dir: c++
++   file_patterns: '*.c *.cpp *.h *.cc *.hh *.dox'
+--- /dev/null
++++ ros-noetic-stereo-image-proc-1.17.0/src/libstereo_image_proc/processor.cpp
+@@ -0,0 +1,367 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++* 
++*  Copyright (c) 2008, Willow Garage, Inc.
++*  All rights reserved.
++* 
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++* 
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++* 
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++#include <ros/assert.h>
++#include "stereo_image_proc/processor.h"
++#include <sensor_msgs/image_encodings.h>
++#include <cmath>
++#include <limits>
++
++namespace stereo_image_proc {
++
++bool StereoProcessor::process(const sensor_msgs::ImageConstPtr& left_raw,
++                              const sensor_msgs::ImageConstPtr& right_raw,
++                              const image_geometry::StereoCameraModel& model,
++                              StereoImageSet& output, int flags) const
++{
++  // Do monocular processing on left and right images
++  int left_flags = flags & LEFT_ALL;
++  int right_flags = flags & RIGHT_ALL;
++  if (flags & STEREO_ALL) {
++    // Need the rectified images for stereo processing
++    left_flags |= LEFT_RECT;
++    right_flags |= RIGHT_RECT;
++  }
++  if (flags & (POINT_CLOUD | POINT_CLOUD2)) {
++    flags |= DISPARITY;
++    // Need the color channels for the point cloud
++    left_flags |= LEFT_RECT_COLOR;
++  }
++  if (!mono_processor_.process(left_raw, model.left(), output.left, left_flags))
++    return false;
++  if (!mono_processor_.process(right_raw, model.right(), output.right, right_flags >> 4))
++    return false;
++
++  // Do block matching to produce the disparity image
++  if (flags & DISPARITY) {
++    processDisparity(output.left.rect, output.right.rect, model, output.disparity);
++  }
++
++  // Project disparity image to 3d point cloud
++  if (flags & POINT_CLOUD) {
++    processPoints(output.disparity, output.left.rect_color, output.left.color_encoding, model, output.points);
++  }
++
++  // Project disparity image to 3d point cloud
++  if (flags & POINT_CLOUD2) {
++    processPoints2(output.disparity, output.left.rect_color, output.left.color_encoding, model, output.points2);
++  }
++
++  return true;
++}
++
++void StereoProcessor::processDisparity(const cv::Mat& left_rect, const cv::Mat& right_rect,
++                                       const image_geometry::StereoCameraModel& model,
++                                       stereo_msgs::DisparityImage& disparity) const
++{
++  // Fixed-point disparity is 16 times the true value: d = d_fp / 16.0 = x_l - x_r.
++  static const int DPP = 16; // disparities per pixel
++  static const double inv_dpp = 1.0 / DPP;
++
++  // Block matcher produces 16-bit signed (fixed point) disparity image
++  if (current_stereo_algorithm_ == BM)
++#if CV_MAJOR_VERSION >= 3
++    block_matcher_->compute(left_rect, right_rect, disparity16_);
++  else
++    sg_block_matcher_->compute(left_rect, right_rect, disparity16_);
++#else
++    block_matcher_(left_rect, right_rect, disparity16_);
++  else
++    sg_block_matcher_(left_rect, right_rect, disparity16_);
++#endif
++
++  // Fill in DisparityImage image data, converting to 32-bit float
++  sensor_msgs::Image& dimage = disparity.image;
++  dimage.height = disparity16_.rows;
++  dimage.width = disparity16_.cols;
++  dimage.encoding = sensor_msgs::image_encodings::TYPE_32FC1;
++  dimage.step = dimage.width * sizeof(float);
++  dimage.data.resize(dimage.step * dimage.height);
++  cv::Mat_<float> dmat(dimage.height, dimage.width, (float*)&dimage.data[0], dimage.step);
++  // We convert from fixed-point to float disparity and also adjust for any x-offset between
++  // the principal points: d = d_fp*inv_dpp - (cx_l - cx_r)
++  disparity16_.convertTo(dmat, dmat.type(), inv_dpp, -(model.left().cx() - model.right().cx()));
++  ROS_ASSERT(dmat.data == &dimage.data[0]);
++  /// @todo is_bigendian? :)
++
++  // Stereo parameters
++  disparity.f = model.right().fx();
++  disparity.T = model.baseline();
++
++  /// @todo Window of (potentially) valid disparities
++
++  // Disparity search range
++  disparity.min_disparity = getMinDisparity();
++  disparity.max_disparity = getMinDisparity() + getDisparityRange() - 1;
++  disparity.delta_d = inv_dpp;
++}
++
++inline bool isValidPoint(const cv::Vec3f& pt)
++{
++  // Check both for disparities explicitly marked as invalid (where OpenCV maps pt.z to MISSING_Z)
++  // and zero disparities (point mapped to infinity).
++  return pt[2] != image_geometry::StereoCameraModel::MISSING_Z && !std::isinf(pt[2]);
++}
++
++void StereoProcessor::processPoints(const stereo_msgs::DisparityImage& disparity,
++                                    const cv::Mat& color, const std::string& encoding,
++                                    const image_geometry::StereoCameraModel& model,
++                                    sensor_msgs::PointCloud& points) const
++{
++  // Calculate dense point cloud
++  const sensor_msgs::Image& dimage = disparity.image;
++  const cv::Mat_<float> dmat(dimage.height, dimage.width, (float*)&dimage.data[0], dimage.step);
++  model.projectDisparityImageTo3d(dmat, dense_points_, true);
++
++  // Fill in sparse point cloud message
++  points.points.resize(0);
++  points.channels.resize(3);
++  points.channels[0].name = "rgb";
++  points.channels[0].values.resize(0);
++  points.channels[1].name = "u";
++  points.channels[1].values.resize(0);
++  points.channels[2].name = "v";
++  points.channels[2].values.resize(0);
++  
++  for (int32_t u = 0; u < dense_points_.rows; ++u) {
++    for (int32_t v = 0; v < dense_points_.cols; ++v) {
++      if (isValidPoint(dense_points_(u,v))) {
++        // x,y,z
++        geometry_msgs::Point32 pt;
++        pt.x = dense_points_(u,v)[0];
++        pt.y = dense_points_(u,v)[1];
++        pt.z = dense_points_(u,v)[2];
++        points.points.push_back(pt);
++        // u,v
++        points.channels[1].values.push_back(u);
++        points.channels[2].values.push_back(v);
++      }
++    }
++  }
++
++  // Fill in color
++  namespace enc = sensor_msgs::image_encodings;
++  points.channels[0].values.reserve(points.points.size());
++  if (encoding == enc::MONO8) {
++    for (int32_t u = 0; u < dense_points_.rows; ++u) {
++      for (int32_t v = 0; v < dense_points_.cols; ++v) {
++        if (isValidPoint(dense_points_(u,v))) {
++          uint8_t g = color.at<uint8_t>(u,v);
++          int32_t rgb = (g << 16) | (g << 8) | g;
++          points.channels[0].values.push_back(*(float*)(&rgb));
++        }
++      }
++    }
++  }
++  else if (encoding == enc::RGB8) {
++    for (int32_t u = 0; u < dense_points_.rows; ++u) {
++      for (int32_t v = 0; v < dense_points_.cols; ++v) {
++        if (isValidPoint(dense_points_(u,v))) {
++          const cv::Vec3b& rgb = color.at<cv::Vec3b>(u,v);
++          int32_t rgb_packed = (rgb[0] << 16) | (rgb[1] << 8) | rgb[2];
++          points.channels[0].values.push_back(*(float*)(&rgb_packed));
++        }
++      }
++    }
++  }
++  else if (encoding == enc::RGBA8) {
++    for (int32_t u = 0; u < dense_points_.rows; ++u) {
++      for (int32_t v = 0; v < dense_points_.cols; ++v) {
++        if (isValidPoint(dense_points_(u,v))) {
++          const cv::Vec4b& rgba = color.at<cv::Vec4b>(u,v);
++          int32_t rgb_packed = (rgba[0] << 16) | (rgba[1] << 8) | rgba[2];
++          points.channels[0].values.push_back(*(float*)(&rgb_packed));
++        }
++      }
++    }
++  }
++  else if (encoding == enc::BGR8) {
++    for (int32_t u = 0; u < dense_points_.rows; ++u) {
++      for (int32_t v = 0; v < dense_points_.cols; ++v) {
++        if (isValidPoint(dense_points_(u,v))) {
++          const cv::Vec3b& bgr = color.at<cv::Vec3b>(u,v);
++          int32_t rgb_packed = (bgr[2] << 16) | (bgr[1] << 8) | bgr[0];
++          points.channels[0].values.push_back(*(float*)(&rgb_packed));
++        }
++      }
++    }
++  }
++  else if (encoding == enc::BGRA8) {
++    for (int32_t u = 0; u < dense_points_.rows; ++u) {
++      for (int32_t v = 0; v < dense_points_.cols; ++v) {
++        if (isValidPoint(dense_points_(u,v))) {
++          const cv::Vec4b& bgra = color.at<cv::Vec4b>(u,v);
++          int32_t rgb_packed = (bgra[2] << 16) | (bgra[1] << 8) | bgra[0];
++          points.channels[0].values.push_back(*(float*)(&rgb_packed));
++        }
++      }
++    }
++  }
++  else {
++    ROS_WARN("Could not fill color channel of the point cloud, unrecognized encoding '%s'", encoding.c_str());
++  }
++}
++
++void StereoProcessor::processPoints2(const stereo_msgs::DisparityImage& disparity,
++                                     const cv::Mat& color, const std::string& encoding,
++                                     const image_geometry::StereoCameraModel& model,
++                                     sensor_msgs::PointCloud2& points) const
++{
++  // Calculate dense point cloud
++  const sensor_msgs::Image& dimage = disparity.image;
++  const cv::Mat_<float> dmat(dimage.height, dimage.width, (float*)&dimage.data[0], dimage.step);
++  model.projectDisparityImageTo3d(dmat, dense_points_, true);
++
++  // Fill in sparse point cloud message
++  points.height = dense_points_.rows;
++  points.width  = dense_points_.cols;
++  points.fields.resize (4);
++  points.fields[0].name = "x";
++  points.fields[0].offset = 0;
++  points.fields[0].count = 1;
++  points.fields[0].datatype = sensor_msgs::PointField::FLOAT32;
++  points.fields[1].name = "y";
++  points.fields[1].offset = 4;
++  points.fields[1].count = 1;
++  points.fields[1].datatype = sensor_msgs::PointField::FLOAT32;
++  points.fields[2].name = "z";
++  points.fields[2].offset = 8;
++  points.fields[2].count = 1;
++  points.fields[2].datatype = sensor_msgs::PointField::FLOAT32;
++  points.fields[3].name = "rgb";
++  points.fields[3].offset = 12;
++  points.fields[3].count = 1;
++  points.fields[3].datatype = sensor_msgs::PointField::FLOAT32;
++  //points.is_bigendian = false; ???
++  points.point_step = 16;
++  points.row_step = points.point_step * points.width;
++  points.data.resize (points.row_step * points.height);
++  points.is_dense = false; // there may be invalid points
++ 
++  float bad_point = std::numeric_limits<float>::quiet_NaN ();
++  int i = 0;
++  for (int32_t u = 0; u < dense_points_.rows; ++u) {
++    for (int32_t v = 0; v < dense_points_.cols; ++v, ++i) {
++      if (isValidPoint(dense_points_(u,v))) {
++        // x,y,z,rgba
++        memcpy (&points.data[i * points.point_step + 0], &dense_points_(u,v)[0], sizeof (float));
++        memcpy (&points.data[i * points.point_step + 4], &dense_points_(u,v)[1], sizeof (float));
++        memcpy (&points.data[i * points.point_step + 8], &dense_points_(u,v)[2], sizeof (float));
++      }
++      else {
++        memcpy (&points.data[i * points.point_step + 0], &bad_point, sizeof (float));
++        memcpy (&points.data[i * points.point_step + 4], &bad_point, sizeof (float));
++        memcpy (&points.data[i * points.point_step + 8], &bad_point, sizeof (float));
++      }
++    }
++  }
++
++  // Fill in color
++  namespace enc = sensor_msgs::image_encodings;
++  i = 0;
++  if (encoding == enc::MONO8) {
++    for (int32_t u = 0; u < dense_points_.rows; ++u) {
++      for (int32_t v = 0; v < dense_points_.cols; ++v, ++i) {
++        if (isValidPoint(dense_points_(u,v))) {
++          uint8_t g = color.at<uint8_t>(u,v);
++          int32_t rgb = (g << 16) | (g << 8) | g;
++          memcpy (&points.data[i * points.point_step + 12], &rgb, sizeof (int32_t));
++        }
++        else {
++          memcpy (&points.data[i * points.point_step + 12], &bad_point, sizeof (float));
++        }
++      }
++    }
++  }
++  else if (encoding == enc::RGB8) {
++    for (int32_t u = 0; u < dense_points_.rows; ++u) {
++      for (int32_t v = 0; v < dense_points_.cols; ++v, ++i) {
++        if (isValidPoint(dense_points_(u,v))) {
++          const cv::Vec3b& rgb = color.at<cv::Vec3b>(u,v);
++          int32_t rgb_packed = (rgb[0] << 16) | (rgb[1] << 8) | rgb[2];
++          memcpy (&points.data[i * points.point_step + 12], &rgb_packed, sizeof (int32_t));
++        }
++        else {
++          memcpy (&points.data[i * points.point_step + 12], &bad_point, sizeof (float));
++        }
++      }
++    }
++  }
++  else if (encoding == enc::RGBA8) {
++    for (int32_t u = 0; u < dense_points_.rows; ++u) {
++      for (int32_t v = 0; v < dense_points_.cols; ++v, ++i) {
++        if (isValidPoint(dense_points_(u,v))) {
++          const cv::Vec4b& rgba = color.at<cv::Vec4b>(u,v);
++          int32_t rgb_packed = (rgba[0] << 16) | (rgba[1] << 8) | rgba[2];
++          memcpy (&points.data[i * points.point_step + 12], &rgb_packed, sizeof (int32_t));
++        }
++        else {
++          memcpy (&points.data[i * points.point_step + 12], &bad_point, sizeof (float));
++        }
++      }
++    }
++  }
++  else if (encoding == enc::BGR8) {
++    for (int32_t u = 0; u < dense_points_.rows; ++u) {
++      for (int32_t v = 0; v < dense_points_.cols; ++v, ++i) {
++        if (isValidPoint(dense_points_(u,v))) {
++          const cv::Vec3b& bgr = color.at<cv::Vec3b>(u,v);
++          int32_t rgb_packed = (bgr[2] << 16) | (bgr[1] << 8) | bgr[0];
++          memcpy (&points.data[i * points.point_step + 12], &rgb_packed, sizeof (int32_t));
++        }
++        else {
++          memcpy (&points.data[i * points.point_step + 12], &bad_point, sizeof (float));
++        }
++      }
++    }
++  }
++  else if (encoding == enc::BGRA8) {
++    for (int32_t u = 0; u < dense_points_.rows; ++u) {
++      for (int32_t v = 0; v < dense_points_.cols; ++v, ++i) {
++        if (isValidPoint(dense_points_(u,v))) {
++          const cv::Vec4b& bgra = color.at<cv::Vec4b>(u,v);
++          int32_t rgb_packed = (bgra[2] << 16) | (bgra[1] << 8) | bgra[0];
++          memcpy (&points.data[i * points.point_step + 12], &rgb_packed, sizeof (int32_t));
++        }
++        else {
++          memcpy (&points.data[i * points.point_step + 12], &bad_point, sizeof (float));
++        }
++      }
++    }
++  }
++  else {
++    ROS_WARN("Could not fill color channel of the point cloud, unrecognized encoding '%s'", encoding.c_str());
++  }
++}
++
++} //namespace stereo_image_proc
+--- /dev/null
++++ ros-noetic-stereo-image-proc-1.17.0/src/nodelets/disparity.cpp
+@@ -0,0 +1,331 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++* 
++*  Copyright (c) 2008, Willow Garage, Inc.
++*  All rights reserved.
++* 
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++* 
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++* 
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++#include <boost/version.hpp>
++#if ((BOOST_VERSION / 100) % 1000) >= 53
++#include <boost/thread/lock_guard.hpp>
++#endif
++
++#include <ros/ros.h>
++#include <nodelet/nodelet.h>
++#include <image_transport/image_transport.h>
++#include <image_transport/subscriber_filter.h>
++#include <message_filters/subscriber.h>
++#include <message_filters/synchronizer.h>
++#include <message_filters/sync_policies/exact_time.h>
++#include <message_filters/sync_policies/approximate_time.h>
++
++#include <image_geometry/stereo_camera_model.h>
++#include <opencv2/calib3d/calib3d.hpp>
++#include <cv_bridge/cv_bridge.h>
++
++#include <sensor_msgs/image_encodings.h>
++#include <stereo_msgs/DisparityImage.h>
++
++#include <stereo_image_proc/DisparityConfig.h>
++#include <dynamic_reconfigure/server.h>
++
++#include <stereo_image_proc/processor.h>
++
++namespace stereo_image_proc {
++
++using namespace sensor_msgs;
++using namespace stereo_msgs;
++using namespace message_filters::sync_policies;
++
++class DisparityNodelet : public nodelet::Nodelet
++{
++  boost::shared_ptr<image_transport::ImageTransport> it_;
++  
++  // Subscriptions
++  image_transport::SubscriberFilter sub_l_image_, sub_r_image_;
++  message_filters::Subscriber<CameraInfo> sub_l_info_, sub_r_info_;
++  typedef ExactTime<Image, CameraInfo, Image, CameraInfo> ExactPolicy;
++  typedef ApproximateTime<Image, CameraInfo, Image, CameraInfo> ApproximatePolicy;
++  typedef message_filters::Synchronizer<ExactPolicy> ExactSync;
++  typedef message_filters::Synchronizer<ApproximatePolicy> ApproximateSync;
++  boost::shared_ptr<ExactSync> exact_sync_;
++  boost::shared_ptr<ApproximateSync> approximate_sync_;
++  // Publications
++  boost::mutex connect_mutex_;
++  ros::Publisher pub_disparity_;
++
++  // Dynamic reconfigure
++  boost::recursive_mutex config_mutex_;
++  typedef stereo_image_proc::DisparityConfig Config;
++  typedef dynamic_reconfigure::Server<Config> ReconfigureServer;
++  boost::shared_ptr<ReconfigureServer> reconfigure_server_;
++  int downsampling_factor_;
++
++  // Processing state (note: only safe because we're single-threaded!)
++  image_geometry::StereoCameraModel model_;
++  stereo_image_proc::StereoProcessor block_matcher_; // contains scratch buffers for block matching
++
++  virtual void onInit();
++
++  void connectCb();
++
++  void imageCb(const ImageConstPtr& l_image_msg, const CameraInfoConstPtr& l_info_msg,
++               const ImageConstPtr& r_image_msg, const CameraInfoConstPtr& r_info_msg);
++
++  void configCb(Config &config, uint32_t level);
++};
++
++void DisparityNodelet::onInit()
++{
++  ros::NodeHandle &nh = getNodeHandle();
++  ros::NodeHandle &private_nh = getPrivateNodeHandle();
++
++  it_.reset(new image_transport::ImageTransport(nh));
++
++  // Synchronize inputs. Topic subscriptions happen on demand in the connection
++  // callback. Optionally do approximate synchronization.
++  int queue_size;
++  private_nh.param("queue_size", queue_size, 5);
++  bool approx;
++  private_nh.param("approximate_sync", approx, false);
++  private_nh.param("downsampling_factor", downsampling_factor_, 1);
++  if (approx)
++  {
++    approximate_sync_.reset( new ApproximateSync(ApproximatePolicy(queue_size),
++                                                 sub_l_image_, sub_l_info_,
++                                                 sub_r_image_, sub_r_info_) );
++    approximate_sync_->registerCallback(boost::bind(&DisparityNodelet::imageCb,
++                                                    this, boost::placeholders::_1, boost::placeholders::_2, boost::placeholders::_3, boost::placeholders::_4));
++  }
++  else
++  {
++    exact_sync_.reset( new ExactSync(ExactPolicy(queue_size),
++                                     sub_l_image_, sub_l_info_,
++                                     sub_r_image_, sub_r_info_) );
++    exact_sync_->registerCallback(boost::bind(&DisparityNodelet::imageCb,
++                                              this, boost::placeholders::_1, boost::placeholders::_2, boost::placeholders::_3, boost::placeholders::_4));
++  }
++
++  // Set up dynamic reconfiguration
++  ReconfigureServer::CallbackType f = boost::bind(&DisparityNodelet::configCb,
++                                                  this, boost::placeholders::_1, boost::placeholders::_2);
++  reconfigure_server_.reset(new ReconfigureServer(config_mutex_, private_nh));
++  reconfigure_server_->setCallback(f);
++
++  // Monitor whether anyone is subscribed to the output
++  ros::SubscriberStatusCallback connect_cb = boost::bind(&DisparityNodelet::connectCb, this);
++  // Make sure we don't enter connectCb() between advertising and assigning to pub_disparity_
++  boost::lock_guard<boost::mutex> lock(connect_mutex_);
++  pub_disparity_ = nh.advertise<DisparityImage>("disparity", 1, connect_cb, connect_cb);
++}
++
++// Handles (un)subscribing when clients (un)subscribe
++void DisparityNodelet::connectCb()
++{
++  boost::lock_guard<boost::mutex> lock(connect_mutex_);
++  if (pub_disparity_.getNumSubscribers() == 0)
++  {
++    sub_l_image_.unsubscribe();
++    sub_l_info_ .unsubscribe();
++    sub_r_image_.unsubscribe();
++    sub_r_info_ .unsubscribe();
++  }
++  else if (!sub_l_image_.getSubscriber())
++  {
++    ros::NodeHandle &nh = getNodeHandle();
++    // Queue size 1 should be OK; the one that matters is the synchronizer queue size.
++    /// @todo Allow remapping left, right?
++    image_transport::TransportHints hints("raw", ros::TransportHints(), getPrivateNodeHandle());
++    sub_l_image_.subscribe(*it_, "left/image_rect", 1, hints);
++    sub_l_info_ .subscribe(nh,   "left/camera_info", 1);
++    sub_r_image_.subscribe(*it_, "right/image_rect", 1, hints);
++    sub_r_info_ .subscribe(nh,   "right/camera_info", 1);
++  }
++}
++
++cv::Mat subsampleTheImage(
++    const cv::Mat& input_image,
++    const uint32_t downsample_factor_per_dimension) {
++  cv::Mat blurred_image;
++  const int32_t kernel_size = 2 * downsample_factor_per_dimension + 1;
++  cv::GaussianBlur(
++      input_image, blurred_image, cv::Size(kernel_size, kernel_size),
++      downsample_factor_per_dimension);
++
++  // To avoid computational effort of bilinear interpolation, perform
++  // interpolation manually.
++  uint32_t downsampled_height = std::ceil(
++      input_image.size().height /
++      static_cast<double>(downsample_factor_per_dimension));
++  uint32_t downsampled_width = std::ceil(
++      input_image.size().width /
++      static_cast<double>(downsample_factor_per_dimension));
++  cv::Mat downsampled_image(
++      downsampled_height, downsampled_width, input_image.type());
++
++  for (uint32_t destination_row = 0u;
++       destination_row < downsampled_image.size().height; destination_row++) {
++    for (uint32_t destination_col = 0u;
++         destination_col < downsampled_image.size().width; destination_col++) {
++      downsampled_image.at<uint8_t>(destination_row, destination_col) =
++          blurred_image.at<uint8_t>(
++              destination_row * downsample_factor_per_dimension,
++              destination_col * downsample_factor_per_dimension);
++    }
++  }
++  return downsampled_image;
++}
++
++cv::Mat upsampleTheDisparityImageWithoutInterpolation(
++    const cv::Mat& disparity, const cv::Size& destination_size,
++    const uint32_t upsample_factor_per_dimension) {
++  cv::Mat upsampled_disparity(destination_size, disparity.type(), -1.);
++
++  for (uint32_t destination_row = 0u;
++       destination_row < upsampled_disparity.size().height; destination_row++) {
++    for (uint32_t destination_col = 0u;
++         destination_col < upsampled_disparity.size().width;
++         destination_col++) {
++      upsampled_disparity.at<float>(destination_row, destination_col) =
++          upsample_factor_per_dimension *
++          disparity.at<float>(
++              destination_row / upsample_factor_per_dimension,
++              destination_col / upsample_factor_per_dimension);
++    }
++  }
++  return upsampled_disparity;
++}
++
++void DisparityNodelet::imageCb(const ImageConstPtr& l_image_msg,
++                               const CameraInfoConstPtr& l_info_msg,
++                               const ImageConstPtr& r_image_msg,
++                               const CameraInfoConstPtr& r_info_msg)
++{
++  // Update the camera model
++  model_.fromCameraInfo(l_info_msg, r_info_msg);
++
++  // Allocate new disparity image message
++  DisparityImagePtr disp_msg = boost::make_shared<DisparityImage>();
++  disp_msg->header         = l_info_msg->header;
++  disp_msg->image.header   = l_info_msg->header;
++
++  // Compute window of (potentially) valid disparities
++  int border   = block_matcher_.getCorrelationWindowSize() / 2;
++  int left   = block_matcher_.getDisparityRange() + block_matcher_.getMinDisparity() + border - 1;
++  int wtf = (block_matcher_.getMinDisparity() >= 0) ? border + block_matcher_.getMinDisparity() : std::max(border, -block_matcher_.getMinDisparity());
++  int right  = disp_msg->image.width - 1 - wtf;
++  int top    = border;
++  int bottom = disp_msg->image.height - 1 - border;
++  disp_msg->valid_window.x_offset = left;
++  disp_msg->valid_window.y_offset = top;
++  disp_msg->valid_window.width    = right - left;
++  disp_msg->valid_window.height   = bottom - top;
++
++  // Create cv::Mat views onto all buffers
++  const cv::Mat_<uint8_t> l_image = cv_bridge::toCvShare(l_image_msg, sensor_msgs::image_encodings::MONO8)->image;
++  const cv::Mat_<uint8_t> r_image = cv_bridge::toCvShare(r_image_msg, sensor_msgs::image_encodings::MONO8)->image;
++
++  cv::Mat_<uint8_t> l_sub_image;
++  cv::Mat_<uint8_t> r_sub_image;
++
++  if (downsampling_factor_ != 1) {
++    l_sub_image = subsampleTheImage(l_image, downsampling_factor_);
++    r_sub_image = subsampleTheImage(r_image, downsampling_factor_);
++  } else {
++    l_sub_image = l_image;
++    r_sub_image = r_image;
++  }
++
++  // Perform block matching to find the disparities
++  block_matcher_.processDisparity(l_sub_image, r_sub_image, model_, *disp_msg);
++
++  // Upsampling
++  if (downsampling_factor_ != 1) {
++    const cv::Mat disp_subsampled_image =
++        cv_bridge::toCvShare(
++            disp_msg->image, disp_msg, sensor_msgs::image_encodings::TYPE_32FC1)
++            ->image;
++    const cv::Mat disp_upsampled_image =
++        upsampleTheDisparityImageWithoutInterpolation(
++            disp_subsampled_image, l_image.size(), downsampling_factor_);
++    const cv_bridge::CvImage disp_image_container = cv_bridge::CvImage(
++        disp_msg->header, sensor_msgs::image_encodings::TYPE_32FC1,
++        disp_upsampled_image);
++    disp_image_container.toImageMsg(disp_msg->image);
++  }
++
++  // Adjust for any x-offset between the principal points: d' = d - (cx_l - cx_r)
++  double cx_l = model_.left().cx();
++  double cx_r = model_.right().cx();
++  if (cx_l != cx_r) {
++    cv::Mat_<float> disp_image(disp_msg->image.height, disp_msg->image.width,
++                              reinterpret_cast<float*>(&disp_msg->image.data[0]),
++                              disp_msg->image.step);
++    cv::subtract(disp_image, cv::Scalar(cx_l - cx_r), disp_image);
++  }
++
++  pub_disparity_.publish(disp_msg);
++}
++
++void DisparityNodelet::configCb(Config &config, uint32_t level)
++{
++  // Tweak all settings to be valid
++  config.prefilter_size |= 0x1; // must be odd
++  config.correlation_window_size |= 0x1; // must be odd
++  config.disparity_range = (config.disparity_range / 16) * 16; // must be multiple of 16
++  
++  // check stereo method
++  // Note: With single-threaded NodeHandle, configCb and imageCb can't be called
++  // concurrently, so this is thread-safe.
++  block_matcher_.setPreFilterCap(config.prefilter_cap);
++  block_matcher_.setCorrelationWindowSize(config.correlation_window_size);
++  block_matcher_.setMinDisparity(config.min_disparity);
++  block_matcher_.setDisparityRange(config.disparity_range);
++  block_matcher_.setUniquenessRatio(config.uniqueness_ratio);
++  block_matcher_.setSpeckleSize(config.speckle_size);
++  block_matcher_.setSpeckleRange(config.speckle_range);
++  if (config.stereo_algorithm == stereo_image_proc::Disparity_StereoBM) { // StereoBM
++    block_matcher_.setStereoType(StereoProcessor::BM);
++    block_matcher_.setPreFilterSize(config.prefilter_size);
++    block_matcher_.setTextureThreshold(config.texture_threshold);
++  }
++  else if (config.stereo_algorithm == stereo_image_proc::Disparity_StereoSGBM) { // StereoSGBM
++    block_matcher_.setStereoType(StereoProcessor::SGBM);
++    block_matcher_.setSgbmMode(config.fullDP);
++    block_matcher_.setP1(config.P1);
++    block_matcher_.setP2(config.P2);
++    block_matcher_.setDisp12MaxDiff(config.disp12MaxDiff);
++  }
++}
++
++} // namespace stereo_image_proc
++
++// Register nodelet
++#include <pluginlib/class_list_macros.hpp>
++PLUGINLIB_EXPORT_CLASS(stereo_image_proc::DisparityNodelet,nodelet::Nodelet)
+--- /dev/null
++++ ros-noetic-stereo-image-proc-1.17.0/src/nodelets/point_cloud2.cpp
+@@ -0,0 +1,304 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++* 
++*  Copyright (c) 2008, Willow Garage, Inc.
++*  All rights reserved.
++* 
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++* 
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++* 
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++#include <boost/version.hpp>
++#if ((BOOST_VERSION / 100) % 1000) >= 53
++#include <boost/thread/lock_guard.hpp>
++#endif
++
++#include <ros/ros.h>
++#include <nodelet/nodelet.h>
++#include <image_transport/image_transport.h>
++#include <image_transport/subscriber_filter.h>
++#include <message_filters/subscriber.h>
++#include <message_filters/synchronizer.h>
++#include <message_filters/sync_policies/exact_time.h>
++#include <message_filters/sync_policies/approximate_time.h>
++#include <image_geometry/stereo_camera_model.h>
++
++#include <stereo_msgs/DisparityImage.h>
++#include <sensor_msgs/PointCloud2.h>
++#include <sensor_msgs/image_encodings.h>
++#include <sensor_msgs/point_cloud2_iterator.h>
++
++namespace stereo_image_proc {
++
++using namespace sensor_msgs;
++using namespace stereo_msgs;
++using namespace message_filters::sync_policies;
++
++class PointCloud2Nodelet : public nodelet::Nodelet
++{
++  boost::shared_ptr<image_transport::ImageTransport> it_;
++
++  // Subscriptions
++  image_transport::SubscriberFilter sub_l_image_;
++  message_filters::Subscriber<CameraInfo> sub_l_info_, sub_r_info_;
++  message_filters::Subscriber<DisparityImage> sub_disparity_;
++  typedef ExactTime<Image, CameraInfo, CameraInfo, DisparityImage> ExactPolicy;
++  typedef ApproximateTime<Image, CameraInfo, CameraInfo, DisparityImage> ApproximatePolicy;
++  typedef message_filters::Synchronizer<ExactPolicy> ExactSync;
++  typedef message_filters::Synchronizer<ApproximatePolicy> ApproximateSync;
++  boost::shared_ptr<ExactSync> exact_sync_;
++  boost::shared_ptr<ApproximateSync> approximate_sync_;
++
++  // Publications
++  boost::mutex connect_mutex_;
++  ros::Publisher pub_points2_;
++
++  // Processing state (note: only safe because we're single-threaded!)
++  image_geometry::StereoCameraModel model_;
++  cv::Mat_<cv::Vec3f> points_mat_; // scratch buffer
++  
++  virtual void onInit();
++
++  void connectCb();
++
++  void imageCb(const ImageConstPtr& l_image_msg,
++               const CameraInfoConstPtr& l_info_msg,
++               const CameraInfoConstPtr& r_info_msg,
++               const DisparityImageConstPtr& disp_msg);
++};
++
++void PointCloud2Nodelet::onInit()
++{
++  ros::NodeHandle &nh = getNodeHandle();
++  ros::NodeHandle &private_nh = getPrivateNodeHandle();
++  it_.reset(new image_transport::ImageTransport(nh));
++
++  // Synchronize inputs. Topic subscriptions happen on demand in the connection
++  // callback. Optionally do approximate synchronization.
++  int queue_size;
++  private_nh.param("queue_size", queue_size, 5);
++  bool approx;
++  private_nh.param("approximate_sync", approx, false);
++  if (approx)
++  {
++    approximate_sync_.reset( new ApproximateSync(ApproximatePolicy(queue_size),
++                                                 sub_l_image_, sub_l_info_,
++                                                 sub_r_info_, sub_disparity_) );
++    approximate_sync_->registerCallback(boost::bind(&PointCloud2Nodelet::imageCb,
++                                                    this, boost::placeholders::_1, boost::placeholders::_2, boost::placeholders::_3, boost::placeholders::_4));
++  }
++  else
++  {
++    exact_sync_.reset( new ExactSync(ExactPolicy(queue_size),
++                                     sub_l_image_, sub_l_info_,
++                                     sub_r_info_, sub_disparity_) );
++    exact_sync_->registerCallback(boost::bind(&PointCloud2Nodelet::imageCb,
++                                              this, boost::placeholders::_1, boost::placeholders::_2, boost::placeholders::_3, boost::placeholders::_4));
++  }
++
++  // Monitor whether anyone is subscribed to the output
++  ros::SubscriberStatusCallback connect_cb = boost::bind(&PointCloud2Nodelet::connectCb, this);
++  // Make sure we don't enter connectCb() between advertising and assigning to pub_points2_
++  boost::lock_guard<boost::mutex> lock(connect_mutex_);
++  pub_points2_  = nh.advertise<PointCloud2>("points2",  1, connect_cb, connect_cb);
++}
++
++// Handles (un)subscribing when clients (un)subscribe
++void PointCloud2Nodelet::connectCb()
++{
++  boost::lock_guard<boost::mutex> lock(connect_mutex_);
++  if (pub_points2_.getNumSubscribers() == 0)
++  {
++    sub_l_image_  .unsubscribe();
++    sub_l_info_   .unsubscribe();
++    sub_r_info_   .unsubscribe();
++    sub_disparity_.unsubscribe();
++  }
++  else if (!sub_l_image_.getSubscriber())
++  {
++    ros::NodeHandle &nh = getNodeHandle();
++    // Queue size 1 should be OK; the one that matters is the synchronizer queue size.
++    image_transport::TransportHints hints("raw", ros::TransportHints(), getPrivateNodeHandle());
++    sub_l_image_  .subscribe(*it_, "left/image_rect_color", 1, hints);
++    sub_l_info_   .subscribe(nh,   "left/camera_info", 1);
++    sub_r_info_   .subscribe(nh,   "right/camera_info", 1);
++    sub_disparity_.subscribe(nh,   "disparity", 1);
++  }
++}
++
++inline bool isValidPoint(const cv::Vec3f& pt)
++{
++  // Check both for disparities explicitly marked as invalid (where OpenCV maps pt.z to MISSING_Z)
++  // and zero disparities (point mapped to infinity).
++  return pt[2] != image_geometry::StereoCameraModel::MISSING_Z && !std::isinf(pt[2]);
++}
++
++void PointCloud2Nodelet::imageCb(const ImageConstPtr& l_image_msg,
++                                 const CameraInfoConstPtr& l_info_msg,
++                                 const CameraInfoConstPtr& r_info_msg,
++                                 const DisparityImageConstPtr& disp_msg)
++{
++  // Update the camera model
++  model_.fromCameraInfo(l_info_msg, r_info_msg);
++
++  // Calculate point cloud
++  const Image& dimage = disp_msg->image;
++  const cv::Mat_<float> dmat(dimage.height, dimage.width, (float*)&dimage.data[0], dimage.step);
++  model_.projectDisparityImageTo3d(dmat, points_mat_, true);
++  cv::Mat_<cv::Vec3f> mat = points_mat_;
++
++  // Fill in new PointCloud2 message (2D image-like layout)
++  PointCloud2Ptr points_msg = boost::make_shared<PointCloud2>();
++  points_msg->header = disp_msg->header;
++  points_msg->height = mat.rows;
++  points_msg->width  = mat.cols;
++  points_msg->is_bigendian = false;
++  points_msg->is_dense = false; // there may be invalid points
++
++  sensor_msgs::PointCloud2Modifier pcd_modifier(*points_msg);
++  pcd_modifier.setPointCloud2FieldsByString(2, "xyz", "rgb");
++
++  sensor_msgs::PointCloud2Iterator<float> iter_x(*points_msg, "x");
++  sensor_msgs::PointCloud2Iterator<float> iter_y(*points_msg, "y");
++  sensor_msgs::PointCloud2Iterator<float> iter_z(*points_msg, "z");
++  sensor_msgs::PointCloud2Iterator<uint8_t> iter_r(*points_msg, "r");
++  sensor_msgs::PointCloud2Iterator<uint8_t> iter_g(*points_msg, "g");
++  sensor_msgs::PointCloud2Iterator<uint8_t> iter_b(*points_msg, "b");
++
++  float bad_point = std::numeric_limits<float>::quiet_NaN ();
++  for (int v = 0; v < mat.rows; ++v)
++  {
++    for (int u = 0; u < mat.cols; ++u, ++iter_x, ++iter_y, ++iter_z)
++    {
++      if (isValidPoint(mat(v,u)))
++      {
++        // x,y,z
++        *iter_x = mat(v, u)[0];
++        *iter_y = mat(v, u)[1];
++        *iter_z = mat(v, u)[2];
++      }
++      else
++      {
++        *iter_x = *iter_y = *iter_z = bad_point;
++      }
++    }
++  }
++
++  // Fill in color
++  namespace enc = sensor_msgs::image_encodings;
++  const std::string& encoding = l_image_msg->encoding;
++  if (encoding == enc::MONO8)
++  {
++    const cv::Mat_<uint8_t> color(l_image_msg->height, l_image_msg->width,
++                                  (uint8_t*)&l_image_msg->data[0],
++                                  l_image_msg->step);
++    for (int v = 0; v < mat.rows; ++v)
++    {
++      for (int u = 0; u < mat.cols; ++u, ++iter_r, ++iter_g, ++iter_b)
++      {
++        uint8_t g = color(v,u);
++        *iter_r = *iter_g = *iter_b = g;
++      }
++    }
++  }
++  else if (encoding == enc::RGB8)
++  {
++    const cv::Mat_<cv::Vec3b> color(l_image_msg->height, l_image_msg->width,
++                                    (cv::Vec3b*)&l_image_msg->data[0],
++                                    l_image_msg->step);
++    for (int v = 0; v < mat.rows; ++v)
++    {
++      for (int u = 0; u < mat.cols; ++u, ++iter_r, ++iter_g, ++iter_b)
++      {
++        const cv::Vec3b& rgb = color(v,u);
++        *iter_r = rgb[0];
++        *iter_g = rgb[1];
++        *iter_b = rgb[2];
++      }
++    }
++  }
++  else if (encoding == enc::RGBA8)
++  {
++    const cv::Mat_<cv::Vec4b> color(l_image_msg->height, l_image_msg->width,
++                                    (cv::Vec4b*)&l_image_msg->data[0],
++                                    l_image_msg->step);
++    for (int v = 0; v < mat.rows; ++v)
++    {
++      for (int u = 0; u < mat.cols; ++u, ++iter_r, ++iter_g, ++iter_b)
++      {
++        const cv::Vec4b& rgba = color(v,u);
++        *iter_r = rgba[0];
++        *iter_g = rgba[1];
++        *iter_b = rgba[2];
++      }
++    }
++  }
++  else if (encoding == enc::BGR8)
++  {
++    const cv::Mat_<cv::Vec3b> color(l_image_msg->height, l_image_msg->width,
++                                    (cv::Vec3b*)&l_image_msg->data[0],
++                                    l_image_msg->step);
++    for (int v = 0; v < mat.rows; ++v)
++    {
++      for (int u = 0; u < mat.cols; ++u, ++iter_r, ++iter_g, ++iter_b)
++      {
++        const cv::Vec3b& bgr = color(v,u);
++        *iter_r = bgr[2];
++        *iter_g = bgr[1];
++        *iter_b = bgr[0];
++      }
++    }
++  }
++  else if (encoding == enc::BGRA8)
++  {
++    const cv::Mat_<cv::Vec4b> color(l_image_msg->height, l_image_msg->width,
++                                    (cv::Vec4b*)&l_image_msg->data[0],
++                                    l_image_msg->step);
++    for (int v = 0; v < mat.rows; ++v)
++    {
++      for (int u = 0; u < mat.cols; ++u, ++iter_r, ++iter_g, ++iter_b)
++      {
++        const cv::Vec4b& bgra = color(v,u);
++        *iter_r = bgra[2];
++        *iter_g = bgra[1];
++        *iter_b = bgra[0];
++      }
++    }
++  }
++  else
++  {
++    NODELET_WARN_THROTTLE(30, "Could not fill color channel of the point cloud, "
++                          "unsupported encoding '%s'", encoding.c_str());
++  }
++
++  pub_points2_.publish(points_msg);
++}
++
++} // namespace stereo_image_proc
++
++// Register nodelet
++#include <pluginlib/class_list_macros.hpp>
++PLUGINLIB_EXPORT_CLASS(stereo_image_proc::PointCloud2Nodelet,nodelet::Nodelet)
+--- /dev/null
++++ ros-noetic-stereo-image-proc-1.17.0/src/nodes/stereo_image_proc.cpp
+@@ -0,0 +1,153 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++* 
++*  Copyright (c) 2008, Willow Garage, Inc.
++*  All rights reserved.
++* 
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++* 
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++* 
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++
++#include <ros/ros.h>
++#include <nodelet/loader.h>
++#include <image_proc/advertisement_checker.h>
++
++void loadMonocularNodelets(nodelet::Loader& manager, const std::string& side,
++                           const XmlRpc::XmlRpcValue& rectify_params,
++                           const nodelet::V_string& my_argv)
++{
++  nodelet::M_string remappings;
++
++  // Explicitly resolve global remappings (wg-ros-pkg #5055).
++  // Otherwise the internal remapping 'image_raw' -> 'left/image_raw' can hide a
++  // global remapping from the launch file or command line.
++  std::string image_raw_topic        = ros::names::resolve(side + "/image_raw");
++  std::string image_mono_topic       = ros::names::resolve(side + "/image_mono");
++  std::string image_color_topic      = ros::names::resolve(side + "/image_color");
++  std::string image_rect_topic       = ros::names::resolve(side + "/image_rect");
++  std::string image_rect_color_topic = ros::names::resolve(side + "/image_rect_color");
++  std::string camera_info_topic      = ros::names::resolve(side + "/camera_info");
++  
++  // Debayer nodelet: image_raw -> image_mono, image_color
++  remappings["image_raw"]   = image_raw_topic;
++  remappings["image_mono"]  = image_mono_topic;
++  remappings["image_color"] = image_color_topic;
++  std::string debayer_name = ros::this_node::getName() + "_debayer_" + side;
++  manager.load(debayer_name, "image_proc/debayer", remappings, my_argv);
++
++  // Rectify nodelet: image_mono -> image_rect
++  remappings.clear();
++  remappings["image_mono"]  = image_mono_topic;
++  remappings["camera_info"] = camera_info_topic;
++  remappings["image_rect"]  = image_rect_topic;
++  std::string rectify_mono_name = ros::this_node::getName() + "_rectify_mono_" + side;
++  if (rectify_params.valid())
++    ros::param::set(rectify_mono_name, rectify_params);
++  manager.load(rectify_mono_name, "image_proc/rectify", remappings, my_argv);
++
++  // Rectify nodelet: image_color -> image_rect_color
++  remappings.clear();
++  remappings["image_mono"]  = image_color_topic;
++  remappings["camera_info"] = camera_info_topic;
++  remappings["image_rect"]  = image_rect_color_topic;
++  std::string rectify_color_name = ros::this_node::getName() + "_rectify_color_" + side;
++  if (rectify_params.valid())
++    ros::param::set(rectify_color_name, rectify_params);
++  manager.load(rectify_color_name, "image_proc/rectify", remappings, my_argv);
++}
++
++int main(int argc, char **argv)
++{
++  ros::init(argc, argv, "stereo_image_proc");
++
++  // Check for common user errors
++  if (ros::names::remap("camera") != "camera")
++  {
++    ROS_WARN("Remapping 'camera' has no effect! Start stereo_image_proc in the "
++             "stereo namespace instead.\nExample command-line usage:\n"
++             "\t$ ROS_NAMESPACE=%s rosrun stereo_image_proc stereo_image_proc",
++             ros::names::remap("camera").c_str());
++  }
++  if (ros::this_node::getNamespace() == "/")
++  {
++    ROS_WARN("Started in the global namespace! This is probably wrong. Start "
++             "stereo_image_proc in the stereo namespace.\nExample command-line usage:\n"
++             "\t$ ROS_NAMESPACE=my_stereo rosrun stereo_image_proc stereo_image_proc");
++  }
++
++  // Shared parameters to be propagated to nodelet private namespaces
++  ros::NodeHandle private_nh("~");
++  XmlRpc::XmlRpcValue shared_params;
++  int queue_size;
++  if (private_nh.getParam("queue_size", queue_size))
++    shared_params["queue_size"] = queue_size;
++
++  int downsampling_factor;
++  if (private_nh.getParam("downsampling_factor", downsampling_factor))
++    shared_params["downsampling_factor"] = downsampling_factor;
++
++  nodelet::Loader manager(false); // Don't bring up the manager ROS API
++  nodelet::M_string remappings;
++  nodelet::V_string my_argv;
++
++  // Load equivalents of image_proc for left and right cameras
++  loadMonocularNodelets(manager, "left",  shared_params, my_argv);
++  loadMonocularNodelets(manager, "right", shared_params, my_argv);
++
++  // Stereo nodelets also need to know the synchronization policy
++  bool approx_sync;
++  if (private_nh.getParam("approximate_sync", approx_sync))
++    shared_params["approximate_sync"] = XmlRpc::XmlRpcValue(approx_sync);
++
++  // Disparity nodelet
++  // Inputs: left/image_rect, left/camera_info, right/image_rect, right/camera_info
++  // Outputs: disparity
++  // NOTE: Using node name for the disparity nodelet because it is the only one using
++  // dynamic_reconfigure so far, and this makes us backwards-compatible with cturtle.
++  std::string disparity_name = ros::this_node::getName();
++  manager.load(disparity_name, "stereo_image_proc/disparity", remappings, my_argv);
++
++  // PointCloud2 nodelet
++  // Inputs: left/image_rect_color, left/camera_info, right/camera_info, disparity
++  // Outputs: points2
++  std::string point_cloud2_name = ros::this_node::getName() + "_point_cloud2";
++  if (shared_params.valid())
++    ros::param::set(point_cloud2_name, shared_params);
++  manager.load(point_cloud2_name, "stereo_image_proc/point_cloud2", remappings, my_argv);
++
++  // Check for only the original camera topics
++  ros::V_string topics;
++  topics.push_back(ros::names::resolve("left/image_raw"));
++  topics.push_back(ros::names::resolve("left/camera_info"));
++  topics.push_back(ros::names::resolve("right/image_raw"));
++  topics.push_back(ros::names::resolve("right/camera_info"));
++  image_proc::AdvertisementChecker check_inputs(ros::NodeHandle(), ros::this_node::getName());
++  check_inputs.start(topics, 60.0);
++
++  ros::spin();
++  return 0;
++}

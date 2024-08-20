@@ -1,0 +1,12 @@
+Source: ros-noetic-rqt-plot
+Section: misc
+Priority: optional
+Maintainer: Mabel Zhang <mabel@openrobotics.org>
+Build-Depends: debhelper (>= 9.0.0), ros-noetic-catkin
+Homepage: http://wiki.ros.org/rqt_plot
+Standards-Version: 3.9.2
+
+Package: ros-noetic-rqt-plot
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, python3-matplotlib, python3-numpy, python3-rospkg, ros-noetic-python-qt-binding (>= 0.2.19), ros-noetic-qt-gui-py-common (>= 0.2.25), ros-noetic-qwt-dependency, ros-noetic-rosgraph, ros-noetic-rostopic, ros-noetic-rqt-gui, ros-noetic-rqt-gui-py, ros-noetic-rqt-py-common, ros-noetic-std-msgs
+Description: rqt_plot provides a GUI plugin visualizing numeric values in a 2D plot using different plotting backends.

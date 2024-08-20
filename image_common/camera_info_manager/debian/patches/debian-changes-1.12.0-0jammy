@@ -1,0 +1,2066 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-camera-info-manager (1.12.0-0jammy) jammy; urgency=high
+ .
+   * Noetic release image_common (#155 <https://github.com/ros-perception/image_common/issues/155>)
+     * noetic - Porting Python to Python3
+     Signed-off-by: ahcorde <mailto:ahcorde@gmail.com>
+     * Updated cmake_minimum_required to 3.0.2
+     Signed-off-by: ahcorde <mailto:ahcorde@gmail.com>
+     * changed diskutils.core for setuptools
+     Signed-off-by: ahcorde <mailto:ahcorde@gmail.com>
+     * ported to noetic image_transport tutorial
+     Signed-off-by: ahcorde <mailto:ahcorde@gmail.com>
+   * Contributors: Alejandro Hernández Cordero
+Author: Jack O'Quin <jack.oquin@gmail.com>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-camera-info-manager-1.12.0/CHANGELOG.rst
+@@ -0,0 +1,237 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package camera_info_manager
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++1.12.0 (2020-04-03)
++-------------------
++* Noetic release image_common (`#155 <https://github.com/ros-perception/image_common/issues/155>`_)
++  * noetic - Porting Python to Python3
++  Signed-off-by: ahcorde <ahcorde@gmail.com>
++  * Updated cmake_minimum_required to 3.0.2
++  Signed-off-by: ahcorde <ahcorde@gmail.com>
++  * changed diskutils.core for setuptools
++  Signed-off-by: ahcorde <ahcorde@gmail.com>
++  * ported to noetic image_transport tutorial
++  Signed-off-by: ahcorde <ahcorde@gmail.com>
++* Contributors: Alejandro Hernández Cordero
++
++1.11.14 (2020-04-03)
++--------------------
++* export runtime binaries correctly on Windows (`#116 <https://github.com/ros-perception/image_common/issues/116>`_)
++* add indentation, and use _WIN32 instead of WIN32 (`#117 <https://github.com/ros-perception/image_common/issues/117>`_)
++* add DLL import/export macro (`#118 <https://github.com/ros-perception/image_common/issues/118>`_)
++* Contributors: James Xu
++
++1.11.13 (2017-11-05)
++--------------------
++* Fix the find_package(catkin) redundancy
++* Add a dependency between the test and the test executable
++* Add camera_calibration_parsers dependency to camera_info_manager
++* Contributors: Max Schettler, Vincent Rabaud
++
++1.11.12 (2017-01-29)
++--------------------
++* 1.11.11
++* update changelogs
++* Return empty CameraInfo when !ros::ok()
++* Contributors: Enrique Fernandez, Vincent Rabaud
++
++1.11.11 (2016-09-24)
++--------------------
++* Return empty CameraInfo when !ros::ok()
++* Contributors: Enrique Fernandez
++
++1.11.10 (2016-01-19)
++--------------------
++
++1.11.9 (2016-01-17)
++-------------------
++
++1.11.8 (2015-11-29)
++-------------------
++* fix compilation on Fedora, fixes `#42 <https://github.com/ros-perception/image_common/issues/42>`_
++* Contributors: Vincent Rabaud
++
++1.11.7 (2015-07-28)
++-------------------
++
++1.11.6 (2015-07-16)
++-------------------
++* simplify target_link_libraries
++  That should fix `#35 <https://github.com/ros-perception/image_common/issues/35>`_
++* Contributors: Vincent Rabaud
++
++1.11.5 (2015-05-14)
++-------------------
++
++1.11.4 (2014-09-21)
++-------------------
++
++1.11.3 (2014-05-19)
++-------------------
++* Add public member function to manually set camera info (`#19
++  <https://github.com/ros-perception/image_common/issues/19>`_)
++* make rostest in CMakeLists optional (`ros/rosdistro#3010
++  <https://github.com/ros/rosdistro/issues/3010>`_)
++* Contributors: Jack O'Quin, Jonathan Bohren, Lukas Bulwahn
++
++1.11.2 (2014-02-13)
++-------------------
++
++1.11.1 (2014-01-26 02:33)
++-------------------------
++* check for CATKIN_ENABLE_TESTING
++* Contributors: Lukas Bulwahn
++
++1.11.0 (2013-07-20 12:23)
++-------------------------
++
++1.10.5 (2014-01-26 02:34)
++-------------------------
++
++1.10.4 (2013-07-20 11:42)
++-------------------------
++* add Jack as maintainer
++* Contributors: Vincent Rabaud
++
++1.10.3 (2013-02-21 05:33)
++-------------------------
++* add gtest libraries linkage
++* Contributors: Vincent Rabaud
++
++1.10.2 (2013-02-21 04:48)
++-------------------------
++* fix the rostest dependency
++* Contributors: Vincent Rabaud
++
++1.10.1 (2013-02-21 04:16)
++-------------------------
++* fix catkin gtest and rostest problem
++* fix unit test dependencies
++* Removed duplicated test dependancy
++  Test dependencies should never duplicate build or run dependencies.
++* Contributors: Aaron Blasdel, Jack O'Quin
++
++1.10.0 (2013-01-13)
++-------------------
++* fix the urls
++* Contributors: Vincent Rabaud
++
++1.9.22 (2012-12-16)
++-------------------
++
++1.9.21 (2012-12-14)
++-------------------
++* Updated package.xml file(s) to handle new catkin buildtool_depend
++  requirement
++* Contributors: mirzashah
++
++1.9.20 (2012-12-04)
++-------------------
++
++1.9.19 (2012-11-08)
++-------------------
++
++1.9.18 (2012-11-06)
++-------------------
++* remove the brief attribute
++* Contributors: Vincent Rabaud
++
++1.9.17 (2012-10-30 19:32)
++-------------------------
++
++1.9.16 (2012-10-30 09:10)
++-------------------------
++
++1.9.15 (2012-10-13 08:43)
++-------------------------
++* fix bad folder/libraries
++* Contributors: Vincent Rabaud
++
++1.9.14 (2012-10-13 01:07)
++-------------------------
++
++1.9.13 (2012-10-06)
++-------------------
++
++1.9.12 (2012-10-04)
++-------------------
++
++1.9.11 (2012-10-02 02:56)
++-------------------------
++* add missing rostest dependency
++* Contributors: Vincent Rabaud
++
++1.9.10 (2012-10-02 02:42)
++-------------------------
++* fix bad dependency
++* Contributors: Vincent Rabaud
++
++1.9.9 (2012-10-01)
++------------------
++* fix dependencies
++* Contributors: Vincent Rabaud
++
++1.9.8 (2012-09-30)
++------------------
++* add catkin as a dependency
++* comply to the catkin API
++* Contributors: Vincent Rabaud
++
++1.9.7 (2012-09-18 11:39)
++------------------------
++* add missing linkage
++* Contributors: Vincent Rabaud
++
++1.9.6 (2012-09-18 11:07)
++------------------------
++
++1.9.5 (2012-09-13)
++------------------
++* install the include directories
++* Contributors: Vincent Rabaud
++
++1.9.4 (2012-09-12 23:37)
++------------------------
++
++1.9.3 (2012-09-12 20:44)
++------------------------
++
++1.9.2 (2012-09-10)
++------------------
++* fix build issues
++* Contributors: Vincent Rabaud
++
++1.9.1 (2012-09-07 15:33)
++------------------------
++* make the libraries public
++* Contributors: Vincent Rabaud
++
++1.9.0 (2012-09-07 13:03)
++------------------------
++* API documentation review update
++* suppress misleading camera_info_manager error messages [`#5273
++  <https://github.com/ros-perception/image_common/issues/5273>`_]
++* remove deprecated global CameraInfoManager symbol for Fuerte (`#4971
++  <https://github.com/ros-perception/image_common/issues/4971>`_)
++* Revert to using boost::mutex, not boost::recursive_mutex.
++* Hack saveCalibrationFile() to stat() the containing directory and
++  attempt to create it if necessary.  Test for this case.
++* Reload camera info when camera name changes.
++* Implement most new Electric API changes, with test cases.
++* Add ${ROS_HOME} expansion, with unit test cases.
++  Do not use "$$" for a single '$', look for "${" instead.
++* Use case-insensitive comparisons for parsing URL tags (`#4761
++  <https://github.com/ros-perception/image_common/issues/4761>`_).
++  Add unit test cases to cover this.  Add unit test case for camera
++  name containing video mode.
++* add test for resolving an empty URL
++* Deprecate use of global CameraInfoManager symbol in E-turtle (`#4786
++  <https://github.com/ros-perception/image_common/issues/4786>`_).
++  Modify unit tests accordingly.
++* provide camera_info_manager namespace, fixes `#4760
++  <https://github.com/ros-perception/image_common/issues/4760>`_
++* Add support for "package://" URLs.
++* Fixed tests to work with new CameraInfo.
++* Moved image_common from camera_drivers.
++* Contributors: Vincent Rabaud, blaise, Jack O'Quin, mihelich
+--- /dev/null
++++ ros-noetic-camera-info-manager-1.12.0/CMakeLists.txt
+@@ -0,0 +1,39 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(camera_info_manager)
++
++find_package(catkin REQUIRED COMPONENTS camera_calibration_parsers image_transport roscpp roslib sensor_msgs)
++
++find_package(Boost)
++catkin_package(INCLUDE_DIRS include
++               LIBRARIES ${PROJECT_NAME}
++               CATKIN_DEPENDS camera_calibration_parsers
++               DEPENDS Boost roscpp sensor_msgs
++)
++
++include_directories(${catkin_INCLUDE_DIRS})
++include_directories(include)
++
++# add a library
++add_library(${PROJECT_NAME} src/camera_info_manager.cpp)
++target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES})
++
++install(TARGETS ${PROJECT_NAME}
++        ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
++        LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
++        RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
++        COMPONENT main
++)
++install(DIRECTORY include/${PROJECT_NAME}/
++        DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
++)
++
++if(CATKIN_ENABLE_TESTING)
++  find_package(rostest)
++  # Unit test uses gtest, but needs rostest to create a ROS environment.
++  # Hence, it must be created as a normal executable, not using
++  # catkin_add_gtest() which runs an additional test without rostest.
++  add_executable(unit_test tests/unit_test.cpp)
++  target_link_libraries(unit_test ${PROJECT_NAME} ${GTEST_LIBRARIES} ${catkin_LIBRARIES})
++
++  add_rostest(tests/unit_test.test DEPENDENCIES unit_test)
++endif()
+--- /dev/null
++++ ros-noetic-camera-info-manager-1.12.0/include/camera_info_manager/camera_info_manager.h
+@@ -0,0 +1,257 @@
++/* -*- mode: C++ -*- */
++/* $Id$ */
++
++/*********************************************************************
++* Software License Agreement (BSD License)
++*
++*  Copyright (c) 2010-2012 Jack O'Quin
++*  All rights reserved.
++*
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++*
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the author nor other contributors may be
++*     used to endorse or promote products derived from this software
++*     without specific prior written permission.
++*
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++
++#ifndef _CAMERA_INFO_MANAGER_H_
++#define _CAMERA_INFO_MANAGER_H_
++
++#include <ros/ros.h>
++#include <boost/thread/mutex.hpp>
++#include <sensor_msgs/CameraInfo.h>
++#include <sensor_msgs/SetCameraInfo.h>
++
++#include <ros/macros.h>
++
++// Import/export for windows dll's and visibility for gcc shared libraries.
++
++#ifdef ROS_BUILD_SHARED_LIBS // ros is being built around shared libraries
++  #ifdef camera_info_manager_EXPORTS // we are building a shared lib/dll
++    #define CAMERA_INFO_MANAGER_DECL ROS_HELPER_EXPORT
++  #else // we are using shared lib/dll
++    #define CAMERA_INFO_MANAGER_DECL ROS_HELPER_IMPORT
++  #endif
++#else // ros is being built around static libraries
++  #define CAMERA_INFO_MANAGER_DECL
++#endif
++
++/** @file
++
++    @brief CameraInfo Manager interface
++
++    @author Jack O'Quin
++ */
++
++namespace camera_info_manager
++{
++
++/** @brief CameraInfo Manager class
++
++    Provides CameraInfo, handles the sensor_msgs/SetCameraInfo service
++    requests, saves and restores sensor_msgs/CameraInfo data.
++
++    @par ROS Service
++
++    - @b set_camera_info (sensor_msgs/SetCameraInfo) stores
++         calibration information
++
++    Typically, these service requests are made by a calibration
++    package, such as:
++
++    - http://www.ros.org/wiki/camera_calibration
++
++    The calling node @em must invoke ros::spin() or ros::spinOnce() in
++    some thread, so CameraInfoManager can handle arriving service
++    requests.
++
++    @par Camera Name
++
++    The device driver sets a camera name via the
++    CameraInfoManager::CameraInfoManager constructor or the
++    setCameraName() method.  This name is written when CameraInfo is
++    saved, and checked when data are loaded, with a warning logged if
++    the name read does not match.
++
++    Syntax: a camera name contains any combination of alphabetic,
++            numeric and '_' characters.  Case is significant.
++
++    Camera drivers may use any syntactically valid name they please.
++    Where possible, it is best for the name to be unique to the
++    device, such as a GUID, or the make, model and serial number.  Any
++    parameters that affect calibration, such as resolution, focus,
++    zoom, etc., may also be included in the name, uniquely identifying
++    each CameraInfo file.
++
++    Beginning with Electric Emys, the camera name can be resolved as
++    part of the URL, allowing direct access to device-specific
++    calibration information.
++
++    @par Uniform Resource Locator
++
++    The location for getting and saving calibration data is expressed
++    by Uniform Resource Locator.  The driver defines a URL via the
++    CameraInfoManager::CameraInfoManager constructor or the
++    loadCameraInfo() method.  Many drivers provide a @c
++    ~camera_info_url parameter so users may customize this URL, but
++    that is handled outside this class.
++
++    Typically, cameras store calibration information in a file, which
++    can be in any format supported by @c camera_calibration_parsers.
++    Currently, that includes YAML and Videre INI files, identified by
++    their .yaml or .ini extensions as shown in the examples.  These
++    file formats are described here:
++
++    - http://www.ros.org/wiki/camera_calibration_parsers#File_formats
++
++    Example URL syntax:
++
++    - file:///full/path/to/local/file.yaml
++    - file:///full/path/to/videre/file.ini
++    - package://camera_info_manager/tests/test_calibration.yaml
++    - package://ros_package_name/calibrations/camera3.yaml
++
++    The @c file: URL specifies a full path name in the local system.
++    The @c package: URL is handled the same as @c file:, except the
++    path name is resolved relative to the location of the named ROS
++    package, which @em must be reachable via @c $ROS_PACKAGE_PATH.
++
++    Beginning with Electric Emys, the URL may contain substitution
++    variables delimited by <tt>${...}</tt>, including:
++
++    - @c ${NAME} resolved to the current camera name defined by the
++                 device driver.
++    - @c ${ROS_HOME} resolved to the @c $ROS_HOME environment variable
++                     if defined, <tt>~/.ros</tt> if not.
++
++    Resolution is done in a single pass through the URL string.
++    Variable values containing substitutable strings are not resolved
++    recursively.  Unrecognized variable names are treated literally
++    with no substitution, but an error is logged.
++
++    Examples with variable substitution:
++
++    - package://my_cameras/calibrations/${NAME}.yaml
++    - file://${ROS_HOME}/camera_info/left_front_camera.yaml
++
++    In C-turtle and Diamondback, if the URL was empty, no calibration
++    data were loaded, and any data provided via `set_camera_info`
++    would be stored in:
++
++    - file:///tmp/calibration_${NAME}.yaml
++
++    Beginning in Electric, the default URL changed to:
++
++    - file://${ROS_HOME}/camera_info/${NAME}.yaml.
++
++    If that file exists, its contents are used. Any new calibration
++    will be stored there, missing parent directories being created if
++    necessary and possible.
++
++    @par Loading Calibration Data
++
++    Prior to Fuerte, calibration information was loaded in the
++    constructor, and again each time the URL or camera name was
++    updated. This frequently caused logging of confusing and
++    misleading error messages.
++
++    Beginning in Fuerte, camera_info_manager loads nothing until the
++    @c loadCameraInfo(), @c isCalibrated() or @c getCameraInfo()
++    method is called. That suppresses bogus error messages, but allows
++    (valid) load errors to occur during the first @c getCameraInfo(),
++    or @c isCalibrated(). To avoid that, do an explicit @c
++    loadCameraInfo() first.
++
++*/
++
++class CAMERA_INFO_MANAGER_DECL CameraInfoManager
++{
++ public:
++
++  CameraInfoManager(ros::NodeHandle nh,
++                    const std::string &cname="camera",
++                    const std::string &url="");
++
++  sensor_msgs::CameraInfo getCameraInfo(void);
++  bool isCalibrated(void);
++  bool loadCameraInfo(const std::string &url);
++  std::string resolveURL(const std::string &url,
++                         const std::string &cname);
++  bool setCameraName(const std::string &cname);
++  bool setCameraInfo(const sensor_msgs::CameraInfo &camera_info);
++  bool validateURL(const std::string &url);
++
++ private:
++
++  // recognized URL types
++  typedef enum
++    {
++      // supported URLs
++      URL_empty = 0,             // empty string
++      URL_file,                  // file:
++      URL_package,               // package: 
++      // URLs not supported
++      URL_invalid,               // anything >= is invalid
++      URL_flash,                 // flash: 
++    } url_type_t;
++
++  // private methods
++  std::string getPackageFileName(const std::string &url);
++  bool loadCalibration(const std::string &url,
++                       const std::string &cname);
++  bool loadCalibrationFile(const std::string &filename,
++                           const std::string &cname);
++  url_type_t parseURL(const std::string &url);
++  bool saveCalibration(const sensor_msgs::CameraInfo &new_info,
++                       const std::string &url,
++                       const std::string &cname);
++  bool saveCalibrationFile(const sensor_msgs::CameraInfo &new_info,
++                           const std::string &filename,
++                           const std::string &cname);
++  bool setCameraInfoService(sensor_msgs::SetCameraInfo::Request &req,
++                            sensor_msgs::SetCameraInfo::Response &rsp);
++
++  /** @brief mutual exclusion lock for private data
++   *
++   *  This non-recursive mutex is only held for a short time while
++   *  accessing or changing private class variables.  To avoid
++   *  deadlocks and contention, it is never held during I/O or while
++   *  invoking a callback.  Most private methods operate on copies of
++   *  class variables, keeping the mutex hold time short.
++   */
++  boost::mutex mutex_;
++
++  // private data
++  ros::NodeHandle nh_;                  ///< node handle for service
++  ros::ServiceServer info_service_;     ///< set_camera_info service
++  std::string camera_name_;             ///< camera name
++  std::string url_;                     ///< URL for calibration data
++  sensor_msgs::CameraInfo cam_info_;    ///< current CameraInfo
++  bool loaded_cam_info_;                ///< cam_info_ load attempted
++
++}; // class CameraInfoManager
++
++}; // namespace camera_info_manager
++
++#endif // _CAMERA_INFO_MANAGER_H_
+--- /dev/null
++++ ros-noetic-camera-info-manager-1.12.0/mainpage.dox
+@@ -0,0 +1,9 @@
++/**
++\mainpage
++\htmlinclude manifest.html
++
++\section codeapi C++ API
++
++See: <camera_info_manager/camera_info_manager.h>.
++
++*/
+--- /dev/null
++++ ros-noetic-camera-info-manager-1.12.0/package.xml
+@@ -0,0 +1,40 @@
++<package>
++  <name>camera_info_manager</name>
++  <version>1.12.0</version>
++  <description>
++
++     This package provides a C++ interface for camera calibration
++     information.  It provides CameraInfo, and handles SetCameraInfo
++     service requests, saving and restoring the camera calibration
++     data.
++
++  </description>
++  <author>Jack O'Quin</author>
++  <maintainer email="jack.oquin@gmail.com">Jack O'Quin</maintainer>
++  <maintainer email="vincent.rabaud@gmail.com">Vincent Rabaud</maintainer>
++  <license>BSD</license>
++
++  <url type="website">http://ros.org/wiki/camera_info_manager</url>
++  <url type="bugtracker">https://github.com/ros-perception/image_common/issues</url>
++  <url type="repository">https://github.com/ros-perception/image_common</url>
++
++  <buildtool_depend version_gte="0.5.68">catkin</buildtool_depend>
++
++  <build_depend>boost</build_depend>
++  <build_depend>camera_calibration_parsers</build_depend>
++  <build_depend>image_transport</build_depend>
++  <build_depend>roscpp</build_depend>
++  <build_depend>roslib</build_depend>
++  <build_depend>rostest</build_depend>
++  <build_depend>sensor_msgs</build_depend>
++
++  <run_depend>boost</run_depend>
++  <run_depend>camera_calibration_parsers</run_depend>
++  <run_depend>image_transport</run_depend>
++  <run_depend>roscpp</run_depend>
++  <run_depend>roslib</run_depend>
++  <run_depend>sensor_msgs</run_depend>
++
++  <test_depend>gtest</test_depend>
++
++</package>
+--- /dev/null
++++ ros-noetic-camera-info-manager-1.12.0/src/camera_info_manager.cpp
+@@ -0,0 +1,666 @@
++/* $Id$ */
++
++/*********************************************************************
++* Software License Agreement (BSD License)
++*
++*  Copyright (c) 2010-2012 Jack O'Quin
++*  All rights reserved.
++*
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++*
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the author nor other contributors may be
++*     used to endorse or promote products derived from this software
++*     without specific prior written permission.
++*
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++
++#include <string>
++#include <locale>
++#include <stdlib.h>
++#include <sys/types.h>
++#include <sys/stat.h>
++#ifdef _WIN32
++  #ifndef S_ISDIR
++    #define S_ISDIR(mode) (((mode) & S_IFMT) == S_IFDIR)
++  #endif
++#else
++  #include <unistd.h>
++#endif
++
++#include <ros/ros.h>
++#include <ros/package.h>
++#include <boost/algorithm/string.hpp>
++#include <camera_calibration_parsers/parse.h>
++
++#include "camera_info_manager/camera_info_manager.h"
++
++/** @file
++
++    @brief CameraInfo Manager implementation
++
++    Provides CameraInfo, handles the SetCameraInfo service requests,
++    saves and restores sensor_msgs/CameraInfo data.
++
++    @author Jack O'Quin
++ */
++
++namespace camera_info_manager
++{
++
++using namespace camera_calibration_parsers;
++
++/** URL to use when no other is defined. */
++const std::string
++  default_camera_info_url = "file://${ROS_HOME}/camera_info/${NAME}.yaml";
++
++/** Constructor
++ *
++ * @param nh node handle, normally for the driver's streaming name
++ *           space ("camera").  The service name is relative to this
++ *           handle.  Nodes supporting multiple cameras may use
++ *           subordinate names, like "left/camera" and "right/camera".
++ * @param cname default camera name
++ * @param url default Uniform Resource Locator for loading and saving data.
++ */
++CameraInfoManager::CameraInfoManager(ros::NodeHandle nh,
++                                     const std::string &cname,
++                                     const std::string &url):
++  nh_(nh),
++  camera_name_(cname),
++  url_(url),
++  loaded_cam_info_(false)
++{
++  // register callback for camera calibration service request
++  info_service_ = nh_.advertiseService("set_camera_info",
++                                       &CameraInfoManager::setCameraInfoService, this);
++}
++
++/** Get the current CameraInfo data.
++ *
++ * If CameraInfo has not yet been loaded, an attempt must be made
++ * here.  To avoid that, ensure that loadCameraInfo() ran previously.
++ * If the load is attempted but fails, an empty CameraInfo will be
++ * supplied.
++ *
++ * The matrices are all zeros if no calibration is available. The
++ * image pipeline handles that as uncalibrated data.
++ *
++ * @warning The caller @em must fill in the message Header of the
++ *          CameraInfo returned.  The time stamp and frame_id should
++ *          normally be the same as the corresponding Image message
++ *          Header fields.
++ */
++sensor_msgs::CameraInfo CameraInfoManager::getCameraInfo(void)
++{
++  while (ros::ok())
++    {
++      std::string cname;
++      std::string url;
++      {
++        boost::mutex::scoped_lock lock_(mutex_);
++        if (loaded_cam_info_)
++          {
++            return cam_info_;           // all done
++          }
++
++        // load being attempted now
++        loaded_cam_info_ = true;
++
++        // copy the name and URL strings
++        url = url_;
++        cname = camera_name_;
++
++      } // release the lock
++
++      // attempt load without the lock, it is not recursive
++      loadCalibration(url, cname);
++    }
++
++  return sensor_msgs::CameraInfo();
++}
++
++/** Get file name corresponding to a @c package: URL.
++ *
++ * @param url a copy of the Uniform Resource Locator
++ * @return file name if package found, "" otherwise
++ */
++std::string CameraInfoManager::getPackageFileName(const std::string &url)
++{
++  ROS_DEBUG_STREAM("camera calibration URL: " << url);
++
++  // Scan URL from after "package://" until next '/' and extract
++  // package name.  The parseURL() already checked that it's present.
++  size_t prefix_len = std::string("package://").length();
++  size_t rest = url.find('/', prefix_len);
++  std::string package(url.substr(prefix_len, rest - prefix_len));
++
++  // Look up the ROS package path name.
++  std::string pkgPath(ros::package::getPath(package));
++  if (pkgPath.empty())                  // package not found?
++    {
++      ROS_WARN_STREAM("unknown package: " << package << " (ignored)");
++      return pkgPath;
++    }
++  else
++    {
++      // Construct file name from package location and remainder of URL.
++      return pkgPath + url.substr(rest);
++    }
++}
++
++/** Is the current CameraInfo calibrated?
++ *
++ * If CameraInfo has not yet been loaded, an attempt must be made
++ * here.  To avoid that, ensure that loadCameraInfo() ran previously.
++ * If the load failed, CameraInfo will be empty and this predicate
++ * will return false.
++ *
++ * @return true if the current CameraInfo is calibrated.
++ */
++bool CameraInfoManager::isCalibrated(void)
++{
++  while (true)
++    {
++      std::string cname;
++      std::string url;
++      {
++        boost::mutex::scoped_lock lock_(mutex_);
++        if (loaded_cam_info_)
++          {
++            return (cam_info_.K[0] != 0.0);
++          }
++
++        // load being attempted now
++        loaded_cam_info_ = true;
++
++        // copy the name and URL strings
++        url = url_;
++        cname = camera_name_;
++
++      } // release the lock
++
++      // attempt load without the lock, it is not recursive
++      loadCalibration(url, cname);
++    }
++}
++
++/** Load CameraInfo calibration data (if any).
++ *
++ * @pre mutex_ unlocked
++ *
++ * @param url a copy of the Uniform Resource Locator
++ * @param cname is a copy of the camera_name_
++ * @return true if URL contains calibration data.
++ *
++ * sets cam_info_, if successful
++ */
++bool CameraInfoManager::loadCalibration(const std::string &url,
++                                        const std::string &cname)
++{
++  bool success = false;                 // return value
++
++  const std::string resURL(resolveURL(url, cname));
++  url_type_t url_type = parseURL(resURL);
++
++  if (url_type != URL_empty)
++    {
++      ROS_INFO_STREAM("camera calibration URL: " << resURL);
++    }
++
++  switch (url_type)
++    {
++    case URL_empty:
++      {
++        ROS_INFO("using default calibration URL");
++        success = loadCalibration(default_camera_info_url, cname);
++        break;
++      }
++    case URL_file:
++      {
++        success = loadCalibrationFile(resURL.substr(7), cname);
++        break;
++      }
++    case URL_flash:
++      {
++        ROS_WARN("[CameraInfoManager] reading from flash not implemented yet");
++        break;
++      }
++    case URL_package:
++      {
++        std::string filename(getPackageFileName(resURL));
++        if (!filename.empty())
++          success = loadCalibrationFile(filename, cname);
++        break;
++      }
++    default:
++      {
++        ROS_ERROR_STREAM("Invalid camera calibration URL: " << resURL);
++        break;
++      }
++    }
++
++  return success;
++}
++
++/** Load CameraInfo calibration data from a file.
++ *
++ * @pre mutex_ unlocked
++ *
++ * @param filename containing CameraInfo to read
++ * @param cname is a copy of the camera_name_
++ * @return true if URL contains calibration data.
++ *
++ * Sets cam_info_, if successful
++ */
++bool CameraInfoManager::loadCalibrationFile(const std::string &filename,
++                                            const std::string &cname)
++{
++  bool success = false;
++
++  ROS_DEBUG_STREAM("reading camera calibration from " << filename);
++  std::string cam_name;
++  sensor_msgs::CameraInfo cam_info;
++
++  if (readCalibration(filename, cam_name, cam_info))
++    {
++      if (cname != cam_name)
++        {
++          ROS_WARN_STREAM("[" << cname << "] does not match name "
++                          << cam_name << " in file " << filename);
++        }
++      success = true;
++      {
++        // lock only while updating cam_info_
++        boost::mutex::scoped_lock lock(mutex_);
++        cam_info_ = cam_info;
++      }
++    }
++  else
++    {
++      ROS_WARN_STREAM("Camera calibration file " << filename << " not found.");
++    }
++
++  return success;
++}
++
++/** Set a new URL and load its calibration data (if any).
++ *
++ * If multiple threads call this method simultaneously with different
++ * URLs, there is no guarantee which will prevail.
++ *
++ * @param url new Uniform Resource Locator for CameraInfo.
++ * @return true if new URL contains calibration data.
++ *
++ * @post @c loaded_cam_info_ true (meaning a load was attempted, even
++ *       if it failed); @c cam_info_ updated, if successful.
++ */
++bool CameraInfoManager::loadCameraInfo(const std::string &url)
++{
++  std::string cname;
++  {
++    boost::mutex::scoped_lock lock(mutex_);
++    url_ = url;
++    cname = camera_name_;
++    loaded_cam_info_ = true;
++  }
++
++  // load using copies of the parameters, no need to hold the lock
++  return loadCalibration(url, cname);
++}
++
++
++/** Resolve Uniform Resource Locator string.
++ *
++ * @param url a copy of the Uniform Resource Locator, which may
++ *            include <tt>${...}</tt> substitution variables.
++ * @param cname is a copy of the camera_name_
++ *
++ * @return a copy of the URL with any variable information resolved.
++ */
++std::string CameraInfoManager::resolveURL(const std::string &url,
++                                          const std::string &cname)
++{
++  std::string resolved;
++  size_t rest = 0;
++
++  while (true)
++    {
++      // find the next '$' in the URL string
++      size_t dollar  = url.find('$', rest);
++
++      if (dollar >= url.length())
++        {
++          // no more variables left in the URL
++          resolved += url.substr(rest);
++          break;
++        }
++
++      // copy characters up to the next '$'
++      resolved += url.substr(rest, dollar-rest);
++
++      if (url.substr(dollar+1, 1) != "{")
++        {
++          // no '{' follows, so keep the '$'
++          resolved += "$";
++        }
++      else if (url.substr(dollar+1, 6) == "{NAME}")
++        {
++          // substitute camera name
++          resolved += cname;
++          dollar += 6;
++        }
++      else if (url.substr(dollar+1, 10) == "{ROS_HOME}")
++        {
++          // substitute $ROS_HOME
++          std::string ros_home;
++          char *ros_home_env;
++          if ((ros_home_env = getenv("ROS_HOME")))
++            {
++              // use environment variable
++              ros_home = ros_home_env;
++            }
++          else if ((ros_home_env = getenv("HOME")))
++            {
++              // use "$HOME/.ros"
++              ros_home = ros_home_env;
++              ros_home += "/.ros";
++            }
++          resolved += ros_home;
++          dollar += 10;
++        }
++      else
++        {
++          // not a valid substitution variable
++          ROS_ERROR_STREAM("[CameraInfoManager]"
++                           " invalid URL substitution (not resolved): "
++                           << url);
++          resolved += "$";            // keep the bogus '$'
++        }
++
++      // look for next '$'
++      rest = dollar + 1;
++    }
++
++  return resolved;
++}
++
++/** Parse calibration Uniform Resource Locator.
++ *
++ * @param url string to parse
++ * @return URL type
++ *
++ * @note Recognized but unsupported URL types have enum values >= URL_invalid.
++ */
++CameraInfoManager::url_type_t CameraInfoManager::parseURL(const std::string &url)
++{
++  if (url == "")
++    {
++      return URL_empty;
++    }
++  if (boost::iequals(url.substr(0, 8), "file:///"))
++    {
++      return URL_file;
++    }
++  if (boost::iequals(url.substr(0, 9), "flash:///"))
++    {
++      return URL_flash;
++    }
++  if (boost::iequals(url.substr(0, 10), "package://"))
++    {
++      // look for a '/' following the package name, make sure it is
++      // there, the name is not empty, and something follows it
++      size_t rest = url.find('/', 10);
++      if (rest < url.length()-1 && rest > 10)
++        return URL_package;
++    }
++  return URL_invalid;
++}
++
++/** Save CameraInfo calibration data.
++ *
++ * @pre mutex_ unlocked
++ *
++ * @param new_info contains CameraInfo to save
++ * @param url is a copy of the URL storage location (if empty, use
++ *            @c file://${ROS_HOME}/camera_info/${NAME}.yaml)
++ * @param cname is a copy of the camera_name_
++ * @return true, if successful
++ */
++bool
++CameraInfoManager::saveCalibration(const sensor_msgs::CameraInfo &new_info,
++                                   const std::string &url,
++                                   const std::string &cname)
++{
++  bool success = false;
++
++  const std::string resURL(resolveURL(url, cname));
++
++  switch (parseURL(resURL))
++    {
++    case URL_empty:
++      {
++        // store using default file name
++        success = saveCalibration(new_info, default_camera_info_url, cname);
++        break;
++      }
++    case URL_file:
++      {
++        success = saveCalibrationFile(new_info, resURL.substr(7), cname);
++        break;
++      }
++    case URL_package:
++      {
++        std::string filename(getPackageFileName(resURL));
++        if (!filename.empty())
++          success = saveCalibrationFile(new_info, filename, cname);
++        break;
++      }
++    default:
++      {
++        // invalid URL, save to default location
++        ROS_ERROR_STREAM("invalid url: " << resURL << " (ignored)");
++        success = saveCalibration(new_info, default_camera_info_url, cname);
++        break;
++      }
++    }
++
++  return success;
++}
++  
++/** Save CameraInfo calibration data to a file.
++ *
++ * @pre mutex_ unlocked
++ *
++ * @param new_info contains CameraInfo to save
++ * @param filename is local file to store data
++ * @param cname is a copy of the camera_name_
++ * @return true, if successful
++ */
++bool
++CameraInfoManager::saveCalibrationFile(const sensor_msgs::CameraInfo &new_info,
++                                       const std::string &filename,
++                                       const std::string &cname)
++{
++  ROS_INFO_STREAM("writing calibration data to " << filename);
++
++  // isolate the name of the containing directory
++  size_t last_slash = filename.rfind('/');
++  if (last_slash >= filename.length())
++    {
++      // No slash in the name.  This should never happen, the URL
++      // parser ensures there is at least one '/' at the beginning.
++      ROS_ERROR_STREAM("filename [" << filename << "] has no '/'");
++      return false;                     // not a valid URL
++    }
++
++  // make sure the directory exists and is writable
++  std::string dirname(filename.substr(0, last_slash+1));
++  struct stat stat_data;
++  int rc = stat(dirname.c_str(), &stat_data);
++  if (rc != 0)
++    {
++      if (errno == ENOENT)
++        {
++          // directory does not exist, try to create it and its parents
++          std::string command("mkdir -p " + dirname);
++          rc = system(command.c_str());
++          if (rc != 0)
++            {
++              // mkdir failed
++              ROS_ERROR_STREAM("unable to create path to directory ["
++                               << dirname << "]");
++              return false;
++            }
++        }
++      else
++        {
++          // not accessible, or something screwy
++          ROS_ERROR_STREAM("directory [" << dirname << "] not accessible");
++          return false;
++        }
++    }
++  else if (!S_ISDIR(stat_data.st_mode))
++    {
++      // dirname exists but is not a directory
++      ROS_ERROR_STREAM("[" << dirname << "] is not a directory");
++      return false;
++    }
++
++  // Directory exists and is accessible. Permissions might still be bad.
++
++  // Currently, writeCalibration() always returns true no matter what
++  // (ros-pkg ticket #5010).
++  return writeCalibration(filename, cname, new_info);
++}
++
++/** Callback for SetCameraInfo request.
++ *
++ * Always updates cam_info_ class variable, even if save fails.
++ *
++ * @param req SetCameraInfo request message
++ * @param rsp SetCameraInfo response message
++ * @return true if message handled
++ */
++bool 
++CameraInfoManager::setCameraInfoService(sensor_msgs::SetCameraInfo::Request &req,
++                                        sensor_msgs::SetCameraInfo::Response &rsp)
++{
++  // copies of class variables needed for saving calibration
++  std::string url_copy;
++  std::string cname;
++  {
++    boost::mutex::scoped_lock lock(mutex_);
++    cam_info_ = req.camera_info;
++    url_copy = url_;
++    cname = camera_name_;
++    loaded_cam_info_ = true;
++  }
++
++  if (!nh_.ok())
++    {
++      ROS_ERROR("set_camera_info service called, but driver not running.");
++      rsp.status_message = "Camera driver not running.";
++      rsp.success = false;
++      return false;
++    }
++
++  rsp.success = saveCalibration(req.camera_info, url_copy, cname);
++  if (!rsp.success)
++    rsp.status_message = "Error storing camera calibration.";
++
++  return true;
++}
++
++/** Set a new camera name.
++ *
++ * @param cname new camera name to use for saving calibration data
++ *
++ * @return true if new name has valid syntax; valid names contain only
++ *              alphabetic, numeric, or '_' characters.
++ *
++ * @post @c cam_name_ updated, if valid; since it may affect the URL,
++ *       @c cam_info_ will be reloaded before being used again.
++ */
++bool CameraInfoManager::setCameraName(const std::string &cname)
++{
++  // the camera name may not be empty
++  if (cname.empty())
++    return false;
++
++  // validate the camera name characters
++  for (unsigned i = 0; i < cname.size(); ++i)
++    {
++      if (!isalnum(cname[i]) && cname[i] != '_')
++        return false;
++    }
++
++  // The name is valid, so update our private copy.  Since the new
++  // name might cause the existing URL to resolve somewhere else,
++  // force @c cam_info_ to be reloaded before being used again.
++  {
++    boost::mutex::scoped_lock lock(mutex_);
++    camera_name_ = cname;
++    loaded_cam_info_ = false;
++  }
++
++  return true;
++}
++
++/** Set the camera info manually
++ *
++ * @param camera_info new camera calibration data
++ *
++ * @return true if new camera info is set
++ *
++ * @post @c cam_info_ updated, if valid;
++ */
++bool CameraInfoManager::setCameraInfo(const sensor_msgs::CameraInfo &camera_info)
++{
++  boost::mutex::scoped_lock lock(mutex_);
++
++  cam_info_ = camera_info;
++  loaded_cam_info_ = true;
++
++  return true;
++}
++
++/** Validate URL syntax.
++ *
++ * @param url Uniform Resource Locator to check
++ *
++ * @return true if URL syntax is supported by CameraInfoManager
++ *              (although the resource need not actually exist)
++ */
++bool CameraInfoManager::validateURL(const std::string &url)
++{
++  std::string cname;                    // copy of camera name
++  {
++    boost::mutex::scoped_lock lock(mutex_);
++    cname = camera_name_;
++  } // release the lock
++
++  url_type_t url_type = parseURL(resolveURL(url, cname));
++  return (url_type < URL_invalid);
++}
++
++} // namespace camera_info_manager
+--- /dev/null
++++ ros-noetic-camera-info-manager-1.12.0/tests/test_calibration.yaml
+@@ -0,0 +1,20 @@
++image_width: 640
++image_height: 480
++camera_name: 08144361026320a0
++camera_matrix:
++  rows: 3
++  cols: 3
++  data: [1168.68, 0, 295.015, 0, 1169.01, 252.247, 0, 0, 1]
++distortion_model: plumb_bob
++distortion_coefficients:
++  rows: 1
++  cols: 5
++  data: [-1.04482, 1.59252, -0.0196308, 0.0287906, 0]
++rectification_matrix:
++  rows: 3
++  cols: 3
++  data: [1, 0, 0, 0, 1, 0, 0, 0, 1]
++projection_matrix:
++  rows: 3
++  cols: 4
++  data: [1168.68, 0, 295.015, 0, 0, 1169.01, 252.247, 0, 0, 0, 1, 0]
+\ No newline at end of file
+--- /dev/null
++++ ros-noetic-camera-info-manager-1.12.0/tests/unit_test.cpp
+@@ -0,0 +1,719 @@
++/* $Id$ */
++
++/*********************************************************************
++* Software License Agreement (BSD License)
++*
++*  Copyright (c) 2010 Jack O'Quin
++*  All rights reserved.
++*
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++*
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the author nor other contributors may be
++*     used to endorse or promote products derived from this software
++*     without specific prior written permission.
++*
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++
++#include <unistd.h>
++#include <stdlib.h>
++#include <ros/ros.h>
++#include <ros/package.h>
++#include "camera_info_manager/camera_info_manager.h"
++#include <sensor_msgs/distortion_models.h>
++#include <string>
++#include <gtest/gtest.h>
++
++///////////////////////////////////////////////////////////////
++// global test data
++///////////////////////////////////////////////////////////////
++
++namespace
++{
++  const std::string g_package_name("camera_info_manager");
++  const std::string g_test_name("test_calibration");
++  const std::string g_package_filename("/tests/" + g_test_name +".yaml");
++  const std::string g_package_url("package://" + g_package_name
++                                  + g_package_filename);
++  const std::string g_package_name_url("package://" + g_package_name
++                                       + "/tests/${NAME}.yaml");
++  const std::string g_default_url("file://${ROS_HOME}/camera_info/${NAME}.yaml");
++  const std::string g_camera_name("08144361026320a0");
++}
++
++///////////////////////////////////////////////////////////////
++// utility functions
++///////////////////////////////////////////////////////////////
++
++// compare CameraInfo fields that are saved and loaded for calibration
++void compare_calibration(const sensor_msgs::CameraInfo &exp,
++                         const sensor_msgs::CameraInfo &ci)
++{
++  // check image size
++  EXPECT_EQ(exp.width, ci.width);
++  EXPECT_EQ(exp.height, ci.height);
++
++  // check distortion coefficients
++  EXPECT_EQ(exp.distortion_model, ci.distortion_model);
++  EXPECT_EQ(exp.D.size(), ci.D.size());
++  for (unsigned i = 0; i < ci.D.size(); ++i)
++    {
++      EXPECT_EQ(exp.D[i], ci.D[i]);
++    }
++
++  // check camera matrix
++  for (unsigned i = 0; i < ci.K.size(); ++i)
++    {
++      EXPECT_EQ(exp.K[i], ci.K[i]);
++    }
++
++  // check rectification matrix
++  for (unsigned i = 0; i < ci.R.size(); ++i)
++    {
++      EXPECT_EQ(exp.R[i], ci.R[i]);
++    }
++
++  // check projection matrix
++  for (unsigned i = 0; i < ci.P.size(); ++i)
++    {
++      EXPECT_EQ(exp.P[i], ci.P[i]);
++    }
++}
++
++// make sure this file does not exist
++void delete_file(std::string filename)
++{
++  int rc = unlink(filename.c_str());
++  if (rc != 0)
++    {
++      if (errno != ENOENT)
++        ROS_INFO_STREAM("unexpected unlink() error: " << errno);
++    }
++}
++
++void delete_default_file(void)
++{
++  std::string ros_home("/tmp");
++  setenv("ROS_HOME", ros_home.c_str(), true);
++  std::string tmpFile(ros_home + "/camera_info/camera.yaml");
++  delete_file(tmpFile);
++}
++
++void do_system(const std::string &command)
++{
++  int rc = system(command.c_str());
++  if (rc)
++    std::cout << command << " returns " << rc;
++}
++
++void delete_tmp_camera_info_directory(void)
++{
++  do_system(std::string("rm -rf /tmp/camera_info"));
++}
++
++void make_tmp_camera_info_directory(void)
++{
++  do_system(std::string("mkdir -p /tmp/camera_info"));
++}
++
++// These data must match the contents of test_calibration.yaml.
++sensor_msgs::CameraInfo expected_calibration(void)
++{
++  sensor_msgs::CameraInfo ci;
++
++  ci.width = 640u;
++  ci.height = 480u;
++
++  // set distortion coefficients
++  ci.distortion_model = sensor_msgs::distortion_models::PLUMB_BOB;
++  ci.D.resize(5);
++  ci.D[0] = -1.04482;
++  ci.D[1] = 1.59252;
++  ci.D[2] = -0.0196308;
++  ci.D[3] = 0.0287906;
++  ci.D[4] = 0.0;
++
++  // set camera matrix
++  ci.K[0] = 1168.68;
++  ci.K[1] = 0.0;
++  ci.K[2] = 295.015;
++  ci.K[3] = 0.0;
++  ci.K[4] = 1169.01;
++  ci.K[5] = 252.247;
++  ci.K[6] = 0.0;
++  ci.K[7] = 0.0;
++  ci.K[8] = 1.0;
++
++  // set rectification matrix
++  ci.R[0] = 1.0;
++  ci.R[1] = 0.0;
++  ci.R[2] = 0.0;
++  ci.R[3] = 0.0;
++  ci.R[4] = 1.0;
++  ci.R[5] = 0.0;
++  ci.R[6] = 0.0;
++  ci.R[7] = 0.0;
++  ci.R[8] = 1.0;
++
++  // set projection matrix
++  ci.P[0] = ci.K[0];
++  ci.P[1] = ci.K[1];
++  ci.P[2] = ci.K[2];
++  ci.P[3] = 0.0;
++  ci.P[4] = ci.K[3];
++  ci.P[5] = ci.K[4];
++  ci.P[6] = ci.K[5];
++  ci.P[7] = 0.0;
++  ci.P[8] = ci.K[6];
++  ci.P[9] = ci.K[7];
++  ci.P[10] = ci.K[8];
++  ci.P[11] = 0.0;
++
++  return ci;
++}
++
++// issue SetCameraInfo service request
++bool set_calibration(ros::NodeHandle node,
++                     const sensor_msgs::CameraInfo &calib)
++{
++  ros::ServiceClient client =
++    node.serviceClient<sensor_msgs::SetCameraInfo>("set_camera_info");
++  sensor_msgs::SetCameraInfo set_camera_info;
++  set_camera_info.request.camera_info = calib;
++  bool success;
++  EXPECT_TRUE((success = client.call(set_camera_info)));
++  return success;
++}
++
++// resolve URL string, result should be as expected
++void check_url_substitution(ros::NodeHandle node,
++                            const std::string &url,
++                            const std::string &exp_url,
++                            const std::string &camera_name)
++{
++  camera_info_manager::CameraInfoManager cinfo(node, camera_name, url);
++  std::string sub_url = cinfo.resolveURL(url, camera_name);
++  EXPECT_EQ(sub_url, exp_url);
++}
++
++///////////////////////////////////////////////////////////////
++// Test cases
++///////////////////////////////////////////////////////////////
++
++// Test that valid camera names are accepted
++TEST(CameraName, validNames)
++{
++  ros::NodeHandle node;
++  camera_info_manager::CameraInfoManager cinfo(node);
++
++  EXPECT_TRUE(cinfo.setCameraName(std::string("a")));
++  EXPECT_TRUE(cinfo.setCameraName(std::string("1")));
++  EXPECT_TRUE(cinfo.setCameraName(std::string("_")));
++  EXPECT_TRUE(cinfo.setCameraName(std::string("abcdefghijklmnopqrstuvwxyz")));
++  EXPECT_TRUE(cinfo.setCameraName(std::string("ABCDEFGHIJKLMNOPQRSTUVWXYZ")));
++  EXPECT_TRUE(cinfo.setCameraName(std::string("0123456789")));
++  EXPECT_TRUE(cinfo.setCameraName(std::string("0123456789abcdef")));
++  EXPECT_TRUE(cinfo.setCameraName(std::string("A1")));
++  EXPECT_TRUE(cinfo.setCameraName(std::string("9z")));
++  EXPECT_TRUE(cinfo.setCameraName(std::string("08144361026320a0_640x480_mono8")));
++
++}
++
++// Test that invalid camera names are rejected
++TEST(CameraName, invalidNames)
++{
++  ros::NodeHandle node;
++  camera_info_manager::CameraInfoManager cinfo(node);
++
++  EXPECT_FALSE(cinfo.setCameraName(std::string("")));
++  EXPECT_FALSE(cinfo.setCameraName(std::string("-21")));
++  EXPECT_FALSE(cinfo.setCameraName(std::string("C++")));
++  EXPECT_FALSE(cinfo.setCameraName(std::string("file:///tmp/url.yaml")));
++  EXPECT_FALSE(cinfo.setCameraName(std::string("file://${INVALID}/xxx.yaml")));
++}
++
++// Test that valid URLs are accepted
++TEST(UrlValidation, validURLs)
++{
++  ros::NodeHandle node;
++  camera_info_manager::CameraInfoManager cinfo(node);
++
++  EXPECT_TRUE(cinfo.validateURL(std::string("")));
++  EXPECT_TRUE(cinfo.validateURL(std::string("file:///")));
++  EXPECT_TRUE(cinfo.validateURL(std::string("file:///tmp/url.yaml")));
++  EXPECT_TRUE(cinfo.validateURL(std::string("File:///tmp/url.ini")));
++  EXPECT_TRUE(cinfo.validateURL(std::string("FILE:///tmp/url.yaml")));
++  EXPECT_TRUE(cinfo.validateURL(g_default_url));
++  EXPECT_TRUE(cinfo.validateURL(g_package_url));
++  EXPECT_TRUE(cinfo.validateURL(std::string("package://no_such_package/calibration.yaml")));
++  EXPECT_TRUE(cinfo.validateURL(std::string("packAge://camera_info_manager/x")));
++}
++
++// Test that invalid URLs are rejected
++TEST(UrlValidation, invalidURLs)
++{
++  ros::NodeHandle node;
++  camera_info_manager::CameraInfoManager cinfo(node);
++
++  EXPECT_FALSE(cinfo.validateURL(std::string("file://")));
++  EXPECT_FALSE(cinfo.validateURL(std::string("flash:///")));
++  EXPECT_FALSE(cinfo.validateURL(std::string("html://ros.org/wiki/camera_info_manager")));
++  EXPECT_FALSE(cinfo.validateURL(std::string("package://")));
++  EXPECT_FALSE(cinfo.validateURL(std::string("package:///")));
++  EXPECT_FALSE(cinfo.validateURL(std::string("package://calibration.yaml")));
++  EXPECT_FALSE(cinfo.validateURL(std::string("package://camera_info_manager/")));
++}
++
++// Test ability to provide uncalibrated CameraInfo
++TEST(GetInfo, uncalibrated)
++{
++  ros::NodeHandle node;
++
++  delete_default_file();
++
++  camera_info_manager::CameraInfoManager cinfo(node);
++  EXPECT_FALSE(cinfo.isCalibrated());
++
++  sensor_msgs::CameraInfo ci(cinfo.getCameraInfo());
++  sensor_msgs::CameraInfo exp;
++  compare_calibration(exp, ci);
++}
++
++// Test ability to load calibrated CameraInfo
++TEST(GetInfo, calibrated)
++{
++  ros::NodeHandle node;
++
++  delete_default_file();
++
++  camera_info_manager::CameraInfoManager cinfo(node);
++  EXPECT_FALSE(cinfo.isCalibrated());
++
++  std::string pkgPath(ros::package::getPath(g_package_name));
++  std::string url("file://" + pkgPath + "/tests/test_calibration.yaml");
++  EXPECT_TRUE(cinfo.loadCameraInfo(url));
++  EXPECT_TRUE(cinfo.isCalibrated());
++
++  sensor_msgs::CameraInfo ci(cinfo.getCameraInfo());
++  sensor_msgs::CameraInfo exp(expected_calibration());
++  compare_calibration(exp, ci);
++}
++
++// Test ability to load calibrated CameraInfo from package
++TEST(GetInfo, fromPackage)
++{
++  ros::NodeHandle node;
++  camera_info_manager::CameraInfoManager cinfo(node);
++
++  EXPECT_TRUE(cinfo.loadCameraInfo(g_package_url));
++  EXPECT_TRUE(cinfo.isCalibrated());
++
++  sensor_msgs::CameraInfo ci(cinfo.getCameraInfo());
++  sensor_msgs::CameraInfo exp(expected_calibration());
++  compare_calibration(exp, ci);
++}
++
++// Test ability to access named calibrated CameraInfo from package
++TEST(GetInfo, fromPackageWithName)
++{
++  ros::NodeHandle node;
++  camera_info_manager::CameraInfoManager cinfo(node, g_test_name,
++                                               g_package_name_url);
++  EXPECT_TRUE(cinfo.isCalibrated());
++
++  sensor_msgs::CameraInfo ci(cinfo.getCameraInfo());
++  sensor_msgs::CameraInfo exp(expected_calibration());
++  compare_calibration(exp, ci);
++}
++
++// Test load of unresolved "package:" URL files
++TEST(GetInfo, unresolvedLoads)
++{
++  ros::NodeHandle node;
++  camera_info_manager::CameraInfoManager cinfo(node);
++
++  EXPECT_FALSE(cinfo.loadCameraInfo(std::string("package://")));
++  EXPECT_FALSE(cinfo.isCalibrated());
++
++  EXPECT_FALSE(cinfo.loadCameraInfo(std::string("package:///calibration.yaml")));
++  EXPECT_FALSE(cinfo.isCalibrated());
++
++  EXPECT_FALSE(cinfo.loadCameraInfo(std::string("package://no_such_package/calibration.yaml")));
++  EXPECT_FALSE(cinfo.isCalibrated());
++
++  EXPECT_FALSE(cinfo.loadCameraInfo(std::string("package://camera_info_manager/no_such_file.yaml")));
++  EXPECT_FALSE(cinfo.isCalibrated());
++}
++
++// Test load of "package:" URL after changing name
++TEST(GetInfo, nameChange)
++{
++  ros::NodeHandle node;
++  const std::string missing_file("no_such_file");
++
++  // first declare using non-existent camera name
++  camera_info_manager::CameraInfoManager cinfo(node, missing_file,
++                                               g_package_name_url);
++  EXPECT_FALSE(cinfo.isCalibrated());
++
++  // set name so it resolves to a test file that does exist
++  EXPECT_TRUE(cinfo.setCameraName(g_test_name));
++  EXPECT_TRUE(cinfo.isCalibrated());
++  sensor_msgs::CameraInfo ci(cinfo.getCameraInfo());
++  sensor_msgs::CameraInfo exp(expected_calibration());
++  compare_calibration(exp, ci);
++}
++
++// Test load of invalid CameraInfo URLs
++TEST(GetInfo, invalidLoads)
++{
++  ros::NodeHandle node;
++  camera_info_manager::CameraInfoManager cinfo(node);
++
++  EXPECT_FALSE(cinfo.loadCameraInfo(std::string("flash:///")));
++  EXPECT_FALSE(cinfo.isCalibrated());
++
++  EXPECT_FALSE(cinfo.loadCameraInfo(std::string("html://ros.org/wiki/camera_info_manager")));
++  EXPECT_FALSE(cinfo.isCalibrated());
++
++  sensor_msgs::CameraInfo ci(cinfo.getCameraInfo());
++  sensor_msgs::CameraInfo exp;
++  compare_calibration(exp, ci);
++}
++
++// Test ability to set CameraInfo directly
++TEST(SetInfo, setCameraInfo)
++{
++  ros::NodeHandle node;
++  camera_info_manager::CameraInfoManager cinfo(node);
++
++  // issue calibration service request
++  sensor_msgs::CameraInfo exp(expected_calibration());
++  bool success = cinfo.setCameraInfo(exp);
++  EXPECT_TRUE(success);
++
++  // only check results if the service succeeded, avoiding confusing
++  // and redundant failure messages
++  if (success)
++    {
++      // check that it worked
++      EXPECT_TRUE(cinfo.isCalibrated());
++      sensor_msgs::CameraInfo ci = cinfo.getCameraInfo();
++      compare_calibration(exp, ci);
++    }
++}
++
++// Test ability to set calibrated CameraInfo
++TEST(SetInfo, setCalibration)
++{
++  ros::NodeHandle node;
++  camera_info_manager::CameraInfoManager cinfo(node);
++
++  // issue calibration service request
++  sensor_msgs::CameraInfo exp(expected_calibration());
++  bool success = set_calibration(node, exp);
++
++  // only check results if the service succeeded, avoiding confusing
++  // and redundant failure messages
++  if (success)
++    {
++      // check that it worked
++      EXPECT_TRUE(cinfo.isCalibrated());
++      sensor_msgs::CameraInfo ci = cinfo.getCameraInfo();
++      compare_calibration(exp, ci);
++    }
++}
++
++// Test ability to save calibrated CameraInfo in default URL
++TEST(SetInfo, saveCalibrationDefault)
++{
++  ros::NodeHandle node;
++  sensor_msgs::CameraInfo exp(expected_calibration());
++  bool success;
++
++  // Set ${ROS_HOME} to /tmp, then delete the /tmp/camera_info
++  // directory and everything in it.
++  setenv("ROS_HOME", "/tmp", true);
++  delete_tmp_camera_info_directory();
++
++  {
++    // create instance to save calibrated data
++    camera_info_manager::CameraInfoManager cinfo(node);
++    EXPECT_FALSE(cinfo.isCalibrated());
++
++    // issue calibration service request
++    success = set_calibration(node, exp);
++    EXPECT_TRUE(cinfo.isCalibrated());
++  }
++
++  // only check results if the service succeeded, avoiding confusing
++  // and redundant failure messages
++  if (success)
++    {
++      // create a new instance to load saved calibration
++      camera_info_manager::CameraInfoManager cinfo2(node);
++      EXPECT_TRUE(cinfo2.isCalibrated());
++      if (cinfo2.isCalibrated())
++        {
++          sensor_msgs::CameraInfo ci(cinfo2.getCameraInfo());
++          compare_calibration(exp, ci);
++        }
++    }
++}
++
++// Test ability to save calibrated CameraInfo to default location with
++// explicit camera name
++TEST(SetInfo, saveCalibrationCameraName)
++{
++  ros::NodeHandle node;
++  sensor_msgs::CameraInfo exp(expected_calibration());
++  bool success;
++
++  // set ${ROS_HOME} to /tmp, delete the calibration file
++  std::string ros_home("/tmp");
++  setenv("ROS_HOME", ros_home.c_str(), true);
++  std::string tmpFile(ros_home + "/camera_info/" + g_camera_name + ".yaml");
++  delete_file(tmpFile);
++
++  {
++    // create instance to save calibrated data
++    camera_info_manager::CameraInfoManager cinfo(node, g_camera_name);
++    success = set_calibration(node, exp);
++    EXPECT_TRUE(cinfo.isCalibrated());
++  }
++
++  // only check results if the service succeeded, avoiding confusing
++  // and redundant failure messages
++  if (success)
++    {
++      // create a new instance to load saved calibration
++      camera_info_manager::CameraInfoManager cinfo2(node);
++      std::string url = "file://" + tmpFile;
++      cinfo2.loadCameraInfo(std::string(url));
++      EXPECT_TRUE(cinfo2.isCalibrated());
++      if (cinfo2.isCalibrated())
++        {
++          sensor_msgs::CameraInfo ci(cinfo2.getCameraInfo());
++          compare_calibration(exp, ci);
++        }
++    }
++}
++
++// Test ability to save calibrated CameraInfo in a file
++TEST(SetInfo, saveCalibrationFile)
++{
++  return;
++
++  ros::NodeHandle node;
++  sensor_msgs::CameraInfo exp(expected_calibration());
++  std::string cname("camera");
++  std::string tmpFile("/tmp/camera_info_manager_calibration_test.yaml");
++  std::string url = "file://" + tmpFile;
++  bool success;
++
++  // first, delete the file
++  delete_file(tmpFile);
++
++  {
++    // create instance to save calibrated data
++    camera_info_manager::CameraInfoManager cinfo(node, cname, url);
++    success = set_calibration(node, exp);
++    EXPECT_TRUE(cinfo.isCalibrated());
++  }
++
++  // only check results if the service succeeded, avoiding confusing
++  // and redundant failure messages
++  if (success)
++    {
++      // create a new instance to load saved calibration
++      camera_info_manager::CameraInfoManager cinfo2(node, cname, url);
++      EXPECT_TRUE(cinfo2.isCalibrated());
++      if (cinfo2.isCalibrated())
++        {
++          sensor_msgs::CameraInfo ci(cinfo2.getCameraInfo());
++          compare_calibration(exp, ci);
++        }
++    }
++}
++
++// Test ability to save calibrated CameraInfo in a package
++// (needs write access).
++TEST(SetInfo, saveCalibrationPackage)
++{
++  ros::NodeHandle node;
++  sensor_msgs::CameraInfo exp(expected_calibration());
++  std::string pkgPath(ros::package::getPath(g_package_name));
++  std::string filename(pkgPath + g_package_filename);
++  bool success;
++
++  // first, delete the file
++  delete_file(filename);
++
++  {
++    // create instance to save calibrated data
++    camera_info_manager::CameraInfoManager cinfo(node, g_camera_name,
++                                                 g_package_url);
++    success = set_calibration(node, exp);
++    EXPECT_TRUE(cinfo.isCalibrated());
++  }
++
++  // only check results if the service succeeded, avoiding confusing
++  // and redundant failure messages
++  if (success)
++    {
++      // create a new instance to load saved calibration
++      camera_info_manager::CameraInfoManager cinfo2(node, g_camera_name,
++                                                    g_package_url);
++      EXPECT_TRUE(cinfo2.isCalibrated());
++      if (cinfo2.isCalibrated())
++        {
++          sensor_msgs::CameraInfo ci(cinfo2.getCameraInfo());
++          compare_calibration(exp, ci);
++        }
++    }
++}
++
++TEST(UrlSubstitution, cameraName)
++{
++  ros::NodeHandle node;
++  std::string name_url;
++  std::string exp_url;
++
++  // resolve a GUID camera name
++  name_url = "package://" + g_package_name + "/tests/${NAME}.yaml";
++  exp_url = "package://" + g_package_name + "/tests/" + g_camera_name + ".yaml";
++  check_url_substitution(node, name_url, exp_url, g_camera_name);
++
++  // substitute camera name "test"
++  name_url = "package://" + g_package_name + "/tests/${NAME}_calibration.yaml";
++  std::string test_name("test");
++  exp_url = "package://" + g_package_name + "/tests/" + test_name
++    + "_calibration.yaml";
++  check_url_substitution(node, name_url, exp_url, test_name);
++
++  // with an '_' in the name
++  test_name = "camera_1024x768";
++  exp_url = "package://" + g_package_name + "/tests/" + test_name
++    + "_calibration.yaml";
++  check_url_substitution(node, name_url, exp_url, test_name);
++
++  // substitute empty camera name
++  name_url = "package://" + g_package_name + "/tests/${NAME}_calibration.yaml";
++  std::string empty_name("");
++  exp_url = "package://" + g_package_name + "/tests/" + empty_name
++    + "_calibration.yaml";
++  check_url_substitution(node, name_url, exp_url, empty_name);
++
++  // substitute test camera calibration from this package
++  check_url_substitution(node, g_package_name_url, g_package_url, g_test_name);
++}
++
++TEST(UrlSubstitution, rosHome)
++{
++  ros::NodeHandle node;
++  std::string name_url;
++  std::string exp_url;
++  char *home_env = getenv("HOME");
++  std::string home(home_env);
++
++  // resolve ${ROS_HOME} with environment variable undefined
++  unsetenv("ROS_HOME");
++  name_url = "file://${ROS_HOME}/camera_info/test_camera.yaml";
++  exp_url = "file://" + home + "/.ros/camera_info/test_camera.yaml";
++  check_url_substitution(node, name_url, exp_url, g_camera_name);
++
++  // resolve ${ROS_HOME} with environment variable defined
++  setenv("ROS_HOME", "/my/ros/home", true);
++  name_url = "file://${ROS_HOME}/camera_info/test_camera.yaml";
++  exp_url = "file:///my/ros/home/camera_info/test_camera.yaml";
++  check_url_substitution(node, name_url, exp_url, g_camera_name);
++}
++
++TEST(UrlSubstitution, unmatchedDollarSigns)
++{
++  ros::NodeHandle node;
++
++  // test for "$$" in the URL (NAME should be resolved)
++  std::string name_url("file:///tmp/$${NAME}.yaml");
++  std::string exp_url("file:///tmp/$" + g_camera_name + ".yaml");
++  check_url_substitution(node, name_url, exp_url, g_camera_name);
++
++  // test for "$" in middle of string
++  name_url = "file:///$whatever.yaml";
++  check_url_substitution(node, name_url, name_url, g_camera_name);
++
++  // test for "$$" in middle of string
++  name_url = "file:///something$$whatever.yaml";
++  check_url_substitution(node, name_url, name_url, g_camera_name);
++
++  // test for "$$" at end of string
++  name_url = "file:///$$";
++  check_url_substitution(node, name_url, name_url, g_camera_name);
++}
++
++TEST(UrlSubstitution, emptyURL)
++{
++  // test that empty URL is handled correctly
++  ros::NodeHandle node;
++  std::string empty_url("");
++  check_url_substitution(node, empty_url, empty_url, g_camera_name);
++}
++
++TEST(UrlSubstitution, invalidVariables)
++{
++  ros::NodeHandle node;
++  std::string name_url;
++
++  // missing "{...}"
++  name_url = "file:///tmp/$NAME.yaml";
++  check_url_substitution(node, name_url, name_url, g_camera_name);
++
++  // invalid substitution variable name
++  name_url = "file:///tmp/${INVALID}/calibration.yaml";
++  check_url_substitution(node, name_url, name_url, g_camera_name);
++
++  // truncated substitution variable
++  name_url = "file:///tmp/${NAME";
++  check_url_substitution(node, name_url, name_url, g_camera_name);
++
++  // missing substitution variable
++  name_url = "file:///tmp/${}";
++  check_url_substitution(node, name_url, name_url, g_camera_name);
++
++  // no exception thrown for single "$" at end of string
++  name_url = "file:///$";
++  check_url_substitution(node, name_url, name_url, g_camera_name);
++}
++
++// Run all the tests that were declared with TEST()
++int main(int argc, char **argv)
++{
++  ros::init(argc, argv, "camera_info_manager_unit_test");
++  testing::InitGoogleTest(&argc, argv);
++
++  // create asynchronous thread for handling service requests
++  ros::AsyncSpinner spinner(1);
++  spinner.start();
++
++  // run the tests in this thread
++  return RUN_ALL_TESTS();
++}
+--- /dev/null
++++ ros-noetic-camera-info-manager-1.12.0/tests/unit_test.test
+@@ -0,0 +1,17 @@
++<!-- -*- mode: XML -*- -->
++<!-- rostest launch file for camera_info_manager
++
++     This unit test uses rostest, because the camera_info_manager
++     constructor requires a node handle. Apart from needing a ROS
++     environment, it is completely self-contained.
++
++     $Id$
++  -->
++
++<launch>
++
++  <!-- start unit-test node -->
++  <test pkg="camera_info_manager" type="unit_test" name="unit_test"
++        test-name="unit_test" time-limit="2.0" />
++
++</launch>

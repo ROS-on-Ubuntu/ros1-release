@@ -1,0 +1,3186 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-roswtf (1.16.0-0jammy) jammy; urgency=high
+Author: Michael Carroll <michael@openrobotics.org>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-roswtf-1.16.0/CHANGELOG.rst
+@@ -0,0 +1,257 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package roswtf
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++1.16.0 (2023-02-15)
++-------------------
++
++1.15.15 (2022-11-23)
++--------------------
++* Move @jacobperron from maintainer to author (`#2302 <https://github.com/ros/ros_comm/issues/2302>`_)
++* Contributors: Shane Loretz
++
++1.15.14 (2022-01-06)
++--------------------
++
++1.15.13 (2021-09-22)
++--------------------
++
++1.15.12 (2021-09-21)
++--------------------
++
++1.15.11 (2021-04-06)
++--------------------
++
++1.15.10 (2021-03-18)
++--------------------
++* Fix /use_sim_time parameter typo in roswtf error (`#2102 <https://github.com/ros/ros_comm/issues/2102>`_)
++* Contributors: Nicholas Paul
++
++1.15.9 (2020-10-16)
++-------------------
++* Update maintainers (`#2075 <https://github.com/ros/ros_comm/issues/2075>`_)
++* Fix spelling (`#2066 <https://github.com/ros/ros_comm/issues/2066>`_)
++* Contributors: Shane Loretz, tomoya
++
++1.15.8 (2020-07-23)
++-------------------
++
++1.15.7 (2020-05-28)
++-------------------
++
++1.15.6 (2020-05-21)
++-------------------
++
++1.15.5 (2020-05-15)
++-------------------
++
++1.15.4 (2020-03-19)
++-------------------
++
++1.15.3 (2020-02-28)
++-------------------
++
++1.15.2 (2020-02-25)
++-------------------
++
++1.15.1 (2020-02-24)
++-------------------
++* use setuptools instead of distutils (`#1870 <https://github.com/ros/ros_comm/issues/1870>`_)
++
++1.15.0 (2020-02-21)
++-------------------
++
++1.14.4 (2020-02-20)
++-------------------
++* add default ROS_MASTER_URI (`#1666 <https://github.com/ros/ros_comm/issues/1666>`_)
++* bump CMake minimum version to avoid CMP0048 warning (`#1869 <https://github.com/ros/ros_comm/issues/1869>`_)
++* do not try to run online checks if there are no roslaunch uris (`#1848 <https://github.com/ros/ros_comm/issues/1848>`_)
++* more Python 3 compatibility (`#1796 <https://github.com/ros/ros_comm/issues/1796>`_)
++* use condition attributes to specify Python 2 and 3 dependencies (`#1792 <https://github.com/ros/ros_comm/issues/1792>`_)
++* print exception content to show better idea why loading plugin failed (`#1721 <https://github.com/ros/ros_comm/issues/1721>`_)
++* duplicate test nodes which aren't available to other packages, add missing dependencies (`#1611 <https://github.com/ros/ros_comm/issues/1611>`_)
++* query ipv6 only if specified (`#1596 <https://github.com/ros/ros_comm/issues/1596>`_)
++* fix typos: awhile -> a while (`#1534 <https://github.com/ros/ros_comm/issues/1534>`_)
++* improve msg replacement for 'No package or stack in context'. (`#1505 <https://github.com/ros/ros_comm/issues/1505>`_)
++
++1.14.3 (2018-08-06)
++-------------------
++
++1.14.2 (2018-06-06)
++-------------------
++
++1.14.1 (2018-05-21)
++-------------------
++
++1.14.0 (2018-05-21)
++-------------------
++* warn if ROS_IP contains whitespace (`#1379 <https://github.com/ros/ros_comm/issues/1379>`_)
++
++1.13.6 (2018-02-05)
++-------------------
++
++1.13.5 (2017-11-09)
++-------------------
++
++1.13.4 (2017-11-02)
++-------------------
++
++1.13.3 (2017-10-25)
++-------------------
++
++1.13.2 (2017-08-15)
++-------------------
++
++1.13.1 (2017-07-27)
++-------------------
++* improve roswtf tests (`#1101 <https://github.com/ros/ros_comm/pull/1101>`_, `#1102 <https://github.com/ros/ros_comm/pull/1102>`_)
++
++1.13.0 (2017-02-22)
++-------------------
++
++1.12.7 (2017-02-17)
++-------------------
++
++1.12.6 (2016-10-26)
++-------------------
++
++1.12.5 (2016-09-30)
++-------------------
++
++1.12.4 (2016-09-19)
++-------------------
++
++1.12.3 (2016-09-17)
++-------------------
++
++1.12.2 (2016-06-03)
++-------------------
++
++1.12.1 (2016-04-18)
++-------------------
++
++1.12.0 (2016-03-18)
++-------------------
++
++1.11.18 (2016-03-17)
++--------------------
++
++1.11.17 (2016-03-11)
++--------------------
++
++1.11.16 (2015-11-09)
++--------------------
++
++1.11.15 (2015-10-13)
++--------------------
++
++1.11.14 (2015-09-19)
++--------------------
++* add optional dependency on geneus to make roswtf tests pass in jade
++
++1.11.13 (2015-04-28)
++--------------------
++
++1.11.12 (2015-04-27)
++--------------------
++
++1.11.11 (2015-04-16)
++--------------------
++* support IPv6 addresses containing percentage symbols (`#585 <https://github.com/ros/ros_comm/issues/585>`_)
++
++1.11.10 (2014-12-22)
++--------------------
++
++1.11.9 (2014-08-18)
++-------------------
++
++1.11.8 (2014-08-04)
++-------------------
++
++1.11.7 (2014-07-18)
++-------------------
++
++1.11.6 (2014-07-10)
++-------------------
++
++1.11.5 (2014-06-24)
++-------------------
++
++1.11.4 (2014-06-16)
++-------------------
++* Python 3 compatibility (`#426 <https://github.com/ros/ros_comm/issues/426>`_, `#427 <https://github.com/ros/ros_comm/issues/427>`_)
++
++1.11.3 (2014-05-21)
++-------------------
++
++1.11.2 (2014-05-08)
++-------------------
++
++1.11.1 (2014-05-07)
++-------------------
++* update roswtf test for upcoming rospack 2.2.3
++* add architecture_independent flag in package.xml (`#391 <https://github.com/ros/ros_comm/issues/391>`_)
++
++1.11.0 (2014-03-04)
++-------------------
++* make rostest in CMakeLists optional (`ros/rosdistro#3010 <https://github.com/ros/rosdistro/issues/3010>`_)
++
++1.10.0 (2014-02-11)
++-------------------
++
++1.9.54 (2014-01-27)
++-------------------
++* fix roswtf checks to not require release-only python packages to be installed
++* add missing run/test dependencies on rosbuild to get ROS_ROOT environment variable
++
++1.9.53 (2014-01-14)
++-------------------
++
++1.9.52 (2014-01-08)
++-------------------
++
++1.9.51 (2014-01-07)
++-------------------
++* do not warn about not existing stacks folder in a catkin workspace
++
++1.9.50 (2013-10-04)
++-------------------
++
++1.9.49 (2013-09-16)
++-------------------
++
++1.9.48 (2013-08-21)
++-------------------
++
++1.9.47 (2013-07-03)
++-------------------
++* check for CATKIN_ENABLE_TESTING to enable configure without tests
++
++1.9.46 (2013-06-18)
++-------------------
++
++1.9.45 (2013-06-06)
++-------------------
++
++1.9.44 (2013-03-21)
++-------------------
++* fix ROS_ROOT check to access trailing 'rosbuild'
++
++1.9.43 (2013-03-13)
++-------------------
++
++1.9.42 (2013-03-08)
++-------------------
++
++1.9.41 (2013-01-24)
++-------------------
++
++1.9.40 (2013-01-13)
++-------------------
++* add checks for pip packages and rosdep
++* fix check for catkin_pkg
++* fix for thread race condition causes incorrect graph connectivity analysis
++
++1.9.39 (2012-12-29)
++-------------------
++* first public release for Groovy
+--- /dev/null
++++ ros-noetic-roswtf-1.16.0/CMakeLists.txt
+@@ -0,0 +1,11 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(roswtf)
++find_package(catkin REQUIRED)
++catkin_package()
++catkin_python_setup()
++
++if(CATKIN_ENABLE_TESTING)
++  find_package(rostest)
++  add_rostest(test/roswtf.test)
++  catkin_add_nosetests(test)
++endif()
+--- /dev/null
++++ ros-noetic-roswtf-1.16.0/package.xml
+@@ -0,0 +1,46 @@
++<?xml version="1.0"?>
++<?xml-model
++  href="http://download.ros.org/schema/package_format3.xsd"
++  schematypens="http://www.w3.org/2001/XMLSchema"?>
++<package format="3">
++  <name>roswtf</name>
++  <version>1.16.0</version>
++  <description>
++     roswtf is a tool for diagnosing issues with a running ROS system. Think of it as a FAQ implemented in code.
++  </description>
++  <maintainer email="michael@openrobotics.org">Michael Carroll</maintainer>
++  <maintainer email="sloretz@openrobotics.org">Shane Loretz</maintainer>
++  <license>BSD</license>
++
++  <url type="website">http://wiki.ros.org/roswtf</url>
++  <url type="bugtracker">https://github.com/ros/ros_comm/issues</url>
++  <url type="repository">https://github.com/ros/ros_comm</url>
++  <author>Ken Conley</author>
++  <author email="dthomas@osrfoundation.org">Dirk Thomas</author>
++  <author email="jacob@openrobotics.org">Jacob Perron</author>
++
++  <buildtool_depend version_gte="0.5.68">catkin</buildtool_depend>
++
++  <build_depend>rostest</build_depend>
++
++  <exec_depend condition="$ROS_PYTHON_VERSION == 2">python-paramiko</exec_depend>
++  <exec_depend condition="$ROS_PYTHON_VERSION == 3">python3-paramiko</exec_depend>
++  <exec_depend condition="$ROS_PYTHON_VERSION == 2">python-rospkg</exec_depend>
++  <exec_depend condition="$ROS_PYTHON_VERSION == 3">python3-rospkg</exec_depend>
++  <exec_depend>rosbuild</exec_depend>
++  <exec_depend>rosgraph</exec_depend>
++  <exec_depend>roslaunch</exec_depend>
++  <exec_depend>roslib</exec_depend>
++  <exec_depend>rosnode</exec_depend>
++  <exec_depend>rosservice</exec_depend>
++
++  <test_depend>cmake_modules</test_depend>  <!-- since the other packages recursively depend on it roswtf needs to find it during its own tests -->
++  <test_depend>rosbag</test_depend>
++  <test_depend>roslang</test_depend>
++  <test_depend>std_srvs</test_depend>
++
++  <export>
++    <rosdoc config="rosdoc.yaml"/>
++    <architecture_independent/>
++  </export>
++</package>
+--- /dev/null
++++ ros-noetic-roswtf-1.16.0/rosdoc.yaml
+@@ -0,0 +1 @@
++ - builder: epydoc
+--- /dev/null
++++ ros-noetic-roswtf-1.16.0/scripts/roswtf
+@@ -0,0 +1,35 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import roswtf
++roswtf.roswtf_main()
+--- /dev/null
++++ ros-noetic-roswtf-1.16.0/setup.py
+@@ -0,0 +1,11 @@
++from setuptools import setup
++from catkin_pkg.python_setup import generate_distutils_setup
++
++d = generate_distutils_setup(
++    packages=['roswtf'],
++    package_dir={'': 'src'},
++    scripts=['scripts/roswtf'],
++    requires=['genmsg', 'genpy', 'roslib', 'rospkg']
++)
++
++setup(**d)
+--- /dev/null
++++ ros-noetic-roswtf-1.16.0/src/roswtf/__init__.py
+@@ -0,0 +1,242 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id$
++
++"""
++roswtf command-line tool.
++"""
++
++from __future__ import print_function
++
++import os
++import socket
++import sys
++import traceback
++
++import rospkg
++import rosgraph.names
++    
++def yaml_results(ctx):
++    cd = ctx.as_dictionary()
++    d = {}
++    d['warnings'] = {}
++    d['errors'] = {}
++    wd = d['warnings']
++    for warn in ctx.warnings:
++        wd[warn.format_msg%cd] = warn.return_val
++    ed = d['warnings']        
++    for err in ctx.warnings:
++        ed[err.format_msg%cd] = err.return_val
++    import yaml
++    print(yaml.dump(d))
++
++def print_results(ctx):
++    if not ctx.warnings and not ctx.errors:
++        print("No errors or warnings")
++    else:
++        if ctx.warnings:
++            print("Found %s warning(s).\nWarnings are things that may be just fine, but are sometimes at fault\n" % len(ctx.warnings))
++            for warn in ctx.warnings:
++                print('\033[1mWARNING\033[0m', warn.msg)
++            print('')
++
++        if ctx.errors:
++            print("Found %s error(s).\n"%len(ctx.errors))
++            for e in ctx.errors:
++                print('\033[31m\033[1mERROR\033[0m', e.msg)
++                #print("ERROR:", e.msg
++    
++def roswtf_main():
++    try:
++        import std_msgs.msg
++        import rosgraph_msgs.msg
++    except ImportError:
++        print("ERROR: The core ROS message libraries (std_msgs and rosgraph_msgs) have not been built.")
++        sys.exit(1)
++    
++    from roswtf.context import WtfException
++    try:
++        _roswtf_main()
++    except WtfException as e:
++        print(str(e), file=sys.stderr)
++        
++def _roswtf_main():
++    launch_files = names = None
++    # performance optimization
++    rospack = rospkg.RosPack()
++    all_pkgs = rospack.list()
++
++    import optparse
++    parser = optparse.OptionParser(usage="usage: roswtf [launch file]", description="roswtf is a tool for verifying a ROS installation and running system. Checks provided launchfile if provided, else current stack or package.")
++    # #2268
++    parser.add_option("--all", 
++                      dest="all_packages", default=False,
++                      action="store_true",
++                      help="run roswtf against all packages")
++    # #2270
++    parser.add_option("--no-plugins", 
++                      dest="disable_plugins", default=False,
++                      action="store_true",
++                      help="disable roswtf plugins")
++
++    parser.add_option("--offline", 
++                      dest="offline", default=False,
++                      action="store_true",
++                      help="only run offline tests")
++
++    #TODO: --all-pkgs option
++    options, args = parser.parse_args()
++    if args:
++        launch_files = args
++        if 0:
++            # disable names for now as don't have any rules yet
++            launch_files = [a for a in args if os.path.isfile(a)]
++            names = [a for a in args if not a in launch_files]
++            names = [rosgraph.names.script_resolve_name('/roswtf', n) for n in names]
++
++    from roswtf.context import WtfContext
++    from roswtf.environment import wtf_check_environment, invalid_url, ros_root_check
++    from roswtf.graph import wtf_check_graph
++    import roswtf.rosdep_db
++    import roswtf.py_pip_deb_checks
++    import roswtf.network
++    import roswtf.packages
++    import roswtf.roslaunchwtf
++    import roswtf.stacks    
++    import roswtf.plugins
++    if not options.disable_plugins:
++        static_plugins, online_plugins = roswtf.plugins.load_plugins()
++    else:
++        static_plugins, online_plugins = [], []
++        
++    # - do a ros_root check first and abort if it fails as rest of tests are useless after that
++    error = ros_root_check(None, ros_root=os.environ['ROS_ROOT'])
++    if error:
++        print("ROS_ROOT is invalid: "+str(error))
++        sys.exit(1)
++
++    all_warnings = []
++    all_errors = []
++    
++    if launch_files:
++        ctx = WtfContext.from_roslaunch(launch_files)
++        #TODO: allow specifying multiple roslaunch files
++    else:
++        curr_package = rospkg.get_package_name('.')
++        if curr_package:
++            print("Package:", curr_package)
++            ctx = WtfContext.from_package(curr_package)
++            #TODO: load all .launch files in package
++        elif os.path.isfile('stack.xml'):
++            curr_stack = os.path.basename(os.path.abspath('.'))
++            print("Stack:", curr_stack)
++            ctx = WtfContext.from_stack(curr_stack)
++        else:
++            print("No package or stack in the current directory")
++            ctx = WtfContext.from_env()
++        if options.all_packages:
++            print("roswtf will run against all packages")
++            ctx.pkgs = all_pkgs
++
++    # static checks
++    wtf_check_environment(ctx)
++    roswtf.rosdep_db.wtf_check(ctx)
++    roswtf.py_pip_deb_checks.wtf_check(ctx)
++    roswtf.network.wtf_check(ctx)
++    roswtf.packages.wtf_check(ctx)
++    roswtf.stacks.wtf_check(ctx)    
++    roswtf.roslaunchwtf.wtf_check_static(ctx)
++    for p in static_plugins:
++        p(ctx)
++
++    print("="*80)
++    print("Static checks summary:\n")
++    print_results(ctx)
++
++    # Save static results and start afresh for online checks
++    all_warnings.extend(ctx.warnings)
++    all_errors.extend(ctx.errors)
++    del ctx.warnings[:]
++    del ctx.errors[:]    
++
++    # test online
++    print("="*80)
++
++    try:
++
++        if options.offline or not ctx.ros_master_uri or invalid_url(ctx.ros_master_uri) or not rosgraph.is_master_online():
++            online_checks = False
++        else:
++            online_checks = True
++        if online_checks:
++            online_checks = True
++            print("Beginning tests of your ROS graph. These may take a while...")
++            
++            # online checks
++            wtf_check_graph(ctx, names=names)
++        elif names:
++            # TODO: need to rework this logic
++            print("\nCannot communicate with master, unable to diagnose [%s]"%(', '.join(names)))
++            return
++        else:
++            print("\nROS Master does not appear to be running.\nOnline graph checks will not be run.\nROS_MASTER_URI is [%s]"%(ctx.ros_master_uri))
++            return
++
++        # spin up a roswtf node so we can subscribe to messages
++        import rospy
++        rospy.init_node('roswtf', anonymous=True)
++
++        online_checks = True
++        roswtf.roslaunchwtf.wtf_check_online(ctx)
++
++        for p in online_plugins:
++            online_checks = True
++            p(ctx)
++
++        if online_checks:
++            # done
++            print("\nOnline checks summary:\n")
++            print_results(ctx)
++            
++    except roswtf.context.WtfException as e:
++        print(str(e), file=sys.stderr)
++        print("\nAborting checks, partial results summary:\n")
++        print_results(ctx)
++    except Exception as e:
++        traceback.print_exc()
++        print(str(e), file=sys.stderr)
++        print("\nAborting checks, partial results summary:\n")
++        print_results(ctx)
++
++    #TODO: print results in YAML if run remotely
++    #yaml_results(ctx)
+--- /dev/null
++++ ros-noetic-roswtf-1.16.0/src/roswtf/context.py
+@@ -0,0 +1,306 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id$
++
++"""
++L{WtfContext} object, which is commonly used throughout the roswtf
++APIs to pass state.
++"""
++
++import os
++import sys
++
++import rospkg
++import rospkg.environment
++
++import rosgraph
++
++import roslaunch.depends
++import roslaunch.substitution_args
++
++from roswtf.model import WtfWarning
++
++class WtfException(Exception):
++    """
++    Base exception class of roswtf-related issues.
++    """
++    pass
++
++class WtfContext(object):
++    """
++    WtfContext stores common state about the ROS filesystem and online
++    environment. The primary use of this is for convenience (not
++    having to load this state manually) and performance (not having to
++    do the same calculation repeatedly).
++    """
++    __slots__ = ['pkg', 'pkg_dir', 'pkgs',
++                 'stack', 'stack_dir', 'stacks',
++                 'manifest_file', 'manifest',
++                 'env', 'ros_root', 'ros_package_path', 'pythonpath',
++                 'ros_master_uri',
++                 'roslaunch_uris',
++                 'launch_files',
++                 'launch_file_deps',
++                 'launch_file_missing_deps',
++                 'system_state',
++                 'service_providers',
++                 'topics', 'services',
++                 'nodes', 'uri_node_map',
++                 'expected_edges',
++                 'actual_edges',
++                 'unconnected_subscriptions',
++                 'use_sim_time',
++                 'warnings', 'errors',
++                 'rospack', 'rosstack']
++    
++    def __init__(self):
++        # main package we are running 
++        self.pkg = None
++        self.pkg_dir = None
++        # main stack we are running 
++        self.stack = None
++        self.stack_dir = None
++        
++        # - list of all packages involved in this check
++        self.pkgs = []
++        # - list of all stacks involved in this check        
++        self.stacks = []        
++
++        # manifest location of package that we are running 
++        self.manifest_file = None
++        # manifest of package that we are running 
++        self.manifest = None
++
++        # environment variables 
++        self.env = {}
++
++        # provide these for convenience
++        self.ros_root = None
++        self.ros_package_path = None
++        self.pythonpath = None
++        
++        # launch file that is being run
++        self.launch_files = None
++        self.launch_file_deps = None
++        self.launch_file_missing_deps = None        
++        
++        # online state
++        self.roslaunch_uris = None 
++        self.system_state = None #master.getSystemState
++        self.topics = None
++        self.services = None
++        self.service_providers = None #names of nodes with services
++        self.nodes = None
++        self.uri_node_map = {}
++        self.expected_edges = None
++        self.actual_edges = None
++        self.unconnected_subscriptions = None
++        self.use_sim_time = None
++        
++        # caching rospack instance
++        self.rospack = self.rosstack = None
++        
++        # warnings that we have collected so far
++        self.warnings = []
++        # errors that we have collected so far
++        self.errors = []
++
++    def as_dictionary(self):
++        """
++        @return: dictionary representation of context, which is
++        useful for producing error messages
++        @rtype: dict
++        """
++        return dict((s, getattr(self, s)) for s in self.__slots__)
++
++    @staticmethod
++    def from_roslaunch(roslaunch_files, env=None):
++        """
++        @param roslaunch_file: roslaunch_file to load from
++        @type  roslaunch_file: str
++        """
++        if env is None:
++            env = os.environ
++
++        # can't go any further if launch file doesn't validate
++        l, c = roslaunch.XmlLoader(), roslaunch.ROSLaunchConfig()
++        for f in roslaunch_files:
++            try:
++                l.load(f, c, verbose=False) 
++            except roslaunch.RLException as e:
++                raise WtfException("Unable to load roslaunch file [%s]: %s"%(f, str(e)))
++
++        ctx = WtfContext()
++        ctx.rospack = rospkg.RosPack(rospkg.get_ros_paths(env))
++        ctx.rosstack = rospkg.RosStack(rospkg.get_ros_paths(env))
++
++        ctx.launch_files = roslaunch_files
++        _load_roslaunch(ctx, roslaunch_files)
++        # ctx.pkg and ctx.stack initialized by _load_roslaunch
++        _load_pkg(ctx, ctx.pkg)
++        if ctx.stack:
++            _load_stack(ctx, ctx.stack)        
++        _load_env(ctx, env)
++        return ctx
++
++    @staticmethod
++    def from_stack(stack, env=None):
++        """
++        Initialize WtfContext from stack.
++        @param stack: stack name
++        @type  stack: str
++        @raise WtfException: if context state cannot be initialized
++        """
++        if env is None:
++            env = os.environ
++
++        ctx = WtfContext()
++        ctx.rospack = rospkg.RosPack(rospkg.get_ros_paths(env))
++        ctx.rosstack = rospkg.RosStack(rospkg.get_ros_paths(env))
++
++        _load_stack(ctx, stack)
++        try:
++            ctx.pkgs = ctx.rosstack.packages_of(stack)
++        except rospkg.ResourceNotFound:
++            # this should be handled elsewhere
++            ctx.pkgs = []
++        _load_env(ctx, env)
++        return ctx
++    
++    @staticmethod
++    def from_package(pkg, env=None):
++        """
++        Initialize WtfContext from package name.
++
++        @param pkg: package name
++        @type  pkg: str
++        @raise WtfException: if context state cannot be initialized
++        """
++        if env is None:
++            env = os.environ
++
++        ctx = WtfContext()
++        ctx.rospack = rospkg.RosPack(rospkg.get_ros_paths(env))
++        ctx.rosstack = rospkg.RosStack(rospkg.get_ros_paths(env))
++        
++        _load_pkg(ctx, pkg)
++        stack = ctx.rospack.stack_of(pkg)
++        if stack:
++            _load_stack(ctx, stack)
++        _load_env(ctx, env)
++        return ctx
++
++    @staticmethod
++    def from_env(env=None):
++        """
++        Initialize WtfContext from environment.
++        
++        @raise WtfException: if context state cannot be initialized
++        """
++        if env is None:
++            env = os.environ
++
++        ctx = WtfContext()
++        ctx.rospack = rospkg.RosPack(rospkg.get_ros_paths(env))
++        ctx.rosstack = rospkg.RosStack(rospkg.get_ros_paths(env))
++
++        _load_env(ctx, env)
++        return ctx
++    
++def _load_roslaunch(ctx, roslaunch_files):
++    """
++    Utility for initializing WtfContext state from roslaunch file
++    """
++    try:
++        base_pkg, file_deps, missing = roslaunch.depends.roslaunch_deps(roslaunch_files)
++        ctx.pkg = base_pkg
++        ctx.launch_file_deps = file_deps
++        ctx.launch_file_missing_deps = missing
++    except roslaunch.substitution_args.SubstitutionException as se:
++        raise WtfException("Cannot load roslaunch file(s): "+str(se))
++    except roslaunch.depends.RoslaunchDepsException as e:
++        raise WtfException(str(e))
++
++def _load_pkg(ctx, pkg):
++    """
++    Utility for initializing WtfContext state
++    @raise WtfException: if context state cannot be initialized
++    """
++    r = ctx.rospack
++    ctx.pkg = pkg
++    try:
++        ctx.pkgs = [pkg] + r.get_depends(pkg)
++    except rospkg.ResourceNotFound as e:
++        raise WtfException("Cannot find dependencies for package [%s]: missing %s"%(pkg, e))
++    try:
++        ctx.pkg_dir = r.get_path(pkg)
++        ctx.manifest_file = os.path.join(ctx.pkg_dir, 'manifest.xml')
++        ctx.manifest = r.get_manifest(pkg)
++    except rospkg.ResourceNotFound:
++        raise WtfException("Cannot locate manifest file for package [%s]"%pkg)
++    except rospkg.InvalidManifest as e:
++        raise WtfException("Package [%s] has an invalid manifest: %s"%(pkg, e))
++
++def _load_stack(ctx, stack):
++    """
++    Utility for initializing WtfContext state
++    @raise WtfException: if context state cannot be initialized
++    """
++    r = ctx.rosstack
++    ctx.stack = stack
++    try:
++        ctx.stacks = [stack] + r.get_depends(stack, implicit=True)
++    except rospkg.ResourceNotFound as e:
++        raise WtfException("Cannot load dependencies of stack [%s]: %s"%(stack, e))
++    try:
++        ctx.stack_dir = r.get_path(stack)
++    except rospkg.ResourceNotFound:
++        raise WtfException("[%s] appears to be a stack, but it's not on your ROS_PACKAGE_PATH"%stack)
++    
++    
++def _load_env(ctx, env):
++    """
++    Utility for initializing WtfContext state
++
++    @raise WtfException: if context state cannot be initialized
++    """
++    ctx.env = env
++    try:
++        ctx.ros_root = env[rospkg.environment.ROS_ROOT]
++    except KeyError:
++        raise WtfException("ROS_ROOT is not set")
++    ctx.ros_package_path = env.get(rospkg.environment.ROS_PACKAGE_PATH, None)
++    ctx.pythonpath = env.get('PYTHONPATH', None)
++    ctx.ros_master_uri = rosgraph.rosenv.get_master_uri()
++
++    
+--- /dev/null
++++ ros-noetic-roswtf-1.16.0/src/roswtf/environment.py
+@@ -0,0 +1,220 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id$
++
++"""
++Rules for checking ROS environment state.
++"""
++
++import os
++import socket
++import stat
++import string
++import sys
++
++from os.path import isdir, isfile
++from roswtf.rules import warning_rule, error_rule
++
++#TODO: unit tests
++
++def paths(path):
++    """
++    @return: paths contained in path variable. path must conform to OS
++    conventions for path separation (i.e. colon-separated on Unix)
++    @rtype: [str]
++    """
++    if path:
++        return path.split(os.pathsep)
++    return []
++
++def is_executable(path):
++    """
++    @return: True if path has executable permissions
++    @rtype: bool
++    """
++    mode = os.stat(path)[stat.ST_MODE]
++    return mode & (stat.S_IXUSR|stat.S_IXGRP|stat.S_IXOTH)
++
++try:
++    from urllib.parse import urlparse #Python 3
++except ImportError:
++    from urlparse import urlparse #Python 2
++
++def invalid_url(url):
++    """
++    @return: error message if \a url is not a valid url. \a url is
++    allowed to be empty as that check is considered separately.
++    @rtype: str
++    """
++    if not url:
++        return #caught by different rule
++    p = urlparse(url)
++    if p[0] != 'http':
++        return "protocol is not 'http'"
++    if not p[1]:
++        return "address is missing"
++    if not ':' in p[1]:
++        return "port number is missing"
++    try:
++        splits = p[1].split(':')
++        if len(splits) != 2:
++            return "invalid address string [%s]"%p[1]
++        int(splits[1])
++    except ValueError:
++        return "port number [%s] is invalid"%(splits[1])
++    
++# Error-checking functions for more advanced checks
++
++def ros_root_check(ctx, ros_root=None):
++    """
++    @param ros_root: override ctx, useful for when ctx is not created yet
++    @type  ros_root: str
++    """
++    if ros_root is not None:
++        path = ros_root
++    else:
++        path = ctx.ros_root
++    if os.path.basename(os.path.normpath(path)) not in ['ros', 'rosbuild']:
++        return "ROS_ROOT [%s] must end in directory named 'ros'"%path      
++    
++def _writable_dir_check(ctx, path, name):
++    """
++    If path is not None, validate that it is a writable directory
++    """
++    if path is None:
++        return
++    if isfile(path):
++        return "%s [%s] must point to a directory, not a file"%(name, path)
++    if not os.access(path, os.W_OK):
++        return "%s [%s] is not writable"%(name, path)
++
++def ros_home_check(ctx):
++    return _writable_dir_check(ctx, ctx.env.get('ROS_HOME', None), 'ROS_HOME')
++def ros_log_dir_check(ctx):
++    return _writable_dir_check(ctx, ctx.env.get('ROS_LOG_DIR', None), 'ROS_LOG_DIR')
++def ros_test_results_dir_check(ctx):
++    return _writable_dir_check(ctx, ctx.env.get('ROS_TEST_RESULTS_DIR', None), 'ROS_TEST_RESULTS_DIR')
++
++def pythonpath_check(ctx):
++    # used to have a lot more checks here, but trying to phase out need for roslib on custom PYTHONPATH
++    path = ctx.pythonpath
++    roslib_count = len(set([p for p in paths(path) if 'roslib' in p.split(os.sep)]))
++    if roslib_count > 1:
++        return "Multiple roslib directories in PYTHONPATH (there should only be one)"
++
++def rosconsole_config_file_check(ctx):
++    if 'ROSCONSOLE_CONFIG_FILE' in ctx.env:
++        return not isfile(ctx.env['ROSCONSOLE_CONFIG_FILE'])
++    
++def path_check(ctx):
++    # rosdeb setup can clobber local ros stuff, so try and detect this
++    path = ctx.env['PATH']
++    idx = path.find('/usr/bin')
++    if idx < 0:
++        return
++    if os.path.exists('/usr/lib/ros/'):
++        rr_idx = path.find(ctx.ros_root)
++        if rr_idx > -1 and rr_idx > idx:
++            return True
++        
++def ros_master_uri_hostname(ctx):
++    uri = ctx.ros_master_uri
++    parsed = urlparse(uri)
++    p = urlparse(uri)
++    if not p[1]:
++        return #caught by different rule
++    if not ':' in p[1]:
++        return #caught by different rule
++    try:
++        splits = p[1].split(':')
++        if len(splits) != 2:
++            return #caught by different rule
++        #TODO IPV6: only check for IPv6 when IPv6 is enabled
++        socket.getaddrinfo(splits[0], 0, 0, 0, socket.SOL_TCP)
++
++    except socket.gaierror:
++        return "Unknown host %s"%splits[0]
++    
++# Error/Warning Rules
++
++environment_warnings = [
++    (path_check,
++     "PATH has /usr/bin set before ROS_ROOT/bin, which can cause problems as there is system install of ROS on this machine. You may wish to put ROS_ROOT/bin first"),
++    (lambda ctx: ctx.ros_package_path is None, 
++     "ROS_PACKAGE_PATH is not set. This is not required, but is unusual"),
++    (lambda ctx: len(paths(ctx.ros_package_path)) == 0, 
++     "ROS_PACKAGE_PATH is empty. This is not required, but is unusual"),
++    (lambda ctx: not ctx.ros_master_uri,
++     "ROS_MASTER_URI is empty. This is not required, but is unusual"),
++    (ros_master_uri_hostname,
++     "Cannot resolve hostname in ROS_MASTER_URI [%(ros_master_uri)s]"),
++    (rosconsole_config_file_check,
++     "ROS_CONSOLE_CONFIG_FILE does not point to an existing file"),
++    ]
++
++environment_errors = [
++    # ROS_ROOT
++    (lambda ctx: not isdir(ctx.ros_root),
++     "ROS_ROOT [%(ros_root)s] does not point to a directory"),
++    (ros_root_check,
++     "ROS_ROOT is invalid: "),
++    
++    # ROS_PACKAGE_PATH
++    (lambda ctx: [d for d in paths(ctx.ros_package_path) if d and isfile(d)],
++     "Path(s) in ROS_PACKAGE_PATH [%(ros_package_path)s] points to a file instead of a directory: "),
++    (lambda ctx: [d for d in paths(ctx.ros_package_path) if d and not isdir(d) and not (os.path.basename(d) == 'stacks' and os.path.exists(os.path.join(os.path.dirname(d), '.catkin')))],
++     "Not all paths in ROS_PACKAGE_PATH [%(ros_package_path)s] point to an existing directory: "),
++    
++    # PYTHONPATH
++    (lambda ctx: [d for d in paths(ctx.pythonpath) if d and not isdir(d)],
++     "Not all paths in PYTHONPATH [%(pythonpath)s] point to a directory: "),
++    (pythonpath_check,
++     "PYTHONPATH [%(pythonpath)s] is invalid: "),
++
++    # ROS_HOME, ROS_LOG_DIR, ROS_TEST_RESULTS_DIR
++    (ros_home_check, "ROS_HOME is invalid: "),
++    (ros_log_dir_check, "ROS_LOG_DIR is invalid: "),    
++    (ros_test_results_dir_check, "ROS_TEST_RESULTS_DIR is invalid: "),    
++
++    (lambda ctx: invalid_url(ctx.ros_master_uri),
++     "ROS_MASTER_URI [%(ros_master_uri)s] is not a valid URL: "),
++
++    ]
++
++def wtf_check_environment(ctx):
++    #TODO: check ROS_BOOST_ROOT
++    for r in environment_warnings:
++        warning_rule(r, r[0](ctx), ctx)
++    for r in environment_errors:
++        error_rule(r, r[0](ctx), ctx)
++        
+--- /dev/null
++++ ros-noetic-roswtf-1.16.0/src/roswtf/graph.py
+@@ -0,0 +1,417 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id$
++
++from __future__ import print_function
++from __future__ import with_statement
++
++import os
++import itertools
++import socket
++import sys
++import time
++try:
++    from xmlrpc.client import ServerProxy
++except ImportError:
++    from xmlrpclib import ServerProxy
++
++import rospkg.environment
++
++import rosgraph
++import rosgraph.rosenv
++import rosgraph.network
++
++import rosnode
++import rosservice
++
++from roswtf.context import WtfException
++from roswtf.environment import paths, is_executable
++from roswtf.model import WtfWarning, WtfError
++from roswtf.rules import warning_rule, error_rule
++
++def _businfo(ctx, node, bus_info):
++    # [[connectionId1, destinationId1, direction1, transport1, ...]... ]
++    edges = []
++    for info in bus_info:
++        #connection_id = info[0]
++        dest_id       = info[1]
++        if dest_id.startswith('http://'):
++            if dest_id in ctx.uri_node_map:
++                dest_id = ctx.uri_node_map[dest_id]
++            else:
++                dest_id = 'unknown (%s)'%dest_id
++        direction     = info[2]
++        #transport     = info[3]
++        topic         = info[4]
++        if len(info) > 5:
++            connected = info[5]
++        else:
++            connected = True #backwards compatibility
++
++        if connected:
++            if direction == 'i':
++                edges.append((topic, dest_id, node))
++            elif direction == 'o':
++                edges.append((topic, node, dest_id))
++            elif direction == 'b':
++                print("cannot handle bidirectional edges", file=sys.stderr)
++            else:
++                raise Exception()
++
++    return edges
++
++def unexpected_edges(ctx):
++    if not ctx.system_state or not ctx.nodes:
++        return
++    unexpected = set(ctx.actual_edges) - set(ctx.expected_edges)
++    return ["%s->%s (%s)"%(p, s, t) for (t, p, s) in unexpected]
++
++def missing_edges(ctx):
++    if not ctx.system_state or not ctx.nodes:
++        return
++    missing = set(ctx.expected_edges) - set(ctx.actual_edges)
++    return ["%s->%s (%s)"%(p, s, t) for (t, p, s) in missing]
++    
++def ping_check(ctx):
++    if not ctx.system_state or not ctx.nodes:
++        return
++    _, unpinged = rosnode.rosnode_ping_all()
++    return unpinged
++
++def simtime_check(ctx):
++    if ctx.use_sim_time:
++        master = rosgraph.Master('/roswtf')
++        try:
++            pubtopics = master.getPublishedTopics('/')
++        except rosgraph.MasterException:
++            ctx.errors.append(WtfError("Cannot talk to ROS master"))
++            raise WtfException("roswtf lost connection to the ROS Master at %s"%rosgraph.rosenv.get_master_uri())
++
++        for topic, _ in pubtopics:
++            if topic in ['/time', '/clock']:
++                return
++        return True
++    
++## contact each service and make sure it returns a header
++def probe_all_services(ctx):
++    master = rosgraph.Master('/roswtf')
++    errors = []
++    for service_name in ctx.services:
++        try:
++            service_uri = master.lookupService(service_name)
++        except:
++            ctx.errors.append(WtfError("cannot contact ROS Master at %s"%rosgraph.rosenv.get_master_uri()))
++            raise WtfException("roswtf lost connection to the ROS Master at %s"%rosgraph.rosenv.get_master_uri())
++        
++        try:
++            headers = rosservice.get_service_headers(service_name, service_uri)
++            if not headers:
++                errors.append("service [%s] did not return service headers"%service_name)
++        except rosgraph.network.ROSHandshakeException as e:
++            errors.append("service [%s] appears to be malfunctioning"%service_name)
++        except Exception as e:
++            errors.append("service [%s] appears to be malfunctioning: %s"%(service_name, e))
++    return errors
++                
++def unconnected_subscriptions(ctx):
++    ret = ''
++    whitelist = ['/reset_time']
++    if ctx.use_sim_time:
++        for sub, l in ctx.unconnected_subscriptions.items():
++            l = [t for t in l if t not in whitelist]
++            if l:
++                ret += ' * %s:\n'%sub
++                ret += ''.join(["   * %s\n"%t for t in l])
++    else:
++        for sub, l in ctx.unconnected_subscriptions.items():
++            l = [t for t in l if t not in ['/time', '/clock']]
++            if l:
++                ret += ' * %s:\n'%sub
++                ret += ''.join(["   * %s\n"%t for t in l])
++    return ret
++
++graph_warnings = [
++    (unconnected_subscriptions, "The following node subscriptions are unconnected:\n"),
++    (unexpected_edges, "The following nodes are unexpectedly connected:"),
++    ]
++
++graph_errors = [
++    (simtime_check, "/use_sim_time is set but no publisher of /clock is present"),
++    (ping_check, "Could not contact the following nodes:"),
++    (missing_edges, "The following nodes should be connected but aren't:"),
++    (probe_all_services, "Errors connecting to the following services:"),
++    ]
++
++def topic_timestamp_drift(ctx, t):
++    #TODO: get msg_class, if msg_class has header, receive a message
++    # and compare its time to ros time
++    if 0:
++        rospy.Subscriber(t, msg_class)
++
++#TODO: these are mainly future enhancements. It's unclear to me whether or not this will be
++#useful as most of the generic rules are capable of targeting these problems as well.
++#The only rule that in particular seems useful is the timestamp drift. It may be too
++#expensive otherwise to run, though it would be interesting to attempt to receive a
++#message from every single topic.
++        
++#TODO: parameter audit?
++service_errors = [
++    ]
++service_warnings = [
++    ]
++topic_errors = [
++    (topic_timestamp_drift, "Timestamp drift:")
++    ]
++topic_warnings = [
++    ]
++node_errors = [
++    ]
++node_warnings = [
++    ]
++
++## cache sim_time calculation sot that multiple rules can use
++def _compute_sim_time(ctx):
++    param_server = rosgraph.Master('/roswtf')
++    ctx.use_sim_time = False        
++    try:
++        val = simtime = param_server.getParam('/use_sim_time')
++        if val:
++            ctx.use_sim_time = True
++    except:
++        pass
++    
++def _compute_system_state(ctx):
++    socket.setdefaulttimeout(3.0)
++    master = rosgraph.Master('/roswtf')
++
++    # store system state
++    try:
++        val = master.getSystemState()
++    except rosgraph.MasterException:
++        return
++    ctx.system_state = val
++
++    pubs, subs, srvs = val
++    
++    # compute list of topics and services
++    topics = []
++    for t, _ in itertools.chain(pubs, subs):
++        topics.append(t)
++    services = []
++    service_providers = []
++    for s, l in srvs:
++        services.append(s)
++        service_providers.extend(l)
++    ctx.topics = topics
++    ctx.services = services
++    ctx.service_providers = service_providers
++
++    # compute list of nodes
++    nodes = []
++    for s in val:
++        for t, l in s:
++            nodes.extend(l)
++    ctx.nodes = list(set(nodes)) #uniq
++
++    # - compute reverse mapping of URI->nodename
++    count = 0
++    start = time.time()
++    for n in ctx.nodes:
++        count += 1
++        try:
++            val = master.lookupNode(n)
++        except socket.error:
++            ctx.errors.append(WtfError("cannot contact ROS Master at %s"%rosgraph.rosenv.get_master_uri()))
++            raise WtfException("roswtf lost connection to the ROS Master at %s"%rosgraph.rosenv.get_master_uri())
++        ctx.uri_node_map[val] = n
++    end = time.time()
++    # - time thresholds currently very arbitrary
++    if count:
++        if ((end - start) / count) > 1.:
++            ctx.warnings.append(WtfError("Communication with master is very slow (>1s average)"))        
++        elif (end - start) / count > .5:
++            ctx.warnings.append(WtfWarning("Communication with master is very slow (>0.5s average)")) 
++
++import threading
++class NodeInfoThread(threading.Thread):
++    def __init__(self, n, ctx, master, actual_edges, lock):
++        threading.Thread.__init__(self)
++        self.master = master
++        self.actual_edges = actual_edges
++        self.lock = lock
++        self.n = n
++        self.done = False
++        self.ctx = ctx
++
++    def run(self):
++        ctx = self.ctx
++        master = self.master
++        actual_edges = self.actual_edges
++        lock = self.lock
++        n = self.n
++
++        try:
++            socket.setdefaulttimeout(3.0)
++            with lock: #Apparently get_api_uri is not thread safe...
++                node_api = rosnode.get_api_uri(master, n)
++
++
++            if not node_api:
++                with lock:
++                    ctx.errors.append(WtfError("Master does not have lookup information for node [%s]"%n))
++                return
++                
++            node = ServerProxy(node_api)
++            start = time.time()
++            socket.setdefaulttimeout(3.0)            
++            code, msg, bus_info = node.getBusInfo('/roswtf')
++            end = time.time()
++            with lock:
++                if (end-start) > 1.:
++                    ctx.warnings.append(WtfWarning("Communication with node [%s] is very slow"%n))
++                if code != 1:
++                    ctx.warnings.append(WtfWarning("Node [%s] would not return bus info"%n))
++                elif not bus_info:
++                    if not n in ctx.service_providers:
++                        ctx.warnings.append(WtfWarning("Node [%s] is not connected to anything"%n))
++                else:
++                    edges = _businfo(ctx, n, bus_info)
++                    actual_edges.extend(edges)
++        except socket.error:
++            pass #ignore as we have rules to catch this
++        except Exception as e:
++            ctx.errors.append(WtfError("Communication with [%s] raised an error: %s"%(n, str(e))))
++        finally:
++            self.done = True
++        
++        
++## retrieve graph state from master and related nodes once so we don't overload
++## the network
++def _compute_connectivity(ctx):
++    socket.setdefaulttimeout(3.0)
++    master = rosgraph.Master('/roswtf')
++
++    # Compute list of expected edges and unconnected subscriptions
++    pubs, subs, _ = ctx.system_state
++    expected_edges = [] # [(topic, publisher, subscriber),]
++    unconnected_subscriptions = {} # { subscriber : [topics] }
++
++    # - build up a dictionary of publishers keyed by topic
++    pub_dict = {}
++    for t, pub_list in pubs:
++        pub_dict[t] = pub_list
++    # - iterate through subscribers and add edge to each publisher of topic
++    for t, sub_list in subs:
++        for sub in sub_list:
++            if t in pub_dict:
++                expected_edges.extend([(t, pub, sub) for pub in pub_dict[t]])
++            elif sub in unconnected_subscriptions:
++                unconnected_subscriptions[sub].append(t)
++            else:
++                unconnected_subscriptions[sub] = [t]
++                    
++    # compute actual edges
++    actual_edges = []
++    lock = threading.Lock()
++    threads = []
++    for n in ctx.nodes:
++        t =NodeInfoThread(n, ctx, master, actual_edges, lock)
++        threads.append(t)
++        t.start()
++        
++    # spend up to a minute waiting for threads to complete. each
++    # thread has a 3-second timeout, but this will spike load
++    timeout_t = time.time() + 60.0
++    while time.time() < timeout_t and [t for t in threads if not t.done]:
++        time.sleep(0.5)
++    
++    ctx.expected_edges = expected_edges
++    ctx.actual_edges = actual_edges
++    ctx.unconnected_subscriptions = unconnected_subscriptions
++            
++def _compute_online_context(ctx):
++    # have to compute sim time first
++    _compute_sim_time(ctx)
++    _compute_system_state(ctx)
++    _compute_connectivity(ctx)
++    
++def wtf_check_graph(ctx, names=None):
++    master_uri = ctx.ros_master_uri
++    #TODO: master rules
++    # - check for stale master state
++    
++    # TODO: get the type for each topic from each publisher and see if they match up
++
++    master = rosgraph.Master('/roswtf')
++    try:
++        master.getPid()
++    except rospkg.MasterException:
++        warning_rule((True, "Cannot communicate with master, ignoring online checks"), True, ctx)
++        return
++            
++    # fill in ctx info so we only have to compute once
++    print("analyzing graph...")
++    _compute_online_context(ctx)
++    print("... done analyzing graph")
++    
++    if names:
++        check_topics = [t for t in names if t in ctx.topics]
++        check_services = [t for t in names if t in ctx.services]
++        check_nodes = [t for t in names if t in ctx.nodes]
++        unknown = [t for t in names if t not in check_topics + check_services + check_nodes]
++        if unknown:
++            raise WtfException("The following names were not found in the list of nodes, topics, or services:\n%s"%(''.join([" * %s\n"%t for t in unknown])))
++
++        for t in check_topics:
++            for r in topic_warnings:
++                warning_rule(r, r[0](ctx, t), ctx)            
++            for r in topic_errors:
++                error_rule(r, r[0](ctx, t), ctx)            
++        for s in check_services:
++            for r in service_warnings:
++                warning_rule(r, r[0](ctx, s), ctx)            
++            for r in service_errors:
++                error_rule(r, r[0](ctx, s), ctx)            
++        for n in check_nodes:
++            for r in node_warnings:
++                warning_rule(r, r[0](ctx, n), ctx)            
++            for r in node_errors:
++                error_rule(r, r[0](ctx, n), ctx)            
++
++
++    print("running graph rules...")
++    for r in graph_warnings:
++        warning_rule(r, r[0](ctx), ctx)
++    for r in graph_errors:
++        error_rule(r, r[0](ctx), ctx)
++    print("... done running graph rules")
+--- /dev/null
++++ ros-noetic-roswtf-1.16.0/src/roswtf/model.py
+@@ -0,0 +1,63 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id$
++
++"""
++Error and Warning representation. The roswtf.rules module simplifies
++the process of creating instances of L{WtfError}s and L{WtfWarning}s,
++but these objects can be used directly if desired.
++"""
++
++class WtfError(object):
++    def __init__(self, msg, format_msg=None, return_val=None):
++        self.msg = msg
++        if format_msg is None:
++            self.format_msg = msg
++        else:
++            self.format_msg = format_msg
++        if return_val is None:
++            self.return_val = True
++        else:
++            self.return_val = return_val
++
++class WtfWarning(object):
++    def __init__(self, msg, format_msg=None, return_val=None):
++        self.msg = msg
++        if format_msg is None:
++            self.format_msg = msg
++        else:
++            self.format_msg = format_msg
++        if return_val is None:
++            self.return_val = True
++        else:
++            self.return_val = return_val
+--- /dev/null
++++ ros-noetic-roswtf-1.16.0/src/roswtf/network.py
+@@ -0,0 +1,121 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id: environment.py 4428 2009-05-05 05:48:36Z jfaustwg $
++
++import os
++import socket
++import stat
++import string
++import sys
++
++import rosgraph
++import rosgraph.network
++
++from roswtf.rules import warning_rule, error_rule
++
++# #1220
++def ip_check(ctx):
++    # best we can do is compare roslib's routine against socket resolution and make sure they agree
++    local_addrs = rosgraph.network.get_local_addresses()
++
++    if rosgraph.network.use_ipv6():
++        resolved_ips = [host[4][0] for host in socket.getaddrinfo(socket.gethostname(), 0, 0, 0, socket.SOL_TCP)]
++    else:
++        resolved_ips = [host[4][0] for host in socket.getaddrinfo(socket.gethostname(), 0, socket.AF_INET, 0, socket.SOL_TCP)]
++
++    global_ips = [ ip for ip in resolved_ips if not ip.startswith('127.') and not ip == '::1']
++
++    remote_ips = list(set(global_ips) - set(local_addrs))
++    if remote_ips:
++        retval = "Local hostname [%s] resolves to [%s], which does not appear to be a local IP address %s." % (socket.gethostname(), ','.join(remote_ips), str(local_addrs))
++        # IPv6 support % to denote zone/scope ids. The value is expanded
++        # in other functions, this is why we are using replace command in
++        # the return. For more info https://github.com/ros/ros_comm/pull/598
++        return retval.replace('%', '%%')
++
++# suggestion by mquigley based on laptop dhcp issues    
++def ros_hostname_check(ctx):
++    """Make sure that ROS_HOSTNAME resolves to a local IP address"""
++    if not rosgraph.ROS_HOSTNAME in ctx.env:
++        return
++
++    hostname = ctx.env[rosgraph.ROS_HOSTNAME]
++    try:
++        resolved_ips = [host[4][0] for host in socket.getaddrinfo(hostname, 0, 0, 0, socket.SOL_TCP)]
++    except socket.gaierror:
++        return "ROS_HOSTNAME [%s] cannot be resolved to an IP address"%(hostname)
++    
++    # best we can do is compare roslib's routine against socket resolution and make sure they agree
++    local_addrs = rosgraph.network.get_local_addresses()
++
++    remote_ips = list(set(resolved_ips) - set(local_addrs))
++    if remote_ips:
++        return "ROS_HOSTNAME [%s] resolves to [%s], which does not appear to be a local IP address %s."%(hostname, ','.join(remote_ips), str(local_addrs))
++
++def ros_ip_check(ctx):
++    """Make sure that ROS_IP is a local IP address"""
++    if not rosgraph.ROS_IP in ctx.env:
++        return
++
++    ip = ctx.env[rosgraph.ROS_IP]
++    
++    # best we can do is compare roslib's routine against socket resolution and make sure they agree
++    addrs = rosgraph.network.get_local_addresses()
++
++    if " " in ip:
++        return "ROS_IP [%s] contains whitespace. This is not a valid IP."%ip
++
++    if ip not in addrs:
++        return "ROS_IP [%s] does not appear to be an IP address of a local network interface (one of %s)."%(ip, str(addrs))
++    
++# Error/Warning Rules
++
++warnings = [
++    (ros_hostname_check,
++     "ROS_HOSTNAME may be incorrect: "),
++    (ros_ip_check,
++     "ROS_IP may be incorrect: "),
++
++    ]
++
++errors = [
++    (ip_check,
++     "Local network configuration is invalid: "),
++    ]
++
++def wtf_check(ctx):
++    for r in warnings:
++        warning_rule(r, r[0](ctx), ctx)
++    for r in errors:
++        error_rule(r, r[0](ctx), ctx)
++        
+--- /dev/null
++++ ros-noetic-roswtf-1.16.0/src/roswtf/packages.py
+@@ -0,0 +1,199 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id$
++
++import os
++import time
++
++from roswtf.environment import paths, is_executable
++from roswtf.rules import warning_rule, error_rule
++
++import roslib.msgs
++import roslib.srvs
++from roslib.packages import get_pkg_dir, InvalidROSPkgException, PACKAGE_FILE
++
++## look for unknown tags in manifest
++def manifest_valid(ctx):
++    errors = []
++    if ctx.manifest is not None:
++        errors = ["<%s>"%t.tagName for t in ctx.manifest.unknown_tags]
++    return errors
++    
++def _manifest_msg_srv_export(ctx, type_):
++    exist = []
++    for pkg in ctx.pkgs:
++        pkg_dir = roslib.packages.get_pkg_dir(pkg)
++        d = os.path.join(pkg_dir, type_)
++        if os.path.isdir(d):
++            files = os.listdir(d)
++            if filter(lambda x: x.endswith('.'+type_), files):
++                try:
++                    m_file = roslib.manifest.manifest_file(pkg, True)
++                except InvalidROSPkgException:
++                    # ignore wet package from further investigation
++                    env = os.environ
++                    pkg_path = get_pkg_dir(pkg, True, ros_root=env['ROS_ROOT'])
++                    if os.path.exists(os.path.join(pkg_path, PACKAGE_FILE)):
++                        continue
++                    raise
++                m = roslib.manifest.parse_file(m_file)
++                cflags = m.get_export('cpp', 'cflags')
++                include = '-I${prefix}/%s/cpp'%type_
++                if filter(lambda x: include in x, cflags):
++                    exist.append(pkg)
++    return exist
++    
++def manifest_msg_srv_export(ctx):
++    msgs = set(_manifest_msg_srv_export(ctx, 'msg'))
++    srvs = set(_manifest_msg_srv_export(ctx, 'srv'))
++    errors = []
++
++    for pkg in msgs & srvs:
++        errors.append('%s: -I${prefix}/msg/cpp -I${prefix}/srv/cpp'%pkg)
++    for pkg in msgs - srvs:
++        errors.append('%s: -I${prefix}/msg/cpp'%pkg)
++    for pkg in srvs - msgs:
++        errors.append('%s: -I${prefix}/srv/cpp'%pkg)
++    return errors
++        
++
++def _check_for_rpath_flags(pkg, lflags):
++    if not lflags:
++        return
++    L_arg = '-L'
++    Wl_arg = '-Wl'
++    rpath_arg = '-rpath'
++    lflags_args = lflags.split()
++    # Collect the args we care about
++    L_args = []
++    rpath_args = []
++    i = 0
++    while i < len(lflags_args):
++        f = lflags_args[i]
++        if f.startswith(L_arg) and len(f) > len(L_arg):
++            # normpath avoids problems with trailing slash vs. no trailing
++            # slash, #2284
++            L_args.append(os.path.normpath(f[len(L_arg):]))
++        elif f == L_arg and (i+1) < len(lflags_args):
++            i += 1
++            # normpath avoids problems with trailing slash vs. no trailing
++            # slash, #2284
++            L_args.append(os.path.normpath(lflags_args[i]))
++        elif f.startswith(Wl_arg) and len(f) > len(Wl_arg):
++            # -Wl can be followed by multiple, comma-separated arguments,
++            # #2284.
++            args = f.split(',')
++            j = 1
++            while j < (len(args) - 1):
++                if args[j] == rpath_arg:
++                   # normpath avoids problems with trailing slash vs. no trailing
++                   # slash, #2284
++                    rpath_args.append(os.path.normpath(args[j+1]))
++                    j += 2
++                else:
++                    j += 1
++        i += 1
++    # Check for parallelism; not efficient, but these strings are short
++    for f in L_args:
++        if f not in rpath_args:
++            return '%s: found flag "-L%s", but no matching "-Wl,-rpath,%s"'%(pkg, f,f)
++    for f in rpath_args:
++        if f not in L_args:
++            return '%s: found flag "-Wl,-rpath,%s", but no matching "-L%s"'%(pkg, f,f)
++
++def manifest_rpath_flags(ctx):
++    warn = []
++    for pkg in ctx.pkgs:
++        # Use rospack to get lflags, so that they can be bash-expanded
++        # first, #2286.
++        import subprocess
++        lflags = subprocess.Popen(['rospack', 'export', '--lang=cpp', '--attrib=lflags', pkg], stdout=subprocess.PIPE).communicate()[0]
++        err_msg = _check_for_rpath_flags(pkg, lflags)
++        if err_msg:
++            warn.append(err_msg)
++    return warn
++
++def cmakelists_package_valid(ctx):
++    missing = []
++    for pkg in ctx.pkgs:
++        found = False
++        pkg_dir = roslib.packages.get_pkg_dir(pkg)
++        p = os.path.join(pkg_dir, 'CMakeLists.txt')
++        if not os.path.isfile(p):
++            continue #covered by cmakelists_exists
++        f = open(p)
++        try:
++            for l in f:
++                # ignore all whitespace
++                l = l.strip().replace(' ', '')
++                
++                if l.startswith('rospack('):
++                    found = True
++                    if not l.startswith('rospack(%s)'%pkg):
++                        missing.append(pkg)
++                        break
++                    # there may be more than 1 rospack() declaration, so scan through entire
++                    # CMakeLists
++                elif l.startswith("rosbuild_init()"):
++                    found = True
++        finally:
++            f.close()
++    # rospack exists outside our build system
++    if 'rospack' in missing:
++        missing.remove('rospack')
++    return missing
++
++warnings = [
++    # disabling as it is too common and regular
++    (cmakelists_package_valid,
++     "The following packages have incorrect rospack() declarations in CMakeLists.txt.\nPlease switch to using rosbuild_init():"),
++    
++    (manifest_msg_srv_export,
++     'The following packages have msg/srv-related cflags exports that are no longer necessary\n\t<export>\n\t\t<cpp cflags="..."\n\t</export>:'),
++    (manifest_valid, "%(pkg)s/manifest.xml has unrecognized tags:"),
++
++    ]
++errors = [
++    (manifest_rpath_flags, "The following packages have rpath issues in manifest.xml:"),
++    ]
++
++def wtf_check(ctx):
++    # no package in context to verify
++    if not ctx.pkgs:
++        return
++    
++    for r in warnings:
++        warning_rule(r, r[0](ctx), ctx)
++    for r in errors:
++        error_rule(r, r[0](ctx), ctx)
++
+--- /dev/null
++++ ros-noetic-roswtf-1.16.0/src/roswtf/plugins.py
+@@ -0,0 +1,95 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id$
++
++"""
++Plugin loader for roswtf.
++"""
++
++from __future__ import print_function
++
++import os
++import sys
++
++import roslib
++import rospkg
++
++def load_plugins():
++    """
++    @return: list of static roswtf plugins, list of online
++    roswtf plugins
++    @rtype: [fn], [fn]
++    """
++    rospack = rospkg.RosPack()
++    to_check = rospack.get_depends_on('roswtf', implicit=False)
++    static_plugins = []
++    online_plugins = []
++    for pkg in to_check:
++        m = rospack.get_manifest(pkg)
++        p_module = m.get_export('roswtf', 'plugin')
++        if not p_module:
++            continue
++        elif len(p_module) != 1:
++            print("Cannot load plugin [%s]: invalid 'plugin' attribute"%(pkg), file=sys.stderr)
++            continue
++        p_module = p_module[0]
++        try:
++            # load that packages namespace
++            roslib.load_manifest(pkg)
++            
++            # import the specified plugin module
++            mod = __import__(p_module)
++            for sub_mod in p_module.split('.')[1:]:
++                mod = getattr(mod, sub_mod)
++
++            # retrieve the roswtf_plugin_static and roswtf_plugin_online functions
++            s_attr = o_attr = None
++            try:
++                s_attr = getattr(mod, 'roswtf_plugin_static')
++            except AttributeError: pass
++            try:
++                o_attr = getattr(mod, 'roswtf_plugin_online')
++            except AttributeError: pass
++            if s_attr:
++                static_plugins.append(s_attr)
++            if o_attr:
++                online_plugins.append(o_attr)
++            if s_attr is None and o_attr is None:
++                print("Cannot load plugin [%s]: no 'roswtf_plugin_static' or 'roswtf_plugin_online' attributes [%s]"%(p_module), file=sys.stderr)
++            else:
++                print("Loaded plugin", p_module)
++
++        except Exception as e:
++            print("Unable to load plugin [%s] from package [%s]. Exception thrown: [%s]"%(p_module, pkg, str(e)), file=sys.stderr)
++    return static_plugins, online_plugins
++
+--- /dev/null
++++ ros-noetic-roswtf-1.16.0/src/roswtf/py_pip_deb_checks.py
+@@ -0,0 +1,170 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2012, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++"""
++Checks to see if core Python scripts have:
++1) Been installed
++2) Have been installed via Debians on Ubuntu
++3) Have not been installed via pip on Ubuntu
++"""
++
++from __future__ import print_function
++
++import subprocess
++import importlib
++import os
++import sys
++
++python_prefix = 'python'
++if sys.version_info[0] == 3:
++    python_prefix += '3'
++
++#A dictionary of core ROS python packages and their corresponding .deb packages
++py_to_deb_core_packages = {
++    'catkin_pkg': '%s-catkin-pkg' % python_prefix,
++    'rospkg': '%s-rospkg' % python_prefix,
++    'rosdep2': '%s-rosdep' % python_prefix,
++}
++# optional ROS python packages and their corresponding .deb packages
++py_to_deb_optional_packages = {
++    'rosinstall': '%s-rosinstall' % python_prefix,
++}
++
++#A dictionary of release ROS python packages and their corresponding .deb packages
++py_to_deb_release_packages = {
++    'bloom': '%s-bloom' % python_prefix,
++    'rosrelease': '%s-rosrelease' % python_prefix,
++}
++
++
++def get_host_os():
++    """Determines the name of the host operating system"""
++    import rospkg.os_detect
++    os_detector = rospkg.os_detect.OsDetect()
++    return (os_detector.detect_os())[0]
++
++
++def is_host_os_ubuntu():
++    """Indicates if the host operating system is Ubuntu"""
++    return (get_host_os() == 'ubuntu')
++
++
++def is_debian_package_installed(deb_pkg):
++    """Uses dpkg to determine if a package has been installed"""
++    return (subprocess.call(
++        'dpkg -l ' + deb_pkg,
++        shell=True,
++        stdout=subprocess.PIPE,
++        stderr=subprocess.PIPE) == 0)
++
++
++def is_a_pip_path_on_ubuntu(path):
++    """Indicates if a path (either directory or file) is in the same place
++    pip installs Python code"""
++    return ('/usr/local' in path)
++
++
++def is_python_package_installed(python_pkg):
++    """Indicates if a Python package is importable in the current
++    environment."""
++    try:
++        importlib.import_module(python_pkg)
++        return True
++    except ImportError:
++        return False
++
++
++def is_python_package_installed_via_pip_on_ubuntu(python_pkg):
++    """Indicates if am importable package has been installed through pip on
++    Ubuntu"""
++    try:
++        pkg_handle = importlib.import_module(python_pkg)
++        return is_a_pip_path_on_ubuntu(pkg_handle.__file__)
++    except ImportError:
++        return False
++
++
++# Error/Warning Rules
++def python_module_install_check(ctx):
++    """Make sure core Python modules are installed"""
++    warn_str = ''
++    for py_pkg in py_to_deb_core_packages:
++        if not is_python_package_installed(py_pkg):
++            warn_str = warn_str + py_pkg + ' -- '
++    if (warn_str != ''):
++        return warn_str
++
++
++def deb_install_check_on_ubuntu(ctx):
++    """Make sure on Debian python packages are installed"""
++    if (is_host_os_ubuntu()):
++        warn_str = ''
++        for py_pkg in py_to_deb_core_packages:
++            deb_pkg = py_to_deb_core_packages[py_pkg]
++            if not is_debian_package_installed(deb_pkg):
++                warn_str = warn_str + py_pkg + ' (' + deb_pkg + ') -- '
++        if (warn_str != ''):
++            return warn_str
++
++
++def pip_install_check_on_ubuntu(ctx):
++    """Make sure on Ubuntu, Python packages are install with apt and not pip"""
++    if (is_host_os_ubuntu()):
++        warn_str = ''
++        pt_to_deb_package_names = list(py_to_deb_core_packages.keys()) + \
++            list(py_to_deb_optional_packages.keys()) + list(py_to_deb_release_packages.keys())
++        for py_pkg in pt_to_deb_package_names:
++            if is_python_package_installed_via_pip_on_ubuntu(py_pkg):
++                warn_str = warn_str + py_pkg + ' -- '
++        if (warn_str != ''):
++            return warn_str
++
++warnings = [
++    (python_module_install_check,
++     "You are missing core ROS Python modules: "),
++    (pip_install_check_on_ubuntu,
++     "You have pip installed packages on Ubuntu, "
++     "remove and install using Debian packages: "),
++    (deb_install_check_on_ubuntu,
++     "You are missing Debian packages for core ROS Python modules: "),
++    ]
++
++errors = []
++
++
++def wtf_check(ctx):
++    """Check implementation function for roswtf"""
++    from roswtf.rules import warning_rule, error_rule
++    for r in warnings:
++        warning_rule(r, r[0](ctx), ctx)
++    for r in errors:
++        error_rule(r, r[0](ctx), ctx)
+--- /dev/null
++++ ros-noetic-roswtf-1.16.0/src/roswtf/rosdep_db.py
+@@ -0,0 +1,63 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2012, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++"""
++Checks if rosdep database has been initialized
++"""
++import os
++
++
++def get_user_home_directory():
++    """Returns cross-platform user home directory """
++    return os.path.expanduser("~")
++
++
++def rosdep_database_updated_check(ctx):
++    """Makes sure rosdep database is updated"""
++    if not os.path.exists((os.path.join(get_user_home_directory(), '.ros', 'rosdep', 'sources.cache', 'index'))):
++        return "Please update rosdep database with 'rosdep update'."
++
++
++warnings = []
++
++errors = [(rosdep_database_updated_check,
++           "ROS Dep database not updated: "),
++         ]
++
++
++def wtf_check(ctx):
++    """Check implementation function for roswtf"""
++    from roswtf.rules import warning_rule, error_rule
++    for r in warnings:
++        warning_rule(r, r[0](ctx), ctx)
++    for r in errors:
++        error_rule(r, r[0](ctx), ctx)
+--- /dev/null
++++ ros-noetic-roswtf-1.16.0/src/roswtf/roslaunchwtf.py
+@@ -0,0 +1,301 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id$
++
++import os
++import itertools
++import socket
++import stat
++import sys
++try:
++    from xmlrpc.client import ServerProxy
++except ImportError:
++    from xmlrpclib import ServerProxy
++
++from os.path import isfile, isdir
++
++import roslib.packages
++import roslaunch
++import roslaunch.netapi
++
++from roswtf.environment import paths, is_executable
++from roswtf.rules import warning_rule, error_rule
++
++## check if node is cannot be located in package
++def roslaunch_missing_node_check(ctx):
++    nodes = []
++    for filename, rldeps in ctx.launch_file_deps.items():
++        nodes.extend(rldeps.nodes)
++    errors = []
++    for pkg, node_type in nodes:
++        paths = roslib.packages.find_node(pkg, node_type)
++        if not paths:
++            errors.append("node [%s] in package [%s]"%(node_type, pkg))
++    return errors
++    
++## check if two nodes with same name in package
++def roslaunch_duplicate_node_check(ctx):
++    nodes = []
++    for filename, rldeps in ctx.launch_file_deps.items():
++        nodes.extend(rldeps.nodes)
++    warnings = []
++    for pkg, node_type in nodes:
++        paths = roslib.packages.find_node(pkg, node_type)
++        if len(paths) > 1:
++            warnings.append("node [%s] in package [%s]\n"%(node_type, pkg))
++    return warnings
++
++def pycrypto_check(ctx):
++    try:
++        import Crypto
++    except ImportError as e:
++        return True
++
++def paramiko_check(ctx):
++    try:
++        import paramiko
++    except ImportError as e:
++        return True
++def paramiko_system_keys(ctx):
++    try:
++        import paramiko
++        ssh = paramiko.SSHClient()
++        try:
++            ssh.load_system_host_keys() #default location
++        except:
++            return True
++    except: pass
++
++def paramiko_ssh(ctx, address, port, username, password):
++    try:
++        import paramiko
++        ssh = paramiko.SSHClient()
++
++        import roslaunch.remoteprocess
++        err_msg = roslaunch.remoteprocess.ssh_check_known_hosts(ssh, address, port, username=username)
++        if err_msg:
++            return err_msg
++        
++        if not password: #use SSH agent
++            ssh.connect(address, port, username)
++        else: #use SSH with login/pass
++            ssh.connect(address, port, username, password)
++
++    except paramiko.BadHostKeyException:
++        return  "Unable to verify host key for [%s:%s]"%(address, port)
++    except paramiko.AuthenticationException:
++        return "Authentication to [%s:%s] failed"%(address, port)
++    except paramiko.SSHException as e:
++        return "[%s:%s]: %s"%(address, port, e)
++    except ImportError:
++        pass
++
++def _load_roslaunch_config(ctx):
++    config = roslaunch.ROSLaunchConfig()
++    loader = roslaunch.XmlLoader()
++    # TODO load roscore
++    for launch_file in ctx.launch_files:
++        loader.load(launch_file, config, verbose=False)
++    try:
++        config.assign_machines()
++    except roslaunch.RLException as e:
++        return config, []
++    machines = []
++    for n in itertools.chain(config.nodes, config.tests):
++        if n.machine not in machines:
++            machines.append(n.machine)
++    return config, machines
++
++def roslaunch_load_check(ctx):
++    config = roslaunch.ROSLaunchConfig()
++    loader = roslaunch.XmlLoader()
++    # TODO load roscore
++    for launch_file in ctx.launch_files:
++        loader.load(launch_file, config, verbose=False)
++    try:
++        config.assign_machines()
++    except roslaunch.RLException as e:
++        return str(e)
++    
++def roslaunch_machine_name_check(ctx):
++    config, machines = _load_roslaunch_config(ctx)
++    bad = []
++    for m in machines:
++        try:
++            #TODO IPV6: only check for IPv6 when IPv6 is enabled
++            socket.getaddrinfo(m.address, 0, 0, 0, socket.SOL_TCP)
++        except socket.gaierror:
++            bad.append(m.address)
++    return ''.join([' * %s\n'%b for b in bad])
++
++def roslaunch_ssh_check(ctx):
++    import roslaunch.core
++    if not ctx.launch_files:
++        return # not relevant
++    config, machines = _load_roslaunch_config(ctx)
++    err_msgs = []
++    for m in machines:
++        socket.setdefaulttimeout(3.)
++        # only check if the machine requires ssh to connect
++        if not roslaunch.core.is_machine_local(m):
++            err_msg = paramiko_ssh(ctx, m.address, m.ssh_port, m.user, m.password)
++            if err_msg:
++                err_msgs.append(err_msg)
++    return err_msgs
++
++def roslaunch_missing_pkgs_check(ctx):
++    # rospack depends does not return depends that it cannot find, so
++    # we have to manually determine this
++    config, machines = _load_roslaunch_config(ctx)
++    missing = []
++    for n in config.nodes:
++        pkg = n.package
++        try:
++            roslib.packages.get_pkg_dir(pkg, required=True)
++        except:
++            missing.append(pkg)
++    return missing
++
++def roslaunch_config_errors(ctx):
++    config, machines = _load_roslaunch_config(ctx)
++    return config.config_errors
++
++def roslaunch_missing_deps_check(ctx):
++    missing = []
++    for pkg, miss in ctx.launch_file_missing_deps.items():
++        if miss:
++            missing.append("%s/manifest.xml: %s"%(pkg, ', '.join(miss)))
++    return missing
++
++def roslaunch_respawn_check(ctx):
++    respawn = []
++    for uri in ctx.roslaunch_uris:
++        try:
++            r = ServerProxy(uri)
++            code, msg, val = r.list_processes()
++            active, _ = val
++            respawn.extend([a for a in active if a[1] > 1])
++            #TODO: children processes
++            #code, msg, val = r.list_children()
++        except:
++            pass # error for another rule
++    return ["%s (%s)"%(a[0], a[1]) for a in respawn]
++
++def roslaunch_uris_check(ctx):
++    # check for any roslaunch processes that cannot be contacted
++    bad = []
++    # uris only contains the parent launches
++    for uri in ctx.roslaunch_uris:
++        try:
++            r = ServerProxy(uri)
++            code, msg, val = r.list_children()
++            # check the children launches
++            if code == 1:
++                for child_uri in val:
++                    try:
++                        r = ServerProxy(uri)
++                        code, msg, val = r.get_pid()
++                    except:
++                        bad.append(child_uri)
++        except:
++            bad.append(uri)
++    return bad
++
++def roslaunch_dead_check(ctx):
++    dead = []
++    for uri in ctx.roslaunch_uris:
++        try:
++            r = ServerProxy(uri)
++            code, msg, val = r.list_processes()
++            _, dead_list = val
++            dead.extend([d[0] for d in dead_list])
++            #TODO: children processes
++            #code, msg, val = r.list_children()
++        except:
++            pass # error for another rule
++    return dead
++
++online_roslaunch_warnings = [
++    (roslaunch_respawn_check,"These nodes have respawned at least once:"),
++    (roslaunch_dead_check,"These nodes have died:"),
++    # disabling for now as roslaunches don't do cleanup
++    #(roslaunch_uris_check,"These roslaunch processes can no longer be contacted and may have exited:"),    
++    ]
++
++online_roslaunch_errors = [
++    (roslaunch_ssh_check,"SSH failures:"),
++    ]
++
++static_roslaunch_warnings = [
++    (roslaunch_duplicate_node_check, "Multiple nodes of same name in packages:"),
++    (pycrypto_check, "pycrypto is not installed"),
++    (paramiko_check, "paramiko is not installed"),
++    (paramiko_system_keys, "cannot load SSH host keys -- your known_hosts file may be corrupt") ,
++    (roslaunch_config_errors, "Loading your launch files reported the following configuration errors:"),
++    ]
++static_roslaunch_errors = [
++    # Disabling, because we've removed package dependencies from manifests.
++    #(roslaunch_missing_deps_check, 
++    # "Package %(pkg)s is missing roslaunch dependencies.\nPlease add the following tags to %(pkg)s/manifest.xml:"),
++    (roslaunch_missing_pkgs_check, 
++     "Cannot find the following required packages:"),
++    (roslaunch_missing_node_check, "Several nodes in your launch file could not be located. These are either typed incorrectly or need to be built:"),
++    (roslaunch_machine_name_check,"Cannot resolve the following hostnames:"),
++    (roslaunch_load_check, "roslaunch load failed"),
++    ]
++
++def wtf_check_static(ctx):
++    if not ctx.launch_files:
++        return
++
++    #NOTE: roslaunch files are already loaded separately into context
++
++    #TODO: check each machine name
++    #TODO: bidirectional ping for each machine
++
++    for r in static_roslaunch_warnings:
++        warning_rule(r, r[0](ctx), ctx)
++    for r in static_roslaunch_errors:
++        error_rule(r, r[0](ctx), ctx)
++        
++def _load_online_ctx(ctx):
++    ctx.roslaunch_uris = roslaunch.netapi.get_roslaunch_uris()
++    
++def wtf_check_online(ctx):
++    _load_online_ctx(ctx)
++    if not ctx.roslaunch_uris:
++        return
++    for r in online_roslaunch_warnings:
++        warning_rule(r, r[0](ctx), ctx)
++    for r in online_roslaunch_errors:
++        error_rule(r, r[0](ctx), ctx)
+--- /dev/null
++++ ros-noetic-roswtf-1.16.0/src/roswtf/rules.py
+@@ -0,0 +1,101 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id$
++
++"""
++Common library for writing rule-style checks for generating warnings
++and errors.  Use of this style streamlines reporting.
++
++The pattern for rules is simple: a rule provides a function that
++implements the rule and a format string. If the function returns a
++non-zero value, that value is combined with the format string to
++produced an error reporting string. There are other conveniences as
++well. If the rule returns a list or a tuple, that will be transformed
++into a human-readable list.
++
++This library is a layer on top of the base L{WtfWarning} and
++L{WtfError} representation in roswtf.model.
++"""
++
++from roswtf.model import WtfWarning, WtfError
++
++def _check_rule(rule, ret, ctx, ctx_list, level):
++    if ret:
++        d = ctx.as_dictionary()
++
++        def isstring(s):
++            """Small helper version to check an object is a string in
++            a way that works for both Python 2 and 3
++            """
++            try:
++                return isinstance(s, basestring)
++            except NameError:
++                return isinstance(s, str)
++
++        if type(ret) in (tuple, list):
++            f_msg = rule[1]
++            ret_str = '\n'.join([" * %s"%r for r in ret])
++            ctx_list.append(level(f_msg%d + "\n" + ret_str+'\n', f_msg, ret))
++        elif isstring(ret):
++            f_msg = rule[1]
++            ctx_list.append(level(f_msg%d + ret%d, f_msg, ret))
++        else:
++            f_msg = rule[1]
++            ctx_list.append(level(f_msg%d, f_msg, ret))
++    
++def warning_rule(rule, ret, ctx):
++    """
++    Check return value of rule and update ctx if rule failed.
++    
++    @param rule: Rule/message pair.
++    @type  rule: (rule_fn, format_msg)
++    @param ret: return value of rule. If value is non-zero, rule failed
++    @param ret: Any
++    @param ctx: context for which rule failed
++    @param ctx: L{WtfContext}
++    """
++    _check_rule(rule, ret, ctx, ctx.warnings, WtfWarning)
++    
++def error_rule(rule, ret, ctx):
++    """
++    Check return value of rule and update ctx if rule failed.
++    
++    @param rule: Rule/message pair.
++    @type  rule: (rule_fn, format_msg)
++    @param ret: return value of rule. If value is non-zero, rule failed
++    @type  ret: Any
++    @param ctx: context for which rule failed
++    @type  ctx: L{WtfContext}
++    """
++    _check_rule(rule, ret, ctx, ctx.errors, WtfError)
++    
+--- /dev/null
++++ ros-noetic-roswtf-1.16.0/src/roswtf/stacks.py
+@@ -0,0 +1,101 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id: packages.py 6258 2009-09-22 22:08:20Z kwc $
++
++import os
++import time
++
++from roswtf.environment import paths, is_executable
++from roswtf.rules import warning_rule, error_rule
++
++import rospkg
++
++_packages_of_cache = {}
++def _packages_of(rosstack, d):
++    if d in _packages_of_cache:
++        return _packages_of_cache[d]
++    else:
++        _packages_of_cache[d] = pkgs = rosstack.packages_of(d)
++        return pkgs
++                
++def manifest_depends(ctx):
++    # This rule should probably be cache optimized
++    errors = []
++    rospack = rospkg.RosPack()
++    rosstack = rospkg.RosStack()
++
++    stack_list = rosstack.list()
++    #print stack_list
++    for s in ctx.stacks:
++        try:
++            s_deps = []
++            s_pkgs = _packages_of(rosstack, s)
++            for p in s_pkgs:
++                s_deps.extend(rospack.get_depends(p, implicit=False))
++            m = rosstack.get_manifest(s)
++            m_file = os.path.join(rosstack.get_path(s), 'stack.xml')
++            for d in m.depends:
++                if not d.name in stack_list:
++                    errors.append("%s (%s does not exist)"%(m_file, d))
++                elif d.name in ['ros', 'ros_comm']:
++                    # ros dependency always exists. ros_comm
++                    # dependency has implicit connections (msggen), so
++                    # we ignore.
++                    continue
++                else:
++                    pkgs = _packages_of(rosstack, d.name)
++                    # check no longer works due to rosdeps chains
++                    #if not [p for p in pkgs if p in s_deps]:
++                    #    errors.append("%s (%s appears to be an unnecessary depend)"%(m_file, d))
++        except rospkg.ResourceNotFound:
++            # report with a different rule
++            pass
++    return errors
++
++warnings = [
++    (manifest_depends, "The following stack.xml file list invalid dependencies:"),
++    
++    ]
++errors = [
++    ]
++
++def wtf_check(ctx):
++    # no package in context to verify
++    if not ctx.stacks:
++        return
++    
++    for r in warnings:
++        warning_rule(r, r[0](ctx), ctx)
++    for r in errors:
++        error_rule(r, r[0](ctx), ctx)
++
+--- /dev/null
++++ ros-noetic-roswtf-1.16.0/test/check_roswtf_command_line_online.py
+@@ -0,0 +1,145 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++PKG = 'roswtf'
++NAME = 'test_roswtf_command_line_online'
++
++import os
++import signal
++import sys 
++import time
++import unittest
++
++import rospkg
++import rospy
++import rostest
++
++import std_msgs.msg
++
++from subprocess import Popen, PIPE, check_call, call
++
++def run_for(cmd, secs):
++    popen = Popen(cmd, stdout=PIPE, stderr=PIPE, close_fds=True)
++    timeout_t = time.time() + secs
++    while time.time() < timeout_t:
++        time.sleep(0.1)
++    os.kill(popen.pid, signal.SIGKILL)
++    
++class TestRostopicOnline(unittest.TestCase):
++
++    def setUp(self):
++        self.vals = set()
++        self.msgs = {}
++
++    ## test that the rosmsg command works
++    def test_cmd_help(self):
++        cmd = 'roswtf'
++        output = Popen([cmd, '-h'], stdout=PIPE).communicate()[0].decode()
++        self.assert_('Options' in output)
++            
++    def test_offline(self):
++        # this test is disabled for now; now that test_roswtf is part
++        # of ros_comm, the tricks before that were used no longer work
++        cmd = 'roswtf'
++
++        # pass in special test key to roswtf for ROS_PACKAGE_PATH
++        env = os.environ.copy()
++
++        rospack = rospkg.RosPack()
++        # add all dependencies to ros package path
++        pkgs = ['roswtf',
++            'rosgraph', 'roslaunch', 'roslib', 'rosnode', 'rosservice',
++            'rosbag', 'rosbag_storage', 'roslz4', 'rosconsole', 'roscpp', 'rosgraph_msgs', 'roslang', 'rosmaster', 'rosmsg', 'rosout', 'rosparam', 'rospy', 'rostest', 'rostopic', 'topic_tools', 'xmlrpcpp',
++            'std_srvs',  # ros_comm_msgs
++            'cpp_common', 'roscpp_serialization', 'roscpp_traits', 'rostime',  # roscpp_core
++            'rosbuild', 'rosclean', 'rosunit',  # ros
++            'rospack', 'std_msgs', 'message_runtime', 'message_generation', 'gencpp', 'genlisp', 'genpy', 'genmsg', 'catkin',
++        ]
++        try:
++            paths = [rospack.get_path(pkg) for pkg in pkgs]
++        except rospkg.ResourceNotFound as e:
++            assert False, 'rospkg.ResourceNotFound: ' + str(e)
++        try:
++            path = rospack.get_path('cmake_modules')
++        except rospkg.ResourceNotFound:
++            pass
++        else:
++            paths.append(path)
++        try:
++            path = rospack.get_path('geneus')
++        except rospkg.ResourceNotFound:
++            pass
++        else:
++            paths.append(path)
++        try:
++            path = rospack.get_path('gennodejs')
++        except rospkg.ResourceNotFound:
++            pass
++        else:
++            paths.append(path)
++        env['ROS_PACKAGE_PATH'] = os.pathsep.join(paths)
++
++        cwd  = rospack.get_path('roswtf')
++        kwds = { 'env': env, 'stdout': PIPE, 'stderr': PIPE, 'cwd': cwd}
++
++        # run roswtf nakedly in the roswtf directory. Running in
++        # ROS_ROOT effectively make roswtf have dependencies on
++        # every package in the ROS stack, which doesn't work.
++
++        output, err = Popen([cmd], **kwds).communicate()
++        self._check_output([cmd], output.decode(), err.decode())
++
++        # run roswtf on a simple launch file online
++        rospack = rospkg.RosPack()
++        p = os.path.join(rospack.get_path('roswtf'), 'test', 'min.launch')
++        output = Popen([cmd, p], **kwds).communicate()[0].decode()
++        self._check_output([cmd, p], output)
++
++    def _check_output(self, cmd, output, error=None):
++        # do both a positive and negative test
++        self.assert_(
++            'No errors or warnings' in output or 'Found 1 error' in output,
++            'CMD[%s] OUTPUT[%s]%s' %
++            (' '.join(cmd), output, '\nstderr[%s]' % error if error else ''))
++        allowed_errors = 0
++        if 'Found 1 error' in output:
++            self.assert_(output.count('ERROR') == 1, 'OUTPUT[%s]' % output)
++            self.assert_(
++                'ROS Dep database not updated' in output,
++                'OUTPUT[%s]' % output)
++            allowed_errors += 1
++        if 'No errors or warnings' in output:
++            self.assert_(output.count('ERROR') <= allowed_errors, 'OUTPUT[%s]' % output)
++
++if __name__ == '__main__':
++    rostest.run(PKG, NAME, TestRostopicOnline, sys.argv)
+--- /dev/null
++++ ros-noetic-roswtf-1.16.0/test/min.launch
+@@ -0,0 +1,4 @@
++<launch>
++  <!-- $(anon talker) creates an anonymous name for this node -->
++  <node name="$(anon talker)" pkg="roswtf" type="talker.py" />
++</launch>
+--- /dev/null
++++ ros-noetic-roswtf-1.16.0/test/roswtf.test
+@@ -0,0 +1,3 @@
++<launch>
++  <test test-name="roswtf_command_line_online" pkg="roswtf" type="check_roswtf_command_line_online.py" />
++</launch>
+--- /dev/null
++++ ros-noetic-roswtf-1.16.0/test/test_roswtf_command_line_offline.py
+@@ -0,0 +1,126 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import os
++import sys 
++import unittest
++import time
++        
++from subprocess import Popen, PIPE, check_call, call
++
++import rospkg
++
++def get_test_path():
++    return os.path.abspath(os.path.dirname(__file__))
++def get_roswtf_path():
++    return os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
++
++class TestRoswtfOffline(unittest.TestCase):
++
++    def setUp(self):
++        pass
++
++    ## test that the rosmsg command works
++    def test_cmd_help(self):
++        cmd = 'roswtf'
++        output = Popen([cmd, '-h'], stdout=PIPE).communicate()[0]
++        output = output.decode()
++        self.assert_('Options' in output)
++            
++    def test_offline(self):
++        cmd = 'roswtf'
++
++        # point at a different 'master'
++        env = os.environ.copy()
++        env['ROS_MASTER_URI'] = 'http://localhost:11312'
++
++        rospack = rospkg.RosPack()
++        # add all dependencies to ros package path
++        pkgs = ['roswtf',
++            'rosgraph', 'roslaunch', 'roslib', 'rosnode', 'rosservice',
++            'rosbag', 'rosbag_storage', 'roslz4', 'rosconsole', 'roscpp', 'rosgraph_msgs', 'roslang', 'rosmaster', 'rosmsg', 'rosout', 'rosparam', 'rospy', 'rostest', 'rostopic', 'topic_tools', 'xmlrpcpp',
++            'std_srvs',  # ros_comm_msgs
++            'cpp_common', 'roscpp_serialization', 'roscpp_traits', 'rostime',  # roscpp_core
++            'rosbuild', 'rosclean', 'rosunit',  # ros
++            'rospack', 'std_msgs', 'message_runtime', 'message_generation', 'gencpp', 'genlisp', 'genpy', 'genmsg', 'catkin',
++        ]
++        paths = [rospack.get_path(pkg) for pkg in pkgs]
++        try:
++            path = rospack.get_path('cmake_modules')
++        except rospkg.ResourceNotFound:
++            pass
++        else:
++            paths.append(path)
++        try:
++            path = rospack.get_path('geneus')
++        except rospkg.ResourceNotFound:
++            pass
++        else:
++            paths.append(path)
++        try:
++            path = rospack.get_path('gennodejs')
++        except rospkg.ResourceNotFound:
++            pass
++        else:
++            paths.append(path)
++        env['ROS_PACKAGE_PATH'] = os.pathsep.join(paths)
++
++        cwd  = get_roswtf_path()
++        kwds = { 'env': env, 'stdout': PIPE, 'stderr': PIPE, 'cwd': cwd}
++
++        # run roswtf nakedly
++        output = Popen([cmd], **kwds).communicate()
++        output = [o.decode() for o in output]
++
++        # there should either be no errors or warnings or
++        # there should be exactly one error about rosdep not being initialized
++        self._check_output(output[0])
++
++        # run roswtf on a simple launch file offline
++        p = os.path.join(get_test_path(), 'min.launch')
++        output = Popen([cmd, p], **kwds).communicate()[0]
++        output = output.decode()
++        self._check_output(output)
++
++    def _check_output(self, output):
++        # do both a positive and negative test
++        self.assert_(
++            'No errors or warnings' in output or 'Found 1 error' in output,
++            'OUTPUT[%s]' % output)
++        if 'No errors or warnings' in output:
++            self.assert_('ERROR' not in output, 'OUTPUT[%s]' % output)
++        if 'Found 1 error' in output:
++            self.assert_(output.count('ERROR') == 1, 'OUTPUT[%s]' % output)
++            self.assert_(
++                'Error: the rosdep view is empty' not in output,
++                'OUTPUT[%s]' % output)
+--- /dev/null
++++ ros-noetic-roswtf-1.16.0/test_nodes/talker.py
+@@ -0,0 +1,53 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++## Simple talker demo that published std_msgs/Strings messages
++## to the 'chatter' topic
++
++import rospy
++from std_msgs.msg import String
++
++def talker():
++    rospy.init_node('talker', anonymous=True)
++    pub = rospy.Publisher('chatter', String, queue_size=10)
++    r = rospy.Rate(10) # 10hz
++    while not rospy.is_shutdown():
++        str = "hello world %s"%rospy.get_time()
++        rospy.loginfo(str)
++        pub.publish(str)
++        r.sleep()
++        
++if __name__ == '__main__':
++    try:
++        talker()
++    except rospy.ROSInterruptException: pass

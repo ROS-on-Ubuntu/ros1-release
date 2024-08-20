@@ -1,0 +1,102 @@
+ros-noetic-interactive-markers (1.12.0-0jammy) jammy; urgency=high
+
+  * [maintanence] fix signed / unsigned warning
+  * [maintanence] Migration to tf2
+  * Contributors: Robert Haschke
+
+ -- William Woodall <william@osrfoundation.org>  Sat, 25 Apr 2020 16:00:00 -0000
+
+ros-noetic-interactive-markers (1.11.5-0jammy) jammy; urgency=high
+
+  * [feature]     InteractiveMarkerServer::erase(): return false for unknown marker (#43 <https://github.com/ros-visualization/interactive_markers/issues/43>)
+  * [fix]         Avoid overriding warning status messages (Fixes #34 <https://github.com/ros-visualization/interactive_markers/issues/34>)
+  * [fix]         Fixed the problem that *.hpp was not installed (#66 <https://github.com/ros-visualization/interactive_markers/issues/66>)
+  * [fix]         Make the Timer daemon survive /clock jumping back in a playback loop (#47 <https://github.com/ros-visualization/interactive_markers/issues/47>)
+  * [maintanence] Modernize package.xml and add missing std_msgs in CATKIN_DEPENDS
+  * [maintanence] Use setuptools instead of distutils (#67 <https://github.com/ros-visualization/interactive_markers/issues/67>)
+  * [maintanence] Bump cmake version to 3.0.2 (#64 <https://github.com/ros-visualization/interactive_markers/issues/64>)
+  * [maintanence] Windows compatibility
+    * Use C++11 portable sleep (#63 <https://github.com/ros-visualization/interactive_markers/issues/63>)
+    * Symbol visibility for shared libraries (#62 <https://github.com/ros-visualization/interactive_markers/issues/62>)
+    * Fix install location on Windows (#39 <https://github.com/ros-visualization/interactive_markers/issues/39>)
+  * Contributors: Alejandro Hernández Cordero, David Gossow, Fabian Maas, Jacob Perron, Robert Haschke, Sean Yen, Shane Loretz, shela
+
+ -- William Woodall <william@osrfoundation.org>  Sat, 04 Apr 2020 16:00:00 -0000
+
+ros-noetic-interactive-markers (1.11.4-0jammy) jammy; urgency=high
+
+  * Fixed a crash when updates arrive, or are being processed, while shutdown is called (#36 <https://github.com/ros-visualization/interactive_markers/issues/36>)
+  * Contributors: Simon Schmeisser
+
+ -- William Woodall <william@osrfoundation.org>  Sun, 15 Apr 2018 16:00:00 -0000
+
+ros-noetic-interactive-markers (1.11.3-0jammy) jammy; urgency=high
+
+  * The ``processFeedback`` function of the menu handler no longer catches the ``KeyErrors`` of the feedback_cb.
+    See: #29 <https://github.com/ros-visualization/interactive_markers/issues/29>
+  * Added the ``empty()`` and ``size()`` members to ``InteractiveMarkerServer`` interface.
+    See: #30 <https://github.com/ros-visualization/interactive_markers/issues/30>
+  * Contributors: Blake Anderson, Guglielmo Gemignani
+
+ -- William Woodall <william@osrfoundation.org>  Tue, 23 Aug 2016 16:00:00 -0000
+
+ros-noetic-interactive-markers (1.11.2-0jammy) jammy; urgency=high
+
+  * Fix build when disabling tests with ``-DCATKIN_ENABLE_TESTING=OFF``.
+    See: #26 <https://github.com/ros-visualization/interactive_markers/issues/26>
+  * Fix use of uninitialized variables.
+    See: #24 <https://github.com/ros-visualization/interactive_markers/issues/24>
+  * Fix potential segfault when shutting down.
+    See: #25 <https://github.com/ros-visualization/interactive_markers/issues/25>
+  * Contributors: Alexis Ballier, David Gossow, Max Schwarz
+
+ -- William Woodall <william@osrfoundation.org>  Tue, 23 Aug 2016 16:00:00 -0000
+
+ros-noetic-interactive-markers (1.11.1-0jammy) jammy; urgency=high
+
+  * Added explicit keyword argument queue_size for publisher in Python code and use the same default queue_size value as C++.
+  * Fixed a SEGFAULT in setPose reported in #18 <https://github.com/ros-visualization/interactive_markers/issues/18>
+    Previously, calling setPose() on an interactive marker causes a SEGFAULT
+    if applyChanges() was not called on the server at least once since the
+    marker was created. I traced the actual SEGFAULT to the doSetPose
+    function. The value of header passed from setPose() is invalid because,
+    in this case, marker_context_it = marker_contexts_.end().
+    I added a check for this case and, if there is no marker is present,
+    instead use the header from the pending update.
+  * Contributors: David Gossow, Mike Koval, William Woodall, ipa-fxm
+
+ -- William Woodall <william@osrfoundation.org>  Mon, 15 Dec 2014 16:00:00 -0000
+
+ros-noetic-interactive-markers (1.11.0-0jammy) jammy; urgency=high
+
+  * Adding William Woodall as maintainer
+  * fix threading bugs
+    Fix locking of data structures shared across threads.
+  * Contributors: Acorn Pooley, William Woodall, hersh
+
+ -- William Woodall <william@osrfoundation.org>  Sun, 23 Feb 2014 16:00:00 -0000
+
+ros-noetic-interactive-markers (1.10.2-0jammy) jammy; urgency=high
+
+  * fix regression in menu_handler.py
+    fixes #14 <https://github.com/ros-visualization/interactive_markers/issues/14>
+  * Contributors: William Woodall
+
+ -- William Woodall <william@osrfoundation.org>  Sun, 02 Feb 2014 16:00:00 -0000
+
+ros-noetic-interactive-markers (1.10.1-0jammy) jammy; urgency=high
+
+  * cleanup python code and package contents
+  * remove useless dependencies
+  * Contributors: Vincent Rabaud, William Woodall
+
+ -- William Woodall <william@osrfoundation.org>  Sun, 26 Jan 2014 16:00:00 -0000
+
+ros-noetic-interactive-markers (1.10.0-0jammy) jammy; urgency=high
+
+  * remove debug statement that could produce segfault; init_it->msg->markers may be empty
+  * Contributors: Filip Jares
+
+ -- William Woodall <william@osrfoundation.org>  Wed, 22 Jan 2014 16:00:00 -0000
+
+

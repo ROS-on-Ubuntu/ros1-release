@@ -1,0 +1,4580 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-filters (1.9.2-0jammy) jammy; urgency=high
+ .
+   * Give access to FilterChain list of loaded filters
+   * Fix warnings and problem with illegal xml characters
+   * Contributors: Markus Vieth, Martin Pecka
+Author: Tully Foote <tfoote@willowgarage.com>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-filters-1.9.2/CHANGELOG.rst
+@@ -0,0 +1,173 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package filters
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++1.9.2 (2022-05-09)
++------------------
++* Give access to FilterChain list of loaded filters
++* Fix warnings and problem with illegal xml characters
++* Contributors: Markus Vieth, Martin Pecka
++
++1.9.1 (2020-09-23)
++------------------
++* make FilterBase::getName() const
++* Making FilterBase::getParam const
++* narrow down required boost dependencies (`#40 <https://github.com/ros/filters/issues/40>`_)
++* [noetic] deprecate h for hpp (`#34 <https://github.com/ros/filters/issues/34>`_)
++* [noetic] Delete unused code (`#33 <https://github.com/ros/filters/issues/33>`_)
++* Bump CMake version to avoid CMP0048
++* Contributors: Alejandro Hernández Cordero, Mikael Arguedas, Shane Loretz, Tully Foote
++
++1.9.0 (2020-03-10)
++------------------
++* Reduce dependency on boost (`#30 <https://github.com/ros/filters/issues/30>`_)
++* Contributors: Shane Loretz
++
++1.8.1 (2017-04-25)
++------------------
++* Fix warning about string type
++* Contributors: Jon Binney
++
++1.8.0 (2017-04-07)
++------------------
++
++* Remove promiscuous filter finding
++  When specifying filters, you must now include the package name and exact
++  filter name. Previously a workaround would search packages for any filter
++  with the specified string in the filter name. This has been deprecated for
++  a while, and here we're removing it. `#14 <https://github.com/ros/filters/issues/14>`
++* Contributors: Jon Binney
++
++1.7.5 (2017-03-16)
++------------------
++* make rostest in CMakeLists optional (`ros/rosdistro#3010 <https://github.com/ros/rosdistro/issues/3010>`_)
++* check for CATKIN_ENABLE_TESTING
++* Add support for boolean parameters (fix `#6 <https://github.com/ros/filters/issues/6>`_)
++* Contributors: Boris Gromov, Lukas Bulwahn, Tully Foote
++
++1.7.4 (2013-07-23)
++------------------
++* Remove trailing whitespace and old <cpp> export
++* Removing vestigial files
++* Merge pull request `#5 <https://github.com/ros/filters/issues/5>`_ from ahendrix/hydro-devel
++  Fix pluginlib macros and createInstance usage.
++* Fix pluginlib macros and createInstance usage.
++* Contributors: Austin Hendrix, William Woodall, jonbinney
++
++1.7.3 (2013-06-27)
++------------------
++* use new pluginlib API
++* Contributors: Jon Binney
++
++1.7.2 (2013-06-26)
++------------------
++* a bunch of CMake fixes to get tests passing.
++* fixing linking
++* 1.7.2
++  For bugfix release
++* Merge pull request `#3 <https://github.com/ros/filters/issues/3>`_ from dgossow/patch-1
++  Export pluginlib as dependency
++* Export pluginlib as dependency
++* Contributors: David Gossow, Tully Foote
++
++1.7.1 (2013-05-24)
++------------------
++* bump version for bugfix
++* Merge pull request `#2 <https://github.com/ros/filters/issues/2>`_ from jonbinney/install_headers
++  added install rule for headers in cmakelists
++* added install rule for headers in cmakelists
++* Contributors: Jon Binney, jonbinney
++
++1.7.0 (2013-05-23)
++------------------
++* bump version for hydro release
++* reenabled rostests
++* builds with catkin
++* branched to separate cpp and ROS parts
++  --HG--
++  branch : cpp_separation
++* Added tag unstable for changeset 661a74b486de
++  --HG--
++  branch : filters
++* Added tag filters-1.6.0 for changeset 925818adeafe
++  --HG--
++  branch : filters
++* 1.6.0
++  --HG--
++  branch : filters
++* creating unary stack to refactor from common
++  --HG--
++  branch : filters
++* url fix
++  --HG--
++  branch : filters
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk/filters%4037239
++* patch for `#4144 <https://github.com/ros/filters/issues/4144>`_ including backwards compatability.  Also added check to give nice error and quit if invalid filter name, instead of throwing exception
++  --HG--
++  branch : filters
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk/filters%4030358
++* rest of fix for `#4181 <https://github.com/ros/filters/issues/4181>`_ tests
++  --HG--
++  branch : filters
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk/filters%4030356
++* basic tests for `#4181 <https://github.com/ros/filters/issues/4181>`_ more to come
++  --HG--
++  branch : filters
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk/filters%4030355
++* Added Ubuntu platform tags to manifest
++  --HG--
++  branch : filters
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk/filters%4029647
++* removing deprecated TransferFunctionFilter it is replaced by SingleChannelTransferFunctionFilter `#3703 <https://github.com/ros/filters/issues/3703>`_
++  --HG--
++  branch : filters
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk/filters%4028320
++* fixing segfault in realtime circular buffer if zero length `#3785 <https://github.com/ros/filters/issues/3785>`_ `#3762 <https://github.com/ros/filters/issues/3762>`_
++  --HG--
++  branch : filters
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk/filters%4027710
++* adding namespace to all debugging/errors for filter chain loader `#3239 <https://github.com/ros/filters/issues/3239>`_
++  --HG--
++  branch : filters
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk/filters%4026552
++* updating the tests
++  --HG--
++  branch : filters
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk/filters%4026106
++* adding single channel transferfunctionfilter
++  --HG--
++  branch : filters
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk/filters%4026105
++* fixing build for karmic
++  --HG--
++  branch : filters
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk/filters%4025262
++* doc reviewed
++  --HG--
++  branch : filters
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk/filters%4024954
++* all API issues cleared for filters
++  --HG--
++  branch : filters
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk/filters%4024863
++* Fixing warning message in filter_chain.h with regard to `#2959 <https://github.com/ros/filters/issues/2959>`_
++  --HG--
++  branch : filters
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk/filters%4024757
++* removing hard codeing of filter_chain parameter list name.  `#2618 <https://github.com/ros/filters/issues/2618>`_  Backwards compatable statement left in with ROS_WARN to change
++  --HG--
++  branch : filters
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk/filters%4024289
++* removing unused dependency on tinyxml
++  --HG--
++  branch : filters
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk/filters%4024141
++* Copying commit from latest to trunk. 'Added temporary OSX blacklist files'
++  --HG--
++  branch : filters
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk/filters%4023977
++* migration part 1
++  --HG--
++  branch : filters
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk/filters%4023884
++* Contributors: Jon Binney, Ken Conley, gerkey, jonbinney, kwc, leibs, mwise, sachinc, tfoote, vpradeep
+--- /dev/null
++++ ros-noetic-filters-1.9.2/CMakeLists.txt
+@@ -0,0 +1,114 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(filters)
++
++##############################################################################
++# Find dependencies
++##############################################################################
++
++find_package(catkin REQUIRED COMPONENTS pluginlib roslib roscpp rosconsole)
++find_package(Boost REQUIRED)
++
++include_directories(
++    include
++    ${catkin_INCLUDE_DIRS}
++)
++
++##############################################################################
++# Define package
++##############################################################################
++
++catkin_package(
++  INCLUDE_DIRS include
++  LIBRARIES mean params increment median transfer_function
++  CATKIN_DEPENDS roslib roscpp rosconsole pluginlib
++  DEPENDS Boost
++)
++
++##############################################################################
++# Build
++##############################################################################
++
++add_library(real_time_circular_buffer INTERFACE)
++target_include_directories(real_time_circular_buffer INTERFACE
++  include
++  ${Boost_INCLUDE_DIRS})
++
++# Plugins
++add_library(mean src/mean.cpp)
++target_link_libraries(mean
++  ${catkin_LIBRARIES}
++  real_time_circular_buffer)
++add_library(params src/test_params.cpp)
++target_link_libraries(params
++  ${catkin_LIBRARIES}
++  real_time_circular_buffer)
++add_library(increment src/increment.cpp)
++target_link_libraries(increment
++  ${catkin_LIBRARIES}
++  real_time_circular_buffer)
++add_library(median src/median.cpp)
++target_link_libraries(median
++  ${catkin_LIBRARIES}
++  real_time_circular_buffer)
++add_library(transfer_function src/transfer_function.cpp)
++target_link_libraries(transfer_function
++  ${catkin_LIBRARIES}
++  real_time_circular_buffer)
++
++if(CATKIN_ENABLE_TESTING)
++  find_package(rostest)
++  # Test median filter
++  add_executable(median_test EXCLUDE_FROM_ALL test/test_median.cpp )
++  target_link_libraries(median_test median ${catkin_LIBRARIES} ${GTEST_LIBRARIES})
++  add_rostest(test/test_median.launch)
++
++  # Test transfer function filter
++  add_executable(transfer_function_test EXCLUDE_FROM_ALL test/test_transfer_function.cpp)
++  target_link_libraries(transfer_function_test transfer_function ${catkin_LIBRARIES} ${GTEST_LIBRARIES})
++  add_rostest(test/test_transfer_function.launch)
++
++  # Test mean filter
++  add_executable(mean_test EXCLUDE_FROM_ALL test/test_mean.cpp)
++  target_link_libraries(mean_test mean ${catkin_LIBRARIES} ${GTEST_LIBRARIES})
++  add_rostest(test/test_mean.launch)
++
++  # Test params filter
++  add_executable(params_test EXCLUDE_FROM_ALL test/test_params.cpp)
++  target_link_libraries(params_test params ${catkin_LIBRARIES} ${GTEST_LIBRARIES})
++  add_rostest(test/test_params.launch)
++
++  # Test plugin loading into filter chain
++  add_executable(chain_test EXCLUDE_FROM_ALL test/test_chain.cpp)
++  target_link_libraries(chain_test increment ${catkin_LIBRARIES} ${GTEST_LIBRARIES}) # Needed for OSX
++  add_rostest(test/test_chain.launch)
++
++  # Test realtime safe buffer class
++  catkin_add_gtest(realtime_buffer_test EXCLUDE_FROM_ALL test/test_realtime_circular_buffer.cpp)
++  target_link_libraries(realtime_buffer_test real_time_circular_buffer)
++endif()
++
++##############################################################################
++# Install
++##############################################################################
++
++# Install libraries
++install(TARGETS mean params increment median transfer_function
++  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
++  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
++  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
++)
++
++# Install headers
++install(DIRECTORY include/${PROJECT_NAME}/
++  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION})
++
++# Install plugins xml file
++install(FILES default_plugins.xml
++  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
++)
++
++if(CATKIN_ENABLE_TESTING)
++  if(TARGET tests)
++  add_dependencies(tests median_test transfer_function_test mean_test params_test chain_test)
++  endif()
++endif()
+--- /dev/null
++++ ros-noetic-filters-1.9.2/default_plugins.xml
+@@ -0,0 +1,90 @@
++<class_libraries>
++  <library path="lib/libmedian">
++    <class name="filters/MultiChannelMedianFilterDouble" type="filters::MultiChannelMedianFilter&lt;double&gt;"
++	    base_class_type="filters::MultiChannelFilterBase&lt;double&gt;">
++      <description>
++	This is a median filter which works on a stream of std::vector of doubles.
++      </description>
++    </class>
++    <class name="filters/MedianFilterDouble" type="filters::MedianFilter&lt;double&gt;"
++	    base_class_type="filters::FilterBase&lt;double&gt;">
++      <description>
++	This is a median filter which works on a stream of doubles.
++      </description>
++    </class>
++    <class name="filters/MultiChannelMedianFilterFloat" type="filters::MultiChannelMedianFilter&lt;float&gt;"
++	    base_class_type="filters::MultiChannelFilterBase&lt;float&gt;">
++      <description>
++	This is a median filter which works on a stream of std::vector of floats.
++      </description>
++    </class>
++    <class name="filters/MedianFilterFloat" type="filters::MedianFilter&lt;float&gt;"
++	    base_class_type="filters::FilterBase&lt;float&gt;">
++      <description>
++	This is a median filter which works on a stream of floats.
++      </description>
++    </class>
++  </library>
++  <library path="lib/libmean">
++    <class name="filters/MeanFilterDouble" type="filters::MeanFilter&lt;double&gt;"
++	    base_class_type="filters::FilterBase&lt;double&gt;">
++      <description>
++	This is a mean filter which works on a stream of doubles.
++      </description>
++    </class>
++    <class name="filters/MeanFilterFloat" type="filters::MeanFilter&lt;float&gt;"
++	    base_class_type="filters::FilterBase&lt;float&gt;">
++      <description>
++	This is a mean filter which works on a stream of floats.
++      </description>
++    </class>
++    <class name="filters/MultiChannelMeanFilterDouble" type="filters::MultiChannelMeanFilter&lt;double&gt;"
++	    base_class_type="filters::MultiChannelFilterBase&lt;double&gt;">
++      <description>
++	This is a mean filter which works on a stream of vectors of doubles.
++      </description>
++    </class>
++    <class name="filters/MultiChannelMeanFilterFloat" type="filters::MultiChannelMeanFilter&lt;float&gt;"
++	    base_class_type="filters::MultiChannelFilterBase&lt;float&gt;">
++      <description>
++	This is a mean filter which works on a stream of vectors of floats.
++      </description>
++    </class>
++  </library>
++  <library path="lib/libtest_param">
++    <class name="filters/ParamTest" type="filters::ParamTest&lt;double&gt;"
++	    base_class_type="filters::FilterBase&lt;double&gt;">
++      <description>
++	This is a filter designed to test parameter readings.  It's not useful.
++      </description>
++    </class>
++  </library>
++  <library path="lib/libincrement">
++    <class name="filters/IncrementFilterInt" type="filters::IncrementFilter&lt;int&gt;"
++	    base_class_type="filters::FilterBase&lt;int&gt;">
++      <description>
++	This is a increment filter which works on a stream of ints.
++      </description>
++    </class>
++    <class name="filters/MultiChannelIncrementFilterInt" type="filters::MultiChannelIncrementFilter&lt;int&gt;"
++	    base_class_type="filters::MultiChannelFilterBase&lt;int&gt;">
++      <description>
++	This is a increment filter which works on a stream of vectors of ints.
++      </description>
++    </class>
++  </library>
++  <library path="lib/libtransfer_function">
++    <class name="filters/MultiChannelTransferFunctionFilterDouble" type="filters::MultiChannelTransferFunctionFilter&lt;double&gt;"
++	    base_class_type="filters::MultiChannelFilterBase&lt;double&gt;">
++      <description>
++	This is a transfer filter which works on a stream of vectors of doubles.
++      </description>
++    </class>
++    <class name="filters/TransferFunctionFilterDouble" type="filters::SingleChannelTransferFunctionFilter&lt;double&gt;"
++	    base_class_type="filters::FilterBase&lt;double&gt;">
++      <description>
++	This is a transfer filter which works on a stream of doubles.
++      </description>
++    </class>
++  </library>
++</class_libraries>
+--- /dev/null
++++ ros-noetic-filters-1.9.2/include/filters/filter_base.h
+@@ -0,0 +1,46 @@
++/*
++ * Software License Agreement (BSD License)
++ *
++ * Copyright (c) 2020, Open Source Robotics Foundation, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the copyright holders nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#ifndef FILTERS__FILTER_BASE_H_
++#define FILTERS__FILTER_BASE_H_
++
++#ifdef _MSC_VER
++#pragma message("Including header <filters/filter_base.h> is deprecated,")
++#pragma message("include <filters/filter_base.hpp> instead.")
++#else
++// *INDENT-OFF* (prevent uncrustify from adding indention below)
++#warning Including header <filters/filter_base.h> is deprecated, \
++include <filters/filter_base.hpp> instead.
++#endif
++
++#include "./filter_base.hpp"
++
++#endif  // FILTERS__FILTER_BASE_H_
+--- /dev/null
++++ ros-noetic-filters-1.9.2/include/filters/filter_base.hpp
+@@ -0,0 +1,462 @@
++/*
++ * Copyright (c) 2008, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#ifndef FILTERS_FILTER_BASE_HPP_
++#define FILTERS_FILTER_BASE_HPP_
++
++#include <typeinfo>
++#include "ros/assert.h"
++#include "ros/console.h"
++#include "ros/ros.h"
++
++namespace filters
++{
++
++typedef std::map<std::string, XmlRpc::XmlRpcValue> string_map_t;
++
++/** \brief A Base filter class to provide a standard interface for all filters
++ *
++ */
++template<typename T>
++class FilterBase
++{
++public:
++  /** \brief Default constructor used by Filter Factories
++   */
++  FilterBase():configured_(false){};
++
++  /** \brief Virtual Destructor
++   */
++  virtual ~FilterBase(){};
++
++  /** \brief Configure the filter from the parameter server 
++   * \param The parameter from which to read the configuration
++   * \param node_handle The optional node handle, useful if operating in a different namespace.
++   */
++  bool configure(const std::string& param_name, ros::NodeHandle node_handle = ros::NodeHandle())
++  {
++    XmlRpc::XmlRpcValue config;
++    if (!node_handle.getParam(param_name, config))
++    {
++      ROS_ERROR("Could not find parameter %s on the server, are you sure that it was pushed up correctly?", param_name.c_str());
++      return false;
++    }
++    return configure(config);
++    
++  }
++
++  /** \brief The public method to configure a filter from XML 
++   * \param config The XmlRpcValue from which the filter should be initialized
++   */
++  bool configure(XmlRpc::XmlRpcValue& config)
++  {
++    if (configured_)
++    {
++      ROS_WARN("Filter %s of type %s already being reconfigured", filter_name_.c_str(), filter_type_.c_str());
++    };
++    configured_ = false;
++    bool retval = true;
++
++    retval = retval && loadConfiguration(config);
++    retval = retval && configure();
++    configured_ = retval;
++    return retval;
++  }
++
++  /** \brief Update the filter and return the data seperately
++   * This is an inefficient way to do this and can be overridden in the derived class
++   * \param data_in A reference to the data to be input to the filter
++   * \param data_out A reference to the data output location
++   */
++  virtual bool update(const T& data_in, T& data_out)=0;
++
++  /** \brief Get the type of the filter as a string */
++  std::string getType() {return filter_type_;};
++
++  /** \brief Get the name of the filter as a string */
++  inline const std::string& getName() const {return filter_name_;};
++
++
++protected:
++
++  /** \brief Pure virtual function for the sub class to configure the filter
++   * This function must be implemented in the derived class.
++   */
++  virtual bool configure()=0;
++
++
++  /** \brief Get a filter parameter as a string 
++   * \param name The name of the parameter
++   * \param value The string to set with the value
++   * \return Whether or not the parameter of name/type was set */
++  bool getParam(const std::string& name, std::string& value) const
++  {
++    string_map_t::const_iterator it = params_.find(name);
++    if (it == params_.end())
++    {
++      return false;
++    }
++
++    if(it->second.getType() != XmlRpc::XmlRpcValue::TypeString)
++    {
++      return false;
++    }
++
++    auto tmp = it->second;
++    value = std::string(tmp);
++    return true;
++  }
++
++  /** \brief Get a filter parameter as a boolean
++   * \param name The name of the parameter
++   * \param value The boolean to set with the value
++   * \return Whether or not the parameter of name/type was set */
++  bool getParam(const std::string& name, bool& value) const
++  {
++    string_map_t::const_iterator it = params_.find(name);
++    if (it == params_.end())
++    {
++      return false;
++    }
++
++    if(it->second.getType() != XmlRpc::XmlRpcValue::TypeBoolean)
++    {
++      return false;
++    }
++
++    auto tmp = it->second;
++    value = (bool)(tmp);
++    return true;
++  }
++
++  /** \brief Get a filter parameter as a double
++   * \param name The name of the parameter
++   * \param value The double to set with the value
++   * \return Whether or not the parameter of name/type was set */
++  bool getParam(const std::string&name, double& value) const
++  {
++    string_map_t::const_iterator it = params_.find(name);
++    if (it == params_.end())
++    {
++      return false;
++    }
++
++    if(it->second.getType() != XmlRpc::XmlRpcValue::TypeDouble && it->second.getType() != XmlRpc::XmlRpcValue::TypeInt)
++    {
++      return false;
++    }
++
++    auto tmp = it->second;
++    value = it->second.getType() == XmlRpc::XmlRpcValue::TypeInt ? (int)(tmp) : (double)(tmp);
++    return true;
++  }
++
++  /** \brief Get a filter parameter as a int
++   * \param name The name of the parameter
++   * \param value The int to set with the value
++   * \return Whether or not the parameter of name/type was set */
++  bool getParam(const std::string&name, int& value) const
++  {
++    string_map_t::const_iterator it = params_.find(name);
++    if (it == params_.end())
++    {
++      return false;
++    }
++
++    if(it->second.getType() != XmlRpc::XmlRpcValue::TypeInt)
++    {
++      return false;
++    }
++
++    auto tmp = it->second;
++    value = tmp;
++    return true;
++  }
++
++  /** \brief Get a filter parameter as an unsigned int
++   * \param name The name of the parameter
++   * \param value The int to set with the value
++   * \return Whether or not the parameter of name/type was set */
++  bool getParam(const std::string&name, unsigned  int& value) const
++  {
++    int signed_value;
++    if (!getParam(name, signed_value))
++      return false;
++    if (signed_value < 0)
++      return false;
++    value = signed_value;
++    return true;
++  };
++
++  /** \brief Get a filter parameter as a std::vector<double>
++   * \param name The name of the parameter
++   * \param value The std::vector<double> to set with the value
++   * \return Whether or not the parameter of name/type was set */
++  bool getParam(const std::string&name, std::vector<double>& value) const
++  {
++    string_map_t::const_iterator it = params_.find(name);
++    if (it == params_.end())
++    {
++      return false;
++    }
++
++    value.clear();
++
++    if(it->second.getType() != XmlRpc::XmlRpcValue::TypeArray)
++    {
++      return false;
++    }
++
++    XmlRpc::XmlRpcValue double_array = it->second;
++
++    for (int i = 0; i < double_array.size(); ++i){
++      if(double_array[i].getType() != XmlRpc::XmlRpcValue::TypeDouble && double_array[i].getType() != XmlRpc::XmlRpcValue::TypeInt)
++      {
++        return false;
++      }
++
++      double double_value = double_array[i].getType() == XmlRpc::XmlRpcValue::TypeInt ? (int)(double_array[i]) : (double)(double_array[i]);
++      value.push_back(double_value);
++    }
++    
++    return true;
++  }
++
++  /** \brief Get a filter parameter as a std::vector<string>
++   * \param name The name of the parameter
++   * \param value The std::vector<sgring> to set with the value
++   * \return Whether or not the parameter of name/type was set */
++  bool getParam(const std::string&name, std::vector<std::string>& value) const
++  {
++    string_map_t::const_iterator it = params_.find(name);
++    if (it == params_.end())
++    {
++      return false;
++    }
++
++    value.clear();
++
++    if(it->second.getType() != XmlRpc::XmlRpcValue::TypeArray)
++    {
++      return false;
++    }
++
++    XmlRpc::XmlRpcValue string_array = it->second;
++    
++    for (unsigned int i = 0; i < string_array.size(); ++i){
++      if(string_array[i].getType() != XmlRpc::XmlRpcValue::TypeString)
++      {
++        return false;
++      }
++
++      value.push_back(string_array[i]);
++    }
++
++    return true;
++  }
++
++  /** \brief Get a filter parameter as a XmlRpcValue
++   * \param name The name of the parameter
++   * \param value The XmlRpcValue to set with the value
++   * \return Whether or not the parameter of name/type was set */
++  bool getParam(const std::string& name, XmlRpc::XmlRpcValue& value) const
++  {
++    string_map_t::const_iterator it = params_.find(name);
++    if (it == params_.end())
++    {
++      return false;
++    }
++
++    auto tmp = it->second;
++    value = tmp;
++    return true;
++  }
++  
++  ///The name of the filter
++  std::string filter_name_;
++  ///The type of the filter (Used by FilterChain for Factory construction)
++  std::string filter_type_;
++  /// Whether the filter has been configured.  
++  bool configured_;
++
++  ///Storage of the parsed xml parameters
++  string_map_t params_;
++
++private:
++  /**\brief Set the name and type of the filter from the parameter server
++   * \param param_name The parameter from which to read
++   */
++  bool setNameAndType(XmlRpc::XmlRpcValue& config)
++  {
++    if(!config.hasMember("name"))
++    {
++      ROS_ERROR("Filter didn't have name defined, other strings are not allowed");
++      return false;
++    }
++
++    std::string name = config["name"];
++
++    if(!config.hasMember("type"))
++    {
++      ROS_ERROR("Filter %s didn't have type defined, other strings are not allowed", name.c_str());
++      return false;
++    }
++
++    std::string type = config["type"];
++
++    filter_name_ = name;
++    filter_type_ = type;
++    ROS_DEBUG("Configuring Filter of Type: %s with name %s", type.c_str(), name.c_str());
++    return true;
++  }
++
++protected:
++  bool loadConfiguration(XmlRpc::XmlRpcValue& config)
++  {
++    if(config.getType() != XmlRpc::XmlRpcValue::TypeStruct)
++    {
++      ROS_ERROR("A filter configuration must be a map with fields name, type, and params");
++      return false;
++    } 
++
++    if (!setNameAndType(config))
++    {
++      return false;
++    }
++
++    //check to see if we have parameters in our list
++    if(config.hasMember("params"))
++    {
++      //get the params map
++      XmlRpc::XmlRpcValue params = config["params"];
++
++      if(params.getType() != XmlRpc::XmlRpcValue::TypeStruct)
++      {
++        ROS_ERROR("params must be a map");
++        return false;
++      }
++      else{
++        //Load params into map
++        for(XmlRpc::XmlRpcValue::iterator it = params.begin(); it != params.end(); ++it)
++        {
++          ROS_DEBUG("Loading param %s\n", it->first.c_str());
++          params_[it->first] = it->second;
++        } 
++      }
++    }
++
++    return true;    
++  }
++};
++
++
++template <typename T>
++class MultiChannelFilterBase : public FilterBase<T>
++{
++public:
++  MultiChannelFilterBase():number_of_channels_(0){};
++  
++  /** \brief Configure the filter from the parameter server 
++   * \param number_of_channels How many parallel channels the filter will process
++   * \param The parameter from which to read the configuration
++   * \param node_handle The optional node handle, useful if operating in a different namespace.
++   */
++  bool configure(unsigned int number_of_channels, const std::string& param_name, ros::NodeHandle node_handle = ros::NodeHandle())
++  {
++    XmlRpc::XmlRpcValue config;
++    if (!node_handle.getParam(param_name, config))
++    {
++      ROS_ERROR("Could not find parameter %s on the server, are you sure that it was pushed up correctly?", param_name.c_str());
++      return false;
++    }
++    return configure(number_of_channels, config);
++    
++  }
++
++
++  /** \brief The public method to configure a filter from XML 
++   * \param number_of_channels How many parallel channels the filter will process
++   * \param config The XmlRpcValue to load the configuration from 
++   */
++  bool configure(unsigned int number_of_channels, XmlRpc::XmlRpcValue& config)
++  {
++    ROS_DEBUG("FilterBase being configured with XmlRpc xml: %s type: %d", config.toXml().c_str(), config.getType());
++    if (configured_)
++    {
++      ROS_WARN("Filter %s of type %s already being reconfigured", filter_name_.c_str(), filter_type_.c_str());
++    };
++    configured_ = false;
++    number_of_channels_ = number_of_channels;
++    ROS_DEBUG("MultiChannelFilterBase configured with %d channels", number_of_channels_);
++    bool retval = true;
++
++    retval = retval && FilterBase<T>::loadConfiguration(config);
++    retval = retval && configure();
++    configured_ = retval;
++    return retval;
++  };
++
++
++  /** \brief A method to hide the base class method and warn if improperly called */
++  bool configure(XmlRpc::XmlRpcValue& config)
++  {
++    ROS_ERROR("MultiChannelFilterBase configure should be called with a number of channels argument, assuming 1");
++    return configure(1, config);
++  }
++
++  virtual bool configure()=0;
++  
++
++  /** \brief Update the filter and return the data seperately
++   * \param data_in A reference to the data to be input to the filter
++   * \param data_out A reference to the data output location
++   * This funciton must be implemented in the derived class.
++   */
++  virtual bool update(const std::vector<T>& data_in, std::vector<T>& data_out)=0;
++
++  virtual bool update(const T& /*data_in*/, T& /*data_out*/)
++  {
++    ROS_ERROR("THIS IS A MULTI FILTER DON'T CALL SINGLE FORM OF UPDATE");
++    return false;
++  };
++
++
++protected:
++  using FilterBase<T>::configured_;
++  using FilterBase<T>::filter_type_;
++  using FilterBase<T>::filter_name_;
++
++  /// How many parallel inputs for which the filter is to be configured
++  unsigned int number_of_channels_;
++  
++
++};
++
++}
++#endif //#ifndef FILTERS_FILTER_BASE_HPP_
+--- /dev/null
++++ ros-noetic-filters-1.9.2/include/filters/filter_chain.h
+@@ -0,0 +1,46 @@
++/*
++ * Software License Agreement (BSD License)
++ *
++ * Copyright (c) 2020, Open Source Robotics Foundation, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the copyright holders nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#ifndef FILTERS__FILTER_CHAIN_H_
++#define FILTERS__FILTER_CHAIN_H_
++
++#ifdef _MSC_VER
++#pragma message("Including header <filters/filter_chain.h> is deprecated,")
++#pragma message("include <filters/filter_chain.hpp> instead.")
++#else
++// *INDENT-OFF* (prevent uncrustify from adding indention below)
++#warning Including header <filters/filter_chain.h> is deprecated, \
++include <filters/filter_chain.hpp> instead.
++#endif
++
++#include "./filter_chain.hpp"
++
++#endif  // FILTERS__FILTER_CHAIN_H_
+--- /dev/null
++++ ros-noetic-filters-1.9.2/include/filters/filter_chain.hpp
+@@ -0,0 +1,521 @@
++/*
++ * Copyright (c) 2008, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#ifndef FILTERS_FILTER_CHAIN_HPP_
++#define FILTERS_FILTER_CHAIN_HPP_
++
++#include "ros/ros.h"
++#include "filters/filter_base.hpp"
++#include <pluginlib/class_loader.h>
++#include <memory>
++#include <sstream>
++#include <vector>
++
++namespace filters
++{
++
++/** \brief A class which will construct and sequentially call Filters according to xml
++ * This is the primary way in which users are expected to interact with Filters
++ */
++template <typename T>
++class FilterChain
++{
++private:
++  pluginlib::ClassLoader<filters::FilterBase<T> > loader_;
++public:
++  /** \brief Create the filter chain object */
++  FilterChain(std::string data_type): loader_("filters", std::string("filters::FilterBase<") + data_type + std::string(">")), configured_(false)
++  {
++    std::string lib_string = "";
++    std::vector<std::string> libs = loader_.getDeclaredClasses();
++    for (unsigned int i = 0 ; i < libs.size(); i ++)
++    {
++      lib_string = lib_string + std::string(", ") + libs[i];
++    }    
++    ROS_DEBUG("In FilterChain ClassLoader found the following libs: %s", lib_string.c_str());
++  };
++
++  ~FilterChain()
++  {
++    clear();
++
++  };
++
++  /**@brief Configure the filter chain from a configuration stored on the parameter server
++   * @param param_name The name of the filter chain to load
++   * @param node The node handle to use if a different namespace is required
++   */
++  bool configure(std::string param_name, ros::NodeHandle node = ros::NodeHandle())
++  {
++    XmlRpc::XmlRpcValue config;
++    if(node.getParam(param_name + "/filter_chain", config))
++    {
++      std::string resolved_name = node.resolveName(param_name).c_str();
++      ROS_WARN("Filter chains no longer check implicit nested 'filter_chain' parameter.  This node is configured to look directly at '%s'.  Please move your chain description from '%s/filter_chain' to '%s'", resolved_name.c_str(), resolved_name.c_str(), resolved_name.c_str());
++    }
++    else if(!node.getParam(param_name, config))
++    {
++      ROS_DEBUG("Could not load the filter chain configuration from parameter %s, are you sure it was pushed to the parameter server? Assuming that you meant to leave it empty.", param_name.c_str());
++      configured_ = true;
++      return true;
++    }
++    return this->configure(config, node.getNamespace());
++  }
++
++  /** \brief process data through each of the filters added sequentially */
++  bool update(const T& data_in, T& data_out)
++  {
++    unsigned int list_size = reference_pointers_.size();
++    bool result;
++    if (list_size == 0)
++    {
++      data_out = data_in;
++      result = true;
++    }
++    else if (list_size == 1)
++      result = reference_pointers_[0]->update(data_in, data_out);
++    else if (list_size == 2)
++    {
++      result = reference_pointers_[0]->update(data_in, buffer0_);
++      if (result == false) {return false; };//don't keep processing on failure
++      result = result && reference_pointers_[1]->update(buffer0_, data_out);
++    }
++    else
++    {
++      result = reference_pointers_[0]->update(data_in, buffer0_);  //first copy in
++      for (unsigned int i = 1; i <  reference_pointers_.size() - 1; i++) // all but first and last (never called if size=2)
++      {
++        if (i %2 == 1)
++          result = result && reference_pointers_[i]->update(buffer0_, buffer1_);
++        else
++          result = result && reference_pointers_[i]->update(buffer1_, buffer0_);
++        
++        if (result == false) {return false; }; //don't keep processing on failure
++      }
++      if (list_size % 2 == 1) // odd number last deposit was in buffer1
++        result = result && reference_pointers_.back()->update(buffer1_, data_out);
++      else
++        result = result && reference_pointers_.back()->update(buffer0_, data_out);
++    }
++    return result;
++    
++  };
++  /** \brief Clear all filters from this chain */
++  bool clear() 
++  {
++    configured_ = false;
++    reference_pointers_.clear();
++    return true;
++  };
++  
++
++
++
++  /** \brief Configure the filter chain 
++   * This will call configure on all filters which have been added */
++  bool configure(XmlRpc::XmlRpcValue& config, const std::string& filter_ns)
++  {
++    /*************************** Parse the XmlRpcValue ***********************************/
++    //Verify proper naming and structure    
++    if (config.getType() != XmlRpc::XmlRpcValue::TypeArray)
++    {
++      ROS_ERROR("%s: The filter chain specification must be a list. but is of of XmlRpcType %d", filter_ns.c_str(), config.getType());
++      ROS_ERROR("The xml passed in is formatted as follows:\n %s", config.toXml().c_str());
++
++      return false;
++    }
++
++    //Iterate over all filter in filters (may be just one)
++    for (int i = 0; i < config.size(); ++i)
++    {
++      if(config[i].getType() != XmlRpc::XmlRpcValue::TypeStruct)
++      {
++        ROS_ERROR("%s: Filters must be specified as maps, but they are XmlRpcType:%d", filter_ns.c_str(), config[i].getType());
++        return false;
++      }
++      else if (!config[i].hasMember("type"))
++      {
++        ROS_ERROR("%s: Could not add a filter because no type was given", filter_ns.c_str());
++        return false;
++      }
++      else if (!config[i].hasMember("name"))
++      {
++        ROS_ERROR("%s: Could not add a filter because no name was given", filter_ns.c_str());
++        return false;
++      }
++      else
++      {
++        //Check for name collisions within the list itself.
++        for (int j = i + 1; j < config.size(); ++j)
++        {
++          if(config[j].getType() != XmlRpc::XmlRpcValue::TypeStruct)
++          {
++            ROS_ERROR("%s: Filters must be specified as maps, but they are XmlRpcType:%d", filter_ns.c_str(), config[j].getType());
++            return false;
++          }
++
++          if(!config[j].hasMember("name")
++              ||config[i]["name"].getType() != XmlRpc::XmlRpcValue::TypeString
++              || config[j]["name"].getType() != XmlRpc::XmlRpcValue::TypeString)
++          {
++            ROS_ERROR("%s: Filters names must be strings, but they are XmlRpcTypes:%d and %d", filter_ns.c_str(), config[i].getType(), config[j].getType());
++            return false;
++          }
++
++          std::string namei = config[i]["name"];
++          std::string namej = config[j]["name"];
++          if (namei == namej)
++          {
++            ROS_ERROR("%s: A self_filter with the name %s already exists", filter_ns.c_str(), namei.c_str());
++            return false;
++          }
++        }
++
++
++	if (std::string(config[i]["type"]).find("/") == std::string::npos)
++	  {
++	    ROS_ERROR("Bad filter type %s. Filter type must be of form <package_name>/<filter_name>", std::string(config[i]["type"]).c_str());
++        return false;
++	  }
++	//Make sure the filter chain has a valid type
++	std::vector<std::string> libs = loader_.getDeclaredClasses();
++	bool found = false;
++	for (std::vector<std::string>::iterator it = libs.begin(); it != libs.end(); ++it)
++	  {
++	    if (*it == std::string(config[i]["type"]))
++	      {
++		found = true;
++		break;
++	      }
++	  }
++	if (!found)
++	  {
++	    ROS_ERROR("Couldn't find filter of type %s", std::string(config[i]["type"]).c_str());
++	    return false;
++	  }
++	
++      }
++    }
++    
++
++    bool result = true;    
++
++       
++    for (int i = 0; i < config.size(); ++i)
++    {
++      // The unmanaged instance created here is later passed to std::shared_ptr
++      // to handle its lifetime (this is done because pluginlib does not support
++      // creating std::shared_ptr pointers).
++      auto p(loader_.createUnmanagedInstance(config[i]["type"]));
++      if (p == nullptr)
++        return false;
++      std::shared_ptr<filters::FilterBase<T>> ptr(p);
++      result = result &&  ptr->configure(config[i]);    
++      reference_pointers_.push_back(ptr);
++      std::string type = config[i]["type"];
++      std::string name = config[i]["name"];
++      ROS_DEBUG("%s: Configured %s:%s filter at %p\n", filter_ns.c_str(), type.c_str(),
++                name.c_str(),  p);
++    }
++    
++    if (result == true)
++    {
++      configured_ = true;
++    }
++    return result;
++  };
++
++  /** \brief Return a copy of the vector of loaded filters (the pointers point
++   * to the actual filters used by the chain). */
++  std::vector<std::shared_ptr<filters::FilterBase<T>>> getFilters() const
++  {
++    return reference_pointers_;
++  }
++
++private:
++
++  std::vector<std::shared_ptr<filters::FilterBase<T>>> reference_pointers_;   ///<! A vector of pointers to currently constructed filters
++
++  T buffer0_; ///<! A temporary intermediate buffer
++  T buffer1_; ///<! A temporary intermediate buffer
++  bool configured_; ///<! whether the system is configured  
++
++};
++
++/** \brief A class which will construct and sequentially call Filters according to xml
++ * This is the primary way in which users are expected to interact with Filters
++ */
++template <typename T>
++class MultiChannelFilterChain
++{
++private:
++  pluginlib::ClassLoader<filters::MultiChannelFilterBase<T> > loader_;
++public:
++  /** \brief Create the filter chain object */
++  MultiChannelFilterChain(std::string data_type): loader_("filters", std::string("filters::MultiChannelFilterBase<") + data_type + std::string(">")), configured_(false)
++  {
++    std::string lib_string = "";
++    std::vector<std::string> libs = loader_.getDeclaredClasses();
++    for (unsigned int i = 0 ; i < libs.size(); i ++)
++    {
++      lib_string = lib_string + std::string(", ") + libs[i];
++    }    
++    ROS_DEBUG("In MultiChannelFilterChain ClassLoader found the following libs: %s", lib_string.c_str());
++  };
++
++  /**@brief Configure the filter chain from a configuration stored on the parameter server
++   * @param param_name The name of the filter chain to load
++   * @param node The node handle to use if a different namespace is required
++   */
++  bool configure(unsigned int size, std::string param_name, ros::NodeHandle node = ros::NodeHandle())
++  {
++    XmlRpc::XmlRpcValue config;
++    if(node.getParam(param_name + "/filter_chain", config))
++    {
++      std::string resolved_name = node.resolveName(param_name).c_str();
++      ROS_WARN("Filter chains no longer check implicit nested 'filter_chain' parameter.  This node is configured to look directly at '%s'.  Please move your chain description from '%s/filter_chain' to '%s'", resolved_name.c_str(), resolved_name.c_str(), resolved_name.c_str());
++    }
++    else if(!node.getParam(param_name, config))
++    {
++      ROS_ERROR("Could not load the configuration for %s, are you sure it was pushed to the parameter server? Assuming that you meant to leave it blank.", param_name.c_str());
++      /********************** Do the allocation *********************/
++      buffer0_.resize(size);
++      buffer1_.resize(size);
++      configured_ = true;
++      return false;
++    }
++    return this->configure(size, config);
++  }
++
++  /** \brief process data through each of the filters added sequentially */
++  bool update(const std::vector<T>& data_in, std::vector<T>& data_out)
++  {
++    unsigned int list_size = reference_pointers_.size();
++    bool result;
++    if (list_size == 0)
++    {
++      data_out = data_in;
++      result = true;
++    }
++    else if (list_size == 1)
++      result = reference_pointers_[0]->update(data_in, data_out);
++    else if (list_size == 2)
++    {
++      result = reference_pointers_[0]->update(data_in, buffer0_);
++      if (result == false) {return false; };//don't keep processing on failure
++      result = result && reference_pointers_[1]->update(buffer0_, data_out);
++    }
++    else
++    {
++      result = reference_pointers_[0]->update(data_in, buffer0_);  //first copy in
++      for (unsigned int i = 1; i <  reference_pointers_.size() - 1; i++) // all but first and last (never if size = 2)
++      {
++        if (i %2 == 1)
++          result = result && reference_pointers_[i]->update(buffer0_, buffer1_);
++        else
++          result = result && reference_pointers_[i]->update(buffer1_, buffer0_);
++
++        if (result == false) {return false; }; //don't keep processing on failure
++      }
++      if (list_size % 2 == 1) // odd number last deposit was in buffer1
++        result = result && reference_pointers_.back()->update(buffer1_, data_out);
++      else
++        result = result && reference_pointers_.back()->update(buffer0_, data_out);
++    }
++    return result;
++            
++  };
++
++
++  ~MultiChannelFilterChain()
++  {
++    clear();
++
++  };
++
++  /** \brief Clear all filters from this chain */
++  bool clear() 
++  {
++    configured_ = false;
++    reference_pointers_.clear();
++    buffer0_.clear();
++    buffer1_.clear();
++    return true;
++  };
++  
++
++
++  /** \brief Configure the filter chain 
++   * This will call configure on all filters which have been added
++   * as well as allocate the buffers*/
++  bool configure(unsigned int size, XmlRpc::XmlRpcValue& config)
++  {
++    /*************************** Parse the XmlRpcValue ***********************************/
++    //Verify proper naming and structure    
++    if (config.getType() != XmlRpc::XmlRpcValue::TypeArray)
++    {
++      ROS_ERROR("The filter chain specification must be a list. but is of of XmlRpcType %d", config.getType());
++      ROS_ERROR("The xml passed in is formatted as follows:\n %s", config.toXml().c_str());
++
++      return false;
++    }
++
++    //Iterate over all filter in filters (may be just one)
++    for (int i = 0; i < config.size(); ++i)
++    {
++      if(config[i].getType() != XmlRpc::XmlRpcValue::TypeStruct)
++      {
++        ROS_ERROR("Filters must be specified as maps, but they are XmlRpcType:%d", config[i].getType());
++        return false;
++      }
++      else if (!config[i].hasMember("type"))
++      {
++        ROS_ERROR("Could not add a filter because no type was given");
++        return false;
++      }
++      else if (!config[i].hasMember("name"))
++      {
++        ROS_ERROR("Could not add a filter because no name was given");
++        return false;
++      }
++      else
++      {
++        //Check for name collisions within the list itself.
++        for (int j = i + 1; j < config.size(); ++j)
++        {
++          if(config[j].getType() != XmlRpc::XmlRpcValue::TypeStruct)
++          {
++            ROS_ERROR("Filters must be specified as maps");
++            return false;
++          }
++
++          if(!config[j].hasMember("name")
++              ||config[i]["name"].getType() != XmlRpc::XmlRpcValue::TypeString
++              || config[j]["name"].getType() != XmlRpc::XmlRpcValue::TypeString)
++          {
++            ROS_ERROR("Filters names must be strings");
++            return false;
++          }
++
++          std::string namei = config[i]["name"];
++          std::string namej = config[j]["name"];
++          if (namei == namej)
++          {
++            std::string name = config[i]["name"];
++            ROS_ERROR("A self_filter with the name %s already exists", name.c_str());
++            return false;
++          }
++        }
++	//CHeck for backwards compatible declarations
++	if (std::string(config[i]["type"]).find("/") == std::string::npos)
++	  {
++	    ROS_WARN("Deprecation Warning: No '/' detected in FilterType, Please update to 1.2 plugin syntax. ");
++	    std::vector<std::string> libs = loader_.getDeclaredClasses();
++	    for (std::vector<std::string>::iterator it = libs.begin(); it != libs.end(); ++it)
++	      {
++		size_t position =  it->find(std::string(config[i]["type"]));
++		if (position != std::string::npos)
++		  {
++		    ROS_WARN("Replaced %s with %s", std::string(config[i]["type"]).c_str(), it->c_str());
++		    config[i]["type"] = *it;
++		  }
++	      }
++	  }
++	//Make sure the filter chain has a valid type
++	std::vector<std::string> libs = loader_.getDeclaredClasses();
++	bool found = false;
++	for (std::vector<std::string>::iterator it = libs.begin(); it != libs.end(); ++it)
++	  {
++	    if (*it == std::string(config[i]["type"]))
++	      {
++		found = true;
++		break;
++	      }
++	  }
++	if (!found)
++	  {
++	    ROS_ERROR("Couldn't find filter of type %s", std::string(config[i]["type"]).c_str());
++	    return false;
++	  }
++	
++	
++      }
++    }
++
++    /********************** Do the allocation *********************/
++    buffer0_.resize(size);
++    buffer1_.resize(size);
++
++    bool result = true;    
++
++       
++    for (int i = 0; i < config.size(); ++i)
++    {
++      // The unmanaged instance created here is later passed to std::shared_ptr
++      // to handle its lifetime (this is done because pluginlib does not support
++      // creating std::shared_ptr pointers).
++      auto p(loader_.createUnmanagedInstance(config[i]["type"]));
++      if (p == nullptr)
++        return false;
++      std::shared_ptr<filters::MultiChannelFilterBase<T>> ptr(p);
++      result = result &&  ptr->configure(size, config[i]);    
++      reference_pointers_.push_back(ptr);
++      std::string type = config[i]["type"];
++      std::string name = config[i]["name"];
++      ROS_DEBUG("Configured %s:%s filter at %p\n", type.c_str(),
++                name.c_str(),  p);
++    }
++    
++    if (result == true)
++    {
++      configured_ = true;
++    }
++    return result;
++  };
++
++  /** \brief Return a copy of the vector of loaded filters (the pointers point
++   * to the actual filters used by the chain). */
++  std::vector<std::shared_ptr<filters::MultiChannelFilterBase<T>>> getFilters() const
++  {
++    return reference_pointers_;
++  }
++
++private:
++
++  std::vector<std::shared_ptr<filters::MultiChannelFilterBase<T>>> reference_pointers_;   ///<! A vector of pointers to currently constructed filters
++
++  std::vector<T> buffer0_; ///<! A temporary intermediate buffer
++  std::vector<T> buffer1_; ///<! A temporary intermediate buffer
++  bool configured_; ///<! whether the system is configured  
++
++};
++
++}
++
++#endif //#ifndef FILTERS_FILTER_CHAIN_HPP_
+--- /dev/null
++++ ros-noetic-filters-1.9.2/include/filters/increment.h
+@@ -0,0 +1,46 @@
++/*
++ * Software License Agreement (BSD License)
++ *
++ * Copyright (c) 2020, Open Source Robotics Foundation, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the copyright holders nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#ifndef FILTERS__INCREMENT_H_
++#define FILTERS__INCREMENT_H_
++
++#ifdef _MSC_VER
++#pragma message("Including header <filters/increment.h> is deprecated,")
++#pragma message("include <filters/increment.hpp> instead.")
++#else
++// *INDENT-OFF* (prevent uncrustify from adding indention below)
++#warning Including header <filters/increment.h> is deprecated, \
++include <filters/increment.hpp> instead.
++#endif
++
++#include "./increment.hpp"
++
++#endif  // FILTERS__INCREMENT_H_
+--- /dev/null
++++ ros-noetic-filters-1.9.2/include/filters/increment.hpp
+@@ -0,0 +1,161 @@
++/*
++ * Copyright (c) 2009, Willow Garage, Inc.
++ * All rights reserved.
++ * 
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ * 
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ * 
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#ifndef FILTERS_MEAN_HPP_
++#define FILTERS_MEAN_HPP_
++
++#include <stdint.h>
++#include <cstring>
++#include <stdio.h>
++
++#include "filters/filter_base.hpp"
++
++namespace filters
++{
++
++/** \brief A increment filter which works on doubles.
++ *
++ */
++template <typename T>
++class IncrementFilter: public FilterBase <T>
++{
++public:
++  /** \brief Construct the filter with the expected width and height */
++  IncrementFilter();
++
++  /** \brief Destructor to clean up
++   */
++  ~IncrementFilter();
++
++  virtual bool configure();
++
++  /** \brief Update the filter and return the data seperately
++   * \param data_in T array with length width
++   * \param data_out T array with length width
++   */
++  virtual bool update( const T & data_in, T& data_out);
++  
++};
++
++
++template <typename T>
++IncrementFilter<T>::IncrementFilter()
++{
++}
++
++template <typename T>
++bool IncrementFilter<T>::configure()
++{
++    
++  return true;
++}
++
++template <typename T>
++IncrementFilter<T>::~IncrementFilter()
++{
++}
++
++
++template <typename T>
++bool IncrementFilter<T>::update(const T & data_in, T& data_out)
++{
++  data_out = data_in + 1;  
++
++  return true;
++}
++
++/** \brief A increment filter which works on arrays.
++ *
++ */
++template <typename T>
++class MultiChannelIncrementFilter: public MultiChannelFilterBase <T>
++{
++public:
++  /** \brief Construct the filter with the expected width and height */
++  MultiChannelIncrementFilter();
++
++  /** \brief Destructor to clean up
++   */
++  ~MultiChannelIncrementFilter();
++
++  virtual bool configure();
++
++  /** \brief Update the filter and return the data seperately
++   * \param data_in T array with length width
++   * \param data_out T array with length width
++   */
++  virtual bool update( const std::vector<T> & data_in, std::vector<T>& data_out);
++  
++protected:
++  using MultiChannelFilterBase<T>::number_of_channels_;           ///< Number of elements per observation
++
++  
++  
++};
++
++
++template <typename T>
++MultiChannelIncrementFilter<T>::MultiChannelIncrementFilter()
++{
++}
++
++template <typename T>
++bool MultiChannelIncrementFilter<T>::configure()
++{
++  
++  return true;
++}
++
++template <typename T>
++MultiChannelIncrementFilter<T>::~MultiChannelIncrementFilter()
++{
++}
++
++
++template <typename T>
++bool MultiChannelIncrementFilter<T>::update(const std::vector<T> & data_in, std::vector<T>& data_out)
++{
++  if (data_in.size() != number_of_channels_ || data_out.size() != number_of_channels_)
++  {
++    ROS_ERROR("Configured with wrong size config:%d in:%d out:%d", number_of_channels_, (int)data_in.size(), (int)data_out.size());
++    return false;
++  }
++
++
++  //Return each value
++  for (uint32_t i = 0; i < number_of_channels_; i++)
++  {
++    data_out[i] = data_in[i] + 1;
++  }
++
++  return true;
++}
++
++}
++#endif// FILTERS_INCREMENT_HPP_
+--- /dev/null
++++ ros-noetic-filters-1.9.2/include/filters/mean.h
+@@ -0,0 +1,46 @@
++/*
++ * Software License Agreement (BSD License)
++ *
++ * Copyright (c) 2020, Open Source Robotics Foundation, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the copyright holders nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#ifndef FILTERS__MEAN_H_
++#define FILTERS__MEAN_H_
++
++#ifdef _MSC_VER
++#pragma message("Including header <filters/mean.h> is deprecated,")
++#pragma message("include <filters/mean.hpp> instead.")
++#else
++// *INDENT-OFF* (prevent uncrustify from adding indention below)
++#warning Including header <filters/mean.h> is deprecated, \
++include <filters/mean.hpp> instead.
++#endif
++
++#include "./mean.hpp"
++
++#endif  // FILTERS__MEAN_H_
+--- /dev/null
++++ ros-noetic-filters-1.9.2/include/filters/mean.hpp
+@@ -0,0 +1,229 @@
++/*
++ * Copyright (c) 2009, Willow Garage, Inc.
++ * All rights reserved.
++ * 
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ * 
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ * 
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#ifndef FILTERS_MEAN_HPP_
++#define FILTERS_MEAN_HPP_
++
++#include <stdint.h>
++#include <cstring>
++#include <stdio.h>
++
++#include <memory>
++
++#include "filters/filter_base.hpp"
++#include "ros/assert.h"
++
++#include "filters/realtime_circular_buffer.hpp"
++
++namespace filters
++{
++
++/** \brief A mean filter which works on doubles.
++ *
++ */
++template <typename T>
++class MeanFilter: public FilterBase <T>
++{
++public:
++  /** \brief Construct the filter with the expected width and height */
++  MeanFilter();
++
++  /** \brief Destructor to clean up
++   */
++  ~MeanFilter();
++
++  virtual bool configure();
++
++  /** \brief Update the filter and return the data seperately
++   * \param data_in T array with length width
++   * \param data_out T array with length width
++   */
++  virtual bool update( const T & data_in, T& data_out);
++  
++protected:
++  std::unique_ptr<RealtimeCircularBuffer<T > > data_storage_; ///< Storage for data between updates
++  uint32_t last_updated_row_;                     ///< The last row to have been updated by the filter
++  T temp_; /// Temporary storage
++  uint32_t number_of_observations_;             ///< Number of observations over which to filter
++  
++};
++
++
++template <typename T>
++MeanFilter<T>::MeanFilter():
++  number_of_observations_(0)
++{
++}
++
++template <typename T>
++bool MeanFilter<T>::configure()
++{
++  
++  if (!FilterBase<T>::getParam(std::string("number_of_observations"), number_of_observations_))
++  {
++    ROS_ERROR("MeanFilter did not find param number_of_observations");
++    return false;
++  }
++  
++  data_storage_.reset(new RealtimeCircularBuffer<T >(number_of_observations_, temp_));
++
++  return true;
++}
++
++template <typename T>
++MeanFilter<T>::~MeanFilter()
++{
++}
++
++
++template <typename T>
++bool MeanFilter<T>::update(const T & data_in, T& data_out)
++{
++  //update active row
++  if (last_updated_row_ >= number_of_observations_ - 1)
++    last_updated_row_ = 0;
++  else
++    last_updated_row_++;
++
++  data_storage_->push_back(data_in);
++
++
++  unsigned int length = data_storage_->size();
++  
++  data_out = 0;
++  for (uint32_t row = 0; row < length; row ++)
++  {
++    data_out += data_storage_->at(row);
++  }
++  data_out /= length;
++  
++
++  return true;
++}
++
++/** \brief A mean filter which works on double arrays.
++ *
++ */
++template <typename T>
++class MultiChannelMeanFilter: public MultiChannelFilterBase <T>
++{
++public:
++  /** \brief Construct the filter with the expected width and height */
++  MultiChannelMeanFilter();
++
++  /** \brief Destructor to clean up
++   */
++  ~MultiChannelMeanFilter();
++
++  virtual bool configure();
++
++  /** \brief Update the filter and return the data seperately
++   * \param data_in T array with length width
++   * \param data_out T array with length width
++   */
++  virtual bool update( const std::vector<T> & data_in, std::vector<T>& data_out);
++  
++protected:
++  std::unique_ptr<RealtimeCircularBuffer<std::vector<T> > > data_storage_; ///< Storage for data between updates
++  uint32_t last_updated_row_;                     ///< The last row to have been updated by the filter
++
++  std::vector<T> temp;  //used for preallocation and copying from non vector source
++
++  uint32_t number_of_observations_;             ///< Number of observations over which to filter
++  using MultiChannelFilterBase<T>::number_of_channels_;           ///< Number of elements per observation
++
++  
++  
++};
++
++
++template <typename T>
++MultiChannelMeanFilter<T>::MultiChannelMeanFilter():
++  number_of_observations_(0)
++{
++}
++
++template <typename T>
++bool MultiChannelMeanFilter<T>::configure()
++{
++  
++  if (!FilterBase<T>::getParam("number_of_observations", number_of_observations_))
++  {
++    ROS_ERROR("MultiChannelMeanFilter did not find param number_of_observations");
++    return false;
++  }
++  
++  temp.resize(number_of_channels_);
++  data_storage_.reset(new RealtimeCircularBuffer<std::vector<T> >(number_of_observations_, temp));
++
++  return true;
++}
++
++template <typename T>
++MultiChannelMeanFilter<T>::~MultiChannelMeanFilter()
++{
++}
++
++
++template <typename T>
++bool MultiChannelMeanFilter<T>::update(const std::vector<T> & data_in, std::vector<T>& data_out)
++{
++  if (data_in.size() != number_of_channels_ || data_out.size() != number_of_channels_)
++  {
++    ROS_ERROR("Configured with wrong size config:%d in:%d out:%d", number_of_channels_, (int)data_in.size(), (int)data_out.size());
++    return false;
++  }
++
++  //update active row
++  if (last_updated_row_ >= number_of_observations_ - 1)
++    last_updated_row_ = 0;
++  else
++    last_updated_row_++;
++
++  data_storage_->push_back(data_in);
++
++
++  unsigned int length = data_storage_->size();
++  
++  //Return each value
++  for (uint32_t i = 0; i < number_of_channels_; i++)
++  {
++    data_out[i] = 0;
++    for (uint32_t row = 0; row < length; row ++)
++    {
++      data_out[i] += data_storage_->at(row)[i];
++    }
++    data_out[i] /= length;
++  }
++
++  return true;
++}
++
++}
++#endif// FILTERS_MEAN_HPP_
+--- /dev/null
++++ ros-noetic-filters-1.9.2/include/filters/median.h
+@@ -0,0 +1,46 @@
++/*
++ * Software License Agreement (BSD License)
++ *
++ * Copyright (c) 2020, Open Source Robotics Foundation, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the copyright holders nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#ifndef FILTERS__MEDIAN_H_
++#define FILTERS__MEDIAN_H_
++
++#ifdef _MSC_VER
++#pragma message("Including header <filters/median.h> is deprecated,")
++#pragma message("include <filters/median.hpp> instead.")
++#else
++// *INDENT-OFF* (prevent uncrustify from adding indention below)
++#warning Including header <filters/median.h> is deprecated, \
++include <filters/median.hpp> instead.
++#endif
++
++#include "./median.hpp"
++
++#endif  // FILTERS__MEDIAN_H_
+--- /dev/null
++++ ros-noetic-filters-1.9.2/include/filters/median.hpp
+@@ -0,0 +1,270 @@
++/*
++ * Copyright (c) 2009, Willow Garage, Inc.
++ * All rights reserved.
++ * 
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ * 
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ * 
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#ifndef FILTERS_MEDIAN_HPP_
++#define FILTERS_MEDIAN_HPP_
++
++#include <stdint.h>
++#include <sstream>
++#include <cstdio>
++
++#include <memory>
++
++#include "filters/filter_base.hpp"
++
++#include "filters/realtime_circular_buffer.hpp"
++
++
++/*********************************************************************/
++/*
++ * Algorithm from N. Wirth's book, implementation by N. Devillard.
++ * This code in public domain.
++ */
++#define ELEM_SWAP(a,b) { register elem_type t=(a);(a)=(b);(b)=t; }
++
++namespace filters
++{
++/*---------------------------------------------------------------------------
++  Function : kth_smallest()
++  In : array of elements, # of elements in the array, rank k
++  Out : one element
++  Job : find the kth smallest element in the array
++  Notice : use the median() macro defined below to get the median.
++  Reference:
++  Author: Wirth, Niklaus
++  Title: Algorithms + data structures = programs
++  Publisher: Englewood Cliffs: Prentice-Hall, 1976
++  Physical description: 366 p.
++  Series: Prentice-Hall Series in Automatic Computation
++  ---------------------------------------------------------------------------*/
++template <typename elem_type>
++elem_type kth_smallest(elem_type a[], int n, int k)
++{
++  register int i,j,l,m ;
++  register elem_type x ;
++  l=0 ; m=n-1 ;
++  while (l<m) {
++    x=a[k] ;
++    i=l ;
++    j=m ;
++    do {
++      while (a[i]<x) i++ ;
++      while (x<a[j]) j-- ;
++      if (i<=j) {
++        ELEM_SWAP(a[i],a[j]) ;
++        i++ ; j-- ;
++      }
++    } while (i<=j) ;
++    if (j<k) l=i ;
++    if (k<i) m=j ;
++  }
++  return a[k] ;
++}
++#define median(a,n) kth_smallest(a,n,(((n)&1)?((n)/2):(((n)/2)-1)))
++#undef ELEM_SWAP
++
++
++/** \brief A median filter which works on arrays.
++ *
++ */
++template <typename T>
++class MedianFilter: public filters::FilterBase <T>
++{
++public:
++  /** \brief Construct the filter with the expected width and height */
++  MedianFilter();
++
++  /** \brief Destructor to clean up
++   */
++  ~MedianFilter();
++
++  virtual bool configure();
++
++  /** \brief Update the filter and return the data seperately
++   * \param data_in double array with length width
++   * \param data_out double array with length width
++   */
++  virtual bool update(const T& data_in, T& data_out);
++  
++protected:
++  std::vector<T> temp_storage_;                       ///< Preallocated storage for the list to sort
++  std::unique_ptr<RealtimeCircularBuffer<T > > data_storage_;                       ///< Storage for data between updates
++  
++  T temp;  //used for preallocation and copying from non vector source
++
++
++  uint32_t number_of_observations_;             ///< Number of observations over which to filter
++
++};
++
++template <typename T>
++MedianFilter<T>::MedianFilter():
++  number_of_observations_(0)
++{
++  
++}
++
++template <typename T>
++MedianFilter<T>::~MedianFilter()
++{
++}
++
++
++template <typename T>
++bool MedianFilter<T>::configure()
++{
++  int no_obs = -1;
++  if (!FilterBase<T>::getParam(std::string("number_of_observations"), no_obs))
++  {
++    fprintf(stderr, "Error: MedianFilter was not given params.\n");
++    return false;
++  }
++  number_of_observations_ = no_obs;
++    
++  data_storage_.reset( new RealtimeCircularBuffer<T >(number_of_observations_, temp));
++  temp_storage_.resize(number_of_observations_);
++  
++  return true;
++}
++
++template <typename T>
++bool MedianFilter<T>::update(const T& data_in, T& data_out)
++{
++  if (!FilterBase<T>::configured_)
++    return false;
++
++  data_storage_->push_back(data_in);
++
++
++  unsigned int length = data_storage_->size();
++ 
++
++  for (uint32_t row = 0; row < length; row ++)
++  {
++    temp_storage_[row] = (*data_storage_)[row];
++  }
++  data_out = median(&temp_storage_[0], length);
++  
++
++  return true;
++}
++/** \brief A median filter which works on arrays.
++ *
++ */
++template <typename T>
++class MultiChannelMedianFilter: public filters::MultiChannelFilterBase <T>
++{
++public:
++  /** \brief Construct the filter with the expected width and height */
++  MultiChannelMedianFilter();
++
++  /** \brief Destructor to clean up
++   */
++  ~MultiChannelMedianFilter();
++
++  virtual bool configure();
++
++  /** \brief Update the filter and return the data seperately
++   * \param data_in double array with length width
++   * \param data_out double array with length width
++   */
++  virtual bool update(const std::vector<T>& data_in, std::vector<T>& data_out);
++  
++protected:
++  std::vector<T> temp_storage_;                       ///< Preallocated storage for the list to sort
++  std::unique_ptr<RealtimeCircularBuffer<std::vector<T> > > data_storage_;                       ///< Storage for data between updates
++  
++  std::vector<T> temp;  //used for preallocation and copying from non vector source
++
++
++  uint32_t number_of_observations_;             ///< Number of observations over which to filter
++
++};
++
++template <typename T>
++MultiChannelMedianFilter<T>::MultiChannelMedianFilter():
++  number_of_observations_(0)
++{
++  
++}
++
++template <typename T>
++MultiChannelMedianFilter<T>::~MultiChannelMedianFilter()
++{
++}
++
++
++template <typename T>
++bool MultiChannelMedianFilter<T>::configure()
++{
++  int no_obs = -1;
++  if (!FilterBase<T>::getParam("number_of_observations", no_obs))
++  {
++    fprintf(stderr, "Error: MultiChannelMedianFilter was not given params.\n");
++    return false;
++  }
++  number_of_observations_ = no_obs;
++    
++  temp.resize(this->number_of_channels_);
++  data_storage_.reset( new RealtimeCircularBuffer<std::vector<T> >(number_of_observations_, temp));
++  temp_storage_.resize(number_of_observations_);
++  
++  return true;
++}
++
++template <typename T>
++bool MultiChannelMedianFilter<T>::update(const std::vector<T>& data_in, std::vector<T>& data_out)
++{
++  //  printf("Expecting width %d, got %d and %d\n", width_, data_in.size(),data_out.size());
++  if (data_in.size() != this->number_of_channels_ || data_out.size() != this->number_of_channels_)
++    return false;
++  if (!FilterBase<T>::configured_)
++    return false;
++
++  data_storage_->push_back(data_in);
++
++
++  unsigned int length = data_storage_->size();
++ 
++
++  for (uint32_t i = 0; i < this->number_of_channels_; i++)
++  {
++    for (uint32_t row = 0; row < length; row ++)
++    {
++      temp_storage_[row] = (*data_storage_)[row][i];
++    }
++    data_out[i] = median(&temp_storage_[0], length);
++  }
++
++  return true;
++}
++
++
++}
++#endif// FILTERS_MEDIAN_HPP_
+--- /dev/null
++++ ros-noetic-filters-1.9.2/include/filters/param_test.h
+@@ -0,0 +1,46 @@
++/*
++ * Software License Agreement (BSD License)
++ *
++ * Copyright (c) 2020, Open Source Robotics Foundation, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the copyright holders nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#ifndef FILTERS__PARAM_TEST_H_
++#define FILTERS__PARAM_TEST_H_
++
++#ifdef _MSC_VER
++#pragma message("Including header <filters/param_test.h> is deprecated,")
++#pragma message("include <filters/param_test.hpp> instead.")
++#else
++// *INDENT-OFF* (prevent uncrustify from adding indention below)
++#warning Including header <filters/param_test.h> is deprecated, \
++include <filters/param_test.hpp> instead.
++#endif
++
++#include "./param_test.hpp"
++
++#endif  // FILTERS__PARAM_TEST_H_
+--- /dev/null
++++ ros-noetic-filters-1.9.2/include/filters/param_test.hpp
+@@ -0,0 +1,98 @@
++/*
++ * Copyright (c) 2010, Willow Garage, Inc.
++ * All rights reserved.
++ * 
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ * 
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ * 
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#ifndef FILTERS_PARAM_TEST_HPP_
++#define FILTERS_PARAM_TEST_HPP_
++
++#include <stdint.h>
++#include <cstring>
++#include <stdio.h>
++
++#include "filters/filter_base.hpp"
++#include "ros/assert.h"
++
++
++namespace filters
++{
++
++/** \brief A mean filter which works on doubles.
++ *
++ */
++template <typename T>
++class ParamTest: public FilterBase <T>
++{
++public:
++  /** \brief Construct the filter with the expected width and height */
++  ParamTest();
++
++  /** \brief Destructor to clean up
++   */
++  ~ParamTest();
++
++  virtual bool configure();
++
++  /** \brief Update the filter and return the data seperately
++   * \param data_in T array with length width
++   * \param data_out T array with length width
++   */
++  virtual bool update( const T & data_in, T& data_out);
++  
++protected:
++  
++};
++
++
++template <typename T>
++ParamTest<T>::ParamTest()
++{
++}
++
++template <typename T>
++bool ParamTest<T>::configure()
++{
++  return true;
++}
++
++template <typename T>
++ParamTest<T>::~ParamTest()
++{
++}
++
++
++template <typename T>
++bool ParamTest<T>::update(const T & /*data_in*/, T& data_out)
++{
++  T temp;
++  this->getParam("key", temp);
++  data_out = temp;
++  return true;
++}
++
++}
++#endif
+--- /dev/null
++++ ros-noetic-filters-1.9.2/include/filters/realtime_circular_buffer.h
+@@ -0,0 +1,46 @@
++/*
++ * Software License Agreement (BSD License)
++ *
++ * Copyright (c) 2020, Open Source Robotics Foundation, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the copyright holders nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#ifndef FILTERS__REALTIME_CIRCULAR_BUFFER_H_
++#define FILTERS__REALTIME_CIRCULAR_BUFFER_H_
++
++#ifdef _MSC_VER
++#pragma message("Including header <filters/realtime_circular_buffer.h> is deprecated,")
++#pragma message("include <filters/realtime_circular_buffer.hpp> instead.")
++#else
++// *INDENT-OFF* (prevent uncrustify from adding indention below)
++#warning Including header <filters/realtime_circular_buffer.h> is deprecated, \
++include <filters/realtime_circular_buffer.hpp> instead.
++#endif
++
++#include "./realtime_circular_buffer.hpp"
++
++#endif  // FILTERS__REALTIME_CIRCULAR_BUFFER_H_
+--- /dev/null
++++ ros-noetic-filters-1.9.2/include/filters/realtime_circular_buffer.hpp
+@@ -0,0 +1,106 @@
++/*
++ * Copyright (c) 2008, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++///\author Tully Foote tfoote@willowgarage.com
++
++#ifndef FILTERS_REALTIME_CIRCULAR_BUFFER_HPP_
++#define FILTERS_REALTIME_CIRCULAR_BUFFER_HPP_
++
++#include <stdint.h>
++#include <vector>
++
++#include <algorithm>
++#include <boost/circular_buffer.hpp>
++
++namespace filters
++{
++
++/** \brief A realtime safe circular (ring) buffer.
++ */
++template <typename T>
++class RealtimeCircularBuffer
++{
++private:
++  RealtimeCircularBuffer();
++
++public:
++  RealtimeCircularBuffer(int size, const T& default_val):
++    counter_(0), cb_(size)
++  {
++    for (unsigned int i = 0; i < cb_.capacity(); i++)
++    {
++      cb_.push_back(default_val);
++    }
++  };
++
++  void push_back(const T& item)
++  {
++    if (cb_.capacity() == 0) return;
++
++    if ( counter_ < cb_.size()) 
++    {
++      cb_[counter_] = item; 
++    }
++    else 
++      cb_.push_back(item);
++    counter_ ++;
++  };
++  
++  void push_front(const T& item)
++  {
++    if (cb_.capacity() == 0) return;
++    cb_.push_front(item);
++    counter_ ++;
++  };
++  
++  void clear() { counter_ = 0;};
++
++  void set_capacity(unsigned int order, const T& value);
++  
++  T& front(){return cb_.front();};
++  T& back()
++  {
++    if (counter_ < cb_.size()) 
++      return cb_[counter_]; 
++    else 
++      return cb_.back();
++  };
++  
++  unsigned int size(){  return std::min(counter_, (unsigned int)cb_.size());};
++  bool empty(){return cb_.empty();};
++  T& at(size_t index){return cb_.at(index);};
++  T& operator[](size_t index){return cb_[index];}
++private:
++
++  unsigned int counter_; //<! special counter to keep track of first N times through
++
++  boost::circular_buffer<T> cb_;
++};
++} //namespace filters
++#endif //#ifndef REALTIME_CIRCULAR_BUFFER_HPP_
+--- /dev/null
++++ ros-noetic-filters-1.9.2/include/filters/transfer_function.h
+@@ -0,0 +1,46 @@
++/*
++ * Software License Agreement (BSD License)
++ *
++ * Copyright (c) 2020, Open Source Robotics Foundation, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the copyright holders nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#ifndef FILTERS__TRANSFER_FUNCTION_H_
++#define FILTERS__TRANSFER_FUNCTION_H_
++
++#ifdef _MSC_VER
++#pragma message("Including header <filters/transfer_function.h> is deprecated,")
++#pragma message("include <filters/transfer_function.hpp> instead.")
++#else
++// *INDENT-OFF* (prevent uncrustify from adding indention below)
++#warning Including header <filters/transfer_function.h> is deprecated, \
++include <filters/transfer_function.hpp> instead.
++#endif
++
++#include "./transfer_function.hpp"
++
++#endif  // FILTERS__TRANSFER_FUNCTION_H_
+--- /dev/null
++++ ros-noetic-filters-1.9.2/include/filters/transfer_function.hpp
+@@ -0,0 +1,352 @@
++/*
++ * Copyright (c) 2008, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++// Original version: Melonee Wise <mwise@willowgarage.com>
++
++#ifndef FILTERS_TRANSFER_FUNCTION_HPP_
++#define FILTERS_TRANSFER_FUNCTION_HPP_
++
++#include <stdint.h>
++#include <math.h>
++#include <memory>
++#include <vector>
++#include <string>
++
++#include "filters/filter_base.hpp"
++#include "filters/realtime_circular_buffer.hpp"
++
++namespace filters
++{
++
++/***************************************************/
++/*! \class SingleChannelTransferFunctionFilter
++    \brief One-dimensional digital filter class.
++
++    This class calculates the output for \f$N\f$ one-dimensional
++    digital filters. 
++    The filter is described by vectors \f$a\f$ and \f$b\f$ and
++    implemented using the standard difference equation:<br>
++
++    \f{eqnarray*}
++    a[0]*y[n] = b[0]*x[n] &+& b[1]*x[n-1]+ ... + b[n_b]*x[n-n_b]\\
++                          &-& a[1]*y[n-1]- ... - a[n_a]*y[n-n_a]
++     \f}<br>
++
++
++    If \f$a[0]\f$ is not equal to 1, the coefficients are normalized by \f$a[0]\f$.
++
++    Example xml config:<br>
++
++    <filter type="TransferFunctionFilter" name="filter_name"><br>
++        <params a="1.0 0.5" b="0.2 0.2"/><br>
++    </filter><br>
++
++*/
++/***************************************************/
++template <typename T>
++class SingleChannelTransferFunctionFilter: public filters::FilterBase <T>
++{
++public:
++  /**
++   * \brief Construct the filter
++   */
++  SingleChannelTransferFunctionFilter() ;
++
++  /** \brief Destructor to clean up
++   */
++  ~SingleChannelTransferFunctionFilter();
++
++  /** \brief Configure the filter with the correct number of channels and params.
++   * \param number_of_channels The number of inputs filtered.
++   * \param config The xml that is parsed to configure the filter.
++   */
++  virtual bool configure();
++
++  /** \brief Update the filter and return the data seperately
++   * \param data_in vector<T> with number_of_channels elements
++   * \param data_out vector<T> with number_of_channels elements
++   */
++  virtual bool update(const T & data_in, T& data_out) ;
++
++
++
++protected:
++
++  std::unique_ptr<RealtimeCircularBuffer<T > > input_buffer_; //The input sample history.
++  std::unique_ptr<RealtimeCircularBuffer<T > > output_buffer_; //The output sample history.
++
++  T  temp_; //used for storage and preallocation
++
++  std::vector<double> a_;   //Transfer functon coefficients (output).
++  std::vector<double> b_;   //Transfer functon coefficients (input).
++
++};
++
++template <typename T>
++SingleChannelTransferFunctionFilter<T>::SingleChannelTransferFunctionFilter()
++{
++}
++
++template <typename T>
++SingleChannelTransferFunctionFilter<T>::~SingleChannelTransferFunctionFilter()
++{
++}
++
++template <typename T>
++bool SingleChannelTransferFunctionFilter<T>::configure()
++{
++
++  // Parse a and b into a std::vector<double>.
++  if (!FilterBase<T>::getParam("a", a_))
++  {
++    ROS_ERROR("TransferFunctionFilter, \"%s\", params has no attribute a.", FilterBase<T>::getName().c_str());
++    return false;
++  }///\todo check length
++
++
++  if (!FilterBase<T>::getParam("b", b_))
++  {
++    ROS_ERROR("TransferFunctionFilter, \"%s\", params has no attribute b.", FilterBase<T>::getName().c_str());
++    return false;
++  }///\todo check length
++
++  // Create the input and output buffers of the correct size.
++  input_buffer_.reset(new RealtimeCircularBuffer<T >(b_.size()-1, temp_));
++  output_buffer_.reset(new RealtimeCircularBuffer<T >(a_.size()-1, temp_));
++
++  // Prevent divide by zero while normalizing coeffs.
++  if ( a_[0] == 0)
++  {
++    ROS_ERROR("a[0] can not equal 0.");
++    return false;
++  }
++
++  // Normalize the coeffs by a[0].
++  if(a_[0] != 1)
++  {
++    for(uint32_t i = 0; i < b_.size(); i++)
++    {
++      b_[i] = (b_[i] / a_[0]);
++    }
++    for(uint32_t i = 1; i < a_.size(); i++)
++    {
++      a_[i] = (a_[i] / a_[0]);
++    }
++    a_[0] = (a_[0] / a_[0]);
++  }
++
++  return true;
++}
++
++
++template <typename T>
++bool SingleChannelTransferFunctionFilter<T>::update(const T  & data_in, T & data_out)
++{
++  if (!FilterBase<T>::configured_)
++    return false;
++
++  // Copy data to prevent mutation if in and out are the same ptr
++  temp_ = data_in;
++
++  data_out=b_[0] * temp_;
++
++  for (uint32_t row = 1; row <= input_buffer_->size(); row++)
++  {
++    data_out += b_[row] * (*input_buffer_)[row-1];
++  }
++  for (uint32_t row = 1; row <= output_buffer_->size(); row++)
++  {
++    data_out -= a_[row] * (*output_buffer_)[row-1];
++  }
++
++  input_buffer_->push_front(temp_);
++  output_buffer_->push_front(data_out);
++
++  return true;
++}
++
++
++
++/***************************************************/
++/*! \class MultiChannelTransferFunctionFilter
++    \brief One-dimensional digital filter class.
++
++    This class calculates the output for \f$N\f$ one-dimensional
++    digital filters. Where the input, \f$x\f$, is a (\f$N\f$ x 1) vector
++    of inputs and the output, \f$y\f$, is a (\f$N\f$ x 1) vector of outputs.
++    The filter is described by vectors \f$a\f$ and \f$b\f$ and
++    implemented using the standard difference equation:<br>
++
++    \f{eqnarray*}
++    a[0]*y[n] = b[0]*x[n] &+& b[1]*x[n-1]+ ... + b[n_b]*x[n-n_b]\\
++                          &-& a[1]*y[n-1]- ... - a[n_a]*y[n-n_a]
++     \f}<br>
++
++
++    If \f$a[0]\f$ is not equal to 1, the coefficients are normalized by \f$a[0]\f$.
++
++    Example xml config:<br>
++
++    <filter type="MultiChannelTransferFunctionFilter" name="filter_name"><br>
++        <params a="1.0 0.5" b="0.2 0.2"/><br>
++    </filter><br>
++
++*/
++/***************************************************/
++
++template <typename T>
++class MultiChannelTransferFunctionFilter: public filters::MultiChannelFilterBase <T>
++{
++public:
++  /**
++   * \brief Construct the filter
++   */
++  MultiChannelTransferFunctionFilter() ;
++
++  /** \brief Destructor to clean up
++   */
++  ~MultiChannelTransferFunctionFilter();
++
++  /** \brief Configure the filter with the correct number of channels and params.
++   * \param number_of_channels The number of inputs filtered.
++   * \param config The xml that is parsed to configure the filter.
++   */
++  virtual bool configure();
++
++  /** \brief Update the filter and return the data seperately
++   * \param data_in vector<T> with number_of_channels elements
++   * \param data_out vector<T> with number_of_channels elements
++   */
++  virtual bool update(const std::vector<T> & data_in, std::vector<T>& data_out) ;
++
++
++
++protected:
++
++  std::unique_ptr<RealtimeCircularBuffer<std::vector<T> > > input_buffer_; //The input sample history.
++  std::unique_ptr<RealtimeCircularBuffer<std::vector<T> > > output_buffer_; //The output sample history.
++
++  std::vector<T>  temp_; //used for storage and preallocation
++
++  std::vector<double> a_;   //Transfer functon coefficients (output).
++  std::vector<double> b_;   //Transfer functon coefficients (input).
++
++};
++
++template <typename T>
++MultiChannelTransferFunctionFilter<T>::MultiChannelTransferFunctionFilter()
++{
++}
++
++template <typename T>
++MultiChannelTransferFunctionFilter<T>::~MultiChannelTransferFunctionFilter()
++{
++}
++
++template <typename T>
++bool MultiChannelTransferFunctionFilter<T>::configure()
++{
++  // Parse a and b into a std::vector<double>.
++  if (!FilterBase<T>::getParam("a", a_))
++  {
++    ROS_ERROR("TransferFunctionFilter, \"%s\", params has no attribute a.", FilterBase<T>::getName().c_str());
++    return false;
++  }///\todo check length
++
++
++  if (!FilterBase<T>::getParam("b", b_))
++  {
++    ROS_ERROR("TransferFunctionFilter, \"%s\", params has no attribute b.", FilterBase<T>::getName().c_str());
++    return false;
++  }///\todo check length
++
++  // Create the input and output buffers of the correct size.
++  temp_.resize(this->number_of_channels_);
++  input_buffer_.reset(new RealtimeCircularBuffer<std::vector<T> >(b_.size()-1, temp_));
++  output_buffer_.reset(new RealtimeCircularBuffer<std::vector<T> >(a_.size()-1, temp_));
++
++  // Prevent divide by zero while normalizing coeffs.
++  if ( a_[0] == 0)
++  {
++    ROS_ERROR("a[0] can not equal 0.");
++    return false;
++  }
++
++  // Normalize the coeffs by a[0].
++  if(a_[0] != 1)
++  {
++    for(uint32_t i = 0; i < b_.size(); i++)
++    {
++      b_[i] = (b_[i] / a_[0]);
++    }
++    for(uint32_t i = 1; i < a_.size(); i++)
++    {
++      a_[i] = (a_[i] / a_[0]);
++    }
++    a_[0] = (a_[0] / a_[0]);
++  }
++
++  return true;
++}
++
++
++template <typename T>
++bool MultiChannelTransferFunctionFilter<T>::update(const std::vector<T>  & data_in, std::vector<T> & data_out)
++{
++
++  // Ensure the correct number of inputs
++  if (data_in.size() != this->number_of_channels_ || data_out.size() != this->number_of_channels_ )
++  {
++    ROS_ERROR("Number of channels is %d, but data_in.size() = %d and data_out.size() = %d.  They must match", this->number_of_channels_, (int)data_in.size(), (int)data_out.size());
++    return false;
++  }
++  // Copy data to prevent mutation if in and out are the same ptr
++  temp_ = data_in;
++
++  for (uint32_t i = 0; i < temp_.size(); i++)
++  {
++    data_out[i]=b_[0] * temp_[i];
++
++    for (uint32_t row = 1; row <= input_buffer_->size(); row++)
++    {
++      (data_out)[i] += b_[row] * (*input_buffer_)[row-1][i];
++    }
++    for (uint32_t row = 1; row <= output_buffer_->size(); row++)
++    {
++      (data_out)[i] -= a_[row] * (*output_buffer_)[row-1][i];
++    }
++  }
++  input_buffer_->push_front(temp_);
++  output_buffer_->push_front(data_out);
++  return true;
++}
++
++}
++
++#endif //#ifndef FILTERS_TRANSFER_FUNCTION_HPP_
+--- /dev/null
++++ ros-noetic-filters-1.9.2/package.xml
+@@ -0,0 +1,34 @@
++<package>
++  <name>filters</name>
++  <version>1.9.2</version>
++  <description>
++    This library provides a standardized interface for processing data as a sequence 
++    of filters.  This package contains a base class upon which to build specific implementations
++    as well as an interface which dynamically loads filters based on runtime parameters.  
++  </description>
++
++  <maintainer email="tfoote@willowgarage.com">Tully Foote</maintainer>
++  <license>BSD</license>
++  <url>http://ros.org/wiki/filters</url>
++
++  <buildtool_depend version_gte="0.5.68">catkin</buildtool_depend>
++
++  <build_depend>roslib</build_depend>
++  <build_depend>rosconsole</build_depend>
++  <build_depend>roscpp</build_depend>
++  <build_depend>pluginlib</build_depend>
++  <build_depend>rostest</build_depend>
++  <build_depend>libboost-dev</build_depend>
++
++  <run_depend>roslib</run_depend>
++  <run_depend>rosconsole</run_depend>
++  <run_depend>roscpp</run_depend>
++  <run_depend>pluginlib</run_depend>
++  <run_depend>libboost-dev</run_depend>
++
++
++  <export>
++    <filters plugin="${prefix}/default_plugins.xml" />
++  </export>
++
++</package>
+--- /dev/null
++++ ros-noetic-filters-1.9.2/src/increment.cpp
+@@ -0,0 +1,37 @@
++/*
++ * Copyright (c) 2008, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#include "filters/increment.hpp"
++#include "pluginlib/class_list_macros.h"
++
++
++
++PLUGINLIB_EXPORT_CLASS(filters::IncrementFilter<int>, filters::FilterBase<int>)
++PLUGINLIB_EXPORT_CLASS(filters::MultiChannelIncrementFilter<int>, filters::MultiChannelFilterBase<int>)
++
+--- /dev/null
++++ ros-noetic-filters-1.9.2/src/mean.cpp
+@@ -0,0 +1,39 @@
++/*
++ * Copyright (c) 2008, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#include "filters/mean.hpp"
++#include "pluginlib/class_list_macros.h"
++
++
++
++PLUGINLIB_EXPORT_CLASS(filters::MeanFilter<double>, filters::FilterBase<double>)
++PLUGINLIB_EXPORT_CLASS(filters::MeanFilter<float>, filters::FilterBase<float>)
++PLUGINLIB_EXPORT_CLASS(filters::MultiChannelMeanFilter<double>, filters::MultiChannelFilterBase<double>)
++PLUGINLIB_EXPORT_CLASS(filters::MultiChannelMeanFilter<float>, filters::MultiChannelFilterBase<float>)
++
+--- /dev/null
++++ ros-noetic-filters-1.9.2/src/median.cpp
+@@ -0,0 +1,45 @@
++/*
++ * Copyright (c) 2008, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++
++#include "filters/median.hpp"
++#include <pluginlib/class_list_macros.h>
++
++
++//Double precision
++PLUGINLIB_EXPORT_CLASS(filters::MedianFilter<double>,filters::FilterBase<double>)
++PLUGINLIB_EXPORT_CLASS(filters::MultiChannelMedianFilter<double>,filters::MultiChannelFilterBase<double>)
++
++//Float precision
++PLUGINLIB_EXPORT_CLASS(filters::MedianFilter<float>,filters::FilterBase<float>)
++PLUGINLIB_EXPORT_CLASS(filters::MultiChannelMedianFilter<float>,filters::MultiChannelFilterBase<float>)
++
++
++
++
+--- /dev/null
++++ ros-noetic-filters-1.9.2/src/test_params.cpp
+@@ -0,0 +1,40 @@
++/*
++ * Copyright (c) 2010, Willow Garage, Inc.
++ * All rights reserved.
++ * 
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ * 
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ * 
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++
++#include "filters/param_test.hpp"
++#include "pluginlib/class_list_macros.h"
++
++PLUGINLIB_EXPORT_CLASS(filters::ParamTest<double>, filters::FilterBase<double>)
++PLUGINLIB_EXPORT_CLASS(filters::ParamTest<int>, filters::FilterBase<int>)
++PLUGINLIB_EXPORT_CLASS(filters::ParamTest<unsigned int>, filters::FilterBase<unsigned int>)
++PLUGINLIB_EXPORT_CLASS(filters::ParamTest<std::string>, filters::FilterBase<std::string>)
++
++PLUGINLIB_EXPORT_CLASS(filters::ParamTest<std::vector<double> >, filters::FilterBase<std::vector<double> >)
++PLUGINLIB_EXPORT_CLASS(filters::ParamTest<std::vector<std::string> >, filters::FilterBase<std::vector<std::string> >)
+--- /dev/null
++++ ros-noetic-filters-1.9.2/src/transfer_function.cpp
+@@ -0,0 +1,35 @@
++/*
++ * Copyright (c) 2008, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#include "filters/transfer_function.hpp"
++#include "pluginlib/class_list_macros.h"
++
++PLUGINLIB_EXPORT_CLASS(filters::SingleChannelTransferFunctionFilter<double>, filters::FilterBase<double>)
++PLUGINLIB_EXPORT_CLASS(filters::MultiChannelTransferFunctionFilter<double>, filters::MultiChannelFilterBase<double>)
++
+--- /dev/null
++++ ros-noetic-filters-1.9.2/test/test_chain.cpp
+@@ -0,0 +1,309 @@
++/*
++ * Copyright (c) 2008, Willow Garage, Inc.
++ * All rights reserved.
++ * 
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ * 
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ * 
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#include "gtest/gtest.h"
++#include "filters/filter_chain.hpp"
++
++
++
++TEST(MultiChannelFilterChain, configuring){
++  double epsilon = 1e-9;
++  filters::MultiChannelFilterChain<double> chain("double");
++
++  EXPECT_TRUE(chain.configure(5, "MultiChannelMeanFilterDouble5"));
++ 
++  double input1[] = {1,2,3,4,5};
++  double input1a[] = {9,9,9,9,9};//seed w/incorrect values
++  std::vector<double> v1 (input1, input1 + sizeof(input1) / sizeof(double));
++  std::vector<double> v1a (input1a, input1a + sizeof(input1a) / sizeof(double));
++
++  
++  EXPECT_TRUE(chain.update(v1, v1a));
++
++  chain.clear();
++
++  for (unsigned int i = 1; i < v1.size(); i++)
++  {
++    EXPECT_NEAR(input1[i], v1a[i], epsilon);
++  }
++}
++TEST(FilterChain, configuring){
++  double epsilon = 1e-9;
++  filters::FilterChain<float> chain("float");
++  
++  EXPECT_TRUE(chain.configure("MeanFilterFloat5"));
++ 
++  float v1 = 1;
++  float v1a = 9;
++
++  EXPECT_TRUE(chain.update(v1, v1a));
++
++  chain.clear();
++
++  EXPECT_NEAR(v1, v1a, epsilon);
++  
++  }
++
++TEST(MultiChannelFilterChain, MisconfiguredNumberOfChannels){
++  filters::MultiChannelFilterChain<double> chain("double");
++
++  EXPECT_TRUE(chain.configure(10, "MultiChannelMedianFilterDouble5"));
++
++  //  EXPECT_TRUE(chain.configure(10));
++
++  double input1[] = {1,2,3,4,5};
++  double input1a[] = {1,2,3,4,5};
++  std::vector<double> v1 (input1, input1 + sizeof(input1) / sizeof(double));
++  std::vector<double> v1a (input1a, input1a + sizeof(input1a) / sizeof(double));
++
++  
++  EXPECT_FALSE(chain.update(v1, v1a));
++
++  chain.clear();
++
++}
++
++TEST(MultiChannelFilterChain, TwoFilters){
++  double epsilon = 1e-9;
++  filters::MultiChannelFilterChain<double> chain("double");
++
++  EXPECT_TRUE(chain.configure(5, "TwoFilters"));
++ 
++  double input1[] = {1,2,3,4,5};
++  double input1a[] = {9,9,9,9,9};//seed w/incorrect values
++  std::vector<double> v1 (input1, input1 + sizeof(input1) / sizeof(double));
++  std::vector<double> v1a (input1a, input1a + sizeof(input1a) / sizeof(double));
++
++  
++  EXPECT_TRUE(chain.update(v1, v1a));
++
++  chain.clear();
++
++  for (unsigned int i = 1; i < v1.size(); i++)
++  {
++    EXPECT_NEAR(input1[i], v1a[i], epsilon);
++  }
++}
++
++TEST(MultiChannelFilterChain, GetFilters){
++  filters::MultiChannelFilterChain<double> chain("double");
++
++  EXPECT_EQ(0u, chain.getFilters().size());
++  
++  auto filtersBefore = chain.getFilters();
++  
++  EXPECT_TRUE(chain.configure(5, "TwoFilters"));
++
++  auto filtersAfter = chain.getFilters();
++  
++  ASSERT_EQ(2u, chain.getFilters().size());
++  ASSERT_EQ(2u, filtersAfter.size());
++  EXPECT_EQ(0u, filtersBefore.size());  // Test that getFilters() returns a copy of the vector 
++  EXPECT_EQ("median_test_unique", chain.getFilters()[0]->getName());
++  EXPECT_EQ("filters/MultiChannelMedianFilterDouble", chain.getFilters()[0]->getType());
++  EXPECT_EQ("median_test2", chain.getFilters()[1]->getName());
++  EXPECT_EQ("filters/MultiChannelMedianFilterDouble", chain.getFilters()[1]->getType());
++  
++  // Check that changing our copy of the list of filters does not change the
++  // filters handled by the chain.
++  filtersAfter.clear();
++  EXPECT_EQ(2u, chain.getFilters().size());
++  
++  filtersAfter = chain.getFilters();
++  
++  chain.clear();
++  
++  EXPECT_EQ(0u, chain.getFilters().size());
++  ASSERT_EQ(2u, filtersAfter.size());
++
++  // Check that the filter pointers survive clearing the filter chain (if we
++  // hold a copy of the filter vector).
++  EXPECT_EQ("median_test_unique", filtersAfter[0]->getName());
++  EXPECT_EQ("median_test2", filtersAfter[1]->getName());
++}
++
++
++TEST(MultiChannelFilterChain, TransferFunction){
++  double epsilon = 1e-4;
++ 
++  filters::MultiChannelFilterChain<double> chain("double");
++  EXPECT_TRUE(chain.configure(3, "TransferFunction" ));
++ 
++  std::vector<double> in1,in2,in3,in4,in5,in6,in7;
++  std::vector<double> out1;
++
++  in1.push_back(10.0);
++  in1.push_back(10.0);
++  in1.push_back(10.0);
++  //
++  in2.push_back(70.0);
++  in2.push_back(30.0);
++  in2.push_back(8.0);
++  //
++  in3.push_back(-1.0);
++  in3.push_back(5.0);
++  in3.push_back(22.0);
++  //
++  in4.push_back(44.0);
++  in4.push_back(23.0);
++  in4.push_back(8.0);
++  //
++  in5.push_back(10.0);
++  in5.push_back(10.0);
++  in5.push_back(10.0);
++  //
++  in6.push_back(5.0);
++  in6.push_back(-1.0);
++  in6.push_back(5.0);
++  //
++  in7.push_back(6.0);
++  in7.push_back(-30.0);
++  in7.push_back(2.0);
++  //
++  out1.push_back(17.1112);
++  out1.push_back(9.0285);
++  out1.push_back(8.3102);
++  EXPECT_TRUE(chain.update(in1, in1));
++  EXPECT_TRUE(chain.update(in2, in2));
++  EXPECT_TRUE(chain.update(in3, in3));
++  EXPECT_TRUE(chain.update(in4, in4));
++  EXPECT_TRUE(chain.update(in5, in5));
++  EXPECT_TRUE(chain.update(in6, in6));
++  EXPECT_TRUE(chain.update(in7, in7));
++
++  chain.clear();
++
++  for(unsigned int i=0; i<out1.size(); i++)
++  {
++    EXPECT_NEAR(out1[i], in7[i], epsilon);
++  }
++}
++
++TEST(FilterChain, ReconfiguringChain){
++  filters::FilterChain<int> chain("int");
++  
++  int v1 = 1;
++  int v1a = 9;
++
++  EXPECT_TRUE(chain.configure("OneIncrements")); 
++  EXPECT_TRUE(chain.update(v1, v1a));
++  EXPECT_EQ(2, v1a);
++  chain.clear();
++  
++  EXPECT_TRUE(chain.configure("TwoIncrements")); 
++  EXPECT_TRUE(chain.update(v1, v1a));
++  EXPECT_EQ(3, v1a);
++  chain.clear();
++}
++
++TEST(FilterChain, GetFilters){
++  filters::FilterChain<int> chain("int");
++
++  EXPECT_EQ(0u, chain.getFilters().size());
++
++  auto filtersBefore = chain.getFilters();
++  
++  EXPECT_TRUE(chain.configure("TwoIncrements"));
++
++  auto filtersAfter = chain.getFilters();
++
++  ASSERT_EQ(2u, chain.getFilters().size());
++  ASSERT_EQ(2u, filtersAfter.size());
++  EXPECT_EQ(0u, filtersBefore.size());  // Test that getFilters() returns a copy of the vector
++  EXPECT_EQ("increment1", chain.getFilters()[0]->getName());
++  EXPECT_EQ("filters/IncrementFilterInt", chain.getFilters()[0]->getType());
++  EXPECT_EQ("increment2", chain.getFilters()[1]->getName());
++  EXPECT_EQ("filters/IncrementFilterInt", chain.getFilters()[1]->getType());
++
++  // Check that changing our copy of the list of filters does not change the
++  // filters handled by the chain.
++  filtersAfter.clear();
++  EXPECT_EQ(2u, chain.getFilters().size());
++
++  filtersAfter = chain.getFilters();
++
++  chain.clear();
++
++  EXPECT_EQ(0u, chain.getFilters().size());
++  ASSERT_EQ(2u, filtersAfter.size());
++
++  // Check that the filter pointers survive clearing the filter chain (if we
++  // hold a copy of the filter vector).
++  EXPECT_EQ("increment1", filtersAfter[0]->getName());
++  EXPECT_EQ("increment2", filtersAfter[1]->getName());
++}
++
++TEST(FilterChain, ThreeIncrementChains){
++  filters::FilterChain<int> chain("int");  
++  int v1 = 1;
++  int v1a = 9;
++
++  EXPECT_TRUE(chain.configure("ThreeIncrements")); 
++  EXPECT_TRUE(chain.update(v1, v1a));
++  EXPECT_EQ(4, v1a);
++  chain.clear();
++    
++}
++
++TEST(FilterChain, TenIncrementChains){
++  filters::FilterChain<int> chain("int");  
++  int v1 = 1;
++  int v1a = 9;
++
++  EXPECT_TRUE(chain.configure("TenIncrements")); 
++  EXPECT_TRUE(chain.update(v1, v1a));
++  EXPECT_EQ(11, v1a);
++  chain.clear();
++    
++}
++
++TEST(MultiChannelFilterChain, TenMultiChannelIncrementChains){
++  filters::MultiChannelFilterChain<int> chain("int");  
++  std::vector<int> v1;
++  v1.push_back(1);
++  v1.push_back(1);
++  v1.push_back(1);
++  std::vector<int> v1a = v1;
++
++  EXPECT_TRUE(chain.configure(3, "TenMultiChannelIncrements")); 
++  EXPECT_TRUE(chain.update(v1, v1a));
++  for (unsigned int i = 0; i < 3; i++)
++  {
++    EXPECT_EQ(11, v1a[i]);
++  }
++  chain.clear();
++    
++}
++
++
++int main(int argc, char **argv){
++  testing::InitGoogleTest(&argc, argv);
++  ros::init(argc, argv, "test_chain");
++  return RUN_ALL_TESTS();
++}
+--- /dev/null
++++ ros-noetic-filters-1.9.2/test/test_chain.launch
+@@ -0,0 +1,5 @@
++<launch>	
++	<rosparam command="load" file="$(find filters)/test/test_chain.yaml"/>
++	<test test-name="chain_test" pkg="filters" type="chain_test"/>
++	<rosparam command="dump" file="$(find filters)/test/output.yaml"/>
++</launch>
+\ No newline at end of file
+--- /dev/null
++++ ros-noetic-filters-1.9.2/test/test_chain.yaml
+@@ -0,0 +1,113 @@
++MultiChannelMedianFilterDouble5:
++  - name: median_test
++    type: filters/MultiChannelMedianFilterDouble
++    params: {number_of_observations: 5}
++MultiChannelMedianFilterFloat5:
++  - name: median_test
++    type: filters/MultiChannelMedianFilterFloat
++    params: {number_of_observations: 5}
++
++MultiChannelMeanFilterDouble5:
++  - name: mean_test
++    type: filters/MultiChannelMeanFilterDouble
++    params: {number_of_observations: 5}
++
++TwoFilters:
++  - name: median_test_unique
++    type: filters/MultiChannelMedianFilterDouble
++    params: {number_of_observations: 5}
++  - name: median_test2
++    type: filters/MultiChannelMedianFilterDouble
++    params: {number_of_observations: 5}
++
++TransferFunction:
++  - name: transfer_function
++    type: filters/MultiChannelTransferFunctionFilterDouble
++    params:
++      a: [1.0, -1.760041880343169, 1.182893262037831]
++      b: [0.018098933007514, 0.054296799022543, 0.054296799022543, 0.018098933007514]
++    
++MeanFilterFloat5:
++  - name: mean_test
++    type: filters/MeanFilterFloat
++    params: {number_of_observations: 5}
++
++OneIncrements:
++  - name: increment1
++    type: filters/IncrementFilterInt
++
++TwoIncrements:
++  - name: increment1
++    type: filters/IncrementFilterInt
++  - name: increment2
++    type: filters/IncrementFilterInt
++
++ThreeIncrements:
++  - name: increment1
++    type: filters/IncrementFilterInt
++  - name: increment2
++    type: filters/IncrementFilterInt
++  - name: increment3
++    type: filters/IncrementFilterInt
++
++TenIncrements:
++  - name: increment1
++    type: filters/IncrementFilterInt
++  - name: increment2
++    type: filters/IncrementFilterInt
++  - name: increment3
++    type: filters/IncrementFilterInt
++  - name: increment4
++    type: filters/IncrementFilterInt
++  - name: increment5
++    type: filters/IncrementFilterInt
++  - name: increment6
++    type: filters/IncrementFilterInt
++  - name: increment7
++    type: filters/IncrementFilterInt
++  - name: increment8
++    type: filters/IncrementFilterInt
++  - name: increment9
++    type: filters/IncrementFilterInt
++  - name: increment10
++    type: filters/IncrementFilterInt
++
++OneMultiChannelIncrements:
++  - name: increment1
++    type: filters/IncrementFilterInt
++
++TwoMultiChannelIncrements:
++  - name: increment1
++    type: filters/IncrementFilterInt
++  - name: increment2
++    type: filters/IncrementFilterInt
++
++ThreeMultiChannelIncrements:
++  - name: increment1
++    type: filters/IncrementFilterInt
++  - name: increment2
++    type: filters/IncrementFilterInt
++  - name: increment3
++    type: filters/IncrementFilterInt
++
++TenMultiChannelIncrements:
++  - name: increment1
++    type: filters/MultiChannelIncrementFilterInt
++  - name: increment2
++    type: filters/MultiChannelIncrementFilterInt
++  - name: increment3
++    type: filters/MultiChannelIncrementFilterInt
++  - name: increment4
++    type: filters/MultiChannelIncrementFilterInt
++  - name: increment5
++    type: filters/MultiChannelIncrementFilterInt
++  - name: increment6
++    type: filters/MultiChannelIncrementFilterInt
++  - name: increment7
++    type: filters/MultiChannelIncrementFilterInt
++  - name: increment8
++    type: filters/MultiChannelIncrementFilterInt
++  - name: increment9
++    type: filters/MultiChannelIncrementFilterInt
++  - name: increment10
++    type: filters/MultiChannelIncrementFilterInt
+--- /dev/null
++++ ros-noetic-filters-1.9.2/test/test_mean.cpp
+@@ -0,0 +1,144 @@
++/*
++ * Copyright (c) 2008, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#include <gtest/gtest.h>
++#include <sys/time.h>
++#include "filters/mean.hpp"
++
++using namespace filters ;
++
++TEST(MultiChannelMeanFilterDouble, ConfirmIdentityNRows)
++{
++  double epsilon = 1e-6;
++  int length = 5;
++  int rows = 5;
++  
++  MultiChannelFilterBase<double > * filter = new MultiChannelMeanFilter<double>  ();
++  EXPECT_TRUE(filter->configure(rows, "MultiChannelMeanFilterDouble5"));
++
++  double input1[] = {1,2,3,4,5};
++  double input1a[] = {1,2,3,4,5};
++  std::vector<double> v1 (input1, input1 + sizeof(input1) / sizeof(double));
++  std::vector<double> v1a (input1a, input1a + sizeof(input1a) / sizeof(double));
++
++
++  for (int32_t i =0; i < rows*10; i++)
++  {
++    EXPECT_TRUE(filter->update(v1, v1a));
++
++    for (int i = 1; i < length; i++)
++    {
++      EXPECT_NEAR(v1[i], v1a[i], epsilon);
++    }
++  }
++}
++
++TEST(MultiChannelMeanFilterDouble, ThreeRows)
++{
++  double epsilon = 1e-6;
++  int length = 5;
++  int rows = 5;
++  
++  MultiChannelFilterBase<double > * filter = new MultiChannelMeanFilter<double> ();
++  EXPECT_TRUE(filter->configure(rows, "MultiChannelMeanFilterDouble5"));
++
++  double input1[] = {0,1,2,3,4};
++  std::vector<double> v1 (input1, input1 + sizeof(input1) / sizeof(double));
++  double input2[] = {1,2,3,4,5};
++  std::vector<double> v2 (input2, input2 + sizeof(input2) / sizeof(double));
++  double input3[] = {2,3,4,5,6};
++  std::vector<double> v3 (input3, input3 + sizeof(input3) / sizeof(double));
++  double input1a[] = {1,2,3,4,5};
++  std::vector<double> v1a (input1a, input1a + sizeof(input1a) / sizeof(double));
++
++
++  EXPECT_TRUE(filter->update(v1, v1a));
++  EXPECT_TRUE(filter->update(v2, v1a));
++  EXPECT_TRUE(filter->update(v3, v1a));
++
++  for (int i = 1; i < length; i++)
++  {
++    EXPECT_NEAR(v2[i], v1a[i], epsilon);
++  }
++
++}
++
++TEST(MeanFilterDouble, ConfirmIdentityNRows)
++{
++  double epsilon = 1e-6;
++  int length = 5;
++  int rows = 5;
++  
++  FilterBase<double > * filter = new MeanFilter<double>  ();
++  EXPECT_TRUE(filter->configure("MeanFilterDouble5"));
++
++  double input = 1;
++  double output = 0;
++
++
++  for (int32_t i =0; i < rows*10; i++)
++  {
++    EXPECT_TRUE(filter->update(input, output));
++    
++    for (int i = 1; i < length; i++)
++    {
++      EXPECT_NEAR(input, output, epsilon);
++    }
++  }
++}
++
++TEST(MeanFilterDouble, ThreeRows)
++{
++  double epsilon = 1e-6;
++  
++  FilterBase<double > * filter = new MeanFilter<double> ();
++  EXPECT_TRUE(filter->configure("MeanFilterDouble5"));
++
++  double input1 = 0;
++  double input2 =1;
++  double input3 = 2;
++  double output = 3;
++
++
++  EXPECT_TRUE(filter->update(input1, output));
++  EXPECT_NEAR(input1, output, epsilon);
++  EXPECT_TRUE(filter->update(input2, output));
++  EXPECT_NEAR((input1+ input2)/2.0, output, epsilon);
++  EXPECT_TRUE(filter->update(input3, output));
++  EXPECT_NEAR((input1 + input2 + input3)/3, output, epsilon);
++
++
++}
++
++
++int main(int argc, char **argv){
++  testing::InitGoogleTest(&argc, argv);
++  ros::init(argc, argv, "test_mean");
++  return RUN_ALL_TESTS();
++}
+--- /dev/null
++++ ros-noetic-filters-1.9.2/test/test_mean.launch
+@@ -0,0 +1,5 @@
++<launch>	
++	<rosparam command="load" file="$(find filters)/test/test_mean.yaml"/>
++	<test test-name="mean_test" pkg="filters" type="mean_test"/>
++
++</launch>
+--- /dev/null
++++ ros-noetic-filters-1.9.2/test/test_mean.yaml
+@@ -0,0 +1,15 @@
++MultiChannelMeanFilterDouble5:
++  name: mean_test
++  type: MultiChannelMeanFilterDouble
++  params: {number_of_observations: 5}
++
++MultiChannelMeanFilterFloat5:
++  name: mean_test
++  type: MultiChannelMeanFilterFloat
++  params: {number_of_observations: 5}
++
++MeanFilterDouble5:
++  name: mean_test
++  type: MeanFilterDouble
++  params: {number_of_observations: 5}
++
+--- /dev/null
++++ ros-noetic-filters-1.9.2/test/test_median.cpp
+@@ -0,0 +1,155 @@
++/*
++ * Copyright (c) 2008, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#include <gtest/gtest.h>
++#include <sys/time.h>
++
++#include "filters/median.hpp"
++
++using namespace filters ;
++
++TEST(MultiChannelMedianFilterDouble, ConfirmIdentityNRows)
++{
++  double epsilon = 1e-6;
++  int length = 5;
++  int rows = 5;
++  
++  MultiChannelFilterBase<double > * filter = new filters::MultiChannelMedianFilter<double>();
++  EXPECT_TRUE(filter->configure(rows, "MultiChannelMedianFilterDouble5"));
++  
++
++  double input1[] = {1,2,3,4,5};
++  double input1a[] = {11,12,13,14,15};
++  std::vector<double> v1 (input1, input1 + sizeof(input1) / sizeof(double));
++  std::vector<double> v1a (input1a, input1a + sizeof(input1a) / sizeof(double));
++
++  for (int i =0; i < rows*10; i++)
++  {
++    EXPECT_TRUE(filter->update(v1, v1a));
++
++    for (int j = 1; j < length; j++)
++    {
++       EXPECT_NEAR(input1[j], v1a[j], epsilon);
++    }
++  }
++
++  delete filter;
++}
++
++TEST(MultiChannelMedianFilterDouble, ThreeRows)
++{
++  double epsilon = 1e-6;
++  int length = 5;
++  int rows = 5;
++
++  MultiChannelFilterBase<double > * filter = new MultiChannelMedianFilter<double>();
++  EXPECT_TRUE(filter->configure(rows, "MultiChannelMedianFilterDouble5" ));
++  
++  double input1[] = {0,1,2,3,4};
++  std::vector<double> v1 (input1, input1 + sizeof(input1) / sizeof(double));
++  double input2[] = {1,2,3,4,5};
++  std::vector<double> v2 (input2, input2 + sizeof(input2) / sizeof(double));
++  double input3[] = {2,3,4,5,6};
++  std::vector<double> v3 (input3, input3 + sizeof(input3) / sizeof(double));
++  double input1a[] = {1,2,3,4,5};
++  std::vector<double> v1a (input1a, input1a + sizeof(input1a) / sizeof(double));
++
++  EXPECT_TRUE(filter->update(v1, v1a));
++  EXPECT_TRUE(filter->update(v2, v1a));
++  EXPECT_TRUE(filter->update(v3, v1a));
++
++  for (int i = 1; i < length; i++)
++  {
++    EXPECT_NEAR(v2[i], v1a[i], epsilon);
++  }
++
++}
++
++TEST(MultiChannelMedianFilterFloat, ConfirmIdentityNRows)
++{
++  float epsilon = 1e-6;
++  int length = 5;
++  int rows = 5;
++  
++  MultiChannelFilterBase<float > * filter = new filters::MultiChannelMedianFilter<float>();
++  EXPECT_TRUE(filter->configure(rows, "MultiChannelMedianFilterFloat5" ));
++
++  float input1[] = {1,2,3,4,5};
++  float input1a[] = {1,2,3,4,5};
++  std::vector<float> v1 (input1, input1 + sizeof(input1) / sizeof(float));
++  std::vector<float> v1a (input1a, input1a + sizeof(input1a) / sizeof(float));
++
++  for (int i =0; i < rows*10; i++)
++  {
++    EXPECT_TRUE(filter->update(v1, v1a));
++
++    for (int j = 1; j < length; j++)
++    {
++       EXPECT_NEAR(input1[j], v1a[j], epsilon);
++    }
++  }
++
++  delete filter;
++}
++
++TEST(MultiChannelMedianFilterFloat, ThreeRows)
++{
++  float epsilon = 1e-6;
++  int length = 5;
++  int rows = 5;
++  
++  MultiChannelFilterBase<float > * filter = new MultiChannelMedianFilter<float>();
++  EXPECT_TRUE(filter->configure(rows, "MultiChannelMedianFilterFloat5"));
++  
++  float input1[] = {0,1,2,3,4};
++  std::vector<float> v1 (input1, input1 + sizeof(input1) / sizeof(float));
++  float input2[] = {1,2,3,4,5};
++  std::vector<float> v2 (input2, input2 + sizeof(input2) / sizeof(float));
++  float input3[] = {2,3,4,5,6};
++  std::vector<float> v3 (input3, input3 + sizeof(input3) / sizeof(float));
++  float input1a[] = {1,2,3,4,5};
++  std::vector<float> v1a (input1a, input1a + sizeof(input1a) / sizeof(float));
++
++  EXPECT_TRUE(filter->update(v1, v1a));
++  EXPECT_TRUE(filter->update(v2, v1a));
++  EXPECT_TRUE(filter->update(v3, v1a));
++
++  for (int i = 1; i < length; i++)
++  {
++    EXPECT_NEAR(v2[i], v1a[i], epsilon);
++  }
++
++}
++
++
++int main(int argc, char **argv){
++  testing::InitGoogleTest(&argc, argv);
++  ros::init(argc, argv, "test_median");
++  return RUN_ALL_TESTS();
++}
+--- /dev/null
++++ ros-noetic-filters-1.9.2/test/test_median.launch
+@@ -0,0 +1,5 @@
++<launch>	
++	<rosparam command="load" file="$(find filters)/test/test_median.yaml"/>
++	<test test-name="median_test" pkg="filters" type="median_test"/>
++
++</launch>
+\ No newline at end of file
+--- /dev/null
++++ ros-noetic-filters-1.9.2/test/test_median.yaml
+@@ -0,0 +1,10 @@
++MultiChannelMedianFilterDouble5:
++  name: median_test
++  type: MultiChannelMedianFilterDouble
++  params: {number_of_observations: 5}
++
++MultiChannelMedianFilterFloat5:
++  name: median_test
++  type: MultiChannelMedianFilterFloat
++  params: {number_of_observations: 5}
++
+--- /dev/null
++++ ros-noetic-filters-1.9.2/test/test_params.cpp
+@@ -0,0 +1,117 @@
++/*
++ * Copyright (c) 2008, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#include <gtest/gtest.h>
++#include <sys/time.h>
++#include "filters/param_test.hpp"
++
++using namespace filters ;
++
++
++
++TEST(Parameters, Double)
++{
++  ros::NodeHandle nh;
++  double epsilon = 1e-6;
++  
++  FilterBase<double > * filter = new ParamTest<double>  ();
++  EXPECT_TRUE(filter->configure("TestDouble", nh));
++  double out;
++  filter -> update(out, out);
++  EXPECT_NEAR(4,  out, epsilon);
++}
++
++TEST(Parameters, Int)
++{
++  ros::NodeHandle nh;
++  
++  FilterBase<int> * filter = new ParamTest<int>  ();
++  EXPECT_TRUE(filter->configure("TestInt", nh));
++  int out;
++  filter -> update(out, out);
++  EXPECT_EQ(4,  out);
++}
++
++TEST(Parameters, UInt)
++{
++  ros::NodeHandle nh;
++  
++  FilterBase<unsigned int> * filter = new ParamTest<unsigned int>  ();
++  EXPECT_TRUE(filter->configure("TestUInt", nh));
++  unsigned int out;
++  filter -> update(out, out);
++  EXPECT_EQ(4,  out);
++}
++
++TEST(Parameters, String)
++{
++  ros::NodeHandle nh;
++  
++  FilterBase<std::string> * filter = new ParamTest<std::string>  ();
++  EXPECT_TRUE(filter->configure("TestString", nh));
++  std::string out;
++  filter -> update(out, out);
++  EXPECT_STREQ("four",  out.c_str());
++}
++
++TEST(Parameters, DoubleVector)
++{
++  ros::NodeHandle nh;
++  double epsilon = 1e-6;
++  
++  FilterBase<std::vector<double> > * filter = new ParamTest<std::vector<double> >  ();
++  EXPECT_TRUE(filter->configure("TestDoubleVector", nh));
++  std::vector<double> out;
++  filter -> update(out, out);
++  for (std::vector<double>::iterator it = out.begin(); it != out.end(); ++it)
++    {
++      EXPECT_NEAR(4,  *it, epsilon);
++    }
++}
++
++TEST(Parameters, StringVector)
++{
++  ros::NodeHandle nh;
++  
++  FilterBase<std::vector<std::string> > * filter = new ParamTest<std::vector<std::string> >  ();
++  EXPECT_TRUE(filter->configure("TestStringVector", nh));
++  std::vector<std::string> out;
++  filter -> update(out, out);
++  for (std::vector<std::string>::iterator it = out.begin(); it != out.end(); ++it)
++    {
++      EXPECT_STREQ("four",  it->c_str());
++    }
++}
++
++
++int main(int argc, char **argv){
++  testing::InitGoogleTest(&argc, argv);
++  ros::init(argc, argv, "test_mean");
++  return RUN_ALL_TESTS();
++}
+--- /dev/null
++++ ros-noetic-filters-1.9.2/test/test_params.launch
+@@ -0,0 +1,5 @@
++<launch>	
++	<rosparam command="load" file="$(find filters)/test/test_params.yaml"/>
++	<test test-name="params_test" pkg="filters" type="params_test"/>
++
++</launch>
+--- /dev/null
++++ ros-noetic-filters-1.9.2/test/test_params.yaml
+@@ -0,0 +1,24 @@
++TestDouble:
++  name: double_test
++  type: ParamTestDouble
++  params: {key: 4.0}
++TestInt:
++  name: int_test
++  type: ParamTestInt
++  params: {key: 4}
++TestUInt:
++  name: uint_test
++  type: ParamTestUInt
++  params: {key: 4}
++TestString:
++  name: string_test
++  type: ParamTestString
++  params: {key: four}
++TestDoubleVector:
++  name: double_vector_test
++  type: ParamTestDoubleVector
++  params: {key: [4.0, 4.0, 4.0, 4.0]}
++TestStringVector:
++  name: string_vector_test
++  type: ParamTestStringVector
++  params: {key: [four, four, four, four]}
+--- /dev/null
++++ ros-noetic-filters-1.9.2/test/test_realtime_circular_buffer.cpp
+@@ -0,0 +1,65 @@
++/*
++ * Copyright (c) 2008, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#include <gtest/gtest.h>
++#include <sys/time.h>
++
++#include <vector>
++#include "filters/realtime_circular_buffer.hpp"
++
++using namespace filters ;
++
++TEST(RealtimeCircularBuffer, InitializationScalar)
++{
++  
++  RealtimeCircularBuffer<double> buf(3, 0);
++  for (unsigned int i = 0; i < buf.size(); i ++)
++  {
++    EXPECT_EQ(buf[i], 0);
++  }
++}
++TEST(RealtimeCircularBuffer, InitializationVector)
++{
++  std::vector<double> init_vector;
++  for (unsigned int i = 0; i < 100; i ++)
++    init_vector.push_back(i);
++  
++  RealtimeCircularBuffer<std::vector<double> > vec_buf(3, init_vector);
++  for (unsigned int i = 0; i < vec_buf.size(); i ++)
++  {
++    for (unsigned int j = 0; j < 100; j ++)
++      EXPECT_EQ(vec_buf[i][j], j);
++  }
++}
++
++
++int main(int argc, char **argv){
++  testing::InitGoogleTest(&argc, argv);
++  return RUN_ALL_TESTS();
++}
+--- /dev/null
++++ ros-noetic-filters-1.9.2/test/test_transfer_function.cpp
+@@ -0,0 +1,243 @@
++/*
++ * Copyright (c) 2008, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#include <ros/ros.h>
++#include <gtest/gtest.h>
++#include <sys/time.h>
++#include <vector>
++#include "filters/transfer_function.hpp"
++
++using namespace filters ;
++
++
++TEST(MultiChannelTransferFunctionDoubleFilter, LowPass)
++{
++  double epsilon = 1e-4;
++  
++  MultiChannelFilterBase<double> * filter = new MultiChannelTransferFunctionFilter<double> ();
++  EXPECT_TRUE(filter->configure(1, "LowPass" ));
++  
++
++  std::vector<double> in1,in2,in3,in4,in5,in6,in7;
++  std::vector<double> out1;
++
++  in1.push_back(10.0);
++  in2.push_back(70.0);
++  in3.push_back(10.0);
++  in4.push_back(44.0);
++  in5.push_back(10.0);
++  in6.push_back(5.0);
++  in7.push_back(6.0);
++  out1.push_back(11.8008);
++  EXPECT_TRUE(filter->update(in1, in1));
++  EXPECT_TRUE(filter->update(in2, in2));
++  EXPECT_TRUE(filter->update(in3, in3));
++  EXPECT_TRUE(filter->update(in4, in4));
++  EXPECT_TRUE(filter->update(in5, in5));
++  EXPECT_TRUE(filter->update(in6, in6));
++  EXPECT_TRUE(filter->update(in7, in7));
++
++  EXPECT_NEAR(out1[0], in7[0], epsilon);
++}
++
++TEST(SingleChannelTransferFunctionDoubleFilter, SingleLowPass)
++{
++  double epsilon = 1e-4;
++  
++  FilterBase<double> * filter = new SingleChannelTransferFunctionFilter<double> ();
++  EXPECT_TRUE(filter->configure("LowPassSingle" ));
++  
++
++  double in1,in2,in3,in4,in5,in6,in7;
++  double out1;
++
++  in1=10.0;
++  in2=70.0;
++  in3=10.0;
++  in4=44.0;
++  in5=10.0;
++  in6=5.0;
++  in7=6.0;
++  out1=11.8008;
++  EXPECT_TRUE(filter->update(in1, in1));
++  EXPECT_TRUE(filter->update(in2, in2));
++  EXPECT_TRUE(filter->update(in3, in3));
++  EXPECT_TRUE(filter->update(in4, in4));
++  EXPECT_TRUE(filter->update(in5, in5));
++  EXPECT_TRUE(filter->update(in6, in6));
++  EXPECT_TRUE(filter->update(in7, in7));
++
++  EXPECT_NEAR(out1, in7, epsilon);
++}
++
++
++TEST(MultiChannelTransferFunctionDoubleFilter, LowPassNonUnity)
++{
++  double epsilon = 1e-4;
++
++  MultiChannelFilterBase<double> * filter = new MultiChannelTransferFunctionFilter<double> ();
++  EXPECT_TRUE(filter->configure(1, "LowPassNonUnity" ));
++    
++  std::vector<double> in1,in2,in3,in4,in5,in6,in7;
++  std::vector<double> out1;
++
++  in1.push_back(10.0);
++  in2.push_back(70.0);
++  in3.push_back(10.0);
++  in4.push_back(44.0);
++  in5.push_back(10.0);
++  in6.push_back(5.0);
++  in7.push_back(6.0);
++  out1.push_back(2.4088);
++  EXPECT_TRUE(filter->update(in1, in1));
++  EXPECT_TRUE(filter->update(in2, in2));
++  EXPECT_TRUE(filter->update(in3, in3));
++  EXPECT_TRUE(filter->update(in4, in4));
++  EXPECT_TRUE(filter->update(in5, in5));
++  EXPECT_TRUE(filter->update(in6, in6));
++  EXPECT_TRUE(filter->update(in7, in7));
++
++  EXPECT_NEAR(out1[0], in7[0], epsilon);
++}
++
++TEST(MultiChannelTransferFunctionDoubleFilter, LowPassMulti)
++{
++  double epsilon = 1e-4;
++
++  MultiChannelFilterBase<double> * filter = new MultiChannelTransferFunctionFilter<double> ();
++  EXPECT_TRUE(filter->configure(3, "LowPassMulti" ));
++
++  std::vector<double> in1,in2,in3,in4,in5,in6,in7;
++  std::vector<double> out1;
++  
++  in1.push_back(10.0);
++  in1.push_back(10.0);
++  in1.push_back(10.0);
++  //
++  in2.push_back(70.0);
++  in2.push_back(30.0);
++  in2.push_back(8.0);
++  //
++  in3.push_back(-1.0);
++  in3.push_back(5.0);
++  in3.push_back(22.0);
++  //
++  in4.push_back(44.0);
++  in4.push_back(23.0);
++  in4.push_back(8.0);
++  //
++  in5.push_back(10.0);
++  in5.push_back(10.0);
++  in5.push_back(10.0);
++  //
++  in6.push_back(5.0);
++  in6.push_back(-1.0);
++  in6.push_back(5.0);
++  //
++  in7.push_back(6.0);
++  in7.push_back(-30.0);
++  in7.push_back(2.0);
++  //
++  out1.push_back(60.6216);
++  out1.push_back(33.9829);
++  out1.push_back(28.1027);
++  EXPECT_TRUE(filter->update(in1, in1));
++  EXPECT_TRUE(filter->update(in2, in2));
++  EXPECT_TRUE(filter->update(in3, in3));
++  EXPECT_TRUE(filter->update(in4, in4));
++  EXPECT_TRUE(filter->update(in5, in5));
++  EXPECT_TRUE(filter->update(in6, in6));
++  EXPECT_TRUE(filter->update(in7, in7));
++
++  for(unsigned int i=0; i<out1.size(); i++)
++  {
++    EXPECT_NEAR(out1[i], in7[i], epsilon);
++  }
++}
++
++TEST(MultiChannelTransferFunctionDoubleFilter, LowPassIrrational)
++{
++  double epsilon = 1e-4;
++ 
++  MultiChannelFilterBase<double> * filter = new MultiChannelTransferFunctionFilter<double> ();
++  EXPECT_TRUE(filter->configure(3, "LowPassIrrational" ));
++ 
++  std::vector<double> in1,in2,in3,in4,in5,in6,in7;
++  std::vector<double> out1;
++
++  in1.push_back(10.0);
++  in1.push_back(10.0);
++  in1.push_back(10.0);
++  //
++  in2.push_back(70.0);
++  in2.push_back(30.0);
++  in2.push_back(8.0);
++  //
++  in3.push_back(-1.0);
++  in3.push_back(5.0);
++  in3.push_back(22.0);
++  //
++  in4.push_back(44.0);
++  in4.push_back(23.0);
++  in4.push_back(8.0);
++  //
++  in5.push_back(10.0);
++  in5.push_back(10.0);
++  in5.push_back(10.0);
++  //
++  in6.push_back(5.0);
++  in6.push_back(-1.0);
++  in6.push_back(5.0);
++  //
++  in7.push_back(6.0);
++  in7.push_back(-30.0);
++  in7.push_back(2.0);
++  //
++  out1.push_back(17.1112);
++  out1.push_back(9.0285);
++  out1.push_back(8.3102);
++  EXPECT_TRUE(filter->update(in1, in1));
++  EXPECT_TRUE(filter->update(in2, in2));
++  EXPECT_TRUE(filter->update(in3, in3));
++  EXPECT_TRUE(filter->update(in4, in4));
++  EXPECT_TRUE(filter->update(in5, in5));
++  EXPECT_TRUE(filter->update(in6, in6));
++  EXPECT_TRUE(filter->update(in7, in7));
++
++  for(unsigned int i=0; i<out1.size(); i++)
++  {
++    EXPECT_NEAR(out1[i], in7[i], epsilon);
++  }
++}
++
++int main(int argc, char **argv){
++  testing::InitGoogleTest(&argc, argv);
++  ros::init(argc, argv, "test_transfer_function");
++  return RUN_ALL_TESTS();
++}
+--- /dev/null
++++ ros-noetic-filters-1.9.2/test/test_transfer_function.launch
+@@ -0,0 +1,5 @@
++<launch>	
++	<rosparam command="load" file="$(find filters)/test/test_transfer_function.yaml"/>
++	<test test-name="transfer_function_test" pkg="filters" type="transfer_function_test"/>
++
++</launch>
+--- /dev/null
++++ ros-noetic-filters-1.9.2/test/test_transfer_function.yaml
+@@ -0,0 +1,34 @@
++LowPass:
++  name: transferfunction_test
++  type: MultiChannelTransferFunctionFilter<double>
++  params:
++    a: [1.0, -0.509525449494429]
++    b: [0.245237275252786, 0.245237275252786]
++
++LowPassSingle:
++  name: transferfunction_test
++  type: SingleChannelTransferFunctionFilter<double>
++  params:
++    a: [1.0, -0.509525449494429]
++    b: [0.245237275252786, 0.245237275252786]
++
++LowPassNonUnity:
++  name: transferfunction_test
++  type: MultiChannelTransferFunctionFilter<double>
++  params:
++    a: [2.0, -0.509525449494429]
++    b: [0.245237275252786, 0.245237275252786]
++
++LowPassMulti:
++  name: transferfunction_test
++  type: MultiChannelTransferFunctionFilter<double>
++  params:
++    a: [1.0, -1.760041880343169, 1.182893262037831, -0.278059917634546]
++    b: [0.018098933007514, 0.245237275252786, 0.054296799022543, 0.018098933007514]
++
++LowPassIrrational:
++  name: transferfunction_test
++  type: MultiChannelTransferFunctionFilter<double>
++  params:
++    a: [1.0, -1.760041880343169, 1.182893262037831]
++    b: [0.018098933007514, 0.054296799022543, 0.054296799022543, 0.018098933007514]

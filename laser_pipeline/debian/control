@@ -1,0 +1,12 @@
+Source: ros-noetic-laser-pipeline
+Section: misc
+Priority: optional
+Maintainer: Jonathan Binney <jon.binney@gmail.com>
+Build-Depends: debhelper (>= 9.0.0), ros-noetic-catkin
+Homepage: http://www.ros.org/wiki/laser_pipeline
+Standards-Version: 3.9.2
+
+Package: ros-noetic-laser-pipeline
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-noetic-laser-assembler, ros-noetic-laser-filters, ros-noetic-laser-geometry
+Description: Meta-package of libraries for processing laser data, including converting laser data into 3D representations.

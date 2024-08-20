@@ -1,0 +1,3603 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-camera-calibration (1.17.0-0jammy) jammy; urgency=high
+Author: Vincent Rabaud <vincent.rabaud@gmail.com>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-camera-calibration-1.17.0/CHANGELOG.rst
+@@ -0,0 +1,260 @@
++1.17.0 (2022-10-17)
++-------------------
++
++1.16.0 (2021-11-12)
++-------------------
++* fix premature camera model change in camera_calibration
++* Fix shebang lines for noetic python3
++* Contributors: Michael Carroll, Victor Dubois
++
++1.15.3 (2020-12-11)
++-------------------
++* Update fisheye distortion model definition
++* remove email blasts from steve macenski (`#595 <https://github.com/ros-perception/image_pipeline/issues/595>`_)
++* Fix calibration yaml formatting (`#580 <https://github.com/ros-perception/image_pipeline/issues/580>`_) (`#585 <https://github.com/ros-perception/image_pipeline/issues/585>`_)
++  Co-authored-by: David Torres Ocaña <david.torres.ocana@gmail.com>
++* updated linear_error function to handle partial board views (`#561 <https://github.com/ros-perception/image_pipeline/issues/561>`_)
++  * updated linear_error function to handle partial board views
++  * more charuco fixes
++  * filter len fix
++* Fix missing detected checkerboard points (`#558 <https://github.com/ros-perception/image_pipeline/issues/558>`_)
++  Variables are swapped
++* Removed basestring (no longer exists in new python 3 version). (`#552 <https://github.com/ros-perception/image_pipeline/issues/552>`_)
++  Fixes `#551 <https://github.com/ros-perception/image_pipeline/issues/551>`_
++* ChArUco board, Noetic (`#549 <https://github.com/ros-perception/image_pipeline/issues/549>`_)
++* fix `#503 <https://github.com/ros-perception/image_pipeline/issues/503>`_: (`#545 <https://github.com/ros-perception/image_pipeline/issues/545>`_)
++  set_cammodel of StereoCalibrator need to override the method of parent class
++  fix related to `opencv/opencv#11085 <https://github.com/opencv/opencv/issues/11085>`_:
++  unlike cv2.calibrate, the cv2.fisheye.calibrate method expects float64 points and in an array with an extra dimension. The same for cv2.stereoCalibrate vs cv2.fisheye.stereoCalibrate
++* Contributors: DavidTorresOcana, John Stechschulte, Joshua Whitley, PfeifferMicha, Photon, Steve Macenski, soeroesg
++
++1.15.2 (2020-05-19)
++-------------------
++
++1.15.1 (2020-05-18)
++-------------------
++
++1.15.0 (2020-05-14)
++-------------------
++* Python 3 compatibility (`#530 <https://github.com/ros-perception/image_pipeline/issues/530>`_)
++* cmake_minimum_required to 3.0.2
++* Adapted to OpenCV4
++* import setup from setuptools instead of distutils-core
++* Apply `#509 <https://github.com/ros-perception/image_pipeline/issues/509>`_ and `#526 <https://github.com/ros-perception/image_pipeline/issues/526>`_ to Noetic Branch (`#528 <https://github.com/ros-perception/image_pipeline/issues/528>`_)
++* Fixes `#501 <https://github.com/ros-perception/image_pipeline/issues/501>`_: self.size is set before dumping calibration parameters in calibrator.py do_calibration(self, dump) (`#502 <https://github.com/ros-perception/image_pipeline/issues/502>`_)
++* Contributors: Joshua Whitley, Stewart Jamieson
++
++1.14.0 (2020-01-12)
++-------------------
++* Add Fisheye calibration tool (`#440 <https://github.com/ros-perception/image_pipeline/issues/440>`_)
++  * Add Fisheye calibration tool
++  * Restore camera_calib files permisions
++  * Upgrades to calibrator tool for multi model calibration
++  * Solve fisheye balance selection
++  * Add fisheye calibration flags as user arguments
++  * Add undistortion of points for fisheye
++  * cam_calib: Style formating
++* camera_calibration: Improve YAML formatting, make config dumping methods static (`#438 <https://github.com/ros-perception/image_pipeline/issues/438>`_)
++  * Add `from __future_\_ import print_function`
++  * Improve YAML formatting, make some methods static
++  * Improves matrix formatting in YAML.
++  * Reduced decimal figures for camera and projection matrix values from 8 to 5.
++  * Making the methods static allows them to be used from elsewhere as well to dump calibration info.
++* camera_calibration: Fix all-zero distortion coeffs returned for a rational_polynomial model (`#433 <https://github.com/ros-perception/image_pipeline/issues/433>`_)
++  * Fix empty distortion coeffs returned for a rational_polynomial model
++  * Remove the redundant distCoeffs parameter from cv2.calibrateCamera()
++  * Set the shape of distortion_coefficients correctly in YAML output
++* Merge pull request `#437 <https://github.com/ros-perception/image_pipeline/issues/437>`_ from valgur/enable-calibration-with-empty-queue
++  camera_calibration: Make sure 'calibrate' button works even if not receiving images anymore
++* Make sure 'calibrate' button works even if not receiving images anymore
++* Merge pull request `#432 <https://github.com/ros-perception/image_pipeline/issues/432>`_ from valgur/melodic
++  camera_calibration: Fix excessive CPU usage due to queue synchronization
++* Replace deque with a modified Queue, add --queue-size param
++  Base fork on upstream melodic instead of indigo
++* Contributors: David Torres Ocaña, Joshua Whitley, Martin Valgur, Tim Übelhör
++
++1.13.0 (2019-06-12)
++-------------------
++* Merge pull request `#356 <https://github.com/ros-perception/image_pipeline/issues/356>`_ from sevangelatos/feature/calibrator_rolling_shutter
++* Add max-chessboard-speed option to allow more accurate calibration of rolling shutter cameras.
++* Merge pull request `#334 <https://github.com/ros-perception/image_pipeline/issues/334>`_ from Fruchtzwerg94/patch-2
++  Scale pixels down from 16 to 8 bits instead of just clipping
++* Merge pull request `#340 <https://github.com/ros-perception/image_pipeline/issues/340>`_ from k-okada/286
++  use waitKey(0) instead of while loop
++* Merge pull request `#395 <https://github.com/ros-perception/image_pipeline/issues/395>`_ from ros-perception/steve_maintain
++* adding autonomoustuff mainainer
++* adding stevemacenski as maintainer to get emails
++* Scale pixels down from 16 to 8 bits instead of just clipping
++  Clipping 16 bit pixels just to 8 bit pixels leads to white images if the original image uses the full range of the 16 bits. Instead the pixel should be scaled down to 8 bits.
++* Contributors: Joshua Whitley, Kei Okada, Philipp, Spiros Evangelatos, Yoshito Okada, stevemacenski
++
++1.12.23 (2018-05-10)
++--------------------
++* camera_checker: Ensure cols + rows are in correct order (`#319 <https://github.com/ros-perception/image_pipeline/issues/319>`_)
++  Without this commit, specifying a smaller column than row size lead to
++  huge reported errors:
++  ```
++  $ rosrun camera_calibration cameracheck.py --size 6x7 --square 0.0495
++  Linearity RMS Error: 13.545 Pixels      Reprojection RMS Error: 22.766 Pixels
++  $ rosrun camera_calibration cameracheck.py --size 7x6 --square 0.0495
++  Linearity RMS Error: 0.092 Pixels      Reprojection RMS Error: 0.083 Pixels
++  ```
++  This commit switches columns and rows around if necessary.
++* Contributors: Martin Günther
++
++1.12.22 (2017-12-08)
++--------------------
++* Changed flags CV_LOAD_IMAGE_COLOR by IMREAD_COLOR to adapt to Opencv3. (`#252 <https://github.com/ros-perception/image_pipeline/issues/252>`_)
++* Fixed stereo calibration problem with chessboard with the same number of rows and cols by rotating the corners to same direction.
++* Contributors: jbosch
++
++1.12.21 (2017-11-05)
++--------------------
++* re-add the calibration nodes but now using the Python modules.
++  Fixes `#298 <https://github.com/ros-perception/image_pipeline/issues/298>`_
++* Move nodes to Python module.
++* Contributors: Vincent Rabaud
++
++1.12.20 (2017-04-30)
++--------------------
++* properly save bytes buffer as such
++  This is useful for Python 3 and fixes `#256 <https://github.com/ros-perception/image_pipeline/issues/256>`_.
++* Get tests slightly looser.
++  OpenCV 3.2 gives slightly different results apparently.
++* Use floor division where necessary. (`#247 <https://github.com/ros-perception/image_pipeline/issues/247>`_)
++* Fix and Improve Camera Calibration Checker Node (`#254 <https://github.com/ros-perception/image_pipeline/issues/254>`_)
++  * Fix according to calibrator.py API
++  * Add approximate to cameracheck
++* Force first corner off chessboard to be uppler left.
++  Fixes `#140 <https://github.com/ros-perception/image_pipeline/issues/140>`_
++* fix doc jobs
++  This is a proper fix for `#233 <https://github.com/ros-perception/image_pipeline/issues/233>`_
++* During stereo calibration check that the number of corners detected in the left and right images are the same. This fixes `ros-perception/image_pipeline#225 <https://github.com/ros-perception/image_pipeline/issues/225>`_
++* Contributors: Leonard Gerard, Martin Peris, Vincent Rabaud, hgaiser
++
++1.12.19 (2016-07-24)
++--------------------
++* Fix array check in camerachecky.py
++  This closes `#205 <https://github.com/ros-perception/image_pipeline/issues/205>`_
++* Contributors: Vincent Rabaud
++
++1.12.18 (2016-07-12)
++--------------------
++
++1.12.17 (2016-07-11)
++--------------------
++* fix typo np -> numpy
++* fix failing tests
++* Contributors: Shingo Kitagawa, Vincent Rabaud
++
++1.12.16 (2016-03-19)
++--------------------
++* clean OpenCV dependency in package.xml
++* Contributors: Vincent Rabaud
++
++1.12.15 (2016-01-17)
++--------------------
++* better 16 handling in mkgray
++  This re-uses `#150 <https://github.com/ros-perception/image_pipeline/issues/150>`_ and therefore closes `#150 <https://github.com/ros-perception/image_pipeline/issues/150>`_
++* fix OpenCV2 compatibility
++* fix tests with OpenCV3
++* [Calibrator]: add yaml file with calibration data in output
++* Contributors: Vincent Rabaud, sambrose
++
++1.12.14 (2015-07-22)
++--------------------
++* remove camera_hammer and install Python nodes properly
++  camera_hammer was just a test for camera info, nothing to do with
++  calibration. Plus the test was basic.
++* Correct three errors that prevented the node to work properly.
++* Contributors: Filippo Basso, Vincent Rabaud
++
++1.12.13 (2015-04-06)
++--------------------
++* replace Queue by deque of fixed size for simplicity
++  That is a potential fix for `#112 <https://github.com/ros-perception/image_pipeline/issues/112>`_
++* Contributors: Vincent Rabaud
++
++1.12.12 (2014-12-31)
++--------------------
++* try to improve `#112 <https://github.com/ros-perception/image_pipeline/issues/112>`_
++* Contributors: Vincent Rabaud
++
++1.12.11 (2014-10-26)
++--------------------
++
++1.12.10 (2014-09-28)
++--------------------
++* Update calibrator.py
++  bugfix: stereo calibrator crashed after the signature of the method for the computation of the epipolar error changed but the function call was not updated
++* Contributors: Volker Grabe
++
++1.12.9 (2014-09-21)
++-------------------
++* fix bad Python
++* only analyze the latest image
++  fixes `#97 <https://github.com/ros-perception/image_pipeline/issues/97>`_
++* flips width and height during resize to give correct aspect ratio
++* Contributors: Russell Toris, Vincent Rabaud
++
++1.12.8 (2014-08-19)
++-------------------
++* install scripts in the local bin (they are now rosrun-able again)
++  fixes `#93 <https://github.com/ros-perception/image_pipeline/issues/93>`_
++* fix default Constructor for OpenCV flags
++  this does not change anything in practice as the flag is set by the node.
++  It just fixes the test.
++* Contributors: Vincent Rabaud
++
++1.12.6 (2014-07-27)
++-------------------
++* make sure the GUI is started in its processing thread and fix a typo
++  This fully fixes `#85 <https://github.com/ros-perception/image_pipeline/issues/85>`_
++* fix bad call to save an image
++* have display be in its own thread
++  that could be a fix for `#85 <https://github.com/ros-perception/image_pipeline/issues/85>`_
++* fix bad usage of Numpy
++  fixes `#89 <https://github.com/ros-perception/image_pipeline/issues/89>`_
++* fix asymmetric circle calibration
++  fixes `#35 <https://github.com/ros-perception/image_pipeline/issues/35>`_
++* add more tests
++* improve unittests to include all patterns
++* install Python scripts properly
++  and fixes `#86 <https://github.com/ros-perception/image_pipeline/issues/86>`_
++* fix typo that leads to segfault
++  fixes `#84 <https://github.com/ros-perception/image_pipeline/issues/84>`_
++* also print self.report() on calibrate ... allows to use the params without having to commit them (e.g. for extrensic calibration between to cameras not used as stereo pair)
++* fixes `#76 <https://github.com/ros-perception/image_pipeline/issues/76>`_
++  Move Python approximate time synchronizer to ros_comm
++* remove all trace of cv in Python (use cv2)
++* remove deprecated file (as mentioned in its help)
++* fixes `#25 <https://github.com/ros-perception/image_pipeline/issues/25>`_
++  This is just removing deprecated options that were around since diamondback
++* fixes `#74 <https://github.com/ros-perception/image_pipeline/issues/74>`_
++  calibrator.py is now using the cv2 only API when using cv_bridge.
++  The API got changed too but it seems to only be used internally.
++* Contributors: Vincent Rabaud, ahb
++
++1.12.5 (2014-05-11)
++-------------------
++* Fix `#68 <https://github.com/ros-perception/image_pipeline/issues/68>`_: StringIO issues in calibrator.py
++* fix architecture independent
++* Contributors: Miquel Massot, Vincent Rabaud
++
++1.12.4 (2014-04-28)
++-------------------
++
++1.12.3 (2014-04-12)
++-------------------
++* camera_calibration: Fix Python import order
++* Contributors: Scott K Logan
++
++1.12.2 (2014-04-08)
++-------------------
++* Fixes a typo on stereo camera info service calls
++  Script works after correcting the call names.
++* Contributors: JoonasMelin
++
++1.11.4 (2013-11-23 13:10:55 +0100)
++----------------------------------
++- add visualization during calibration and several calibration flags (#48)
+--- /dev/null
++++ ros-noetic-camera-calibration-1.17.0/CMakeLists.txt
+@@ -0,0 +1,31 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(camera_calibration)
++
++find_package(catkin REQUIRED)
++catkin_package()
++
++catkin_python_setup()
++
++if(CATKIN_ENABLE_TESTING)
++  # Unit test of calibrator.py
++  catkin_add_nosetests(test/directed.py)
++
++  # Tests simple calibration dataset
++  catkin_download_test_data(camera_calibration.tar.gz http://download.ros.org/data/camera_calibration/camera_calibration.tar.gz
++    DESTINATION ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_SHARE_DESTINATION}/tests
++    MD5 6da43ea314640a4c15dd7a90cbc3aee0
++  )
++
++  # Tests multiple checkerboards
++  catkin_download_test_data(multi_board_calibration.tar.gz http://download.ros.org/data/camera_calibration/multi_board_calibration.tar.gz
++    DESTINATION ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_SHARE_DESTINATION}/tests
++    MD5 ddc0f69582d140e33f9d3bfb681956bb
++  )
++  catkin_add_nosetests(test/multiple_boards.py)
++endif()
++
++catkin_install_python(PROGRAMS nodes/cameracalibrator.py
++  nodes/cameracheck.py
++  scripts/tarfile_calibration.py
++  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
++)
+--- /dev/null
++++ ros-noetic-camera-calibration-1.17.0/doc/conf.py
+@@ -0,0 +1,201 @@
++# -*- coding: utf-8 -*-
++#
++# camera_calibration documentation build configuration file, created by
++# sphinx-quickstart on Mon Jun  1 14:21:53 2009.
++#
++# This file is execfile()d with the current directory set to its containing dir.
++#
++# Note that not all possible configuration values are present in this
++# autogenerated file.
++#
++# All configuration values have a default; values that are commented out
++# serve to show the default.
++
++import sys, os
++
++# If extensions (or modules to document with autodoc) are in another directory,
++# add these directories to sys.path here. If the directory is relative to the
++# documentation root, use os.path.abspath to make it absolute, like shown here.
++#sys.path.append(os.path.abspath('.'))
++
++# -- General configuration -----------------------------------------------------
++
++# Add any Sphinx extension module names here, as strings. They can be extensions
++# coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
++extensions = ['sphinx.ext.autodoc', 'sphinx.ext.doctest', 'sphinx.ext.intersphinx', 'sphinx.ext.pngmath']
++
++# Add any paths that contain templates here, relative to this directory.
++templates_path = ['_templates']
++
++# The suffix of source filenames.
++source_suffix = '.rst'
++
++# The encoding of source files.
++#source_encoding = 'utf-8'
++
++# The master toctree document.
++master_doc = 'index'
++
++# General information about the project.
++project = 'camera_calibration'
++copyright = '2009, Willow Garage, Inc.'
++
++# The version info for the project you're documenting, acts as replacement for
++# |version| and |release|, also used in various other places throughout the
++# built documents.
++#
++# The short X.Y version.
++version = '0.1'
++# The full version, including alpha/beta/rc tags.
++release = '0.1.0'
++
++# The language for content autogenerated by Sphinx. Refer to documentation
++# for a list of supported languages.
++#language = None
++
++# There are two options for replacing |today|: either, you set today to some
++# non-false value, then it is used:
++#today = ''
++# Else, today_fmt is used as the format for a strftime call.
++#today_fmt = '%B %d, %Y'
++
++# List of documents that shouldn't be included in the build.
++#unused_docs = []
++
++# List of directories, relative to source directory, that shouldn't be searched
++# for source files.
++exclude_trees = ['_build']
++
++# The reST default role (used for this markup: `text`) to use for all documents.
++#default_role = None
++
++# If true, '()' will be appended to :func: etc. cross-reference text.
++#add_function_parentheses = True
++
++# If true, the current module name will be prepended to all description
++# unit titles (such as .. function::).
++#add_module_names = True
++
++# If true, sectionauthor and moduleauthor directives will be shown in the
++# output. They are ignored by default.
++#show_authors = False
++
++# The name of the Pygments (syntax highlighting) style to use.
++pygments_style = 'sphinx'
++
++# A list of ignored prefixes for module index sorting.
++#modindex_common_prefix = []
++
++
++# -- Options for HTML output ---------------------------------------------------
++
++# The theme to use for HTML and HTML Help pages.  Major themes that come with
++# Sphinx are currently 'default' and 'sphinxdoc'.
++html_theme = 'default'
++
++# Theme options are theme-specific and customize the look and feel of a theme
++# further.  For a list of options available for each theme, see the
++# documentation.
++#html_theme_options = {}
++
++# Add any paths that contain custom themes here, relative to this directory.
++#html_theme_path = []
++
++# The name for this set of Sphinx documents.  If None, it defaults to
++# "<project> v<release> documentation".
++#html_title = None
++
++# A shorter title for the navigation bar.  Default is the same as html_title.
++#html_short_title = None
++
++# The name of an image file (relative to this directory) to place at the top
++# of the sidebar.
++#html_logo = None
++
++# The name of an image file (within the static path) to use as favicon of the
++# docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
++# pixels large.
++#html_favicon = None
++
++# Add any paths that contain custom static files (such as style sheets) here,
++# relative to this directory. They are copied after the builtin static files,
++# so a file named "default.css" will overwrite the builtin "default.css".
++#html_static_path = ['_static']
++
++# If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
++# using the given strftime format.
++#html_last_updated_fmt = '%b %d, %Y'
++
++# If true, SmartyPants will be used to convert quotes and dashes to
++# typographically correct entities.
++#html_use_smartypants = True
++
++# Custom sidebar templates, maps document names to template names.
++#html_sidebars = {}
++
++# Additional templates that should be rendered to pages, maps page names to
++# template names.
++#html_additional_pages = {}
++
++# If false, no module index is generated.
++#html_use_modindex = True
++
++# If false, no index is generated.
++#html_use_index = True
++
++# If true, the index is split into individual pages for each letter.
++#html_split_index = False
++
++# If true, links to the reST sources are added to the pages.
++#html_show_sourcelink = True
++
++# If true, an OpenSearch description file will be output, and all pages will
++# contain a <link> tag referring to it.  The value of this option must be the
++# base URL from which the finished HTML is served.
++#html_use_opensearch = ''
++
++# If nonempty, this is the file name suffix for HTML files (e.g. ".xhtml").
++#html_file_suffix = ''
++
++# Output file base name for HTML help builder.
++htmlhelp_basename = 'camera_calibrationdoc'
++
++
++# -- Options for LaTeX output --------------------------------------------------
++
++# The paper size ('letter' or 'a4').
++#latex_paper_size = 'letter'
++
++# The font size ('10pt', '11pt' or '12pt').
++#latex_font_size = '10pt'
++
++# Grouping the document tree into LaTeX files. List of tuples
++# (source start file, target name, title, author, documentclass [howto/manual]).
++latex_documents = [
++  ('index', 'camera_calibration.tex', 'stereo\\_utils Documentation',
++   'James Bowman', 'manual'),
++]
++
++# The name of an image file (relative to this directory) to place at the top of
++# the title page.
++#latex_logo = None
++
++# For "manual" documents, if this is true, then toplevel headings are parts,
++# not chapters.
++#latex_use_parts = False
++
++# Additional stuff for the LaTeX preamble.
++#latex_preamble = ''
++
++# Documents to append as an appendix to all manuals.
++#latex_appendices = []
++
++# If false, no module index is generated.
++#latex_use_modindex = True
++
++# Example configuration for intersphinx: refer to the Python standard library.
++intersphinx_mapping = {
++    'http://docs.python.org/': None,
++    'http://docs.scipy.org/doc/numpy' : None,
++    'http://www.ros.org/doc/api/tf/html/python/' : None
++    }
+--- /dev/null
++++ ros-noetic-camera-calibration-1.17.0/doc/index.rst
+@@ -0,0 +1,18 @@
++camera_calibration
++==================
++
++The camera_calibration package contains a user-friendly calibration tool,
++cameracalibrator.  This tool uses the following Python classes, which
++conveniently hide some of the complexities of using OpenCV's calibration
++process and chessboard detection, and the details of constructing a ROS
++CameraInfo message.  These classes are documented here for people who
++need to extend or make a new calibration tool.
++
++For details on the camera model and camera calibration process, see
++http://docs.opencv.org/master/d9/d0c/group__calib3d.html
++
++.. autoclass:: camera_calibration.calibrator.MonoCalibrator
++    :members:
++
++.. autoclass:: camera_calibration.calibrator.StereoCalibrator
++    :members:
+--- /dev/null
++++ ros-noetic-camera-calibration-1.17.0/mainpage.dox
+@@ -0,0 +1,59 @@
++/**
++\mainpage
++\htmlinclude manifest.html
++
++\b The camera_calibration package contains tools for calibrating monocular and stereo cameras.
++
++\section codeapi Code API
++
++camera_calibration does not have a code API.
++
++\section rosapi ROS API
++
++List of nodes:
++- \b calibrationnode
++
++<!-- START: copy for each node -->
++
++<hr>
++
++\subsection node_name calibrationnode
++
++calibrationnode subscribes to ROS raw image topics, and presents a
++calibration window.  It can run in both monocular and stereo modes.
++The calibration window shows the current images from the cameras,
++highlighting the checkerboard.  When the user presses the "CALIBRATE"
++button, the node computes the camera calibration parameters.  When the
++user clicks "UPLOAD", the node uploads these new calibration parameters
++to the camera driver using a service call.
++
++\subsubsection Usage
++\verbatim
++$ node_type1 [standard ROS args]
++\endverbatim
++
++\par Example
++
++\verbatim
++$ rosrun camera_calibration cal.py right:=/my_stereo/right/image_raw left:=/my_stereo/left/image_raw left_camera:=/my_stereo/left right_camera:=/my_stereo/right
++\endverbatim
++
++
++\subsubsection topics ROS topics
++
++Subscribes to:
++- \b "left": [sensor_msgs/Image] left raw image topic, for stereo cameras
++- \b "right": [sensor_msgs/Image] left raw image topic, for stereo cameras
++- \b "image": [sensor_msgs/Image] raw image topic, for monocular cameras
++
++Makes service calls to:
++
++\subsubsection services ROS services
++- \b "foo_service": [std_srvs/FooType] description of foo_service
++- \b "camera/set_camera_info": [sensor_msgs/SetCameraInfo] node of the camera for monocular
++- \b "left_camera/set_camera_info": [sensor_msgs/SetCameraInfo] node of the left stereo camera
++- \b "right_camera/set_camera_info": [sensor_msgs/SetCameraInfo] node of the left stereo camera
++
++<!-- END: copy for each node -->
++
++*/
+--- /dev/null
++++ ros-noetic-camera-calibration-1.17.0/nodes/cameracalibrator.py
+@@ -0,0 +1,233 @@
++#!/usr/bin/env python
++#
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of the Willow Garage nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import cv2
++import functools
++import message_filters
++import rospy
++from camera_calibration.camera_calibrator import OpenCVCalibrationNode
++from camera_calibration.calibrator import ChessboardInfo, Patterns
++from message_filters import ApproximateTimeSynchronizer
++
++def optionsValidCharuco(options, parser):
++    """
++    Validates the provided options when the pattern type is 'charuco'
++    """
++    if options.pattern != 'charuco': return False
++
++    n_boards = len(options.size)
++    if (n_boards != len(options.square) or n_boards != len(options.charuco_marker_size) or n_boards !=
++            len(options.aruco_dict)):
++        parser.error("When using ChArUco boards, --size, --square, --charuco_marker_size, and --aruco_dict " +
++        "must be specified for each board")
++        return False
++
++    # TODO: check for fisheye and stereo (not implemented with ChArUco)
++    return True
++
++
++def main():
++    from optparse import OptionParser, OptionGroup
++    parser = OptionParser("%prog --size SIZE1 --square SQUARE1 [ --size SIZE2 --square SQUARE2 ]",
++                          description=None)
++    parser.add_option("-c", "--camera_name",
++                     type="string", default='narrow_stereo',
++                     help="name of the camera to appear in the calibration file")
++    group = OptionGroup(parser, "Chessboard Options",
++                        "You must specify one or more chessboards as pairs of --size and --square options.")
++    group.add_option("-p", "--pattern",
++                     type="string", default="chessboard",
++                     help="calibration pattern to detect - 'chessboard', 'circles', 'acircles', 'charuco'\n" +
++                     "  if 'charuco' is used, a --charuco_marker_size and --aruco_dict argument must be supplied\n" +
++                     "  with each --size and --square argument")
++    group.add_option("-s", "--size",
++                     action="append", default=[],
++                     help="chessboard size as NxM, counting interior corners (e.g. a standard chessboard is 7x7)")
++    group.add_option("-q", "--square",
++                     action="append", default=[],
++                     help="chessboard square size in meters")
++    group.add_option("-m", "--charuco_marker_size",
++                     action="append", default=[],
++                     help="ArUco marker size (meters); only valid with `-p charuco`")
++    group.add_option("-d", "--aruco_dict",
++                     action="append", default=[],
++                     help="ArUco marker dictionary; only valid with `-p charuco`; one of 'aruco_orig', '4x4_250', " +
++                     "'5x5_250', '6x6_250', '7x7_250'")
++    parser.add_option_group(group)
++    group = OptionGroup(parser, "ROS Communication Options")
++    group.add_option("--approximate",
++                     type="float", default=0.0,
++                     help="allow specified slop (in seconds) when pairing images from unsynchronized stereo cameras")
++    group.add_option("--no-service-check",
++                     action="store_false", dest="service_check", default=True,
++                     help="disable check for set_camera_info services at startup")
++    group.add_option("--queue-size",
++                     type="int", default=1,
++                     help="image queue size (default %default, set to 0 for unlimited)")
++    parser.add_option_group(group)
++    group = OptionGroup(parser, "Calibration Optimizer Options")
++    group.add_option("--fix-principal-point",
++                     action="store_true", default=False,
++                     help="for pinhole, fix the principal point at the image center")
++    group.add_option("--fix-aspect-ratio",
++                     action="store_true", default=False,
++                     help="for pinhole, enforce focal lengths (fx, fy) are equal")
++    group.add_option("--zero-tangent-dist",
++                     action="store_true", default=False,
++                     help="for pinhole, set tangential distortion coefficients (p1, p2) to zero")
++    group.add_option("-k", "--k-coefficients",
++                     type="int", default=2, metavar="NUM_COEFFS",
++                     help="for pinhole, number of radial distortion coefficients to use (up to 6, default %default)")
++
++    group.add_option("--fisheye-recompute-extrinsicsts",
++                     action="store_true", default=False,
++                     help="for fisheye, extrinsic will be recomputed after each iteration of intrinsic optimization")
++    group.add_option("--fisheye-fix-skew",
++                     action="store_true", default=False,
++                     help="for fisheye, skew coefficient (alpha) is set to zero and stay zero")
++    group.add_option("--fisheye-fix-principal-point",
++                     action="store_true", default=False,
++                     help="for fisheye,fix the principal point at the image center")
++    group.add_option("--fisheye-k-coefficients",
++                     type="int", default=4, metavar="NUM_COEFFS",
++                     help="for fisheye, number of radial distortion coefficients to use fixing to zero the rest (up to 4, default %default)")
++
++    group.add_option("--fisheye-check-conditions",
++                     action="store_true", default=False,
++                     help="for fisheye, the functions will check validity of condition number")
++
++    group.add_option("--disable_calib_cb_fast_check", action='store_true', default=False,
++                     help="uses the CALIB_CB_FAST_CHECK flag for findChessboardCorners")
++    group.add_option("--max-chessboard-speed", type="float", default=-1.0,
++                     help="Do not use samples where the calibration pattern is moving faster \
++                     than this speed in px/frame. Set to eg. 0.5 for rolling shutter cameras.")
++
++    parser.add_option_group(group)
++
++    options, args = parser.parse_args()
++
++    if (len(options.size) != len(options.square)):
++        parser.error("Number of size and square inputs must be the same!")
++
++    if not options.square:
++        options.square.append("0.108")
++        options.size.append("8x6")
++
++    boards = []
++    if options.pattern == "charuco" and optionsValidCharuco(options, parser):
++        for (sz, sq, ms, ad) in zip(options.size, options.square, options.charuco_marker_size, options.aruco_dict):
++            size = tuple([int(c) for c in sz.split('x')])
++            boards.append(ChessboardInfo('charuco', size[0], size[1], float(sq), float(ms), ad))
++    else:
++        for (sz, sq) in zip(options.size, options.square):
++            size = tuple([int(c) for c in sz.split('x')])
++            boards.append(ChessboardInfo(options.pattern, size[0], size[1], float(sq)))
++
++    if options.approximate == 0.0:
++        sync = message_filters.TimeSynchronizer
++    else:
++        sync = functools.partial(ApproximateTimeSynchronizer, slop=options.approximate)
++
++    # Pinhole opencv calibration options parsing
++    num_ks = options.k_coefficients
++
++    calib_flags = 0
++    if options.fix_principal_point:
++        calib_flags |= cv2.CALIB_FIX_PRINCIPAL_POINT
++    if options.fix_aspect_ratio:
++        calib_flags |= cv2.CALIB_FIX_ASPECT_RATIO
++    if options.zero_tangent_dist:
++        calib_flags |= cv2.CALIB_ZERO_TANGENT_DIST
++    if (num_ks > 3):
++        calib_flags |= cv2.CALIB_RATIONAL_MODEL
++    if (num_ks < 6):
++        calib_flags |= cv2.CALIB_FIX_K6
++    if (num_ks < 5):
++        calib_flags |= cv2.CALIB_FIX_K5
++    if (num_ks < 4):
++        calib_flags |= cv2.CALIB_FIX_K4
++    if (num_ks < 3):
++        calib_flags |= cv2.CALIB_FIX_K3
++    if (num_ks < 2):
++        calib_flags |= cv2.CALIB_FIX_K2
++    if (num_ks < 1):
++        calib_flags |= cv2.CALIB_FIX_K1
++
++    # Opencv calibration flags parsing:
++    num_ks = options.fisheye_k_coefficients
++    fisheye_calib_flags = 0
++    if options.fisheye_fix_principal_point:
++        fisheye_calib_flags |= cv2.fisheye.CALIB_FIX_PRINCIPAL_POINT
++    if options.fisheye_fix_skew:
++        fisheye_calib_flags |= cv2.fisheye.CALIB_FIX_SKEW
++    if options.fisheye_recompute_extrinsicsts:
++        fisheye_calib_flags |= cv2.fisheye.CALIB_RECOMPUTE_EXTRINSIC
++    if options.fisheye_check_conditions:
++        fisheye_calib_flags |= cv2.fisheye.CALIB_CHECK_COND
++    if (num_ks < 4):
++        fisheye_calib_flags |= cv2.fisheye.CALIB_FIX_K4
++    if (num_ks < 3):
++        fisheye_calib_flags |= cv2.fisheye.CALIB_FIX_K3
++    if (num_ks < 2):
++        fisheye_calib_flags |= cv2.fisheye.CALIB_FIX_K2
++    if (num_ks < 1):
++        fisheye_calib_flags |= cv2.fisheye.CALIB_FIX_K1
++
++    pattern = Patterns.Chessboard
++    if options.pattern == 'circles':
++        pattern = Patterns.Circles
++    elif options.pattern == 'acircles':
++        pattern = Patterns.ACircles
++    elif options.pattern == 'charuco':
++        pattern = Patterns.ChArUco
++    elif options.pattern != 'chessboard':
++        print('Unrecognized pattern %s, defaulting to chessboard' % options.pattern)
++
++    if options.disable_calib_cb_fast_check:
++        checkerboard_flags = 0
++    else:
++        checkerboard_flags = cv2.CALIB_CB_FAST_CHECK
++
++    rospy.init_node('cameracalibrator')
++    node = OpenCVCalibrationNode(boards, options.service_check, sync, calib_flags, fisheye_calib_flags, pattern, options.camera_name,
++                                 checkerboard_flags=checkerboard_flags, max_chessboard_speed=options.max_chessboard_speed,
++                                 queue_size=options.queue_size)
++    rospy.spin()
++
++if __name__ == "__main__":
++    try:
++        main()
++    except Exception as e:
++        import traceback
++        traceback.print_exc()
+--- /dev/null
++++ ros-noetic-camera-calibration-1.17.0/nodes/cameracheck.py
+@@ -0,0 +1,57 @@
++#!/usr/bin/env python
++#
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of the Willow Garage nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import rospy
++from camera_calibration.camera_checker import CameraCheckerNode
++
++
++def main():
++    from optparse import OptionParser
++    rospy.init_node('cameracheck')
++    parser = OptionParser()
++    parser.add_option("-s", "--size", default="8x6", help="specify chessboard size as nxm [default: %default]")
++    parser.add_option("-q", "--square", default=".108", help="specify chessboard square size in meters [default: %default]")
++    parser.add_option("--approximate",
++                      type="float", default=0.0,
++                      help="allow specified slop (in seconds) when pairing images from unsynchronized stereo cameras")
++
++    options, args = parser.parse_args()
++    size = tuple([int(c) for c in options.size.split('x')])
++    dim = float(options.square)
++    approximate = float(options.approximate)
++    CameraCheckerNode(size, dim, approximate)
++    rospy.spin()
++
++if __name__ == "__main__":
++    main()
+--- /dev/null
++++ ros-noetic-camera-calibration-1.17.0/package.xml
+@@ -0,0 +1,31 @@
++<package>
++  <name>camera_calibration</name>
++  <version>1.17.0</version>
++  <description>
++     camera_calibration allows easy calibration of monocular or stereo
++     cameras using a checkerboard calibration target.
++  </description>
++  <author>James Bowman</author>
++  <author>Patrick Mihelich</author>
++  <maintainer email="vincent.rabaud@gmail.com">Vincent Rabaud</maintainer>
++  <maintainer email="software@autonomoustuff.com">Autonomoustuff team</maintainer>
++
++  <buildtool_depend version_gte="0.5.68">catkin</buildtool_depend>
++
++  <test_depend>rostest</test_depend>
++
++  <run_depend>cv_bridge</run_depend>
++  <run_depend>image_geometry</run_depend>
++  <run_depend>message_filters</run_depend>
++  <run_depend>rospy</run_depend>
++  <run_depend>std_srvs</run_depend>
++  <run_depend>sensor_msgs</run_depend>
++
++  <license>BSD</license>
++  <url>http://www.ros.org/wiki/camera_calibration</url>
++
++  <export>
++    <rosdoc config="rosdoc.yaml" />
++    <architecture_independent/>
++  </export>
++</package>
+--- /dev/null
++++ ros-noetic-camera-calibration-1.17.0/rosdoc.yaml
+@@ -0,0 +1,4 @@
++ - builder: sphinx
++   name: Python API
++   output_dir: python
++   sphinx_root_dir: doc
+--- /dev/null
++++ ros-noetic-camera-calibration-1.17.0/scripts/tarfile_calibration.py
+@@ -0,0 +1,228 @@
++#!/usr/bin/env python
++#
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of the Willow Garage nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import os
++import numpy
++
++import cv2
++import cv_bridge
++import tarfile
++
++from camera_calibration.calibrator import MonoCalibrator, StereoCalibrator, CalibrationException, ChessboardInfo
++
++import rospy
++import sensor_msgs.srv
++
++def display(win_name, img):
++    cv2.namedWindow(win_name, cv2.WINDOW_NORMAL)
++    cv2.imshow( win_name,  numpy.asarray( img[:,:] ))
++    k = cv2.waitKey(0)
++    cv2.destroyWindow(win_name)
++    if k in [27, ord('q')]:
++        rospy.signal_shutdown('Quit')
++
++
++def cal_from_tarfile(boards, tarname, mono = False, upload = False, calib_flags = 0, visualize = False, alpha=1.0):
++    if mono:
++        calibrator = MonoCalibrator(boards, calib_flags)
++    else:
++        calibrator = StereoCalibrator(boards, calib_flags)
++
++    calibrator.do_tarfile_calibration(tarname)
++
++    print(calibrator.ost())
++
++    if upload: 
++        info = calibrator.as_message()
++        if mono:
++            set_camera_info_service = rospy.ServiceProxy("%s/set_camera_info" % rospy.remap_name("camera"), sensor_msgs.srv.SetCameraInfo)
++
++            response = set_camera_info_service(info)
++            if not response.success:
++                raise RuntimeError("connected to set_camera_info service, but failed setting camera_info")
++        else:
++            set_left_camera_info_service = rospy.ServiceProxy("%s/set_camera_info" % rospy.remap_name("left_camera"), sensor_msgs.srv.SetCameraInfo)
++            set_right_camera_info_service = rospy.ServiceProxy("%s/set_camera_info" % rospy.remap_name("right_camera"), sensor_msgs.srv.SetCameraInfo)
++
++            response1 = set_left_camera_info_service(info[0])
++            response2 = set_right_camera_info_service(info[1])
++            if not (response1.success and response2.success):
++                raise RuntimeError("connected to set_camera_info service, but failed setting camera_info")
++
++    if visualize:
++
++        #Show rectified images
++        calibrator.set_alpha(alpha)
++
++        archive = tarfile.open(tarname, 'r')
++        if mono:
++            for f in archive.getnames():
++                if f.startswith('left') and (f.endswith('.pgm') or f.endswith('png')):
++                    filedata = archive.extractfile(f).read()
++                    file_bytes = numpy.asarray(bytearray(filedata), dtype=numpy.uint8)
++                    im=cv2.imdecode(file_bytes,cv2.IMREAD_COLOR)
++
++                    bridge = cv_bridge.CvBridge()
++                    try:
++                        msg=bridge.cv2_to_imgmsg(im, "bgr8")
++                    except cv_bridge.CvBridgeError as e:
++                        print(e)
++
++                    #handle msg returns the recitifed image with corner detection once camera is calibrated.
++                    drawable=calibrator.handle_msg(msg)
++                    vis=numpy.asarray( drawable.scrib[:,:])
++                    #Display. Name of window:f
++                    display(f, vis)
++        else:
++            limages = [ f for f in archive.getnames() if (f.startswith('left') and (f.endswith('pgm') or f.endswith('png'))) ]
++            limages.sort()
++            rimages = [ f for f in archive.getnames() if (f.startswith('right') and (f.endswith('pgm') or f.endswith('png'))) ]
++            rimages.sort()
++
++            if not len(limages) == len(rimages):
++                raise RuntimeError("Left, right images don't match. %d left images, %d right" % (len(limages), len(rimages)))
++            
++            for i in range(len(limages)):
++                l=limages[i]
++                r=rimages[i]
++
++                if l.startswith('left') and (l.endswith('.pgm') or l.endswith('png')) and r.startswith('right') and (r.endswith('.pgm') or r.endswith('png')):
++                    # LEFT IMAGE
++                    filedata = archive.extractfile(l).read()
++                    file_bytes = numpy.asarray(bytearray(filedata), dtype=numpy.uint8)
++                    im_left=cv2.imdecode(file_bytes,cv2.IMREAD_COLOR)
++       
++                    bridge = cv_bridge.CvBridge()
++                    try:
++                        msg_left=bridge.cv2_to_imgmsg(im_left, "bgr8")
++                    except cv_bridge.CvBridgeError as e:
++                        print(e)
++
++                    #RIGHT IMAGE
++                    filedata = archive.extractfile(r).read()
++                    file_bytes = numpy.asarray(bytearray(filedata), dtype=numpy.uint8)
++                    im_right=cv2.imdecode(file_bytes,cv2.IMREAD_COLOR)
++                    try:
++                        msg_right=bridge.cv2_to_imgmsg(im_right, "bgr8")
++                    except cv_bridge.CvBridgeError as e:
++                        print(e)
++
++                    drawable=calibrator.handle_msg([ msg_left,msg_right] )
++
++                    h, w = numpy.asarray(drawable.lscrib[:,:]).shape[:2]
++                    vis = numpy.zeros((h, w*2, 3), numpy.uint8)
++                    vis[:h, :w ,:] = numpy.asarray(drawable.lscrib[:,:])
++                    vis[:h, w:w*2, :] = numpy.asarray(drawable.rscrib[:,:])
++                    
++                    display(l+" "+r,vis)    
++
++
++if __name__ == '__main__':
++    from optparse import OptionParser
++    parser = OptionParser("%prog TARFILE [ opts ]")
++    parser.add_option("--mono", default=False, action="store_true", dest="mono",
++                      help="Monocular calibration only. Calibrates left images.")
++    parser.add_option("-s", "--size", default=[], action="append", dest="size",
++                      help="specify chessboard size as NxM [default: 8x6]")
++    parser.add_option("-q", "--square", default=[], action="append", dest="square",
++                      help="specify chessboard square size in meters [default: 0.108]")
++    parser.add_option("--upload", default=False, action="store_true", dest="upload",
++                      help="Upload results to camera(s).")
++    parser.add_option("--fix-principal-point", action="store_true", default=False,
++                     help="fix the principal point at the image center")
++    parser.add_option("--fix-aspect-ratio", action="store_true", default=False,
++                     help="enforce focal lengths (fx, fy) are equal")
++    parser.add_option("--zero-tangent-dist", action="store_true", default=False,
++                     help="set tangential distortion coefficients (p1, p2) to zero")
++    parser.add_option("-k", "--k-coefficients", type="int", default=2, metavar="NUM_COEFFS",
++                     help="number of radial distortion coefficients to use (up to 6, default %default)")
++    parser.add_option("--visualize", action="store_true", default=False,
++                     help="visualize rectified images after calibration")
++    parser.add_option("-a", "--alpha", type="float", default=1.0, metavar="ALPHA",
++                     help="zoom for visualization of rectifies images. Ranges from 0 (zoomed in, all pixels in calibrated image are valid) to 1 (zoomed out, all pixels in  original image are in calibrated image). default %default)")
++
++    options, args = parser.parse_args()
++    
++    if len(options.size) != len(options.square):
++        parser.error("Number of size and square inputs must be the same!")
++    
++    if not options.square:
++        options.square.append("0.108")
++        options.size.append("8x6")
++
++    boards = []
++    for (sz, sq) in zip(options.size, options.square):
++        info = ChessboardInfo()
++        info.dim = float(sq)
++        size = tuple([int(c) for c in sz.split('x')])
++        info.n_cols = size[0]
++        info.n_rows = size[1]
++
++        boards.append(info)
++
++    if not boards:
++        parser.error("Must supply at least one chessboard")
++
++    if not args:
++        parser.error("Must give tarfile name")
++    if not os.path.exists(args[0]):
++        parser.error("Tarfile %s does not exist. Please select valid tarfile" % args[0])
++
++    tarname = args[0]
++
++    num_ks = options.k_coefficients
++
++    calib_flags = 0
++    if options.fix_principal_point:
++        calib_flags |= cv2.CALIB_FIX_PRINCIPAL_POINT
++    if options.fix_aspect_ratio:
++        calib_flags |= cv2.CALIB_FIX_ASPECT_RATIO
++    if options.zero_tangent_dist:
++        calib_flags |= cv2.CALIB_ZERO_TANGENT_DIST
++    if (num_ks > 3):
++        calib_flags |= cv2.CALIB_RATIONAL_MODEL
++    if (num_ks < 6):
++        calib_flags |= cv2.CALIB_FIX_K6
++    if (num_ks < 5):
++        calib_flags |= cv2.CALIB_FIX_K5
++    if (num_ks < 4):
++        calib_flags |= cv2.CALIB_FIX_K4
++    if (num_ks < 3):
++        calib_flags |= cv2.CALIB_FIX_K3
++    if (num_ks < 2):
++        calib_flags |= cv2.CALIB_FIX_K2
++    if (num_ks < 1):
++        calib_flags |= cv2.CALIB_FIX_K1
++
++    cal_from_tarfile(boards, tarname, options.mono, options.upload, calib_flags, options.visualize, options.alpha)
+--- /dev/null
++++ ros-noetic-camera-calibration-1.17.0/setup.py
+@@ -0,0 +1,9 @@
++#!/usr/bin/env python
++from setuptools import setup
++from catkin_pkg.python_setup import generate_distutils_setup
++
++d = generate_distutils_setup()
++d['packages'] = ['camera_calibration']
++d['package_dir'] = {'':'src'}
++
++setup(**d)
+--- /dev/null
++++ ros-noetic-camera-calibration-1.17.0/src/camera_calibration/calibrator.py
+@@ -0,0 +1,1436 @@
++#!/usr/bin/env python
++#
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of the Willow Garage nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++from io import BytesIO
++import cv2
++import cv_bridge
++import image_geometry
++import math
++import numpy.linalg
++import pickle
++import random
++import sensor_msgs.msg
++import tarfile
++import time
++from distutils.version import LooseVersion
++import sys
++from enum import Enum
++
++# Supported camera models
++class CAMERA_MODEL(Enum):
++    PINHOLE = 0
++    FISHEYE = 1
++
++# Supported calibration patterns
++class Patterns:
++    Chessboard, Circles, ACircles, ChArUco = list(range(4))
++
++class CalibrationException(Exception):
++    pass
++
++# TODO: Make pattern per-board?
++class ChessboardInfo():
++    def __init__(self, pattern="chessboard", n_cols = 0, n_rows = 0, dim = 0.0, marker_size = 0.0, aruco_dict = None):
++        self.pattern = pattern
++        self.n_cols = n_cols
++        self.n_rows = n_rows
++        self.dim = dim
++        self.marker_size = marker_size
++        self.aruco_dict = None
++        self.charuco_board = None;
++        if pattern=="charuco":
++            self.aruco_dict = cv2.aruco.getPredefinedDictionary({
++                "aruco_orig" : cv2.aruco.DICT_ARUCO_ORIGINAL,
++                "4x4_250"    : cv2.aruco.DICT_4X4_250,
++                "5x5_250"    : cv2.aruco.DICT_5X5_250,
++                "6x6_250"    : cv2.aruco.DICT_6X6_250,
++                "7x7_250"    : cv2.aruco.DICT_7X7_250}[aruco_dict])
++            self.charuco_board = cv2.aruco.CharucoBoard_create(self.n_cols, self.n_rows, self.dim, self.marker_size,
++                    self.aruco_dict)
++
++# Make all private!!!!!
++def lmin(seq1, seq2):
++    """ Pairwise minimum of two sequences """
++    return [min(a, b) for (a, b) in zip(seq1, seq2)]
++
++def lmax(seq1, seq2):
++    """ Pairwise maximum of two sequences """
++    return [max(a, b) for (a, b) in zip(seq1, seq2)]
++
++def _pdist(p1, p2):
++    """
++    Distance bwt two points. p1 = (x, y), p2 = (x, y)
++    """
++    return math.sqrt(math.pow(p1[0] - p2[0], 2) + math.pow(p1[1] - p2[1], 2))
++
++def _get_outside_corners(corners, board):
++    """
++    Return the four corners of the board as a whole, as (up_left, up_right, down_right, down_left).
++    """
++    xdim = board.n_cols
++    ydim = board.n_rows
++
++    if board.pattern != "charuco" and corners.shape[1] * corners.shape[0] != xdim * ydim:
++        raise Exception("Invalid number of corners! %d corners. X: %d, Y: %d" % (corners.shape[1] * corners.shape[0],
++                                                                                xdim, ydim))
++    if board.pattern == "charuco" and corners.shape[1] * corners.shape[0] != (xdim-1) * (ydim-1):
++        raise Exception(("Invalid number of corners! %d corners. X: %d, Y: %d\n  for ChArUco boards, " +
++                "_get_largest_rectangle_corners handles partial views of the target") % (corners.shape[1] *
++                    corners.shape[0], xdim-1, ydim-1))
++
++    up_left    = corners[0,0]
++    up_right   = corners[xdim - 1,0]
++    down_right = corners[-1,0]
++    down_left  = corners[-xdim,0]
++
++    return (up_left, up_right, down_right, down_left)
++
++def _get_largest_rectangle_corners(corners, ids, board):
++    """
++    Return the largest rectangle with all four corners visible in a partial view of a ChArUco board, as (up_left,
++    up_right, down_right, down_left).
++    """
++
++    # ChArUco board corner numbering:
++    #
++    #    9 10 11
++    # ^  6  7  8
++    # y  3  4  5
++    #    0  1  2
++    #      x >
++    #
++    # reference: https://docs.opencv.org/master/df/d4a/tutorial_charuco_detection.html
++
++    # xdim and ydim are number of squares, but we're working with inner corners
++    xdim = board.n_cols - 1
++    ydim = board.n_rows - 1
++    board_vis = [[[i*xdim + j] in ids for j in range(xdim)] for i in range(ydim)]
++
++    best_area = 0
++    best_rect = [-1, -1, -1, -1]
++
++    for x1 in range(xdim):
++        for x2 in range(x1, xdim):
++            for y1 in range(ydim):
++                for y2 in range(y1, ydim):
++                    if (board_vis[y1][x1] and board_vis[y1][x2] and board_vis[y2][x1] and
++                            board_vis[y2][x2] and (x2-x1+1)*(y2-y1+1) > best_area):
++                        best_area = (x2-x1+1)*(y2-y1+1)
++                        best_rect = [x1, x2, y1, y2]
++    (x1, x2, y1, y2) = best_rect
++    corner_ids = (y2*xdim+x1, y2*xdim+x2, y1*xdim+x2, y1*xdim + x1)
++    corners = tuple(corners[numpy.where(ids == corner_id)[0]][0][0] for corner_id in corner_ids)
++
++    return corners
++
++def _calculate_skew(corners):
++    """
++    Get skew for given checkerboard detection.
++    Scaled to [0,1], which 0 = no skew, 1 = high skew
++    Skew is proportional to the divergence of three outside corners from 90 degrees.
++    """
++    # TODO Using three nearby interior corners might be more robust, outside corners occasionally
++    # get mis-detected
++    up_left, up_right, down_right, _ = corners
++
++    def angle(a, b, c):
++        """
++        Return angle between lines ab, bc
++        """
++        ab = a - b
++        cb = c - b
++        return math.acos(numpy.dot(ab,cb) / (numpy.linalg.norm(ab) * numpy.linalg.norm(cb)))
++
++    skew = min(1.0, 2. * abs((math.pi / 2.) - angle(up_left, up_right, down_right)))
++    return skew
++
++def _calculate_area(corners):
++    """
++    Get 2d image area of the detected checkerboard.
++    The projected checkerboard is assumed to be a convex quadrilateral, and the area computed as
++    |p X q|/2; see http://mathworld.wolfram.com/Quadrilateral.html.
++    """
++    (up_left, up_right, down_right, down_left) = corners
++    a = up_right - up_left
++    b = down_right - up_right
++    c = down_left - down_right
++    p = b + c
++    q = a + b
++    return abs(p[0]*q[1] - p[1]*q[0]) / 2.
++
++def _get_corners(img, board, refine = True, checkerboard_flags=0):
++    """
++    Get corners for a particular chessboard for an image
++    """
++    h = img.shape[0]
++    w = img.shape[1]
++    if len(img.shape) == 3 and img.shape[2] == 3:
++        mono = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
++    else:
++        mono = img
++    (ok, corners) = cv2.findChessboardCorners(mono, (board.n_cols, board.n_rows), flags = cv2.CALIB_CB_ADAPTIVE_THRESH |
++                                              cv2.CALIB_CB_NORMALIZE_IMAGE | checkerboard_flags)
++    if not ok:
++        return (ok, corners)
++
++    # If any corners are within BORDER pixels of the screen edge, reject the detection by setting ok to false
++    # NOTE: This may cause problems with very low-resolution cameras, where 8 pixels is a non-negligible fraction
++    # of the image size. See http://answers.ros.org/question/3155/how-can-i-calibrate-low-resolution-cameras
++    BORDER = 8
++    if not all([(BORDER < corners[i, 0, 0] < (w - BORDER)) and (BORDER < corners[i, 0, 1] < (h - BORDER)) for i in range(corners.shape[0])]):
++        ok = False
++
++    # Ensure that all corner-arrays are going from top to bottom.
++    if board.n_rows!=board.n_cols:
++        if corners[0, 0, 1] > corners[-1, 0, 1]:
++            corners = numpy.copy(numpy.flipud(corners))
++    else:
++        direction_corners=(corners[-1]-corners[0])>=numpy.array([[0.0,0.0]])
++
++        if not numpy.all(direction_corners):
++            if not numpy.any(direction_corners):
++                corners = numpy.copy(numpy.flipud(corners))
++            elif direction_corners[0][0]:
++                corners=numpy.rot90(corners.reshape(board.n_rows,board.n_cols,2)).reshape(board.n_cols*board.n_rows,1,2)
++            else:
++                corners=numpy.rot90(corners.reshape(board.n_rows,board.n_cols,2),3).reshape(board.n_cols*board.n_rows,1,2)
++
++    if refine and ok:
++        # Use a radius of half the minimum distance between corners. This should be large enough to snap to the
++        # correct corner, but not so large as to include a wrong corner in the search window.
++        min_distance = float("inf")
++        for row in range(board.n_rows):
++            for col in range(board.n_cols - 1):
++                index = row*board.n_rows + col
++                min_distance = min(min_distance, _pdist(corners[index, 0], corners[index + 1, 0]))
++        for row in range(board.n_rows - 1):
++            for col in range(board.n_cols):
++                index = row*board.n_rows + col
++                min_distance = min(min_distance, _pdist(corners[index, 0], corners[index + board.n_cols, 0]))
++        radius = int(math.ceil(min_distance * 0.5))
++        cv2.cornerSubPix(mono, corners, (radius,radius), (-1,-1),
++                                      ( cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.1 ))
++
++    return (ok, corners)
++
++def _get_charuco_corners(img, board, refine):
++    """
++    Get chessboard corners from image of ChArUco board
++    """
++    h = img.shape[0]
++    w = img.shape[1]
++
++    if len(img.shape) == 3 and img.shape[2] == 3:
++        mono = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
++    else:
++        mono = img
++
++    marker_corners, marker_ids, _ = cv2.aruco.detectMarkers(img, board.aruco_dict)
++    if len(marker_corners) == 0:
++        return (False, None, None)
++    _, square_corners, ids = cv2.aruco.interpolateCornersCharuco(marker_corners, marker_ids, img, board.charuco_board)
++    return ((square_corners is not None) and (len(square_corners) > 5), square_corners, ids)
++
++def _get_circles(img, board, pattern):
++    """
++    Get circle centers for a symmetric or asymmetric grid
++    """
++    h = img.shape[0]
++    w = img.shape[1]
++    if len(img.shape) == 3 and img.shape[2] == 3:
++        mono = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
++    else:
++        mono = img
++
++    flag = cv2.CALIB_CB_SYMMETRIC_GRID
++    if pattern == Patterns.ACircles:
++        flag = cv2.CALIB_CB_ASYMMETRIC_GRID
++    mono_arr = numpy.array(mono)
++    (ok, corners) = cv2.findCirclesGrid(mono_arr, (board.n_cols, board.n_rows), flags=flag)
++
++    # In symmetric case, findCirclesGrid does not detect the target if it's turned sideways. So we try
++    # again with dimensions swapped - not so efficient.
++    # TODO Better to add as second board? Corner ordering will change.
++    if not ok and pattern == Patterns.Circles:
++        (ok, corners) = cv2.findCirclesGrid(mono_arr, (board.n_rows, board.n_cols), flags=flag)
++
++    return (ok, corners)
++
++def _get_dist_model(dist_params, cam_model):
++    # Select dist model
++    if CAMERA_MODEL.PINHOLE == cam_model:
++        if dist_params.size > 5:
++            dist_model = "rational_polynomial"
++        else:
++            dist_model = "plumb_bob"
++    elif CAMERA_MODEL.FISHEYE == cam_model:
++        dist_model = "equidistant"
++    else:
++        dist_model = "unknown"
++    return dist_model
++
++# TODO self.size needs to come from CameraInfo, full resolution
++class Calibrator():
++    """
++    Base class for calibration system
++    """
++    def __init__(self, boards, flags=0, fisheye_flags = 0, pattern=Patterns.Chessboard, name='',
++    checkerboard_flags=cv2.CALIB_CB_FAST_CHECK, max_chessboard_speed = -1.0):
++        # Ordering the dimensions for the different detectors is actually a minefield...
++        if pattern == Patterns.Chessboard:
++            # Make sure n_cols > n_rows to agree with OpenCV CB detector output
++            self._boards = [ChessboardInfo("chessboard", max(i.n_cols, i.n_rows), min(i.n_cols, i.n_rows), i.dim) for i in boards]
++        if pattern == Patterns.ChArUco:
++            self._boards = boards
++        elif pattern == Patterns.ACircles:
++            # 7x4 and 4x7 are actually different patterns. Assume square-ish pattern, so n_rows > n_cols.
++            self._boards = [ChessboardInfo("acircles", min(i.n_cols, i.n_rows), max(i.n_cols, i.n_rows), i.dim) for i in boards]
++        elif pattern == Patterns.Circles:
++            # We end up having to check both ways anyway
++            self._boards = boards
++
++        # Set to true after we perform calibration
++        self.calibrated = False
++        self.calib_flags = flags
++        self.fisheye_calib_flags = fisheye_flags
++        self.checkerboard_flags = checkerboard_flags
++        self.pattern = pattern
++        self.br = cv_bridge.CvBridge()
++        self.camera_model = CAMERA_MODEL.PINHOLE
++        # self.db is list of (parameters, image) samples for use in calibration. parameters has form
++        # (X, Y, size, skew) all normalized to [0,1], to keep track of what sort of samples we've taken
++        # and ensure enough variety.
++        self.db = []
++        # For each db sample, we also record the detected corners (and IDs, if using a ChArUco board)
++        self.good_corners = []
++        # Set to true when we have sufficiently varied samples to calibrate
++        self.goodenough = False
++        self.param_ranges = [0.7, 0.7, 0.4, 0.5]
++        self.name = name
++        self.last_frame_corners = None
++        self.last_frame_ids = None
++        self.max_chessboard_speed = max_chessboard_speed
++
++    def mkgray(self, msg):
++        """
++        Convert a message into a 8-bit 1 channel monochrome OpenCV image
++        """
++        # as cv_bridge automatically scales, we need to remove that behavior
++        # TODO: get a Python API in cv_bridge to check for the image depth.
++        if self.br.encoding_to_dtype_with_channels(msg.encoding)[0] in ['uint16', 'int16']:
++            mono16 = self.br.imgmsg_to_cv2(msg, '16UC1')
++            mono8 = numpy.array(mono16 / 256, dtype=numpy.uint8)
++            return mono8
++        elif 'FC1' in msg.encoding:
++            # floating point image handling
++            img = self.br.imgmsg_to_cv2(msg, "passthrough")
++            _, max_val, _, _ = cv2.minMaxLoc(img)
++            if max_val > 0:
++                scale = 255.0 / max_val
++                mono_img = (img * scale).astype(numpy.uint8)
++            else:
++                mono_img = img.astype(numpy.uint8)
++            return mono_img
++        else:
++            return self.br.imgmsg_to_cv2(msg, "mono8")
++
++    def get_parameters(self, corners, ids, board, size):
++        """
++        Return list of parameters [X, Y, size, skew] describing the checkerboard view.
++        """
++        (width, height) = size
++        Xs = corners[:,:,0]
++        Ys = corners[:,:,1]
++        if board.pattern == 'charuco':
++            outside_corners = _get_largest_rectangle_corners(corners, ids, board)
++        else:
++            outside_corners = _get_outside_corners(corners, board)
++        area = _calculate_area(outside_corners)
++        skew = _calculate_skew(outside_corners)
++        border = math.sqrt(area)
++        # For X and Y, we "shrink" the image all around by approx. half the board size.
++        # Otherwise large boards are penalized because you can't get much X/Y variation.
++        p_x = min(1.0, max(0.0, (numpy.mean(Xs) - border / 2) / (width  - border)))
++        p_y = min(1.0, max(0.0, (numpy.mean(Ys) - border / 2) / (height - border)))
++        p_size = math.sqrt(area / (width * height))
++        params = [p_x, p_y, p_size, skew]
++        return params
++
++    def set_cammodel(self, modeltype):
++        self.camera_model = modeltype
++
++    def is_slow_moving(self, corners, ids, last_frame_corners, last_frame_ids):
++        """
++        Returns true if the motion of the checkerboard is sufficiently low between
++        this and the previous frame.
++        """
++        # If we don't have previous frame corners, we can't accept the sample
++        if last_frame_corners is None:
++            return False
++        if ids is None:
++            num_corners = len(corners)
++            corner_deltas = (corners - last_frame_corners).reshape(num_corners, 2)
++        else:
++            corner_deltas = []
++            last_frame_ids = list(last_frame_ids.transpose()[0])
++            for i, c_id in enumerate(ids):
++                try:
++                    last_i = last_frame_ids.index(c_id)
++                    corner_deltas.append(corners[i] - last_frame_corners[last_i])
++                except ValueError: pass
++            corner_deltas = numpy.concatenate(corner_deltas)
++
++        # Average distance travelled overall for all corners
++        average_motion = numpy.average(numpy.linalg.norm(corner_deltas, axis = 1))
++        return average_motion <= self.max_chessboard_speed
++
++    def is_good_sample(self, params, corners, ids, last_frame_corners, last_frame_ids):
++        """
++        Returns true if the checkerboard detection described by params should be added to the database.
++        """
++        if not self.db:
++            return True
++
++        def param_distance(p1, p2):
++            return sum([abs(a-b) for (a,b) in zip(p1, p2)])
++
++        db_params = [sample[0] for sample in self.db]
++        d = min([param_distance(params, p) for p in db_params])
++        #print "d = %.3f" % d #DEBUG
++        # TODO What's a good threshold here? Should it be configurable?
++        if d <= 0.2:
++            return False
++
++        if self.max_chessboard_speed > 0:
++            if not self.is_slow_moving(corners, ids, last_frame_corners, last_frame_ids):
++                return False
++
++        # All tests passed, image should be good for calibration
++        return True
++
++    _param_names = ["X", "Y", "Size", "Skew"]
++
++    def compute_goodenough(self):
++        if not self.db:
++            return None
++
++        # Find range of checkerboard poses covered by samples in database
++        all_params = [sample[0] for sample in self.db]
++        min_params = all_params[0]
++        max_params = all_params[0]
++        for params in all_params[1:]:
++            min_params = lmin(min_params, params)
++            max_params = lmax(max_params, params)
++        # Don't reward small size or skew
++        min_params = [min_params[0], min_params[1], 0., 0.]
++
++        # For each parameter, judge how much progress has been made toward adequate variation
++        progress = [min((hi - lo) / r, 1.0) for (lo, hi, r) in zip(min_params, max_params, self.param_ranges)]
++        # If we have lots of samples, allow calibration even if not all parameters are green
++        # TODO Awkward that we update self.goodenough instead of returning it
++        self.goodenough = (len(self.db) >= 40) or all([p == 1.0 for p in progress])
++
++        return list(zip(self._param_names, min_params, max_params, progress))
++
++    def mk_object_points(self, boards, use_board_size = False):
++        opts = []
++        for i, b in enumerate(boards):
++            num_pts = b.n_cols * b.n_rows
++            opts_loc = numpy.zeros((num_pts, 1, 3), numpy.float32)
++            for j in range(num_pts):
++                opts_loc[j, 0, 0] = (j // b.n_cols)
++                if self.pattern == Patterns.ACircles:
++                    opts_loc[j, 0, 1] = 2*(j % b.n_cols) + (opts_loc[j, 0, 0] % 2)
++                else:
++                    opts_loc[j, 0, 1] = (j % b.n_cols)
++                opts_loc[j, 0, 2] = 0
++                if use_board_size:
++                    opts_loc[j, 0, :] = opts_loc[j, 0, :] * b.dim
++            opts.append(opts_loc)
++        return opts
++
++    def get_corners(self, img, refine = True):
++        """
++        Use cvFindChessboardCorners to find corners of chessboard in image.
++
++        Check all boards. Return corners for first chessboard that it detects
++        if given multiple size chessboards.
++
++        If a ChArUco board is used, the marker IDs are also returned, otherwise
++        ids is None.
++
++        Returns (ok, corners, ids, board)
++        """
++
++        for b in self._boards:
++            if self.pattern == Patterns.Chessboard:
++                (ok, corners) = _get_corners(img, b, refine, self.checkerboard_flags)
++                ids = None
++            elif self.pattern == Patterns.ChArUco:
++                (ok, corners, ids) = _get_charuco_corners(img, b, refine)
++            else:
++                (ok, corners) = _get_circles(img, b, self.pattern)
++                ids = None
++            if ok:
++                return (ok, corners, ids, b)
++        return (False, None, None, None)
++
++    def downsample_and_detect(self, img):
++        """
++        Downsample the input image to approximately VGA resolution and detect the
++        calibration target corners in the full-size image.
++
++        Combines these apparently orthogonal duties as an optimization. Checkerboard
++        detection is too expensive on large images, so it's better to do detection on
++        the smaller display image and scale the corners back up to the correct size.
++
++        Returns (scrib, corners, downsampled_corners, ids, board, (x_scale, y_scale)).
++        """
++        # Scale the input image down to ~VGA size
++        height = img.shape[0]
++        width = img.shape[1]
++        scale = math.sqrt( (width*height) / (640.*480.) )
++        if scale > 1.0:
++            scrib = cv2.resize(img, (int(width / scale), int(height / scale)))
++        else:
++            scrib = img
++        # Due to rounding, actual horizontal/vertical scaling may differ slightly
++        x_scale = float(width) / scrib.shape[1]
++        y_scale = float(height) / scrib.shape[0]
++
++        if self.pattern == Patterns.Chessboard:
++            # Detect checkerboard
++            (ok, downsampled_corners, ids, board) = self.get_corners(scrib, refine = True)
++
++            # Scale corners back to full size image
++            corners = None
++            if ok:
++                if scale > 1.0:
++                    # Refine up-scaled corners in the original full-res image
++                    # TODO Does this really make a difference in practice?
++                    corners_unrefined = downsampled_corners.copy()
++                    corners_unrefined[:, :, 0] *= x_scale
++                    corners_unrefined[:, :, 1] *= y_scale
++                    radius = int(math.ceil(scale))
++                    if len(img.shape) == 3 and img.shape[2] == 3:
++                        mono = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
++                    else:
++                        mono = img
++                    cv2.cornerSubPix(mono, corners_unrefined, (radius,radius), (-1,-1),
++                                                  ( cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.1 ))
++                    corners = corners_unrefined
++                else:
++                    corners = downsampled_corners
++        else:
++            # Circle grid detection is fast even on large images
++            (ok, corners, ids, board) = self.get_corners(img)
++            # Scale corners to downsampled image for display
++            downsampled_corners = None
++            if ok:
++                if scale > 1.0:
++                    downsampled_corners = corners.copy()
++                    downsampled_corners[:,:,0] /= x_scale
++                    downsampled_corners[:,:,1] /= y_scale
++                else:
++                    downsampled_corners = corners
++
++        return (scrib, corners, downsampled_corners, ids, board, (x_scale, y_scale))
++
++    @staticmethod
++    def lrmsg(d, k, r, p, size, camera_model):
++        """ Used by :meth:`as_message`.  Return a CameraInfo message for the given calibration matrices """
++        msg = sensor_msgs.msg.CameraInfo()
++        msg.width, msg.height = size
++        msg.distortion_model = _get_dist_model(d, camera_model)
++
++        msg.D = numpy.ravel(d).copy().tolist()
++        msg.K = numpy.ravel(k).copy().tolist()
++        msg.R = numpy.ravel(r).copy().tolist()
++        msg.P = numpy.ravel(p).copy().tolist()
++        return msg
++
++    @staticmethod
++    def lrreport(d, k, r, p):
++        print("D =", numpy.ravel(d).tolist())
++        print("K =", numpy.ravel(k).tolist())
++        print("R =", numpy.ravel(r).tolist())
++        print("P =", numpy.ravel(p).tolist())
++
++    @staticmethod
++    def lrost(name, d, k, r, p, size):
++        assert k.shape == (3, 3)
++        assert r.shape == (3, 3)
++        assert p.shape == (3, 4)
++        calmessage = "\n".join([
++            "# oST version 5.0 parameters",
++            "",
++            "",
++            "[image]",
++            "",
++            "width",
++            "%d" % size[0],
++            "",
++            "height",
++            "%d" % size[1],
++            "",
++            "[%s]" % name,
++            "",
++            "camera matrix",
++            " ".join("%8f" % k[0,i] for i in range(3)),
++            " ".join("%8f" % k[1,i] for i in range(3)),
++            " ".join("%8f" % k[2,i] for i in range(3)),
++            "",
++            "distortion",
++            " ".join("%8f" % x for x in d.flat),
++            "",
++            "rectification",
++            " ".join("%8f" % r[0,i] for i in range(3)),
++            " ".join("%8f" % r[1,i] for i in range(3)),
++            " ".join("%8f" % r[2,i] for i in range(3)),
++            "",
++            "projection",
++            " ".join("%8f" % p[0,i] for i in range(4)),
++            " ".join("%8f" % p[1,i] for i in range(4)),
++            " ".join("%8f" % p[2,i] for i in range(4)),
++            ""
++        ])
++        assert len(calmessage) < 525, "Calibration info must be less than 525 bytes"
++        return calmessage
++
++    @staticmethod
++    def lryaml(name, d, k, r, p, size, cam_model):
++        def format_mat(x, precision):
++            return ("[%s]" % (
++                numpy.array2string(x, precision=precision, suppress_small=True, separator=", ")
++                    .replace("[", "").replace("]", "").replace("\n", "\n        ")
++            ))
++
++        dist_model = _get_dist_model(d, cam_model)
++
++        assert k.shape == (3, 3)
++        assert r.shape == (3, 3)
++        assert p.shape == (3, 4)
++        calmessage = "\n".join([
++            "image_width: %d" % size[0],
++            "image_height: %d" % size[1],
++            "camera_name: " + name,
++            "camera_matrix:",
++            "  rows: 3",
++            "  cols: 3",
++            "  data: " + format_mat(k, 5),
++            "distortion_model: " + dist_model,
++            "distortion_coefficients:",
++            "  rows: 1",
++            "  cols: %d" % d.size,
++            "  data: [%s]" % ", ".join("%8f" % x for x in d.flat),
++            "rectification_matrix:",
++            "  rows: 3",
++            "  cols: 3",
++            "  data: " + format_mat(r, 8),
++            "projection_matrix:",
++            "  rows: 3",
++            "  cols: 4",
++            "  data: " + format_mat(p, 5),
++            ""
++        ])
++        return calmessage
++
++    def do_save(self):
++        filename = '/tmp/calibrationdata.tar.gz'
++        tf = tarfile.open(filename, 'w:gz')
++        self.do_tarfile_save(tf) # Must be overridden in subclasses
++        tf.close()
++        print(("Wrote calibration data to", filename))
++
++def image_from_archive(archive, name):
++    """
++    Load image PGM file from tar archive.
++
++    Used for tarfile loading and unit test.
++    """
++    member = archive.getmember(name)
++    imagefiledata = numpy.fromstring(archive.extractfile(member).read(), numpy.uint8)
++    imagefiledata.resize((1, imagefiledata.size))
++    return cv2.imdecode(imagefiledata, cv2.IMREAD_COLOR)
++
++class ImageDrawable():
++    """
++    Passed to CalibrationNode after image handled. Allows plotting of images
++    with detected corner points
++    """
++    def __init__(self):
++        self.params = None
++
++class MonoDrawable(ImageDrawable):
++    def __init__(self):
++        ImageDrawable.__init__(self)
++        self.scrib = None
++        self.linear_error = -1.0
++
++class StereoDrawable(ImageDrawable):
++    def __init__(self):
++        ImageDrawable.__init__(self)
++        self.lscrib = None
++        self.rscrib = None
++        self.epierror = -1
++        self.dim = -1
++
++
++class MonoCalibrator(Calibrator):
++    """
++    Calibration class for monocular cameras::
++
++        images = [cv2.imread("mono%d.png") for i in range(8)]
++        mc = MonoCalibrator()
++        mc.cal(images)
++        print mc.as_message()
++    """
++
++    is_mono = True  # TODO Could get rid of is_mono
++
++    def __init__(self, *args, **kwargs):
++        if 'name' not in kwargs:
++            kwargs['name'] = 'narrow_stereo/left'
++        super(MonoCalibrator, self).__init__(*args, **kwargs)
++
++    def cal(self, images):
++        """
++        Calibrate camera from given images
++        """
++        goodcorners = self.collect_corners(images)
++        self.cal_fromcorners(goodcorners)
++        self.calibrated = True
++
++    def collect_corners(self, images):
++        """
++        :param images: source images containing chessboards
++        :type images: list of :class:`cvMat`
++
++        Find chessboards in all images.
++
++        Return [ (corners, ids, ChessboardInfo) ]
++        """
++        self.size = (images[0].shape[1], images[0].shape[0])
++        corners = [self.get_corners(i) for i in images]
++
++        goodcorners = [(co, ids, b) for (ok, co, ids, b) in corners if ok]
++        if not goodcorners:
++            raise CalibrationException("No corners found in images!")
++        return goodcorners
++
++    def cal_fromcorners(self, good):
++        """
++        :param good: Good corner positions and boards
++        :type good: [(corners, ChessboardInfo)]
++
++
++        """
++
++        (ipts, ids, boards) = zip(*good)
++        opts = self.mk_object_points(boards)
++        # If FIX_ASPECT_RATIO flag set, enforce focal lengths have 1/1 ratio
++        intrinsics_in = numpy.eye(3, dtype=numpy.float64)
++
++        if self.pattern == Patterns.ChArUco:
++            if self.camera_model == CAMERA_MODEL.FISHEYE:
++                raise NotImplemented("Can't perform fisheye calibration with ChArUco board")
++
++            reproj_err, self.intrinsics, self.distortion, rvecs, tvecs = cv2.aruco.calibrateCameraCharuco(
++                    ipts, ids, boards[0].charuco_board, self.size, intrinsics_in, None)
++
++        elif self.camera_model == CAMERA_MODEL.PINHOLE:
++            print("mono pinhole calibration...")
++            reproj_err, self.intrinsics, dist_coeffs, rvecs, tvecs = cv2.calibrateCamera(
++                       opts, ipts,
++                       self.size,
++                       intrinsics_in,
++                       None,
++                       flags = self.calib_flags)
++            # OpenCV returns more than 8 coefficients (the additional ones all zeros) when CALIB_RATIONAL_MODEL is set.
++            # The extra ones include e.g. thin prism coefficients, which we are not interested in.
++            self.distortion = dist_coeffs.flat[:8].reshape(-1, 1)
++        elif self.camera_model == CAMERA_MODEL.FISHEYE:
++            print("mono fisheye calibration...")
++            # WARNING: cv2.fisheye.calibrate wants float64 points
++            ipts64 = numpy.asarray(ipts, dtype=numpy.float64)
++            ipts = ipts64
++            opts64 = numpy.asarray(opts, dtype=numpy.float64)
++            opts = opts64
++            reproj_err, self.intrinsics, self.distortion, rvecs, tvecs = cv2.fisheye.calibrate(
++                opts, ipts, self.size,
++                intrinsics_in, None, flags = self.fisheye_calib_flags)
++
++        # R is identity matrix for monocular calibration
++        self.R = numpy.eye(3, dtype=numpy.float64)
++        self.P = numpy.zeros((3, 4), dtype=numpy.float64)
++
++        self.set_alpha(0.0)
++
++    def set_alpha(self, a):
++        """
++        Set the alpha value for the calibrated camera solution.  The alpha
++        value is a zoom, and ranges from 0 (zoomed in, all pixels in
++        calibrated image are valid) to 1 (zoomed out, all pixels in
++        original image are in calibrated image).
++        """
++
++        if self.camera_model == CAMERA_MODEL.PINHOLE:
++            # NOTE: Prior to Electric, this code was broken such that we never actually saved the new
++            # camera matrix. In effect, this enforced P = [K|0] for monocular cameras.
++            # TODO: Verify that OpenCV #1199 gets applied (improved GetOptimalNewCameraMatrix)
++            ncm, _ = cv2.getOptimalNewCameraMatrix(self.intrinsics, self.distortion, self.size, a)
++            for j in range(3):
++                for i in range(3):
++                    self.P[j,i] = ncm[j, i]
++            self.mapx, self.mapy = cv2.initUndistortRectifyMap(self.intrinsics, self.distortion, self.R, ncm, self.size, cv2.CV_32FC1)
++        elif self.camera_model == CAMERA_MODEL.FISHEYE:
++            # NOTE: estimateNewCameraMatrixForUndistortRectify not producing proper results, using a naive approach instead:
++            self.P[:3,:3] = self.intrinsics[:3,:3]
++            self.P[0,0] /= (1. + a)
++            self.P[1,1] /= (1. + a)
++            self.mapx, self.mapy = cv2.fisheye.initUndistortRectifyMap(self.intrinsics, self.distortion, self.R, self.P, self.size, cv2.CV_32FC1)
++
++
++    def remap(self, src):
++        """
++        :param src: source image
++        :type src: :class:`cvMat`
++
++        Apply the post-calibration undistortion to the source image
++        """
++        return cv2.remap(src, self.mapx, self.mapy, cv2.INTER_LINEAR)
++
++    def undistort_points(self, src):
++        """
++        :param src: N source pixel points (u,v) as an Nx2 matrix
++        :type src: :class:`cvMat`
++
++        Apply the post-calibration undistortion to the source points
++        """
++        if self.camera_model == CAMERA_MODEL.PINHOLE:
++            return cv2.undistortPoints(src, self.intrinsics, self.distortion, R = self.R, P = self.P)
++        elif self.camera_model == CAMERA_MODEL.FISHEYE:
++            return cv2.fisheye.undistortPoints(src, self.intrinsics, self.distortion, R = self.R, P = self.P)
++
++    def as_message(self):
++        """ Return the camera calibration as a CameraInfo message """
++        return self.lrmsg(self.distortion, self.intrinsics, self.R, self.P, self.size, self.camera_model)
++
++    def from_message(self, msg, alpha = 0.0):
++        """ Initialize the camera calibration from a CameraInfo message """
++
++        self.size = (msg.width, msg.height)
++        self.intrinsics = numpy.array(msg.K, dtype=numpy.float64, copy=True).reshape((3, 3))
++        self.distortion = numpy.array(msg.D, dtype=numpy.float64, copy=True).reshape((len(msg.D), 1))
++        self.R = numpy.array(msg.R, dtype=numpy.float64, copy=True).reshape((3, 3))
++        self.P = numpy.array(msg.P, dtype=numpy.float64, copy=True).reshape((3, 4))
++
++        self.set_alpha(0.0)
++
++    def report(self):
++        self.lrreport(self.distortion, self.intrinsics, self.R, self.P)
++
++    def ost(self):
++        return self.lrost(self.name, self.distortion, self.intrinsics, self.R, self.P, self.size)
++
++    def yaml(self):
++        return self.lryaml(self.name, self.distortion, self.intrinsics, self.R, self.P, self.size, self.camera_model)
++
++    def linear_error_from_image(self, image):
++        """
++        Detect the checkerboard and compute the linear error.
++        Mainly for use in tests.
++        """
++        _, corners, _, ids, board, _ = self.downsample_and_detect(image)
++        if corners is None:
++            return None
++
++        undistorted = self.undistort_points(corners)
++        return self.linear_error(undistorted, ids, board)
++
++    @staticmethod
++    def linear_error(corners, ids, b):
++
++        """
++        Returns the linear error for a set of corners detected in the unrectified image.
++        """
++
++        if corners is None:
++            return None
++
++        corners = numpy.squeeze(corners)
++
++        def pt2line(x0, y0, x1, y1, x2, y2):
++            """ point is (x0, y0), line is (x1, y1, x2, y2) """
++            return abs((x2 - x1) * (y1 - y0) - (x1 - x0) * (y2 - y1)) / math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
++
++        n_cols = b.n_cols
++        n_rows = b.n_rows
++        if b.pattern == 'charuco':
++            n_cols -= 1
++            n_rows -= 1
++        n_pts = n_cols * n_rows
++
++        if ids is None:
++            ids = numpy.arange(n_pts).reshape((n_pts, 1))
++
++        ids_to_idx = dict((ids[i, 0], i) for i in range(len(ids)))
++
++        errors = []
++        for row in range(n_rows):
++            row_min = row * n_cols
++            row_max = (row+1) * n_cols
++            pts_in_row = [x for x in ids if row_min <= x < row_max]
++
++            # not enough points to calculate error
++            if len(pts_in_row) <= 2: continue
++
++            left_pt = min(pts_in_row)[0]
++            right_pt = max(pts_in_row)[0]
++            x_left = corners[ids_to_idx[left_pt], 0]
++            y_left = corners[ids_to_idx[left_pt], 1]
++            x_right = corners[ids_to_idx[right_pt], 0]
++            y_right = corners[ids_to_idx[right_pt], 1]
++
++            for pt in pts_in_row:
++                if pt[0] in (left_pt, right_pt): continue
++                x = corners[ids_to_idx[pt[0]], 0]
++                y = corners[ids_to_idx[pt[0]], 1]
++                errors.append(pt2line(x, y, x_left, y_left, x_right, y_right))
++
++        if errors:
++            return math.sqrt(sum([e**2 for e in errors]) / len(errors))
++        else:
++            return None
++
++
++    def handle_msg(self, msg):
++        """
++        Detects the calibration target and, if found and provides enough new information,
++        adds it to the sample database.
++
++        Returns a MonoDrawable message with the display image and progress info.
++        """
++        gray = self.mkgray(msg)
++        linear_error = -1
++
++        # Get display-image-to-be (scrib) and detection of the calibration target
++        scrib_mono, corners, downsampled_corners, ids, board, (x_scale, y_scale) = self.downsample_and_detect(gray)
++
++        if self.calibrated:
++            # Show rectified image
++            # TODO Pull out downsampling code into function
++            gray_remap = self.remap(gray)
++            gray_rect = gray_remap
++            if x_scale != 1.0 or y_scale != 1.0:
++                gray_rect = cv2.resize(gray_remap, (scrib_mono.shape[1], scrib_mono.shape[0]))
++
++            scrib = cv2.cvtColor(gray_rect, cv2.COLOR_GRAY2BGR)
++
++            if corners is not None:
++                # Report linear error
++                undistorted = self.undistort_points(corners)
++                linear_error = self.linear_error(undistorted, ids, board)
++
++                # Draw rectified corners
++                scrib_src = undistorted.copy()
++                scrib_src[:,:,0] /= x_scale
++                scrib_src[:,:,1] /= y_scale
++                cv2.drawChessboardCorners(scrib, (board.n_cols, board.n_rows), scrib_src, True)
++
++        else:
++            scrib = cv2.cvtColor(scrib_mono, cv2.COLOR_GRAY2BGR)
++            if corners is not None:
++                # Draw (potentially downsampled) corners onto display image
++                if board.pattern == "charuco":
++                    cv2.aruco.drawDetectedCornersCharuco(scrib, downsampled_corners, ids)
++                else:
++                    cv2.drawChessboardCorners(scrib, (board.n_cols, board.n_rows), downsampled_corners, True)
++
++                # Add sample to database only if it's sufficiently different from any previous sample.
++                params = self.get_parameters(corners, ids, board, (gray.shape[1], gray.shape[0]))
++                if self.is_good_sample(params, corners, ids, self.last_frame_corners, self.last_frame_ids):
++                    self.db.append((params, gray))
++                    if self.pattern == Patterns.ChArUco:
++                        self.good_corners.append((corners, ids, board))
++                    else:
++                        self.good_corners.append((corners, None, board))
++                    print(("*** Added sample %d, p_x = %.3f, p_y = %.3f, p_size = %.3f, skew = %.3f" % tuple([len(self.db)] + params)))
++
++        self.last_frame_corners = corners
++        self.last_frame_ids = ids
++        rv = MonoDrawable()
++        rv.scrib = scrib
++        rv.params = self.compute_goodenough()
++        rv.linear_error = linear_error
++        return rv
++
++    def do_calibration(self, dump = False):
++        if not self.good_corners:
++            print("**** Collecting corners for all images! ****") #DEBUG
++            images = [i for (p, i) in self.db]
++            self.good_corners = self.collect_corners(images)
++        self.size = (self.db[0][1].shape[1], self.db[0][1].shape[0]) # TODO Needs to be set externally
++        # Dump should only occur if user wants it
++        if dump:
++            pickle.dump((self.is_mono, self.size, self.good_corners),
++                        open("/tmp/camera_calibration_%08x.pickle" % random.getrandbits(32), "w"))
++        self.cal_fromcorners(self.good_corners)
++        self.calibrated = True
++        # DEBUG
++        print((self.report()))
++        print((self.ost()))
++
++    def do_tarfile_save(self, tf):
++        """ Write images and calibration solution to a tarfile object """
++
++        def taradd(name, buf):
++            if isinstance(buf, str):
++                s = BytesIO(buf.encode('utf-8'))
++            else:
++                s = BytesIO(buf)
++            ti = tarfile.TarInfo(name)
++            ti.size = len(s.getvalue())
++            ti.uname = 'calibrator'
++            ti.mtime = int(time.time())
++            tf.addfile(tarinfo=ti, fileobj=s)
++
++        ims = [("left-%04d.png" % i, im) for i,(_, im) in enumerate(self.db)]
++        for (name, im) in ims:
++            taradd(name, cv2.imencode(".png", im)[1].tostring())
++        taradd('ost.yaml', self.yaml())
++        taradd('ost.txt', self.ost())
++
++    def do_tarfile_calibration(self, filename):
++        archive = tarfile.open(filename, 'r')
++
++        limages = [ image_from_archive(archive, f) for f in archive.getnames() if (f.startswith('left') and (f.endswith('.pgm') or f.endswith('png'))) ]
++
++        self.cal(limages)
++
++# TODO Replicate MonoCalibrator improvements in stereo
++class StereoCalibrator(Calibrator):
++    """
++    Calibration class for stereo cameras::
++
++        limages = [cv2.imread("left%d.png") for i in range(8)]
++        rimages = [cv2.imread("right%d.png") for i in range(8)]
++        sc = StereoCalibrator()
++        sc.cal(limages, rimages)
++        print sc.as_message()
++    """
++
++    is_mono = False
++
++    def __init__(self, *args, **kwargs):
++        if 'name' not in kwargs:
++            kwargs['name'] = 'narrow_stereo'
++        super(StereoCalibrator, self).__init__(*args, **kwargs)
++        self.l = MonoCalibrator(*args, **kwargs)
++        self.r = MonoCalibrator(*args, **kwargs)
++        # Collecting from two cameras in a horizontal stereo rig, can't get
++        # full X range in the left camera.
++        self.param_ranges[0] = 0.4
++
++    #override
++    def set_cammodel(self, modeltype):
++        super(StereoCalibrator, self).set_cammodel(modeltype)
++        self.l.set_cammodel(modeltype)
++        self.r.set_cammodel(modeltype)
++
++    def cal(self, limages, rimages):
++        """
++        :param limages: source left images containing chessboards
++        :type limages: list of :class:`cvMat`
++        :param rimages: source right images containing chessboards
++        :type rimages: list of :class:`cvMat`
++
++        Find chessboards in images, and runs the OpenCV calibration solver.
++        """
++        goodcorners = self.collect_corners(limages, rimages)
++        self.size = (limages[0].shape[1], limages[0].shape[0])
++        self.l.size = self.size
++        self.r.size = self.size
++        self.cal_fromcorners(goodcorners)
++        self.calibrated = True
++
++    def collect_corners(self, limages, rimages):
++        """
++        For a sequence of left and right images, find pairs of images where both
++        left and right have a chessboard, and return  their corners as a list of pairs.
++        """
++        # Pick out (corners, ids, board) tuples
++        lcorners = []
++        rcorners = []
++        for img in limages:
++            (_, corners, _, ids, board, _) = self.downsample_and_detect(img)
++            lcorners.append((corners, ids, board))
++        for img in rimages:
++            (_, corners, _, ids, board, _) = self.downsample_and_detect(img)
++            rcorners.append((corners, ids, board))
++
++        good = [(lco, rco, lid, rid, b) for ((lco, lid, b), (rco, rid, br)) in zip( lcorners, rcorners)
++                if (lco is not None and rco is not None)]
++
++        if len(good) == 0:
++            raise CalibrationException("No corners found in images!")
++        return good
++
++    def cal_fromcorners(self, good):
++        # Perform monocular calibrations
++        lcorners = [(lco, lid, b) for (lco, rco, lid, rid, b) in good]
++        rcorners = [(rco, rid, b) for (lco, rco, lid, rid, b) in good]
++        self.l.cal_fromcorners(lcorners)
++        self.r.cal_fromcorners(rcorners)
++
++        (lipts, ripts, _, _, boards) = zip(*good)
++
++        opts = self.mk_object_points(boards, True)
++
++        flags = cv2.CALIB_FIX_INTRINSIC
++
++        self.T = numpy.zeros((3, 1), dtype=numpy.float64)
++        self.R = numpy.eye(3, dtype=numpy.float64)
++
++        if self.pattern == Patterns.ChArUco:
++            # TODO: implement stereo ChArUco calibration
++            raise NotImplemented("Stereo calibration not implemented for ChArUco boards")
++
++        if self.camera_model == CAMERA_MODEL.PINHOLE:
++            print("stereo pinhole calibration...")
++            if LooseVersion(cv2.__version__).version[0] == 2:
++                cv2.stereoCalibrate(opts, lipts, ripts, self.size,
++                                   self.l.intrinsics, self.l.distortion,
++                                   self.r.intrinsics, self.r.distortion,
++                                   self.R,                            # R
++                                   self.T,                            # T
++                                   criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 1, 1e-5),
++                                   flags = flags)
++            else:
++                cv2.stereoCalibrate(opts, lipts, ripts,
++                                   self.l.intrinsics, self.l.distortion,
++                                   self.r.intrinsics, self.r.distortion,
++                                   self.size,
++                                   self.R,                            # R
++                                   self.T,                            # T
++                                   criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 1, 1e-5),
++                                   flags = flags)
++        elif self.camera_model == CAMERA_MODEL.FISHEYE:
++            print("stereo fisheye calibration...")
++            if LooseVersion(cv2.__version__).version[0] == 2:
++                print("ERROR: You need OpenCV >3 to use fisheye camera model")
++                sys.exit()
++            else:
++                # WARNING: cv2.fisheye.stereoCalibrate wants float64 points
++                lipts64 = numpy.asarray(lipts, dtype=numpy.float64)
++                lipts = lipts64
++                ripts64 = numpy.asarray(ripts, dtype=numpy.float64)
++                ripts = ripts64
++                opts64 = numpy.asarray(opts, dtype=numpy.float64)
++                opts = opts64
++
++                cv2.fisheye.stereoCalibrate(opts, lipts, ripts,
++                                   self.l.intrinsics, self.l.distortion,
++                                   self.r.intrinsics, self.r.distortion,
++                                   self.size,
++                                   self.R,                            # R
++                                   self.T,                            # T
++                                   criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 1, 1e-5), # 30, 1e-6
++                                   flags = flags)
++
++        self.set_alpha(0.0)
++
++    def set_alpha(self, a):
++        """
++        Set the alpha value for the calibrated camera solution. The
++        alpha value is a zoom, and ranges from 0 (zoomed in, all pixels
++        in calibrated image are valid) to 1 (zoomed out, all pixels in
++        original image are in calibrated image).
++        """
++        if self.camera_model == CAMERA_MODEL.PINHOLE:
++            cv2.stereoRectify(self.l.intrinsics,
++                             self.l.distortion,
++                             self.r.intrinsics,
++                             self.r.distortion,
++                             self.size,
++                             self.R,
++                             self.T,
++                             self.l.R, self.r.R, self.l.P, self.r.P,
++                             alpha = a)
++
++            cv2.initUndistortRectifyMap(self.l.intrinsics, self.l.distortion, self.l.R, self.l.P, self.size, cv2.CV_32FC1,
++                                       self.l.mapx, self.l.mapy)
++            cv2.initUndistortRectifyMap(self.r.intrinsics, self.r.distortion, self.r.R, self.r.P, self.size, cv2.CV_32FC1,
++                                       self.r.mapx, self.r.mapy)
++
++        elif self.camera_model == CAMERA_MODEL.FISHEYE:
++            self.Q = numpy.zeros((4,4), dtype=numpy.float64)
++
++            flags = cv2.CALIB_ZERO_DISPARITY   # Operation flags that may be zero or CALIB_ZERO_DISPARITY .
++                            # If the flag is set, the function makes the principal points of each camera have the same pixel coordinates in the rectified views.
++                            # And if the flag is not set, the function may still shift the images in the horizontal or vertical direction
++                            # (depending on the orientation of epipolar lines) to maximize the useful image area.
++
++            cv2.fisheye.stereoRectify(self.l.intrinsics, self.l.distortion,
++                             self.r.intrinsics, self.r.distortion,
++                             self.size,
++                             self.R, self.T,
++                             flags,
++                             self.l.R, self.r.R,
++                             self.l.P, self.r.P,
++                             self.Q,
++                             self.size,
++                             a,
++                             1.0 )
++            self.l.P[:3,:3] = numpy.dot(self.l.intrinsics,self.l.R)
++            self.r.P[:3,:3] = numpy.dot(self.r.intrinsics,self.r.R)
++            cv2.fisheye.initUndistortRectifyMap(self.l.intrinsics, self.l.distortion, self.l.R, self.l.intrinsics, self.size, cv2.CV_32FC1,
++                                       self.l.mapx, self.l.mapy)
++            cv2.fisheye.initUndistortRectifyMap(self.r.intrinsics, self.r.distortion, self.r.R, self.r.intrinsics, self.size, cv2.CV_32FC1,
++                                       self.r.mapx, self.r.mapy)
++
++    def as_message(self):
++        """
++        Return the camera calibration as a pair of CameraInfo messages, for left
++        and right cameras respectively.
++        """
++
++        return (self.lrmsg(self.l.distortion, self.l.intrinsics, self.l.R, self.l.P, self.size, self.l.camera_model),
++                self.lrmsg(self.r.distortion, self.r.intrinsics, self.r.R, self.r.P, self.size, self.r.camera_model))
++
++    def from_message(self, msgs, alpha = 0.0):
++        """ Initialize the camera calibration from a pair of CameraInfo messages.  """
++        self.size = (msgs[0].width, msgs[0].height)
++
++        self.T = numpy.zeros((3, 1), dtype=numpy.float64)
++        self.R = numpy.eye(3, dtype=numpy.float64)
++
++        self.l.from_message(msgs[0])
++        self.r.from_message(msgs[1])
++        # Need to compute self.T and self.R here, using the monocular parameters above
++        if False:
++            self.set_alpha(0.0)
++
++    def report(self):
++        print("\nLeft:")
++        self.lrreport(self.l.distortion, self.l.intrinsics, self.l.R, self.l.P)
++        print("\nRight:")
++        self.lrreport(self.r.distortion, self.r.intrinsics, self.r.R, self.r.P)
++        print("self.T =", numpy.ravel(self.T).tolist())
++        print("self.R =", numpy.ravel(self.R).tolist())
++
++    def ost(self):
++        return (self.lrost(self.name + "/left", self.l.distortion, self.l.intrinsics, self.l.R, self.l.P, self.size) +
++          self.lrost(self.name + "/right", self.r.distortion, self.r.intrinsics, self.r.R, self.r.P, self.size))
++
++    def yaml(self, suffix, info):
++        return self.lryaml(self.name + suffix, info.distortion, info.intrinsics, info.R, info.P, self.size, self.camera_model)
++
++    # TODO Get rid of "from_images" versions of these, instead have function to get undistorted corners
++    def epipolar_error_from_images(self, limage, rimage):
++        """
++        Detect the checkerboard in both images and compute the epipolar error.
++        Mainly for use in tests.
++        """
++        lcorners = self.downsample_and_detect(limage)[1]
++        rcorners = self.downsample_and_detect(rimage)[1]
++        if lcorners is None or rcorners is None:
++            return None
++
++        lundistorted = self.l.undistort_points(lcorners)
++        rundistorted = self.r.undistort_points(rcorners)
++
++        return self.epipolar_error(lundistorted, rundistorted)
++
++    def epipolar_error(self, lcorners, rcorners):
++        """
++        Compute the epipolar error from two sets of matching undistorted points
++        """
++        d = lcorners[:,:,1] - rcorners[:,:,1]
++        return numpy.sqrt(numpy.square(d).sum() / d.size)
++
++    def chessboard_size_from_images(self, limage, rimage):
++        _, lcorners, _, _, board, _ = self.downsample_and_detect(limage)
++        _, rcorners, _, _, board, _ = self.downsample_and_detect(rimage)
++        if lcorners is None or rcorners is None:
++            return None
++
++        lundistorted = self.l.undistort_points(lcorners)
++        rundistorted = self.r.undistort_points(rcorners)
++
++        return self.chessboard_size(lundistorted, rundistorted, board)
++
++    def chessboard_size(self, lcorners, rcorners, board, msg = None):
++        """
++        Compute the square edge length from two sets of matching undistorted points
++        given the current calibration.
++        :param msg: a tuple of (left_msg, right_msg)
++        """
++        # Project the points to 3d
++        cam = image_geometry.StereoCameraModel()
++        if msg == None:
++            msg = self.as_message()
++        cam.fromCameraInfo(*msg)
++        disparities = lcorners[:,:,0] - rcorners[:,:,0]
++        pt3d = [cam.projectPixelTo3d((lcorners[i,0,0], lcorners[i,0,1]), disparities[i,0]) for i in range(lcorners.shape[0]) ]
++        def l2(p0, p1):
++            return math.sqrt(sum([(c0 - c1) ** 2 for (c0, c1) in zip(p0, p1)]))
++
++        # Compute the length from each horizontal and vertical line, and return the mean
++        cc = board.n_cols
++        cr = board.n_rows
++        lengths = (
++            [l2(pt3d[cc * r + 0], pt3d[cc * r + (cc - 1)]) / (cc - 1) for r in range(cr)] +
++            [l2(pt3d[c + 0], pt3d[c + (cc * (cr - 1))]) / (cr - 1) for c in range(cc)])
++        return sum(lengths) / len(lengths)
++
++    def handle_msg(self, msg):
++        # TODO Various asserts that images have same dimension, same board detected...
++        (lmsg, rmsg) = msg
++        lgray = self.mkgray(lmsg)
++        rgray = self.mkgray(rmsg)
++        epierror = -1
++
++        # Get display-images-to-be and detections of the calibration target
++        lscrib_mono, lcorners, ldownsampled_corners, lids, lboard, (x_scale, y_scale) = self.downsample_and_detect(lgray)
++        rscrib_mono, rcorners, rdownsampled_corners, rids, rboard, _ = self.downsample_and_detect(rgray)
++
++        if self.calibrated:
++            # Show rectified images
++            lremap = self.l.remap(lgray)
++            rremap = self.r.remap(rgray)
++            lrect = lremap
++            rrect = rremap
++            if x_scale != 1.0 or y_scale != 1.0:
++                lrect = cv2.resize(lremap, (lscrib_mono.shape[1], lscrib_mono.shape[0]))
++                rrect = cv2.resize(rremap, (rscrib_mono.shape[1], rscrib_mono.shape[0]))
++
++            lscrib = cv2.cvtColor(lrect, cv2.COLOR_GRAY2BGR)
++            rscrib = cv2.cvtColor(rrect, cv2.COLOR_GRAY2BGR)
++
++            # Draw rectified corners
++            if lcorners is not None:
++                lundistorted = self.l.undistort_points(lcorners)
++                scrib_src = lundistorted.copy()
++                scrib_src[:,:,0] /= x_scale
++                scrib_src[:,:,1] /= y_scale
++                cv2.drawChessboardCorners(lscrib, (lboard.n_cols, lboard.n_rows), scrib_src, True)
++
++            if rcorners is not None:
++                rundistorted = self.r.undistort_points(rcorners)
++                scrib_src = rundistorted.copy()
++                scrib_src[:,:,0] /= x_scale
++                scrib_src[:,:,1] /= y_scale
++                cv2.drawChessboardCorners(rscrib, (rboard.n_cols, rboard.n_rows), scrib_src, True)
++
++            # Report epipolar error
++            if lcorners is not None and rcorners is not None and len(lcorners) == len(rcorners):
++                epierror = self.epipolar_error(lundistorted, rundistorted)
++
++        else:
++            lscrib = cv2.cvtColor(lscrib_mono, cv2.COLOR_GRAY2BGR)
++            rscrib = cv2.cvtColor(rscrib_mono, cv2.COLOR_GRAY2BGR)
++            # Draw any detected chessboards onto display (downsampled) images
++            if lcorners is not None:
++                cv2.drawChessboardCorners(lscrib, (lboard.n_cols, lboard.n_rows),
++                                         ldownsampled_corners, True)
++            if rcorners is not None:
++                cv2.drawChessboardCorners(rscrib, (rboard.n_cols, rboard.n_rows),
++                                         rdownsampled_corners, True)
++
++            # Add sample to database only if it's sufficiently different from any previous sample
++            if lcorners is not None and rcorners is not None and len(lcorners) == len(rcorners):
++                params = self.get_parameters(lcorners, lids, lboard, (lgray.shape[1], lgray.shape[0]))
++                if self.is_good_sample(params, lcorners, lids, self.last_frame_corners, self.last_frame_ids):
++                    self.db.append( (params, lgray, rgray) )
++                    self.good_corners.append( (lcorners, rcorners, lids, rids, lboard) )
++                    print(("*** Added sample %d, p_x = %.3f, p_y = %.3f, p_size = %.3f, skew = %.3f" % tuple([len(self.db)] + params)))
++
++        self.last_frame_corners = lcorners
++        self.last_frame_ids = lids
++        rv = StereoDrawable()
++        rv.lscrib = lscrib
++        rv.rscrib = rscrib
++        rv.params = self.compute_goodenough()
++        rv.epierror = epierror
++        return rv
++
++    def do_calibration(self, dump = False):
++        # TODO MonoCalibrator collects corners if needed here
++        self.size = (self.db[0][1].shape[1], self.db[0][1].shape[0]) # TODO Needs to be set externally
++        # Dump should only occur if user wants it
++        if dump:
++            pickle.dump((self.is_mono, self.size, self.good_corners),
++                        open("/tmp/camera_calibration_%08x.pickle" % random.getrandbits(32), "w"))
++        self.l.size = self.size
++        self.r.size = self.size
++        self.cal_fromcorners(self.good_corners)
++        self.calibrated = True
++        # DEBUG
++        print((self.report()))
++        print((self.ost()))
++
++    def do_tarfile_save(self, tf):
++        """ Write images and calibration solution to a tarfile object """
++        ims = ([("left-%04d.png"  % i, im) for i,(_, im, _) in enumerate(self.db)] +
++               [("right-%04d.png" % i, im) for i,(_, _, im) in enumerate(self.db)])
++
++        def taradd(name, buf):
++            if isinstance(buf, str):
++                s = BytesIO(buf.encode('utf-8'))
++            else:
++                s = BytesIO(buf)
++            ti = tarfile.TarInfo(name)
++            ti.size = len(s.getvalue())
++            ti.uname = 'calibrator'
++            ti.mtime = int(time.time())
++            tf.addfile(tarinfo=ti, fileobj=s)
++
++        for (name, im) in ims:
++            taradd(name, cv2.imencode(".png", im)[1].tostring())
++        taradd('left.yaml', self.yaml("/left", self.l))
++        taradd('right.yaml', self.yaml("/right", self.r))
++        taradd('ost.txt', self.ost())
++
++    def do_tarfile_calibration(self, filename):
++        archive = tarfile.open(filename, 'r')
++        limages = [ image_from_archive(archive, f) for f in archive.getnames() if (f.startswith('left') and (f.endswith('pgm') or f.endswith('png'))) ]
++        rimages = [ image_from_archive(archive, f) for f in archive.getnames() if (f.startswith('right') and (f.endswith('pgm') or f.endswith('png'))) ]
++
++        if not len(limages) == len(rimages):
++            raise CalibrationException("Left, right images don't match. %d left images, %d right" % (len(limages), len(rimages)))
++
++        ##\todo Check that the filenames match and stuff
++
++        self.cal(limages, rimages)
+--- /dev/null
++++ ros-noetic-camera-calibration-1.17.0/src/camera_calibration/camera_calibrator.py
+@@ -0,0 +1,389 @@
++#!/usr/bin/env python
++#
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of the Willow Garage nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import cv2
++import message_filters
++import numpy
++import os
++import rospy
++import sensor_msgs.msg
++import sensor_msgs.srv
++import threading
++import time
++from camera_calibration.calibrator import MonoCalibrator, StereoCalibrator, Patterns
++try:
++    from queue import Queue
++except ImportError:
++    from Queue import Queue
++from camera_calibration.calibrator import CAMERA_MODEL
++
++class BufferQueue(Queue):
++    """Slight modification of the standard Queue that discards the oldest item
++    when adding an item and the queue is full.
++    """
++    def put(self, item, *args, **kwargs):
++        # The base implementation, for reference:
++        # https://github.com/python/cpython/blob/2.7/Lib/Queue.py#L107
++        # https://github.com/python/cpython/blob/3.8/Lib/queue.py#L121
++        with self.mutex:
++            if self.maxsize > 0 and self._qsize() == self.maxsize:
++                self._get()
++            self._put(item)
++            self.unfinished_tasks += 1
++            self.not_empty.notify()
++
++
++class DisplayThread(threading.Thread):
++    """
++    Thread that displays the current images
++    It is its own thread so that all display can be done
++    in one thread to overcome imshow limitations and
++    https://github.com/ros-perception/image_pipeline/issues/85
++    """
++    def __init__(self, queue, opencv_calibration_node):
++        threading.Thread.__init__(self)
++        self.queue = queue
++        self.opencv_calibration_node = opencv_calibration_node
++        self.image = None
++
++    def run(self):
++        cv2.namedWindow("display", cv2.WINDOW_NORMAL)
++        cv2.setMouseCallback("display", self.opencv_calibration_node.on_mouse)
++        cv2.createTrackbar("Camera type: \n 0 : pinhole \n 1 : fisheye", "display", 0,1, self.opencv_calibration_node.on_model_change)
++        cv2.createTrackbar("scale", "display", 0, 100, self.opencv_calibration_node.on_scale)
++
++        while True:
++            if self.queue.qsize() > 0:
++                self.image = self.queue.get()
++                cv2.imshow("display", self.image)
++            else:
++                time.sleep(0.1)
++            k = cv2.waitKey(6) & 0xFF
++            if k in [27, ord('q')]:
++                rospy.signal_shutdown('Quit')
++            elif k == ord('s') and self.image is not None:
++                self.opencv_calibration_node.screendump(self.image)
++
++class ConsumerThread(threading.Thread):
++    def __init__(self, queue, function):
++        threading.Thread.__init__(self)
++        self.queue = queue
++        self.function = function
++
++    def run(self):
++        while True:
++            m = self.queue.get()
++            self.function(m)
++
++
++class CalibrationNode:
++    def __init__(self, boards, service_check = True, synchronizer = message_filters.TimeSynchronizer, flags = 0,
++                fisheye_flags = 0, pattern=Patterns.Chessboard, camera_name='', checkerboard_flags = 0,
++                max_chessboard_speed = -1, queue_size = 1):
++        if service_check:
++            # assume any non-default service names have been set.  Wait for the service to become ready
++            for svcname in ["camera", "left_camera", "right_camera"]:
++                remapped = rospy.remap_name(svcname)
++                if remapped != svcname:
++                    fullservicename = "%s/set_camera_info" % remapped
++                    print("Waiting for service", fullservicename, "...")
++                    try:
++                        rospy.wait_for_service(fullservicename, 5)
++                        print("OK")
++                    except rospy.ROSException:
++                        print("Service not found")
++                        rospy.signal_shutdown('Quit')
++
++        self._boards = boards
++        self._calib_flags = flags
++        self._fisheye_calib_flags = fisheye_flags
++        self._checkerboard_flags = checkerboard_flags
++        self._pattern = pattern
++        self._camera_name = camera_name
++        self._max_chessboard_speed = max_chessboard_speed
++        lsub = message_filters.Subscriber('left', sensor_msgs.msg.Image)
++        rsub = message_filters.Subscriber('right', sensor_msgs.msg.Image)
++        ts = synchronizer([lsub, rsub], 4)
++        ts.registerCallback(self.queue_stereo)
++
++        msub = message_filters.Subscriber('image', sensor_msgs.msg.Image)
++        msub.registerCallback(self.queue_monocular)
++
++        self.set_camera_info_service = rospy.ServiceProxy("%s/set_camera_info" % rospy.remap_name("camera"),
++                                                          sensor_msgs.srv.SetCameraInfo)
++        self.set_left_camera_info_service = rospy.ServiceProxy("%s/set_camera_info" % rospy.remap_name("left_camera"),
++                                                               sensor_msgs.srv.SetCameraInfo)
++        self.set_right_camera_info_service = rospy.ServiceProxy("%s/set_camera_info" % rospy.remap_name("right_camera"),
++                                                                sensor_msgs.srv.SetCameraInfo)
++
++        self.q_mono = BufferQueue(queue_size)
++        self.q_stereo = BufferQueue(queue_size)
++
++        self.c = None
++
++        self._last_display = None
++
++        mth = ConsumerThread(self.q_mono, self.handle_monocular)
++        mth.setDaemon(True)
++        mth.start()
++
++        sth = ConsumerThread(self.q_stereo, self.handle_stereo)
++        sth.setDaemon(True)
++        sth.start()
++
++    def redraw_stereo(self, *args):
++        pass
++    def redraw_monocular(self, *args):
++        pass
++
++    def queue_monocular(self, msg):
++        self.q_mono.put(msg)
++
++    def queue_stereo(self, lmsg, rmsg):
++        self.q_stereo.put((lmsg, rmsg))
++
++    def handle_monocular(self, msg):
++        if self.c == None:
++            if self._camera_name:
++                self.c = MonoCalibrator(self._boards, self._calib_flags, self._fisheye_calib_flags, self._pattern, name=self._camera_name,
++                                        checkerboard_flags=self._checkerboard_flags,
++                                        max_chessboard_speed = self._max_chessboard_speed)
++            else:
++                self.c = MonoCalibrator(self._boards, self._calib_flags, self._fisheye_calib_flags, self._pattern,
++                                        checkerboard_flags=self.checkerboard_flags,
++                                        max_chessboard_speed = self._max_chessboard_speed)
++
++        # This should just call the MonoCalibrator
++        drawable = self.c.handle_msg(msg)
++        self.displaywidth = drawable.scrib.shape[1]
++        self.redraw_monocular(drawable)
++
++    def handle_stereo(self, msg):
++        if self.c == None:
++            if self._camera_name:
++                self.c = StereoCalibrator(self._boards, self._calib_flags, self._fisheye_calib_flags, self._pattern, name=self._camera_name,
++                                          checkerboard_flags=self._checkerboard_flags,
++                                          max_chessboard_speed = self._max_chessboard_speed)
++            else:
++                self.c = StereoCalibrator(self._boards, self._calib_flags, self._fisheye_calib_flags, self._pattern,
++                                          checkerboard_flags=self._checkerboard_flags,
++                                          max_chessboard_speed = self._max_chessboard_speed)
++
++        drawable = self.c.handle_msg(msg)
++        self.displaywidth = drawable.lscrib.shape[1] + drawable.rscrib.shape[1]
++        self.redraw_stereo(drawable)
++
++
++    def check_set_camera_info(self, response):
++        if response.success:
++            return True
++
++        for i in range(10):
++            print("!" * 80)
++        print()
++        print("Attempt to set camera info failed: " + response.status_message)
++        print()
++        for i in range(10):
++            print("!" * 80)
++        print()
++        rospy.logerr('Unable to set camera info for calibration. Failure message: %s' % response.status_message)
++        return False
++
++    def do_upload(self):
++        self.c.report()
++        print(self.c.ost())
++        info = self.c.as_message()
++
++        rv = True
++        if self.c.is_mono:
++            response = self.set_camera_info_service(info)
++            rv = self.check_set_camera_info(response)
++        else:
++            response = self.set_left_camera_info_service(info[0])
++            rv = rv and self.check_set_camera_info(response)
++            response = self.set_right_camera_info_service(info[1])
++            rv = rv and self.check_set_camera_info(response)
++        return rv
++
++
++class OpenCVCalibrationNode(CalibrationNode):
++    """ Calibration node with an OpenCV Gui """
++    FONT_FACE = cv2.FONT_HERSHEY_SIMPLEX
++    FONT_SCALE = 0.6
++    FONT_THICKNESS = 2
++
++    def __init__(self, *args, **kwargs):
++
++        CalibrationNode.__init__(self, *args, **kwargs)
++
++        self.queue_display = BufferQueue(maxsize=1)
++        self.display_thread = DisplayThread(self.queue_display, self)
++        self.display_thread.setDaemon(True)
++        self.display_thread.start()
++
++    @classmethod
++    def putText(cls, img, text, org, color = (0,0,0)):
++        cv2.putText(img, text, org, cls.FONT_FACE, cls.FONT_SCALE, color, thickness = cls.FONT_THICKNESS)
++
++    @classmethod
++    def getTextSize(cls, text):
++        return cv2.getTextSize(text, cls.FONT_FACE, cls.FONT_SCALE, cls.FONT_THICKNESS)[0]
++
++    def on_mouse(self, event, x, y, flags, param):
++        if event == cv2.EVENT_LBUTTONDOWN and self.displaywidth < x:
++            if self.c.goodenough:
++                if 180 <= y < 280:
++                    print("**** Calibrating ****")
++                    self.c.do_calibration()
++                    self.buttons(self._last_display)
++                    self.queue_display.put(self._last_display)
++            if self.c.calibrated:
++                if 280 <= y < 380:
++                    self.c.do_save()
++                elif 380 <= y < 480:
++                    # Only shut down if we set camera info correctly, #3993
++                    if self.do_upload():
++                        rospy.signal_shutdown('Quit')
++    def on_model_change(self, model_select_val):
++        if self.c == None:
++            print("Cannot change camera model until the first image has been received")
++            return
++
++        self.c.set_cammodel( CAMERA_MODEL.PINHOLE if model_select_val < 0.5 else CAMERA_MODEL.FISHEYE)
++
++    def on_scale(self, scalevalue):
++        if self.c.calibrated:
++            self.c.set_alpha(scalevalue / 100.0)
++
++    def button(self, dst, label, enable):
++        dst.fill(255)
++        size = (dst.shape[1], dst.shape[0])
++        if enable:
++            color = (155, 155, 80)
++        else:
++            color = (224, 224, 224)
++        cv2.circle(dst, (size[0] // 2, size[1] // 2), min(size) // 2, color, -1)
++        (w, h) = self.getTextSize(label)
++        self.putText(dst, label, ((size[0] - w) // 2, (size[1] + h) // 2), (255,255,255))
++
++    def buttons(self, display):
++        x = self.displaywidth
++        self.button(display[180:280,x:x+100], "CALIBRATE", self.c.goodenough)
++        self.button(display[280:380,x:x+100], "SAVE", self.c.calibrated)
++        self.button(display[380:480,x:x+100], "COMMIT", self.c.calibrated)
++
++    def y(self, i):
++        """Set up right-size images"""
++        return 30 + 40 * i
++
++    def screendump(self, im):
++        i = 0
++        while os.access("/tmp/dump%d.png" % i, os.R_OK):
++            i += 1
++        cv2.imwrite("/tmp/dump%d.png" % i, im)
++        print("Saved screen dump to /tmp/dump%d.png" % i)
++
++    def redraw_monocular(self, drawable):
++        height = drawable.scrib.shape[0]
++        width = drawable.scrib.shape[1]
++
++        display = numpy.zeros((max(480, height), width + 100, 3), dtype=numpy.uint8)
++        display[0:height, 0:width,:] = drawable.scrib
++        display[0:height, width:width+100,:].fill(255)
++
++        self.buttons(display)
++        if not self.c.calibrated:
++            if drawable.params:
++                 for i, (label, lo, hi, progress) in enumerate(drawable.params):
++                    (w,_) = self.getTextSize(label)
++                    self.putText(display, label, (width + (100 - w) // 2, self.y(i)))
++                    color = (0,255,0)
++                    if progress < 1.0:
++                        color = (0, int(progress*255.), 255)
++                    cv2.line(display,
++                            (int(width + lo * 100), self.y(i) + 20),
++                            (int(width + hi * 100), self.y(i) + 20),
++                            color, 4)
++
++        else:
++            self.putText(display, "lin.", (width, self.y(0)))
++            linerror = drawable.linear_error
++            if linerror < 0:
++                msg = "?"
++            else:
++                msg = "%.2f" % linerror
++                #print "linear", linerror
++            self.putText(display, msg, (width, self.y(1)))
++
++        self._last_display = display
++        self.queue_display.put(display)
++
++    def redraw_stereo(self, drawable):
++        height = drawable.lscrib.shape[0]
++        width = drawable.lscrib.shape[1]
++
++        display = numpy.zeros((max(480, height), 2 * width + 100, 3), dtype=numpy.uint8)
++        display[0:height, 0:width,:] = drawable.lscrib
++        display[0:height, width:2*width,:] = drawable.rscrib
++        display[0:height, 2*width:2*width+100,:].fill(255)
++
++        self.buttons(display)
++
++        if not self.c.calibrated:
++            if drawable.params:
++                for i, (label, lo, hi, progress) in enumerate(drawable.params):
++                    (w,_) = self.getTextSize(label)
++                    self.putText(display, label, (2 * width + (100 - w) // 2, self.y(i)))
++                    color = (0,255,0)
++                    if progress < 1.0:
++                        color = (0, int(progress*255.), 255)
++                    cv2.line(display,
++                            (int(2 * width + lo * 100), self.y(i) + 20),
++                            (int(2 * width + hi * 100), self.y(i) + 20),
++                            color, 4)
++
++        else:
++            self.putText(display, "epi.", (2 * width, self.y(0)))
++            if drawable.epierror == -1:
++                msg = "?"
++            else:
++                msg = "%.2f" % drawable.epierror
++            self.putText(display, msg, (2 * width, self.y(1)))
++            # TODO dim is never set anywhere. Supposed to be observed chessboard size?
++            if drawable.dim != -1:
++                self.putText(display, "dim", (2 * width, self.y(2)))
++                self.putText(display, "%.3f" % drawable.dim, (2 * width, self.y(3)))
++
++        self._last_display = display
++        self.queue_display.put(display)
+--- /dev/null
++++ ros-noetic-camera-calibration-1.17.0/src/camera_calibration/camera_checker.py
+@@ -0,0 +1,200 @@
++#!/usr/bin/env python
++#
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of the Willow Garage nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import cv2
++import cv_bridge
++import functools
++import message_filters
++import numpy
++import rospy
++import sensor_msgs.msg
++import sensor_msgs.srv
++import threading
++
++from camera_calibration.calibrator import MonoCalibrator, StereoCalibrator, ChessboardInfo
++from message_filters import ApproximateTimeSynchronizer
++
++try:
++    from queue import Queue
++except ImportError:
++    from Queue import Queue
++
++
++def mean(seq):
++    return sum(seq) / len(seq)
++
++def lmin(seq1, seq2):
++    """ Pairwise minimum of two sequences """
++    return [min(a, b) for (a, b) in zip(seq1, seq2)]
++
++def lmax(seq1, seq2):
++    """ Pairwise maximum of two sequences """
++    return [max(a, b) for (a, b) in zip(seq1, seq2)]
++
++class ConsumerThread(threading.Thread):
++    def __init__(self, queue, function):
++        threading.Thread.__init__(self)
++        self.queue = queue
++        self.function = function
++
++    def run(self):
++        while not rospy.is_shutdown():
++            while not rospy.is_shutdown():
++                m = self.queue.get()
++                if self.queue.empty():
++                    break
++            self.function(m)
++
++class CameraCheckerNode:
++
++    def __init__(self, chess_size, dim, approximate=0):
++        self.board = ChessboardInfo()
++        self.board.n_cols = chess_size[0]
++        self.board.n_rows = chess_size[1]
++        self.board.dim = dim
++
++        # make sure n_cols is not smaller than n_rows, otherwise error computation will be off
++        if self.board.n_cols < self.board.n_rows:
++            self.board.n_cols, self.board.n_rows = self.board.n_rows, self.board.n_cols
++
++        image_topic = rospy.resolve_name("monocular") + "/image_rect"
++        camera_topic = rospy.resolve_name("monocular") + "/camera_info"
++
++        tosync_mono = [
++            (image_topic, sensor_msgs.msg.Image),
++            (camera_topic, sensor_msgs.msg.CameraInfo),
++        ]
++
++        if approximate <= 0:
++            sync = message_filters.TimeSynchronizer
++        else:
++            sync = functools.partial(ApproximateTimeSynchronizer, slop=approximate)
++
++        tsm = sync([message_filters.Subscriber(topic, type) for (topic, type) in tosync_mono], 10)
++        tsm.registerCallback(self.queue_monocular)
++
++        left_topic = rospy.resolve_name("stereo") + "/left/image_rect"
++        left_camera_topic = rospy.resolve_name("stereo") + "/left/camera_info"
++        right_topic = rospy.resolve_name("stereo") + "/right/image_rect"
++        right_camera_topic = rospy.resolve_name("stereo") + "/right/camera_info"
++
++        tosync_stereo = [
++            (left_topic, sensor_msgs.msg.Image),
++            (left_camera_topic, sensor_msgs.msg.CameraInfo),
++            (right_topic, sensor_msgs.msg.Image),
++            (right_camera_topic, sensor_msgs.msg.CameraInfo)
++        ]
++
++        tss = sync([message_filters.Subscriber(topic, type) for (topic, type) in tosync_stereo], 10)
++        tss.registerCallback(self.queue_stereo)
++
++        self.br = cv_bridge.CvBridge()
++
++        self.q_mono = Queue()
++        self.q_stereo = Queue()
++
++        mth = ConsumerThread(self.q_mono, self.handle_monocular)
++        mth.setDaemon(True)
++        mth.start()
++
++        sth = ConsumerThread(self.q_stereo, self.handle_stereo)
++        sth.setDaemon(True)
++        sth.start()
++
++        self.mc = MonoCalibrator([self.board])
++        self.sc = StereoCalibrator([self.board])
++
++    def queue_monocular(self, msg, cmsg):
++        self.q_mono.put((msg, cmsg))
++
++    def queue_stereo(self, lmsg, lcmsg, rmsg, rcmsg):
++        self.q_stereo.put((lmsg, lcmsg, rmsg, rcmsg))
++
++    def mkgray(self, msg):
++        return self.mc.mkgray(msg)
++
++    def image_corners(self, im):
++        (ok, corners, ids, b) = self.mc.get_corners(im)
++        if ok:
++            return corners, ids
++        else:
++            return None
++
++    def handle_monocular(self, msg):
++
++        (image, camera) = msg
++        gray = self.mkgray(image)
++        C, ids = self.image_corners(gray)
++        if C is not None:
++            linearity_rms = self.mc.linear_error(C, ids, self.board)
++
++            # Add in reprojection check
++            image_points = C
++            object_points = self.mc.mk_object_points([self.board], use_board_size=True)[0]
++            dist_coeffs = numpy.zeros((4, 1))
++            camera_matrix = numpy.array( [ [ camera.P[0], camera.P[1], camera.P[2]  ],
++                                           [ camera.P[4], camera.P[5], camera.P[6]  ],
++                                           [ camera.P[8], camera.P[9], camera.P[10] ] ] )
++            ok, rot, trans = cv2.solvePnP(object_points, image_points, camera_matrix, dist_coeffs)
++            # Convert rotation into a 3x3 Rotation Matrix
++            rot3x3, _ = cv2.Rodrigues(rot)
++            # Reproject model points into image
++            object_points_world = numpy.asmatrix(rot3x3) * numpy.asmatrix(object_points.squeeze().T) + numpy.asmatrix(trans)
++            reprojected_h = camera_matrix * object_points_world
++            reprojected   = (reprojected_h[0:2, :] / reprojected_h[2, :])
++            reprojection_errors = image_points.squeeze().T - reprojected
++
++            reprojection_rms = numpy.sqrt(numpy.sum(numpy.array(reprojection_errors) ** 2) / numpy.product(reprojection_errors.shape))
++
++            # Print the results
++            print("Linearity RMS Error: %.3f Pixels      Reprojection RMS Error: %.3f Pixels" % (linearity_rms, reprojection_rms))
++        else:
++            print('no chessboard')
++
++    def handle_stereo(self, msg):
++
++        (lmsg, lcmsg, rmsg, rcmsg) = msg
++        lgray = self.mkgray(lmsg)
++        rgray = self.mkgray(rmsg)
++
++        L, _ = self.image_corners(lgray)
++        R, _ = self.image_corners(rgray)
++        if L is not None and R is not None:
++            epipolar = self.sc.epipolar_error(L, R)
++
++            dimension = self.sc.chessboard_size(L, R, self.board, msg=(lcmsg, rcmsg))
++
++            print("epipolar error: %f pixels   dimension: %f m" % (epipolar, dimension))
++        else:
++            print("no chessboard")
+--- /dev/null
++++ ros-noetic-camera-calibration-1.17.0/test/directed.py
+@@ -0,0 +1,289 @@
++#!/usr/bin/env python
++#
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of the Willow Garage nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import cv2
++
++import collections
++import copy
++import numpy
++import roslib
++import tarfile
++import unittest
++
++from camera_calibration.calibrator import MonoCalibrator, StereoCalibrator, \
++    Patterns, CalibrationException, ChessboardInfo, image_from_archive
++
++board = ChessboardInfo()
++board.n_cols = 8
++board.n_rows = 6
++board.dim = 0.108
++
++class TestDirected(unittest.TestCase):
++    def setUp(self):
++        tar_path = roslib.packages.find_resource('camera_calibration', 'camera_calibration.tar.gz')[0]
++        self.tar = tarfile.open(tar_path, 'r')
++        self.limages = [image_from_archive(self.tar, "wide/left%04d.pgm" % i) for i in range(3, 15)]
++        self.rimages = [image_from_archive(self.tar, "wide/right%04d.pgm" % i) for i in range(3, 15)]
++        self.l = {}
++        self.r = {}
++        self.sizes = [(320,240), (640,480), (800,600), (1024,768)]
++        for dim in self.sizes:
++            self.l[dim] = []
++            self.r[dim] = []
++            for li,ri in zip(self.limages, self.rimages):
++                rli = cv2.resize(li, (dim[0], dim[1]))
++                rri = cv2.resize(ri, (dim[0], dim[1]))
++                self.l[dim].append(rli)
++                self.r[dim].append(rri)
++                
++    def assert_good_mono(self, c, dim, max_err):
++        self.assertTrue(len(c.ost()) > 0)
++        lin_err = 0
++        n = 0
++        for img in self.l[dim]:
++            lin_err_local = c.linear_error_from_image(img)
++            if lin_err_local:
++                lin_err += lin_err_local
++                n += 1
++        if n > 0:
++            lin_err /= n
++        self.assertTrue(0.0 < lin_err, 'lin_err is %f' % lin_err)
++        self.assertTrue(lin_err < max_err, 'lin_err is %f' % lin_err)
++
++        flat = c.remap(img)
++        self.assertEqual(img.shape, flat.shape)
++
++    def test_monocular(self):
++        # Run the calibrator, produce a calibration, check it
++        mc = MonoCalibrator([ board ], cv2.CALIB_FIX_K3)
++        max_errs = [0.1, 0.2, 0.4, 0.7]
++        for i, dim in enumerate(self.sizes):
++            mc.cal(self.l[dim])
++            self.assert_good_mono(mc, dim, max_errs[i])
++
++            # Make another calibration, import previous calibration as a message,
++            # and assert that the new one is good.
++
++            mc2 = MonoCalibrator([board])
++            mc2.from_message(mc.as_message())
++            self.assert_good_mono(mc2, dim, max_errs[i])
++
++    def test_stereo(self):
++        epierrors = [0.1, 0.2, 0.45, 1.0]
++        for i, dim in enumerate(self.sizes):
++            print("Dim =", dim)
++            sc = StereoCalibrator([board], cv2.CALIB_FIX_K3)
++            sc.cal(self.l[dim], self.r[dim])
++
++            sc.report()
++            #print sc.ost()
++
++            # NOTE: epipolar error currently increases with resolution.
++            # At highest res expect error ~0.75
++            epierror = 0
++            n = 0
++            for l_img, r_img in zip(self.l[dim], self.r[dim]):
++                epierror_local = sc.epipolar_error_from_images(l_img, r_img)
++                if epierror_local:
++                    epierror += epierror_local
++                    n += 1
++            epierror /= n
++            self.assertTrue(epierror < epierrors[i],
++                         'Epipolar error is %f for resolution i = %d' % (epierror, i))
++
++            self.assertAlmostEqual(sc.chessboard_size_from_images(self.l[dim][0], self.r[dim][0]), .108, 2)
++
++            #print sc.as_message()
++
++            img = self.l[dim][0]
++            flat = sc.l.remap(img)
++            self.assertEqual(img.shape, flat.shape)
++            flat = sc.r.remap(img)
++            self.assertEqual(img.shape, flat.shape)
++
++            sc2 = StereoCalibrator([board])
++            sc2.from_message(sc.as_message())
++            # sc2.set_alpha(1.0)
++            #sc2.report()
++            self.assertTrue(len(sc2.ost()) > 0)
++
++    def test_nochecker(self):
++        # Run with same images, but looking for an incorrect chessboard size (8, 7).
++        # Should raise an exception because of lack of input points.
++        new_board = copy.deepcopy(board)
++        new_board.n_cols = 8
++        new_board.n_rows = 7
++
++        sc = StereoCalibrator([new_board])
++        self.assertRaises(CalibrationException, lambda: sc.cal(self.limages, self.rimages))
++        mc = MonoCalibrator([new_board])
++        self.assertRaises(CalibrationException, lambda: mc.cal(self.limages))
++
++
++
++class TestArtificial(unittest.TestCase):
++    Setup = collections.namedtuple('Setup', ['pattern', 'cols', 'rows', 'lin_err', 'K_err'])
++
++    def setUp(self):
++        # Define some image transforms that will simulate a camera position
++        M = []
++        self.k = numpy.array([[500, 0, 250], [0, 500, 250], [0, 0, 1]], numpy.float32)
++        self.d = numpy.array([])
++        # physical size of the board
++        self.board_width_dim = 1
++
++        # Generate data for different grid types. For each grid type, define the different sizes of
++        # grid that are recognized (n row, n col)
++        # Patterns.Circles, Patterns.ACircles
++        self.setups = [ self.Setup(pattern=Patterns.Chessboard, cols=7, rows=8, lin_err=0.2, K_err=8.2),
++                        self.Setup(pattern=Patterns.Circles, cols=7, rows=8, lin_err=0.1, K_err=4),
++                        self.Setup(pattern=Patterns.ACircles, cols=3, rows=5, lin_err=0.1, K_err=8) ]
++        self.limages = []
++        self.rimages = []
++        for setup in self.setups:
++            self.limages.append([])
++            self.rimages.append([])
++
++            # Create the pattern
++            if setup.pattern == Patterns.Chessboard:
++                pattern = numpy.zeros((50*(setup.rows+3), 50*(setup.cols+3), 1), numpy.uint8)
++                pattern.fill(255)
++                for j in range(1, setup.rows+2):
++                    for i in range(1+(j%2), setup.cols+2, 2):
++                        pattern[50*j:50*(j+1), 50*i:50*(i+1)].fill(0)
++            elif setup.pattern == Patterns.Circles:
++                pattern = numpy.zeros((50*(setup.rows+2), 50*(setup.cols+2), 1), numpy.uint8)
++                pattern.fill(255)
++                for j in range(1, setup.rows+1):
++                    for i in range(1, setup.cols+1):
++                        cv2.circle(pattern, (int(50*i + 25), int(50*j + 25)), 15, (0,0,0), -1)
++            elif setup.pattern == Patterns.ACircles:
++                x = 60
++                pattern = numpy.zeros((x*(setup.rows+2), x*(setup.cols+5), 1), numpy.uint8)
++                pattern.fill(255)
++                for j in range(1, setup.rows+1):
++                    for i in range(0, setup.cols):
++                        cv2.circle(pattern, (int(x*(1 + 2*i + (j%2)) + x/2), int(x*j + x/2)), int(x/3), (0,0,0), -1)
++
++            rows, cols, _ = pattern.shape
++            object_points_2d = numpy.array([[0, 0], [0, cols-1], [rows-1, cols-1], [rows-1, 0]], numpy.float32)
++            object_points_3d = numpy.array([[0, 0, 0], [0, cols-1, 0], [rows-1, cols-1, 0], [rows-1, 0, 0]], numpy.float32)
++            object_points_3d *= self.board_width_dim/float(cols)
++
++            # create the artificial view points
++            rvec = [ [0, 0, 0], [0, 0, 0.4], [0, 0.4, 0], [0.4, 0, 0], [0.4, 0.4, 0], [0.4, 0, 0.4], [0, 0.4, 0.4], [0.4, 0.4, 0.4] ]
++            tvec = [ [-0.5, -0.5, 3], [-0.5, -0.5, 3], [-0.5, -0.1, 3], [-0.1, -0.5, 3], [-0.1, -0.1, 3], [-0.1, -0.5, 3], [-0.5, -0.1, 3], [-0.1, 0.1, 3] ]
++
++            dsize = (480, 640)
++            for i in range(len(rvec)):
++                R = numpy.array(rvec[i], numpy.float32)
++                T = numpy.array(tvec[i], numpy.float32)
++            
++                image_points, _ = cv2.projectPoints(object_points_3d, R, T, self.k, self.d)
++
++                # deduce the perspective transform
++                M.append(cv2.getPerspectiveTransform(object_points_2d, image_points))
++
++                # project the pattern according to the different cameras
++                pattern_warped = cv2.warpPerspective(pattern, M[i], dsize)
++                self.limages[-1].append(pattern_warped)
++
++    def assert_good_mono(self, c, images, max_err):
++        #c.report()
++        self.assertTrue(len(c.ost()) > 0)
++        lin_err = 0
++        n = 0
++        for img in images:
++            lin_err_local = c.linear_error_from_image(img)
++            if lin_err_local:
++                lin_err += lin_err_local
++                n += 1
++        if n > 0:
++            lin_err /= n
++        print("linear error is %f" % lin_err)
++        self.assertTrue(0.0 < lin_err, 'lin_err is %f' % lin_err)
++        self.assertTrue(lin_err < max_err, 'lin_err is %f' % lin_err)
++
++        flat = c.remap(img)
++        self.assertEqual(img.shape, flat.shape)
++
++    def test_monocular(self):
++        # Run the calibrator, produce a calibration, check it
++        for i, setup in enumerate(self.setups):
++            board = ChessboardInfo()
++            board.n_cols = setup.cols
++            board.n_rows = setup.rows
++            board.dim = self.board_width_dim
++
++            mc = MonoCalibrator([ board ], flags=cv2.CALIB_FIX_K3, pattern=setup.pattern)
++
++            if 0:
++                # display the patterns viewed by the camera
++                for pattern_warped in self.limages[i]:
++                    cv2.imshow("toto", pattern_warped)
++                    cv2.waitKey(0)
++
++            mc.cal(self.limages[i])
++            self.assert_good_mono(mc, self.limages[i], setup.lin_err)
++
++            # Make sure the intrinsics are similar
++            err_intrinsics = numpy.linalg.norm(mc.intrinsics - self.k, ord=numpy.inf)
++            self.assertTrue(err_intrinsics < setup.K_err,
++                         'intrinsics error is %f for resolution i = %d' % (err_intrinsics, i))
++            print('intrinsics error is %f' % numpy.linalg.norm(mc.intrinsics - self.k, ord=numpy.inf))
++
++    def test_rational_polynomial_model(self):
++        """Test that the distortion coefficients returned for a rational_polynomial model are not empty."""
++        for i, setup in enumerate(self.setups):
++            board = ChessboardInfo()
++            board.n_cols = setup.cols
++            board.n_rows = setup.rows
++            board.dim = self.board_width_dim
++
++            mc = MonoCalibrator([ board ], flags=cv2.CALIB_RATIONAL_MODEL, pattern=setup.pattern)
++            mc.cal(self.limages[i])
++            self.assertEqual(len(mc.distortion.flat), 8,
++                             'length of distortion coefficients is %d' % len(mc.distortion.flat))
++            self.assertTrue(all(mc.distortion.flat != 0),
++                         'some distortion coefficients are zero: %s' % str(mc.distortion.flatten()))
++            self.assertEqual(mc.as_message().distortion_model, 'rational_polynomial')
++            self.assert_good_mono(mc, self.limages[i], setup.lin_err)
++        
++            yaml = mc.yaml()
++            # Issue #278
++            self.assertIn('cols: 8', yaml)
++
++
++if __name__ == '__main__':
++    unittest.main(verbosity=2)
+--- /dev/null
++++ ros-noetic-camera-calibration-1.17.0/test/multiple_boards.py
+@@ -0,0 +1,87 @@
++#!/usr/bin/env python
++#
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of the Willow Garage nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import roslib
++import rostest
++import rospy
++import unittest
++import tarfile
++import copy
++import os, sys
++
++from camera_calibration.calibrator import StereoCalibrator, ChessboardInfo, image_from_archive
++
++# Large board used for PR2 calibration
++board = ChessboardInfo()
++board.n_cols = 7
++board.n_rows = 6
++board.dim = 0.108
++
++class TestMultipleBoards(unittest.TestCase):
++    def test_multiple_boards(self):
++        small_board = ChessboardInfo()
++        small_board.n_cols = 5
++        small_board.n_rows = 4
++        small_board.dim = 0.025
++
++        stereo_cal = StereoCalibrator([board, small_board])
++        
++        my_archive_name = roslib.packages.find_resource('camera_calibration', 'multi_board_calibration.tar.gz')[0]
++        stereo_cal.do_tarfile_calibration(my_archive_name)
++
++        stereo_cal.report()
++        stereo_cal.ost()
++        
++        # Check error for big image
++        archive = tarfile.open(my_archive_name)
++        l1_big = image_from_archive(archive, "left-0000.png")
++        r1_big = image_from_archive(archive, "right-0000.png")
++        epi_big = stereo_cal.epipolar_error_from_images(l1_big, r1_big)
++        self.assert_(epi_big < 1.0, "Epipolar error for large checkerboard > 1.0. Error: %.2f" % epi_big)
++
++        # Small checkerboard has larger error threshold for now
++        l1_sm = image_from_archive(archive, "left-0012-sm.png")
++        r1_sm = image_from_archive(archive, "right-0012-sm.png")
++        epi_sm =  stereo_cal.epipolar_error_from_images(l1_sm, r1_sm)
++        self.assert_(epi_sm < 2.0, "Epipolar error for small checkerboard > 2.0. Error: %.2f" % epi_sm)
++
++
++
++if __name__ == '__main__':
++    if 1:
++        rostest.unitrun('camera_calibration', 'test_multi_board_cal', TestMultipleBoards)
++    else:
++        suite = unittest.TestSuite()
++        suite.addTest(TestMultipleBoards('test_multi_board_cal'))
++        unittest.TextTestRunner(verbosity=2).run(suite)

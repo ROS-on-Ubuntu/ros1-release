@@ -1,0 +1,12 @@
+Source: ros-noetic-rosconsole-bridge
+Section: misc
+Priority: optional
+Maintainer: Dirk Thomas <dthomas@osrfoundation.org>
+Build-Depends: debhelper (>= 9.0.0), libconsole-bridge-dev, ros-noetic-catkin, ros-noetic-cpp-common, ros-noetic-rosconsole (>= 1.11.5)
+Homepage: http://www.ros.org/wiki/rosconsole_bridge
+Standards-Version: 3.9.2
+
+Package: ros-noetic-rosconsole-bridge
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libconsole-bridge-dev, ros-noetic-cpp-common, ros-noetic-rosconsole
+Description: rosconsole_bridge is a package used in conjunction with console_bridge and rosconsole for connecting console_bridge-based logging to rosconsole-based logging.

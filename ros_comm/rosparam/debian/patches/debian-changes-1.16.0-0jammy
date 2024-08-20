@@ -1,0 +1,1056 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-rosparam (1.16.0-0jammy) jammy; urgency=high
+Author: Michael Carroll <michael@openrobotics.org>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-rosparam-1.16.0/CHANGELOG.rst
+@@ -0,0 +1,238 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package rosparam
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++1.16.0 (2023-02-15)
++-------------------
++
++1.15.15 (2022-11-23)
++--------------------
++* Move @jacobperron from maintainer to author (`#2302 <https://github.com/ros/ros_comm/issues/2302>`_)
++* Contributors: Shane Loretz
++
++1.15.14 (2022-01-06)
++--------------------
++
++1.15.13 (2021-09-22)
++--------------------
++
++1.15.12 (2021-09-21)
++--------------------
++
++1.15.11 (2021-04-06)
++--------------------
++
++1.15.10 (2021-03-18)
++--------------------
++
++1.15.9 (2020-10-16)
++-------------------
++* Update maintainers (`#2075 <https://github.com/ros/ros_comm/issues/2075>`_)
++* Contributors: Shane Loretz
++
++1.15.8 (2020-07-23)
++-------------------
++
++1.15.7 (2020-05-28)
++-------------------
++
++1.15.6 (2020-05-21)
++-------------------
++
++1.15.5 (2020-05-15)
++-------------------
++
++1.15.4 (2020-03-19)
++-------------------
++
++1.15.3 (2020-02-28)
++-------------------
++
++1.15.2 (2020-02-25)
++-------------------
++
++1.15.1 (2020-02-24)
++-------------------
++* use setuptools instead of distutils (`#1870 <https://github.com/ros/ros_comm/issues/1870>`_)
++
++1.15.0 (2020-02-21)
++-------------------
++
++1.14.4 (2020-02-20)
++-------------------
++* bump CMake minimum version to avoid CMP0048 warning (`#1869 <https://github.com/ros/ros_comm/issues/1869>`_)
++* change unsafe yaml.load to yaml.safe_load (`#1835 <https://github.com/ros/ros_comm/issues/1835>`_)
++* use condition attributes to specify Python 2 and 3 dependencies (`#1792 <https://github.com/ros/ros_comm/issues/1792>`_)
++* switch to yaml.safe_load(_all) to prevent YAMLLoadWarning (`#1688 <https://github.com/ros/ros_comm/issues/1688>`_)
++* update wiki.ros.org URLs (`#1536 <https://github.com/ros/ros_comm/issues/1536>`_)
++
++1.14.3 (2018-08-06)
++-------------------
++
++1.14.2 (2018-06-06)
++-------------------
++
++1.14.1 (2018-05-21)
++-------------------
++
++1.14.0 (2018-05-21)
++-------------------
++
++1.13.6 (2018-02-05)
++-------------------
++* remove preprended '|' from pretty-printed strings (`#1114 <https://github.com/ros/ros_comm/issues/1114>`_)
++
++1.13.5 (2017-11-09)
++-------------------
++
++1.13.4 (2017-11-02)
++-------------------
++
++1.13.3 (2017-10-25)
++-------------------
++
++1.13.2 (2017-08-15)
++-------------------
++
++1.13.1 (2017-07-27)
++-------------------
++
++1.13.0 (2017-02-22)
++-------------------
++
++1.12.7 (2017-02-17)
++-------------------
++
++1.12.6 (2016-10-26)
++-------------------
++
++1.12.5 (2016-09-30)
++-------------------
++
++1.12.4 (2016-09-19)
++-------------------
++
++1.12.3 (2016-09-17)
++-------------------
++
++1.12.2 (2016-06-03)
++-------------------
++
++1.12.1 (2016-04-18)
++-------------------
++
++1.12.0 (2016-03-18)
++-------------------
++
++1.11.18 (2016-03-17)
++--------------------
++
++1.11.17 (2016-03-11)
++--------------------
++* add support for loading parameters from stdin as well as dumping rosparam to stdout (`#686 <https://github.com/ros/ros_comm/pull/686>`_)
++
++1.11.16 (2015-11-09)
++--------------------
++
++1.11.15 (2015-10-13)
++--------------------
++
++1.11.14 (2015-09-19)
++--------------------
++
++1.11.13 (2015-04-28)
++--------------------
++
++1.11.12 (2015-04-27)
++--------------------
++
++1.11.11 (2015-04-16)
++--------------------
++
++1.11.10 (2014-12-22)
++--------------------
++
++1.11.9 (2014-08-18)
++-------------------
++
++1.11.8 (2014-08-04)
++-------------------
++
++1.11.7 (2014-07-18)
++-------------------
++
++1.11.6 (2014-07-10)
++-------------------
++
++1.11.5 (2014-06-24)
++-------------------
++
++1.11.4 (2014-06-16)
++-------------------
++* Python 3 compatibility (`#427 <https://github.com/ros/ros_comm/issues/427>`_)
++
++1.11.3 (2014-05-21)
++-------------------
++
++1.11.2 (2014-05-08)
++-------------------
++
++1.11.1 (2014-05-07)
++-------------------
++* add architecture_independent flag in package.xml (`#391 <https://github.com/ros/ros_comm/issues/391>`_)
++
++1.11.0 (2014-03-04)
++-------------------
++
++1.10.0 (2014-02-11)
++-------------------
++
++1.9.54 (2014-01-27)
++-------------------
++
++1.9.53 (2014-01-14)
++-------------------
++
++1.9.52 (2014-01-08)
++-------------------
++
++1.9.51 (2014-01-07)
++-------------------
++
++1.9.50 (2013-10-04)
++-------------------
++
++1.9.49 (2013-09-16)
++-------------------
++
++1.9.48 (2013-08-21)
++-------------------
++* prevent stack trace for 'rosparam get/delete' when parameter does not exist (`#265 <https://github.com/ros/ros_comm/issues/265>`_)
++
++1.9.47 (2013-07-03)
++-------------------
++
++1.9.46 (2013-06-18)
++-------------------
++
++1.9.45 (2013-06-06)
++-------------------
++
++1.9.44 (2013-03-21)
++-------------------
++
++1.9.43 (2013-03-13)
++-------------------
++
++1.9.42 (2013-03-08)
++-------------------
++
++1.9.41 (2013-01-24)
++-------------------
++
++1.9.40 (2013-01-13)
++-------------------
++
++1.9.39 (2012-12-29)
++-------------------
++* first public release for Groovy
+--- /dev/null
++++ ros-noetic-rosparam-1.16.0/CMakeLists.txt
+@@ -0,0 +1,6 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(rosparam)
++find_package(catkin REQUIRED)
++catkin_package()
++
++catkin_python_setup()
+--- /dev/null
++++ ros-noetic-rosparam-1.16.0/epydoc.config
+@@ -0,0 +1,7 @@
++[epydoc]
++name: rosparam
++modules: rosparam
++inheritance: included
++url: http://ros.org/wiki/rosparam
++frames: no
++private: no
+--- /dev/null
++++ ros-noetic-rosparam-1.16.0/example.yaml
+@@ -0,0 +1,22 @@
++string1: bar
++string2: !!str 10
++preformattedtext: |
++  This is the first line
++  This is the second line
++  Line breaks are preserved
++  Indentation is stripped
++list1:
++ - head
++ - shoulders
++ - knees
++ - toes
++list2: [1, 1, 2, 3, 5, 8]
++dict1: { head: 1, shoulders: 2, knees: 3, toes: 4}
++integer1: 1
++integer2: 2
++float1: 3.14159
++float2: 1.2345e+3
++robots:
++  childparam: a child namespace parameter
++  child:
++     grandchildparam: a grandchild namespace param
+--- /dev/null
++++ ros-noetic-rosparam-1.16.0/package.xml
+@@ -0,0 +1,39 @@
++<?xml version="1.0"?>
++<?xml-model
++  href="http://download.ros.org/schema/package_format3.xsd"
++  schematypens="http://www.w3.org/2001/XMLSchema"?>
++<package format="3">
++  <name>rosparam</name>
++  <version>1.16.0</version>
++  <description>
++    rosparam contains the rosparam command-line tool for getting and
++    setting ROS Parameters on the <a
++    href="http://wiki.ros.org/Parameter%20Server">Parameter
++    Server</a> using YAML-encoded files. It also contains an
++    experimental library for using YAML with the Parameter
++    Server. This library is intended for internal use only.
++
++    rosparam can be invoked within a <a href="http://wiki.ros.org/roslaunch">roslaunch</a> file.
++  </description>
++  <maintainer email="michael@openrobotics.org">Michael Carroll</maintainer>
++  <maintainer email="sloretz@openrobotics.org">Shane Loretz</maintainer>
++  <license>BSD</license>
++
++  <url type="website">http://wiki.ros.org/rosparam</url>
++  <url type="bugtracker">https://github.com/ros/ros_comm/issues</url>
++  <url type="repository">https://github.com/ros/ros_comm</url>
++  <author>Ken Conley</author>
++  <author email="dthomas@osrfoundation.org">Dirk Thomas</author>
++  <author email="jacob@openrobotics.org">Jacob Perron</author>
++
++  <buildtool_depend>catkin</buildtool_depend>
++
++  <exec_depend condition="$ROS_PYTHON_VERSION == 2">python-yaml</exec_depend>
++  <exec_depend condition="$ROS_PYTHON_VERSION == 3">python3-yaml</exec_depend>
++  <exec_depend>rosgraph</exec_depend>
++
++  <export>
++    <rosdoc config="rosdoc.yaml"/>
++    <architecture_independent/>
++  </export>
++</package>
+--- /dev/null
++++ ros-noetic-rosparam-1.16.0/rosdoc.yaml
+@@ -0,0 +1,2 @@
++ - builder: epydoc
++   config: epydoc.config
+--- /dev/null
++++ ros-noetic-rosparam-1.16.0/scripts/rosparam
+@@ -0,0 +1,35 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import rosparam
++rosparam.yamlmain()
+--- /dev/null
++++ ros-noetic-rosparam-1.16.0/setup.py
+@@ -0,0 +1,10 @@
++from setuptools import setup
++from catkin_pkg.python_setup import generate_distutils_setup
++
++d = generate_distutils_setup(
++    packages=['rosparam'],
++    package_dir={'': 'src'},
++    scripts=['scripts/rosparam']
++)
++
++setup(**d)
+--- /dev/null
++++ ros-noetic-rosparam-1.16.0/src/rosparam/__init__.py
+@@ -0,0 +1,647 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id: rosparam 1641 2008-07-28 21:39:33Z sfkwc $
++
++"""
++Implementation of the rosparam as well as a library for modifying the
++state of the ROS Parameter Server using YAML files.
++"""
++
++from __future__ import print_function
++
++NAME = 'rosparam'
++
++## namespace key. Use of this in a YAML document specifies the
++## namespace of all the params.  NOTE: phasing out most use of this
++## key. It's still useful in corner cases, but most of its
++## functionality can be achieved with command-line arguments.
++NS = '_ns'
++
++import base64
++import math
++import os
++import re
++import sys
++import socket
++try:
++    from xmlrpc.client import Binary
++except ImportError:
++    from xmlrpclib import Binary
++
++from optparse import OptionParser
++
++import yaml
++
++import rosgraph
++from rosgraph.names import script_resolve_name, ns_join, get_ros_namespace, make_caller_id, make_global_ns, GLOBALNS
++
++class RosParamException(Exception):
++    """
++    rosparam base exception type
++    """
++    pass
++class RosParamIOException(RosParamException):
++    """
++    Exception for communication-based (i/o) errors.
++    """
++    pass
++
++# pyyaml customizations for binary and angle data
++
++def represent_xml_binary(loader, data):
++    """
++    Adds a pyyaml serializer to handle xmlrpclib.Binary objects
++    """
++    data = base64.b64encode(data.data)
++    return loader.represent_scalar(u'tag:yaml.org,2002:binary', data, style='|')
++
++def represent_foo(loader, data):
++    return loader.represent_scalar(u'#', data)
++    
++def construct_yaml_binary(loader, node):
++    """
++    Overrides pyaml's constructor for binary data. Wraps binary data in
++    xmlrpclib.Binary container instead of straight string
++    representation.
++    """
++    return Binary(loader.construct_yaml_binary(node))
++        
++# register the (de)serializers with pyyaml
++yaml.add_representer(Binary,represent_xml_binary)
++yaml.add_constructor(u'tag:yaml.org,2002:binary', construct_yaml_binary)
++yaml.SafeLoader.add_constructor(u'tag:yaml.org,2002:binary', construct_yaml_binary)
++
++def construct_angle_radians(loader, node):
++    """
++    python-yaml utility for converting rad(num) into float value
++    """
++    value = loader.construct_scalar(node).strip()
++    exprvalue = value.replace('pi', 'math.pi')
++    if exprvalue.startswith("rad("):
++        exprvalue = exprvalue[4:-1]
++    try:
++        return float(eval(exprvalue))
++    except SyntaxError as e:
++        raise RosParamException("invalid radian expression: %s"%value)
++
++def construct_angle_degrees(loader, node):
++    """
++    python-yaml utility for converting deg(num) into float value
++    """
++    value = loader.construct_scalar(node)
++    exprvalue = value
++    if exprvalue.startswith("deg("):
++        exprvalue = exprvalue.strip()[4:-1]
++    try:
++        return float(exprvalue) * math.pi / 180.0
++    except ValueError:
++        raise RosParamException("invalid degree value: %s"%value)
++
++
++# utilities
++
++def _get_caller_id():
++    """
++    :returns: caller ID for rosparam ROS client calls, ``str``
++    """
++    return make_caller_id('rosparam-%s'%os.getpid())
++
++def print_params(params, ns):
++    """
++    Print contents of param dictionary to screen
++    """
++    if type(params) == dict:
++        for k, v in params.items():
++            if type(v) == dict:
++                print_params(v, ns_join(ns, k))
++            else:
++                print("%s=%s"%(ns_join(ns, k), v))
++    else:
++        print(params)
++    
++# yaml processing
++
++def load_file(filename, default_namespace=None, verbose=False):
++    """
++    Load the YAML document from the specified file
++    
++    :param filename: name of filename, ``str``
++    :param default_namespace: namespace to load filename into, ``str``
++    :returns [(dict, str)...]: list of parameter dictionary and
++      corresponding namespaces for each YAML document in the file
++    :raises: :exc:`RosParamException`: if unable to load contents of filename
++    """
++    if not filename or filename == '-':
++        f = sys.stdin
++        if verbose:
++            print("reading parameters from stdin")
++        return load_str(f.read(), filename, default_namespace=default_namespace, verbose=verbose)
++    else:
++        if not os.path.isfile(filename):
++            raise RosParamException("file [%s] does not exist"%filename)
++        if verbose:
++            print("reading parameters from [%s]"%filename)
++        with open(filename, 'r') as f:
++            return load_str(f.read(), filename, default_namespace=default_namespace, verbose=verbose)
++        
++def load_str(str, filename, default_namespace=None, verbose=False):
++    """
++    Load the YAML document as a string
++    
++    :param filename: name of filename, only used for debugging, ``str``
++    :param default_namespace: namespace to load filename into, ``str``
++    :param str: YAML text, ``str``
++    :returns: list of parameter dictionary and
++        corresponding namespaces for each YAML document in the file, ``[(dict, str)...]``
++    """
++    paramlist = []
++    default_namespace = default_namespace or get_ros_namespace()
++    for doc in yaml.safe_load_all(str):
++        if NS in doc:
++            ns = ns_join(default_namespace, doc.get(NS, None))
++            if verbose:
++                print("reading parameters into namespace [%s]"%ns)
++            del doc[NS]
++        else:
++            ns = default_namespace
++        paramlist.append((doc, ns))
++    return paramlist
++
++
++# DUMP/GET
++
++def get_param_server():
++    return rosgraph.Master(_get_caller_id())
++
++def get_param(param):
++    """
++    Download a parameter from Parameter Server
++
++    :param param: parameter name to retrieve from parameter
++        server. If param is a parameter namespace, entire parameter
++        subtree will be downloaded, ``str``
++    """
++    try:
++        return get_param_server().getParam(param)
++    except socket.error:
++        raise RosParamIOException("Unable to communicate with master!")
++    
++# #698
++def _pretty_print(value, indent=''):
++    """
++    Pretty print get value
++    :param value: value to print
++    :param indent: indent level, used for recursive calls, ``str``
++    """
++    keys = list(value.keys())
++    keys.sort()
++    for k in keys:
++        v = value[k]
++        if type(v) == dict:
++            print("%s%s:"%(indent, k))
++            _pretty_print(v, indent+'  ')
++        elif type(v) == str:
++            if '\n' in v:
++                print(indent+'%s: |'%k)
++                for l in v.split('\n'):
++                    print(indent+'  '+l)
++            else:
++                print("%s%s: %s"%(indent, k, v))
++        else:
++            dump = yaml.dump(v)
++            # #1617
++            # newer versions of python-yaml append the '...' document end
++            # syntax.  as YAML functions fine w/o it, and as it is
++            # confusing to users who are just getting a single scalar, we
++            # strip it
++            if dump.endswith('\n...\n'):
++                dump = dump[:-4]
++            
++            sys.stdout.write("%s%s: %s"%(indent, k, dump))
++            
++def _rosparam_cmd_get_param(param, pretty=False, verbose=False):
++    """
++    Download a parameter tree and print to screen
++    :param param: parameter name to retrieve from Parameter
++        Server. If param is a parameter namespace, entire parameter
++        subtree will be downloaded, ``str``
++    """
++    # yaml.dump has a \n at the end, so use stdout.write instead of print
++    if verbose:
++        print("getting parameter [%s]"%param)
++    try:
++        val = get_param(param)
++    except rosgraph.masterapi.Error as e:
++        raise RosParamException(str(e))
++    if pretty and type(val) in [dict, str]:
++        if type(val) == dict:
++            _pretty_print(val)
++        else:
++            print(val)
++    else:
++        dump = yaml.dump(val)
++        # #1617
++        # newer versions of python-yaml append the '...' document end
++        # syntax.  as YAML functions fine w/o it, and as it is
++        # confusing to users who are just getting a single scalar, we
++        # strip it
++        if dump.endswith('\n...\n'):
++            dump = dump[:-5]
++
++        # #3761 add newline in output
++        sys.stdout.write("%s\n"%(dump))
++
++def dump_params(filename, param, verbose=False):
++    """
++    Download a parameter tree from the Parameter Server and store in a yaml file
++
++    :param filename: name of file to save YAML representation, ``str``
++    :param param: name of parameter/namespace to dump, ``str``
++    :param verbose: print verbose output for debugging, ``bool``
++    """
++    tree = get_param(param)
++    if verbose:
++        print_params(tree, param)
++    if not filename:
++        f = sys.stdout
++        yaml.dump(tree, f)
++    else:
++        f = open(filename, 'w')
++        try:
++            yaml.dump(tree, f)
++        finally:
++            f.close()
++
++
++def delete_param(param, verbose=False):
++    """
++    Delete a parameter from the Parameter Server
++
++    :param param: parameter name, ``str``
++    :param verbose: print verbose output for debugging, ``bool``
++    """
++    try:
++        if param == GLOBALNS:
++            # not allowed to delete the root of the tree as it must always
++            # have a value. the equivalent command is setting the root to an
++            # empty dictionary
++            get_param_server().setParam(GLOBALNS, {})
++            if verbose:
++                print("deleted ENTIRE parameter server")
++        else:
++            get_param_server().deleteParam(param)
++            if verbose:
++                print("deleted parameter [%s]"%param)
++    except socket.error:
++        raise RosParamIOException("Unable to communicate with master!")
++    
++# LOAD/SET
++
++def set_param_raw(param, value, verbose=False):
++    """
++    Set param on the Parameter Server. Unlike L{set_param()}, this
++    takes in a Python value to set instead of YAML.
++    
++    :param param: parameter name, ``str``
++    :param value XmlRpcLegalValue: value to upload, ``XmlRpcLegalValue``
++    """
++    if type(value) == dict:
++        # #1098 changing dictionary behavior to be an update, rather
++        # than replace behavior.
++        for k, v in value.items():
++            # dictionary keys must be non-unicode strings
++            if isinstance(k, str):
++                set_param_raw(ns_join(param, k), v, verbose=verbose)
++            else:
++                raise RosParamException("YAML dictionaries must have string keys. Invalid dictionary is:\n%s"%value)
++    else:
++        try:
++            expected_type = long
++        except NameError :
++            expected_type = int
++      
++        if type(value) == expected_type:
++            if value > sys.maxsize:
++                raise RosParamException("Overflow: Parameter Server integers must be 32-bit signed integers:\n\t-%s <= value <= %s"%(maxint - 1, maxint))
++            
++        try:
++            get_param_server().setParam(param, value)
++        except socket.error:
++            raise RosParamIOException("Unable to communicate with master!")
++        if verbose:
++            print("set parameter [%s] to [%s]"%(param, value))
++
++def set_param(param, value, verbose=False):
++    """
++    Set param on the ROS parameter server using a YAML value.
++    
++    :param param: parameter name, ``str``
++    :param value: yaml-encoded value, ``str``
++    """
++    set_param_raw(param, yaml.safe_load(value), verbose=verbose)
++
++def upload_params(ns, values, verbose=False):
++    """
++    Upload params to the Parameter Server
++    :param values: key/value dictionary, where keys are parameter names and values are parameter values, ``dict``
++    :param ns: namespace to load parameters into, ``str``
++    """
++    if ns == '/' and not type(values) == dict:
++        raise RosParamException("global / can only be set to a dictionary")
++    if verbose:
++        print_params(values, ns)
++    set_param_raw(ns, values)
++
++
++# LIST
++
++def list_params(ns):
++    """
++    Get list of parameters in ns
++
++    :param ns: namespace to match, ``str``
++    """
++    try:
++        ns = make_global_ns(ns)
++        names = get_param_server().getParamNames()
++        names.sort()
++        return [n for n in names if n.startswith(ns)]
++    except socket.error:
++        raise RosParamIOException("Unable to communicate with master!")
++
++# COMMAND-LINE PARSING
++    
++def _rosparam_cmd_get_dump(cmd, argv):
++    """
++    Process command line for rosparam get/dump, e.g.::
++      rosparam get param
++      rosparam dump file.yaml [namespace]
++
++    :param cmd: command ('get' or 'dump'), ``str``
++    :param argv: command-line args, ``str``
++    """
++    # get and dump are equivalent functionality, just different arguments
++    if cmd == 'dump':
++        parser = OptionParser(usage="usage: %prog dump [options] file [namespace]", prog=NAME)
++    elif cmd == 'get':
++        parser = OptionParser(usage="usage: %prog get [options] parameter", prog=NAME)        
++        parser.add_option("-p", dest="pretty", default=False,
++                          action="store_true", help="pretty print. WARNING: not YAML-safe")
++
++    parser.add_option("-v", dest="verbose", default=False,
++                      action="store_true", help="turn on verbose output")
++    options, args = parser.parse_args(argv[2:])
++
++    arg = None
++    ns = ''
++    
++    if len(args) == 0:
++        if cmd == 'get':
++            parser.error("invalid arguments. Please specify a parameter name")
++    elif len(args) == 1:
++        arg = args[0]
++    elif len(args) == 2 and cmd == 'dump':
++        arg = args[0]
++        ns = args[1]
++    else:
++        parser.error("too many arguments")
++
++    if cmd == 'get':
++        _rosparam_cmd_get_param(script_resolve_name(NAME, arg), pretty=options.pretty, verbose=options.verbose)
++    else:
++        if options.verbose:
++            print("dumping namespace [%s] to file [%s]"%(ns, arg))
++        dump_params(arg, script_resolve_name(NAME, ns), verbose=options.verbose)
++
++def _set_optparse_neg_args(parser, argv):
++    # we don't use optparse to parse actual arguments, just options,
++    # due to the fact that optparse doesn't handle negative numbers as
++    # arguments. This parsing is complicated by the fact that we still
++    # need to respect argument-bearing options like --textfile.
++    args = []
++    optparse_args = []
++    skip = False
++    for s in argv[2:]:
++        if s.startswith('-'):
++            if s in ['-t', '--textfile', '-b', '--binfile']:
++                skip = True
++                optparse_args.append(s)
++            elif skip:
++                parser.error("-t and --textfile options require an argument")
++            elif len(s) > 1 and ord(s[1]) >= ord('0') and ord(s[1]) <= ord('9'):
++                args.append(s)
++            else:
++                optparse_args.append(s)
++        else:
++            if skip:
++                skip = False
++                optparse_args.append(s)                
++            else:
++                args.append(s)
++    options, _ = parser.parse_args(optparse_args)
++    return options, args
++
++# TODO: break this into separate routines, has gotten too ugly to multiplex
++def _rosparam_cmd_set_load(cmd, argv):
++    """
++    Process command line for rosparam set/load, e.g.::
++      rosparam load file.yaml [namespace]
++      rosparam set param value
++
++    :param cmd: command name, ``str``
++    :param argv: command-line args, ``str``
++    """
++    if cmd == 'load':
++        parser = OptionParser(usage="usage: %prog load [options] file [namespace]", prog=NAME)
++    elif cmd == 'set':
++        parser = OptionParser(usage="usage: %prog set [options] parameter value", prog=NAME)
++        parser.add_option("-t", "--textfile", dest="text_file", default=None,
++                          metavar="TEXT_FILE", help="set parameters to contents of text file")
++        parser.add_option("-b", "--binfile", dest="bin_file", default=None,
++                          metavar="BINARY_FILE", help="set parameters to contents of binary file")
++
++    parser.add_option("-v", dest="verbose", default=False,
++                      action="store_true", help="turn on verbose output")
++    if cmd == 'set':
++        options, args = _set_optparse_neg_args(parser, argv)
++        if options.text_file and options.bin_file:
++            parser.error("you may only specify one of --textfile or --binfile")
++    else:
++        options, args = parser.parse_args(argv[2:])
++
++    arg2 = None
++    if len(args) == 0:
++        if cmd == 'load':
++            parser.error("invalid arguments. Please specify a file name or - for stdin")
++        elif cmd == 'set':
++            parser.error("invalid arguments. Please specify a parameter name")
++    elif len(args) == 1:
++        arg = args[0]
++        if cmd == 'set' and not (options.text_file or options.bin_file):
++            parser.error("invalid arguments. Please specify a parameter value")
++    elif len(args) == 2:
++        arg = args[0]
++        arg2 = args[1]
++    else:
++        parser.error("too many arguments")
++
++    if cmd == 'set':
++        name = script_resolve_name(NAME, arg)
++        # #2647
++        if options.text_file:
++            if not os.path.isfile(options.text_file):
++                parser.error("file '%s' does not exist"%(options.text_file))
++            with open(options.text_file) as f:
++                arg2 = f.read()
++            set_param_raw(name, arg2, verbose=options.verbose) 
++        elif options.bin_file:
++            with open(options.bin_file, 'rb') as f:
++                arg2 = Binary(f.read())
++            set_param_raw(name, arg2, verbose=options.verbose)                
++        else:
++            # #2237: the empty string is really hard to specify on the
++            # command-line due to bash quoting rules. We cheat here and
++            # let an empty Python string be an empty YAML string (instead
++            # of YAML null, which has no meaning to the Parameter Server
++            # anyway).
++            if arg2 == '':
++                arg2 = '!!str'
++            set_param(name, arg2, verbose=options.verbose)
++    else:
++        paramlist = load_file(arg, default_namespace=script_resolve_name(NAME, arg2), verbose=options.verbose)
++        for params,ns in paramlist:
++            upload_params(ns, params, verbose=options.verbose)
++
++def _rosparam_cmd_list(argv):
++    """
++    Process command line for rosparam set/load, e.g.::
++      rosparam load file.yaml [namespace]
++      rosparam set param value
++
++    :param argv: command-line args, ``str``
++    """
++    parser = OptionParser(usage="usage: %prog list [namespace]", prog=NAME)
++    options, args = parser.parse_args(argv[2:])
++
++    ns = GLOBALNS
++    if len(args) == 1:
++        ns = script_resolve_name(NAME, args[0])
++    elif len(args) == 2:
++        parser.error("too many arguments")
++
++    print('\n'.join(list_params(ns)))
++
++
++def _rosparam_cmd_delete(argv):
++    """
++    Process command line for rosparam delete, e.g.::
++      rosparam delete param 
++
++    :param cmd: command name, ``str``
++    :param argv: command-line args, ``str``
++    """
++    parser = OptionParser(usage="usage: %prog delete [options] parameter", prog=NAME)
++    parser.add_option("-v", dest="verbose", default=False,
++                      action="store_true", help="turn on verbose output")
++    options, args = parser.parse_args(argv[2:])
++
++    arg2 = None
++    if len(args) == 0:
++        parser.error("invalid arguments. Please specify a parameter name")
++    elif len(args) == 1:
++        arg = args[0]
++    else:
++        parser.error("too many arguments")
++
++    try:
++        delete_param(script_resolve_name(NAME, arg), verbose=options.verbose)
++    except rosgraph.masterapi.Error as e:
++        raise RosParamException(str(e))
++
++def _fullusage():
++    """
++    Prints rosparam usage
++    """
++    print("""rosparam is a command-line tool for getting, setting, and deleting parameters from the ROS Parameter Server.
++
++Commands:
++\trosparam set\tset parameter
++\trosparam get\tget parameter
++\trosparam load\tload parameters from file
++\trosparam dump\tdump parameters to file
++\trosparam delete\tdelete parameter
++\trosparam list\tlist parameter names
++""")
++    sys.exit(0)
++
++def yamlmain(argv=None):
++    """
++    Command-line main routine. Loads in one or more input files
++    
++    :param argv: command-line arguments or None to use sys.argv, ``[str]``
++    """
++    if argv is None:
++        argv = sys.argv
++    if len(argv) == 1:
++        _fullusage()
++    try:
++        command = argv[1]
++        if command in ['get', 'dump']:
++            _rosparam_cmd_get_dump(command, argv)
++        elif command in ['set', 'load']:
++            _rosparam_cmd_set_load(command, argv)
++        elif command in ['delete']:
++            _rosparam_cmd_delete(argv)
++        elif command == 'list':
++            _rosparam_cmd_list(argv)
++        else:
++            _fullusage()
++    except RosParamException as e:
++        print("ERROR: "+str(e), file=sys.stderr)
++        sys.exit(1)
++
++# YAML configuration. Doxygen does not like these being higher up in the code
++
++yaml.add_constructor(u'!radians', construct_angle_radians)
++yaml.add_constructor(u'!degrees', construct_angle_degrees)
++yaml.SafeLoader.add_constructor(u'!radians', construct_angle_radians)
++yaml.SafeLoader.add_constructor(u'!degrees', construct_angle_degrees)
++
++# allow both !degrees 180, !radians 2*pi
++pattern = re.compile(r'^deg\([^\)]*\)$')
++yaml.add_implicit_resolver(u'!degrees', pattern, first="deg(")
++yaml.SafeLoader.add_implicit_resolver(u'!degrees', pattern, first="deg(")
++pattern = re.compile(r'^rad\([^\)]*\)$')
++yaml.add_implicit_resolver(u'!radians', pattern, first="rad(")
++yaml.SafeLoader.add_implicit_resolver(u'!radians', pattern, first="rad(")
++

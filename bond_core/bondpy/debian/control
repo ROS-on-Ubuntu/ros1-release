@@ -1,0 +1,12 @@
+Source: ros-noetic-bondpy
+Section: misc
+Priority: optional
+Maintainer: Michael Carroll <michael@openrobotics.org>
+Build-Depends: debhelper (>= 9.0.0), python3-setuptools, ros-noetic-bond, ros-noetic-catkin, ros-noetic-rospy, ros-noetic-smclib
+Homepage: http://www.ros.org/wiki/bondpy
+Standards-Version: 3.9.2
+
+Package: ros-noetic-bondpy
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-noetic-rospy, ros-noetic-smclib, uuid-dev
+Description: Python implementation of bond, a mechanism for checking when another process has terminated.

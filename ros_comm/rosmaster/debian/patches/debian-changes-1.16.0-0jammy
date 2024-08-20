@@ -1,0 +1,4515 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-rosmaster (1.16.0-0jammy) jammy; urgency=high
+Author: Michael Carroll <michael@openrobotics.org>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-rosmaster-1.16.0/CHANGELOG.rst
+@@ -0,0 +1,249 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package rosmaster
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++1.16.0 (2023-02-15)
++-------------------
++
++1.15.15 (2022-11-23)
++--------------------
++* Move @jacobperron from maintainer to author (`#2302 <https://github.com/ros/ros_comm/issues/2302>`_)
++* Contributors: Shane Loretz
++
++1.15.14 (2022-01-06)
++--------------------
++
++1.15.13 (2021-09-22)
++--------------------
++
++1.15.12 (2021-09-21)
++--------------------
++
++1.15.11 (2021-04-06)
++--------------------
++
++1.15.10 (2021-03-18)
++--------------------
++
++1.15.9 (2020-10-16)
++-------------------
++* Update maintainers (`#2075 <https://github.com/ros/ros_comm/issues/2075>`_)
++* Fix case where accessing cached parameters shuts down another node (`#2068 <https://github.com/ros/ros_comm/issues/2068>`_)
++* Fix spelling (`#2066 <https://github.com/ros/ros_comm/issues/2066>`_)
++* Contributors: Shane Loretz, tomoya
++
++1.15.8 (2020-07-23)
++-------------------
++* improve shutdown message with duplicate node name (`#1992 <https://github.com/ros/ros_comm/issues/1992>`_)
++
++1.15.7 (2020-05-28)
++-------------------
++
++1.15.6 (2020-05-21)
++-------------------
++
++1.15.5 (2020-05-15)
++-------------------
++
++1.15.4 (2020-03-19)
++-------------------
++
++1.15.3 (2020-02-28)
++-------------------
++
++1.15.2 (2020-02-25)
++-------------------
++
++1.15.1 (2020-02-24)
++-------------------
++* use setuptools instead of distutils (`#1870 <https://github.com/ros/ros_comm/issues/1870>`_)
++
++1.15.0 (2020-02-21)
++-------------------
++
++1.14.4 (2020-02-20)
++-------------------
++* bump CMake minimum version to avoid CMP0048 warning (`#1869 <https://github.com/ros/ros_comm/issues/1869>`_)
++* use thread local storage for caching instances of ServerProxy (`#1732 <https://github.com/ros/ros_comm/issues/1732>`_)
++* use condition attributes to specify Python 2 and 3 dependencies (`#1792 <https://github.com/ros/ros_comm/issues/1792>`_)
++* fix issue occurring during alternating calls of getParamCached and setParam (`#1439 <https://github.com/ros/ros_comm/issues/1439>`_)
++* fix docstring in unregisterSubscriber (`#1553 <https://github.com/ros/ros_comm/issues/1553>`_)
++* set correctly typed @apivalidate default return values (`#1472 <https://github.com/ros/ros_comm/issues/1472>`_)
++
++1.14.3 (2018-08-06)
++-------------------
++
++1.14.2 (2018-06-06)
++-------------------
++
++1.14.1 (2018-05-21)
++-------------------
++
++1.14.0 (2018-05-21)
++-------------------
++
++1.13.6 (2018-02-05)
++-------------------
++* add TCP_INFO availability check (`#1211 <https://github.com/ros/ros_comm/issues/1211>`_)
++* replace Thread.setDaemon() using new API (`#1276 <https://github.com/ros/ros_comm/issues/1276>`_)
++
++1.13.5 (2017-11-09)
++-------------------
++
++1.13.4 (2017-11-02)
++-------------------
++* catch exception with `socket.TCP_INFO` on WSL (`#1212 <https://github.com/ros/ros_comm/issues/1212>`_, regression from 1.13.1)
++
++1.13.3 (2017-10-25)
++-------------------
++* add --set-master-logger-level option for 'rosmaster' to output LOG_API (`#1180 <https://github.com/ros/ros_comm/issues/1180>`_)
++
++1.13.2 (2017-08-15)
++-------------------
++
++1.13.1 (2017-07-27)
++-------------------
++* close CLOSE_WAIT sockets by default (`#1104 <https://github.com/ros/ros_comm/issues/1104>`_)
++
++1.13.0 (2017-02-22)
++-------------------
++
++1.12.7 (2017-02-17)
++-------------------
++* add more logging to publisher update calls (`#979 <https://github.com/ros/ros_comm/issues/979>`_)
++
++1.12.6 (2016-10-26)
++-------------------
++
++1.12.5 (2016-09-30)
++-------------------
++
++1.12.4 (2016-09-19)
++-------------------
++
++1.12.3 (2016-09-17)
++-------------------
++
++1.12.2 (2016-06-03)
++-------------------
++
++1.12.1 (2016-04-18)
++-------------------
++* use defusedxml to prevent common xml issues (`#782 <https://github.com/ros/ros_comm/pull/782>`_)
++
++1.12.0 (2016-03-18)
++-------------------
++
++1.11.18 (2016-03-17)
++--------------------
++
++1.11.17 (2016-03-11)
++--------------------
++
++1.11.16 (2015-11-09)
++--------------------
++* add `-w` and `-t` options (`#687 <https://github.com/ros/ros_comm/pull/687>`_)
++
++1.11.15 (2015-10-13)
++--------------------
++
++1.11.14 (2015-09-19)
++--------------------
++
++1.11.13 (2015-04-28)
++--------------------
++
++1.11.12 (2015-04-27)
++--------------------
++
++1.11.11 (2015-04-16)
++--------------------
++
++1.11.10 (2014-12-22)
++--------------------
++* fix closing sockets properly on node shutdown (`#495 <https://github.com/ros/ros_comm/issues/495>`_)
++
++1.11.9 (2014-08-18)
++-------------------
++
++1.11.8 (2014-08-04)
++-------------------
++
++1.11.7 (2014-07-18)
++-------------------
++
++1.11.6 (2014-07-10)
++-------------------
++
++1.11.5 (2014-06-24)
++-------------------
++
++1.11.4 (2014-06-16)
++-------------------
++* Python 3 compatibility (`#426 <https://github.com/ros/ros_comm/issues/426>`_, `#427 <https://github.com/ros/ros_comm/issues/427>`_, `#429 <https://github.com/ros/ros_comm/issues/429>`_)
++
++1.11.3 (2014-05-21)
++-------------------
++
++1.11.2 (2014-05-08)
++-------------------
++
++1.11.1 (2014-05-07)
++-------------------
++* add architecture_independent flag in package.xml (`#391 <https://github.com/ros/ros_comm/issues/391>`_)
++
++1.11.0 (2014-03-04)
++-------------------
++
++1.10.0 (2014-02-11)
++-------------------
++
++1.9.54 (2014-01-27)
++-------------------
++
++1.9.53 (2014-01-14)
++-------------------
++
++1.9.52 (2014-01-08)
++-------------------
++
++1.9.51 (2014-01-07)
++-------------------
++
++1.9.50 (2013-10-04)
++-------------------
++
++1.9.49 (2013-09-16)
++-------------------
++
++1.9.48 (2013-08-21)
++-------------------
++
++1.9.47 (2013-07-03)
++-------------------
++* check for CATKIN_ENABLE_TESTING to enable configure without tests
++
++1.9.46 (2013-06-18)
++-------------------
++
++1.9.45 (2013-06-06)
++-------------------
++
++1.9.44 (2013-03-21)
++-------------------
++
++1.9.43 (2013-03-13)
++-------------------
++
++1.9.42 (2013-03-08)
++-------------------
++
++1.9.41 (2013-01-24)
++-------------------
++
++1.9.40 (2013-01-13)
++-------------------
++
++1.9.39 (2012-12-29)
++-------------------
++* first public release for Groovy
+--- /dev/null
++++ ros-noetic-rosmaster-1.16.0/CMakeLists.txt
+@@ -0,0 +1,10 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(rosmaster)
++find_package(catkin REQUIRED)
++catkin_package()
++
++catkin_python_setup()
++
++if(CATKIN_ENABLE_TESTING)
++  catkin_add_nosetests(test)
++endif()
+--- /dev/null
++++ ros-noetic-rosmaster-1.16.0/epydoc.config
+@@ -0,0 +1,7 @@
++[epydoc]
++name: rosmaster
++modules: rosmaster
++inheritance: included
++url: http://ros.org/wiki/rosmaster
++frames: no
++private: no
+--- /dev/null
++++ ros-noetic-rosmaster-1.16.0/package.xml
+@@ -0,0 +1,32 @@
++<?xml version="1.0"?>
++<?xml-model
++  href="http://download.ros.org/schema/package_format3.xsd"
++  schematypens="http://www.w3.org/2001/XMLSchema"?>
++<package format="3">
++  <name>rosmaster</name>
++  <version>1.16.0</version>
++  <description>
++    ROS <a href="http://ros.org/wiki/Master">Master</a> implementation.
++  </description>
++  <maintainer email="michael@openrobotics.org">Michael Carroll</maintainer>
++  <maintainer email="sloretz@openrobotics.org">Shane Loretz</maintainer>
++  <license>BSD</license>
++
++  <url type="website">http://wiki.ros.org/rosmaster</url>
++  <url type="bugtracker">https://github.com/ros/ros_comm/issues</url>
++  <url type="repository">https://github.com/ros/ros_comm</url>
++  <author>Ken Conley</author>
++  <author email="dthomas@osrfoundation.org">Dirk Thomas</author>
++  <author email="jacob@openrobotics.org">Jacob Perron</author>
++
++  <buildtool_depend version_gte="0.5.68">catkin</buildtool_depend>
++
++  <exec_depend>rosgraph</exec_depend>
++  <exec_depend condition="$ROS_PYTHON_VERSION == 2">python-defusedxml</exec_depend>
++  <exec_depend condition="$ROS_PYTHON_VERSION == 3">python3-defusedxml</exec_depend>
++
++  <export>
++    <rosdoc config="rosdoc.yaml"/>
++    <architecture_independent/>
++  </export>
++</package>
+--- /dev/null
++++ ros-noetic-rosmaster-1.16.0/rosdoc.yaml
+@@ -0,0 +1,2 @@
++ - builder: epydoc
++   config: epydoc.config
+--- /dev/null
++++ ros-noetic-rosmaster-1.16.0/scripts/rosmaster
+@@ -0,0 +1,35 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import rosmaster
++rosmaster.rosmaster_main()
+--- /dev/null
++++ ros-noetic-rosmaster-1.16.0/setup.py
+@@ -0,0 +1,11 @@
++from setuptools import setup
++from catkin_pkg.python_setup import generate_distutils_setup
++
++d = generate_distutils_setup(
++    packages=['rosmaster'],
++    package_dir={'': 'src'},
++    scripts=['scripts/rosmaster'],
++    requires=['roslib', 'rospkg']
++)
++
++setup(**d)
+--- /dev/null
++++ ros-noetic-rosmaster-1.16.0/src/rosmaster/__init__.py
+@@ -0,0 +1,38 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2010, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id$
++
++from .main import rosmaster_main
++
++from .master import DEFAULT_MASTER_PORT
++
+--- /dev/null
++++ ros-noetic-rosmaster-1.16.0/src/rosmaster/exceptions.py
+@@ -0,0 +1,39 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2010, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id$
++
++"""
++Exceptions for rosmaster package.
++"""
++
++class InternalException(Exception): pass
+--- /dev/null
++++ ros-noetic-rosmaster-1.16.0/src/rosmaster/main.py
+@@ -0,0 +1,139 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id$
++
++"""Command-line handler for ROS zenmaster (Python Master)"""
++
++import logging
++import os
++import sys
++import time
++import optparse
++
++import rosmaster.master
++from rosmaster.master_api import NUM_WORKERS
++
++def configure_logging():
++    """
++    Setup filesystem logging for the master
++    """
++    filename = 'master.log'
++    # #988 __log command-line remapping argument
++    import rosgraph.names
++    import rosgraph.roslogging
++    mappings = rosgraph.names.load_mappings(sys.argv)
++    if '__log' in mappings:
++        logfilename_remap = mappings['__log']
++        filename = os.path.abspath(logfilename_remap)
++    _log_filename = rosgraph.roslogging.configure_logging('rosmaster', logging.DEBUG, filename=filename)
++
++def rosmaster_main(argv=sys.argv, stdout=sys.stdout, env=os.environ):
++    parser = optparse.OptionParser(usage="usage: zenmaster [options]")
++    parser.add_option("--core",
++                      dest="core", action="store_true", default=False,
++                      help="run as core")
++    parser.add_option("-p", "--port", 
++                      dest="port", default=0,
++                      help="override port", metavar="PORT")
++    parser.add_option("-w", "--numworkers",
++                      dest="num_workers", default=NUM_WORKERS, type=int,
++                      help="override number of worker threads", metavar="NUM_WORKERS")
++    parser.add_option("-t", "--timeout",
++                      dest="timeout",
++                      help="override the socket connection timeout (in seconds).", metavar="TIMEOUT")
++    parser.add_option("--master-logger-level",
++                      dest="master_logger_level", default=False, type=str,
++                      help="set rosmaster.master logger level ('debug', 'info', 'warn', 'error', 'fatal')")
++
++    options, args = parser.parse_args(argv[1:])
++
++    # only arg that zenmaster supports is __log remapping of logfilename
++    for arg in args:
++        if not arg.startswith('__log:='):
++            parser.error("unrecognized arg: %s"%arg)
++    configure_logging()   
++    
++    port = rosmaster.master.DEFAULT_MASTER_PORT
++    if options.port:
++        port = int(options.port)
++
++    if not options.core:
++        print("""
++
++
++ACHTUNG WARNING ACHTUNG WARNING ACHTUNG
++WARNING ACHTUNG WARNING ACHTUNG WARNING
++
++
++Standalone zenmaster has been deprecated, please use 'roscore' instead
++
++
++ACHTUNG WARNING ACHTUNG WARNING ACHTUNG
++WARNING ACHTUNG WARNING ACHTUNG WARNING
++
++
++""")
++
++    logger = logging.getLogger("rosmaster.main")
++    logger.info("initialization complete, waiting for shutdown")
++
++    if options.timeout is not None and float(options.timeout) >= 0.0:
++        logger.info("Setting socket timeout to %s" % options.timeout)
++        import socket
++        socket.setdefaulttimeout(float(options.timeout))
++
++    if options.master_logger_level:
++        levels = {'debug': logging.DEBUG, 'info': logging.INFO, 'warn': logging.WARN, 'error': logging.ERROR, 'fatal': logging.FATAL}
++        if options.master_logger_level.lower() in levels.keys():
++            logger.info("set rosmaster.master logger level '{}'".format(options.master_logger_level))
++            rosmaster.master_api.LOG_API = True
++            logging.getLogger("rosmaster.master").setLevel(levels[options.master_logger_level.lower()])
++        else:
++            logger.error("--master-logger-level received unknown option '{}'".format(options.master_logger_level))
++
++    try:
++        logger.info("Starting ROS Master Node")
++        master = rosmaster.master.Master(port, options.num_workers)
++        master.start()
++
++        import time
++        while master.ok():
++            time.sleep(.1)
++    except KeyboardInterrupt:
++        logger.info("keyboard interrupt, will exit")
++    finally:
++        logger.info("stopping master...")
++        master.stop()
++
++if __name__ == "__main__":
++    main()
+--- /dev/null
++++ ros-noetic-rosmaster-1.16.0/src/rosmaster/master.py
+@@ -0,0 +1,89 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id$
++
++"""
++ROS Master. 
++
++This module integrates the lower-level implementation modules into a
++single interface for running and stopping the ROS Master.
++"""
++
++import logging
++import time
++
++import rosgraph.xmlrpc
++
++import rosmaster.master_api
++
++DEFAULT_MASTER_PORT=11311 #default port for master's to bind to
++
++class Master(object):
++    
++    def __init__(self, port=DEFAULT_MASTER_PORT, num_workers=rosmaster.master_api.NUM_WORKERS):
++        self.port = port
++        self.num_workers = num_workers
++        
++    def start(self):
++        """
++        Start the ROS Master.
++        """
++        self.handler = None
++        self.master_node = None
++        self.uri = None
++
++        handler = rosmaster.master_api.ROSMasterHandler(self.num_workers)
++        master_node = rosgraph.xmlrpc.XmlRpcNode(self.port, handler)
++        master_node.start()
++
++        # poll for initialization
++        while not master_node.uri:
++            time.sleep(0.0001) 
++
++        # save fields
++        self.handler = handler
++        self.master_node = master_node
++        self.uri = master_node.uri
++        
++        logging.getLogger('rosmaster.master').info("Master initialized: port[%s], uri[%s]", self.port, self.uri)
++
++    def ok(self):
++        if self.master_node is not None:
++            return self.master_node.handler._ok()
++        else:
++            return False
++    
++    def stop(self):
++        if self.master_node is not None:
++            self.master_node.shutdown('Master.stop')
++            self.master_node = None
+--- /dev/null
++++ ros-noetic-rosmaster-1.16.0/src/rosmaster/master_api.py
+@@ -0,0 +1,891 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id$
++"""
++ROS Master API. 
++
++L{ROSMasterHandler} provides the API implementation of the
++Master. Python allows an API to be introspected from a Python class,
++so the handler has a 1-to-1 mapping with the actual XMLRPC API.
++
++API return convention: (statusCode, statusMessage, returnValue)
++
++ - statusCode: an integer indicating the completion condition of the method. 
++ - statusMessage: a human-readable string message for debugging
++ - returnValue: the return value of the method; method-specific.
++
++Current status codes: 
++
++ - -1: ERROR: Error on the part of the caller, e.g. an invalid parameter
++ - 0: FAILURE: Method was attempted but failed to complete correctly.
++ - 1: SUCCESS: Method completed successfully.
++
++Individual methods may assign additional meaning/semantics to statusCode.
++"""
++
++from __future__ import print_function
++
++import os
++import sys
++import logging
++import threading
++import time
++import traceback
++
++from rosgraph.xmlrpc import XmlRpcHandler
++
++import rosgraph.names
++from rosgraph.names import resolve_name
++import rosmaster.paramserver
++import rosmaster.threadpool
++
++from rosmaster.util import xmlrpcapi
++from rosmaster.registrations import RegistrationManager
++from rosmaster.validators import non_empty, non_empty_str, not_none, is_api, is_topic, is_service, valid_type_name, valid_name, empty_or_valid_name, ParameterInvalid
++
++NUM_WORKERS = 3 #number of threads we use to send publisher_update notifications
++
++# Return code slots
++STATUS = 0
++MSG = 1
++VAL = 2
++
++_logger = logging.getLogger("rosmaster.master")
++
++LOG_API = False
++
++def mloginfo(msg, *args):
++    """
++    Info-level master log statements. These statements may be printed
++    to screen so they should be user-readable.
++    @param msg: Message string
++    @type  msg: str
++    @param args: arguments for msg if msg is a format string
++    """
++    #mloginfo is in core so that it is accessible to master and masterdata
++    _logger.info(msg, *args)
++
++def mlogwarn(msg, *args):
++    """
++    Warn-level master log statements. These statements may be printed
++    to screen so they should be user-readable.
++    @param msg: Message string
++    @type  msg: str    
++    @param args: arguments for msg if msg is a format string
++    """
++    #mloginfo is in core so that it is accessible to master and masterdata
++    _logger.warn(msg, *args)
++    if args:
++        print("WARN: " + msg % args)
++    else:
++        print("WARN: " + str(msg))
++
++
++def apivalidate(error_return_value, validators=()):
++    """
++    ROS master/slave arg-checking decorator. Applies the specified
++    validator to the corresponding argument and also remaps each
++    argument to be the value returned by the validator.  Thus,
++    arguments can be simultaneously validated and canonicalized prior
++    to actual function call.
++    @param error_return_value: API value to return if call unexpectedly fails
++    @param validators: sequence of validators to apply to each
++      arg. None means no validation for the parameter is required. As all
++      api methods take caller_id as the first parameter, the validators
++      start with the second param.
++    @type  validators: sequence
++    """
++    def check_validates(f):
++        try:
++            func_code = f.__code__
++            func_name = f.__name__
++        except AttributeError:
++            func_code = f.func_code
++            func_name = f.func_name
++        assert len(validators) == func_code.co_argcount - 2, "%s failed arg check"%f #ignore self and caller_id
++        def validated_f(*args, **kwds):
++            if LOG_API:
++                _logger.debug("%s%s", func_name, str(args[1:]))
++                #print "%s%s"%(func_name, str(args[1:]))
++            if len(args) == 1:
++                _logger.error("%s invoked without caller_id parameter" % func_name)
++                return -1, "missing required caller_id parameter", error_return_value
++            elif len(args) != func_code.co_argcount:
++                return -1, "Error: bad call arity", error_return_value
++
++            instance = args[0]
++            caller_id = args[1]
++            def isstring(s):
++                """Small helper version to check an object is a string in
++                a way that works for both Python 2 and 3
++                """
++                try:
++                    return isinstance(s, basestring)
++                except NameError:
++                    return isinstance(s, str)
++            if not isstring(caller_id):
++                _logger.error("%s: invalid caller_id param type", func_name)
++                return -1, "caller_id must be a string", error_return_value
++            
++            newArgs = [instance, caller_id] #canonicalized args
++            try:
++                for (v, a) in zip(validators, args[2:]):
++                    if v:
++                        try:
++                            newArgs.append(v(a, caller_id)) 
++                        except ParameterInvalid as e:
++                            _logger.error("%s: invalid parameter: %s", func_name, str(e) or 'error')
++                            return -1, str(e) or 'error', error_return_value
++                    else:
++                        newArgs.append(a)
++
++                if LOG_API:
++                    retval = f(*newArgs, **kwds)
++                    _logger.debug("%s%s returns %s", func_name, args[1:], retval)
++                    return retval
++                else:
++                    code, msg, val = f(*newArgs, **kwds)
++                    if val is None:
++                        return -1, "Internal error (None value returned)", error_return_value
++                    return code, msg, val
++            except TypeError as te: #most likely wrong arg number
++                _logger.error(traceback.format_exc())
++                return -1, "Error: invalid arguments: %s"%te, error_return_value
++            except Exception as e: #internal failure
++                _logger.error(traceback.format_exc())
++                return 0, "Internal failure: %s"%e, error_return_value
++        try:
++            validated_f.__name__ = func_name
++        except AttributeError:
++            validated_f.func_name = func_name
++        validated_f.__doc__ = f.__doc__ #preserve doc
++        return validated_f
++    return check_validates
++
++def publisher_update_task(api, topic, pub_uris):
++    """
++    Contact api.publisherUpdate with specified parameters
++    @param api: XML-RPC URI of node to contact
++    @type  api: str
++    @param topic: Topic name to send to node
++    @type  topic: str
++    @param pub_uris: list of publisher APIs to send to node
++    @type  pub_uris: [str]
++    """
++    msg = "publisherUpdate[%s] -> %s %s" % (topic, api, pub_uris)
++    mloginfo(msg)
++    start_sec = time.time()
++    try:
++        #TODO: check return value for errors so we can unsubscribe if stale
++        ret = xmlrpcapi(api).publisherUpdate('/master', topic, pub_uris)
++        msg_suffix = "result=%s" % ret
++    except Exception as ex:
++        msg_suffix = "exception=%s" % ex
++        raise
++    finally:
++        delta_sec = time.time() - start_sec
++        mloginfo("%s: sec=%0.2f, %s", msg, delta_sec, msg_suffix)
++
++
++def service_update_task(api, service, uri):
++    """
++    Contact api.serviceUpdate with specified parameters
++    @param api: XML-RPC URI of node to contact
++    @type  api: str
++    @param service: Service name to send to node
++    @type  service: str
++    @param uri: URI to send to node        
++    @type  uri: str
++    """
++    mloginfo("serviceUpdate[%s, %s] -> %s",service, uri, api)
++    xmlrpcapi(api).serviceUpdate('/master', service, uri)
++
++###################################################
++# Master Implementation
++
++class ROSMasterHandler(object):
++    """
++    XML-RPC handler for ROS master APIs.
++    API routines for the ROS Master Node. The Master Node is a
++    superset of the Slave Node and contains additional API methods for
++    creating and monitoring a graph of slave nodes.
++
++    By convention, ROS nodes take in caller_id as the first parameter
++    of any API call.  The setting of this parameter is rarely done by
++    client code as ros::msproxy::MasterProxy automatically inserts
++    this parameter (see ros::client::getMaster()).
++    """
++    
++    def __init__(self, num_workers=NUM_WORKERS):
++        """ctor."""
++
++        self.uri = None
++        self.done = False
++
++        self.thread_pool = rosmaster.threadpool.MarkedThreadPool(num_workers)
++        # pub/sub/providers: dict { topicName : [publishers/subscribers names] }
++        self.ps_lock = threading.Condition(threading.Lock())
++
++        self.reg_manager = RegistrationManager(self.thread_pool)
++
++        # maintain refs to reg_manager fields
++        self.publishers  = self.reg_manager.publishers
++        self.subscribers = self.reg_manager.subscribers
++        self.services = self.reg_manager.services
++        self.param_subscribers = self.reg_manager.param_subscribers
++        
++        self.topics_types = {} #dict { topicName : type }
++
++        # parameter server dictionary
++        self.param_server = rosmaster.paramserver.ParamDictionary(self.reg_manager)
++
++    def _shutdown(self, reason=''):
++        if self.thread_pool is not None:
++            self.thread_pool.join_all(wait_for_tasks=False, wait_for_threads=False)
++            self.thread_pool = None
++        self.done = True
++        
++    def _ready(self, uri):
++        """
++        Initialize the handler with the XMLRPC URI. This is a standard callback from the XmlRpcNode API.
++
++        @param uri: XML-RPC URI
++        @type  uri: str
++        """
++        self.uri = uri
++
++    def _ok(self):
++        return not self.done
++    
++    ###############################################################################
++    # EXTERNAL API
++
++    @apivalidate(0, (None, ))
++    def shutdown(self, caller_id, msg=''):
++        """
++        Stop this server
++        @param caller_id: ROS caller id
++        @type  caller_id: str
++        @param msg: a message describing why the node is being shutdown.
++        @type  msg: str
++        @return: [code, msg, 0]
++        @rtype: [int, str, int]
++        """
++        if msg:
++            print("shutdown request: %s" % msg, file=sys.stdout)
++        else:
++            print("shutdown requst", file=sys.stdout)
++        self._shutdown('external shutdown request from [%s]: %s'%(caller_id, msg))
++        return 1, "shutdown", 0
++        
++    @apivalidate('')
++    def getUri(self, caller_id):
++        """
++        Get the XML-RPC URI of this server.
++        @param caller_id str: ROS caller id    
++        @return [int, str, str]: [1, "", xmlRpcUri]
++        """
++        return 1, "", self.uri
++
++        
++    @apivalidate(-1)
++    def getPid(self, caller_id):
++        """
++        Get the PID of this server
++        @param caller_id: ROS caller id
++        @type  caller_id: str
++        @return: [1, "", serverProcessPID]
++        @rtype: [int, str, int]
++        """
++        return 1, "", os.getpid()
++
++    
++    ################################################################
++    # PARAMETER SERVER ROUTINES
++    
++    @apivalidate(0, (non_empty_str('key'),))
++    def deleteParam(self, caller_id, key):
++        """
++        Parameter Server: delete parameter
++        @param caller_id: ROS caller id
++        @type  caller_id: str
++        @param key: parameter name
++        @type  key: str
++        @return: [code, msg, 0]
++        @rtype: [int, str, int]
++        """
++        try:
++            key = resolve_name(key, caller_id)
++            self.param_server.delete_param(key, self._notify_param_subscribers)
++            mloginfo("-PARAM [%s] by %s",key, caller_id)            
++            return  1, "parameter %s deleted"%key, 0                
++        except KeyError as e:
++            return -1, "parameter [%s] is not set"%key, 0
++        
++    @apivalidate(0, (non_empty_str('key'), not_none('value')))
++    def setParam(self, caller_id, key, value):
++        """
++        Parameter Server: set parameter.  NOTE: if value is a
++        dictionary it will be treated as a parameter tree, where key
++        is the parameter namespace. For example:::
++          {'x':1,'y':2,'sub':{'z':3}}
++
++        will set key/x=1, key/y=2, and key/sub/z=3. Furthermore, it
++        will replace all existing parameters in the key parameter
++        namespace with the parameters in value. You must set
++        parameters individually if you wish to perform a union update.
++        
++        @param caller_id: ROS caller id
++        @type  caller_id: str
++        @param key: parameter name
++        @type  key: str
++        @param value: parameter value.
++        @type  value: XMLRPCLegalValue
++        @return: [code, msg, 0]
++        @rtype: [int, str, int]
++        """
++        key = resolve_name(key, caller_id)
++        self.param_server.set_param(key, value, self._notify_param_subscribers, caller_id)
++        mloginfo("+PARAM [%s] by %s",key, caller_id)
++        return 1, "parameter %s set"%key, 0
++
++    @apivalidate(0, (non_empty_str('key'),))
++    def getParam(self, caller_id, key):
++        """
++        Retrieve parameter value from server.
++        @param caller_id: ROS caller id
++        @type  caller_id: str
++        @param key: parameter to lookup. If key is a namespace,
++        getParam() will return a parameter tree.
++        @type  key: str
++        getParam() will return a parameter tree.
++
++        @return: [code, statusMessage, parameterValue]. If code is not
++            1, parameterValue should be ignored. If key is a namespace,
++            the return value will be a dictionary, where each key is a
++            parameter in that namespace. Sub-namespaces are also
++            represented as dictionaries.
++        @rtype: [int, str, XMLRPCLegalValue]
++        """
++        try:
++            key = resolve_name(key, caller_id)
++            return 1, "Parameter [%s]"%key, self.param_server.get_param(key)
++        except KeyError as e: 
++            return -1, "Parameter [%s] is not set"%key, 0
++
++    @apivalidate(0, (non_empty_str('key'),))
++    def searchParam(self, caller_id, key):
++        """
++        Search for parameter key on parameter server. Search starts in caller's namespace and proceeds
++        upwards through parent namespaces until Parameter Server finds a matching key.
++
++        searchParam's behavior is to search for the first partial match.
++        For example, imagine that there are two 'robot_description' parameters::
++          
++           /robot_description
++             /robot_description/arm
++             /robot_description/base
++           /pr2/robot_description
++             /pr2/robot_description/base
++
++        If I start in the namespace /pr2/foo and search for
++        'robot_description', searchParam will match
++        /pr2/robot_description. If I search for 'robot_description/arm'
++        it will return /pr2/robot_description/arm, even though that
++        parameter does not exist (yet).
++
++        @param caller_id str: ROS caller id
++        @type  caller_id: str
++        @param key: parameter key to search for.
++        @type  key: str
++        @return: [code, statusMessage, foundKey]. If code is not 1, foundKey should be
++            ignored. 
++        @rtype: [int, str, str]
++        """
++        search_key = self.param_server.search_param(caller_id, key)
++        if search_key:
++            return 1, "Found [%s]"%search_key, search_key
++        else:
++            return -1, "Cannot find parameter [%s] in an upwards search"%key, ''
++
++    @apivalidate(0, (is_api('caller_api'), non_empty_str('key'),))
++    def subscribeParam(self, caller_id, caller_api, key):
++        """
++        Retrieve parameter value from server and subscribe to updates to that param. See
++        paramUpdate() in the Node API. 
++        @param caller_id str: ROS caller id
++        @type  caller_id: str
++        @param key: parameter to lookup.
++        @type  key: str
++        @param caller_api: API URI for paramUpdate callbacks.
++        @type  caller_api: str
++        @return: [code, statusMessage, parameterValue]. If code is not
++           1, parameterValue should be ignored. parameterValue is an empty dictionary if the parameter
++           has not been set yet.
++        @rtype: [int, str, XMLRPCLegalValue]
++        """
++        key = resolve_name(key, caller_id)        
++        try:
++            # ps_lock has precedence and is required due to
++            # potential self.reg_manager modification
++            self.ps_lock.acquire()
++            val = self.param_server.subscribe_param(key, (caller_id, caller_api))
++        finally:
++            self.ps_lock.release()
++        mloginfo("+CACHEDPARAM [%s] by %s",key, caller_id)
++        return 1, "Subscribed to parameter [%s]"%key, val
++
++    @apivalidate(0, (is_api('caller_api'), non_empty_str('key'),))
++    def unsubscribeParam(self, caller_id, caller_api, key):
++        """
++        Retrieve parameter value from server and subscribe to updates to that param. See
++        paramUpdate() in the Node API. 
++        @param caller_id str: ROS caller id
++        @type  caller_id: str
++        @param key: parameter to lookup.
++        @type  key: str
++        @param caller_api: API URI for paramUpdate callbacks.
++        @type  caller_api: str
++        @return: [code, statusMessage, numUnsubscribed]. 
++           If numUnsubscribed is zero it means that the caller was not subscribed to the parameter.
++        @rtype: [int, str, int]
++        """        
++        key = resolve_name(key, caller_id)        
++        try:
++            # ps_lock is required due to potential self.reg_manager modification
++            self.ps_lock.acquire()
++            retval = self.param_server.unsubscribe_param(key, (caller_id, caller_api))
++        finally:
++            self.ps_lock.release()
++        mloginfo("-CACHEDPARAM [%s] by %s",key, caller_id)
++        return 1, "Unsubscribe to parameter [%s]"%key, 1
++
++
++    @apivalidate(False, (non_empty_str('key'),))
++    def hasParam(self, caller_id, key):
++        """
++        Check if parameter is stored on server. 
++        @param caller_id str: ROS caller id
++        @type  caller_id: str
++        @param key: parameter to check
++        @type  key: str
++        @return: [code, statusMessage, hasParam]
++        @rtype: [int, str, bool]
++        """
++        key = resolve_name(key, caller_id)
++        if self.param_server.has_param(key):
++            return 1, key, True
++        else:
++            return 1, key, False            
++
++    @apivalidate([])
++    def getParamNames(self, caller_id):
++        """
++        Get list of all parameter names stored on this server.
++        This does not adjust parameter names for caller's scope.
++        
++        @param caller_id: ROS caller id    
++        @type  caller_id: str
++        @return: [code, statusMessage, parameterNameList]
++        @rtype: [int, str, [str]]
++        """
++        return 1, "Parameter names", self.param_server.get_param_names()
++            
++    ##################################################################################
++    # NOTIFICATION ROUTINES
++
++    def _notify(self, registrations, task, key, value, node_apis):
++        """
++        Generic implementation of callback notification
++        @param registrations: Registrations
++        @type  registrations: L{Registrations}
++        @param task: task to queue
++        @type  task: fn
++        @param key: registration key
++        @type  key: str
++        @param value: value to pass to task
++        @type  value: Any
++        """
++        # cache thread_pool for thread safety
++        thread_pool = self.thread_pool
++        if not thread_pool:
++            return
++        
++        try:            
++            for node_api in node_apis:
++                # use the api as a marker so that we limit one thread per subscriber
++                thread_pool.queue_task(node_api, task, (node_api, key, value))
++        except KeyError:
++            _logger.warn('subscriber data stale (key [%s], listener [%s]): node API unknown'%(key, s))
++        
++    def _notify_param_subscribers(self, updates):
++        """
++        Notify parameter subscribers of new parameter value
++        @param updates [([str], str, any)*]: [(subscribers, param_key, param_value)*]
++        @param param_value str: parameter value
++        """
++        # cache thread_pool for thread safety
++        thread_pool = self.thread_pool
++        if not thread_pool:
++            return
++
++        for subscribers, key, value in updates:
++            # use the api as a marker so that we limit one thread per subscriber
++            for caller_id, caller_api in subscribers:
++                self.thread_pool.queue_task(caller_api, self.param_update_task, (caller_id, caller_api, key, value))
++
++    def param_update_task(self, caller_id, caller_api, param_key, param_value):
++        """
++        Contact api.paramUpdate with specified parameters
++        @param caller_id: caller ID
++        @type  caller_id: str
++        @param caller_api: XML-RPC URI of node to contact
++        @type  caller_api: str
++        @param param_key: parameter key to pass to node
++        @type  param_key: str
++        @param param_value: parameter value to pass to node
++        @type  param_value: str
++        """
++        mloginfo("paramUpdate[%s]", param_key)
++        code, _, _ = xmlrpcapi(caller_api).paramUpdate('/master', param_key, param_value)
++        if code == -1:
++            try:
++                # ps_lock is required due to potential self.reg_manager modification
++                self.ps_lock.acquire()
++                # reverse lookup to figure out who we just called
++                matches = self.reg_manager.reverse_lookup(caller_api)
++                for m in matches:
++                    retval = self.param_server.unsubscribe_param(param_key, (m.id, caller_api))
++            finally:
++                self.ps_lock.release()
++
++    def _notify_topic_subscribers(self, topic, pub_uris, sub_uris):
++        """
++        Notify subscribers with new publisher list
++        @param topic: name of topic
++        @type  topic: str
++        @param pub_uris: list of URIs of publishers.
++        @type  pub_uris: [str]
++        """
++        self._notify(self.subscribers, publisher_update_task, topic, pub_uris, sub_uris)
++
++    ##################################################################################
++    # SERVICE PROVIDER
++
++    @apivalidate(0, ( is_service('service'), is_api('service_api'), is_api('caller_api')))
++    def registerService(self, caller_id, service, service_api, caller_api):
++        """
++        Register the caller as a provider of the specified service.
++        @param caller_id str: ROS caller id
++        @type  caller_id: str
++        @param service: Fully-qualified name of service 
++        @type  service: str
++        @param service_api: Service URI 
++        @type  service_api: str
++        @param caller_api: XML-RPC URI of caller node 
++        @type  caller_api: str
++        @return: (code, message, ignore)
++        @rtype: (int, str, int)
++        """        
++        try:
++            self.ps_lock.acquire()
++            self.reg_manager.register_service(service, caller_id, caller_api, service_api)
++            mloginfo("+SERVICE [%s] %s %s", service, caller_id, caller_api)
++        finally:
++            self.ps_lock.release()
++        return 1, "Registered [%s] as provider of [%s]"%(caller_id, service), 1
++
++    @apivalidate('', (is_service('service'),))
++    def lookupService(self, caller_id, service):
++        """
++        Lookup all provider of a particular service.
++        @param caller_id str: ROS caller id
++        @type  caller_id: str
++        @param service: fully-qualified name of service to lookup.
++        @type: service: str
++        @return: (code, message, serviceUrl). service URL is provider's
++           ROSRPC URI with address and port.  Fails if there is no provider.
++        @rtype: (int, str, str)
++        """
++        try:
++            self.ps_lock.acquire()
++            service_url = self.services.get_service_api(service)
++        finally:
++            self.ps_lock.release()
++        if service_url:
++            return 1, "rosrpc URI: [%s]"%service_url, service_url
++        else:
++            return -1, "no provider", ''
++
++    @apivalidate(0, ( is_service('service'), is_api('service_api')))
++    def unregisterService(self, caller_id, service, service_api):
++        """
++        Unregister the caller as a provider of the specified service.
++        @param caller_id str: ROS caller id
++        @type  caller_id: str
++        @param service: Fully-qualified name of service
++        @type  service: str
++        @param service_api: API URI of service to unregister. Unregistration will only occur if current
++           registration matches.
++        @type  service_api: str
++        @return: (code, message, numUnregistered). Number of unregistrations (either 0 or 1).
++           If this is zero it means that the caller was not registered as a service provider.
++           The call still succeeds as the intended final state is reached.
++        @rtype: (int, str, int)
++        """
++        try:
++            self.ps_lock.acquire()
++            retval = self.reg_manager.unregister_service(service, caller_id, service_api)
++            mloginfo("-SERVICE [%s] %s %s", service, caller_id, service_api)
++            return retval
++        finally:
++            self.ps_lock.release()
++
++    ##################################################################################
++    # PUBLISH/SUBSCRIBE
++
++    @apivalidate([], ( is_topic('topic'), valid_type_name('topic_type'), is_api('caller_api')))
++    def registerSubscriber(self, caller_id, topic, topic_type, caller_api):
++        """
++        Subscribe the caller to the specified topic. In addition to receiving
++        a list of current publishers, the subscriber will also receive notifications
++        of new publishers via the publisherUpdate API.        
++        @param caller_id: ROS caller id
++        @type  caller_id: str
++        @param topic str: Fully-qualified name of topic to subscribe to. 
++        @param topic_type: Datatype for topic. Must be a package-resource name, i.e. the .msg name.
++        @type  topic_type: str
++        @param caller_api: XML-RPC URI of caller node for new publisher notifications
++        @type  caller_api: str
++        @return: (code, message, publishers). Publishers is a list of XMLRPC API URIs
++           for nodes currently publishing the specified topic.
++        @rtype: (int, str, [str])
++        """
++        #NOTE: subscribers do not get to set topic type
++        try:
++            self.ps_lock.acquire()
++            self.reg_manager.register_subscriber(topic, caller_id, caller_api)
++
++            # ROS 1.1: subscriber can now set type if it is not already set
++            #  - don't let '*' type squash valid typing
++            if not topic in self.topics_types and topic_type != rosgraph.names.ANYTYPE:
++                self.topics_types[topic] = topic_type
++
++            mloginfo("+SUB [%s] %s %s",topic, caller_id, caller_api)
++            pub_uris = self.publishers.get_apis(topic)
++        finally:
++            self.ps_lock.release()
++        return 1, "Subscribed to [%s]"%topic, pub_uris
++
++    @apivalidate(0, (is_topic('topic'), is_api('caller_api')))
++    def unregisterSubscriber(self, caller_id, topic, caller_api):
++        """
++        Unregister the caller as a subscriber of the topic.
++        @param caller_id: ROS caller id
++        @type  caller_id: str
++        @param topic: Fully-qualified name of topic to unregister.
++        @type  topic: str
++        @param caller_api: API URI of service to unregister. Unregistration will only occur if current
++           registration matches.    
++        @type  caller_api: str
++        @return: (code, statusMessage, numUnsubscribed). 
++          If numUnsubscribed is zero it means that the caller was not registered as a subscriber.
++          The call still succeeds as the intended final state is reached.
++        @rtype: (int, str, int)
++        """
++        try:
++            self.ps_lock.acquire()
++            retval = self.reg_manager.unregister_subscriber(topic, caller_id, caller_api)
++            mloginfo("-SUB [%s] %s %s",topic, caller_id, caller_api)
++            return retval
++        finally:
++            self.ps_lock.release()
++
++    @apivalidate([], ( is_topic('topic'), valid_type_name('topic_type'), is_api('caller_api')))
++    def registerPublisher(self, caller_id, topic, topic_type, caller_api):
++        """
++        Register the caller as a publisher the topic.
++        @param caller_id: ROS caller id
++        @type  caller_id: str
++        @param topic: Fully-qualified name of topic to register.
++        @type  topic: str
++        @param topic_type: Datatype for topic. Must be a
++        package-resource name, i.e. the .msg name.
++        @type  topic_type: str
++        @param caller_api str: ROS caller XML-RPC API URI
++        @type  caller_api: str
++        @return: (code, statusMessage, subscriberApis).
++        List of current subscribers of topic in the form of XMLRPC URIs.
++        @rtype: (int, str, [str])
++        """
++        #NOTE: we need topic_type for getPublishedTopics.
++        try:
++            self.ps_lock.acquire()
++            self.reg_manager.register_publisher(topic, caller_id, caller_api)
++            # don't let '*' type squash valid typing
++            if topic_type != rosgraph.names.ANYTYPE or not topic in self.topics_types:
++                self.topics_types[topic] = topic_type
++            pub_uris = self.publishers.get_apis(topic)
++            sub_uris = self.subscribers.get_apis(topic)
++            self._notify_topic_subscribers(topic, pub_uris, sub_uris)
++            mloginfo("+PUB [%s] %s %s",topic, caller_id, caller_api)
++            sub_uris = self.subscribers.get_apis(topic)            
++        finally:
++            self.ps_lock.release()
++        return 1, "Registered [%s] as publisher of [%s]"%(caller_id, topic), sub_uris
++
++
++    @apivalidate(0, (is_topic('topic'), is_api('caller_api')))
++    def unregisterPublisher(self, caller_id, topic, caller_api):
++        """
++        Unregister the caller as a publisher of the topic.
++        @param caller_id: ROS caller id
++        @type  caller_id: str
++        @param topic: Fully-qualified name of topic to unregister.
++        @type  topic: str
++        @param caller_api str: API URI of service to
++           unregister. Unregistration will only occur if current
++           registration matches.
++        @type  caller_api: str
++        @return: (code, statusMessage, numUnregistered). 
++           If numUnregistered is zero it means that the caller was not registered as a publisher.
++           The call still succeeds as the intended final state is reached.
++        @rtype: (int, str, int)
++        """            
++        try:
++            self.ps_lock.acquire()
++            retval = self.reg_manager.unregister_publisher(topic, caller_id, caller_api)
++            if retval[VAL]:
++                self._notify_topic_subscribers(topic, self.publishers.get_apis(topic), self.subscribers.get_apis(topic))
++            mloginfo("-PUB [%s] %s %s",topic, caller_id, caller_api)
++        finally:
++            self.ps_lock.release()
++        return retval
++
++    ##################################################################################
++    # GRAPH STATE APIS
++
++    @apivalidate('', (valid_name('node'),))
++    def lookupNode(self, caller_id, node_name):
++        """
++        Get the XML-RPC URI of the node with the associated
++        name/caller_id.  This API is for looking information about
++        publishers and subscribers. Use lookupService instead to lookup
++        ROS-RPC URIs.
++        @param caller_id: ROS caller id
++        @type  caller_id: str
++        @param node: name of node to lookup
++        @type  node: str
++        @return: (code, msg, URI)
++        @rtype: (int, str, str)
++        """
++        try:
++            self.ps_lock.acquire()
++            node = self.reg_manager.get_node(node_name)
++            if node is not None:
++                retval = 1, "node api", node.api
++            else:
++                retval = -1, "unknown node [%s]"%node_name, ''
++        finally:
++            self.ps_lock.release()
++        return retval
++        
++    @apivalidate(0, (empty_or_valid_name('subgraph'),))
++    def getPublishedTopics(self, caller_id, subgraph):
++        """
++        Get list of topics that can be subscribed to. This does not return topics that have no publishers.
++        See L{getSystemState()} to get more comprehensive list.
++        @param caller_id: ROS caller id
++        @type  caller_id: str
++        @param subgraph: Restrict topic names to match within the specified subgraph. Subgraph namespace
++           is resolved relative to the caller's namespace. Use '' to specify all names.
++        @type  subgraph: str
++        @return: (code, msg, [[topic1, type1]...[topicN, typeN]])
++        @rtype: (int, str, [[str, str],])
++        """
++        try:
++            self.ps_lock.acquire()
++            # force subgraph to be a namespace with trailing slash
++            if subgraph and subgraph[-1] != rosgraph.names.SEP:
++                subgraph = subgraph + rosgraph.names.SEP
++            #we don't bother with subscribers as subscribers don't report topic types. also, the intended
++            #use case is for subscribe-by-topic-type
++            retval = [[t, self.topics_types[t]] for t in self.publishers.iterkeys() if t.startswith(subgraph)]
++        finally:
++            self.ps_lock.release()
++        return 1, "current topics", retval
++    
++    @apivalidate([])
++    def getTopicTypes(self, caller_id): 
++        """
++        Retrieve list topic names and their types.
++        @param caller_id: ROS caller id    
++        @type  caller_id: str
++        @rtype: (int, str, [[str,str]] )
++        @return: (code, statusMessage, topicTypes). topicTypes is a list of [topicName, topicType] pairs.
++        """
++        try: 
++            self.ps_lock.acquire()
++            retval = list(self.topics_types.items())
++        finally:
++            self.ps_lock.release()
++        return 1, "current system state", retval
++
++    @apivalidate([[],[], []])
++    def getSystemState(self, caller_id): 
++        """
++        Retrieve list representation of system state (i.e. publishers, subscribers, and services).
++        @param caller_id: ROS caller id    
++        @type  caller_id: str
++        @rtype: (int, str, [[str,[str]], [str,[str]], [str,[str]]])
++        @return: (code, statusMessage, systemState).
++
++           System state is in list representation::
++             [publishers, subscribers, services].
++        
++           publishers is of the form::
++             [ [topic1, [topic1Publisher1...topic1PublisherN]] ... ]
++        
++           subscribers is of the form::
++             [ [topic1, [topic1Subscriber1...topic1SubscriberN]] ... ]
++        
++           services is of the form::
++             [ [service1, [service1Provider1...service1ProviderN]] ... ]
++        """
++        edges = []
++        try: 
++            self.ps_lock.acquire()
++            retval = [r.get_state() for r in (self.publishers, self.subscribers, self.services)]
++        finally:
++            self.ps_lock.release()
++        return 1, "current system state", retval
+--- /dev/null
++++ ros-noetic-rosmaster-1.16.0/src/rosmaster/paramserver.py
+@@ -0,0 +1,402 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++from threading import RLock
++
++from rosgraph.names import ns_join, GLOBALNS, SEP, is_global, is_private, canonicalize_name
++
++def _get_param_names(names, key, d):
++    """
++    helper recursive routine for getParamNames()
++    @param names: list of param names to append to
++    @type  names: [str]
++    @param d: parameter tree node
++    @type  d: dict
++    @param key: parameter key for tree node d
++    @type  key: str
++    """
++    
++    #TODOXXX
++    for k,v in d.items():
++        if type(v) == dict:
++            _get_param_names(names, ns_join(key, k), v)
++        else:
++            names.append(ns_join(key, k))
++
++class ParamDictionary(object):
++    
++    def __init__(self, reg_manager):
++        """
++        ctor.
++        @param subscribers: parameter subscribers
++        @type  subscribers: Registrations
++        """
++        self.lock = RLock()
++        self.parameters = {}
++        self.reg_manager = reg_manager
++
++    def get_param_names(self):
++        """
++        Get list of all parameter names stored on this server.
++
++        @return: [code, statusMessage, parameterNameList]
++        @rtype: [int, str, [str]]
++        """
++        try:
++            self.lock.acquire()
++            param_names = []
++            _get_param_names(param_names, '/', self.parameters)
++        finally:
++            self.lock.release()
++        return param_names
++        
++    def search_param(self, ns, key):
++        """
++        Search for matching parameter key for search param
++        key. Search for key starts at ns and proceeds upwards to
++        the root. As such, search_param should only be called with a
++        relative parameter name.
++
++        search_param's behavior is to search for the first partial match.
++        For example, imagine that there are two 'robot_description' parameters:
++
++         - /robot_description
++         -   /robot_description/arm
++         -   /robot_description/base
++
++         - /pr2/robot_description
++         -   /pr2/robot_description/base
++
++        If I start in the namespace /pr2/foo and search for
++        'robot_description', search_param will match
++        /pr2/robot_description. If I search for 'robot_description/arm'
++        it will return /pr2/robot_description/arm, even though that
++        parameter does not exist (yet).
++
++        @param ns: namespace to begin search from.
++        @type  ns: str
++        @param key: Parameter key. 
++        @type  key: str
++        @return: key of matching parameter or None if no matching
++        parameter.
++        @rtype: str
++        """
++        if not key or is_private(key):
++            raise ValueError("invalid key")
++        if not is_global(ns):
++            raise ValueError("namespace must be global")            
++        if is_global(key):
++            if self.has_param(key):
++                return key
++            else:
++                return None
++
++        # there are more efficient implementations, but our hiearchy
++        # is not very deep and this is fairly clean code to read.
++
++        # - we only search for the first namespace in the key to check for a match
++        key_namespaces = [x for x in key.split(SEP) if x]
++        key_ns = key_namespaces[0]
++
++        #  - corner case: have to test initial namespace first as
++        #    negative indices won't work with 0
++        search_key = ns_join(ns, key_ns)
++        if self.has_param(search_key):
++            # resolve to full key
++            return ns_join(ns, key) 
++        
++        namespaces = [x for x in ns.split(SEP) if x]
++        for i in range(1, len(namespaces)+1):
++            search_key = SEP + SEP.join(namespaces[0:-i] + [key_ns])
++            if self.has_param(search_key):
++                # we have a match on the namespace of the key, so
++                # compose the full key and return it
++                full_key = SEP + SEP.join(namespaces[0:-i] + [key]) 
++                return full_key
++        return None
++
++    def get_param(self, key):
++        """
++        Get the parameter in the parameter dictionary.
++
++        @param key: parameter key
++        @type  key: str
++        @return: parameter value
++        """
++        try:
++            self.lock.acquire()
++            val = self.parameters
++            if key != GLOBALNS:
++                # split by the namespace separator, ignoring empty splits
++                namespaces = [x for x in key.split(SEP)[1:] if x]
++                for ns in namespaces:
++                    if not type(val) == dict:
++                        raise KeyError(val)
++                    val = val[ns]
++            return val
++        finally:
++            self.lock.release()
++    
++    def set_param(self, key, value, notify_task=None, caller_id=None):
++        """
++        Set the parameter in the parameter dictionary.
++
++        @param key: parameter key
++        @type  key: str
++        @param value: parameter value
++        @param notify_task: function to call with
++        subscriber updates. updates is of the form
++        [(subscribers, param_key, param_value)*]. The empty dictionary
++        represents an unset parameter.
++        @type  notify_task: fn(updates)
++        @param caller_id: the caller id
++        @type caller_id: str
++        """
++        try:
++            self.lock.acquire()
++            if key == GLOBALNS:
++                if type(value) != dict:
++                    raise TypeError("cannot set root of parameter tree to non-dictionary")
++                self.parameters = value
++            else:
++                namespaces = [x for x in key.split(SEP) if x]
++                # - last namespace is the actual key we're storing in
++                value_key = namespaces[-1]
++                namespaces = namespaces[:-1]
++                d = self.parameters
++                # - descend tree to the node we're setting
++                for ns in namespaces:
++                    if not ns in d:
++                        new_d = {}
++                        d[ns] = new_d
++                        d = new_d
++                    else:
++                        val = d[ns]
++                        # implicit type conversion of value to namespace
++                        if type(val) != dict:
++                            d[ns] = val = {}
++                        d = val
++
++                d[value_key] = value
++
++            # ParamDictionary needs to queue updates so that the updates are thread-safe
++            if notify_task:
++                updates = compute_param_updates(self.reg_manager.param_subscribers, key, value, caller_id)
++                if updates:
++                    notify_task(updates)
++        finally:
++            self.lock.release()
++
++
++    def subscribe_param(self, key, registration_args):
++        """
++        @param key: parameter key
++        @type  key: str
++        @param registration_args: additional args to pass to
++        subscribers.register. First parameter is always the parameter
++        key.
++        @type  registration_args: tuple
++        """
++        if key != SEP:
++            key = canonicalize_name(key) + SEP
++        try:
++            self.lock.acquire()
++            # fetch parameter value
++            try:
++                val = self.get_param(key)
++            except KeyError:
++                # parameter not set yet
++                val = {}
++            self.reg_manager.register_param_subscriber(key, *registration_args)
++            return val
++        finally:
++            self.lock.release()
++            
++
++    def unsubscribe_param(self, key, unregistration_args):
++        """
++        @param key str: parameter key
++        @type  key: str
++        @param unregistration_args: additional args to pass to
++        subscribers.unregister. i.e. unregister will be called with
++        (key, *unregistration_args)
++        @type  unregistration_args: tuple
++        @return: return value of subscribers.unregister()
++        """
++        if key != SEP:
++            key = canonicalize_name(key) + SEP
++        return self.reg_manager.unregister_param_subscriber(key, *unregistration_args)
++
++    def delete_param(self, key, notify_task=None):
++        """
++        Delete the parameter in the parameter dictionary.
++        @param key str: parameter key
++        @param notify_task fn(updates): function to call with
++        subscriber updates. updates is of the form
++        [(subscribers, param_key, param_value)*]. The empty dictionary
++        represents an unset parameter.
++        """
++        try:
++            self.lock.acquire()
++            if key == GLOBALNS:
++                raise KeyError("cannot delete root of parameter tree")
++            else:
++                # key is global, so first split is empty
++                namespaces = [x for x in key.split(SEP) if x]
++                # - last namespace is the actual key we're deleting
++                value_key = namespaces[-1]
++                namespaces = namespaces[:-1]
++                d = self.parameters
++                # - descend tree to the node we're setting
++                for ns in namespaces:
++                    if type(d) != dict or not ns in d:
++                        raise KeyError(key)
++                    else:
++                        d = d[ns]
++
++                if not value_key in d:
++                    raise KeyError(key)
++                else:
++                    del d[value_key]
++                    
++                # ParamDictionary needs to queue updates so that the updates are thread-safe
++                if notify_task:
++                    updates = compute_param_updates(self.reg_manager.param_subscribers, key, {})
++                    if updates:
++                        notify_task(updates)
++        finally:
++            self.lock.release()
++    
++    def has_param(self, key):
++        """
++        Test for parameter existence
++
++        @param key: parameter key
++        @type  key: str
++        @return: True if parameter set, False otherwise
++        @rtype: bool
++        """
++        try:
++            # more efficient implementations are certainly possible,
++            # but this guarantees correctness for now
++            self.get_param(key)
++            return True
++        except KeyError:
++            return False
++    
++def _compute_all_keys(param_key, param_value, all_keys=None):
++    """
++    Compute which subscribers should be notified based on the parameter update
++    @param param_key: key of updated parameter
++    @type  param_key: str
++    @param param_value: value of updated parameter
++    @param all_keys: (internal use only) list of parameter keys
++        to append to for recursive calls.
++    @type  all_keys: [str]
++    @return: list of parameter keys. All keys will be canonicalized with trailing slash.
++    @rtype: [str]
++    """
++    if all_keys is None:
++        all_keys = []
++    for k, v in param_value.items():
++        new_k = ns_join(param_key, k) + SEP 
++        all_keys.append(new_k)
++        if type(v) == dict:
++            _compute_all_keys(new_k, v, all_keys)
++    return all_keys
++
++def compute_param_updates(subscribers, param_key, param_value, caller_id_to_ignore=None):
++    """
++    Compute subscribers that should be notified based on the parameter update
++    @param subscribers: parameter subscribers
++    @type  subscribers: Registrations
++    @param param_key: parameter key
++    @type  param_key: str
++    @param param_value: parameter value
++    @type  param_value: str
++    @param caller_id_to_ignore: the caller to ignore
++    @type caller_id_to_ignore: str
++    """
++    
++    # logic correct for both updates and deletions
++
++    if not subscribers:
++        return []
++    
++    # end with a trailing slash to optimize startswith check from
++    # needing an extra equals check
++    if param_key != SEP:
++        param_key = canonicalize_name(param_key) + SEP    
++
++    # compute all the updated keys
++    if type(param_value) == dict:
++        all_keys = _compute_all_keys(param_key, param_value)
++    else:
++        all_keys = None
++        
++    updates = []
++    
++    # subscriber gets update if anything in the subscribed namespace is updated or if its deleted
++    for sub_key in subscribers.iterkeys():
++        ns_key = sub_key
++        if ns_key[-1] != SEP:
++            ns_key = sub_key + SEP
++        if param_key.startswith(ns_key):
++            node_apis = subscribers[sub_key]
++            if caller_id_to_ignore is not None:
++                node_apis = [
++                    (caller_id, caller_api)
++                    for (caller_id, caller_api) in node_apis
++                    if caller_id != caller_id_to_ignore]
++            updates.append((node_apis, param_key, param_value))
++        elif all_keys is not None and ns_key.startswith(param_key) \
++             and not sub_key in all_keys:
++            # parameter was deleted
++            node_apis = subscribers[sub_key]
++            updates.append((node_apis, sub_key, {}))
++
++    # add updates for exact matches within tree
++    if all_keys is not None:
++        # #586: iterate over parameter tree for notification
++        for key in all_keys:
++            if key in subscribers:
++                # compute actual update value
++                sub_key = key[len(param_key):]
++                namespaces = [x for x in sub_key.split(SEP) if x]
++                val = param_value
++                for ns in namespaces:
++                    val = val[ns]
++
++                updates.append((subscribers[key], key, val))
++
++    return updates
++        
+--- /dev/null
++++ ros-noetic-rosmaster-1.16.0/src/rosmaster/registrations.py
+@@ -0,0 +1,473 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id$
++
++from rosmaster.util import remove_server_proxy
++from rosmaster.util import xmlrpcapi
++import rosmaster.exceptions
++
++"""Data structures for representing registration data in the Master"""
++
++class NodeRef(object):
++    """
++    Container for node registration information. Used in master's
++    self.nodes data structure.  This is effectively a reference
++    counter for the node registration information: when the
++    subscriptions and publications are empty the node registration can
++    be deleted.
++    """
++    def __init__(self, id, api):
++        """
++        ctor
++        @param api str: node XML-RPC API
++        """
++        self.id = id
++        self.api = api
++        self.param_subscriptions = []
++        self.topic_subscriptions = []
++        self.topic_publications  = []
++        self.services  = []        
++        
++    def clear(self):
++        """
++        Delete all state from this NodeRef except for the api location
++        """
++        self.param_subscriptions = []
++        self.topic_subscriptions = []
++        self.topic_publications  = []
++        self.services  = []        
++
++    def is_empty(self):
++        """
++        @return: True if node has no active registrations
++        """
++        return sum((len(x) for x in
++                    [self.param_subscriptions, 
++                     self.topic_subscriptions,
++                     self.topic_publications,
++                     self.services,])) == 0
++    
++    def add(self, type_, key):
++        if type_ == Registrations.TOPIC_SUBSCRIPTIONS:
++            if not key in self.topic_subscriptions:
++                self.topic_subscriptions.append(key)
++        elif type_ == Registrations.TOPIC_PUBLICATIONS:
++            if not key in self.topic_publications:
++                self.topic_publications.append(key)
++        elif type_ == Registrations.SERVICE:
++            if not key in self.services:
++                self.services.append(key)
++        elif type_ == Registrations.PARAM_SUBSCRIPTIONS:
++            if not key in self.param_subscriptions:
++                self.param_subscriptions.append(key)
++        else:
++            raise rosmaster.exceptions.InternalException("internal bug")
++
++    def remove(self, type_, key):
++        if type_ == Registrations.TOPIC_SUBSCRIPTIONS:
++            if key in self.topic_subscriptions:        
++                self.topic_subscriptions.remove(key)
++        elif type_ == Registrations.TOPIC_PUBLICATIONS:
++            if key in self.topic_publications:
++                self.topic_publications.remove(key)
++        elif type_ == Registrations.SERVICE:
++            if key in self.services:
++                self.services.remove(key)
++        elif type_ == Registrations.PARAM_SUBSCRIPTIONS:
++            if key in self.param_subscriptions:
++                self.param_subscriptions.remove(key)
++        else:
++            raise rosmaster.exceptions.InternalException("internal bug")
++
++# NOTE: I'm not terribly happy that this task has leaked into the data model. need
++# to refactor to get this back into masterslave.
++
++def shutdown_node_task(api, caller_id, reason):
++    """
++    Method to shutdown another ROS node. Generally invoked within a
++    separate thread as this is used to cleanup hung nodes.
++    
++    @param api: XML-RPC API of node to shutdown
++    @type  api: str
++    @param caller_id: name of node being shutdown
++    @type  caller_id: str
++    @param reason: human-readable reason why node is being shutdown
++    @type  reason: str
++    """
++    try:
++        xmlrpcapi(api).shutdown('/master', "[{}] Reason: {}".format(caller_id, reason))
++    except:
++        pass #expected in many common cases
++    remove_server_proxy(api)
++    
++class Registrations(object):
++    """
++    All calls may result in access/modifications to node registrations
++    dictionary, so be careful to guarantee appropriate thread-safeness.
++
++    Data structure for storing a set of registrations (e.g. publications, services).
++    The underlying data storage is the same except for services, which have the
++    constraint that only one registration may be active for a given key. 
++    """
++
++    TOPIC_SUBSCRIPTIONS = 1
++    TOPIC_PUBLICATIONS = 2
++    SERVICE = 3
++    PARAM_SUBSCRIPTIONS = 4
++    
++    def __init__(self, type_):
++        """
++        ctor.
++        @param type_: one of [ TOPIC_SUBSCRIPTIONS,
++        TOPIC_PUBLICATIONS, SERVICE, PARAM_SUBSCRIPTIONS ]
++        @type  type_: int
++        """
++        if not type_ in [
++            Registrations.TOPIC_SUBSCRIPTIONS,
++            Registrations.TOPIC_PUBLICATIONS,
++            Registrations.SERVICE,
++            Registrations.PARAM_SUBSCRIPTIONS ]:
++            raise rosmaster.exceptions.InternalException("invalid registration type: %s"%type_)
++        self.type = type_
++        ## { key: [(caller_id, caller_api)] }
++        self.map = {} 
++        self.service_api_map = None
++
++    def __bool__(self):
++        """
++        @return: True if there are registrations
++        """
++        return len(self.map) != 0
++
++    def __nonzero__(self):
++        """
++        @return: True if there are registrations
++        """
++        return len(self.map) != 0
++
++    def iterkeys(self):
++        """
++        Iterate over registration keys
++        @return: iterator for registration keys
++        """
++        return self.map.keys()
++
++    def get_service_api(self, service):
++        """
++        Lookup service API URI. NOTE: this should only be valid if type==SERVICE as
++        service Registrations instances are the only ones that track service API URIs.
++        @param service: service name
++        @type  service: str
++        @return str: service_api for registered key or None if
++        registration is no longer valid. 
++        @type: str
++        """
++        if self.service_api_map and service in self.service_api_map:
++            caller_id, service_api = self.service_api_map[service]
++            return service_api
++        return None
++    
++    def get_apis(self, key):
++        """
++        Only valid if self.type != SERVICE.
++        @param key: registration key (e.g. topic/service/param name)
++        @type  key: str
++        @return: caller_apis for registered key, empty list if registration is not valid
++        @rtype: [str]
++        """
++        return [api for _, api in self.map.get(key, [])]
++
++    def __contains__(self, key):
++        """
++        Emulate mapping type for has_key()
++        """
++        return key in self.map
++    
++    def __getitem__(self, key):
++        """
++        @param key: registration key (e.g. topic/service/param name)
++        @type  key: str
++        @return: (caller_id, caller_api) for registered
++        key, empty list if registration is not valid
++        @rtype: [(str, str),]
++        """
++        # unlike get_apis, returns the caller_id to prevent any race
++        # conditions that can occur if caller_id/caller_apis change
++        # due to a new node.
++        return self.map.get(key, [])
++
++    def has_key(self, key):
++        """
++        @param key: registration key (e.g. topic/service/param name)
++        @type  key: str
++        @return: True if key is registered
++        @rtype: bool
++        """
++        return key in self.map
++    
++    def get_state(self):
++        """
++        @return: state in getSystemState()-friendly format [ [key, [callerId1...callerIdN]] ... ]
++        @rtype: [str, [str]...]
++        """
++        retval = []
++        for k in self.map.keys():
++            retval.append([k, [id for id, _ in self.map[k]]])
++        return retval
++
++    def register(self, key, caller_id, caller_api, service_api=None):
++        """
++        Add caller_id into the map as a provider of the specified
++        service (key).  caller_id must not have been previously
++        registered with a different caller_api.
++    
++        Subroutine for managing provider map data structure (essentially a multimap).
++        @param key: registration key (e.g. topic/service/param name)
++        @type  key: str
++        @param caller_id: caller_id of provider
++        @type  caller_id: str
++        @param caller_api: API URI of provider 
++        @type  caller_api: str
++        @param service_api: (keyword) ROS service API URI if registering a service
++        @type  service_api: str
++        """
++        map = self.map
++        if key in map and not service_api:
++            providers = map[key]
++            if not (caller_id, caller_api) in providers:
++                providers.append((caller_id, caller_api))
++        else:
++            map[key] = providers = [(caller_id, caller_api)]
++
++        if service_api:
++            if self.service_api_map is None:
++               self.service_api_map = {}
++            self.service_api_map[key] = (caller_id, service_api)
++        elif self.type == Registrations.SERVICE:
++            raise rosmaster.exceptions.InternalException("service_api must be specified for Registrations.SERVICE")            
++                   
++    def unregister_all(self, caller_id):
++        """
++        Remove all registrations associated with caller_id
++        @param caller_id: caller_id of provider
++        @type  caller_id: str
++        """
++        map = self.map
++        # fairly expensive
++        dead_keys = []
++        for key in map:
++            providers = map[key]
++            # find all matching entries
++            to_remove = [(id, api) for id, api in providers if id == caller_id]
++            # purge them
++            for r in to_remove:
++                providers.remove(r)
++            if not providers:
++                dead_keys.append(key)
++        for k in dead_keys:
++            del self.map[k]
++        if self.type == Registrations.SERVICE and self.service_api_map:
++            del dead_keys[:]
++            for key, val in self.service_api_map.items():
++                if val[0] == caller_id:
++                    dead_keys.append(key)
++            for k in dead_keys:
++                del self.service_api_map[k]
++    
++    def unregister(self, key, caller_id, caller_api, service_api=None):
++        """
++        Remove caller_id from the map as a provider of the specified service (key).
++        Subroutine for managing provider map data structure, essentially a multimap
++        @param key: registration key (e.g. topic/service/param name)
++        @type  key: str
++        @param caller_id: caller_id of provider
++        @type  caller_id: str
++        @param caller_api: API URI of provider            
++        @type  caller_api: str
++        @param service_api: (keyword) ROS service API URI if registering a service
++        @type  service_api: str
++        @return: for ease of master integration, directly returns unregister value for
++        higher-level XMLRPC API. val is the number of APIs unregistered (0 or 1)
++        @rtype: code, msg, val
++        """
++        # if we are unregistering a topic, validate against the caller_api
++        if service_api:
++            # validate against the service_api 
++            if self.service_api_map is None:
++                return 1, "[%s] is not a provider of [%s]"%(caller_id, key), 0 
++            if self.service_api_map.get(key, None) != (caller_id, service_api):
++                return 1, "[%s] is no longer the current service api handle for [%s]"%(service_api, key), 0
++            else:
++                del self.service_api_map[key]
++                del self.map[key]
++            # caller_api is None for unregister service, so we can't validate as well
++            return 1, "Unregistered [%s] as provider of [%s]"%(caller_id, key), 1
++        elif self.type == Registrations.SERVICE:
++            raise rosmaster.exceptions.InternalException("service_api must be specified for Registrations.SERVICE")
++        else:
++            providers = self.map.get(key, [])
++            if (caller_id, caller_api) in providers:
++                providers.remove((caller_id, caller_api))
++                if not providers:
++                    del self.map[key]
++                return 1, "Unregistered [%s] as provider of [%s]"%(caller_id, key), 1
++            else:
++                return 1, "[%s] is not a known provider of [%s]"%(caller_id, key), 0
++
++class RegistrationManager(object):
++    """
++    Stores registrations for Master.
++    
++    RegistrationManager is not threadsafe, so access must be externally locked as appropriate
++    """
++
++    def __init__(self, thread_pool):
++        """
++        ctor.
++        @param thread_pool: thread pool for queueing tasks
++        @type  thread_pool: ThreadPool
++        """
++        self.nodes = {}
++        self.thread_pool = thread_pool
++
++        self.publishers  = Registrations(Registrations.TOPIC_PUBLICATIONS)
++        self.subscribers = Registrations(Registrations.TOPIC_SUBSCRIPTIONS)
++        self.services = Registrations(Registrations.SERVICE)
++        self.param_subscribers = Registrations(Registrations.PARAM_SUBSCRIPTIONS)        
++
++    
++    def reverse_lookup(self, caller_api):
++        """
++        Get a NodeRef by caller_api
++        @param caller_api: caller XML RPC URI
++        @type  caller_api: str
++        @return: nodes that declare caller_api as their
++        API. 99.9% of the time this should only be one node, but we
++        allow for multiple matches as the master API does not restrict
++        this.
++        @rtype: [NodeRef]
++        """
++        matches = [n for n in self.nodes.items() if n.api == caller_api]
++        if matches:
++            return matches
++        
++    def get_node(self, caller_id):
++        return self.nodes.get(caller_id, None)
++
++    def _register(self, r, key, caller_id, caller_api, service_api=None):
++        # update node information
++        node_ref, changed = self._register_node_api(caller_id, caller_api)
++        node_ref.add(r.type, key)
++        # update pub/sub/service indicies
++        if changed:
++            self.publishers.unregister_all(caller_id)
++            self.subscribers.unregister_all(caller_id)
++            self.services.unregister_all(caller_id)
++            self.param_subscribers.unregister_all(caller_id)
++        r.register(key, caller_id, caller_api, service_api)
++        
++    def _unregister(self, r, key, caller_id, caller_api, service_api=None):
++        node_ref = self.nodes.get(caller_id, None)
++        if node_ref != None:
++            retval = r.unregister(key, caller_id, caller_api, service_api)
++            # check num removed field, if 1, unregister is valid
++            if retval[2] == 1:
++                node_ref.remove(r.type, key)
++            if node_ref.is_empty():
++                del self.nodes[caller_id]
++        else:
++            retval = 1, "[%s] is not a registered node"%caller_id, 0
++        return retval
++    
++    def register_service(self, service, caller_id, caller_api, service_api):
++        """
++        Register service provider
++        @return: None
++        """
++        self._register(self.services, service, caller_id, caller_api, service_api)
++    def register_publisher(self, topic, caller_id, caller_api):
++        """
++        Register topic publisher
++        @return: None
++        """
++        self._register(self.publishers, topic, caller_id, caller_api)
++    def register_subscriber(self, topic, caller_id, caller_api):
++        """
++        Register topic subscriber
++        @return: None
++        """
++        self._register(self.subscribers, topic, caller_id, caller_api)
++    def register_param_subscriber(self, param, caller_id, caller_api):
++        """
++        Register param subscriber
++        @return: None
++        """
++        self._register(self.param_subscribers, param, caller_id, caller_api)
++
++    def unregister_service(self, service, caller_id, service_api):
++        caller_api = None
++        return self._unregister(self.services, service, caller_id, caller_api, service_api)
++        
++    def unregister_subscriber(self, topic, caller_id, caller_api):
++        return self._unregister(self.subscribers, topic, caller_id, caller_api)
++    def unregister_publisher(self, topic, caller_id, caller_api):
++        return self._unregister(self.publishers, topic, caller_id, caller_api)
++    def unregister_param_subscriber(self, param, caller_id, caller_api):
++        return self._unregister(self.param_subscribers, param, caller_id, caller_api)
++        
++    def _register_node_api(self, caller_id, caller_api):
++        """
++        @param caller_id: caller_id of provider
++        @type  caller_id: str
++        @param caller_api: caller_api of provider
++        @type  caller_api: str
++        @return: (registration_information, changed_registration). changed_registration is true if 
++        caller_api is differet than the one registered with caller_id
++        @rtype: (NodeRef, bool)
++        """
++        node_ref = self.nodes.get(caller_id, None)
++
++        bumped_api = None
++        if node_ref is not None:
++            if node_ref.api == caller_api:
++                return node_ref, False
++            else:
++                bumped_api = node_ref.api
++                self.thread_pool.queue_task(bumped_api, shutdown_node_task,
++                                            (bumped_api, caller_id, "new node registered with same name"))
++
++        node_ref = NodeRef(caller_id, caller_api)
++        self.nodes[caller_id] = node_ref
++        return (node_ref, bumped_api != None)
++
++
+--- /dev/null
++++ ros-noetic-rosmaster-1.16.0/src/rosmaster/threadpool.py
+@@ -0,0 +1,228 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id$
++
++"""
++Internal threadpool library for zenmaster.
++
++Adapted from U{http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/203871}
++
++Added a 'marker' to tasks so that multiple tasks with the same
++marker are not executed. As we are using the thread pool for i/o
++tasks, the marker is set to the i/o name. This prevents a slow i/o
++for gobbling up all of our threads
++"""
++
++import threading, logging, traceback
++from time import sleep
++
++class MarkedThreadPool(object):
++
++    """Flexible thread pool class.  Creates a pool of threads, then
++    accepts tasks that will be dispatched to the next available
++    thread."""
++    
++    def __init__(self, numThreads):
++
++        """Initialize the thread pool with numThreads workers."""
++        
++        self.__threads = []
++        self.__resizeLock = threading.Condition(threading.Lock())
++        self.__taskLock = threading.Condition(threading.Lock())
++        self.__tasks = []
++        self.__markers = set()
++        self.__isJoining = False
++        self.set_thread_count(numThreads)
++
++    def set_thread_count(self, newNumThreads):
++
++        """ External method to set the current pool size.  Acquires
++        the resizing lock, then calls the internal version to do real
++        work."""
++        
++        # Can't change the thread count if we're shutting down the pool!
++        if self.__isJoining:
++            return False
++        
++        self.__resizeLock.acquire()
++        try:
++            self.__set_thread_count_nolock(newNumThreads)
++        finally:
++            self.__resizeLock.release()
++        return True
++
++    def __set_thread_count_nolock(self, newNumThreads):
++        
++        """Set the current pool size, spawning or terminating threads
++        if necessary.  Internal use only; assumes the resizing lock is
++        held."""
++        
++        # If we need to grow the pool, do so
++        while newNumThreads > len(self.__threads):
++            newThread = ThreadPoolThread(self)
++            self.__threads.append(newThread)
++            newThread.start()
++        # If we need to shrink the pool, do so
++        while newNumThreads < len(self.__threads):
++            self.__threads[0].go_away()
++            del self.__threads[0]
++
++    def get_thread_count(self):
++        """@return: number of threads in the pool."""
++        self.__resizeLock.acquire()
++        try:
++            return len(self.__threads)
++        finally:
++            self.__resizeLock.release()
++
++    def queue_task(self, marker, task, args=None, taskCallback=None):
++
++        """Insert a task into the queue.  task must be callable;
++        args and taskCallback can be None."""
++        
++        if self.__isJoining == True:
++            return False
++        if not callable(task):
++            return False
++        
++        self.__taskLock.acquire()
++        try:
++            self.__tasks.append((marker, task, args, taskCallback))
++            return True
++        finally:
++            self.__taskLock.release()
++
++    def remove_marker(self, marker):
++        """Remove the marker from the currently executing tasks. Only one
++        task with the given marker can be executed at a given time"""
++        if marker is None:
++            return
++        self.__taskLock.acquire()        
++        try:
++            self.__markers.remove(marker)
++        finally:
++            self.__taskLock.release()            
++    
++    def get_next_task(self):
++
++        """ Retrieve the next task from the task queue.  For use
++        only by ThreadPoolThread objects contained in the pool."""
++        
++        self.__taskLock.acquire()
++        try:
++            retval = None
++            for marker, task, args, callback in self.__tasks:
++                # unmarked or not currently executing
++                if marker is None or marker not in self.__markers:
++                    retval = (marker, task, args, callback)
++                    break
++            if retval:
++                # add the marker so we don't do any similar tasks
++                self.__tasks.remove(retval)
++                if marker is not None:
++                    self.__markers.add(marker)
++                return retval
++            else:
++                return (None, None, None, None)
++        finally:
++            self.__taskLock.release()
++    
++    def join_all(self, wait_for_tasks = True, wait_for_threads = True):
++        """ Clear the task queue and terminate all pooled threads,
++        optionally allowing the tasks and threads to finish."""
++        
++        # Mark the pool as joining to prevent any more task queueing
++        self.__isJoining = True
++
++        # Wait for tasks to finish
++        if wait_for_tasks:
++            while self.__tasks != []:
++                sleep(.1)
++
++        # Tell all the threads to quit
++        self.__resizeLock.acquire()
++        try:
++            self.__set_thread_count_nolock(0)
++            self.__isJoining = True
++
++            # Wait until all threads have exited
++            if wait_for_threads:
++                for t in self.__threads:
++                    t.join()
++                    del t
++
++            # Reset the pool for potential reuse
++            self.__isJoining = False
++        finally:
++            self.__resizeLock.release()
++
++
++        
++class ThreadPoolThread(threading.Thread):
++    """
++    Pooled thread class.
++    """
++    
++    threadSleepTime = 0.1
++
++    def __init__(self, pool):
++        """Initialize the thread and remember the pool."""
++        threading.Thread.__init__(self)
++        self.daemon = True #don't block program exit
++        self.__pool = pool
++        self.__isDying = False
++        
++    def run(self):
++        """
++        Until told to quit, retrieve the next task and execute
++        it, calling the callback if any.  
++        """
++        while self.__isDying == False:
++            marker, cmd, args, callback = self.__pool.get_next_task()
++            # If there's nothing to do, just sleep a bit
++            if cmd is None:
++                sleep(ThreadPoolThread.threadSleepTime)
++            else:
++                try:
++                    try:
++                        result = cmd(*args)
++                    finally:
++                        self.__pool.remove_marker(marker)
++                    if callback is not None:
++                        callback(result)
++                except Exception as e:
++                    logging.getLogger('rosmaster.threadpool').error(traceback.format_exc())
++    
++    def go_away(self):
++        """ Exit the run loop next time through."""
++        self.__isDying = True
+--- /dev/null
++++ ros-noetic-rosmaster-1.16.0/src/rosmaster/util.py
+@@ -0,0 +1,91 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id$
++
++"""
++Utility routines for rosmaster.
++"""
++
++try:
++    from urllib.parse import urlparse
++except ImportError:
++    from urlparse import urlparse
++try:
++    from xmlrpc.client import ServerProxy
++except ImportError:
++    from xmlrpclib import ServerProxy
++
++from defusedxml.xmlrpc import monkey_patch
++monkey_patch()
++del monkey_patch
++
++import errno
++import socket
++import threading
++
++_proxies = threading.local() #cache ServerProxys
++def xmlrpcapi(uri):
++    """
++    @return: instance for calling remote server or None if not a valid URI
++    @rtype: xmlrpc.client.ServerProxy
++    """
++    if uri is None:
++        return None
++    uriValidate = urlparse(uri)
++    if not uriValidate[0] or not uriValidate[1]:
++        return None
++    if not uri in _proxies.__dict__:
++        _proxies.__dict__[uri] = ServerProxy(uri)
++    close_half_closed_sockets()
++    return _proxies.__dict__[uri]
++
++
++def close_half_closed_sockets():
++    if not hasattr(socket, 'TCP_INFO'):
++        return
++    for proxy in _proxies.__dict__.values():
++        transport = proxy("transport")
++        if transport._connection and transport._connection[1] is not None and transport._connection[1].sock is not None:
++            try:
++                state = transport._connection[1].sock.getsockopt(socket.SOL_TCP, socket.TCP_INFO)
++            except socket.error as e: # catch [Errno 92] Protocol not available
++                if e.args[0] is errno.ENOPROTOOPT:
++                    return
++                raise
++            if state == 8:  # CLOSE_WAIT
++                transport.close()
++
++
++def remove_server_proxy(uri):
++    if uri in _proxies.__dict__:
++        del _proxies.__dict__[uri]
+--- /dev/null
++++ ros-noetic-rosmaster-1.16.0/src/rosmaster/validators.py
+@@ -0,0 +1,199 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id$
++
++"""Internal-use Python decorators for parameter validation"""
++
++from rosgraph.names import resolve_name, ANYTYPE
++
++TYPE_SEPARATOR = '/'
++ROSRPC = "rosrpc://"
++
++def isstring(s):
++    """Small helper version to check an object is a string in a way that works
++    for both Python 2 and 3
++    """
++    try:
++        return isinstance(s, basestring)
++    except NameError:
++        return isinstance(s, str)
++
++
++class ParameterInvalid(Exception):
++    """Exception that is raised when a parameter fails validation checks"""
++    def __init__(self, message):
++        self._message = message
++
++    def __str__(self):
++        return str(self._message)
++
++def non_empty(param_name):
++    """Validator that checks that parameter is not empty"""
++    def validator(param, context):
++        if not param:
++            raise ParameterInvalid("ERROR: parameter [%s] must be specified and non-empty"%param_name)
++        return param
++    return validator
++
++def non_empty_str(param_name):
++    """Validator that checks that parameter is a string and non-empty"""
++    def validator(param, context):
++        if not param:
++            raise ParameterInvalid("ERROR: parameter [%s] must be specified and non-empty"%param_name)
++        elif not isstring(param):
++            raise ParameterInvalid("ERROR: parameter [%s] must be a string"%param_name)            
++        return param
++    return validator
++        
++def not_none(param_name):
++    """Validator that checks that parameter is not None"""
++    def validator(param, context):
++        if param is None:
++            raise ParameterInvalid("ERROR: parameter [%s] must be specified"%param_name)
++        return param
++    return validator
++
++
++# Validators ######################################
++
++def is_api(paramName):
++    """
++    Validator that checks that parameter is a valid API handle
++    (i.e. URI). Both http and rosrpc are allowed schemes.
++    """
++    def validator(param_value, callerId):
++        if not param_value or not isstring(param_value):
++            raise ParameterInvalid("ERROR: parameter [%s] is not an XMLRPC URI"%paramName)
++        if not param_value.startswith("http://") and not param_value.startswith(ROSRPC):
++            raise ParameterInvalid("ERROR: parameter [%s] is not an RPC URI"%paramName)
++        #could do more fancy parsing, but the above catches the major cases well enough
++        return param_value
++    return validator
++
++def is_topic(param_name):
++    """
++    Validator that checks that parameter is a valid ROS topic name
++    """    
++    def validator(param_value, caller_id):
++        v = valid_name_validator_resolved(param_name, param_value, caller_id)
++        if param_value == '/':
++            raise ParameterInvalid("ERROR: parameter [%s] cannot be the global namespace"%param_name)            
++        return v
++    return validator
++
++def is_service(param_name):
++    """Validator that checks that parameter is a valid ROS service name"""
++    def validator(param_value, caller_id):
++        v = valid_name_validator_resolved(param_name, param_value, caller_id)
++        if param_value == '/':
++            raise ParameterInvalid("ERROR: parameter [%s] cannot be the global namespace"%param_name)            
++        return v
++    return validator
++
++def empty_or_valid_name(param_name):
++    """
++    empty or valid graph resource name.
++    Validator that resolves names unless they an empty string is supplied, in which case
++    an empty string is returned.
++    """
++    def validator(param_value, caller_id):
++        if not isstring(param_value):
++            raise ParameterInvalid("ERROR: parameter [%s] must be a string"%param_name)              
++        if not param_value:
++            return ''
++        #return resolve_name(param_value, namespace(caller_id))
++        return resolve_name(param_value, caller_id)
++    return validator
++
++def valid_name_validator_resolved(param_name, param_value, caller_id):
++    if not param_value or not isstring(param_value):
++        raise ParameterInvalid("ERROR: parameter [%s] must be a non-empty string"%param_name)            
++    #TODO: actual validation of chars
++    # I added the colon check as the common error will be to send an URI instead of name
++    if ':' in param_value or ' ' in param_value:
++        raise ParameterInvalid("ERROR: parameter [%s] contains illegal chars"%param_name) 
++    #return resolve_name(param_value, namespace(caller_id))
++    return resolve_name(param_value, caller_id)
++def valid_name_validator_unresolved(param_name, param_value, caller_id):
++    if not param_value or not isstring(param_value):
++        raise ParameterInvalid("ERROR: parameter [%s] must be a non-empty string"%param_name)            
++    #TODO: actual validation of chars        
++    # I added the colon check as the common error will be to send an URI instead of name
++    if ':' in param_value or ' ' in param_value:
++        raise ParameterInvalid("ERROR: parameter [%s] contains illegal chars"%param_name) 
++    return param_value
++    
++def valid_name(param_name, resolve=True):
++    """
++    Validator that resolves names and also ensures that they are not empty
++    @param param_name: name
++    @type  param_name: str
++    @param resolve: if True/omitted, the name will be resolved to
++       a global form. Otherwise, no resolution occurs.
++    @type  resolve: bool
++    @return: resolved parameter value
++    @rtype: str
++    """
++    def validator(param_value, caller_id):
++        if resolve:
++            return valid_name_validator_resolved(param_name, param_value, caller_id)
++        return valid_name_validator_unresolved(param_name, param_value, caller_id)        
++    return validator
++
++def global_name(param_name):
++    """
++    Validator that checks for valid, global graph resource name.
++    @return: parameter value
++    @rtype: str
++    """
++    def validator(param_value, caller_id):
++        if not param_value or not isstring(param_value):
++            raise ParameterInvalid("ERROR: parameter [%s] must be a non-empty string"%param_name)
++        #TODO: actual validation of chars
++        if not is_global(param_value):
++            raise ParameterInvalid("ERROR: parameter [%s] must be a globally referenced name"%param_name)            
++        return param_value
++    return validator
++
++def valid_type_name(param_name):
++    """validator that checks the type name is specified correctly"""
++    def validator(param_value, caller_id):
++        if param_value == ANYTYPE:
++            return param_value
++        if not param_value or not isstring(param_value):
++            raise ParameterInvalid("ERROR: parameter [%s] must be a non-empty string"%param_name)            
++        if not len(param_value.split(TYPE_SEPARATOR)) == 2:
++            raise ParameterInvalid("ERROR: parameter [%s] is not a valid package resource name"%param_name)
++        #TODO: actual validation of chars
++        return param_value
++    return validator
+--- /dev/null
++++ ros-noetic-rosmaster-1.16.0/test/test_rosmaster_paramserver.py
+@@ -0,0 +1,736 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import os
++import sys
++import unittest
++import time
++import random
++import datetime
++
++from rosgraph.names import make_global_ns, ns_join
++
++# mock of subscription tests
++class ThreadPoolMock(object):
++    def queue_task(*args): pass
++    
++## Unit tests for rosmaster.paramserver module
++class TestRospyParamServer(unittest.TestCase):
++    
++    def test_compute_param_updates(self):
++        from rosmaster.registrations import Registrations
++        from rosmaster.paramserver import compute_param_updates
++        # spec requires that subscriptions always have a trailing slash
++        tests = [
++            # [correct val], (subscribers, param_key, param_value)
++            ([],({}, '/foo', 1)),
++            ([],({'/bar': 'barapi'}, '/foo/', 1)),
++            ([],({'/bar/': 'barapi'}, '/foo/', 1)),
++            
++            # make sure that it's robust to aliases
++            ([('fooapi', '/foo/', 1)], ({'/foo/': 'fooapi'}, '/foo', 1)),
++            ([('fooapi', '/foo/', 1)], ({'/foo/': 'fooapi'}, '/foo/', 1)),
++            
++            # check namespace subscription
++            ([('fooapi', '/foo/val/', 1)], ({'/foo/': 'fooapi'}, '/foo/val', 1)),
++
++            # check against dictionary param values
++            ([],({'/bar/': 'barapi'}, '/foo/', {'bar': 2})),
++            ([('fooapi', '/foo/val/', 1)], ({'/foo/val/': 'fooapi'}, '/foo', {'val' : 1})),
++
++            ([('fooapi', '/foo/bar/val/', 1)], ({'/foo/bar/val/': 'fooapi'}, '/foo', {'bar' : {'val' : 1}})),            
++            ([('fooapi', '/foo/bar/', {'val': 1})], ({'/foo/bar/': 'fooapi'}, '/foo', {'bar' : {'val' : 1}})),
++            ([('fooapi', '/foo/', {'bar':{'val': 1}})], ({'/foo/': 'fooapi'}, '/foo', {'bar' : {'val' : 1}})),
++
++            ([('fooapi', '/foo/', {'bar': 1, 'baz': 2}), ('foobazapi', '/foo/baz/', 2)],
++             ({'/foo/': 'fooapi', '/foo/baz/': 'foobazapi'}, '/foo', {'bar' : 1, 'baz': 2})),
++
++            ([('foobarapi', '/foo/bar/', 1), ('foobazapi', '/foo/baz/', 2)],
++             ({'/foo/bar/': 'foobarapi', '/foo/baz/': 'foobazapi'}, '/foo', {'bar' : 1, 'baz': 2})),
++
++            # deletion of higher level tree
++            ([('delapi', '/del/bar/', {})],
++             ({'/del/bar/': 'delapi'}, '/del', {})),
++
++            ]
++        for correct, args in tests:
++            reg = Registrations(Registrations.PARAM_SUBSCRIPTIONS)
++            reg.map = args[0]
++            param_key = args[1]
++            param_val = args[2]
++
++            val = compute_param_updates(reg, param_key, param_val)
++            self.assertEquals(len(correct), len(val), "Failed: \n%s \nreturned \n%s\nvs correct\n%s"%(str(args), str(val), str(correct)))
++            for c in correct:
++                self.assert_(c in val, "Failed: \n%s \ndid not include \n%s. \nIt returned \n%s"%(str(args), c, val))
++
++
++    def notify_task(self, updates):
++        self.last_update = updates
++
++    def test_subscribe_param_simple(self):
++        from rosmaster.registrations import RegistrationManager
++        from rosmaster.paramserver import ParamDictionary
++
++        # setup node and subscriber data
++        reg_manager = RegistrationManager(ThreadPoolMock())
++        param_server = ParamDictionary(reg_manager)
++
++        # subscribe to parameter that has not been set yet
++        self.last_update = None
++        self.assertEquals({}, param_server.subscribe_param('/foo', ('node1', 'http://node1:1')))
++        param_server.set_param('/foo', 1, notify_task=self.notify_task)
++        self.assertEquals([([('node1', 'http://node1:1')], '/foo/', 1), ], self.last_update)
++        
++        # resubscribe
++        self.assertEquals(1, param_server.subscribe_param('/foo', ('node1', 'http://node1:1')))
++        param_server.set_param('/foo', 2, notify_task=self.notify_task)
++        self.assertEquals([([('node1', 'http://node1:1')], '/foo/', 2), ], self.last_update)
++
++        # resubscribe (test canonicalization of parameter name)
++        self.assertEquals(2, param_server.subscribe_param('/foo/', ('node1', 'http://node1:1')))
++        param_server.set_param('/foo', 'resub2', notify_task=self.notify_task)
++        self.assertEquals([([('node1', 'http://node1:1')], '/foo/', 'resub2'), ], self.last_update)
++        
++        # change the URI
++        self.assertEquals('resub2', param_server.subscribe_param('/foo', ('node1', 'http://node1b:1')))
++        self.assertEquals('http://node1b:1', reg_manager.get_node('node1').api)
++        param_server.set_param('/foo', 3, notify_task=self.notify_task)
++        self.assertEquals([([('node1', 'http://node1b:1')], '/foo/', 3), ], self.last_update)
++        
++        # multiple subscriptions to same param
++        self.assertEquals(3, param_server.subscribe_param('/foo', ('node2', 'http://node2:2')))
++        self.assertEquals('http://node2:2', reg_manager.get_node('node2').api)
++        param_server.set_param('/foo', 4, notify_task=self.notify_task)
++        self.assertEquals([([('node1', 'http://node1b:1'), ('node2', 'http://node2:2')], '/foo/', 4), ], self.last_update)
++
++    def test_subscribe_param_tree(self):
++        from rosmaster.registrations import RegistrationManager
++        from rosmaster.paramserver import ParamDictionary
++
++        # setup node and subscriber data
++        reg_manager = RegistrationManager(ThreadPoolMock())
++        param_server = ParamDictionary(reg_manager)
++
++        # Test Parameter Tree Subscriptions
++
++        # simple case - subscribe and set whole tree
++        gains = {'p': 'P', 'i': 'I', 'd' : 'D'}
++        self.assertEquals({}, param_server.subscribe_param('/gains', ('ptnode', 'http://ptnode:1')))
++        param_server.set_param('/gains', gains.copy(), notify_task=self.notify_task)
++        self.assertEquals([([('ptnode', 'http://ptnode:1')], '/gains/', gains), ], self.last_update)
++        # - test with trailing slash
++        param_server.set_param('/gains/', gains.copy(), notify_task=self.notify_task)
++        self.assertEquals([([('ptnode', 'http://ptnode:1')], '/gains/', gains), ], self.last_update)
++
++        # change params within tree
++        param_server.set_param('/gains/p', 'P2', notify_task=self.notify_task)
++        self.assertEquals([([('ptnode', 'http://ptnode:1')], '/gains/p/', 'P2'), ], self.last_update)
++        param_server.set_param('/gains/i', 'I2', notify_task=self.notify_task)
++        self.assertEquals([([('ptnode', 'http://ptnode:1')], '/gains/i/', 'I2'), ], self.last_update)
++
++        # test overlapping subscriptions
++        self.assertEquals('P2', param_server.subscribe_param('/gains/p', ('ptnode2', 'http://ptnode2:2')))
++        param_server.set_param('/gains', gains.copy(), notify_task=self.notify_task)
++        self.assertEquals([([('ptnode', 'http://ptnode:1')], '/gains/', gains), \
++                           ([('ptnode2', 'http://ptnode2:2')], '/gains/p/', 'P'), \
++                           ], self.last_update)
++        # - retest with trailing slash on subscribe
++        self.last_update = None
++        self.assertEquals('P', param_server.subscribe_param('/gains/p/', ('ptnode2', 'http://ptnode2:2')))
++        param_server.set_param('/gains', gains.copy(), notify_task=self.notify_task)
++        self.assertEquals([([('ptnode', 'http://ptnode:1')], '/gains/', gains), \
++                           ([('ptnode2', 'http://ptnode2:2')], '/gains/p/', 'P'), \
++                           ], self.last_update)
++        # test with overlapping (change to sub param)
++        param_server.set_param('/gains/p', 'P3', notify_task=self.notify_task)
++        # - this is a bit overtuned as a more optimal ps could use one update
++        ptnode2 = ([('ptnode2', 'http://ptnode2:2')], '/gains/p/', 'P3')
++        ptnode = ([('ptnode', 'http://ptnode:1')], '/gains/p/', 'P3')
++        self.assertTrue(len(self.last_update) == 2)
++        self.assertTrue(ptnode2 in self.last_update)
++        self.assertTrue(ptnode in self.last_update)
++
++        # virtual deletion: subscribe to subparam, parameter tree reset
++        self.last_update = None
++        param_server.set_param('/gains2', gains.copy(), notify_task=self.notify_task)
++        self.assertEquals('P', param_server.subscribe_param('/gains2/p/', ('ptnode3', 'http://ptnode3:3')))
++        # - erase the sub parameters
++        param_server.set_param('/gains2', {}, notify_task=self.notify_task)        
++        self.assertEquals([([('ptnode3', 'http://ptnode3:3')], '/gains2/p/', {}), ], self.last_update)        
++
++        #Final test: test subscription to entire tree
++        self.last_update = None
++        param_server.delete_param('/gains')
++        param_server.delete_param('/gains2')        
++        self.assertEquals({}, param_server.get_param('/'))
++        self.assertEquals({}, param_server.subscribe_param('/', ('allnode', 'http://allnode:1')))
++        param_server.set_param('/one', 1, notify_task=self.notify_task)
++        self.assertEquals([([('allnode', 'http://allnode:1')], '/one/', 1), ], self.last_update)
++        param_server.set_param('/two', 2, notify_task=self.notify_task)
++        self.assertEquals([([('allnode', 'http://allnode:1')], '/two/', 2), ], self.last_update)
++        param_server.set_param('/foo/bar', 'bar', notify_task=self.notify_task)
++        self.assertEquals([([('allnode', 'http://allnode:1')], '/foo/bar/', 'bar'), ], self.last_update)
++        
++
++    # verify that subscribe_param works with parameter deletion
++    def test_subscribe_param_deletion(self):
++        from rosmaster.registrations import RegistrationManager
++        from rosmaster.paramserver import ParamDictionary
++
++        # setup node and subscriber data
++        reg_manager = RegistrationManager(ThreadPoolMock())
++        param_server = ParamDictionary(reg_manager)
++
++        # subscription to then delete parameter
++        self.assertEquals({}, param_server.subscribe_param('/foo', ('node1', 'http://node1:1')))
++        param_server.set_param('/foo', 1, notify_task=self.notify_task)
++        param_server.delete_param('/foo', notify_task=self.notify_task)
++        self.assertEquals([([('node1', 'http://node1:1')], '/foo/', {}), ], self.last_update)
++        
++        # subscribe to and delete whole tree
++        gains = {'p': 'P', 'i': 'I', 'd' : 'D'}
++        self.assertEquals({}, param_server.subscribe_param('/gains', ('deltree', 'http://deltree:1')))
++        param_server.set_param('/gains', gains.copy(), notify_task=self.notify_task)
++        param_server.delete_param('/gains', notify_task=self.notify_task)
++        self.assertEquals([([('deltree', 'http://deltree:1')], '/gains/', {}), ], self.last_update)
++
++        # subscribe to and delete params within subtree
++        self.assertEquals({}, param_server.subscribe_param('/gains2', ('deltree2', 'http://deltree2:2')))
++        param_server.set_param('/gains2', gains.copy(), notify_task=self.notify_task)
++        param_server.delete_param('/gains2/p', notify_task=self.notify_task)
++        self.assertEquals([([('deltree2', 'http://deltree2:2')], '/gains2/p/', {}), ], self.last_update)
++        param_server.delete_param('/gains2/i', notify_task=self.notify_task)
++        self.assertEquals([([('deltree2', 'http://deltree2:2')], '/gains2/i/', {}), ], self.last_update)        
++        param_server.delete_param('/gains2', notify_task=self.notify_task)
++        self.assertEquals([([('deltree2', 'http://deltree2:2')], '/gains2/', {}), ], self.last_update)
++        
++        # delete parent tree
++        k = '/ns1/ns2/ns3/key'
++        self.assertEquals({}, param_server.subscribe_param(k, ('del_parent', 'http://del_parent:1')))
++        param_server.set_param(k, 1, notify_task=self.notify_task)
++        param_server.delete_param('/ns1/ns2', notify_task=self.notify_task)
++        self.assertEquals([([('del_parent', 'http://del_parent:1')], '/ns1/ns2/ns3/key/', {}), ], self.last_update)
++    
++    def test_unsubscribe_param(self):
++        from rosmaster.registrations import RegistrationManager
++        from rosmaster.paramserver import ParamDictionary
++
++        # setup node and subscriber data
++        reg_manager = RegistrationManager(ThreadPoolMock())
++        param_server = ParamDictionary(reg_manager)
++
++        # basic test
++        self.last_update = None
++        self.assertEquals({}, param_server.subscribe_param('/foo', ('node1', 'http://node1:1')))
++        param_server.set_param('/foo', 1, notify_task=self.notify_task)
++        self.assertEquals([([('node1', 'http://node1:1')], '/foo/', 1), ], self.last_update)
++        # - return value is actually generated by Registrations
++        code, msg, val = param_server.unsubscribe_param('/foo', ('node1', 'http://node1:1'))
++        self.assertEquals(1, code)
++        self.assertEquals(1, val)
++        self.last_update = None
++        param_server.set_param('/foo', 2, notify_task=self.notify_task)
++        self.assertEquals(None, self.last_update)
++        # - repeat the unsubscribe
++        code, msg, val = param_server.unsubscribe_param('/foo', ('node1', 'http://node1:1'))
++        self.assertEquals(1, code)
++        self.assertEquals(0, val)
++        self.last_update = None
++        param_server.set_param('/foo', 2, notify_task=self.notify_task)
++        self.assertEquals(None, self.last_update)
++
++        # verify that stale unsubscribe has no effect on active subscription
++        self.last_update = None
++        self.assertEquals({}, param_server.subscribe_param('/bar', ('barnode', 'http://barnode:1')))
++        param_server.set_param('/bar', 3, notify_task=self.notify_task)
++        self.assertEquals([([('barnode', 'http://barnode:1')], '/bar/', 3), ], self.last_update)
++        code, msg, val = param_server.unsubscribe_param('/foo', ('barnode', 'http://notbarnode:1'))
++        self.assertEquals(1, code)
++        self.assertEquals(0, val)
++        param_server.set_param('/bar', 4, notify_task=self.notify_task)
++        self.assertEquals([([('barnode', 'http://barnode:1')], '/bar/', 4), ], self.last_update)
++        
++    
++    def _set_param(self, ctx, my_state, test_vals, param_server):
++        ctx = make_global_ns(ctx)
++        for type, vals in test_vals:
++            try:
++                caller_id = ns_join(ctx, "node")
++                count = 0
++                for val in vals:
++                    key = ns_join(caller_id, "%s-%s"%(type,count))
++                    param_server.set_param(key, val)
++                    self.assert_(param_server.has_param(key))
++                    true_key = ns_join(ctx, key)
++                    my_state[true_key] = val
++                    count += 1
++            except Exception:
++                assert "getParam failed on type[%s], val[%s]"%(type,val)
++        #self._check_param_state(my_state)
++
++    def _check_param_state(self, param_server, my_state):
++        for (k, v) in my_state.items():
++            assert param_server.has_param(k)
++            #print "verifying parameter %s"%k
++            try:
++                v2 = param_server.get_param(k)
++            except:
++                raise Exception("Exception raised while calling param_server.get_param(%s): %s"%(k, traceback.format_exc()))
++            
++            self.assertEquals(v, v2)
++        param_names = my_state.keys()
++        ps_param_names = param_server.get_param_names()
++        assert not set(param_names) ^ set(ps_param_names), "parameter server keys do not match local: %s"%(set(param_names)^set(ps_param_names))
++
++
++    # test_has_param: test has_param API
++    def test_has_param(self):
++        from rosmaster.paramserver import ParamDictionary
++        param_server = ParamDictionary(None)
++
++        self.failIf(param_server.has_param('/new_param'))
++        param_server.set_param('/new_param', 1)
++        self.assert_(param_server.has_param('/new_param'))
++
++        # test with param in sub-namespace
++        self.failIf(param_server.has_param('/sub/sub2/new_param2'))
++        # - verify that parameter tree does not exist yet (#587)
++        for k in ['/sub/sub2/', '/sub/sub2', '/sub/', '/sub']:
++            self.failIf(param_server.has_param(k))
++        param_server.set_param('/sub/sub2/new_param2', 1)
++        self.assert_(param_server.has_param('/sub/sub2/new_param2'))
++        # - verify that parameter tree now exists (#587)
++        for k in ['/sub/sub2/', '/sub/sub2', '/sub/', '/sub']:
++            self.assert_(param_server.has_param(k))
++
++    
++    ## test ^param naming, i.e. upwards-looking get access
++    ## @param self
++    def test_search_param(self):
++        from rosmaster.paramserver import ParamDictionary
++        param_server = ParamDictionary(None)
++
++        caller_id = '/node'
++        # vals are mostly identical, save some randomness. we want
++        # identical structure in order to stress lookup rules
++        val1 = { 'level1_p1': random.randint(0, 10000),
++                 'level1_p2' : { 'level2_p2': random.randint(0, 10000) }}
++        val2 = { 'level1_p1': random.randint(0, 10000),
++                 'level1_p2' : { 'level2_p2': random.randint(0, 10000) }}
++        val3 = { 'level1_p1': random.randint(0, 10000),
++                 'level1_p2' : { 'level2_p2': random.randint(0, 10000) }}
++        val4 = { 'level1_p1': random.randint(0, 10000),
++                 'level1_p2' : { 'level2_p2': random.randint(0, 10000) }}
++        full_dict = {}
++
++        # test invalid input
++        for k in ['', None, '~param']:
++            try:
++                param_server.search_param('/level1/level2', k)
++                self.fail("param_server search should have failed on [%s]"%k)
++            except ValueError: pass
++        for ns in ['', None, 'relative', '~param']:
++            try:
++                param_server.search_param(ns, 'param')
++                self.fail("param_server search should have failed on %s"%k)
++            except ValueError: pass
++
++        # set the val parameter at four levels so we can validate search
++        
++        # - set val1
++        self.failIf(param_server.has_param('/level1/param'))
++        self.failIf(param_server.search_param('/level1/node', 'param')) 
++        param_server.set_param('/level1/param', val1)
++        
++        # - test param on val1
++        for ns in ['/level1/node', '/level1/level2/node', '/level1/level2/level3/node']:
++            self.assertEquals('/level1/param', param_server.search_param(ns, 'param'), "failed with ns[%s]"%ns)
++            self.assertEquals('/level1/param/', param_server.search_param(ns, 'param/'))
++            self.assertEquals('/level1/param/level1_p1', param_server.search_param(ns, 'param/level1_p1'))
++            self.assertEquals('/level1/param/level1_p2/level2_p2', param_server.search_param(ns, 'param/level1_p2/level2_p2'))
++        self.assertEquals(None, param_server.search_param('/root', 'param'))
++        self.assertEquals(None, param_server.search_param('/root', 'param/'))        
++
++        # - set val2
++        self.failIf(param_server.has_param('/level1/level2/param'))
++        param_server.set_param('/level1/level2/param', val2)
++
++        # - test param on val2
++        for ns in ['/level1/level2/node', '/level1/level2/level3/node', '/level1/level2/level3/level4/node']:
++            self.assertEquals('/level1/level2/param', param_server.search_param(ns, 'param'))
++            self.assertEquals('/level1/level2/param/', param_server.search_param(ns, 'param/'))
++        self.assertEquals('/level1/param', param_server.search_param('/level1/node', 'param'))
++        self.assertEquals('/level1/param/', param_server.search_param('/level1/node', 'param/'))        
++        self.assertEquals(None, param_server.search_param('/root', 'param'))
++        
++        # - set val3
++        self.failIf(param_server.has_param('/level1/level2/level3/param'))
++        param_server.set_param('/level1/level2/level3/param', val3)
++
++        # - test param on val3
++        for ns in ['/level1/level2/level3/node', '/level1/level2/level3/level4/node']:
++            self.assertEquals('/level1/level2/level3/param', param_server.search_param(ns, 'param'))
++        self.assertEquals('/level1/level2/param', param_server.search_param('/level1/level2/node', 'param'))
++        self.assertEquals('/level1/param', param_server.search_param('/level1/node', 'param'))
++
++        # test subparams before we set val4 on the root
++        #  - test looking for param/sub_param
++
++        self.assertEquals(None, param_server.search_param('/root', 'param'))
++        self.assertEquals(None, param_server.search_param('/root', 'param/level1_p1'))
++        self.assertEquals(None, param_server.search_param('/not/level1/level2/level3/level4/node', 'param/level1_p1'))
++        tests = [
++            ('/level1/node', '/level1/param/'),
++            ('/level1/level2/', '/level1/level2/param/'),
++            ('/level1/level2', '/level1/level2/param/'),
++            ('/level1/level2/node', '/level1/level2/param/'),
++            ('/level1/level2/notlevel3', '/level1/level2/param/'),
++            ('/level1/level2/notlevel3/node', '/level1/level2/param/'),
++            ('/level1/level2/level3/level4', '/level1/level2/level3/param/'),
++            ('/level1/level2/level3/level4/', '/level1/level2/level3/param/'),
++            ('/level1/level2/level3/level4/node', '/level1/level2/level3/param/'),
++            
++            ]
++        for ns, pbase in tests:
++            self.assertEquals(pbase+'level1_p1',
++                              param_server.search_param(ns, 'param/level1_p1'))
++            retval = param_server.search_param(ns, 'param/level1_p2/level2_p2')
++            self.assertEquals(pbase+'level1_p2/level2_p2', retval,
++                              "failed with ns[%s] pbase[%s]: %s"%(ns, pbase, retval))
++
++        # - set val4 on the root
++        self.failIf(param_server.has_param('/param'))
++        param_server.set_param('/param', val4)
++        self.assertEquals('/param', param_server.search_param('/root', 'param'))
++        self.assertEquals('/param', param_server.search_param('/notlevel1/node', 'param'))
++        self.assertEquals('/level1/param', param_server.search_param('/level1/node', 'param'))
++        self.assertEquals('/level1/param', param_server.search_param('/level1', 'param'))
++        self.assertEquals('/level1/param', param_server.search_param('/level1/', 'param'))
++
++        # make sure that partial match works
++        val5 = { 'level1_p1': random.randint(0, 10000),
++                 'level1_p2' : { }}
++        
++        self.failIf(param_server.has_param('/partial1/param'))
++        param_server.set_param('/partial1/param', val5)
++        self.assertEquals('/partial1/param', param_server.search_param('/partial1', 'param'))
++        self.assertEquals('/partial1/param/level1_p1',
++                          param_server.search_param('/partial1', 'param/level1_p1'))
++        # - this is the important check, should return key even if it doesn't exist yet based on stem match
++        self.assertEquals('/partial1/param/non_existent',
++                          param_server.search_param('/partial1', 'param/non_existent'))
++        self.assertEquals('/partial1/param/level1_p2/non_existent',
++                          param_server.search_param('/partial1', 'param/level1_p2/non_existent'))
++
++
++    # test_get_param: test basic getParam behavior. Value encoding verified separately by testParamValues
++    def test_get_param(self):
++        from rosmaster.paramserver import ParamDictionary
++        param_server = ParamDictionary(None)
++
++        val = random.randint(0, 10000)
++
++        full_dict = {}
++        
++        # very similar to has param sequence
++        self.failIf(param_server.has_param('/new_param'))
++        self.failIf(param_server.has_param('/new_param/'))        
++        self.assertGetParamFail(param_server, '/new_param')
++        param_server.set_param('/new_param', val)
++        full_dict['new_param'] = val
++        self.assertEquals(val, param_server.get_param('/new_param'))
++        self.assertEquals(val, param_server.get_param('/new_param/'))
++        # - test homonym
++        self.assertEquals(val, param_server.get_param('/new_param//'))
++        
++        # test full get
++        self.assertEquals(full_dict, param_server.get_param('/'))
++        
++        # test with param in sub-namespace
++        val = random.randint(0, 10000)        
++        self.failIf(param_server.has_param('/sub/sub2/new_param2'))
++        self.assertGetParamFail(param_server, '/sub/sub2/new_param2')
++        param_server.set_param('/sub/sub2/new_param2', val)
++        full_dict['sub'] = {'sub2': { 'new_param2': val }}
++        self.assertEquals(val, param_server.get_param('/sub/sub2/new_param2'))
++        # - test homonym
++        self.assertEquals(val, param_server.get_param('/sub///sub2/new_param2/'))
++        
++        # test full get
++        self.assertEquals(full_dict, param_server.get_param('/'))
++
++        # test that parameter server namespace-get (#587)
++        val1 = random.randint(0, 10000)
++        val2 = random.randint(0, 10000)
++        val3 = random.randint(0, 10000)
++        
++        for k in ['/gains/P', '/gains/I', '/gains/D', '/gains']:
++            self.assertGetParamFail(param_server, k)
++            self.failIf(param_server.has_param(k))
++
++        param_server.set_param('/gains/P', val1)
++        param_server.set_param('/gains/I', val2)
++        param_server.set_param('/gains/D', val3)        
++
++        pid = {'P': val1, 'I': val2, 'D': val3}
++        full_dict['gains'] = pid
++        self.assertEquals(pid,
++                          param_server.get_param('/gains'))
++        self.assertEquals(pid,
++                          param_server.get_param('/gains/'))
++        self.assertEquals(full_dict,
++                          param_server.get_param('/'))
++
++        self.failIf(param_server.has_param('/ns/gains/P'))
++        self.failIf(param_server.has_param('/ns/gains/I'))
++        self.failIf(param_server.has_param('/ns/gains/D'))
++        self.failIf(param_server.has_param('/ns/gains'))
++        
++        param_server.set_param('/ns/gains/P', val1)
++        param_server.set_param('/ns/gains/I', val2)
++        param_server.set_param('/ns/gains/D', val3)
++        full_dict['ns'] = {'gains': pid}
++        
++        self.assertEquals(pid,
++                          param_server.get_param('/ns/gains'))
++        self.assertEquals({'gains': pid},
++                          param_server.get_param('/ns/'))
++        self.assertEquals({'gains': pid},
++                          param_server.get_param('/ns'))
++        self.assertEquals(full_dict,
++                          param_server.get_param('/'))
++        
++        
++    def test_delete_param(self):
++        from rosmaster.paramserver import ParamDictionary
++        param_server = ParamDictionary(None)
++        try:
++            param_server.delete_param('/fake')
++            self.fail("delete_param of non-existent should have failed")
++        except: pass
++        try:
++            param_server.delete_param('/')
++            self.fail("delete_param of root should have failed")
++        except: pass
++
++        param_server.set_param('/foo', 'foo')
++        param_server.set_param('/bar', 'bar')        
++        self.assert_(param_server.has_param('/foo'))
++        self.assert_(param_server.has_param('/bar'))        
++        param_server.delete_param('/foo')
++        self.failIf(param_server.has_param('/foo'))
++        # - test with trailing slash
++        param_server.delete_param('/bar/')
++        self.failIf(param_server.has_param('/bar'))
++
++        # test with namespaces
++        param_server.set_param("/sub/key/x", 1)
++        param_server.set_param("/sub/key/y", 2)
++        try:
++            param_server.delete_param('/sub/key/z')
++            self.fail("delete_param of non-existent should have failed")
++        except: pass
++        try:
++            param_server.delete_param('/sub/sub2/z')
++            self.fail("delete_param of non-existent should have failed")
++        except: pass
++
++        self.assert_(param_server.has_param('/sub/key/x'))
++        self.assert_(param_server.has_param('/sub/key/y'))
++        self.assert_(param_server.has_param('/sub/key'))                  
++        param_server.delete_param('/sub/key')
++        self.failIf(param_server.has_param('/sub/key'))      
++        self.failIf(param_server.has_param('/sub/key/x'))
++        self.failIf(param_server.has_param('/sub/key/y'))
++
++        # test with namespaces (dictionary vals)
++        param_server.set_param('/sub2', {'key': { 'x' : 1, 'y' : 2}})
++        self.assert_(param_server.has_param('/sub2/key/x'))
++        self.assert_(param_server.has_param('/sub2/key/y'))
++        self.assert_(param_server.has_param('/sub2/key'))                  
++        param_server.delete_param('/sub2/key')
++        self.failIf(param_server.has_param('/sub2/key'))      
++        self.failIf(param_server.has_param('/sub2/key/x'))
++        self.failIf(param_server.has_param('/sub2/key/y'))
++
++        # test with namespaces: treat value as if its a namespace
++        # - try to get the dictionary-of-dictionary code to fail
++        #   by descending a value key as if it is a namespace
++        param_server.set_param('/a', 'b')
++        self.assert_(param_server.has_param('/a'))
++        try:
++            param_server.delete_param('/a/b/c')
++            self.fail_("should have raised key error")
++        except: pass
++        
++        
++    # test_set_param: test basic set_param behavior. Value encoding verified separately by testParamValues
++    def test_set_param(self):
++        from rosmaster.paramserver import ParamDictionary
++        param_server = ParamDictionary(None)
++        caller_id = '/node'
++        val = random.randint(0, 10000)
++
++        # verify error behavior with root
++        try:
++            param_server.set_param('/', 1)
++            self.fail("ParamDictionary allowed root to be set to non-dictionary")
++        except: pass
++
++        # very similar to has param sequence
++        self.failIf(param_server.has_param('/new_param'))
++        param_server.set_param('/new_param', val)
++        self.assertEquals(val, param_server.get_param('/new_param'))
++        self.assertEquals(val, param_server.get_param('/new_param/'))
++        self.assert_(param_server.has_param('/new_param'))
++
++        # test with param in sub-namespace
++        val = random.randint(0, 10000)        
++        self.failIf(param_server.has_param('/sub/sub2/new_param2'))
++        param_server.set_param('/sub/sub2/new_param2', val)
++        self.assertEquals(val, param_server.get_param('/sub/sub2/new_param2'))
++
++        # test with param type mutation
++        vals = ['a', {'a': 'b'}, 1, 1., 'foo', {'c': 'd'}, 4, {'a': {'b': 'c'}}, 3]
++        for v in vals:
++            param_server.set_param('/multi/multi_param', v)
++            self.assertEquals(v, param_server.get_param('/multi/multi_param'))
++
++        # - set value within subtree that mutates higher level value
++        param_server.set_param('/multi2/multi_param', 1)
++        self.assertEquals(1, param_server.get_param('/multi2/multi_param'))
++
++        param_server.set_param('/multi2/multi_param/a', 2)
++        self.assertEquals(2, param_server.get_param('/multi2/multi_param/a'))
++        self.assertEquals({'a': 2}, param_server.get_param('/multi2/multi_param/'))        
++        param_server.set_param('/multi2/multi_param/a/b', 3)
++        self.assertEquals(3, param_server.get_param('/multi2/multi_param/a/b'))
++        self.assertEquals({'b': 3}, param_server.get_param('/multi2/multi_param/a/'))
++        self.assertEquals({'a': {'b': 3}}, param_server.get_param('/multi2/multi_param/'))        
++
++        
++        # test that parameter server namespace-set (#587)
++        self.failIf(param_server.has_param('/gains/P'))
++        self.failIf(param_server.has_param('/gains/I'))
++        self.failIf(param_server.has_param('/gains/D'))                        
++        self.failIf(param_server.has_param('/gains'))
++
++        pid = {'P': random.randint(0, 10000), 'I': random.randint(0, 10000), 'D': random.randint(0, 10000)}
++        param_server.set_param('/gains', pid)
++        self.assertEquals(pid,  param_server.get_param('/gains'))
++        self.assertEquals(pid['P'], param_server.get_param('/gains/P'))
++        self.assertEquals(pid['I'], param_server.get_param('/gains/I'))
++        self.assertEquals(pid['D'], param_server.get_param('/gains/D'))
++
++        subns = {'gains1': pid, 'gains2': pid}
++        param_server.set_param('/ns', subns)
++        self.assertEquals(pid['P'], param_server.get_param('/ns/gains1/P'))
++        self.assertEquals(pid['I'], param_server.get_param('/ns/gains1/I'))
++        self.assertEquals(pid['D'], param_server.get_param('/ns/gains1/D'))
++        self.assertEquals(pid, param_server.get_param('/ns/gains1'))
++        self.assertEquals(pid, param_server.get_param('/ns/gains2'))
++        self.assertEquals(subns, param_server.get_param('/ns/'))
++
++        # test empty dictionary set
++        param_server.set_param('/ns', {})
++        # - param should still exist
++        self.assert_(param_server.has_param('/ns/'))
++        # - value should remain dictionary
++        self.assertEquals({}, param_server.get_param('/ns/'))
++        # - value2 below /ns/ should be erased
++        self.failIf(param_server.has_param('/ns/gains1'))
++        self.failIf(param_server.has_param('/ns/gains1/P'))
++        
++        # verify that root can be set and that it erases all values
++        param_server.set_param('/', {})
++        self.failIf(param_server.has_param('/new_param'))
++        param_server.set_param('/', {'foo': 1, 'bar': 2, 'baz': {'a': 'a'}})
++        self.assertEquals(1, param_server.get_param('/foo'))
++        self.assertEquals(1, param_server.get_param('/foo/'))        
++        self.assertEquals(2, param_server.get_param('/bar'))
++        self.assertEquals(2, param_server.get_param('/bar/'))
++        self.assertEquals('a', param_server.get_param('/baz/a'))
++        self.assertEquals('a', param_server.get_param('/baz/a/'))
++
++    # test_param_values: test storage of all XML-RPC compatible types"""
++    def test_param_values(self):
++        import math
++        from rosmaster.paramserver import ParamDictionary
++        param_server = ParamDictionary(None)
++        test_vals = [
++            ['int', [0, 1024, 2147483647, -2147483647]],
++            ['boolean', [True, False]],
++            #no longer testing null char
++            #['string', ['', '\0', 'x', 'hello', ''.join([chr(n) for n in range(0, 255)])]],
++            ['unicode-string', [u'', u'hello', u'Andr\302\202'.encode('utf-8'), u'\377\376A\000n\000d\000r\000\202\000'.encode('utf-16')]],
++            ['string-easy-ascii', [chr(n) for n in range(32, 128)]],
++
++            #['string-mean-ascii-low', [chr(n) for n in range(9, 10)]], #separate for easier book-keeping
++            #['string-mean-ascii-low', [chr(n) for n in range(1, 31)]], #separate for easier book-keeping
++            #['string-mean-signed', [chr(n) for n in range(129, 256)]],
++            ['string', ['', 'x', 'hello-there', 'new\nline', 'tab\t']],
++            ['double', [0.0, math.pi, -math.pi, 3.4028235e+38, -3.4028235e+38]],
++            #TODO: microseconds?
++            ['datetime', [datetime.datetime(2005, 12, 6, 12, 13, 14), datetime.datetime(1492, 12, 6, 12, 13, 14)]],
++            ['array', [[], [1, 2, 3], ['a', 'b', 'c'], [0.0, 0.1, 0.2, 2.0, 2.1, -4.0],
++                       [1, 'a', True], [[1, 2, 3], ['a', 'b', 'c'], [1.0, 2.1, 3.2]]]
++             ],
++            ]
++
++        print("Putting parameters onto the server")
++        # put our params into the parameter server
++        contexts = ['', 'scope1', 'scope/subscope1', 'scope/sub1/sub2']
++        my_state = {}
++        failures = []
++        for ctx in contexts:
++            self._set_param(ctx, my_state, test_vals, param_server)
++        self._check_param_state(param_server, my_state)
++        
++        print("Deleting all of our parameters")
++        # delete all of our parameters
++        count = 0
++        for key in list(my_state.keys()):
++            count += 1
++            param_server.delete_param(key)
++            del my_state[key]
++            # far too intensive to check every time
++            if count % 50 == 0:
++                self._check_param_state(param_server, my_state)
++        self._check_param_state(param_server, my_state)
++
++    def assertGetParamFail(self, param_server, param):
++        try:
++            param_server.get_param(param)
++            self.fail("get_param[%s] did not raise KeyError"%(param))
++        except KeyError: pass
++
+--- /dev/null
++++ ros-noetic-rosmaster-1.16.0/test/test_rosmaster_registrations.py
+@@ -0,0 +1,679 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import os
++import sys
++import unittest
++import time
++
++# mock of subscription tests
++class ThreadPoolMock(object):
++    def queue_task(*args): pass
++
++class TestRosmasterRegistrations(unittest.TestCase):
++
++    def test_NodeRef_services(self):
++        from rosmaster.registrations import NodeRef, Registrations
++        n = NodeRef('n1', 'http://localhost:1234')
++        # test services
++        n.add(Registrations.SERVICE, 'add_two_ints')
++        self.failIf(n.is_empty())
++        self.assert_('add_two_ints' in n.services)
++        self.assertEquals(['add_two_ints'], n.services)
++        
++        n.add(Registrations.SERVICE, 'add_three_ints')
++        self.failIf(n.is_empty())
++        self.assert_('add_three_ints' in n.services)
++        self.assert_('add_two_ints' in n.services)
++
++        n.remove(Registrations.SERVICE, 'add_two_ints')
++        self.assert_('add_three_ints' in n.services)
++        self.assertEquals(['add_three_ints'], n.services)
++        self.failIf('add_two_ints' in n.services)
++        self.failIf(n.is_empty())
++        
++        n.remove(Registrations.SERVICE, 'add_three_ints')        
++        self.failIf('add_three_ints' in n.services)
++        self.failIf('add_two_ints' in n.services)
++        self.assertEquals([], n.services)
++        self.assert_(n.is_empty())
++
++    def test_NodeRef_subs(self):
++        from rosmaster.registrations import NodeRef, Registrations
++        n = NodeRef('n1', 'http://localhost:1234')
++        # test topic suscriptions
++        n.add(Registrations.TOPIC_SUBSCRIPTIONS, 'topic1')
++        self.failIf(n.is_empty())
++        self.assert_('topic1' in n.topic_subscriptions)
++        self.assertEquals(['topic1'], n.topic_subscriptions)
++        
++        n.add(Registrations.TOPIC_SUBSCRIPTIONS, 'topic2')
++        self.failIf(n.is_empty())
++        self.assert_('topic2' in n.topic_subscriptions)
++        self.assert_('topic1' in n.topic_subscriptions)
++
++        n.remove(Registrations.TOPIC_SUBSCRIPTIONS, 'topic1')
++        self.assert_('topic2' in n.topic_subscriptions)
++        self.assertEquals(['topic2'], n.topic_subscriptions)
++        self.failIf('topic1' in n.topic_subscriptions)
++        self.failIf(n.is_empty())
++        
++        n.remove(Registrations.TOPIC_SUBSCRIPTIONS, 'topic2')        
++        self.failIf('topic2' in n.topic_subscriptions)
++        self.failIf('topic1' in n.topic_subscriptions)
++        self.assertEquals([], n.topic_subscriptions)
++        self.assert_(n.is_empty())
++
++    def test_NodeRef_pubs(self):
++        from rosmaster.registrations import NodeRef, Registrations
++        n = NodeRef('n1', 'http://localhost:1234')
++        # test topic publications
++        n.add(Registrations.TOPIC_PUBLICATIONS, 'topic1')
++        self.failIf(n.is_empty())
++        self.assert_('topic1' in n.topic_publications)
++        self.assertEquals(['topic1'], n.topic_publications)
++        
++        n.add(Registrations.TOPIC_PUBLICATIONS, 'topic2')
++        self.failIf(n.is_empty())
++        self.assert_('topic2' in n.topic_publications)
++        self.assert_('topic1' in n.topic_publications)
++
++        n.remove(Registrations.TOPIC_PUBLICATIONS, 'topic1')
++        self.assert_('topic2' in n.topic_publications)
++        self.assertEquals(['topic2'], n.topic_publications)
++        self.failIf('topic1' in n.topic_publications)
++        self.failIf(n.is_empty())
++        
++        n.remove(Registrations.TOPIC_PUBLICATIONS, 'topic2')        
++        self.failIf('topic2' in n.topic_publications)
++        self.failIf('topic1' in n.topic_publications)
++        self.assertEquals([], n.topic_publications)
++        self.assert_(n.is_empty())
++
++    def test_NodeRef_base(self):
++        import rosmaster.exceptions
++        from rosmaster.registrations import NodeRef, Registrations
++        n = NodeRef('n1', 'http://localhost:1234')
++        self.assertEquals('http://localhost:1234', n.api)
++        self.assertEquals([], n.param_subscriptions)
++        self.assertEquals([], n.topic_subscriptions)
++        self.assertEquals([], n.topic_publications)
++        self.assertEquals([], n.services)
++        self.assert_(n.is_empty())
++
++        try:
++            n.add(12345, 'topic')
++            self.fail("should have failed with invalid type")
++        except rosmaster.exceptions.InternalException: pass
++        try:
++            n.remove(12345, 'topic')
++            self.fail("should have failed with invalid type")
++        except rosmaster.exceptions.InternalException: pass
++
++        n.add(Registrations.TOPIC_PUBLICATIONS, 'topic1')
++        n.add(Registrations.TOPIC_PUBLICATIONS, 'topic2')
++        n.add(Registrations.TOPIC_SUBSCRIPTIONS, 'topic2')        
++        n.add(Registrations.TOPIC_SUBSCRIPTIONS, 'topic3')        
++        n.add(Registrations.PARAM_SUBSCRIPTIONS, 'topic4')        
++        n.add(Registrations.SERVICE, 'serv')        
++        self.failIf(n.is_empty())
++
++        n.clear()
++        self.assert_(n.is_empty())        
++
++    def test_NodeRef_param_subs(self):
++        from rosmaster.registrations import NodeRef, Registrations
++        n = NodeRef('n1', 'http://localhost:1234')
++        # test param suscriptions
++        n.add(Registrations.PARAM_SUBSCRIPTIONS, 'param1')
++        self.failIf(n.is_empty())
++        self.assert_('param1' in n.param_subscriptions)
++        self.assertEquals(['param1'], n.param_subscriptions)
++        
++        n.add(Registrations.PARAM_SUBSCRIPTIONS, 'param2')
++        self.failIf(n.is_empty())
++        self.assert_('param2' in n.param_subscriptions)
++        self.assert_('param1' in n.param_subscriptions)
++
++        n.remove(Registrations.PARAM_SUBSCRIPTIONS, 'param1')
++        self.assert_('param2' in n.param_subscriptions)
++        self.assertEquals(['param2'], n.param_subscriptions)
++        self.failIf('param1' in n.param_subscriptions)
++        self.failIf(n.is_empty())
++        
++        n.remove(Registrations.PARAM_SUBSCRIPTIONS, 'param2')        
++        self.failIf('param2' in n.param_subscriptions)
++        self.failIf('param1' in n.param_subscriptions)
++        self.assertEquals([], n.param_subscriptions)
++        self.assert_(n.is_empty())
++
++    ## subroutine of registration tests that test topic/param type Reg objects
++    ## @param r Registrations: initialized registrations object to test
++    def _subtest_Registrations_basic(self, r):
++        #NOTE: no real difference between topic and param names, so tests are reusable
++
++        # - note that we've updated node1's API
++        r.register('topic1', 'node1', 'http://node1:5678')
++        self.assert_('topic1' in r) # test contains
++        self.assert_(r.has_key('topic1')) # test contains
++        self.assertEquals(['topic1'], [k for k in r.iterkeys()])
++        self.assertEquals(['http://node1:5678'], r.get_apis('topic1'))
++        self.assertEquals([('node1', 'http://node1:5678')], r['topic1'])
++        self.failIf(not r) #test nonzero
++        self.assertEquals(None, r.get_service_api('topic1')) #make sure no contamination
++        self.assertEquals([['topic1', ['node1']]], r.get_state())
++
++        r.register('topic1', 'node2', 'http://node2:5678')
++        self.assertEquals(['topic1'], [k for k in r.iterkeys()])        
++        self.assertEquals(['topic1'], [k for k in r.iterkeys()])
++        self.assertEquals(2, len(r.get_apis('topic1')))
++        self.assert_('http://node1:5678' in r.get_apis('topic1'))
++        self.assert_('http://node2:5678' in r.get_apis('topic1'))
++        self.assertEquals(2, len(r['topic1']))
++        self.assert_(('node1', 'http://node1:5678') in r['topic1'], r['topic1'])
++        self.assert_(('node2', 'http://node2:5678') in r['topic1'])                
++        self.assertEquals([['topic1', ['node1', 'node2']]], r.get_state())
++
++        # TODO: register second topic
++        r.register('topic2', 'node3', 'http://node3:5678')
++        self.assert_('topic2' in r) # test contains
++        self.assert_(r.has_key('topic2')) # test contains
++        self.assert_('topic1' in [k for k in r.iterkeys()])
++        self.assert_('topic2' in [k for k in r.iterkeys()])
++        self.assertEquals(['http://node3:5678'], r.get_apis('topic2'))
++        self.assertEquals([('node3', 'http://node3:5678')], r['topic2'])
++        self.failIf(not r) #test nonzero
++        self.assert_(['topic1', ['node1', 'node2']] in r.get_state(), r.get_state())
++        self.assert_(['topic2', ['node3']] in r.get_state(), r.get_state())
++        
++        # Unregister
++
++        # - fail if node is not registered
++        code, _, val = r.unregister('topic1', 'node3', 'http://node3:5678')
++        self.assertEquals(0, val)
++        # - fail if topic is not registered by that node
++        code, _, val = r.unregister('topic2', 'node2', 'http://node2:5678')
++        self.assertEquals(0, val)
++        # - fail if URI does not match
++        code, _, val = r.unregister('topic2', 'node2', 'http://fakenode2:5678')
++        self.assertEquals(0, val)
++
++        # - unregister node2
++        code, _, val = r.unregister('topic1', 'node1', 'http://node1:5678')
++        self.assertEquals(1, code)
++        self.assertEquals(1, val)
++        self.assert_('topic1' in r) # test contains
++        self.assert_(r.has_key('topic1')) 
++        self.assert_('topic1' in [k for k in r.iterkeys()])
++        self.assert_('topic2' in [k for k in r.iterkeys()])
++        self.assertEquals(['http://node2:5678'], r.get_apis('topic1'))
++        self.assertEquals([('node2', 'http://node2:5678')], r['topic1'])
++        self.failIf(not r) #test nonzero
++        self.assert_(['topic1', ['node2']] in r.get_state())
++        self.assert_(['topic2', ['node3']] in r.get_state())        
++
++        code, _, val = r.unregister('topic1', 'node2', 'http://node2:5678')
++        self.assertEquals(1, code)
++        self.assertEquals(1, val)
++        self.failIf('topic1' in r) # test contains
++        self.failIf(r.has_key('topic1')) 
++        self.assertEquals(['topic2'], [k for k in r.iterkeys()])
++        self.assertEquals([], r.get_apis('topic1'))
++        self.assertEquals([], r['topic1'])
++        self.failIf(not r) #test nonzero
++        self.assertEquals([['topic2', ['node3']]], r.get_state())
++
++        # clear out last reg
++        code, _, val = r.unregister('topic2', 'node3', 'http://node3:5678')
++        self.assertEquals(1, code)
++        self.assertEquals(1, val)
++        self.failIf('topic2' in r) # test contains
++        self.assert_(not r)
++        self.assertEquals([], r.get_state())        
++        
++    def test_Registrations(self):
++        import rosmaster.exceptions
++        from rosmaster.registrations import Registrations
++        types = [Registrations.TOPIC_SUBSCRIPTIONS,
++                 Registrations.TOPIC_PUBLICATIONS,
++                 Registrations.SERVICE,
++                 Registrations.PARAM_SUBSCRIPTIONS]
++        # test enums
++        self.assertEquals(4, len(set(types)))
++        try:
++            r = Registrations(-1)
++            self.fail("Registrations accepted invalid type")
++        except rosmaster.exceptions.InternalException: pass
++        
++        for t in types:
++            r = Registrations(t)
++            self.assertEquals(t, r.type)
++            self.assert_(not r) #test nonzero
++            self.failIf('topic1' in r) #test contains            
++            self.failIf(r.has_key('topic1')) #test has_key
++            self.failIf([k for k in r.iterkeys()]) #no keys
++            self.assertEquals(None, r.get_service_api('non-existent'))
++
++        # Test topic subs
++        r = Registrations(Registrations.TOPIC_SUBSCRIPTIONS)
++        self._subtest_Registrations_basic(r)
++        r = Registrations(Registrations.TOPIC_PUBLICATIONS)        
++        self._subtest_Registrations_basic(r)
++        r = Registrations(Registrations.PARAM_SUBSCRIPTIONS)        
++        self._subtest_Registrations_basic(r)
++
++        r = Registrations(Registrations.SERVICE)        
++        self._subtest_Registrations_services(r)
++
++    def test_RegistrationManager_services(self):
++        from rosmaster.registrations import Registrations, RegistrationManager
++        rm = RegistrationManager(ThreadPoolMock())
++        
++        self.assertEquals(None, rm.get_node('caller1'))
++
++        # do an unregister first, before service_api is initialized
++        code, msg, val = rm.unregister_service('s1', 'caller1', 'rosrpc://one:1234')
++        self.assertEquals(1, code)
++        self.assertEquals(0, val)        
++        
++        rm.register_service('s1', 'caller1', 'http://one:1234', 'rosrpc://one:1234')
++        self.assert_(rm.services.has_key('s1'))
++        self.assertEquals('rosrpc://one:1234', rm.services.get_service_api('s1')) 
++        self.assertEquals('http://one:1234', rm.get_node('caller1').api)
++        self.assertEquals([['s1', ['caller1']]], rm.services.get_state())
++        
++        # - verify that changed caller_api updates ref
++        rm.register_service('s1', 'caller1', 'http://oneB:1234', 'rosrpc://one:1234')
++        self.assert_(rm.services.has_key('s1'))
++        self.assertEquals('rosrpc://one:1234', rm.services.get_service_api('s1'))        
++        self.assertEquals('http://oneB:1234', rm.get_node('caller1').api)
++        self.assertEquals([['s1', ['caller1']]], rm.services.get_state())
++        
++        # - verify that changed service_api updates ref
++        rm.register_service('s1', 'caller1', 'http://oneB:1234', 'rosrpc://oneB:1234')
++        self.assert_(rm.services.has_key('s1'))
++        self.assertEquals('rosrpc://oneB:1234', rm.services.get_service_api('s1'))        
++        self.assertEquals('http://oneB:1234', rm.get_node('caller1').api)
++        self.assertEquals([['s1', ['caller1']]], rm.services.get_state())
++        
++        rm.register_service('s2', 'caller2', 'http://two:1234', 'rosrpc://two:1234')
++        self.assertEquals('http://two:1234', rm.get_node('caller2').api)
++
++        # - unregister should be noop if service api does not match
++        code, msg, val = rm.unregister_service('s2', 'caller2', 'rosrpc://b:1234')
++        self.assertEquals(1, code)
++        self.assertEquals(0, val)        
++        self.assert_(rm.services.has_key('s2'))
++        self.assertEquals('http://two:1234', rm.get_node('caller2').api)        
++        self.assertEquals('rosrpc://two:1234', rm.services.get_service_api('s2'))
++        
++        # - unregister should be noop if service is unknown
++        code, msg, val = rm.unregister_service('unknown', 'caller2', 'rosrpc://two:1234')
++        self.assertEquals(1, code)
++        self.assertEquals(0, val)        
++        self.assert_(rm.services.has_key('s2'))
++        self.assertEquals('http://two:1234', rm.get_node('caller2').api)        
++        self.assertEquals('rosrpc://two:1234', rm.services.get_service_api('s2'))
++
++        # - unregister should clear all knowledge of caller2
++        code,msg, val = rm.unregister_service('s2', 'caller2', 'rosrpc://two:1234')
++        self.assertEquals(1, code)
++        self.assertEquals(1, val)        
++        self.assert_(rm.services.has_key('s1')) 
++        self.failIf(rm.services.has_key('s2'))        
++        self.assertEquals(None, rm.get_node('caller2'))
++
++        code, msg, val = rm.unregister_service('s1', 'caller1', 'rosrpc://oneB:1234')
++        self.assertEquals(1, code)        
++        self.assertEquals(1, val)        
++        self.assert_(not rm.services.__nonzero__())
++        self.failIf(rm.services.has_key('s1'))        
++        self.assertEquals(None, rm.get_node('caller1'))        
++
++    def test_RegistrationManager_topic_pub(self):
++        from rosmaster.registrations import Registrations, RegistrationManager
++        rm = RegistrationManager(ThreadPoolMock())
++        self.subtest_RegistrationManager(rm, rm.publishers, rm.register_publisher, rm.unregister_publisher)
++        
++    def test_RegistrationManager_topic_sub(self):
++        from rosmaster.registrations import Registrations, RegistrationManager
++        rm = RegistrationManager(ThreadPoolMock())
++        self.subtest_RegistrationManager(rm, rm.subscribers, rm.register_subscriber, rm.unregister_subscriber)
++    def test_RegistrationManager_param_sub(self):
++        from rosmaster.registrations import Registrations, RegistrationManager
++        rm = RegistrationManager(ThreadPoolMock())
++        self.subtest_RegistrationManager(rm, rm.param_subscribers, rm.register_param_subscriber, rm.unregister_param_subscriber)
++        
++    def subtest_RegistrationManager(self, rm, r, register, unregister):
++        self.assertEquals(None, rm.get_node('caller1'))
++
++        register('key1', 'caller1', 'http://one:1234')
++        self.assert_(r.has_key('key1'))
++        self.assertEquals('http://one:1234', rm.get_node('caller1').api)
++        self.assertEquals([['key1', ['caller1']]], r.get_state())
++        
++        # - verify that changed caller_api updates ref
++        register('key1', 'caller1', 'http://oneB:1234')
++        self.assert_(r.has_key('key1'))
++        self.assertEquals('http://oneB:1234', rm.get_node('caller1').api)
++        self.assertEquals([['key1', ['caller1']]], r.get_state())
++        
++        register('key2', 'caller2', 'http://two:1234')
++        self.assertEquals('http://two:1234', rm.get_node('caller2').api)
++
++        # - unregister should be noop if caller api does not match
++        code, msg, val = unregister('key2', 'caller2', 'http://b:1234')
++        self.assertEquals(1, code)
++        self.assertEquals(0, val)        
++        self.assertEquals('http://two:1234', rm.get_node('caller2').api)        
++        
++        # - unregister should be noop if key is unknown
++        code, msg, val = unregister('unknown', 'caller2', 'http://two:1234')
++        self.assertEquals(1, code)
++        self.assertEquals(0, val)        
++        self.assert_(r.has_key('key2'))
++        self.assertEquals('http://two:1234', rm.get_node('caller2').api)        
++
++        # - unregister should be noop if unknown node
++        code, msg, val = rm.unregister_publisher('key2', 'unknown', 'http://unknown:1')
++        self.assertEquals(1, code)
++        self.assertEquals(0, val)        
++        self.assert_(r.has_key('key2'))
++
++        # - unregister should clear all knowledge of caller2
++        code,msg, val = unregister('key2', 'caller2', 'http://two:1234')
++        self.assertEquals(1, code)
++        self.assertEquals(1, val)        
++        self.assert_(r.has_key('key1')) 
++        self.failIf(r.has_key('key2'))        
++        self.assertEquals(None, rm.get_node('caller2'))
++
++        code, msg, val = unregister('key1', 'caller1', 'http://oneB:1234')
++        self.assertEquals(1, code)        
++        self.assertEquals(1, val)        
++        self.assert_(not r.__nonzero__())
++        self.failIf(r.has_key('key1'))        
++        self.assertEquals(None, rm.get_node('caller1'))        
++
++    def test_RegistrationManager_base(self):
++        import rosmaster.exceptions
++        from rosmaster.registrations import Registrations, RegistrationManager
++        threadpool = ThreadPoolMock()
++
++        rm = RegistrationManager(threadpool)
++        self.assert_(isinstance(rm.services, Registrations))
++        self.assertEquals(Registrations.SERVICE, rm.services.type)
++        self.assert_(isinstance(rm.param_subscribers, Registrations))
++        self.assertEquals(Registrations.PARAM_SUBSCRIPTIONS, rm.param_subscribers.type)
++        self.assert_(isinstance(rm.subscribers, Registrations))
++        self.assertEquals(Registrations.TOPIC_SUBSCRIPTIONS, rm.subscribers.type)
++        self.assert_(isinstance(rm.subscribers, Registrations))
++        self.assertEquals(Registrations.TOPIC_PUBLICATIONS, rm.publishers.type)
++        self.assert_(isinstance(rm.publishers, Registrations))
++
++        #test auto-clearing of registrations if node API changes
++        rm.register_publisher('pub1', 'caller1', 'http://one:1')
++        rm.register_publisher('pub1', 'caller2', 'http://two:1')
++        rm.register_publisher('pub1', 'caller3', 'http://three:1')
++        rm.register_subscriber('sub1', 'caller1', 'http://one:1')
++        rm.register_subscriber('sub1', 'caller2', 'http://two:1')
++        rm.register_subscriber('sub1', 'caller3', 'http://three:1')
++        rm.register_param_subscriber('p1', 'caller1', 'http://one:1')
++        rm.register_param_subscriber('p1', 'caller2', 'http://two:1')
++        rm.register_param_subscriber('p1', 'caller3', 'http://three:1')
++        rm.register_service('s1', 'caller1', 'http://one:1', 'rosrpc://one:1')
++        self.assertEquals('http://one:1', rm.get_node('caller1').api)
++        self.assertEquals('http://two:1', rm.get_node('caller2').api)
++        self.assertEquals('http://three:1', rm.get_node('caller3').api)        
++
++        # - first, make sure that changing rosrpc URI does not erase state
++        rm.register_service('s1', 'caller1', 'http://one:1', 'rosrpc://oneB:1')
++        n = rm.get_node('caller1')
++        self.assertEquals(['pub1'], n.topic_publications)
++        self.assertEquals(['sub1'], n.topic_subscriptions)
++        self.assertEquals(['p1'], n.param_subscriptions)                
++        self.assertEquals(['s1'], n.services)
++        self.assert_('http://one:1' in rm.publishers.get_apis('pub1'))
++        self.assert_('http://one:1' in rm.subscribers.get_apis('sub1'))
++        self.assert_('http://one:1' in rm.param_subscribers.get_apis('p1'))
++        self.assert_('http://one:1' in rm.services.get_apis('s1'))
++
++        # - also, make sure unregister does not erase state if API changed
++        rm.unregister_publisher('pub1', 'caller1', 'http://not:1')
++        self.assert_('http://one:1' in rm.publishers.get_apis('pub1'))
++        rm.unregister_subscriber('sub1', 'caller1', 'http://not:1')
++        self.assert_('http://one:1' in rm.subscribers.get_apis('sub1'))
++        rm.unregister_param_subscriber('p1', 'caller1', 'http://not:1')
++        self.assert_('http://one:1' in rm.param_subscribers.get_apis('p1'))
++        rm.unregister_service('sub1', 'caller1', 'rosrpc://not:1')
++        self.assert_('http://one:1' in rm.services.get_apis('s1'))
++        
++        
++        # erase caller1 sub/srvs/params via register_publisher
++        rm.register_publisher('pub1', 'caller1', 'http://newone:1')
++        self.assertEquals('http://newone:1', rm.get_node('caller1').api)        
++        # - check node ref
++        n = rm.get_node('caller1')
++        self.assertEquals(['pub1'], n.topic_publications)
++        self.assertEquals([], n.services)
++        self.assertEquals([], n.topic_subscriptions)
++        self.assertEquals([], n.param_subscriptions)
++        # - checks publishers
++        self.assert_('http://newone:1' in rm.publishers.get_apis('pub1'))
++        # - checks subscribers
++        self.assert_(rm.subscribers.has_key('sub1'))
++        self.failIf('http://one:1' in rm.subscribers.get_apis('sub1'))
++        # - checks param subscribers
++        self.assert_(rm.param_subscribers.has_key('p1'))
++        self.failIf('http://one:1' in rm.param_subscribers.get_apis('p1'))
++
++        # erase caller2 pub/sub/params via register_service
++        # - initial state
++        self.assert_('http://two:1' in rm.publishers.get_apis('pub1'))
++        self.assert_('http://two:1' in rm.subscribers.get_apis('sub1'))
++        self.assert_('http://two:1' in rm.param_subscribers.get_apis('p1'))
++        # - change ownership of s1 to caller2
++        rm.register_service('s1', 'caller2', 'http://two:1', 'rosrpc://two:1')
++        self.assert_('http://two:1' in rm.services.get_apis('s1'))
++        self.assert_('http://two:1' in rm.publishers.get_apis('pub1'))
++        self.assert_('http://two:1' in rm.subscribers.get_apis('sub1'))
++        self.assert_('http://two:1' in rm.param_subscribers.get_apis('p1'))
++        
++        rm.register_service('s1', 'caller2', 'http://newtwo:1', 'rosrpc://newtwo:1')
++        self.assertEquals('http://newone:1', rm.get_node('caller1').api)        
++        # - check node ref
++        n = rm.get_node('caller2')
++        self.assertEquals([], n.topic_publications)
++        self.assertEquals(['s1'], n.services)
++        self.assertEquals([], n.topic_subscriptions)
++        self.assertEquals([], n.param_subscriptions)
++        # - checks publishers
++        self.assert_(rm.publishers.has_key('pub1'))
++        self.failIf('http://two:1' in rm.publishers.get_apis('pub1'))
++        # - checks subscribers
++        self.assert_(rm.subscribers.has_key('sub1'))
++        self.failIf('http://two:1' in rm.subscribers.get_apis('sub1'))
++        self.assertEquals([['sub1', ['caller3']]], rm.subscribers.get_state())
++        # - checks param subscribers
++        self.assert_(rm.param_subscribers.has_key('p1'))
++        self.failIf('http://two:1' in rm.param_subscribers.get_apis('p1'))
++        self.assertEquals([['p1', ['caller3']]], rm.param_subscribers.get_state())
++
++        
++    def test_Registrations_unregister_all(self):
++        import rosmaster.exceptions
++        from rosmaster.registrations import Registrations
++
++        r = Registrations(Registrations.TOPIC_SUBSCRIPTIONS)        
++        for k in ['topic1', 'topic1b', 'topic1c', 'topic1d']:        
++            r.register(k, 'node1', 'http://node1:5678')
++        r.register('topic2', 'node2', 'http://node2:5678')
++        r.unregister_all('node1')
++        self.failIf(not r)
++        for k in ['topic1', 'topic1b', 'topic1c', 'topic1d']:        
++            self.failIf(r.has_key(k))
++        self.assertEquals(['topic2'], [k for k in r.iterkeys()])
++        
++        r = Registrations(Registrations.TOPIC_PUBLICATIONS)        
++        for k in ['topic1', 'topic1b', 'topic1c', 'topic1d']:        
++            r.register(k, 'node1', 'http://node1:5678')
++        r.register('topic2', 'node2', 'http://node2:5678')
++        r.unregister_all('node1')
++        self.failIf(not r)
++        for k in ['topic1', 'topic1b', 'topic1c', 'topic1d']:        
++            self.failIf(r.has_key(k))
++        self.assertEquals(['topic2'], [k for k in r.iterkeys()])
++
++        r = Registrations(Registrations.PARAM_SUBSCRIPTIONS)        
++        r.register('param2', 'node2', 'http://node2:5678')
++        for k in ['param1', 'param1b', 'param1c', 'param1d']:
++            r.register(k, 'node1', 'http://node1:5678')
++        r.unregister_all('node1')
++        self.failIf(not r)
++        for k in ['param1', 'param1b', 'param1c', 'param1d']:
++            self.failIf(r.has_key(k))
++        self.assertEquals(['param2'], [k for k in r.iterkeys()])
++        
++        r = Registrations(Registrations.SERVICE)        
++        for k in ['service1', 'service1b', 'service1c', 'service1d']:
++            r.register(k, 'node1', 'http://node1:5678', 'rosrpc://node1:1234')
++        r.register('service2', 'node2', 'http://node2:5678', 'rosrpc://node2:1234')
++        r.unregister_all('node1')
++        self.failIf(not r)
++        for k in ['service1', 'service1b', 'service1c', 'service1d']:
++            self.failIf(r.has_key(k))
++            self.assertEquals(None, r.get_service_api(k))
++        self.assertEquals(['service2'], [k for k in r.iterkeys()])
++        self.assertEquals('rosrpc://node2:1234', r.get_service_api('service2'))
++
++    def _subtest_Registrations_services(self, r):
++        import rosmaster.exceptions
++
++        # call methods that use service_api_map, make sure they are guarded against lazy-init
++        self.assertEquals(None, r.get_service_api('s1'))
++        r.unregister_all('node1')
++
++        # do an unregister first, before service_api is initialized
++        code, msg, val = r.unregister('s1', 'caller1', None, 'rosrpc://one:1234')
++        self.assertEquals(1, code)
++        self.assertEquals(0, val)        
++
++        try:
++            r.register('service1', 'node1', 'http://node1:5678')
++            self.fail("should require service_api")
++        except rosmaster.exceptions.InternalException: pass
++        
++        r.register('service1', 'node1', 'http://node1:5678', 'rosrpc://node1:1234')
++        
++        self.assert_('service1' in r) # test contains
++        self.assert_(r.has_key('service1')) # test contains
++        self.assertEquals(['service1'], [k for k in r.iterkeys()])
++        self.assertEquals(['http://node1:5678'], r.get_apis('service1'))
++        self.assertEquals('rosrpc://node1:1234', r.get_service_api('service1'))
++        self.assertEquals([('node1', 'http://node1:5678')], r['service1'])
++        self.failIf(not r) #test nonzero
++        self.assertEquals([['service1', ['node1']]], r.get_state())
++
++        r.register('service1', 'node2', 'http://node2:5678', 'rosrpc://node2:1234')
++        self.assertEquals(['service1'], [k for k in r.iterkeys()])
++        self.assertEquals('rosrpc://node2:1234', r.get_service_api('service1'))
++        self.assertEquals(['http://node2:5678'], r.get_apis('service1'))
++        self.assertEquals([('node2', 'http://node2:5678')], r['service1'])
++        self.assertEquals([['service1', ['node2']]], r.get_state())
++
++        # register a second service
++        r.register('service2', 'node3', 'http://node3:5678', 'rosrpc://node3:1234')
++        self.assertEquals('rosrpc://node3:1234', r.get_service_api('service2'))
++        self.assertEquals(2, len(r.get_state()))
++        self.assert_(['service2', ['node3']] in r.get_state(), r.get_state())
++        self.assert_(['service1', ['node2']] in r.get_state())
++        
++        # register a third service, second service for node2
++        r.register('service1b', 'node2', 'http://node2:5678', 'rosrpc://node2:1234')
++        self.assertEquals(3, len(r.get_state()))
++        self.assert_(['service2', ['node3']] in r.get_state())
++        self.assert_(['service1b', ['node2']] in r.get_state())
++        self.assert_(['service1', ['node2']] in r.get_state())
++        
++        # Unregister
++        try:
++            r.unregister('service1', 'node2', 'http://node2:1234')
++            self.fail("service_api param must be specified")
++        except rosmaster.exceptions.InternalException: pass
++        
++        # - fail if service is not known
++        code, _, val = r.unregister('unknown', 'node2', 'http://node2:5678', 'rosprc://node2:1234')
++        self.assertEquals(0, val)
++        # - fail if node is not registered
++        code, _, val = r.unregister('service1', 'node3', 'http://node3:5678', 'rosrpc://node3:1234')
++        self.assertEquals(0, val)
++        # - fail if service API is different
++        code, _, val = r.unregister('service1', 'node2', 'http://node2b:5678', 'rosrpc://node3:1234')
++        self.assertEquals(0, val)
++
++        # - unregister service2
++        code, _, val = r.unregister('service2', 'node3', 'http://node3:5678', 'rosrpc://node3:1234')
++        self.assertEquals(1, code)
++        self.assertEquals(1, val)
++        self.failIf('service2' in r) # test contains
++        self.failIf(r.has_key('service2')) 
++        self.assert_('service1' in [k for k in r.iterkeys()])
++        self.assert_('service1b' in [k for k in r.iterkeys()])
++        self.assertEquals([], r.get_apis('service2'))
++        self.assertEquals([], r['service2'])
++        self.failIf(not r) #test nonzero
++        self.assertEquals(2, len(r.get_state()))
++        self.failIf(['service2', ['node3']] in r.get_state())
++        
++        # - unregister node2
++        code, _, val = r.unregister('service1', 'node2', 'http://node2:5678', 'rosrpc://node2:1234')
++        self.assertEquals(1, code)
++        self.assertEquals(1, val)
++        self.failIf('service1' in r) # test contains
++        self.failIf(r.has_key('service1')) 
++        self.assertEquals(['service1b'], [k for k in r.iterkeys()])
++        self.assertEquals([], r.get_apis('service1'))
++        self.assertEquals([], r['service1'])
++        self.failIf(not r) #test nonzero
++        self.assertEquals([['service1b', ['node2']]], r.get_state())
++
++        code, _, val = r.unregister('service1b', 'node2', 'http://node2:5678', 'rosrpc://node2:1234')
++        self.assertEquals(1, code)
++        self.assertEquals(1, val)
++        self.failIf('service1' in r) # test contains
++        self.failIf(r.has_key('service1')) 
++        self.assertEquals([], [k for k in r.iterkeys()])
++        self.assertEquals([], r.get_apis('service1'))
++        self.assertEquals([], r['service1'])
++        self.assert_(not r) #test nonzero
++        self.assertEquals([], r.get_state())
++        
+--- /dev/null
++++ ros-noetic-rosmaster-1.16.0/test/test_rosmaster_validators.py
+@@ -0,0 +1,82 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import os
++import sys
++import unittest
++import time
++
++class TestRosmasterValidators(unittest.TestCase):
++
++    def test_ParameterInvalid(self):
++        # not really testing anything here other than typos
++        from rosmaster.validators import ParameterInvalid
++        self.assert_(isinstance(ParameterInvalid('param'), Exception))
++        
++    def test_validators(self):
++        from rosmaster.validators import ParameterInvalid
++        from rosmaster.validators import non_empty
++        contexts = ['', '/', '/foo']
++        for context in contexts:
++            valid = ['foo', 1, [1]]
++            for v in valid:
++                non_empty('param-name')(v, context)
++            invalid = ['', 0, []]
++            for i in invalid:
++                try:
++                    non_empty('param-name-foo')(i, context)
++                except ParameterInvalid as e:
++                    self.assert_('param-name-foo' in str(e))
++
++            from rosmaster.validators import non_empty_str
++            valid = ['foo', 'f', u'f']
++            for v in valid:
++                non_empty_str('param-name')(v, context)
++            invalid = ['', 1, ['foo']]
++            for i in invalid:
++                try:
++                    non_empty_str('param-name-bar')(i, context)
++                except ParameterInvalid as e:
++                    self.assert_('param-name-bar' in str(e))
++                    
++            from rosmaster.validators import not_none
++
++            valid = ['foo', 'f', 1, False, 0, '']
++            for v in valid:
++                not_none('param-name')(v, context)
++            invalid = [None]
++            for i in invalid:
++                try:
++                    not_none('param-name-charlie')(i, context)
++                except ParameterInvalid as e:
++                    self.assert_('param-name-charlie' in str(e))
++                

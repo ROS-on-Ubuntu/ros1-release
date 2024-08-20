@@ -1,0 +1,301 @@
+ros-noetic-diagnostic-msgs (1.13.1-0jammy) jammy; urgency=high
+
+  * Update package maintainers (#168 <https://github.com/ros/common_msgs/issues/168>)
+  * Contributors: Michel Hidalgo
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Sun, 10 Jan 2021 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.13.0-0jammy) jammy; urgency=high
+
+  * Bump CMake version to avoid CMP0048 warning (#158 <https://github.com/ros/common_msgs/issues/158>)
+  * Contributors: Shane Loretz
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Wed, 20 May 2020 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.12.7-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Mon, 05 Nov 2018 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.12.6-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Wed, 02 May 2018 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.12.5-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Thu, 29 Sep 2016 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.12.4-0jammy) jammy; urgency=high
+
+  * diagnostic_msgs: Add messages for service used to add diagnostics to aggregator
+  * Contributors: Michal Staniaszek
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Sun, 21 Feb 2016 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.12.3-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Sun, 19 Apr 2015 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.12.2-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Fri, 20 Mar 2015 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.12.1-0jammy) jammy; urgency=high
+
+  * updating outdated urls. fixes #52 <https://github.com/ros/common_msgs/issues/52>.
+  * Contributors: Tully Foote
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Mon, 16 Mar 2015 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.12.0-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Sun, 28 Dec 2014 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.11.6-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Mon, 03 Nov 2014 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.11.5-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Sun, 26 Oct 2014 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.11.4-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Wed, 18 Jun 2014 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.11.3-0jammy) jammy; urgency=high
+
+  * Export architecture_independent flag in package.xml
+  * Contributors: Scott K Logan
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Tue, 06 May 2014 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.11.2-0jammy) jammy; urgency=high
+
+  * Add STALE to DiagnosticStatus level enum
+  * Contributors: Austin
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Wed, 23 Apr 2014 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.11.1-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Tue, 15 Apr 2014 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.11.0-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Mon, 03 Mar 2014 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.10.6-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Wed, 26 Feb 2014 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.10.5-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Mon, 24 Feb 2014 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.10.4-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Mon, 17 Feb 2014 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.10.3-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Mon, 06 Jan 2014 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.10.2-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Sun, 18 Aug 2013 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.10.1-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Thu, 15 Aug 2013 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.10.0-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Fri, 12 Jul 2013 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.9.16-0jammy) jammy; urgency=high
+
+  * update email in package.xml
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Mon, 20 May 2013 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.9.15-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Thu, 07 Mar 2013 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.9.14-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Fri, 18 Jan 2013 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.9.13-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Sat, 12 Jan 2013 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.9.12-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Tue, 01 Jan 2013 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.9.11-0jammy) jammy; urgency=high
+
+  * modified dep type of catkin
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Sun, 16 Dec 2012 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.9.10-0jammy) jammy; urgency=high
+
+  * add missing downstream depend
+  * switched from langs to message_* packages
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Wed, 12 Dec 2012 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.9.9-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Wed, 21 Nov 2012 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.9.8-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Tue, 13 Nov 2012 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.9.7-0jammy) jammy; urgency=high
+
+  * fix catkin function order
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Mon, 29 Oct 2012 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.9.6-0jammy) jammy; urgency=high
+
+  * updated cmake min version to 2.8.3, use cmake_parse_arguments instead of custom macro
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Wed, 17 Oct 2012 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.9.5-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Thu, 27 Sep 2012 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.9.4-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Thu, 27 Sep 2012 10:06:00 -0000
+
+ros-noetic-diagnostic-msgs (1.9.3-0jammy) jammy; urgency=high
+
+  * cleanup
+  * updated to latest catkin
+  * fixed dependencies and more
+  * updated to latest catkin: created package.xmls, updated CmakeLists.txt
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Thu, 27 Sep 2012 09:39:00 -0000
+
+ros-noetic-diagnostic-msgs (1.9.2-0jammy) jammy; urgency=high
+
+  * updated pkg-config in manifest.xml
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Tue, 04 Sep 2012 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.9.1-0jammy) jammy; urgency=high
+
+  * use install destination variables, removed manual installation of manifests
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Mon, 03 Sep 2012 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.9.0-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Tue, 28 Aug 2012 16:00:00 -0000
+
+ros-noetic-diagnostic-msgs (1.8.13-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Thu, 26 Jul 2012 18:34:15 +0800
+
+ros-noetic-diagnostic-msgs (1.8.8-0jammy) jammy; urgency=high
+
+  * removed obsolete catkin tag from manifest files
+  * adding manifest exports
+  * removed depend, added catkin
+  * stripping depend and export tags from common_msgs manifests as msg dependencies are now declared in cmake and stack.yaml.  Also removed bag migration exports
+  * common_msgs: removing migration rules as all are over a year old
+  * bye bye vestigial MSG_DIRS
+  * diagnostic_msgs: catkin'd
+  * adios rosbuild2 in manifest.xml
+  * missing dependencies
+  * updating bagmigration exports
+  * rosbuild2 taking shape
+  * removing all the extra exports
+  * Added Ubuntu platform tags to manifest
+  * fixed manifest description
+  * Remove use of deprecated rosbuild macros
+  * changing review status
+  * adding comment about stability for doc review
+  * fixing link and wrapping lines
+  * updated description and url
+  * filling out description
+  * documenting DiagnosticStatus and DiagnosticArray.  setting proper constants for level of operation.  bag migrations passes (incorrectly) ticketing Jeremy
+  * Changing naming of bag migration rules.
+  * Removing cross-stack dependency of test_common_msgs on pr2_msgs, and fixing diagnostic_msgs migration rules due to change in KeyValue.
+  * Change KeyValue to actually be key/value
+  * Adding more migration rule tests and fixing assorted rules.
+  * fixing through diagnostic_updater
+  * Fix DiagnosticStatus
+  * removing DiagnosticString and DiagnosticValue and last few references to them #1903 <https://github.com/ros/common_msgs/issues/1903>
+  * Changed DiagnosticMessage to DiagnosticArray
+  * adding KeyValue for Blaise --Tully
+  * Changed DiagnosticValue to KeyValue
+  * merging in the changes to messages see ros-users email.  THis is about half the common_msgs API changes
+  * populating common_msgs
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Tue, 12 Jun 2012 14:36:00 -0000
+
+

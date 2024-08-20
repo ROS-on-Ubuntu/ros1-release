@@ -1,0 +1,12 @@
+Source: ros-noetic-laser-assembler
+Section: misc
+Priority: optional
+Maintainer: Jonathan Binney <jon.binney@gmail.com>
+Build-Depends: debhelper (>= 9.0.0), ros-noetic-catkin (>= 0.5.68), ros-noetic-filters, ros-noetic-laser-geometry, ros-noetic-message-filters, ros-noetic-message-generation, ros-noetic-pluginlib, ros-noetic-roscpp, ros-noetic-rostest, ros-noetic-sensor-msgs, ros-noetic-tf
+Homepage: http://ros.org/wiki/laser_assembler
+Standards-Version: 3.9.2
+
+Package: ros-noetic-laser-assembler
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-noetic-filters, ros-noetic-laser-geometry, ros-noetic-message-filters, ros-noetic-message-runtime, ros-noetic-pluginlib, ros-noetic-roscpp, ros-noetic-sensor-msgs, ros-noetic-tf
+Description: Provides nodes to assemble point clouds from either LaserScan or PointCloud messages

@@ -1,0 +1,1059 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-turtle-tf (0.2.3-0jammy) jammy; urgency=high
+ .
+   * Bump CMake version to avoid CMP0048 warning (#29 <https://github.com/ros/geometry_tutorials//issues/29>)
+   * Merge pull request #26 <https://github.com/ros/geometry_tutorials//issues/26> from jwhendy/tutorial-node-name-fix
+   * updated node names in all tf and tf2 nodes/.py files to match filenames for simplicity
+   * Merge pull request #22 <https://github.com/ros/geometry_tutorials//issues/22> from 23pointsNorth/patch-1
+   * Clean up code
+   * Merge pull request #20 <https://github.com/ros/geometry_tutorials//issues/20> from romainreignier/indigo-devel
+   * Add install rule for turtle_tf_message_filter
+   * Contributors: Alejandro Hernández Cordero, Daniel Angelov, John Henderson, Romain Reignier, Tully Foote
+Author: William Woodall <william@osrfoundation.org>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-turtle-tf-0.2.3/CHANGELOG.rst
+@@ -0,0 +1,60 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package turtle_tf
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++0.2.3 (2020-04-02)
++------------------
++* Bump CMake version to avoid CMP0048 warning (`#29 <https://github.com/ros/geometry_tutorials//issues/29>`_)
++* Merge pull request `#26 <https://github.com/ros/geometry_tutorials//issues/26>`_ from jwhendy/tutorial-node-name-fix
++* updated node names in all tf and tf2 nodes/.py files to match filenames for simplicity
++* Merge pull request `#22 <https://github.com/ros/geometry_tutorials//issues/22>`_ from 23pointsNorth/patch-1
++* Clean up code
++* Merge pull request `#20 <https://github.com/ros/geometry_tutorials//issues/20>`_ from romainreignier/indigo-devel
++* Add install rule for turtle_tf_message_filter
++* Contributors: Alejandro Hernández Cordero, Daniel Angelov, John Henderson, Romain Reignier, Tully Foote
++
++0.2.2 (2015-03-03)
++------------------
++* remove old roslib invocations
++* Contributors: Tully Foote
++
++0.2.1 (2014-12-17)
++------------------
++* continuing on error instead of executing the rest of the block. Fixes `#13 <https://github.com/ros/geometry_tutorials/issues/13>`_
++* merging conflicting pull requests
++* catch tf.ExtrapolationException
++  see http://answers.ros.org/question/12024/tftutorials-demo-problem-ros-electric/, this still happens in hydro
++* Fixes for "Using sensor messages with tf" tutorial.
++* add start_debug_demo.launch, that is introduced in http://wiki.ros.org/tf/Tutorials/Debugging%20tf%20problems
++* Fix wrong order of arguments to q.setRPY in commit 82964f6.
++* Fix wrong order of arguments to q.setRPY in commit 82964f6.
++  The API shows the order is:
++  void    setRPY (const tfScalar &roll, const tfScalar &pitch, const tfScalar &yaw)
++  Line 14 should read:
++  q.setRPY(0, 0, msg->theta);
++  This fault breaks this tutorial:
++  http://wiki.ros.org/tf/Tutorials/Writing%20a%20tf%20broadcaster%20%28C%2B%2B%29
++  In a way that doesn't show up until the subsequent tutorial, where the
++  follower doesn't follow. The fix to line 14 proposed above fixes the
++  subsequent tutorial.
++  The problem is discussed in this thread:
++  http://answers.ros.org/question/45884/turtle-tf-tutorial-fails-to-work/?answer=47845#post-id-47845
++  and an incorrect fix was applied to the wiki. The note in the wiki under
++  the code, which says the code should read:
++  transform.setRotation( tf::Quaternion(0, 0, msg->theta) );
++  is wrong - it should say transform.setRPY.
++* Added queue size for Publisher to avoid warning.
++* add queue_size argument to rospy.Publisher
++  `ros/ros_comm#169 <https://github.com/ros/ros_comm/issues/169>`_
++* add queue_size argument to rospy publisher
++  `ros/ros_comm#169 <https://github.com/ros/ros_comm/issues/169>`_
++* add queue_size
++  `ros/ros_comm#169 <https://github.com/ros/ros_comm/issues/169>`_
++* Adding queue_size argument to publisher
++  `ros/ros_comm#169 <https://github.com/ros/ros_comm/issues/169>`_
++* Contributors: Denis Štogl, K.mura, Kei Okada, Paul Bouchier, Tully Foote, spourmehr
++
++0.2.0 (2013-06-28 14:14:25 -0700)
++---------------------------------
++- Fixed catkinized
++- Updated dependency on turtlesim, turtlesim switched to using geometry_msgs/Twist from turtlesim/Velocity msgs
+--- /dev/null
++++ ros-noetic-turtle-tf-0.2.3/CMakeLists.txt
+@@ -0,0 +1,59 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(turtle_tf)
++
++## Find dependencies
++find_package(catkin REQUIRED COMPONENTS geometry_msgs roscpp rospy std_msgs tf turtlesim)
++
++## Setup Include Directories
++include_directories(include ${catkin_INCLUDE_DIRS})
++
++## Tell catkin what to export
++catkin_package(CATKIN_DEPENDS geometry_msgs roscpp rospy std_msgs tf turtlesim)
++
++## C++ examples
++add_executable(turtle_tf_broadcaster src/turtle_tf_broadcaster.cpp)
++target_link_libraries(turtle_tf_broadcaster ${catkin_LIBRARIES})
++if(catkin_EXPORTED_TARGETS)
++  add_dependencies(turtle_tf_broadcaster ${catkin_EXPORTED_TARGETS})
++endif()
++
++add_executable(turtle_tf_listener src/turtle_tf_listener.cpp)
++target_link_libraries(turtle_tf_listener ${catkin_LIBRARIES})
++if(catkin_EXPORTED_TARGETS)
++  add_dependencies(turtle_tf_listener ${catkin_EXPORTED_TARGETS})
++endif()
++
++add_executable(turtle_tf_message_filter src/turtle_tf_message_filter.cpp)
++target_link_libraries(turtle_tf_message_filter ${catkin_LIBRARIES})
++if(catkin_EXPORTED_TARGETS)
++  add_dependencies(turtle_tf_message_filter ${catkin_EXPORTED_TARGETS})
++endif()
++
++add_executable(turtle_tf_listener_debug src/turtle_tf_listener_debug.cpp)
++target_link_libraries(turtle_tf_listener_debug ${catkin_LIBRARIES})
++
++
++## Install Python Examples
++install(PROGRAMS
++  nodes/dynamic_tf_broadcaster.py
++  nodes/fixed_tf_broadcaster.py
++  nodes/turtle_tf_broadcaster.py
++  nodes/turtle_tf_listener.py
++  nodes/turtle_tf_listener_wait.py
++  nodes/turtle_tf_message_broadcaster.py
++  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
++)
++
++## Install C++ Examples
++install(TARGETS turtle_tf_broadcaster turtle_tf_listener turtle_tf_message_filter turtle_tf_listener_debug
++  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
++  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
++  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
++)
++
++## Install Other Resources
++install(DIRECTORY launch
++  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
++
++install(DIRECTORY rviz
++  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
+--- /dev/null
++++ ros-noetic-turtle-tf-0.2.3/launch/start_debug_demo.launch
+@@ -0,0 +1,20 @@
++<launch>
++
++  <!-- Turtlesim Node-->
++  <node pkg="turtlesim" type="turtlesim_node" name="sim"/>
++
++  <node pkg="turtlesim" type="turtle_teleop_key" name="teleop" output="screen"/>
++  <!-- Axes -->
++  <param name="scale_linear" value="2" type="double"/>
++  <param name="scale_angular" value="2" type="double"/>
++
++  <node name="turtle1_tf_broadcaster" pkg="turtle_tf" type="turtle_tf_broadcaster.py" respawn="false" output="screen" >
++    <param name="turtle" type="string" value="turtle1" />
++  </node>
++  <node name="turtle2_tf_broadcaster" pkg="turtle_tf" type="turtle_tf_broadcaster.py" respawn="false" output="screen" >
++    <param name="turtle" type="string" value="turtle2" />
++  </node>
++  <node name="turtle_pointer" pkg="turtle_tf" type="turtle_tf_listener_debug" respawn="false" output="screen" >
++  </node>
++
++</launch>
+--- /dev/null
++++ ros-noetic-turtle-tf-0.2.3/launch/turtle_tf_demo.launch
+@@ -0,0 +1,20 @@
++<launch>
++
++  <!-- Turtlesim Node-->
++  <node pkg="turtlesim" type="turtlesim_node" name="sim"/>
++
++  <node pkg="turtlesim" type="turtle_teleop_key" name="teleop" output="screen"/>
++  <!-- Axes -->
++  <param name="scale_linear" value="2" type="double"/>
++  <param name="scale_angular" value="2" type="double"/>
++
++  <node name="turtle1_tf_broadcaster" pkg="turtle_tf" type="turtle_tf_broadcaster.py" respawn="false" output="screen" >
++    <param name="turtle" type="string" value="turtle1" />
++  </node>
++  <node name="turtle2_tf_broadcaster" pkg="turtle_tf" type="turtle_tf_broadcaster.py" respawn="false" output="screen" >
++    <param name="turtle" type="string" value="turtle2" />
++  </node>
++  <node name="turtle_pointer" pkg="turtle_tf" type="turtle_tf_listener.py" respawn="false" output="screen" >
++  </node>
++
++</launch>
+--- /dev/null
++++ ros-noetic-turtle-tf-0.2.3/launch/turtle_tf_sensor.launch
+@@ -0,0 +1,5 @@
++<launch>
++  <include file="$(find turtle_tf)/launch/turtle_tf_demo.launch" />
++  <node name="turtle_pose_stamped_publisher" pkg="turtle_tf" type="turtle_tf_message_broadcaster.py" respawn="false" output="screen" />	
++  <node name="turtle_tf_message_filter" pkg="turtle_tf" type="turtle_tf_message_filter" respawn="false" output="screen" />
++</launch>
+--- /dev/null
++++ ros-noetic-turtle-tf-0.2.3/nodes/dynamic_tf_broadcaster.py
+@@ -0,0 +1,50 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of the Willow Garage nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import rospy
++import tf
++import math
++
++
++if __name__ == '__main__':
++    rospy.init_node('dynamic_tf_broadcaster')
++    br = tf.TransformBroadcaster()
++    rate = rospy.Rate(10.0)
++    while not rospy.is_shutdown():
++        t = rospy.Time.now().to_sec() * math.pi
++        br.sendTransform((10 * math.sin(t), 10 * math.cos(t), 0.0),
++                         (0.0, 0.0, 0.0, 1.0),
++                         rospy.Time.now(),
++                         "carrot1",
++                         "turtle1")
++        rate.sleep()
+--- /dev/null
++++ ros-noetic-turtle-tf-0.2.3/nodes/fixed_tf_broadcaster.py
+@@ -0,0 +1,68 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of the Willow Garage nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import rospy
++import tf
++import tf.msg
++import geometry_msgs.msg
++
++
++class FixedTFBroadcaster:
++
++    def __init__(self):
++        self.pub_tf = rospy.Publisher("/tf", tf.msg.tfMessage, queue_size=1)
++
++        while not rospy.is_shutdown():
++            # Run this loop at about 10Hz
++            rospy.sleep(0.1)
++
++            t = geometry_msgs.msg.TransformStamped()
++            t.header.frame_id = "turtle1"
++            t.header.stamp = rospy.Time.now()
++            t.child_frame_id = "carrot1"
++            t.transform.translation.x = 0.0
++            t.transform.translation.y = 2.0
++            t.transform.translation.z = 0.0
++
++            t.transform.rotation.x = 0.0
++            t.transform.rotation.y = 0.0
++            t.transform.rotation.z = 0.0
++            t.transform.rotation.w = 1.0
++
++            tfm = tf.msg.tfMessage([t])
++            self.pub_tf.publish(tfm)
++
++if __name__ == '__main__':
++    rospy.init_node('fixed_tf_broadcaster')
++    tfb = FixedTFBroadcaster()
++    rospy.spin()
+--- /dev/null
++++ ros-noetic-turtle-tf-0.2.3/nodes/turtle_tf_broadcaster.py
+@@ -0,0 +1,56 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of the Willow Garage nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#!/usr/bin/env python
++
++import rospy
++
++import tf
++import turtlesim.msg
++
++
++def handle_turtle_pose(msg, turtlename):
++    br = tf.TransformBroadcaster()
++    br.sendTransform((msg.x, msg.y, 0),
++                     tf.transformations.quaternion_from_euler(0, 0, msg.theta),
++                     rospy.Time.now(),
++                     turtlename,
++                     "world")
++
++if __name__ == '__main__':
++    rospy.init_node('turtle_tf_broadcaster')
++    turtlename = rospy.get_param('~turtle')
++    rospy.Subscriber('/%s/pose' % turtlename,
++                     turtlesim.msg.Pose,
++                     handle_turtle_pose,
++                     turtlename)
++    rospy.spin()
+--- /dev/null
++++ ros-noetic-turtle-tf-0.2.3/nodes/turtle_tf_listener.py
+@@ -0,0 +1,66 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of the Willow Garage nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import rospy
++
++import math
++import tf
++import geometry_msgs.msg
++import turtlesim.srv
++
++if __name__ == '__main__':
++    rospy.init_node('turtle_tf_listener')
++
++    listener = tf.TransformListener()
++
++    rospy.wait_for_service('spawn')
++    spawner = rospy.ServiceProxy('spawn', turtlesim.srv.Spawn)
++    spawner(4, 2, 0, 'turtle2')
++
++    turtle_vel = rospy.Publisher('turtle2/cmd_vel', geometry_msgs.msg.Twist, queue_size=1)
++
++    rate = rospy.Rate(10.0)
++    while not rospy.is_shutdown():
++        try:
++            (trans, rot) = listener.lookupTransform('/turtle2', '/turtle1', rospy.Time())
++        except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
++            continue
++
++        angular = 4 * math.atan2(trans[1], trans[0])
++        linear = 0.5 * math.sqrt(trans[0] ** 2 + trans[1] ** 2)
++        msg = geometry_msgs.msg.Twist()
++        msg.linear.x = linear
++        msg.angular.z = angular
++        turtle_vel.publish(msg)
++
++        rate.sleep()
+--- /dev/null
++++ ros-noetic-turtle-tf-0.2.3/nodes/turtle_tf_listener_wait.py
+@@ -0,0 +1,68 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of the Willow Garage nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import rospy
++
++import math
++import tf
++import geometry_msgs.msg
++import turtlesim.srv
++
++if __name__ == '__main__':
++    rospy.init_node('turtle_tf_listener_wait')
++
++    listener = tf.TransformListener()
++
++    rospy.wait_for_service('spawn')
++    spawner = rospy.ServiceProxy('spawn', turtlesim.srv.Spawn)
++    spawner(4, 2, 0, 'turtle2')
++
++    turtle_vel = rospy.Publisher('turtle2/cmd_vel', geometry_msgs.msg.Twist, queue_size=1)
++
++    rate = rospy.Rate(10.0)
++    while not rospy.is_shutdown():
++        try:
++            now = rospy.Time.now()
++            listener.waitForTransform("/turtle2", "/carrot1", now, rospy.Duration(1.0))
++            (trans, rot) = listener.lookupTransform("/turtle2", "/carrot1", now)
++        except tf.Exception:
++            continue
++
++        angular = 4 * math.atan2(trans[1], trans[0])
++        linear = 0.5 * math.sqrt(trans[0] ** 2 + trans[1] ** 2)
++        msg = geometry_msgs.msg.Twist()
++        msg.linear.x = linear
++        msg.angular.z = angular
++        turtle_vel.publish(msg)
++
++        rate.sleep()
+--- /dev/null
++++ ros-noetic-turtle-tf-0.2.3/nodes/turtle_tf_message_broadcaster.py
+@@ -0,0 +1,70 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of the Willow Garage nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#!/usr/bin/env python
++
++import rospy
++
++import turtlesim.msg
++import geometry_msgs.msg
++import turtlesim.srv
++from geometry_msgs.msg import PointStamped, Point
++from std_msgs.msg import Header
++
++
++class PointPublisher:
++    def handle_turtle_pose(self, msg, turtlename):
++        self.pub.publish(PointStamped(Header(0, rospy.rostime.get_rostime(), "/world"), Point(msg.x, msg.y, 0)))
++
++    def __init__(self):
++        self.turtlename = "turtle3"  # rospy.get_param('~turtle')
++        self.sub = rospy.Subscriber('/%s/pose' % self.turtlename,
++                                    turtlesim.msg.Pose,
++                                    self.handle_turtle_pose,
++                                    self.turtlename)
++        self.pub = rospy.Publisher('turtle_point_stamped', PointStamped, queue_size=1)
++
++if __name__ == '__main__':
++    rospy.init_node('turtle_tf_msg_broadcaster')
++    rospy.wait_for_service('spawn')
++    spawner = rospy.ServiceProxy('spawn', turtlesim.srv.Spawn)
++    spawner(4, 2, 0, 'turtle3')
++
++    pp = PointPublisher()
++
++    pub = rospy.Publisher("turtle3/cmd_vel", geometry_msgs.msg.Twist, queue_size=1)
++    while not rospy.is_shutdown():
++        msg = geometry_msgs.msg.Twist()
++        msg.linear.x = 1
++        msg.angular.z = 1
++        pub.publish(msg)
++        rospy.sleep(rospy.Duration(0.1))
+--- /dev/null
++++ ros-noetic-turtle-tf-0.2.3/package.xml
+@@ -0,0 +1,33 @@
++<package>
++  <name>turtle_tf</name>
++  <version>0.2.3</version>
++  <description>
++     turtle_tf demonstrates how to write a tf broadcaster and listener with the turtlesim. The tutle_tf_listener commands turtle2 to follow turtle1 around as you drive turtle1 using the keyboard.
++  </description>
++  <maintainer email="william@osrfoundation.org">William Woodall</maintainer>
++  <license>BSD</license>
++
++  <url type="website">http://ros.org/wiki/turtle_tf</url>
++  <url type="repository">https://github.com/ros/geometry_tutorials</url>
++  <url type="bugtracker">https://github.com/ros/geometry_tutorials/issues</url>
++
++  <author>James Bowman</author>
++  <author email="isaito@willowgarage.com">Isaac Saito</author>
++
++  <buildtool_depend>catkin</buildtool_depend>
++
++  <build_depend>geometry_msgs</build_depend>
++  <build_depend>roscpp</build_depend>
++  <build_depend>rospy</build_depend>
++  <build_depend>std_msgs</build_depend>
++  <build_depend>tf</build_depend>
++  <build_depend>turtlesim</build_depend>
++
++  <run_depend>geometry_msgs</run_depend>
++  <run_depend>roscpp</run_depend>
++  <run_depend>rospy</run_depend>
++  <run_depend>std_msgs</run_depend>
++  <run_depend>tf</run_depend>
++  <run_depend>turtlesim</run_depend>
++
++</package>
+\ No newline at end of file
+--- /dev/null
++++ ros-noetic-turtle-tf-0.2.3/rviz/turtle_rviz.rviz
+@@ -0,0 +1,117 @@
++Panels:
++  - Class: rviz/Displays
++    Help Height: 78
++    Name: Displays
++    Property Tree Widget:
++      Expanded:
++        - /Global Options1
++        - /TF1/Frames1
++      Splitter Ratio: 0.5
++    Tree Height: 479
++  - Class: rviz/Selection
++    Name: Selection
++  - Class: rviz/Tool Properties
++    Expanded:
++      - /2D Pose Estimate1
++      - /2D Nav Goal1
++      - /Publish Point1
++    Name: Tool Properties
++    Splitter Ratio: 0.588679
++  - Class: rviz/Views
++    Expanded:
++      - /Current View1
++    Name: Views
++    Splitter Ratio: 0.5
++  - Class: rviz/Time
++    Experimental: false
++    Name: Time
++    SyncMode: 0
++    SyncSource: ""
++Visualization Manager:
++  Class: ""
++  Displays:
++    - Alpha: 0.5
++      Cell Size: 1
++      Class: rviz/Grid
++      Color: 160; 160; 164
++      Enabled: true
++      Line Style:
++        Line Width: 0.03
++        Value: Lines
++      Name: Grid
++      Normal Cell Count: 0
++      Offset:
++        X: 0
++        Y: 0
++        Z: 0
++      Plane: XY
++      Plane Cell Count: 10
++      Reference Frame: <Fixed Frame>
++      Value: true
++    - Class: rviz/TF
++      Enabled: true
++      Frame Timeout: 15
++      Frames:
++        All Enabled: false
++      Marker Scale: 1
++      Name: TF
++      Show Arrows: false
++      Show Axes: true
++      Show Names: false
++      Tree:
++        {}
++      Update Interval: 0
++      Value: true
++  Enabled: true
++  Global Options:
++    Background Color: 48; 48; 48
++    Fixed Frame: /world
++  Name: root
++  Tools:
++    - Class: rviz/Interact
++      Hide Inactive Objects: true
++    - Class: rviz/MoveCamera
++    - Class: rviz/Select
++    - Class: rviz/FocusCamera
++    - Class: rviz/Measure
++    - Class: rviz/SetInitialPose
++      Topic: /initialpose
++    - Class: rviz/SetGoal
++      Topic: /move_base_simple/goal
++    - Class: rviz/PublishPoint
++      Single click: true
++      Topic: /clicked_point
++  Value: true
++  Views:
++    Current:
++      Class: rviz/Orbit
++      Distance: 11.8991
++      Focal Point:
++        X: 0
++        Y: 0
++        Z: 0
++      Name: Current View
++      Near Clip Distance: 0.01
++      Pitch: 0.454796
++      Target Frame: <Fixed Frame>
++      Value: Orbit (rviz)
++      Yaw: 3.5554
++    Saved: ~
++Window Geometry:
++  Displays:
++    collapsed: false
++  Height: 756
++  Hide Left Dock: false
++  Hide Right Dock: false
++  QMainWindow State: 000000ff00000000fd00000004000000000000013c0000026dfc0200000008fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005600fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000002540000011a00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000002c0000026d000000dc00fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261000000010000010f0000026dfc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073010000002c0000026d000000a500fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004fc0000003efc0100000002fb0000000800540069006d00650100000000000004fc0000020b00fffffffb0000000800540069006d00650100000000000004500000000000000000000002af0000026d00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
++  Selection:
++    collapsed: false
++  Time:
++    collapsed: false
++  Tool Properties:
++    collapsed: false
++  Views:
++    collapsed: false
++  Width: 1276
++  X: 4
++  Y: 22
+--- /dev/null
++++ ros-noetic-turtle-tf-0.2.3/rviz/turtle_rviz_groovy.rviz
+@@ -0,0 +1,112 @@
++Panels:
++  - Class: rviz/Displays
++    Help Height: 78
++    Name: Displays
++    Property Tree Widget:
++      Expanded:
++        - /Global Options1
++        - /TF1/Frames1
++        - /TF1/Tree1
++      Splitter Ratio: 0.5
++    Tree Height: 542
++  - Class: rviz/Selection
++    Name: Selection
++  - Class: rviz/Tool Properties
++    Expanded:
++      - /2D Pose Estimate1
++      - /2D Nav Goal1
++    Name: Tool Properties
++    Splitter Ratio: 0.588679
++  - Class: rviz/Views
++    Expanded:
++      - /Current View1
++    Name: Views
++    Splitter Ratio: 0.5
++  - Class: rviz/Time
++    Experimental: false
++    Name: Time
++    SyncMode: 0
++    SyncSource: ""
++Visualization Manager:
++  Class: ""
++  Displays:
++    - Alpha: 0.5
++      Cell Size: 1
++      Class: rviz/Grid
++      Color: 160; 160; 164
++      Enabled: true
++      Line Style:
++        Line Width: 0.03
++        Value: Lines
++      Name: Grid
++      Normal Cell Count: 0
++      Offset:
++        X: 0
++        Y: 0
++        Z: 0
++      Plane: XY
++      Plane Cell Count: 10
++      Reference Frame: <Fixed Frame>
++      Value: true
++    - Class: rviz/TF
++      Enabled: true
++      Frame Timeout: 15
++      Frames:
++        All Enabled: true
++      Marker Scale: 1
++      Name: TF
++      Show Arrows: true
++      Show Axes: true
++      Show Names: true
++      Tree:
++        {}
++      Update Interval: 0
++      Value: true
++  Enabled: true
++  Global Options:
++    Background Color: 48; 48; 48
++    Fixed Frame: /world
++  Name: root
++  Tools:
++    - Class: rviz/MoveCamera
++    - Class: rviz/Interact
++      Hide Inactive Objects: true
++    - Class: rviz/Select
++    - Class: rviz/SetInitialPose
++      Topic: /initialpose
++    - Class: rviz/SetGoal
++      Topic: /move_base_simple/goal
++  Value: true
++  Views:
++    Current:
++      Class: rviz/Orbit
++      Distance: 25.6515
++      Focal Point:
++        X: 0
++        Y: 0
++        Z: 0
++      Name: Current View
++      Near Clip Distance: 0.01
++      Pitch: 0.785398
++      Target Frame: <Fixed Frame>
++      Value: Orbit (rviz)
++      Yaw: 0.785398
++    Saved: ~
++Window Geometry:
++  Displays:
++    collapsed: false
++  Height: 756
++  Hide Left Dock: false
++  Hide Right Dock: false
++  QMainWindow State: 000000ff00000000fd00000004000000000000013c000002acfc0200000005fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005600fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000002c000002ac000000dc00ffffff000000010000010f000002acfc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073010000002c000002ac000000a500fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004a00000003efc0100000002fb0000000800540069006d00650000000000000004a00000020b00fffffffb0000000800540069006d00650100000000000004500000000000000000000002af000002ac00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
++  Selection:
++    collapsed: false
++  Time:
++    collapsed: false
++  Tool Properties:
++    collapsed: false
++  Views:
++    collapsed: false
++  Width: 1276
++  X: 7
++  Y: 22
+--- /dev/null
++++ ros-noetic-turtle-tf-0.2.3/src/turtle_tf_broadcaster.cpp
+@@ -0,0 +1,27 @@
++#include <ros/ros.h>
++#include <tf/transform_broadcaster.h>
++#include <turtlesim/Pose.h>
++
++std::string turtle_name;
++
++void poseCallback(const turtlesim::PoseConstPtr& msg){
++  static tf::TransformBroadcaster br;
++  tf::Transform transform;
++  transform.setOrigin( tf::Vector3(msg->x, msg->y, 0.0) );
++  tf::Quaternion q;
++  q.setRPY(0, 0, msg->theta);
++  transform.setRotation(q);
++  br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "world", turtle_name));
++}
++
++int main(int argc, char** argv){
++  ros::init(argc, argv, "my_tf_broadcaster");
++  if (argc != 2){ROS_ERROR("need turtle name as argument"); return -1;};
++  turtle_name = argv[1];
++
++  ros::NodeHandle node;
++  ros::Subscriber sub = node.subscribe(turtle_name+"/pose", 10, &poseCallback);
++
++  ros::spin();
++  return 0;
++}
+--- /dev/null
++++ ros-noetic-turtle-tf-0.2.3/src/turtle_tf_listener.cpp
+@@ -0,0 +1,45 @@
++#include <ros/ros.h>
++#include <tf/transform_listener.h>
++#include <geometry_msgs/Twist.h>
++#include <turtlesim/Spawn.h>
++
++int main(int argc, char** argv){
++  ros::init(argc, argv, "my_tf_listener");
++
++  ros::NodeHandle node;
++
++  ros::service::waitForService("spawn");
++  ros::ServiceClient add_turtle =
++    node.serviceClient<turtlesim::Spawn>("spawn");
++  turtlesim::Spawn srv;
++  add_turtle.call(srv);
++
++  ros::Publisher turtle_vel =
++    node.advertise<geometry_msgs::Twist>("turtle2/cmd_vel", 10);
++
++  tf::TransformListener listener;
++
++  ros::Rate rate(10.0);
++  while (node.ok()){
++    tf::StampedTransform transform;
++    try{
++      listener.lookupTransform("/turtle2", "/turtle1",
++                               ros::Time(0), transform);
++    }
++    catch (tf::TransformException &ex) {
++      ROS_ERROR("%s",ex.what());
++      ros::Duration(1.0).sleep();
++      continue;
++    }
++
++    geometry_msgs::Twist vel_msg;
++    vel_msg.angular.z = 4.0 * atan2(transform.getOrigin().y(),
++                                    transform.getOrigin().x());
++    vel_msg.linear.x = 0.5 * sqrt(pow(transform.getOrigin().x(), 2) +
++                                  pow(transform.getOrigin().y(), 2));
++    turtle_vel.publish(vel_msg);
++
++    rate.sleep();
++  }
++  return 0;
++};
+--- /dev/null
++++ ros-noetic-turtle-tf-0.2.3/src/turtle_tf_listener_debug.cpp
+@@ -0,0 +1,45 @@
++#include <ros/ros.h>
++#include <tf/transform_listener.h>
++#include <geometry_msgs/Twist.h>
++#include <turtlesim/Spawn.h>
++
++int main(int argc, char** argv){
++  ros::init(argc, argv, "my_tf_listener");
++
++  ros::NodeHandle node;
++
++  ros::service::waitForService("spawn");
++  ros::ServiceClient add_turtle =
++    node.serviceClient<turtlesim::Spawn>("spawn");
++  turtlesim::Spawn srv;
++  add_turtle.call(srv);
++
++  ros::Publisher turtle_vel =
++    node.advertise<geometry_msgs::Twist>("turtle2/cmd_vel", 10);
++
++  tf::TransformListener listener;
++
++  ros::Rate rate(10.0);
++  while (node.ok()){
++    tf::StampedTransform transform;
++    try{
++      listener.lookupTransform("/turtle3", "/turtle1",
++                               ros::Time::now(), transform);
++    }
++    catch (tf::TransformException &ex) {
++      ROS_ERROR("%s",ex.what());
++      ros::Duration(1.0).sleep();
++      continue;
++    }
++
++    geometry_msgs::Twist vel_msg;
++    vel_msg.angular.z = 4.0 * atan2(transform.getOrigin().y(),
++                                    transform.getOrigin().x());
++    vel_msg.linear.x = 0.5 * sqrt(pow(transform.getOrigin().x(), 2) +
++                                  pow(transform.getOrigin().y(), 2));
++    turtle_vel.publish(vel_msg);
++
++    rate.sleep();
++  }
++  return 0;
++};
+--- /dev/null
++++ ros-noetic-turtle-tf-0.2.3/src/turtle_tf_message_filter.cpp
+@@ -0,0 +1,50 @@
++#include "ros/ros.h"
++#include "tf/transform_listener.h"
++#include "tf/message_filter.h"
++#include "message_filters/subscriber.h"
++
++class PoseDrawer
++{
++public:
++  PoseDrawer() : tf_(),  target_frame_("turtle1")
++  {
++    point_sub_.subscribe(n_, "turtle_point_stamped", 10);
++    tf_filter_ = new tf::MessageFilter<geometry_msgs::PointStamped>(point_sub_, tf_, target_frame_, 10);
++    tf_filter_->registerCallback( boost::bind(&PoseDrawer::msgCallback, this, _1) );
++  } ;
++
++private:
++  message_filters::Subscriber<geometry_msgs::PointStamped> point_sub_;
++  tf::TransformListener tf_;
++  tf::MessageFilter<geometry_msgs::PointStamped> * tf_filter_;
++  ros::NodeHandle n_;
++  std::string target_frame_;
++
++  //  Callback to register with tf::MessageFilter to be called when transforms are available
++  void msgCallback(const boost::shared_ptr<const geometry_msgs::PointStamped>& point_ptr) 
++  {
++    geometry_msgs::PointStamped point_out;
++    try 
++    {
++      tf_.transformPoint(target_frame_, *point_ptr, point_out);
++      
++      printf("point of turtle 3 in frame of turtle 1 Position(x:%f y:%f z:%f)\n", 
++             point_out.point.x,
++             point_out.point.y,
++             point_out.point.z);
++    }
++    catch (tf::TransformException &ex) 
++    {
++      printf ("Failure %s\n", ex.what()); //Print exception which was caught
++    }
++  };
++
++};
++
++
++int main(int argc, char ** argv)
++{
++  ros::init(argc, argv, "pose_drawer"); //Init ROS
++  PoseDrawer pd; //Construct class
++  ros::spin(); // Run until interupted 
++};
+\ No newline at end of file

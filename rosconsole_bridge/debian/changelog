@@ -1,0 +1,167 @@
+ros-noetic-rosconsole-bridge (0.5.4-0jammy) jammy; urgency=high
+
+  * Bump CMake version to avoid CMP0048 warning (#18 <https://github.com/ros/rosconsole_bridge/issues/18>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Tue, 11 Feb 2020 16:00:00 -0000
+
+ros-noetic-rosconsole-bridge (0.5.3-0jammy) jammy; urgency=high
+
+  * enable Windows build (#17 <https://github.com/ros/rosconsole_bridge/issues/17>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 03 Mar 2019 16:00:00 -0000
+
+ros-noetic-rosconsole-bridge (0.5.2-0jammy) jammy; urgency=high
+
+  * fix static destruction ordering issue on macOS (#16 <https://github.com/ros/rosconsole_bridge/issues/16>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 02 Aug 2018 16:00:00 -0000
+
+ros-noetic-rosconsole-bridge (0.5.1-0jammy) jammy; urgency=high
+
+  * fix use of deprecated logging functions (#15 <https://github.com/ros/rosconsole_bridge/issues/15>, regression of 0.5.0)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sat, 04 Nov 2017 16:00:00 -0000
+
+ros-noetic-rosconsole-bridge (0.5.0-0jammy) jammy; urgency=high
+
+  * replace usage of deprecated logging functions (#14 <https://github.com/ros/rosconsole_bridge/issues/14>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Tue, 24 Oct 2017 16:00:00 -0000
+
+ros-noetic-rosconsole-bridge (0.4.3-0jammy) jammy; urgency=high
+
+  * use catkin variables for install dirs (#9 <https://github.com/ros/rosconsole_bridge/issues/9>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 10 Mar 2016 16:00:00 -0000
+
+ros-noetic-rosconsole-bridge (0.4.2-0jammy) jammy; urgency=high
+
+  * update maintainers
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 17 Jul 2014 16:00:00 -0000
+
+ros-noetic-rosconsole-bridge (0.4.1-0jammy) jammy; urgency=high
+
+  * update find_package for console bridge to reflect 3rdparty status (#8 <https://github.com/ros/rosconsole_bridge/issues/8>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Tue, 24 Jun 2014 16:00:00 -0000
+
+ros-noetic-rosconsole-bridge (0.4.0-0jammy) jammy; urgency=high
+
+  * rename variables within rosconsole macros (ros/ros_comm#442 <https://github.com/ros/ros_comm/issues/442>)
+  * convert to use console bridge from upstream debian package (ros/rosdistro#4633 <https://github.com/ros/rosdistro/issues/4633>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Mon, 23 Jun 2014 16:00:00 -0000
+
+ros-noetic-rosconsole-bridge (0.3.4-0jammy) jammy; urgency=high
+
+  * Allows non-ros components to utilize the prefix functionality of log4j
+  * Contributors: Dave Coleman, Ioan A Sucan
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Fri, 14 Feb 2014 16:00:00 -0000
+
+ros-noetic-rosconsole-bridge (0.3.3-0jammy) jammy; urgency=high
+
+  * fixing catkin as a buildtool dependency
+  * Contributors: Dirk Thomas, Tully Foote
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Tue, 20 Aug 2013 16:00:00 -0000
+
+ros-noetic-rosconsole-bridge (0.3.2-0jammy) jammy; urgency=high
+
+  * changes due to renames in console_bridge
+  * Contributors: Ioan Sucan
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 11 Apr 2013 16:00:00 -0000
+
+ros-noetic-rosconsole-bridge (0.3.1-0jammy) jammy; urgency=high
+
+  * fix deps
+  * update e-mail address
+  * Contributors: Ioan Sucan
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Wed, 13 Mar 2013 13:24:00 -0000
+
+ros-noetic-rosconsole-bridge (0.3.0-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Wed, 13 Mar 2013 11:39:00 -0000
+
+ros-noetic-rosconsole-bridge (0.2.7-0jammy) jammy; urgency=high
+
+  * changes due to renames in console_bridge
+  * Create README.md
+  * Updated package xml to be more compliant to spec as well as adding maintainer
+  * Contributors: Ioan Sucan, Mirza Shah, isucan
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Tue, 11 Jun 2013 16:00:00 -0000
+
+ros-noetic-rosconsole-bridge (0.2.6-0jammy) jammy; urgency=high
+
+  * update log level
+  * Fixing style issues in CMakeLists.txt
+  * Contributors: Ioan Sucan, William Woodall
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 09 Dec 2012 16:00:00 -0000
+
+ros-noetic-rosconsole-bridge (0.2.5-0jammy) jammy; urgency=high
+
+  * Update cmake to pass along console_bridge
+    Also changed it to depend on console_bridge
+    like a catkin dependency.
+  * Added tag 0.2.4 for changeset e9f39dd361bf
+  * Contributors: Ioan Sucan, William Woodall, isucan
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Tue, 04 Dec 2012 16:00:00 -0000
+
+ros-noetic-rosconsole-bridge (0.2.4-0jammy) jammy; urgency=high
+
+  * updates to package.xml
+  * Added tag 0.2.3 for changeset 63015a123bb7
+  * Contributors: Ioan Sucan, Tully Foote
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Wed, 17 Oct 2012 16:00:00 -0000
+
+ros-noetic-rosconsole-bridge (0.2.3-0jammy) jammy; urgency=high
+
+  * removing outdated install rule
+  * Added tag 0.2.2 for changeset 3fb270551aee
+  * Contributors: Tully Foote
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sat, 06 Oct 2012 15:24:00 -0000
+
+ros-noetic-rosconsole-bridge (0.2.2-0jammy) jammy; urgency=high
+
+  * fixing depend tags
+  * Added tag 0.2.1 for changeset d4cfe2aea73d
+  * Contributors: Tully Foote
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sat, 06 Oct 2012 10:49:00 -0000
+
+ros-noetic-rosconsole-bridge (0.2.1-0jammy) jammy; urgency=high
+
+  * converting to package.xml from stack.xml, and dropping manifest
+  * Added tag 0.2.0 for changeset 25da297e8ddb
+  * Contributors: Ioan Sucan, Tully Foote
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sat, 06 Oct 2012 08:59:00 -0000
+
+ros-noetic-rosconsole-bridge (0.2.0-0jammy) jammy; urgency=high
+
+  * update stack version
+  * patches for groovy
+  * Added tag fuerte for changeset f05a07a4dc8c
+  * Added tag 0.1.0 for changeset 119bd5db978d
+  * Contributors: Ioan Sucan
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sat, 01 Sep 2012 16:00:00 -0000
+
+ros-noetic-rosconsole-bridge (0.1.0-0jammy) jammy; urgency=high
+
+  * first commit
+  * Contributors: Ioan Sucan
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Mon, 02 Jul 2012 03:15:00 -0000
+
+

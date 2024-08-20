@@ -1,0 +1,3207 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-rostest (1.16.0-0jammy) jammy; urgency=high
+Author: Michael Carroll <michael@openrobotics.org>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/CHANGELOG.rst
+@@ -0,0 +1,271 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package rostest
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++1.16.0 (2023-02-15)
++-------------------
++
++1.15.15 (2022-11-23)
++--------------------
++* Move @jacobperron from maintainer to author (`#2302 <https://github.com/ros/ros_comm/issues/2302>`_)
++* Contributors: Shane Loretz
++
++1.15.14 (2022-01-06)
++--------------------
++
++1.15.13 (2021-09-22)
++--------------------
++
++1.15.12 (2021-09-21)
++--------------------
++
++1.15.11 (2021-04-06)
++--------------------
++
++1.15.10 (2021-03-18)
++--------------------
++
++1.15.9 (2020-10-16)
++-------------------
++* Fix incorrect test expecation (`#2054 <https://github.com/ros/ros_comm/issues/2054>`_)
++* Update maintainers (`#2075 <https://github.com/ros/ros_comm/issues/2075>`_)
++* Fix spelling (`#2066 <https://github.com/ros/ros_comm/issues/2066>`_)
++* Install advertisetest (`#2046 <https://github.com/ros/ros_comm/issues/2046>`_)
++* Contributors: Levko Ivanchuk, Shane Loretz, beetleskin, tomoya
++
++1.15.8 (2020-07-23)
++-------------------
++* remove dependency on rostopic from rostest package (`#2002 <https://github.com/ros/ros_comm/issues/2002>`_)
++* fix missing reload() function in Python 3 (`#1968 <https://github.com/ros/ros_comm/issues/1968>`_)
++
++1.15.7 (2020-05-28)
++-------------------
++
++1.15.6 (2020-05-21)
++-------------------
++
++1.15.5 (2020-05-15)
++-------------------
++
++1.15.4 (2020-03-19)
++-------------------
++* restrict boost dependencies to components used (`#1871 <https://github.com/ros/ros_comm/issues/1871>`_)
++
++1.15.3 (2020-02-28)
++-------------------
++
++1.15.2 (2020-02-25)
++-------------------
++
++1.15.1 (2020-02-24)
++-------------------
++* increase time limit of advertisetest/publishtest.test to reduce flakyness (`#1897 <https://github.com/ros/ros_comm/issues/1897>`_)
++* use setuptools instead of distutils (`#1870 <https://github.com/ros/ros_comm/issues/1870>`_)
++
++1.15.0 (2020-02-21)
++-------------------
++* wrap rostest call to add `python` pointing to sys.executable in PATH (`#1879 <https://github.com/ros/ros_comm/issues/1879>`_)
++
++1.14.4 (2020-02-20)
++-------------------
++* bump CMake minimum version to avoid CMP0048 warning (`#1869 <https://github.com/ros/ros_comm/issues/1869>`_)
++* more Python 3 compatibility (`#1795 <https://github.com/ros/ros_comm/issues/1795>`_)
++* rostest: add advertisetest (`#1761 <https://github.com/ros/ros_comm/issues/1761>`_)
++* fix flaky hztests (`#1661 <https://github.com/ros/ros_comm/issues/1661>`_)
++* use AnyMsg in publishtest (`#1659 <https://github.com/ros/ros_comm/issues/1659>`_)
++* fix various test problems (`#1601 <https://github.com/ros/ros_comm/issues/1601>`_)
++* invoke rostest from CMake with the PYTHON_EXECUTABLE (`#1583 <https://github.com/ros/ros_comm/issues/1583>`_)
++
++1.14.3 (2018-08-06)
++-------------------
++
++1.14.2 (2018-06-06)
++-------------------
++
++1.14.1 (2018-05-21)
++-------------------
++
++1.14.0 (2018-05-21)
++-------------------
++
++1.13.6 (2018-02-05)
++-------------------
++* add_rostest_gmock function (`#1303 <https://github.com/ros/ros_comm/issues/1303>`_)
++
++1.13.5 (2017-11-09)
++-------------------
++
++1.13.4 (2017-11-02)
++-------------------
++
++1.13.3 (2017-10-25)
++-------------------
++
++1.13.2 (2017-08-15)
++-------------------
++
++1.13.1 (2017-07-27)
++-------------------
++* check clock publication neatly in publishtest (`#973 <https://github.com/ros/ros_comm/issues/973>`_)
++
++1.13.0 (2017-02-22)
++-------------------
++
++1.12.7 (2017-02-17)
++-------------------
++
++1.12.6 (2016-10-26)
++-------------------
++
++1.12.5 (2016-09-30)
++-------------------
++
++1.12.4 (2016-09-19)
++-------------------
++* fix test type handling (`#722 <https://github.com/ros/ros_comm/issues/722>`_)
++
++1.12.3 (2016-09-17)
++-------------------
++* add test node if topic message is published at least once (`#863 <https://github.com/ros/ros_comm/issues/863>`_)
++* add_rostest_gtest does now add the created gtest-target as a dependeny to the created rostest (`#830 <https://github.com/ros/ros_comm/pull/830>`_)
++
++1.12.2 (2016-06-03)
++-------------------
++
++1.12.1 (2016-04-18)
++-------------------
++* fix passing multiple args to add_rostest (fix `#790 <https://github.com/ros/ros_comm/issues/790>`_)
++
++1.12.0 (2016-03-18)
++-------------------
++
++1.11.18 (2016-03-17)
++--------------------
++
++1.11.17 (2016-03-11)
++--------------------
++* rostest.rosrun now generates coverage reports (`#558 <https://github.com/ros/ros_comm/issues/558>`_)
++* rostest can load tests from a dotted name (`#722 <https://github.com/ros/ros_comm/issues/722>`_)
++* include GTEST_INCLUDE_DIRS so that the proper gtest headers are found (`#727 <https://github.com/ros/ros_comm/issues/727>`_)
++* rostest: move replacement of slashes after ARGS handling (`#721 <https://github.com/ros/ros_comm/pull/721>`_)
++
++1.11.16 (2015-11-09)
++--------------------
++
++1.11.15 (2015-10-13)
++--------------------
++
++1.11.14 (2015-09-19)
++--------------------
++* add --local option to rostest (`#137 <https://github.com/ros/ros_comm/issues/137>`_)
++* fix location of rosunit result files generated by rostests (`#668 <https://github.com/ros/ros_comm/pull/668>`_)
++
++1.11.13 (2015-04-28)
++--------------------
++* fix location of rostest result files (`#611 <https://github.com/ros/ros_comm/issues/611>`_)
++
++1.11.12 (2015-04-27)
++--------------------
++* fix location of rostest result files (`#82 <https://github.com/ros/ros/pull/82>`_)
++
++1.11.11 (2015-04-16)
++--------------------
++* add DEPENDENCIES option to CMake function add_rostest (`#546 <https://github.com/ros/ros_comm/issues/546>`_)
++
++1.11.10 (2014-12-22)
++--------------------
++
++1.11.9 (2014-08-18)
++-------------------
++
++1.11.8 (2014-08-04)
++-------------------
++
++1.11.7 (2014-07-18)
++-------------------
++* make rostest use a random master port and run rostests in parallel (`#468 <https://github.com/ros/ros_comm/issues/468>`_)
++
++1.11.6 (2014-07-10)
++-------------------
++* resolving naming conflicts when multiple test are added with arguments (`#462 <https://github.com/ros/ros_comm/issues/462>`_)
++
++1.11.5 (2014-06-24)
++-------------------
++
++1.11.4 (2014-06-16)
++-------------------
++* Python 3 compatibility (`#426 <https://github.com/ros/ros_comm/issues/426>`_)
++
++1.11.3 (2014-05-21)
++-------------------
++
++1.11.2 (2014-05-08)
++-------------------
++
++1.11.1 (2014-05-07)
++-------------------
++* add architecture_independent flag in package.xml (`#391 <https://github.com/ros/ros_comm/issues/391>`_)
++
++1.11.0 (2014-03-04)
++-------------------
++* use catkin_install_python() to install Python scripts (`#361 <https://github.com/ros/ros_comm/issues/361>`_)
++
++1.10.0 (2014-02-11)
++-------------------
++* modify rostest to wait when other instances are running
++
++1.9.54 (2014-01-27)
++-------------------
++
++1.9.53 (2014-01-14)
++-------------------
++
++1.9.52 (2014-01-08)
++-------------------
++
++1.9.51 (2014-01-07)
++-------------------
++* add missing boost component
++
++1.9.50 (2013-10-04)
++-------------------
++* fix result file naming for wet rostests when being built in-source (`ros/catkin#512 <https://github.com/ros/catkin/issues/512>`_)
++
++1.9.49 (2013-09-16)
++-------------------
++
++1.9.48 (2013-08-21)
++-------------------
++* add convenience function for rostest with gtests (`#258 <https://github.com/ros/ros_comm/issues/258>`_)
++* make rostest relocatable (`ros/catkin#490 <https://github.com/ros/catkin/issues/490>`_)
++
++1.9.47 (2013-07-03)
++-------------------
++* update 'rostest' to support CATKIN_ENABLE_TESTING
++* check for CATKIN_ENABLE_TESTING to enable configure without tests
++
++1.9.46 (2013-06-18)
++-------------------
++
++1.9.45 (2013-06-06)
++-------------------
++* allow passing arguments to add_rostest(ARGS ...) (`#232 <https://github.com/ros/ros_comm/issues/232>`_)
++
++1.9.44 (2013-03-21)
++-------------------
++
++1.9.43 (2013-03-13)
++-------------------
++
++1.9.42 (2013-03-08)
++-------------------
++
++1.9.41 (2013-01-24)
++-------------------
++
++1.9.40 (2013-01-13)
++-------------------
++
++1.9.39 (2012-12-29)
++-------------------
++* first public release for Groovy
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/CMakeLists.txt
+@@ -0,0 +1,37 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(rostest)
++
++find_package(catkin COMPONENTS rosunit)
++find_package(Boost COMPONENTS thread)
++
++include_directories(include ${Boost_INCLUDE_DIRS})
++
++catkin_package(DEPENDS Boost
++  INCLUDE_DIRS include
++  CFG_EXTRAS ${PROJECT_NAME}-extras.cmake
++  )
++catkin_python_setup()
++
++catkin_install_python(
++  PROGRAMS nodes/advertisetest nodes/hztest nodes/paramtest nodes/publishtest
++  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/nodes)
++install(DIRECTORY include/${PROJECT_NAME}/
++  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
++  FILES_MATCHING PATTERN "*.h")
++
++if(CATKIN_ENABLE_TESTING)
++  find_package(catkin COMPONENTS rostest)
++
++  catkin_add_gtest(test_permuter test/test_permuter.cpp)
++  if(TARGET test_permuter)
++    target_link_libraries(test_permuter ${Boost_LIBRARIES})
++  endif()
++
++  add_rostest(test/hztest0.test)
++  add_rostest(test/hztest.test)
++  add_rostest(test/publishtest.test)
++  add_rostest(test/clean_master.test)
++  add_rostest(test/distro_version.test)
++  add_rostest(test/param.test)
++  add_rostest(test/advertisetest.test)
++endif()
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/cmake/rostest-extras.cmake.em
+@@ -0,0 +1,140 @@
++find_package(catkin REQUIRED)
++
++_generate_function_if_testing_is_disabled("add_rostest")
++
++include(CMakeParseArguments)
++
++function(add_rostest file)
++  _warn_if_skip_testing("add_rostest")
++
++@[if DEVELSPACE]@
++  # bin in develspace
++  set(ROSTEST_EXE "${PYTHON_EXECUTABLE} @(PROJECT_SOURCE_DIR)/scripts/rostest")
++@[else]@
++  # bin in installspace
++  set(ROSTEST_EXE "${PYTHON_EXECUTABLE} ${rostest_DIR}/../../../@(CATKIN_GLOBAL_BIN_DESTINATION)/rostest")
++@[end if]@
++
++  cmake_parse_arguments(_rostest "" "WORKING_DIRECTORY" "ARGS;DEPENDENCIES" ${ARGN})
++
++  # Check that the file exists, #1621
++  set(_file_name _file_name-NOTFOUND)
++  if(IS_ABSOLUTE ${file})
++    set(_file_name ${file})
++  else()
++    find_file(_file_name ${file}
++              PATHS ${CMAKE_CURRENT_SOURCE_DIR}
++              NO_DEFAULT_PATH
++              NO_CMAKE_FIND_ROOT_PATH)  # for cross-compilation.  thanks jeremy.
++    if(NOT _file_name)
++      message(FATAL_ERROR "Can't find rostest file \"${file}\"")
++    endif()
++  endif()
++
++  # strip PROJECT_SOURCE_DIR and PROJECT_BINARY_DIR from absolute filename to get unique test name (as rostest does it internally)
++  set(_testname ${_file_name})
++  rostest__strip_prefix(_testname "${PROJECT_SOURCE_DIR}/")
++  rostest__strip_prefix(_testname "${PROJECT_BINARY_DIR}/")
++
++  # to support registering the same test with different ARGS
++  # append the args to the test name
++  if(_rostest_ARGS)
++    get_filename_component(_ext ${_testname} EXT)
++    get_filename_component(_testname ${_testname} NAME_WE)
++    foreach(arg ${_rostest_ARGS})
++      string(REPLACE ":=" "_" arg_string "${arg}")
++      set(_testname "${_testname}__${arg_string}")
++    endforeach()
++    set(_testname "${_testname}${_ext}")
++  endif()
++
++  string(REPLACE "/" "_" _testname ${_testname})
++
++  get_filename_component(_output_name ${_testname} NAME_WE)
++  set(_output_name "${_output_name}.xml")
++  string(REPLACE ";" " " _rostest_ARGS "${_rostest_ARGS}")
++  set(cmd "${ROSTEST_EXE} --pkgdir=${PROJECT_SOURCE_DIR} --package=${PROJECT_NAME} --results-filename ${_output_name} --results-base-dir \"${CATKIN_TEST_RESULTS_DIR}\" ${_file_name} ${_rostest_ARGS}")
++  catkin_run_tests_target("rostest" ${_testname} "rostest-${_output_name}" COMMAND ${cmd} WORKING_DIRECTORY ${_rostest_WORKING_DIRECTORY} DEPENDENCIES ${_rostest_DEPENDENCIES})
++endfunction()
++
++# This is an internal function, use add_rostest_gtest or
++# add_rostest_gmock instead
++#
++# :param type: "gtest" or "gmock"
++# The remaining arguments are the same as for add_rostest_gtest
++# and add_rostest_gmock
++#
++function(_add_rostest_google_test type target launch_file)
++  if (NOT "${type}" STREQUAL "gtest" AND NOT "${type}" STREQUAL "gmock")
++    message(FATAL_ERROR
++      "Invalid use of _add_rostest_google_test function, "
++      "first argument must be 'gtest' or 'gmock'")
++    return()
++  endif()
++  string(TOUPPER "${type}" type_upper)
++  if("${ARGN}" STREQUAL "")
++    message(FATAL_ERROR "add_rostest_${type}() needs at least one file argument to compile a ${type_upper} executable")
++  endif()
++  if(${type_upper}_FOUND)
++    include_directories(${${type_upper}_INCLUDE_DIRS})
++    add_executable(${target} EXCLUDE_FROM_ALL ${ARGN})
++    target_link_libraries(${target} ${${type_upper}_LIBRARIES})
++    if(TARGET tests)
++      add_dependencies(tests ${target})
++    endif()
++    add_rostest(${launch_file} DEPENDENCIES ${target})
++  endif()
++endfunction()
++
++#
++# Register the launch file with add_rostest() and compile all
++# passed files into a GTest binary.
++#
++# .. note:: The function does nothing if GTest was not found.  The
++#   target is only compiled when tests are built and linked against
++#   the GTest libraries.
++#
++# :param target: target name of the GTest executable
++# :type target: string
++# :param launch_file: the relative path to the roslaunch file
++# :type launch_file: string
++# :param ARGN: the files to compile into a GTest executable
++# :type ARGN: list of files
++#
++function(add_rostest_gtest target launch_file)
++  _add_rostest_google_test("gtest" ${target} ${launch_file} ${ARGN})
++endfunction()
++
++#
++# Register the launch file with add_rostest() and compile all
++# passed files into a GMock binary.
++#
++# .. note:: The function does nothing if GMock was not found.  The
++#   target is only compiled when tests are built and linked against
++#   the GMock libraries.
++#
++# :param target: target name of the GMock executable
++# :type target: string
++# :param launch_file: the relative path to the roslaunch file
++# :type launch_file: string
++# :param ARGN: the files to compile into a GMock executable
++# :type ARGN: list of files
++#
++function(add_rostest_gmock target launch_file)
++  _add_rostest_google_test("gmock" ${target} ${launch_file} ${ARGN})
++endfunction()
++
++macro(rostest__strip_prefix var prefix)
++  string(LENGTH ${prefix} prefix_length)
++  string(LENGTH ${${var}} var_length)
++  if(${var_length} GREATER ${prefix_length})
++    string(SUBSTRING "${${var}}" 0 ${prefix_length} var_prefix)
++    if("${var_prefix}" STREQUAL "${prefix}")
++      # passing length -1 does not work for CMake < 2.8.5
++      # http://public.kitware.com/Bug/view.php?id=10740
++      string(LENGTH "${${var}}" _rest)
++      math(EXPR _rest "${_rest} - ${prefix_length}")
++      string(SUBSTRING "${${var}}" ${prefix_length} ${_rest} ${var})
++    endif()
++  endif()
++endmacro()
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/epydoc.config
+@@ -0,0 +1,7 @@
++[epydoc]
++name: rostest
++modules: rostest
++inheritance: included
++url: http://ros.org/wiki/rostest
++frames: no
++private: no
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/include/rostest/permuter.h
+@@ -0,0 +1,171 @@
++/*
++ * Copyright (c) 2009, Willow Garage, Inc.
++ * All rights reserved.
++ * 
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ * 
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ * 
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++
++/** \author Tully Foote */
++
++#ifndef ROSTEST_PERMUTER_H
++#define ROSTEST_PERMUTER_H
++
++#include <vector>
++#include "boost/thread/mutex.hpp"
++
++namespace rostest
++{
++/** \brief A base class for storing pointers to generic data types
++ */
++class PermuteOptionBase
++{
++public:
++  virtual void reset() =0;
++  virtual bool step() =0;
++  virtual ~PermuteOptionBase() {};
++};
++
++
++/**\brief A class to hold a set of option values and currently used state
++ *  This class holds 
++ */
++template<class T>
++class PermuteOption : public PermuteOptionBase
++{
++public:
++  PermuteOption(const std::vector<T>& options, T* output)
++  {
++    options_ = options;
++    output_ = output;
++    reset();
++  }
++  
++  virtual ~PermuteOption(){};
++
++  void reset(){
++    boost::mutex::scoped_lock lock(access_mutex_);
++    current_element_ = options_.begin();
++    *output_ = *current_element_;
++  };
++  
++  bool step()
++  {
++    boost::mutex::scoped_lock lock(access_mutex_);
++    current_element_++;
++    if (current_element_ == options_.end())
++      return false;
++    *output_ = *current_element_;
++    return true;
++  };
++
++private:
++  /// Local storage of the possible values
++  std::vector<T> options_;
++  /// The output variable
++  T* output_;
++  typedef typename std::vector<T>::iterator V_T_iterator;
++  /// The last updated element
++  V_T_iterator current_element_;
++
++  boost::mutex access_mutex_;
++
++};
++
++/** \brief A class to provide easy permutation of options
++ * This class provides a way to collapse independent 
++ * permutations of options into a single loop.  
++ */
++class Permuter
++{
++public:
++  /** \brief Destructor to clean up allocated data */
++  virtual ~Permuter(){ clearAll();};
++
++
++  /** \brief Add a set of values and an output to the iteration
++   * @param values The set of possible values for this output
++   * @param output The value to set at each iteration
++   */
++  template<class T>
++  void addOptionSet(const std::vector<T>& values, T* output)
++  {
++    boost::mutex::scoped_lock lock(access_mutex_);
++    options_.push_back(static_cast<PermuteOptionBase*> (new PermuteOption<T>(values, output)));
++    lock.unlock();//reset locks on its own
++    reset();
++  };
++
++
++  /** \brief Reset the internal counters */
++  void reset(){
++    boost::mutex::scoped_lock lock(access_mutex_);
++    for (unsigned int level= 0; level < options_.size(); level++)
++      options_[level]->reset();
++  };
++
++  /** \brief Iterate to the next value in the iteration
++   * Returns true unless done iterating.  
++   */
++  bool step()
++  {
++    boost::mutex::scoped_lock lock(access_mutex_);
++    // base case just iterating
++    for (unsigned int level= 0; level < options_.size(); level++)
++    {
++      if(options_[level]->step())
++      {
++        //printf("stepping level %d returning true \n", level);
++        return true;
++      }
++      else
++      {
++        //printf("reseting level %d\n", level);
++        options_[level]->reset();
++      }
++    }
++    return false;
++  };
++
++  /** \brief Clear all stored data */
++  void clearAll()
++  {
++    boost::mutex::scoped_lock lock(access_mutex_);
++    for ( unsigned int i = 0 ; i < options_.size(); i++)
++    {
++      delete options_[i];
++    }
++    options_.clear();
++  };
++
++private:
++  std::vector<PermuteOptionBase*> options_; ///< Store all the option objects
++  boost::mutex access_mutex_;
++};
++
++
++}
++
++#endif //ROSTEST_PERMUTER_H
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/nodes/advertisetest
+@@ -0,0 +1,187 @@
++#!/usr/bin/env python
++###############################################################################
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2019, Yuki Furuta
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++###############################################################################
++
++"""
++Integration test node that checks if the specified topics are advertised.
++below parameters must be set:
++
++<test name="advertisetest"
++      test-name="advertisetest"
++      pkg="rostest" type="advertisetest">
++  <rosparam>
++    topics:
++      - name: a topic name
++        timeout: timeout for the topic
++      - name: another topic name
++        timeout: timeout for the topic
++        type: std_msgs/String
++      - name: another topic name
++        timeout: timeout for the topic
++        negative: true
++    services:
++      - name: a service name
++        timeout: timeout for the service
++      - name: a service name
++        timeout: timeout for the service
++        type: std_srvs/Trigger
++      - name: another service name
++        timeout: timeout for the service
++        negative: true
++  </rosparam>
++</test>
++
++Author: Yuki Furuta <me@furushchev.ru>
++"""
++
++import sys
++import time
++import unittest
++
++import rospy
++import rosservice
++
++
++PKG = 'rostest'
++NAME = 'advertisetest'
++
++
++class AdvertiseTest(unittest.TestCase):
++    def __init__(self, *args):
++        super(self.__class__, self).__init__(*args)
++        rospy.init_node(NAME)
++        # scrape rosparam
++        self.topics = {}
++        params = rospy.get_param('~topics', [])
++        for param in params:
++            if 'name' not in param:
++                self.fail("'name' field in rosparam is required but not specified.")
++            topic = {'timeout': 10, 'type': None, 'negative': False,}
++            topic.update(param)
++            self.topics[topic['name']] = topic
++        self.services = {}
++        params = rospy.get_param('~services', [])
++        for param in params:
++            if 'name' not in param:
++                self.fail("'name' field in rosparam is required but not specified.")
++            service = {'timeout': 10, 'type': None, 'negative': False,}
++            service.update(param)
++            self.services[service['name']] = service
++        # check if there is at least one topic or one service
++        if not self.topics and not self.services:
++            self.fail('No topic or service is specified in rosparam.')
++
++    def setUp(self):
++        # warn on /use_sim_time is true
++        use_sim_time = rospy.get_param('/use_sim_time', False)
++        self.t_start = time.time()
++        while not rospy.is_shutdown() and \
++                use_sim_time and (rospy.Time.now() == rospy.Time(0)):
++            rospy.logwarn_throttle(
++                1, '/use_sim_time is specified and rostime is 0, /clock is published?')
++            if time.time() - t_start > 10:
++                self.fail('Timed out (10s) of /clock publication.')
++            # must use time.sleep because /clock isn't yet published, so rospy.sleep hangs.
++            time.sleep(0.1)
++
++    def test_advertise_topics(self):
++        """Test topics are advertised"""
++        if self.topics:
++            t_start = self.t_start
++            t_name_set = set(self.topics.keys())
++            t_timeout_max = max(t['timeout'] for t in self.topics.values())
++            finished_topics = []
++            while not rospy.is_shutdown():
++                t_now = time.time()
++                t_elapsed = t_now - t_start
++                if not t_name_set:
++                    break
++                if t_elapsed > t_timeout_max:
++                    break
++                for t_name, t_type in rospy.get_published_topics():
++                    if t_name in t_name_set:
++                        t_name_set.remove(t_name)
++                        topic = self.topics[t_name]
++                        assert t_elapsed < topic['timeout'], \
++                            'Topic [%s] is advertised before timeout [%s] secs' % (topic['name'], topic['timeout'])
++                        assert not topic['negative'], \
++                            'Topic [%s] is not advertised' % (topic['name'])
++                        if topic['type'] is not None:
++                            assert t_type == topic['type'], \
++                                'Topic type of [%s] is [%s]' % (topic['name'], topic['type'])
++                time.sleep(0.05)
++
++            for t_name in t_name_set:
++                topic = self.topics[t_name]
++                assert topic['negative'], \
++                    'Topic [%s] is not advertised' % (topic['name'])
++
++    def test_advertise_services(self):
++        """Test services are advertised"""
++        if self.services:
++            t_start = self.t_start
++            s_name_set = set(self.services.keys())
++            t_timeout_max = max(t['timeout'] for t in self.services.values())
++            finished_topics = []
++            while not rospy.is_shutdown():
++                t_now = time.time()
++                t_elapsed = t_now - t_start
++                if not s_name_set:
++                    break
++                if t_elapsed > t_timeout_max:
++                    break
++
++                for s_name in rosservice.get_service_list():
++                    if s_name in s_name_set:
++                        s_name_set.remove(s_name)
++                        service = self.services[s_name]
++                        assert t_elapsed < service['timeout'], \
++                            'Service [%s] is advertised before timeout [%s] secs' % (service['name'], service['timeout'])
++                        assert not service['negative'], \
++                            'Service [%s] is not advertised' % (service['name'])
++                        if service['type'] is not None:
++                            s_type = rosservice.get_service_type(s_name)
++                            assert s_type == service['type'], \
++                                'Service type of [%s] is [%s]' % (service['name'], service['type'])
++                time.sleep(0.05)
++
++            for s_name in s_name_set:
++                service = self.services[s_name]
++                assert service['negative'], \
++                    'Service [%s] is not advertised' % (service['name'])
++
++
++if __name__ == '__main__':
++    import rostest
++    rostest.run(PKG, NAME, AdvertiseTest, sys.argv)
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/nodes/hztest
+@@ -0,0 +1,250 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id$
++
++## Integration test node that subscribes to any topic and verifies
++## the publishing rate to be within a specified bounds. The following
++## parameters must be set:
++##
++##  * ~/hz: expected hz
++##  * ~/hzerror: errors bound for hz
++##  * ~/test_duration: time (in secs) to run test
++## 
++
++from __future__ import print_function
++
++import sys
++import threading
++import time
++import unittest
++
++import rospy
++import rostest
++
++NAME = 'hztest'
++
++from threading import Thread
++
++class HzTest(unittest.TestCase):
++    def __init__(self, *args):
++        super(HzTest, self).__init__(*args)
++        rospy.init_node(NAME)
++
++        self.lock = threading.Lock()
++        self.message_received = False
++
++    def setUp(self):
++        self.errors = []
++        # Count of all messages received
++        self.msg_count = 0
++        # Time of first message received
++        self.msg_t0 = -1.0
++        # Time of last message received
++        self.msg_tn = -1.0
++
++    ## performs two tests of a node, first with /rostime off, then with /rostime on
++    def test_hz(self):
++        # Fetch parameters
++        try:
++            # expected publishing rate
++            hz = float(rospy.get_param('~hz'))
++            # length of test
++            test_duration = float(rospy.get_param('~test_duration'))
++            # topic to test
++            topic = rospy.get_param('~topic')
++            # time to wait before
++            wait_time = rospy.get_param('~wait_time', 20.)            
++        except KeyError as e:
++            self.fail('hztest not initialized properly. Parameter [%s] not set. debug[%s] debug[%s]'%(str(e), rospy.get_caller_id(), rospy.resolve_name(e.args[0])))
++
++        # We only require hzerror if hz is non-zero
++        hzerror = 0.0
++        if hz != 0.0:
++            try:
++                # margin of error allowed
++                hzerror = float(rospy.get_param('~hzerror'))
++            except KeyError as e:
++                self.fail('hztest not initialized properly. Parameter [%s] not set. debug[%s] debug[%s]'%(str(e), rospy.get_caller_id(), rospy.resolve_name(e.args[0])))
++
++        # We optionally check each inter-message interval
++        try:
++            self.check_intervals = bool(rospy.get_param('~check_intervals'))
++        except KeyError:
++            self.check_intervals = False
++
++        # We optionally measure wall clock time
++        try:
++            self.wall_clock = bool(rospy.get_param('~wall_clock'))
++        except KeyError:
++            self.wall_clock = False
++
++        print("""Hz: %s
++Hz Error: %s
++Topic: %s
++Test Duration: %s"""%(hz, hzerror, topic, test_duration))
++        
++        self._test_hz(hz, hzerror, topic, test_duration, wait_time)        
++            
++    def _test_hz(self, hz, hzerror, topic, test_duration, wait_time): 
++        self.assert_(hz >= 0.0, "bad parameter (hz)")
++        self.assert_(hzerror >= 0.0, "bad parameter (hzerror)")
++        self.assert_(test_duration > 0.0, "bad parameter (test_duration)")
++        self.assert_(len(topic), "bad parameter (topic)")
++
++        if hz == 0:
++            self.min_rate = 0.0
++            self.max_rate = 0.0
++            self.min_interval = 0.0
++            self.max_interval = 0.0
++        else:
++            self.min_rate = hz - hzerror
++            self.max_rate = hz + hzerror
++            self.min_interval = 1.0 / self.max_rate
++            if self.min_rate <= 0.0:
++                self.max_interval = 0.0
++            else:
++                self.max_interval = 1.0 / self.min_rate
++
++        # Start actual test
++        sub = rospy.Subscriber(topic, rospy.AnyMsg, self.callback)
++        self.assert_(not self.errors, "bad initialization state (errors)")
++        
++        print("Waiting for messages")
++        # we have to wait until the first message is received before measuring the rate
++        # as time can advance too much before publisher is up
++        
++        # give the test wait_time seconds to start
++        wallclock_timeout_t = time.time() + wait_time
++        while not self.message_received and time.time() < wallclock_timeout_t:
++            time.sleep(0.1)
++        if hz > 0.:
++            self.assert_(self.message_received, "no messages before timeout")
++        else:
++            self.failIf(self.message_received, "message received")
++            
++        print("Starting rate measurement")
++        if self.wall_clock:
++            timeout_t = time.time() + test_duration
++            while time.time() < timeout_t:
++                time.sleep(0.1)
++        else:
++            timeout_t = rospy.get_time() + test_duration
++            while rospy.get_time() < timeout_t:
++                rospy.sleep(0.1)
++        print("Done waiting, validating results")
++        sub.unregister()
++
++        # Check that we got at least one message
++        if hz > 0:
++            self.assert_(self.msg_count > 0, "no messages received")
++        else:
++            self.assertEquals(0, self.msg_count)
++        # Check whether inter-message intervals were violated (if we were
++        # checking them)
++        self.assert_(not self.errors, '\n'.join(self.errors))
++
++        # If we have a non-zero rate target, make sure that we hit it on
++        # average
++        if hz > 0.0:
++          self.assert_(self.msg_t0 >= 0.0, "no first message received")
++          self.assert_(self.msg_tn >= 0.0, "no last message received")
++          dt = self.msg_tn - self.msg_t0
++          self.assert_(dt > 0.0, "only one message received")
++          rate = ( self.msg_count - 1) / dt
++          self.assert_(rate >= self.min_rate, 
++                       "average rate (%.3fHz) exceeded minimum (%.3fHz)" %
++                       (rate, self.min_rate))
++          self.assert_(rate <= self.max_rate, 
++                       "average rate (%.3fHz) exceeded maximum (%.3fHz)" %
++                       (rate, self.max_rate))
++        
++    def callback(self, msg):
++        # flag that message has been received
++        self.message_received = True         
++        try:
++            self.lock.acquire()
++
++            if self.wall_clock:
++                curr = time.time()
++            else:
++                curr_rostime = rospy.get_rostime()
++                
++                if curr_rostime.is_zero():
++                    return
++                curr = curr_rostime.to_sec()
++ 
++            if self.msg_t0 <= 0.0 or self.msg_t0 > curr:
++                self.msg_t0 = curr
++                self.msg_count = 1
++                last = 0
++            else:
++                self.msg_count += 1
++                last = self.msg_tn
++
++            self.msg_tn = curr
++
++            # If we're instructed to check each inter-message interval, do
++            # so
++            if self.check_intervals and last > 0:
++                interval = curr - last
++                if interval < self.min_interval:
++                    print("CURR", str(curr), file=sys.stderr)
++                    print("LAST", str(last), file=sys.stderr)
++                    print("msg_count", str(self.msg_count), file=sys.stderr)
++                    print("msg_tn", str(self.msg_tn), file=sys.stderr)
++                    self.errors.append(
++                        'min_interval exceeded: %s [actual] vs. %s [min]'%\
++                        (interval, self.min_interval))
++                # If max_interval is <= 0.0, then we have no max
++                elif self.max_interval > 0.0 and interval > self.max_interval:
++                    self.errors.append(
++                        'max_interval exceeded: %s [actual] vs. %s [max]'%\
++                        (interval, self.max_interval))
++
++        finally:
++            self.lock.release()
++    
++        
++if __name__ == '__main__':
++    # A dirty hack to work around an apparent race condition at startup
++    # that causes some hztests to fail.  Most evident in the tests of
++    # rosstage.
++    time.sleep(0.75)
++    try:
++        rostest.run('rostest', NAME, HzTest, sys.argv)
++    except KeyboardInterrupt:
++        pass
++    print("exiting")
++
++        
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/nodes/paramtest
+@@ -0,0 +1,110 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++# Original copied from hztest node
++# https://github.com/ros/ros_comm/blob/24e45419bdd4b0d588321e3b376650c7a51bf11c/tools/rostest/nodes/hztest
++# Integration test node that checks if a designated parameter is already
++# registered at the Parameter Server. Following parameters must be set:
++#
++#  * ~/param_name_target: expected parameter name
++#  * ~/test_duration: time (in secs) to run test
++#
++
++from __future__ import print_function
++
++import sys
++import threading
++import time
++import unittest
++
++import rospy
++import rostest
++
++CLASSNAME = 'paramtest'
++
++
++class ParamTest(unittest.TestCase):
++    def __init__(self, *args):
++        super(ParamTest, self).__init__(*args)
++        rospy.init_node(CLASSNAME)
++
++        self.lock = threading.Lock()
++        self.parameter_obtained = False
++
++    def setUp(self):
++        self.errors = []
++
++    def test_param(self):
++        # performs two tests of a node, first with /rostime off,
++        # then with /rostime on
++
++        # Fetch parameters
++        try:
++            # Getting the attributes of the test.
++            testattr_paramname_target = rospy.get_param("~param_name_target")
++            paramvalue_expected = rospy.get_param("~param_value_expected", None)  # This is the expected param value.
++            # length of test
++            testattr_duration = float(rospy.get_param("~test_duration", 5))
++            # time to wait before
++            wait_time = rospy.get_param("~wait_time", 20)
++        except KeyError as e:
++            self.fail("ParamTest not initialized properly. Parameter [%s] not set. Caller ID: [%s] Resolved name: [%s]"%(str(e), rospy.get_caller_id(), rospy.resolve_name(e.args[0])))
++        print("Parameter: %s Test Duration: %s" % (testattr_paramname_target, testattr_duration))
++        self._test_param(testattr_paramname_target, testattr_duration, wait_time, paramvalue_expected)
++
++    def _test_param(self, testattr_paramname_target, testattr_duration, wait_time, paramvalue_expected=None):
++        self.assert_(testattr_duration > 0.0, "bad parameter (test_duration)")
++        self.assert_(len(testattr_paramname_target), "bad parameter (testattr_paramname_target)")
++
++        print("Waiting for parameters")
++
++        wallclock_timeout_t = time.time() + wait_time
++        param_obtained = None
++        while param_obtained is None and time.time() < wallclock_timeout_t:
++            try:
++                param_obtained = rospy.get_param(testattr_paramname_target)
++            except KeyError as e:
++                print('Designated parameter [%s] is not registered yet, will wait. Caller ID: [%s] Resolved name: [%s]'%(testattr_paramname_target, rospy.get_caller_id(), rospy.resolve_name(e.args[0])))
++            time.sleep(0.1)
++
++        if paramvalue_expected:
++            self.assertEqual(paramvalue_expected, param_obtained)
++        else:
++            self.assertIsNotNone(param_obtained)
++
++if __name__ == '__main__':
++    try:
++        rostest.run('rostest', CLASSNAME, ParamTest, sys.argv)
++    except KeyboardInterrupt:
++        pass
++    print("{} exiting".format(CLASSNAME))
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/nodes/publishtest
+@@ -0,0 +1,147 @@
++#!/usr/bin/env python
++###############################################################################
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2016, Kentaro Wada.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++###############################################################################
++
++"""
++Integration test node that subscribes to any topic and verifies
++there is at least one message publishing of the topic.
++below parameters must be set:
++
++<test name="publishtest"
++      test-name="publishtest"
++      pkg="rostest" type="publishtest">
++  <rosparam>
++    topics:
++      - name: a topic name
++        timeout: timeout for the topic
++      - name: another topic name
++        timeout: timeout for the topic
++  </rosparam>
++</test>
++
++Author: Kentaro Wada <www.kentaro.wada@gmail.com>
++"""
++
++import sys
++import time
++import unittest
++
++import rospy
++
++
++PKG = 'rostest'
++NAME = 'publishtest'
++
++
++class PublishChecker(object):
++    def __init__(self, topic_name, timeout, negative):
++        self.topic_name = topic_name
++        self.negative = negative
++        self.deadline = rospy.Time.now() + rospy.Duration(timeout)
++        self.msg = None
++        self.sub = rospy.Subscriber(topic_name, rospy.AnyMsg, self._callback)
++
++    def _callback(self, msg):
++        self.msg = msg
++
++    def assert_published(self):
++        if self.msg:
++            return not self.negative
++        if rospy.Time.now() > self.deadline:
++            return self.negative
++        return None
++
++
++class PublishTest(unittest.TestCase):
++    def __init__(self, *args):
++        super(self.__class__, self).__init__(*args)
++        rospy.init_node(NAME)
++        # scrape rosparam
++        self.topics = []
++        params = rospy.get_param('~topics', [])
++        for param in params:
++            if 'name' not in param:
++                self.fail("'name' field in rosparam is required but not specified.")
++            topic = {'timeout': 10, 'negative': False}
++            topic.update(param)
++            self.topics.append(topic)
++        # check if there is at least one topic
++        if not self.topics:
++            self.fail('No topic is specified in rosparam.')
++
++    def test_publish(self):
++        """Test topics are published and messages come"""
++        use_sim_time = rospy.get_param('/use_sim_time', False)
++        t_start = time.time()
++        while not rospy.is_shutdown() and \
++                use_sim_time and (rospy.Time.now() == rospy.Time(0)):
++            rospy.logwarn_throttle(
++                1, '/use_sim_time is specified and rostime is 0, /clock is published?')
++            if time.time() - t_start > 10:
++                self.fail('Timed out (10s) of /clock publication.')
++            # must use time.sleep because /clock isn't yet published, so rospy.sleep hangs.
++            time.sleep(0.1)
++        # subscribe topics
++        checkers = []
++        for topic in self.topics:
++            topic_name = topic['name']
++            timeout = topic['timeout']
++            negative = topic['negative']
++            print('Waiting [%s] for [%d] seconds with negative [%s]'
++                  % (topic_name, timeout, negative))
++            checkers.append(
++                PublishChecker(topic_name, timeout, negative))
++        deadline = max(checker.deadline for checker in checkers)
++        # assert
++        finished_topics = []
++        while not rospy.is_shutdown():
++            if len(self.topics) == len(finished_topics):
++                break
++            for checker in checkers:
++                if checker.topic_name in finished_topics:
++                    continue  # skip topic testing has finished
++                ret = checker.assert_published()
++                if ret is None:
++                    continue  # skip if there is no test result
++                finished_topics.append(checker.topic_name)
++                if checker.negative:
++                    assert ret, 'Topic [%s] is published' % (checker.topic_name)
++                else:
++                    assert ret, 'Topic [%s] is not published' % (checker.topic_name)
++            rospy.sleep(0.01)
++
++
++if __name__ == '__main__':
++    import rostest
++    rostest.run(PKG, NAME, PublishTest, sys.argv)
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/package.xml
+@@ -0,0 +1,32 @@
++<package>
++  <name>rostest</name>
++  <version>1.16.0</version>
++  <description>
++     Integration test suite based on roslaunch that is compatible with xUnit frameworks.
++  </description>
++  <maintainer email="michael@openrobotics.org">Michael Carroll</maintainer>
++  <maintainer email="sloretz@openrobotics.org">Shane Loretz</maintainer>
++  <license>BSD</license>
++
++  <url>http://ros.org/wiki/rostest</url>
++  <author>Ken Conley</author>
++  <author email="dthomas@osrfoundation.org">Dirk Thomas</author>
++  <author email="jacob@openrobotics.org">Jacob Perron</author>
++
++  <buildtool_depend version_gte="0.7.9">catkin</buildtool_depend>
++
++  <build_depend>libboost-thread-dev</build_depend>
++  <build_depend>rosunit</build_depend>
++
++  <run_depend>libboost-thread-dev</run_depend>
++  <run_depend>rosgraph</run_depend>
++  <run_depend>roslaunch</run_depend>
++  <run_depend>rosmaster</run_depend>
++  <run_depend>rospy</run_depend>
++  <run_depend>rosunit</run_depend>
++
++  <export>
++    <rosdoc config="rosdoc.yaml"/>
++    <architecture_independent/>
++  </export>
++</package>
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/rosdoc.yaml
+@@ -0,0 +1,2 @@
++ - builder: epydoc
++   config: epydoc.config
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/scripts/rostest
+@@ -0,0 +1,71 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++from rostest import rostestmain
++
++import os
++import sys
++import tempfile
++
++
++class PythonPathOverride:
++    """Replace python so test scripts with unmodified shebangs use correct Python version."""
++
++    def _skip(self):
++        # skip this hack on windows
++        if 'nt' == os.name:
++            return True
++        try:
++            # skip pre Python 3.2
++            tempfile.TemporaryDirectory
++        except AttributeError:
++            return True
++        return False
++
++    def __enter__(self):
++        if self._skip():
++            return
++
++        self.dir = tempfile.TemporaryDirectory(prefix='rostest_bin_hook')
++        os.symlink(sys.executable, os.path.join(self.dir.name, 'python'))
++        os.environ['PATH'] = self.dir.name + os.pathsep + os.environ['PATH']
++
++    def __exit__(self, t, v, tb):
++        if self._skip():
++            return
++
++        self.dir.cleanup()
++
++
++with PythonPathOverride():
++    rostestmain()
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/setup.py
+@@ -0,0 +1,11 @@
++from setuptools import setup
++from catkin_pkg.python_setup import generate_distutils_setup
++
++d = generate_distutils_setup(
++    packages=['rostest'],
++    package_dir={'': 'src'},
++    scripts=['scripts/rostest'],
++    requires=['rospkg', 'genmsg', 'genpy', 'roslib', 'rospy']
++)
++
++setup(**d)
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/src/rostest/__init__.py
+@@ -0,0 +1,279 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id$
++
++"""
++Interface for using rostest from other Python code as well as running
++Python unittests with additional reporting mechanisms and rosbuild
++(CMake) integration.
++"""
++
++from __future__ import print_function
++
++import sys
++import rosunit
++
++import rosgraph
++
++try:
++    from importlib import reload
++except ImportError:
++    pass
++
++XML_OUTPUT_FLAG = '--gtest_output=xml:' #use gtest-compatible flag
++
++_GLOBAL_CALLER_ID = '/script'
++#TODO: replace with rosgraph.masterapi
++def get_master():
++    """
++    Get an XMLRPC handle to the Master. It is recommended to use the
++    `rosgraph.masterapi` library instead, as it provides many
++    conveniences.
++    
++    @return: XML-RPC proxy to ROS master
++    @rtype: xmlrpclib.ServerProxy
++    """
++    try:
++        import xmlrpc.client as xmlrpcclient  #Python 3.x
++    except ImportError:
++        import xmlrpclib as xmlrpcclient #Python 2.x
++    uri = rosgraph.get_master_uri()
++    return xmlrpcclient.ServerProxy(uri)
++
++def is_subscriber(topic, subscriber_id):
++    """
++    Check whether or not master think subscriber_id subscribes to topic
++
++    :returns: ``True`` if still register as a subscriber, ``bool``
++    :raises: IOError If communication with master fails
++    """
++    m = get_master()
++    code, msg, state = m.getSystemState(_GLOBAL_CALLER_ID)
++    if code != 1:
++        raise IOError("Unable to retrieve master state: %s"%msg)
++    _, subscribers, _ = state
++    for t, l in subscribers:
++        if t == topic:
++            return subscriber_id in l
++    else:
++        return False
++
++def is_publisher(topic, publisher_id):
++    """
++    Predicate to check whether or not master think publisher_id
++    publishes topic
++    :returns: ``True`` if still register as a publisher, ``bool``
++    :raises: IOError If communication with master fails
++    """
++    m = get_master()
++    code, msg, state = m.getSystemState(_GLOBAL_CALLER_ID)
++    if code != 1:
++        raise IOError("Unable to retrieve master state: %s"%msg)
++    pubs, _, _ = state
++    for t, l in pubs:
++        if t == topic:
++            return publisher_id in l
++    else:
++        return False
++
++def rosrun(package, test_name, test, sysargs=None):
++    """
++    Run a rostest/unittest-based integration test.
++    
++    @param package: name of package that test is in
++    @type  package: str
++    @param test_name: name of test that is being run
++    @type  test_name: str
++    @param test: a test case instance or a name resolving to a test case or suite
++    @type  test: unittest.TestCase, or string
++    @param sysargs: command-line args. If not specified, this defaults to sys.argv. rostest
++      will look for the --text and --gtest_output parameters
++    @type  sysargs: list
++    """
++    if sysargs is None:
++        # lazy-init sys args
++        import sys
++        sysargs = sys.argv
++        
++    #parse sysargs
++    result_file = None
++    for arg in sysargs:
++        if arg.startswith(XML_OUTPUT_FLAG):
++            result_file = arg[len(XML_OUTPUT_FLAG):]
++    text_mode = '--text' in sysargs
++    coverage_mode = '--cov' in sysargs
++    if coverage_mode:
++        _start_coverage([package])
++
++    import unittest
++    import rospy
++    
++    suite = None
++    if isinstance(test, str):
++        suite = unittest.TestLoader().loadTestsFromName(test)
++    else:
++        # some callers pass a TestCase type (instead of an instance)
++        suite = unittest.TestLoader().loadTestsFromTestCase(test)
++
++    if text_mode:
++        result = unittest.TextTestRunner(verbosity=2).run(suite)
++    else:
++        result = rosunit.create_xml_runner(package, test_name, result_file).run(suite)
++    if coverage_mode:
++        _stop_coverage([package])
++    rosunit.print_unittest_summary(result)
++    
++    # shutdown any node resources in case test forgets to
++    rospy.signal_shutdown('test complete')
++    if not result.wasSuccessful():
++        import sys
++        sys.exit(1)
++    
++# TODO: rename to rosrun -- migrating name to avoid confusion and enable easy xmlrunner use 
++run = rosrun
++
++import warnings
++def deprecated(func):
++    """This is a decorator which can be used to mark functions
++    as deprecated. It will result in a warning being emitted
++    when the function is used."""
++    def newFunc(*args, **kwargs):
++        warnings.warn("Call to deprecated function %s." % func.__name__,
++                      category=DeprecationWarning, stacklevel=2)
++        return func(*args, **kwargs)
++    newFunc.__name__ = func.__name__
++    newFunc.__doc__ = func.__doc__
++    newFunc.__dict__.update(func.__dict__)
++    return newFunc
++
++@deprecated
++def unitrun(package, test_name, test, sysargs=None, coverage_packages=None):
++    """
++    Wrapper routine from running python unitttests with
++    JUnit-compatible XML output.  This is meant for unittests that do
++    not not need a running ROS graph (i.e. offline tests only).
++    
++    This enables JUnit-compatible test reporting so that
++    test results can be reported to higher-level tools. 
++    
++    @param package: name of ROS package that is running the test
++    @type  package: str
++    @param coverage_packages: list of Python package to compute coverage results for. Defaults to package
++    @type  coverage_packages: [str]
++    """
++    rosunit.unitrun(package, test_name, test, sysargs=sysargs, coverage_packages=coverage_packages)
++
++# coverage instance
++_cov = None
++def _start_coverage(packages):
++    global _cov
++    try:
++        import coverage
++        try:
++            _cov = coverage.coverage()
++            # load previous results as we need to accumulate
++            _cov.load()
++            _cov.start()
++        except coverage.CoverageException:
++            print("WARNING: you have an older version of python-coverage that is not support. Please update to the version provided by 'easy_install coverage'", file=sys.stderr)
++    except ImportError as e:
++        print("""WARNING: cannot import python-coverage, coverage tests will not run.
++To install coverage, run 'easy_install coverage'""", file=sys.stderr)
++    try:
++        # reload the module to get coverage
++        for package in packages:
++            if package in sys.modules:
++                reload(sys.modules[package])
++    except ImportError as e:
++        print("WARNING: cannot import '%s', will not generate coverage report"%package, file=sys.stderr)
++        return
++
++def _stop_coverage(packages, html=None):
++    """
++    @param packages: list of packages to generate coverage reports for
++    @type  packages: [str]
++    @param html: (optional) if not None, directory to generate html report to
++    @type  html: str
++    """
++    if _cov is None:
++        return
++    import sys, os
++    try:
++        _cov.stop()
++        # accumulate results
++        _cov.save()
++        
++        # - update our own .coverage-modules file list for
++        #   coverage-html tool. The reason we read and rewrite instead
++        #   of append is that this does a uniqueness check to keep the
++        #   file from growing unbounded
++        if os.path.exists('.coverage-modules'):
++            with open('.coverage-modules','r') as f:
++                all_packages = set([x for x in f.read().split('\n') if x.strip()] + packages)
++        else:
++            all_packages = set(packages)
++        with open('.coverage-modules','w') as f:
++            f.write('\n'.join(all_packages)+'\n')
++            
++        try:
++            # list of all modules for html report
++            all_mods = []
++
++            # iterate over packages to generate per-package console reports
++            for package in packages:
++                pkg = __import__(package)
++                m = [v for v in sys.modules.values() if v and v.__name__.startswith(package)]
++                all_mods.extend(m)
++
++                # generate overall report and per module analysis
++                _cov.report(m, show_missing=0)
++                for mod in m:
++                    res = _cov.analysis(mod)
++                    print("\n%s:\nMissing lines: %s"%(res[0], res[3]))
++                    
++            if html:
++                
++                print("="*80+"\ngenerating html coverage report to %s\n"%html+"="*80)
++                _cov.html_report(all_mods, directory=html)
++        except ImportError as e:
++            print("WARNING: cannot import '%s', will not generate coverage report"%package, file=sys.stderr)
++    except ImportError as e:
++        print("""WARNING: cannot import python-coverage, coverage tests will not run.
++To install coverage, run 'easy_install coverage'""", file=sys.stderr)
++    
++    
++#502: backwards compatibility for unbuilt rostest packages
++def rostestmain():
++    #NOTE: this is importing from rostest.rostest
++    from rostest.rostest_main import rostestmain as _main
++    _main()
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/src/rostest/rostest_main.py
+@@ -0,0 +1,209 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id$
++
++from __future__ import print_function
++
++# NOTE: this has not survived the many refactorings and roslaunch changes well. There are too many ugly globals and bad
++# code organizational choices at this point, but it's not a high priority to cleanup.
++
++import os
++import sys
++import time
++import unittest
++import logging
++
++import roslaunch
++import rospkg
++from rospkg.environment import ROS_TEST_RESULTS_DIR
++import rosgraph.roslogging
++
++from rostest.rostestutil import createXMLRunner, printRostestSummary, \
++    xmlResultsFile, rostest_name_from_path
++from rostest.rostest_parent import ROSTestLaunchParent
++
++import rostest.runner
++
++_NAME = 'rostest'
++
++def configure_logging():
++    import socket
++    logfile_basename = 'rostest-%s-%s.log'%(socket.gethostname(), os.getpid())
++    logfile_name = rosgraph.roslogging.configure_logging('rostest', filename=logfile_basename)
++    if logfile_name:
++        print("... logging to %s"%logfile_name)
++    return logfile_name
++
++def write_bad_filename_failure(test_file, results_file, outname):
++    # similar to rostest-check-results
++    results_file_dir = os.path.dirname(results_file)
++    if not os.path.isdir(results_file_dir):
++        os.makedirs(results_file_dir)
++    with open(results_file, 'w') as f:
++        d = {'test': outname, 'test_file': test_file }
++        f.write("""<?xml version="1.0" encoding="UTF-8"?>
++<testsuite tests="1" failures="1" time="1" errors="0" name="%(test)s">
++  <testcase name="test_ran" status="run" time="1" classname="Results">
++    <failure message="rostest file [%(test_file)s] does not exist" type=""/>
++  </testcase>
++</testsuite>"""%d)
++    
++def rostestmain():
++    import roslaunch.rlutil
++    
++    from optparse import OptionParser
++    parser = OptionParser(usage="usage: %prog [options] [package] <filename>", prog=_NAME)
++    parser.add_option("-t", "--text",
++                      action="store_true", dest="text_mode", default=False,
++                      help="Run with stdout output instead of XML output")
++    parser.add_option("--pkgdir", metavar="PKG_DIR",
++                      dest="pkg_dir", default=None,
++                      help="package dir")
++    parser.add_option("--package", metavar="PACKAGE",
++                      dest="package", default=None,
++                      help="package")
++    parser.add_option("--results-filename", metavar="RESULTS_FILENAME",
++                      dest="results_filename", default=None,
++                      help="results_filename")
++    parser.add_option("--results-base-dir", metavar="RESULTS_BASE_DIR",
++                      help="The base directory of the test results. The test result file is " +
++                           "created in a subfolder name PKG_DIR.")
++    parser.add_option("-r", "--reuse-master", action="store_true",
++                      help="Connect to an existing ROS master instead of spawning a new ROS master on a custom port")
++    parser.add_option("-c", "--clear", action="store_true",
++                      help="Clear all parameters when connecting to an existing ROS master (only works with --reuse-master)")
++    (options, args) = parser.parse_args()
++
++    if options.clear and not options.reuse_master:
++        print("The --clear option is only valid with --reuse-master", file=sys.stderr)
++        sys.exit(1)
++
++    try:
++        args = roslaunch.rlutil.resolve_launch_arguments(args)
++    except roslaunch.core.RLException as e:
++        print(str(e), file=sys.stderr)
++        sys.exit(1)
++
++    # make sure all loggers are configured properly
++    logfile_name = configure_logging()
++    logger = logging.getLogger('rostest')
++    import roslaunch.core
++    roslaunch.core.add_printlog_handler(logger.info)
++    roslaunch.core.add_printerrlog_handler(logger.error)        
++        
++    logger.info('rostest starting with options %s, args %s'%(options, args))
++    if len(args) == 0:
++        parser.error("You must supply a test file argument to rostest.")
++    if len(args) != 1:
++        parser.error("rostest only accepts a single test file")
++
++    # compute some common names we'll be using to generate test names and files
++    test_file = args[0]
++    if options.pkg_dir and options.package:  
++        # rosbuild2: the build system knows what package and directory, so let it tell us,
++        # instead of shelling back out to rospack
++        pkg_dir, pkg = options.pkg_dir, options.package
++    else:
++        pkg = rospkg.get_package_name(test_file)
++        r = rospkg.RosPack()
++        pkg_dir = r.get_path(pkg)
++
++    if options.results_filename:
++        outname = options.results_filename
++        if '.' in outname:
++            outname = outname[:outname.rfind('.')]
++    else:
++        outname = rostest_name_from_path(pkg_dir, test_file)
++
++    env = None
++    if options.results_base_dir:
++        env = {ROS_TEST_RESULTS_DIR: options.results_base_dir}
++
++    # #1140
++    if not os.path.isfile(test_file):
++        results_file = xmlResultsFile(pkg, outname, True, env=env)
++        write_bad_filename_failure(test_file, results_file, outname)
++        parser.error("test file is invalid. Generated failure case result file in %s"%results_file)
++        
++    try:
++        testCase = rostest.runner.createUnitTest(pkg, test_file, options.reuse_master, options.clear, options.results_base_dir)
++        suite = unittest.TestLoader().loadTestsFromTestCase(testCase)
++
++        if options.text_mode:
++            rostest.runner.setTextMode(True)
++            result = unittest.TextTestRunner(verbosity=2).run(suite)
++        else:
++            is_rostest = True
++            results_file = xmlResultsFile(pkg, outname, is_rostest, env=env)
++            xml_runner = createXMLRunner(pkg, outname, \
++                                             results_file=results_file, \
++                                             is_rostest=is_rostest)
++            result = xml_runner.run(suite)
++    finally:
++        # really make sure that all of our processes have been killed
++        test_parents = rostest.runner.getRostestParents()
++        for r in test_parents:
++            logger.info("finally rostest parent tearDown [%s]", r)
++            r.tearDown()
++        del test_parents[:]
++        from roslaunch.pmon import pmon_shutdown
++        logger.info("calling pmon_shutdown")
++        pmon_shutdown()
++        logger.info("... done calling pmon_shutdown")
++
++    # print config errors after test has run so that we don't get caught up in .xml results
++    config = rostest.runner.getConfig()
++    if config:
++        if config.config_errors:
++            print("\n[ROSTEST WARNINGS]"+'-'*62+'\n', file=sys.stderr)
++        for err in config.config_errors:
++            print(" * %s"%err, file=sys.stderr)
++        print('')
++
++    # summary is worthless if textMode is on as we cannot scrape .xml results
++    subtest_results = rostest.runner.getResults()
++    if not options.text_mode:
++        printRostestSummary(result, subtest_results)
++    else:
++        print("WARNING: overall test result is not accurate when --text is enabled")
++
++    if logfile_name:
++        print("rostest log file is in %s"%logfile_name)
++        
++    if not result.wasSuccessful():
++        sys.exit(1)
++    elif subtest_results.num_errors or subtest_results.num_failures:
++        sys.exit(2)
++    
++if __name__ == '__main__':
++    rostestmain()
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/src/rostest/rostest_parent.py
+@@ -0,0 +1,134 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id$
++
++import logging
++import sys
++
++import rosgraph
++import roslaunch.config
++from roslaunch.core import printlog_bold, RLException
++import roslaunch.launch
++import roslaunch.pmon
++import roslaunch.server
++import roslaunch.xmlloader 
++
++import roslaunch.parent
++
++from rosmaster.master import Master
++from rospy import logwarn
++
++class ROSTestLaunchParent(roslaunch.parent.ROSLaunchParent):
++
++    def __init__(self, config, roslaunch_files, port=0, reuse_master=False, clear=False):
++        if config is None:
++            raise Exception("config not initialized")
++        # we generate a run_id for each test
++        if reuse_master:
++            param_server = rosgraph.Master('/roslaunch')
++            try:
++                run_id = param_server.getParam('/run_id')
++            except Exception as e:
++                # The user asked us to connect to an existing ROS master, and
++                # we can't. Throw an exception and die
++                raise Exception("Could not connect to existing ROS master. "
++                                + "Original exception was: %s" % str(e))
++            except:
++                # oh boy; we got something that wasn't an exception.
++                # Throw an exception and die
++                raise Exception("Could not connect to existing ROS master.")
++
++            if clear:
++                params = param_server.getParamNames()
++                # whitelist of parameters to keep
++                whitelist = ['/run_id', '/rosversion', '/rosdistro']
++                for i in reversed(range(len(params))):
++                    param = params[i]
++                    if param in whitelist:
++                        del params[i]
++                    elif param.startswith('/roslaunch/'):
++                        del params[i]
++                for param in params:
++                    param_server.deleteParam(param)
++        else:
++            run_id = roslaunch.core.generate_run_id()
++        super(ROSTestLaunchParent, self).__init__(run_id, roslaunch_files, is_core=False, is_rostest=True)
++        self.config = config
++        self.port = port
++        self.reuse_master = reuse_master
++        self.master = None
++        
++    def _load_config(self):
++        # disable super, just in case, though this shouldn't get called
++        pass
++
++    def setUp(self):
++        """
++        initializes self.config and xmlrpc infrastructure
++        """
++        self._start_infrastructure()
++        if not self.reuse_master:
++            self.master = Master(port=self.port)
++            self.master.start()
++            self.config.master.uri = self.master.uri
++        self._init_runner()
++
++    def tearDown(self):
++        if self.runner is not None:
++            runner = self.runner
++            runner.stop()
++        if self.master is not None:
++            self.master.stop()
++            self.master = None
++        self._stop_infrastructure()
++
++    def launch(self):
++        """
++        perform launch of nodes, does not launch tests.  rostest_parent
++        follows a different pattern of init/run than the normal
++        roslaunch, which is why it does not reuse start()/spin()
++        """
++        if self.runner is not None:
++            return self.runner.launch()
++        else:
++            raise Exception("no runner to launch")
++
++    def run_test(self, test):
++        """
++        run the test, blocks until completion 
++        """
++        if self.runner is not None:
++            # run the test, blocks until completion            
++            return self.runner.run_test(test)
++        else:
++            raise Exception("no runner")
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/src/rostest/rostestutil.py
+@@ -0,0 +1,81 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id$
++
++from __future__ import print_function
++
++"""
++rostest helper routines.
++"""
++
++# IMPORTANT: no routine here can in anyway cause rospy to be loaded (that includes roslaunch)
++
++import os
++import sys
++import logging
++
++def printlog(msg, *args):
++    if args:
++        msg = msg%args
++    logging.getLogger('rostest').info(msg)
++    print("[ROSTEST]" + msg)
++def printlogerr(msg, *args):
++    if args:
++        msg = msg%args
++    logging.getLogger('rostest').error(msg)
++    print("[ROSTEST]" + msg, file=sys.stderr)
++
++_errors = None
++def getErrors():
++    return _errors
++
++# Most of this code has been moved down into rosunit
++
++import rosunit
++
++rostest_name_from_path = rosunit.rostest_name_from_path
++
++def printRostestSummary(result, rostest_results):
++    """
++    Print summary of rostest results to stdout.
++    """
++    # TODO: probably can removed this
++    global _errors
++    _errors = result.errors
++    return rosunit.print_runner_summary(result, rostest_results, runner_name='ROSTEST')
++
++printSummary = rosunit.print_unittest_summary
++createXMLRunner = rosunit.create_xml_runner
++xmlResultsFile = rosunit.xml_results_file    
++test_failure_junit_xml = rosunit.junitxml.test_failure_junit_xml
++test_success_junit_xml = rosunit.junitxml.test_success_junit_xml
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/src/rostest/runner.py
+@@ -0,0 +1,260 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++from __future__ import print_function
++
++import os
++import sys
++import logging
++import time
++import unittest
++
++import rospkg
++from rospkg.environment import ROS_TEST_RESULTS_DIR
++import roslaunch
++import roslib.packages 
++
++from rostest.rostestutil import createXMLRunner, printSummary, printRostestSummary, \
++    xmlResultsFile, printlog, printlogerr
++from rostest.rostest_parent import ROSTestLaunchParent
++import rosunit.junitxml
++
++# NOTE: ignoring Python style guide as unittest is sadly written with Java-like camel casing
++
++_results = rosunit.junitxml.Result('rostest', 0, 0, 0)
++def _accumulateResults(results):
++    _results.accumulate(results)
++
++def getResults():
++    return _results
++
++_textMode = False
++def setTextMode(val):
++    global _textMode 
++    _textMode = val
++
++# global store of all ROSLaunchRunners so we can do an extra shutdown
++# in the rare event a tearDown fails to execute
++_test_parents = []
++_config = None
++def _addRostestParent(runner):
++    global _test_parents, _config
++    logging.getLogger('rostest').info("_addRostestParent [%s]", runner)
++    _test_parents.append(runner)
++    _config = runner.config
++
++def getConfig():
++    return _config
++
++def getRostestParents():
++    return _test_parents
++    
++# TODO: convert most of this into a run() routine of a RoslaunchRunner subclass
++
++## generate test failure if tests with same name in launch file
++def failDuplicateRunner(testName):
++    def fn(self):
++        print("Duplicate tests named [%s] in rostest suite"%testName)
++        self.fail("Duplicate tests named [%s] in rostest suite"%testName)
++    return fn
++
++def failRunner(testName, message):
++    def fn(self):
++        print(message, file=sys.stderr)
++        self.fail(message)
++    return fn
++    
++def rostestRunner(test, test_pkg, results_base_dir=None):
++    """
++    Test function generator that takes in a roslaunch Test object and
++    returns a class instance method that runs the test. TestCase
++    setUp() is responsible for ensuring that the rest of the roslaunch
++    state is correct and tearDown() is responsible for tearing
++    everything down cleanly.
++    @param test: rost test to run
++    @type  test: roslaunch.Test
++    @return: function object to run testObj
++    @rtype: fn
++    """
++    
++    ## test case pass/fail is a measure of whether or not the test ran
++    def fn(self):
++        done = False
++        while not done:
++            self.assert_(self.test_parent is not None, "ROSTestParent initialization failed")
++
++            test_name = test.test_name
++
++            printlog("Running test [%s]", test_name)
++
++            #launch the other nodes
++            succeeded, failed = self.test_parent.launch()
++            self.assert_(not failed, "Test Fixture Nodes %s failed to launch"%failed)
++
++            #setup the test
++            # - we pass in the output test_file name so we can scrape it
++            env = None
++            if results_base_dir:
++                env = {ROS_TEST_RESULTS_DIR: results_base_dir}
++            test_file = xmlResultsFile(test_pkg, test_name, False, env=env)
++            if os.path.exists(test_file):
++                printlog("removing previous test results file [%s]", test_file)
++                os.remove(test_file)
++
++            # TODO: have to redeclare this due to a bug -- this file
++            # needs to be renamed as it aliases the module where the
++            # constant is elsewhere defined. The fix is to rename
++            # rostest.py
++            XML_OUTPUT_FLAG='--gtest_output=xml:' #use gtest-compatible flag
++            
++            test.args = "%s %s%s"%(test.args, XML_OUTPUT_FLAG, test_file)
++            if _textMode:
++                test.output = 'screen'
++                test.args = test.args + " --text"
++
++            # run the test, blocks until completion
++            printlog("running test %s"%test_name)
++            timeout_failure = False
++            try:
++                self.test_parent.run_test(test)
++            except roslaunch.launch.RLTestTimeoutException as e:
++                if test.retry:
++                    timeout_failure = True
++                else:
++                    raise
++
++            if not timeout_failure:
++                printlog("test [%s] finished"%test_name)
++            else:
++                printlogerr("test [%s] timed out"%test_name)                
++        
++            # load in test_file
++            if not _textMode or timeout_failure:
++                
++                if not timeout_failure:
++                    self.assert_(os.path.isfile(test_file), "test [%s] did not generate test results"%test_name)
++                    printlog("test [%s] results are in [%s]", test_name, test_file)
++                    results = rosunit.junitxml.read(test_file, test_name)
++                    test_fail = results.num_errors or results.num_failures
++                else:
++                    test_fail = True
++
++                if test.retry > 0 and test_fail:
++                    test.retry -= 1
++                    printlog("test [%s] failed, retrying. Retries left: %s"%(test_name, test.retry))
++                    self.tearDown()
++                    self.setUp()
++                else:
++                    done = True
++                    _accumulateResults(results)
++                    printlog("test [%s] results summary: %s errors, %s failures, %s tests",
++                             test_name, results.num_errors, results.num_failures, results.num_tests)
++
++                    #self.assertEquals(0, results.num_errors, "unit test reported errors")
++                    #self.assertEquals(0, results.num_failures, "unit test reported failures")
++            else:
++                if test.retry:
++                    printlogerr("retry is disabled in --text mode")
++                done = True
++        printlog("[ROSTEST] test [%s] done", test_name)
++
++    return fn
++
++## Function that becomes TestCase.setup()
++def setUp(self):
++    # new test_parent for each run. we are a bit inefficient as it would be possible to
++    # reuse the roslaunch base infrastructure for each test, but the roslaunch code
++    # is not abstracted well enough yet
++    self.test_parent = ROSTestLaunchParent(self.config, [self.test_file], reuse_master=self.reuse_master, clear=self.clear)
++    
++    printlog("setup[%s] run_id[%s] starting", self.test_file, self.test_parent.run_id)
++
++    self.test_parent.setUp()
++    
++    # the config attribute makes it easy for tests to access the ROSLaunchConfig instance
++    self.config = self.test_parent.config
++
++    _addRostestParent(self.test_parent)
++    
++    printlog("setup[%s] run_id[%s] done", self.test_file, self.test_parent.run_id)
++    
++## Function that becomes TestCase.tearDown()    
++def tearDown(self):
++    printlog("tearDown[%s]", self.test_file)
++    
++    if self.test_parent:
++        self.test_parent.tearDown()
++        
++    printlog("rostest teardown %s complete", self.test_file)
++    
++def createUnitTest(pkg, test_file, reuse_master=False, clear=False, results_base_dir=None):
++    """
++    Unit test factory. Constructs a unittest class based on the roslaunch
++
++    @param pkg: package name
++    @type  pkg: str
++    @param test_file: rostest filename
++    @type  test_file: str
++    """
++    # parse the config to find the test files
++    config = roslaunch.parent.load_config_default([test_file], None)
++
++    # pass in config to class as a property so that test_parent can be initialized
++    classdict = { 'setUp': setUp, 'tearDown': tearDown, 'config': config,
++                  'test_parent': None, 'test_file': test_file,
++                  'reuse_master': reuse_master, 'clear': clear }
++    
++    # add in the tests
++    testNames = []
++    for test in config.tests:
++        # #1989: find test first to make sure it exists and is executable
++        err_msg = None
++        try:
++            rp = rospkg.RosPack()
++            cmd = roslib.packages.find_node(test.package, test.type, rp)
++            if not cmd:
++                err_msg = "Test node [%s/%s] does not exist or is not executable"%(test.package, test.type)
++        except rospkg.ResourceNotFound as e:
++            err_msg = "Package [%s] for test node [%s/%s] does not exist"%(test.package, test.package, test.type)
++
++        testName = 'test%s'%(test.test_name)
++        if err_msg:
++            classdict[testName] = failRunner(test.test_name, err_msg)
++        elif testName in testNames:
++            classdict[testName] = failDuplicateRunner(test.test_name)
++        else:
++            classdict[testName] = rostestRunner(test, pkg, results_base_dir=results_base_dir)
++            testNames.append(testName)
++
++    # instantiate the TestCase instance with our magically-created tests
++    return type('RosTest',(unittest.TestCase,),classdict)
++
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/test/advertisetest.test
+@@ -0,0 +1,28 @@
++<launch>
++  <node pkg="rostest" type="talker.py" name="freq_topic_pub"/>
++  <node pkg="rostest" type="publish_once.py" name="once_topic_pub"/>
++  <node pkg="rostest" type="service_server.py" name="service_server"/>
++
++  <test test-name="advertisetest_test" pkg="rostest" type="advertisetest" time-limit="7.0" retry="3">
++    <rosparam>
++      topics:
++      - name: /chatter
++        timeout: 2.
++      - name: /once_topic
++        type: std_msgs/Bool
++        timeout: 2.
++      - name: /advertised_topic
++        timeout: 2.
++        negative: true
++      services:
++      - name: /empty
++        timeout: 2.
++      - name: /set_bool
++        type: std_srvs/SetBool
++        timeout: 2.
++      - name: /unadvertised_service
++        timeout: 2.
++        negative: true
++    </rosparam>
++  </test>
++</launch>
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/test/clean_master.test
+@@ -0,0 +1,5 @@
++<launch>
++  <test pkg="rostest" type="test_clean_master.py" test-name="clean_master1" />
++  <test pkg="rostest" type="test_clean_master.py" test-name="clean_master2" />
++  <test pkg="rostest" type="test_clean_master.py" test-name="clean_master3" />
++</launch>
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/test/distro_version.test
+@@ -0,0 +1,3 @@
++<launch>
++  <test pkg="rostest" type="test_distro_version.py" test-name="distro_version" />
++</launch>
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/test/dotname_cases.py
+@@ -0,0 +1,36 @@
++import unittest
++
++
++class CaseA(unittest.TestCase):
++
++    def runTest(self):
++        self.assertTrue(True)
++
++
++class CaseB(unittest.TestCase):
++
++    def runTest(self):
++        self.assertTrue(True)
++
++
++class DotnameLoadingSuite(unittest.TestSuite):
++
++    def __init__(self):
++        super(DotnameLoadingSuite, self).__init__()
++        self.addTest(CaseA())
++        self.addTest(CaseB())
++
++
++class DotnameLoadingTest(unittest.TestCase):
++
++    def test_a(self):
++        self.assertTrue(True)
++
++    def test_b(self):
++        self.assertTrue(True)
++
++
++class NotTestCase():
++
++    def not_test(self):
++        pass
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/test/hztest.test
+@@ -0,0 +1,11 @@
++<launch>
++  <node name="talker" pkg="rostest" type="talker.py" />
++
++  <param name="hztest1/topic" value="chatter" />  
++  <param name="hztest1/hz" value="10.0" />
++  <param name="hztest1/hzerror" value="0.5" />
++  <param name="hztest1/test_duration" value="5.0" />    
++  <param name="hztest1/wait_time" value="21.0" />    
++  <test test-name="hztest_test" pkg="rostest" type="hztest" name="hztest1" retry="3" />
++
++</launch>
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/test/hztest0.test
+@@ -0,0 +1,8 @@
++<launch>
++  <!-- verify that hztest works with 0 rate. NOTE: there is no test for failure here, which needs to be added somehow -->
++  <param name="hztest0/topic" value="fake" />  
++  <param name="hztest0/hz" value="0.0" />
++  <param name="hztest0/test_duration" value="2.0" />
++  <param name="hztest1/wait_time" value="0.0" />       
++  <test test-name="hz0_test" pkg="rostest" type="hztest" name="hztest0" />
++</launch>
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/test/param.test
+@@ -0,0 +1,30 @@
++<launch>
++  <!-- These parameters are registered to Parameter Server and
++       will be accessed by the test cases. -->
++  <param name="param_nonempty" value="This param is not empty." />
++  <param name="param_empty" value="" />
++  <param name="param_value_specific" value="Opensource Robotics is forever." />
++
++  <test pkg="rostest" type="paramtest" name="paramtest_nonempty"
++        test-name="paramtest_nonempty">
++    <param name="param_name_target" value="param_nonempty" />
++    <param name="test_duration" value="5.0" />
++    <param name="wait_time" value="20.0" />
++  </test>
++
++  <test pkg="rostest" type="paramtest" name="paramtest_empty"
++        test-name="paramtest_empty">
++    <param name="param_name_target" value="param_empty" />
++    <param name="test_duration" value="5.0" />
++    <param name="wait_time" value="30.0" />
++  </test>
++
++  <test pkg="rostest" type="paramtest" name="paramtest_value_specific_correct"
++        test-name="paramtest_value_specific_correct">
++    <param name="param_name_target" value="param_value_specific" />
++    <param name="param_value_expected" value="Opensource Robotics is forever." />
++    <param name="test_duration" value="5.0" />
++    <param name="wait_time" value="30.0" />
++  </test>
++
++</launch>
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/test/publishtest.test
+@@ -0,0 +1,19 @@
++<launch>
++
++    <node pkg="rostopic" type="rostopic" name="freq_topic_pub" args="pub /frequent_topic std_msgs/Bool 'data: false' -r 10" />
++    <node pkg="rostopic" type="rostopic" name="once_topic_pub" args="pub /once_topic std_msgs/Bool 'data: false' -1l" />
++
++    <test test-name="publishtest_test" pkg="rostest" type="publishtest" time-limit="5.0" retry="3">
++        <rosparam>
++            topics:
++              - name: /frequent_topic
++                timeout: 2.
++              - name: /once_topic
++                timeout: 2.
++              - name: /unpublished_topic
++                timeout: 2.
++                negative: true
++        </rosparam>
++    </test>
++
++</launch>
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/test/test_clean_master.py
+@@ -0,0 +1,49 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import os
++import sys
++import unittest
++
++import rospy
++import rosunit
++
++class CleanMasterTest(unittest.TestCase):
++  
++    def test_clean_master(self):
++        self.failIf(rospy.has_param('dirty'))
++        rospy.set_param('dirty', True)
++
++if __name__ == '__main__':
++    rosunit.unitrun('test_rostest', 'test_clean_master', CleanMasterTest, coverage_packages=[])
++  
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/test/test_distro_version.py
+@@ -0,0 +1,51 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import os
++import sys
++import unittest
++
++import rospy
++import rostest
++import subprocess
++
++class VersionTest(unittest.TestCase):
++  
++    def test_distro_version(self):
++        val = (subprocess.Popen(['rosversion', '-d'], stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()[0] or b'').decode().strip()
++        param = rospy.get_param('rosdistro').strip()
++        self.assertEquals(val, param, "rosversion -d [%s] and roscore [%s] do not match"%(val, param))
++
++if __name__ == '__main__':
++    rostest.unitrun('test_rostest', 'test_distro_version', VersionTest, coverage_packages=[])
++  
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/test/test_dotname.py
+@@ -0,0 +1,52 @@
++#!/usr/bin/env python
++
++# This file should be run using a non-ros unit test framework such as nose using
++# nosetests test_dotname.py.
++
++import unittest
++import rostest
++from dotname_cases import DotnameLoadingTest, NotTestCase, DotnameLoadingSuite
++
++
++class TestDotnameLoading(unittest.TestCase):
++
++    def test_class_basic(self):
++        rostest.rosrun('test_rostest', 'test_class_basic', DotnameLoadingTest)
++
++    def test_class_dotname(self):
++        rostest.rosrun('test_rostest', 'test_class_dotname', 'dotname_cases.DotnameLoadingTest')
++
++    def test_method_dotname(self):
++        rostest.rosrun('test_rostest', 'test_method_dotname', 'dotname_cases.DotnameLoadingTest.test_a')
++
++    def test_suite_dotname(self):
++        rostest.rosrun('test_rostest', 'test_suite_dotname', 'dotname_cases.DotnameLoadingSuite')
++
++    def test_class_basic_nottest(self):
++        # class which exists but is not a TestCase
++        with self.assertRaises(SystemExit):
++            rostest.rosrun('test_rostest', 'test_class_basic_nottest', NotTestCase)
++
++    def test_suite_basic(self):
++        # can't load suites with the basic loader
++        with self.assertRaises(SystemExit):
++            rostest.rosrun('test_rosunit', 'test_suite_basic', DotnameLoadingSuite)
++
++    def test_class_dotname_nottest(self):
++        # class which exists but is not a valid test
++        with self.assertRaises(TypeError):
++            rostest.rosrun('test_rostest', 'test_class_dotname_nottest', 'dotname_cases.NotTestCase')
++
++    def test_class_dotname_noexist(self):
++        # class which does not exist in the module
++        with self.assertRaises(AttributeError):
++            rostest.rosrun('test_rostest', 'test_class_dotname_noexist', 'dotname_cases.DotnameLoading')
++
++    def test_method_dotname_noexist(self):
++        # method which does not exist in the class
++        with self.assertRaises(AttributeError):
++            rostest.rosrun('test_rostest', 'test_method_dotname_noexist', 'dotname_cases.DotnameLoadingTest.not_method')
++
++
++if __name__ == '__main__':
++    unittest.main()
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/test/test_permuter.cpp
+@@ -0,0 +1,213 @@
++/*
++ * Copyright (c) 2008, Willow Garage, Inc.
++ * All rights reserved.
++ * 
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ * 
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ * 
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#include <gtest/gtest.h>
++#include <string>
++#include "rostest/permuter.h"
++
++using namespace rostest;
++
++
++double epsilon = 1e-9;
++
++TEST(Permuter, PermuteOption)
++{
++  std::vector<double> vals;
++  vals.push_back(1.0);
++  vals.push_back(2.0);
++  vals.push_back(3.0);
++  vals.push_back(4.0);
++  double value = 0;
++  
++  PermuteOption<double> op(vals, &value);
++
++  for ( unsigned int i = 0; i < vals.size(); i++)
++  {
++    EXPECT_NEAR(vals[i], value, epsilon);
++    if (i < vals.size() -1)
++      EXPECT_TRUE(op.step());
++    else
++      EXPECT_FALSE(op.step());
++  };
++  
++  
++}
++
++
++TEST(Permuter, OneDoublePermuteOption)
++{
++  double epsilon = 1e-9;
++  rostest::Permuter permuter;
++  std::vector<double> vals;
++  vals.push_back(1.0);
++  vals.push_back(2.0);
++  vals.push_back(3.0);
++  vals.push_back(4.0);
++
++
++  double value = 0;
++
++  permuter.addOptionSet(vals, &value);
++
++  for ( unsigned int i = 0; i < vals.size(); i++)
++  {
++    EXPECT_NEAR(vals[i], value, epsilon);
++    if (i < vals.size() -1)
++      EXPECT_TRUE(permuter.step());
++    else
++      EXPECT_FALSE(permuter.step());
++  };
++
++}
++
++TEST(Permuter, TwoDoubleOptions)
++{
++  double epsilon = 1e-9;
++  Permuter permuter;
++  std::vector<double> vals;
++  vals.push_back(1.0);
++  vals.push_back(2.0);
++  vals.push_back(3.0);
++  vals.push_back(4.0);
++
++
++  double value = 0;
++  
++  std::vector<double> vals2;
++  vals2.push_back(9.0);
++  vals2.push_back(8.0);
++  vals2.push_back(7.0);
++  vals2.push_back(6.0);
++
++  double value2;
++
++  permuter.addOptionSet(vals, &value);
++  permuter.addOptionSet(vals2, &value2);
++  for ( unsigned int j = 0; j < vals2.size(); j++)
++    for ( unsigned int i = 0; i < vals.size(); i++)
++    {
++      //printf("%f?=%f %f?=%f\n", value, vals[i], value2, vals2[j]); 
++      EXPECT_NEAR(vals[i], value, epsilon);
++      EXPECT_NEAR(vals2[j], value2, epsilon);
++      if (i == vals.size() -1 && j == vals2.size() -1)
++        EXPECT_FALSE(permuter.step());
++      else
++        EXPECT_TRUE(permuter.step());
++    };
++
++}
++TEST(Permuter, ThreeDoubleOptions)
++{
++  double epsilon = 1e-9;
++  Permuter permuter;
++  std::vector<double> vals;
++  vals.push_back(1.0);
++  vals.push_back(2.0);
++  vals.push_back(3.0);
++  vals.push_back(4.0);
++
++
++  double value = 0;
++  
++  std::vector<double> vals2;
++  vals2.push_back(9.0);
++  vals2.push_back(8.0);
++  vals2.push_back(7.0);
++  vals2.push_back(6.0);
++
++  double value2;
++
++  std::vector<double> vals3;
++  vals3.push_back(99.0);
++  vals3.push_back(88.0);
++  vals3.push_back(78.0);
++  vals3.push_back(63.0);
++
++  double value3;
++
++  permuter.addOptionSet(vals, &value);
++  permuter.addOptionSet(vals2, &value2);
++  permuter.addOptionSet(vals3, &value3);
++
++  for ( unsigned int k = 0; k < vals3.size(); k++)
++    for ( unsigned int j = 0; j < vals2.size(); j++)
++      for ( unsigned int i = 0; i < vals.size(); i++)
++      {
++        EXPECT_NEAR(vals[i], value, epsilon);
++        EXPECT_NEAR(vals2[j], value2, epsilon);
++        EXPECT_NEAR(vals3[k], value3, epsilon);
++        if (i == vals.size() -1 && j == vals2.size() -1&& k == vals3.size() -1)
++          EXPECT_FALSE(permuter.step());
++        else
++          EXPECT_TRUE(permuter.step());
++      };
++  
++}
++
++TEST(Permuter, DoubleStringPermuteOptions)
++{
++  double epsilon = 1e-9;
++  Permuter permuter;
++  std::vector<double> vals;
++  vals.push_back(1.0);
++  vals.push_back(2.0);
++  vals.push_back(3.0);
++  vals.push_back(4.0);
++
++
++  double value = 0;
++  
++  std::vector<std::string> vals2;
++  vals2.push_back("hi");
++  vals2.push_back("there");
++  vals2.push_back("this");
++  vals2.push_back("works");
++
++  std::string value2;
++
++  permuter.addOptionSet(vals, &value);
++  permuter.addOptionSet(vals2, &value2);
++
++  for ( unsigned int j = 0; j < vals2.size(); j++)
++    for ( unsigned int i = 0; i < vals.size(); i++)
++    {
++      //printf("%f?=%f %s?=%s\n", value, vals[i], value2.c_str(), vals2[j].c_str()); 
++      EXPECT_NEAR(vals[i], value, epsilon);
++      EXPECT_STREQ(vals2[j].c_str(), value2.c_str());
++      if (i == vals.size() -1 && j == vals2.size() -1)
++        EXPECT_FALSE(permuter.step());
++      else
++        EXPECT_TRUE(permuter.step());
++    };
++
++}
++int main(int argc, char **argv){
++  testing::InitGoogleTest(&argc, argv);
++  return RUN_ALL_TESTS();
++}
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/test/time-limit.test
+@@ -0,0 +1,7 @@
++<launch>
++  <!-- as these tests are designed to fail, they aren't be added to the normal test regression suite.
++       they must be manually run with the knowledge that they will fail -->
++  <test test-name="time_limit_test" pkg="rostest" type="time_limit_test.py" time-limit="1" />
++  <!-- test normal timeout (60 seconds) -->
++  <test test-name="time_limit_test__no_limit" pkg="rostest" type="time_limit_test.py" />
++</launch>
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/test/time_limit_test.py
+@@ -0,0 +1,40 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++
++## only point of this test is to be killed within a short period of time
++
++import rospy
++
++while not rospy.is_shutdown():
++   pass
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/test_nodes/publish_once.py
+@@ -0,0 +1,42 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++## Simple auxiliary node that publishes a std_msgs/Bool message once
++
++import rospy
++from std_msgs.msg import Bool
++
++rospy.init_node('publish_once', anonymous=True)
++pub = rospy.Publisher('once_topic', Bool, queue_size=1, latch=True)
++pub.publish(Bool(data=False))
++rospy.sleep(rospy.Duration(3))
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/test_nodes/service_server.py
+@@ -0,0 +1,33 @@
++#!/usr/bin/env python
++# -*- coding: utf-8 -*-
++# Copyright (c) 2019, Yuki Furuta
++# All rights reserved.
++# Author: Yuki Furuta <me@furushchev.ru>
++
++import rospy
++from std_srvs.srv import Empty, EmptyResponse
++from std_srvs.srv import SetBool, SetBoolResponse
++from std_srvs.srv import Trigger, TriggerResponse
++
++
++def empty_cb(req):
++    return EmptyResponse()
++
++def set_bool_cb(req):
++    return SetBoolResponse()
++
++def trigger_cb(req):
++    return TriggerResponse()
++
++def main():
++    rospy.init_node('service_server')
++
++    empty_service = rospy.Service('empty', Empty, empty_cb)
++    set_bool_service = rospy.Service('set_bool', SetBool, set_bool_cb)
++    trigger_service = rospy.Service('trigger', Trigger, trigger_cb)
++
++    rospy.spin()
++
++
++if __name__ == '__main__':
++    main()
+--- /dev/null
++++ ros-noetic-rostest-1.16.0/test_nodes/talker.py
+@@ -0,0 +1,53 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++## Simple talker demo that published std_msgs/Strings messages
++## to the 'chatter' topic
++
++import rospy
++from std_msgs.msg import String
++
++def talker():
++    rospy.init_node('talker', anonymous=True)
++    pub = rospy.Publisher('chatter', String, queue_size=10)
++    r = rospy.Rate(10) # 10hz
++    while not rospy.is_shutdown():
++        str = "hello world %s"%rospy.get_time()
++        rospy.loginfo(str)
++        pub.publish(str)
++        r.sleep()
++        
++if __name__ == '__main__':
++    try:
++        talker()
++    except rospy.ROSInterruptException: pass

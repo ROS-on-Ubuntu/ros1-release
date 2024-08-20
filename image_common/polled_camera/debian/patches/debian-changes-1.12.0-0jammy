@@ -1,0 +1,777 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-polled-camera (1.12.0-0jammy) jammy; urgency=high
+ .
+   * Noetic release image_common (#155 <https://github.com/ros-perception/image_common/issues/155>)
+   * Contributors: Alejandro Hernández Cordero
+Author: Jack O'Quin <jack.oquin@gmail.com>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-polled-camera-1.12.0/CHANGELOG.rst
+@@ -0,0 +1,200 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package polled_camera
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++1.12.0 (2020-04-03)
++-------------------
++* Noetic release image_common (`#155 <https://github.com/ros-perception/image_common/issues/155>`_)
++* Contributors: Alejandro Hernández Cordero
++
++1.11.14 (2020-04-03)
++--------------------
++* export runtime binaries correctly on Windows (`#116 <https://github.com/ros-perception/image_common/issues/116>`_)
++* add DLL import/export macro (`#118 <https://github.com/ros-perception/image_common/issues/118>`_)
++* Contributors: James Xu
++
++1.11.13 (2017-11-05)
++--------------------
++
++1.11.12 (2017-01-29)
++--------------------
++* Fix CMake of image_transport/tutorial and polled_camera
++  Fix loads of problems with the CMakeLists.
++* 1.11.11
++* update changelogs
++* address gcc6 build error in polled_camera
++  With gcc6, compiling fails with `stdlib.h: No such file or directory`,
++  as including '-isystem /usr/include' breaks with gcc6, cf.,
++  https://gcc.gnu.org/bugzilla/show_bug.cgi?id=70129.
++  This commit addresses this issue for this package in the same way
++  it was addressed in various other ROS packages. A list of related
++  commits and pull requests is at:
++  https://github.com/ros/rosdistro/issues/12783
++  Signed-off-by: Lukas Bulwahn <lukas.bulwahn@oss.bmw-carit.de>
++* Contributors: Lukas Bulwahn, Martin Guenther, Vincent Rabaud
++
++1.11.11 (2016-09-24)
++--------------------
++* address gcc6 build error in polled_camera
++  With gcc6, compiling fails with `stdlib.h: No such file or directory`,
++  as including '-isystem /usr/include' breaks with gcc6, cf.,
++  https://gcc.gnu.org/bugzilla/show_bug.cgi?id=70129.
++  This commit addresses this issue for this package in the same way
++  it was addressed in various other ROS packages. A list of related
++  commits and pull requests is at:
++  https://github.com/ros/rosdistro/issues/12783
++  Signed-off-by: Lukas Bulwahn <lukas.bulwahn@oss.bmw-carit.de>
++* Contributors: Lukas Bulwahn
++
++1.11.10 (2016-01-19)
++--------------------
++
++1.11.9 (2016-01-17)
++-------------------
++
++1.11.8 (2015-11-29)
++-------------------
++
++1.11.7 (2015-07-28)
++-------------------
++
++1.11.6 (2015-07-16)
++-------------------
++
++1.11.5 (2015-05-14)
++-------------------
++
++1.11.4 (2014-09-21)
++-------------------
++
++1.11.3 (2014-05-19)
++-------------------
++
++1.11.2 (2014-02-13)
++-------------------
++
++1.11.1 (2014-01-26 02:33)
++-------------------------
++
++1.11.0 (2013-07-20 12:23)
++-------------------------
++
++1.10.5 (2014-01-26 02:34)
++-------------------------
++
++1.10.4 (2013-07-20 11:42)
++-------------------------
++* add Jack as maintainer
++* Contributors: Vincent Rabaud
++
++1.10.3 (2013-02-21 05:33)
++-------------------------
++
++1.10.2 (2013-02-21 04:48)
++-------------------------
++
++1.10.1 (2013-02-21 04:16)
++-------------------------
++
++1.10.0 (2013-01-13)
++-------------------
++* use CATKIN_DEVEL_PREFIX instead of obsolete CATKIN_BUILD_PREFIX
++* fix the urls
++* Missing link flags exposed on OS X
++* added license headers to various cpp and h files
++* Contributors: Aaron Blasdel, Dirk Thomas, Vincent Rabaud, William Woodall
++
++1.9.22 (2012-12-16)
++-------------------
++* replace genmsg by message_generation
++* Contributors: Vincent Rabaud
++
++1.9.21 (2012-12-14)
++-------------------
++* Updated package.xml file(s) to handle new catkin buildtool_depend requirement
++* Contributors: mirzashah
++
++1.9.20 (2012-12-04)
++-------------------
++
++1.9.19 (2012-11-08)
++-------------------
++
++1.9.18 (2012-11-06)
++-------------------
++* remove the brief attribute
++* Contributors: Vincent Rabaud
++
++1.9.17 (2012-10-30 19:32)
++-------------------------
++* comlpy to the new catkin API
++* Contributors: Vincent Rabaud
++
++1.9.16 (2012-10-30 09:10)
++-------------------------
++
++1.9.15 (2012-10-13 08:43)
++-------------------------
++* fix bad folder/libraries
++* Contributors: Vincent Rabaud
++
++1.9.14 (2012-10-13 01:07)
++-------------------------
++* fix typo that resulted in bad installation of include folder
++* Contributors: Vincent Rabaud
++
++1.9.13 (2012-10-06)
++-------------------
++
++1.9.12 (2012-10-04)
++-------------------
++
++1.9.11 (2012-10-02 02:56)
++-------------------------
++
++1.9.10 (2012-10-02 02:42)
++-------------------------
++
++1.9.9 (2012-10-01)
++------------------
++* fix dependencies
++* Contributors: Vincent Rabaud
++
++1.9.8 (2012-09-30)
++------------------
++* add catkin as a dependency
++* comply to the catkin API
++* Contributors: Vincent Rabaud
++
++1.9.7 (2012-09-18 11:39)
++------------------------
++
++1.9.6 (2012-09-18 11:07)
++------------------------
++
++1.9.5 (2012-09-13)
++------------------
++* install the include directories
++* Contributors: Vincent Rabaud
++
++1.9.4 (2012-09-12 23:37)
++------------------------
++* make sure we depend on the server
++* Contributors: Vincent Rabaud
++
++1.9.3 (2012-09-12 20:44)
++------------------------
++
++1.9.2 (2012-09-10)
++------------------
++
++1.9.1 (2012-09-07 15:33)
++------------------------
++
++1.9.0 (2012-09-07 13:03)
++------------------------
++* catkinize for Groovy
++* polled_camera (rep0104): Changed callback to allow filling
++  status_message field.
++* polled_camera (rep0104): Applied changes to GetPolledImage service.
++* Contributors: Vincent Rabaud, eitan, gerkey, kwc, mihelich
+--- /dev/null
++++ ros-noetic-polled-camera-1.12.0/CMakeLists.txt
+@@ -0,0 +1,45 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(polled_camera)
++
++# generate the server
++find_package(catkin REQUIRED COMPONENTS image_transport message_generation roscpp sensor_msgs std_msgs)
++
++add_service_files(DIRECTORY srv FILES GetPolledImage.srv)
++
++generate_messages(DEPENDENCIES sensor_msgs std_msgs)
++
++# define the project
++catkin_package(CATKIN_DEPENDS image_transport message_runtime roscpp sensor_msgs std_msgs
++               INCLUDE_DIRS include
++               LIBRARIES ${PROJECT_NAME}
++)
++
++
++# create some library and exe
++include_directories(include
++                    ${catkin_INCLUDE_DIRS} 
++                    ${CATKIN_DEVEL_PREFIX}/${CATKIN_GLOBAL_INCLUDE_DESTINATION}
++)
++
++add_library(${PROJECT_NAME} src/publication_server.cpp)
++add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS} ${${PROJECT_NAME}_EXPORTED_TARGETS})
++target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES})
++
++install(TARGETS ${PROJECT_NAME}
++  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
++  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
++  RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
++)
++install(DIRECTORY include/${PROJECT_NAME}/
++        DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
++)
++
++add_executable(poller src/poller.cpp)
++add_dependencies(poller ${catkin_EXPORTED_TARGETS} ${${PROJECT_NAME}_EXPORTED_TARGETS})
++target_link_libraries(poller ${PROJECT_NAME}
++                             ${catkin_LIBRARIES}
++)
++
++install(TARGETS poller
++        DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
++)
+--- /dev/null
++++ ros-noetic-polled-camera-1.12.0/include/polled_camera/publication_server.h
+@@ -0,0 +1,150 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++* 
++*  Copyright (c) 2009, Willow Garage, Inc.
++*  All rights reserved.
++* 
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++* 
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++* 
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++
++#ifndef POLLED_CAMERA_PUBLICATION_SERVER_H
++#define POLLED_CAMERA_PUBLICATION_SERVER_H
++
++#include <ros/ros.h>
++#include <sensor_msgs/Image.h>
++#include <sensor_msgs/CameraInfo.h>
++#include "polled_camera/GetPolledImage.h"
++
++#include <ros/macros.h>
++
++// Import/export for windows dll's and visibility for gcc shared libraries.
++
++#ifdef ROS_BUILD_SHARED_LIBS // ros is being built around shared libraries
++  #ifdef polled_camera_EXPORTS // we are building a shared lib/dll
++    #define POLLED_CAMERA_DECL ROS_HELPER_EXPORT
++  #else // we are using shared lib/dll
++    #define POLLED_CAMERA_DECL ROS_HELPER_IMPORT
++  #endif
++#else // ros is being built around static libraries
++  #define POLLED_CAMERA_DECL
++#endif
++
++namespace polled_camera {
++
++/**
++ * \brief Manage image requests from one or more clients.
++ *
++ * Instances of polled_camera::PublicationServer should be created using one of
++ * the overloads of polled_camera::advertise(). You must specify a driver
++ * callback that populates the requested data:
++\code
++void callback(polled_camera::GetPolledImage::Request& req,
++              polled_camera::GetPolledImage::Response& rsp,
++              sensor_msgs::Image& image, sensor_msgs::CameraInfo& info)
++{
++  // Capture an image and fill in the Image and CameraInfo messages here.
++  
++  // On success, set rsp.success = true. rsp.timestamp will be filled in
++  // automatically.
++  
++  // On failure, set rsp.success = false and fill rsp.status_message with an
++  // informative error message.
++}
++\endcode
++ */
++class POLLED_CAMERA_DECL PublicationServer
++{
++public:
++  typedef boost::function<void (polled_camera::GetPolledImage::Request&,
++                                polled_camera::GetPolledImage::Response&,
++                                sensor_msgs::Image&,
++                                sensor_msgs::CameraInfo&)> DriverCallback;
++  
++  PublicationServer() {}
++
++  /**
++   * \brief Unadvertise the request service and shut down all published topics.
++   */
++  void shutdown();
++
++  std::string getService() const;
++
++  operator void*() const;
++  bool operator< (const PublicationServer& rhs) const { return impl_ <  rhs.impl_; }
++  bool operator==(const PublicationServer& rhs) const { return impl_ == rhs.impl_; }
++  bool operator!=(const PublicationServer& rhs) const { return impl_ != rhs.impl_; }
++
++private:
++  PublicationServer(const std::string& service, ros::NodeHandle& nh,
++                    const DriverCallback& cb, const ros::VoidPtr& tracked_object);
++
++  class Impl;
++
++  boost::shared_ptr<Impl> impl_;
++
++  friend
++  PublicationServer advertise(ros::NodeHandle&, const std::string&, const DriverCallback&,
++                              const ros::VoidPtr&);
++};
++
++/**
++ * \brief Advertise a polled image service, version for arbitrary boost::function object.
++ */
++PublicationServer advertise(ros::NodeHandle& nh, const std::string& service,
++                            const PublicationServer::DriverCallback& cb,
++                            const ros::VoidPtr& tracked_object = ros::VoidPtr());
++
++/**
++ * \brief Advertise a polled image service, version for class member function with bare pointer.
++ */
++template<class T>
++PublicationServer advertise(ros::NodeHandle& nh, const std::string& service,
++                            void(T::*fp)(polled_camera::GetPolledImage::Request&,
++                                         polled_camera::GetPolledImage::Response&,
++                                         sensor_msgs::Image&, sensor_msgs::CameraInfo&),
++                            T* obj)
++{
++  return advertise(nh, service, boost::bind(fp, obj, _1, _2, _3, _4));
++}
++
++/**
++ * \brief Advertise a polled image service, version for class member function with bare pointer.
++ */
++template<class T>
++PublicationServer advertise(ros::NodeHandle& nh, const std::string& service,
++                            void(T::*fp)(polled_camera::GetPolledImage::Request&,
++                                         polled_camera::GetPolledImage::Response&,
++                                         sensor_msgs::Image&, sensor_msgs::CameraInfo&),
++                            const boost::shared_ptr<T>& obj)
++{
++  return advertise(nh, service, boost::bind(fp, obj.get(), _1, _2, _3, _4), obj);
++}
++
++} //namespace polled_camera
++
++#endif
+--- /dev/null
++++ ros-noetic-polled-camera-1.12.0/mainpage.dox
+@@ -0,0 +1,48 @@
++/**
++\mainpage
++\htmlinclude manifest.html
++
++NOTE: This package's API is not yet released. It may change from its current form.
++
++\b polled_camera contains a service definition for requesting polled images,
++as well as a C++ server class to simplify publishing polled images to clients.
++
++The protocol for polling images from a camera driver node that supports it is as
++follows:
++ - The camera driver advertises a service call \c \<camera\>/request_image.
++ - The client calls the service, specifying an output namespace in the request.
++ - On receiving a request, the driver captures an image and returns its time stamp
++in the service response.
++ - The \c Image and \c CameraInfo are published to \c \<response_namespace\>/image_raw
++and \c \<response_namespace\>/camera_info, latched.
++ - Clients subscribe to the response topics just like any other camera image stream.
++
++\section codeapi Code API
++Use polled_camera::PublicationServer in camera driver nodes (or similar) to
++track client connections and respond to image requests.
++
++There is not currently a matching client class, but receiving polled images
++is identical to subscribing to any other image topic. The only additional
++step is using a ros::ServiceClient to make explicit requests:
++
++\code
++#include <ros/ros.h>
++#include <image_transport/image_transport.h>
++#include <polled_camera/GetPolledImage.h>
++
++void callback(const sensor_msgs::ImageConstPtr& image, const sensor_msgs::CameraInfoConstPtr& info);
++
++ros::NodeHandle nh;
++image_transport::ImageTransport it(nh);
++
++image_transport::CameraSubscriber sub = it.subscribeCamera("output_ns/image_raw", 1, callback);
++ros::ServiceClient client = nh.serviceClient<polled_camera::GetPolledImage>("my_camera/request_image");
++polled_camera::GetPolledImage srv;
++srv.request.response_namespace = "output_ns";
++if (client.call(srv))
++{
++  ROS_INFO_STREAM("Image captured with timestamp " << srv.response.stamp);
++}
++\endcode
++
++*/
+--- /dev/null
++++ ros-noetic-polled-camera-1.12.0/package.xml
+@@ -0,0 +1,33 @@
++<package>
++  <name>polled_camera</name>
++  <version>1.12.0</version>
++  <description>
++
++     polled_camera contains a service and C++ helper classes for implementing a polled
++     camera driver node and requesting images from it. The package is currently for
++     internal use as the API is still under development.
++
++  </description>
++  <author>Patrick Mihelich</author>
++  <maintainer email="jack.oquin@gmail.com">Jack O'Quin</maintainer>
++  <maintainer email="vincent.rabaud@gmail.com">Vincent Rabaud</maintainer>
++  <license>BSD</license>
++
++  <url type="website">http://ros.org/wiki/polled_camera</url>
++  <url type="bugtracker">https://github.com/ros-perception/image_common/issues</url>
++  <url type="repository">https://github.com/ros-perception/image_common</url>
++
++  <buildtool_depend>catkin</buildtool_depend>
++
++  <build_depend>image_transport</build_depend>
++  <build_depend>message_generation</build_depend>
++  <build_depend>roscpp</build_depend>
++  <build_depend>sensor_msgs</build_depend>
++  <build_depend>std_msgs</build_depend>
++
++  <run_depend>image_transport</run_depend>
++  <run_depend>message_runtime</run_depend>
++  <run_depend>roscpp</run_depend>
++  <run_depend>sensor_msgs</run_depend>
++  <run_depend>std_msgs</run_depend>
++</package>
+--- /dev/null
++++ ros-noetic-polled-camera-1.12.0/src/poller.cpp
+@@ -0,0 +1,68 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++* 
++*  Copyright (c) 2009, Willow Garage, Inc.
++*  All rights reserved.
++* 
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++* 
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++* 
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++
++#include <cstdio>
++#include <ros/ros.h>
++#include <boost/lexical_cast.hpp>
++#include "polled_camera/GetPolledImage.h"
++
++int main(int argc, char** argv)
++{
++  ros::init(argc, argv, "poller", ros::init_options::AnonymousName);
++  if (argc < 2) {
++    printf("Usage: %s <Hz> camera:=<namespace> output:=<namespace>\n", argv[0]);
++    return 0;
++  }
++  double hz = boost::lexical_cast<double>(argv[1]);
++  
++  ros::NodeHandle nh;
++  std::string service_name = nh.resolveName("camera") + "/request_image";
++  ros::ServiceClient client = nh.serviceClient<polled_camera::GetPolledImage>(service_name);
++
++  polled_camera::GetPolledImage::Request req;
++  polled_camera::GetPolledImage::Response rsp;
++  req.response_namespace = nh.resolveName("output");
++
++  ros::Rate loop_rate(hz);
++  while (nh.ok()) {
++    if (client.call(req, rsp)) {
++      std::cout << "Timestamp: " << rsp.stamp << std::endl;
++      loop_rate.sleep();
++    }
++    else {
++      ROS_ERROR("Service call failed");
++      client.waitForExistence();
++    }
++  }
++}
+--- /dev/null
++++ ros-noetic-polled-camera-1.12.0/src/publication_server.cpp
+@@ -0,0 +1,161 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++* 
++*  Copyright (c) 2009, Willow Garage, Inc.
++*  All rights reserved.
++* 
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++* 
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++* 
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++
++#include "polled_camera/publication_server.h"
++#include <image_transport/image_transport.h>
++
++namespace polled_camera {
++
++/// \cond
++
++class PublicationServer::Impl
++{
++public:
++  ros::ServiceServer srv_server_;
++  DriverCallback driver_cb_;
++  ros::VoidPtr tracked_object_;
++  image_transport::ImageTransport it_;
++  std::map<std::string, image_transport::CameraPublisher> client_map_;
++  bool unadvertised_;
++  double constructed_;
++  
++  Impl(const ros::NodeHandle& nh)
++    : it_(nh),
++      unadvertised_(false),
++      constructed_(ros::WallTime::now().toSec())
++  {
++  }
++  
++  ~Impl()
++  {
++    if (ros::WallTime::now().toSec() - constructed_ < 0.001)
++      ROS_WARN("PublicationServer destroyed immediately after creation. Did you forget to store the handle?");
++    unadvertise();
++  }
++
++  bool isValid() const
++  {
++    return !unadvertised_;
++  }
++
++  void unadvertise()
++  {
++    if (!unadvertised_) {
++      unadvertised_ = true;
++      srv_server_.shutdown();
++      client_map_.clear();
++    }
++  }
++
++  bool requestCallback(polled_camera::GetPolledImage::Request& req,
++                       polled_camera::GetPolledImage::Response& rsp)
++  {
++    std::string image_topic = req.response_namespace + "/image_raw";
++    image_transport::CameraPublisher& pub = client_map_[image_topic];
++    if (!pub) {
++      // Create a latching camera publisher.
++      pub = it_.advertiseCamera(image_topic, 1, image_transport::SubscriberStatusCallback(),
++                                boost::bind(&Impl::disconnectCallback, this, _1),
++                                ros::SubscriberStatusCallback(), ros::SubscriberStatusCallback(),
++                                ros::VoidPtr(), true /*latch*/);
++      ROS_INFO("Advertising %s", pub.getTopic().c_str());
++    }
++
++    // Correct zero binning values to one for convenience
++    req.binning_x = std::max(req.binning_x, (uint32_t)1);
++    req.binning_y = std::max(req.binning_y, (uint32_t)1);
++
++    /// @todo Use pointers in prep for nodelet drivers?
++    sensor_msgs::Image image;
++    sensor_msgs::CameraInfo info;
++    driver_cb_(req, rsp, image, info);
++    
++    if (rsp.success) {
++      assert(image.header.stamp == info.header.stamp);
++      rsp.stamp = image.header.stamp;
++      pub.publish(image, info);
++    }
++    else {
++      ROS_ERROR("Failed to capture requested image, status message: '%s'",
++                rsp.status_message.c_str());
++    }
++    
++    return true; // Success/failure indicated by rsp.success
++  }
++
++  void disconnectCallback(const image_transport::SingleSubscriberPublisher& ssp)
++  {
++    // Shut down the publication when the subscription count drops to zero.
++    if (ssp.getNumSubscribers() == 0) {
++      ROS_INFO("Shutting down %s", ssp.getTopic().c_str());
++      client_map_.erase(ssp.getTopic());
++    }
++  }
++};
++
++/// \endcond
++
++PublicationServer::PublicationServer(const std::string& service, ros::NodeHandle& nh,
++                                     const DriverCallback& cb, const ros::VoidPtr& tracked_object)
++  : impl_(new Impl(nh))
++{
++  impl_->driver_cb_ = cb;
++  impl_->tracked_object_ = tracked_object;
++  impl_->srv_server_ = nh.advertiseService<>(service, &Impl::requestCallback, impl_);
++}
++
++void PublicationServer::shutdown()
++{
++  if (impl_) impl_->unadvertise();
++}
++
++std::string PublicationServer::getService() const
++{
++  if (impl_) return impl_->srv_server_.getService();
++  return std::string();
++}
++
++PublicationServer::operator void*() const
++{
++  return (impl_ && impl_->isValid()) ? (void*)1 : (void*)0;
++}
++
++PublicationServer advertise(ros::NodeHandle& nh, const std::string& service,
++                            const PublicationServer::DriverCallback& cb,
++                            const ros::VoidPtr& tracked_object)
++{
++  return PublicationServer(service, nh, cb, tracked_object);
++}
++
++} //namespace polled_camera
+--- /dev/null
++++ ros-noetic-polled-camera-1.12.0/srv/GetPolledImage.srv
+@@ -0,0 +1,22 @@
++# Namespace to publish response topics in. A polled camera driver node
++# should publish:
++#   <response_namespace>/image_raw
++#   <response_namespace>/camera_info
++string response_namespace
++
++# Timeout for attempting to capture data from the device. This does not
++# include latency from ROS communication, post-processing of raw camera
++# data, etc. A zero duration indicates no time limit.
++duration timeout
++
++# Binning settings, if supported by the camera.
++uint32 binning_x
++uint32 binning_y
++
++# Region of interest, if supported by the camera.
++sensor_msgs/RegionOfInterest roi
++---
++bool success          # Could the image be captured?
++string status_message # Error message in case of failure
++time stamp            # Timestamp of the captured image. Can be matched
++                      # against incoming sensor_msgs/Image header.

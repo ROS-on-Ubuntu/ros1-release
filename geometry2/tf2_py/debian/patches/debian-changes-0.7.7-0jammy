@@ -1,0 +1,1195 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-tf2-py (0.7.7-0jammy) jammy; urgency=high
+ .
+   * Fix(tf2_py) potential memory leak (#544 <https://github.com/ros/geometry2/issues/544>)
+   * Contributors: Matthijs van der Burgh
+Author: Tully Foote <tfoote@osrfoundation.org>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-tf2-py-0.7.7/CHANGELOG.rst
+@@ -0,0 +1,181 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package tf2_py
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++0.7.7 (2023-10-13)
++------------------
++* Fix(tf2_py) potential memory leak (`#544 <https://github.com/ros/geometry2/issues/544>`_)
++* Contributors: Matthijs van der Burgh
++
++0.7.6 (2022-10-11)
++------------------
++
++0.7.5 (2020-09-01)
++------------------
++
++0.7.4 (2020-09-01)
++------------------
++
++0.7.3 (2020-08-25)
++------------------
++* avoid name collision b/t tf2_py and tf2 (`#478 <https://github.com/ros/geometry2/issues/478>`_)
++* Contributors: Sean Yen
++
++0.7.2 (2020-06-08)
++------------------
++
++0.7.1 (2020-05-13)
++------------------
++* [noetic] cherry-pick Windows fixes from melodic-devel (`#450 <https://github.com/ros/geometry2/issues/450>`_)
++  * [Windows][melodic-devel] Fix install locations (`#442 <https://github.com/ros/geometry2/issues/442>`_)
++  * fixed install locations of tf2
++  * [windows][melodic] more portable fixes. (`#443 <https://github.com/ros/geometry2/issues/443>`_)
++  * more portable fixes.
++* import setup from setuptools instead of distutils-core (`#449 <https://github.com/ros/geometry2/issues/449>`_)
++* Contributors: Alejandro Hernández Cordero, Sean Yen
++
++0.7.0 (2020-03-09)
++------------------
++* Bump CMake version to avoid CMP0048 warning (`#445 <https://github.com/ros/geometry2/issues/445>`_)
++* Merge pull request `#363 <https://github.com/ros/geometry2/issues/363>`_ from kejxu/fix_tf2_py_export
++  use .pyd instead of .so on Windows and export symbols
++* limit MSVC-only change to MSVC scope (`#10 <https://github.com/ros/geometry2/issues/10>`_)
++* Fix the pyd extension and export the init function.
++* use windows counterpart for .so extension
++* Contributors: James Xu, Sean Yen, Shane Loretz, Tully Foote
++
++0.6.5 (2018-11-16)
++------------------
++
++0.6.4 (2018-11-06)
++------------------
++* fix translation vs rotation typo
++  Fixes `#324 <https://github.com/ros/geometry2/issues/324>`_
++* Add python3.7 compatibility.
++* Contributors: Hans Gaiser, Tully Foote
++
++0.6.3 (2018-07-09)
++------------------
++
++0.6.2 (2018-05-02)
++------------------
++
++0.6.1 (2018-03-21)
++------------------
++
++0.6.0 (2018-03-21)
++------------------
++
++0.5.17 (2018-01-01)
++-------------------
++* Merge pull request `#266 <https://github.com/ros/geometry2/issues/266>`_ from randoms/indigo-devel
++  fix METH_OLDARGS is no longer supported error in python3
++* Merge pull request `#260 <https://github.com/ros/geometry2/issues/260>`_ from randoms/indigo-devel
++  fix python3 import error
++* Merge pull request `#257 <https://github.com/ros/geometry2/issues/257>`_ from delftrobotics-forks/python3
++  Make tf2_py python3 compatible again
++* Use string conversion from python_compat.h.
++* Contributors: Maarten de Vries, Tully Foote, randoms
++
++0.5.16 (2017-07-14)
++-------------------
++* fix memory leak calling Py_DECREF for all created PyObject
++* replaced dependencies on tf2_msgs_gencpp by exported dependencies
++* Relax strict type checks at setTransform to only check for members (`#221 <https://github.com/ros/geometry2/issues/221>`_)
++* expose deprecated methods in tf2_py API to support better backwards compatibility. Fixes `#206 <https://github.com/ros/geometry2/issues/206>`_
++* Contributors: Christopher Wecht, Sergio Ramos, Tully Foote, alex
++
++0.5.15 (2017-01-24)
++-------------------
++
++0.5.14 (2017-01-16)
++-------------------
++* Improve tf compatibility (`#192 <https://github.com/ros/geometry2/issues/192>`_)
++  getLatestCommonTime() is needed to implement the TF API.
++  See `ros/geometry#134 <https://github.com/ros/geometry/issues/134>`_
++* Add missing type checks at Python/C++ tf2 transform interface `#159 <https://github.com/ros/geometry2/issues/159>`_ (`#197 <https://github.com/ros/geometry2/issues/197>`_)
++* Make tf2_py compatible with python3. (`#173 <https://github.com/ros/geometry2/issues/173>`_)
++  * tf2_py: Use PyUnicode objects for text in python3.
++  * tf2_py: Make module initialization python3 compatible.
++  * tf2_py: Fix type definition for python3.
++  * tf2_py: Move and rename PyObject_BorrowAttrString.
++* Contributors: Maarten de Vries, Timo Röhling, alex
++
++0.5.13 (2016-03-04)
++-------------------
++
++0.5.12 (2015-08-05)
++-------------------
++
++0.5.11 (2015-04-22)
++-------------------
++
++0.5.10 (2015-04-21)
++-------------------
++
++0.5.9 (2015-03-25)
++------------------
++
++0.5.8 (2015-03-17)
++------------------
++
++0.5.7 (2014-12-23)
++------------------
++
++0.5.6 (2014-09-18)
++------------------
++
++0.5.5 (2014-06-23)
++------------------
++
++0.5.4 (2014-05-07)
++------------------
++
++0.5.3 (2014-02-21)
++------------------
++
++0.5.2 (2014-02-20)
++------------------
++
++0.5.1 (2014-02-14)
++------------------
++
++0.5.0 (2014-02-14)
++------------------
++
++0.4.10 (2013-12-26)
++-------------------
++* adding support for static transforms in python listener. Fixes `#46 <https://github.com/ros/geometry_experimental/issues/46>`_
++* Contributors: Tully Foote
++
++0.4.9 (2013-11-06)
++------------------
++
++0.4.8 (2013-11-06)
++------------------
++
++0.4.7 (2013-08-28)
++------------------
++
++0.4.6 (2013-08-28)
++------------------
++
++0.4.5 (2013-07-11)
++------------------
++
++0.4.4 (2013-07-09)
++------------------
++* tf2_py: Fixes warning, implicit conversion of NULL
++
++0.4.3 (2013-07-05)
++------------------
++
++0.4.2 (2013-07-05)
++------------------
++
++0.4.1 (2013-07-05)
++------------------
++
++0.4.0 (2013-06-27)
++------------------
++* splitting rospy dependency into tf2_py so tf2 is pure c++ library.
+--- /dev/null
++++ ros-noetic-tf2-py-0.7.7/CMakeLists.txt
+@@ -0,0 +1,162 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(tf2_py)
++
++## Find catkin macros and libraries
++## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
++## is used, also find other catkin packages
++find_package(catkin REQUIRED COMPONENTS rospy tf2)
++
++## System dependencies are found with CMake's conventions
++# find_package(Boost REQUIRED COMPONENTS system)
++
++
++find_package(PythonLibs 2 REQUIRED)
++include_directories(${PYTHON_INCLUDE_PATH} ${catkin_INCLUDE_DIRS})
++
++## Uncomment this if the package has a setup.py. This macro ensures
++## modules and global scripts declared therein get installed
++## See http://ros.org/doc/api/catkin/html/user_guide/setup_dot_py.html
++catkin_python_setup()
++
++#######################################
++## Declare ROS messages and services ##
++#######################################
++
++## Generate messages in the 'msg' folder
++# add_message_files(
++#   FILES
++#   Message1.msg
++#   Message2.msg
++# )
++
++## Generate services in the 'srv' folder
++# add_service_files(
++#   FILES
++#   Service1.srv
++#   Service2.srv
++# )
++
++## Generate added messages and services with any dependencies listed here
++# generate_messages(
++#   DEPENDENCIES
++#   std_msgs  # Or other packages containing msgs
++# )
++
++###################################
++## catkin specific configuration ##
++###################################
++## The catkin_package macro generates cmake config files for your package
++## Declare things to be passed to dependent projects
++## LIBRARIES: libraries you create in this project that dependent projects also need
++## CATKIN_DEPENDS: catkin_packages dependent projects also need
++## DEPENDS: system dependencies of this project that dependent projects also need
++catkin_package(
++#  INCLUDE_DIRS include
++#  LIBRARIES tf2_py
++  CATKIN_DEPENDS rospy tf2
++#  DEPENDS system_lib
++)
++
++###########
++## Build ##
++###########
++
++## Specify additional locations of header files
++## Your package locations should be listed before other locations
++# include_directories(include ${catkin_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS})
++
++## Declare a cpp library
++# add_library(tf2_py
++#   src/${PROJECT_NAME}/tf2_py.cpp
++# )
++
++## Declare a cpp executable
++# add_executable(tf2_py_node src/tf2_py_node.cpp)
++
++## Add cmake target dependencies of the executable/library
++## as an example, message headers may need to be generated before nodes
++# add_dependencies(tf2_py_node tf2_py_generate_messages_cpp)
++
++## Specify libraries to link a library or executable target against
++# target_link_libraries(tf2_py_node
++#   ${catkin_LIBRARIES}
++# )
++
++
++# Check for SSE
++#!!! rosbuild_check_for_sse()
++
++# Dynamic linking with tf worked OK, except for exception propagation, which failed in the unit test.
++# so build with the objects directly instead.
++
++link_libraries(${PYTHON_LIBRARIES})
++add_library(tf2_py src/tf2_py.cpp)
++target_link_libraries(tf2_py ${catkin_LIBRARIES})
++add_dependencies(tf2_py ${catkin_EXPORTED_TARGETS})
++
++if(WIN32)
++  # use .pyd extension on Windows
++  set_target_properties(tf2_py PROPERTIES OUTPUT_NAME "_tf2" SUFFIX ".pyd")
++else()
++  set_target_properties(tf2_py PROPERTIES COMPILE_FLAGS "-g -Wno-missing-field-initializers")
++  set_target_properties(tf2_py PROPERTIES OUTPUT_NAME tf2 PREFIX "_" SUFFIX ".so")
++endif()
++set_target_properties(tf2_py PROPERTIES
++  ARCHIVE_OUTPUT_DIRECTORY ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_PYTHON_DESTINATION}
++  LIBRARY_OUTPUT_DIRECTORY ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_PYTHON_DESTINATION}
++  RUNTIME_OUTPUT_DIRECTORY ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_PYTHON_DESTINATION}
++)
++#!! rosbuild_add_compile_flags(tf2_py ${SSE_FLAGS}) #conditionally adds sse flags if available
++
++
++#############
++## Install ##
++#############
++
++# all install targets should use catkin DESTINATION variables
++# See http://ros.org/doc/api/catkin/html/adv_user_guide/variables.html
++
++## Mark executable scripts (Python etc.) for installation
++## in contrast to setup.py, you can choose the destination
++# install(PROGRAMS
++#   scripts/my_python_script
++#   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
++# )
++
++## Mark executables and/or libraries for installation
++# install(TARGETS tf2_py tf2_py_node
++#   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
++#   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
++#   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
++# )
++
++## Mark cpp header files for installation
++# install(DIRECTORY include/${PROJECT_NAME}/
++#   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
++#   FILES_MATCHING PATTERN "*.h"
++#   PATTERN ".svn" EXCLUDE
++# )
++
++## Mark other files for installation (e.g. launch and bag files, etc.)
++# install(FILES
++#   # myfile1
++#   # myfile2
++#   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
++# )
++
++install(FILES $<TARGET_FILE:tf2_py>
++    DESTINATION ${CATKIN_PACKAGE_PYTHON_DESTINATION}
++)
++
++#############
++## Testing ##
++#############
++
++## Add gtest based cpp test target and link libraries
++# catkin_add_gtest(${PROJECT_NAME}-test test/test_tf2_py.cpp)
++# if(TARGET ${PROJECT_NAME}-test)
++#   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
++# endif()
++
++## Add folders to be run by python nosetests
++# catkin_add_nosetests(test)
+--- /dev/null
++++ ros-noetic-tf2-py-0.7.7/package.xml
+@@ -0,0 +1,55 @@
++<?xml version="1.0"?>
++<package>
++  <name>tf2_py</name>
++  <version>0.7.7</version>
++  <description>The tf2_py package</description>
++
++  <!-- One maintainer tag required, multiple allowed, one person per tag --> 
++  <maintainer email="tfoote@osrfoundation.org">Tully Foote</maintainer>
++
++
++  <!-- One license tag required, multiple allowed, one license per tag -->
++  <!-- Commonly used license strings: -->
++  <!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 -->
++  <license>BSD</license>
++
++
++  <!-- Url tags are optional, but mutiple are allowed, one per tag -->
++  <!-- Optional attribute type can be: website, bugtracker, or repository -->
++  <!-- Example: -->
++  <url type="website">http://ros.org/wiki/tf2_py</url>
++
++
++  <!-- Author tags are optional, mutiple are allowed, one per tag -->
++  <!-- Authors do not have to be maintianers, but could be -->
++  <!-- Example: -->
++  <!-- <author email="jane.doe@example.com">Jane Doe</author> -->
++
++
++  <!-- The *_depend tags are used to specify dependencies -->
++  <!-- Dependencies can be catkin packages or system dependencies -->
++  <!-- Examples: -->
++  <!-- Use build_depend for packages you need at compile time: -->
++  <!--   <build_depend>message_generation</build_depend> -->
++  <!-- Use buildtool_depend for build tool packages: -->
++  <!--   <buildtool_depend>catkin</buildtool_depend> -->
++  <!-- Use run_depend for packages you need at runtime: -->
++  <!--   <run_depend>message_runtime</run_depend> -->
++  <!-- Use test_depend for packages you need only for testing: -->
++  <!--   <test_depend>gtest</test_depend> -->
++  <buildtool_depend>catkin</buildtool_depend>
++  <build_depend>tf2</build_depend>
++  <build_depend>rospy</build_depend>
++  <run_depend>tf2</run_depend>
++  <run_depend>rospy</run_depend>
++
++
++  <!-- The export tag contains other, unspecified, tags -->
++  <export>
++    <!-- You can specify that this package is a metapackage here: -->
++    <!-- <metapackage/> -->
++
++    <!-- Other tools can request additional information be placed here -->
++
++  </export>
++</package>
+\ No newline at end of file
+--- /dev/null
++++ ros-noetic-tf2-py-0.7.7/setup.py
+@@ -0,0 +1,12 @@
++#!/usr/bin/env python
++
++from setuptools import setup
++from catkin_pkg.python_setup import generate_distutils_setup
++
++d = generate_distutils_setup(
++    packages=['tf2_py'],
++    package_dir={'': 'src'},
++    requires=['rospy', 'geometry_msgs', 'tf2_msgs']
++)
++
++setup(**d)
+--- /dev/null
++++ ros-noetic-tf2-py-0.7.7/src/python_compat.h
+@@ -0,0 +1,54 @@
++#ifndef TF2_PY_PYTHON_COMPAT_H
++#define TF2_PY_PYTHON_COMPAT_H
++
++#include <Python.h>
++
++#include <string>
++
++inline PyObject *stringToPython(const std::string &input)
++{
++#if PY_MAJOR_VERSION >= 3
++  return PyUnicode_FromStringAndSize(input.c_str(), input.size());
++#else
++  return PyString_FromStringAndSize(input.c_str(), input.size());
++#endif
++}
++
++inline PyObject *stringToPython(const char *input)
++{
++#if PY_MAJOR_VERSION >= 3
++  return PyUnicode_FromString(input);
++#else
++  return PyString_FromString(input);
++#endif
++}
++
++inline std::string stringFromPython(PyObject * input)
++{
++  Py_ssize_t size;
++#if PY_MAJOR_VERSION >= 3
++  const char * data;
++  data = PyUnicode_AsUTF8AndSize(input, &size);
++#else
++  char * data;
++  PyString_AsStringAndSize(input, &data, &size);
++#endif
++  return std::string(data, size);
++}
++
++inline PyObject *pythonImport(const std::string & name)
++{
++  PyObject *py_name = stringToPython(name);
++  PyObject *module  = PyImport_Import(py_name);
++  Py_XDECREF(py_name);
++  return module;
++}
++
++inline PyObject *pythonBorrowAttrString(PyObject* o, const char *name)
++{
++    PyObject *r = PyObject_GetAttrString(o, name);
++    Py_XDECREF(r);
++    return r;
++}
++
++#endif
+--- /dev/null
++++ ros-noetic-tf2-py-0.7.7/src/tf2_py.cpp
+@@ -0,0 +1,645 @@
++#include <Python.h>
++
++#include <tf2/buffer_core.h>
++#include <tf2/exceptions.h>
++
++#include "python_compat.h"
++
++// Run x (a tf method, catching TF's exceptions and reraising them as Python exceptions)
++//
++#define WRAP(x) \
++  do { \
++  try \
++  { \
++    x; \
++  }  \
++  catch (const tf2::ConnectivityException &e) \
++  { \
++    PyErr_SetString(tf2_connectivityexception, e.what()); \
++    return NULL; \
++  } \
++  catch (const tf2::LookupException &e) \
++  { \
++    PyErr_SetString(tf2_lookupexception, e.what()); \
++    return NULL; \
++  } \
++  catch (const tf2::ExtrapolationException &e) \
++  { \
++    PyErr_SetString(tf2_extrapolationexception, e.what()); \
++    return NULL; \
++  } \
++  catch (const tf2::InvalidArgumentException &e) \
++  { \
++    PyErr_SetString(tf2_invalidargumentexception, e.what()); \
++    return NULL; \
++  } \
++  catch (const tf2::TimeoutException &e) \
++  { \
++    PyErr_SetString(tf2_timeoutexception, e.what()); \
++    return NULL; \
++  } \
++  catch (const tf2::TransformException &e) \
++  { \
++    PyErr_SetString(tf2_exception, e.what()); \
++    return NULL; \
++  } \
++  } while (0)
++
++static PyObject *pModulerospy = NULL;
++static PyObject *pModulegeometrymsgs = NULL;
++static PyObject *tf2_exception = NULL;
++static PyObject *tf2_connectivityexception = NULL, *tf2_lookupexception = NULL, *tf2_extrapolationexception = NULL,
++                *tf2_invalidargumentexception = NULL, *tf2_timeoutexception = NULL;
++
++struct buffer_core_t {
++  PyObject_HEAD
++  tf2::BufferCore *bc;
++};
++
++
++static PyTypeObject buffer_core_Type = {
++#if PY_MAJOR_VERSION < 3
++  PyObject_HEAD_INIT(NULL)
++  0,                               /*size*/
++# else
++  PyVarObject_HEAD_INIT(NULL, 0)
++#endif
++  "_tf2.BufferCore",               /*name*/
++  sizeof(buffer_core_t),           /*basicsize*/
++};
++
++static PyObject *transform_converter(const geometry_msgs::TransformStamped* transform)
++{
++  PyObject *pclass, *pargs, *pinst = NULL;
++  pclass = PyObject_GetAttrString(pModulegeometrymsgs, "TransformStamped");
++  if(pclass == NULL)
++  {
++    printf("Can't get geometry_msgs.msg.TransformedStamped\n");
++    return NULL;
++  }
++
++  pargs = Py_BuildValue("()");
++  if(pargs == NULL)
++  {
++    Py_DECREF(pclass);
++    printf("Can't build argument list\n");
++    return NULL;
++  }
++
++  pinst = PyEval_CallObject(pclass, pargs);
++  Py_DECREF(pclass);
++  Py_DECREF(pargs);
++  if(pinst == NULL)
++  {
++    printf("Can't create class\n");
++    return NULL;
++  }
++
++  //we need to convert the time to python
++  PyObject *rospy_time = PyObject_GetAttrString(pModulerospy, "Time");
++  PyObject *args = Py_BuildValue("ii", transform->header.stamp.sec, transform->header.stamp.nsec);
++  PyObject *time_obj = PyObject_CallObject(rospy_time, args);
++  Py_DECREF(args);
++  Py_DECREF(rospy_time);
++
++  PyObject* pheader = PyObject_GetAttrString(pinst, "header");
++  PyObject_SetAttrString(pheader, "stamp", time_obj);
++  Py_DECREF(time_obj);
++
++  PyObject *frame_id = stringToPython(transform->header.frame_id);
++  PyObject_SetAttrString(pheader, "frame_id", frame_id);
++  Py_DECREF(frame_id);
++  Py_DECREF(pheader);
++
++  PyObject *ptransform = PyObject_GetAttrString(pinst, "transform");
++  PyObject *ptranslation = PyObject_GetAttrString(ptransform, "translation");
++  PyObject *protation = PyObject_GetAttrString(ptransform, "rotation");
++  Py_DECREF(ptransform);
++
++  PyObject *child_frame_id = stringToPython(transform->child_frame_id);
++  PyObject_SetAttrString(pinst, "child_frame_id", child_frame_id);
++  Py_DECREF(child_frame_id);
++
++  PyObject *trans_x = PyFloat_FromDouble(transform->transform.translation.x);
++  PyObject *trans_y = PyFloat_FromDouble(transform->transform.translation.y);
++  PyObject *trans_z = PyFloat_FromDouble(transform->transform.translation.z);
++  PyObject_SetAttrString(ptranslation, "x", trans_x);
++  PyObject_SetAttrString(ptranslation, "y", trans_y);
++  PyObject_SetAttrString(ptranslation, "z", trans_z);
++  Py_DECREF(trans_x);
++  Py_DECREF(trans_y);
++  Py_DECREF(trans_z);
++  Py_DECREF(ptranslation);
++
++  PyObject *rot_x = PyFloat_FromDouble(transform->transform.rotation.x);
++  PyObject *rot_y = PyFloat_FromDouble(transform->transform.rotation.y);
++  PyObject *rot_z = PyFloat_FromDouble(transform->transform.rotation.z);
++  PyObject *rot_w = PyFloat_FromDouble(transform->transform.rotation.w);
++  PyObject_SetAttrString(protation, "x", rot_x);
++  PyObject_SetAttrString(protation, "y", rot_y);
++  PyObject_SetAttrString(protation, "z", rot_z);
++  PyObject_SetAttrString(protation, "w", rot_w);
++  Py_DECREF(rot_x);
++  Py_DECREF(rot_y);
++  Py_DECREF(rot_z);
++  Py_DECREF(rot_w);
++  Py_DECREF(protation);
++
++  return pinst;
++}
++
++static int rostime_converter(PyObject *obj, ros::Time *rt)
++{
++  PyObject *tsr = PyObject_CallMethod(obj, (char*)"to_sec", NULL);
++  if (tsr == NULL) {
++    PyErr_SetString(PyExc_TypeError, "time must have a to_sec method, e.g. rospy.Time or rospy.Duration");
++    return 0;
++  } else {
++    (*rt).fromSec(PyFloat_AsDouble(tsr));
++    Py_DECREF(tsr);
++    return 1;
++  }
++}
++
++static int rosduration_converter(PyObject *obj, ros::Duration *rt)
++{
++  PyObject *tsr = PyObject_CallMethod(obj, (char*)"to_sec", NULL);
++  if (tsr == NULL) {
++    PyErr_SetString(PyExc_TypeError, "time must have a to_sec method, e.g. rospy.Time or rospy.Duration");
++    return 0;
++  } else {
++    (*rt).fromSec(PyFloat_AsDouble(tsr));
++    Py_DECREF(tsr);
++    return 1;
++  }
++}
++
++static int BufferCore_init(PyObject *self, PyObject *args, PyObject *kw)
++{
++  ros::Duration cache_time;
++
++  cache_time.fromSec(tf2::BufferCore::DEFAULT_CACHE_TIME);
++
++  if (!PyArg_ParseTuple(args, "|O&", rosduration_converter, &cache_time))
++    return -1;
++
++  ((buffer_core_t*)self)->bc = new tf2::BufferCore(cache_time);
++
++  return 0;
++}
++
++/* This may need to be implemented later if we decide to have it in the core
++static PyObject *getTFPrefix(PyObject *self, PyObject *args)
++{
++  if (!PyArg_ParseTuple(args, ""))
++    return NULL;
++  tf::Transformer *t = ((transformer_t*)self)->t;
++  return stringToPython(t->getTFPrefix());
++}
++*/
++
++static PyObject *allFramesAsYAML(PyObject *self, PyObject *args)
++{
++  tf2::BufferCore *bc = ((buffer_core_t*)self)->bc;
++  return stringToPython(bc->allFramesAsYAML());
++}
++
++static PyObject *allFramesAsString(PyObject *self, PyObject *args)
++{
++  tf2::BufferCore *bc = ((buffer_core_t*)self)->bc;
++  return stringToPython(bc->allFramesAsString());
++}
++
++static PyObject *canTransformCore(PyObject *self, PyObject *args, PyObject *kw)
++{
++  tf2::BufferCore *bc = ((buffer_core_t*)self)->bc;
++  char *target_frame, *source_frame;
++  ros::Time time;
++  static const char *keywords[] = { "target_frame", "source_frame", "time", NULL };
++
++  if (!PyArg_ParseTupleAndKeywords(args, kw, "ssO&", (char**)keywords, &target_frame, &source_frame, rostime_converter, &time))
++    return NULL;
++  std::string error_msg;
++  bool can_transform = bc->canTransform(target_frame, source_frame, time, &error_msg);
++  //return PyBool_FromLong(t->canTransform(target_frame, source_frame, time));
++  return Py_BuildValue("bs", can_transform, error_msg.c_str());
++}
++
++static PyObject *canTransformFullCore(PyObject *self, PyObject *args, PyObject *kw)
++{
++  tf2::BufferCore *bc = ((buffer_core_t*)self)->bc;
++  char *target_frame, *source_frame, *fixed_frame;
++  ros::Time target_time, source_time;
++  static const char *keywords[] = { "target_frame", "target_time", "source_frame", "source_time", "fixed_frame", NULL };
++
++  if (!PyArg_ParseTupleAndKeywords(args, kw, "sO&sO&s", (char**)keywords,
++                        &target_frame,
++                        rostime_converter,
++                        &target_time,
++                        &source_frame,
++                        rostime_converter,
++                        &source_time,
++                        &fixed_frame))
++    return NULL;
++  std::string error_msg;
++  bool can_transform = bc->canTransform(target_frame, target_time, source_frame, source_time, fixed_frame, &error_msg);
++  //return PyBool_FromLong(t->canTransform(target_frame, target_time, source_frame, source_time, fixed_frame));
++  return Py_BuildValue("bs", can_transform, error_msg.c_str());
++}
++
++static PyObject *asListOfStrings(std::vector< std::string > los)
++{
++  PyObject *r = PyList_New(los.size());
++  size_t i;
++  for (i = 0; i < los.size(); i++) {
++    PyList_SetItem(r, i, stringToPython(los[i]));
++  }
++  return r;
++}
++
++static PyObject *_chain(PyObject *self, PyObject *args, PyObject *kw)
++{
++  tf2::BufferCore *bc = ((buffer_core_t*)self)->bc;
++  char *target_frame, *source_frame, *fixed_frame;
++  ros::Time target_time, source_time;
++  std::vector< std::string > output;
++  static const char *keywords[] = { "target_frame", "target_time", "source_frame", "source_time", "fixed_frame", NULL };
++
++  if (!PyArg_ParseTupleAndKeywords(args, kw, "sO&sO&s", (char**)keywords,
++                        &target_frame,
++                        rostime_converter,
++                        &target_time,
++                        &source_frame,
++                        rostime_converter,
++                        &source_time,
++                        &fixed_frame))
++    return NULL;
++
++  WRAP(bc->_chainAsVector(target_frame, target_time, source_frame, source_time, fixed_frame, output));
++  return asListOfStrings(output);
++}
++
++static PyObject *getLatestCommonTime(PyObject *self, PyObject *args)
++{
++  tf2::BufferCore *bc = ((buffer_core_t*)self)->bc;
++  char *target_frame, *source_frame;
++  tf2::CompactFrameID target_id, source_id;
++  ros::Time time;
++  std::string error_string;
++
++  if (!PyArg_ParseTuple(args, "ss", &target_frame, &source_frame))
++    return NULL;
++  WRAP(target_id = bc->_validateFrameId("get_latest_common_time", target_frame));
++  WRAP(source_id = bc->_validateFrameId("get_latest_common_time", source_frame));
++  int r = bc->_getLatestCommonTime(target_id, source_id, time, &error_string);
++  if (r == 0) {
++    PyObject *rospy_time = PyObject_GetAttrString(pModulerospy, "Time");
++    PyObject *args = Py_BuildValue("ii", time.sec, time.nsec);
++    PyObject *ob = PyObject_CallObject(rospy_time, args);
++    Py_DECREF(args);
++    Py_DECREF(rospy_time);
++    return ob;
++  } else {
++    PyErr_SetString(tf2_exception, error_string.c_str());
++    return NULL;
++  }
++}
++
++static PyObject *lookupTransformCore(PyObject *self, PyObject *args, PyObject *kw)
++{
++  tf2::BufferCore *bc = ((buffer_core_t*)self)->bc;
++  char *target_frame, *source_frame;
++  ros::Time time;
++  static const char *keywords[] = { "target_frame", "source_frame", "time", NULL };
++
++  if (!PyArg_ParseTupleAndKeywords(args, kw, "ssO&", (char**)keywords, &target_frame, &source_frame, rostime_converter, &time))
++    return NULL;
++  geometry_msgs::TransformStamped transform;
++  WRAP(transform = bc->lookupTransform(target_frame, source_frame, time));
++  geometry_msgs::Vector3 origin = transform.transform.translation;
++  geometry_msgs::Quaternion rotation = transform.transform.rotation;
++  //TODO: Create a converter that will actually return a python message
++  return Py_BuildValue("O&", transform_converter, &transform);
++  //return Py_BuildValue("(ddd)(dddd)",
++  //    origin.x, origin.y, origin.z,
++  //    rotation.x, rotation.y, rotation.z, rotation.w);
++}
++
++static PyObject *lookupTransformFullCore(PyObject *self, PyObject *args, PyObject *kw)
++{
++  tf2::BufferCore *bc = ((buffer_core_t*)self)->bc;
++  char *target_frame, *source_frame, *fixed_frame;
++  ros::Time target_time, source_time;
++  static const char *keywords[] = { "target_frame", "target_time", "source_frame", "source_time", "fixed_frame", NULL };
++
++  if (!PyArg_ParseTupleAndKeywords(args, kw, "sO&sO&s", (char**)keywords,
++                        &target_frame,
++                        rostime_converter,
++                        &target_time,
++                        &source_frame,
++                        rostime_converter,
++                        &source_time,
++                        &fixed_frame))
++    return NULL;
++  geometry_msgs::TransformStamped transform;
++  WRAP(transform = bc->lookupTransform(target_frame, target_time, source_frame, source_time, fixed_frame));
++  geometry_msgs::Vector3 origin = transform.transform.translation;
++  geometry_msgs::Quaternion rotation = transform.transform.rotation;
++  //TODO: Create a converter that will actually return a python message
++  return Py_BuildValue("O&", transform_converter, &transform);
++}
++/*
++static PyObject *lookupTwistCore(PyObject *self, PyObject *args, PyObject *kw)
++{
++  tf2::BufferCore *bc = ((buffer_core_t*)self)->bc;
++  char *tracking_frame, *observation_frame;
++  ros::Time time;
++  ros::Duration averaging_interval;
++  static const char *keywords[] = { "tracking_frame", "observation_frame", "time", "averaging_interval", NULL };
++
++  if (!PyArg_ParseTupleAndKeywords(args, kw, "ssO&O&", (char**)keywords, &tracking_frame, &observation_frame, rostime_converter, &time, rosduration_converter, &averaging_interval))
++    return NULL;
++  geometry_msgs::Twist twist;
++  WRAP(twist = bc->lookupTwist(tracking_frame, observation_frame, time, averaging_interval));
++
++  return Py_BuildValue("(ddd)(ddd)",
++      twist.linear.x, twist.linear.y, twist.linear.z,
++      twist.angular.x, twist.angular.y, twist.angular.z);
++}
++
++static PyObject *lookupTwistFullCore(PyObject *self, PyObject *args)
++{
++  tf2::BufferCore *bc = ((buffer_core_t*)self)->bc;
++  char *tracking_frame, *observation_frame, *reference_frame, *reference_point_frame;
++  ros::Time time;
++  ros::Duration averaging_interval;
++  double px, py, pz;
++
++  if (!PyArg_ParseTuple(args, "sss(ddd)sO&O&",
++                        &tracking_frame,
++                        &observation_frame,
++                        &reference_frame,
++                        &px, &py, &pz,
++                        &reference_point_frame,
++                        rostime_converter, &time,
++                        rosduration_converter, &averaging_interval))
++    return NULL;
++  geometry_msgs::Twist twist;
++  tf::Point pt(px, py, pz);
++  WRAP(twist = bc->lookupTwist(tracking_frame, observation_frame, reference_frame, pt, reference_point_frame, time, averaging_interval));
++
++  return Py_BuildValue("(ddd)(ddd)",
++      twist.linear.x, twist.linear.y, twist.linear.z,
++      twist.angular.x, twist.angular.y, twist.angular.z);
++}
++*/
++static inline int checkTranslationType(PyObject* o)
++{
++  PyTypeObject *translation_type = (PyTypeObject*) PyObject_GetAttrString(pModulegeometrymsgs, "Vector3");
++  int type_check = PyObject_TypeCheck(o, translation_type);
++  int attr_check = PyObject_HasAttrString(o, "x") &&
++                   PyObject_HasAttrString(o, "y") &&
++                   PyObject_HasAttrString(o, "z");
++  if (!type_check) {
++    PyErr_WarnEx(PyExc_UserWarning, "translation should be of type Vector3", 1);
++  }
++  return attr_check;
++}
++
++static inline int checkRotationType(PyObject* o)
++{
++  PyTypeObject *rotation_type = (PyTypeObject*) PyObject_GetAttrString(pModulegeometrymsgs, "Quaternion");
++  int type_check = PyObject_TypeCheck(o, rotation_type);
++  int attr_check = PyObject_HasAttrString(o, "w") &&
++                   PyObject_HasAttrString(o, "x") &&
++                   PyObject_HasAttrString(o, "y") &&
++                   PyObject_HasAttrString(o, "z");
++  if (!type_check) {
++    PyErr_WarnEx(PyExc_UserWarning, "rotation should be of type Quaternion", 1);
++  }
++  return attr_check;
++}
++
++static PyObject *setTransform(PyObject *self, PyObject *args)
++{
++  tf2::BufferCore *bc = ((buffer_core_t*)self)->bc;
++  PyObject *py_transform;
++  char *authority;
++
++  if (!PyArg_ParseTuple(args, "Os", &py_transform, &authority))
++    return NULL;
++
++  geometry_msgs::TransformStamped transform;
++  PyObject *header = pythonBorrowAttrString(py_transform, "header");
++  transform.child_frame_id = stringFromPython(pythonBorrowAttrString(py_transform, "child_frame_id"));
++  transform.header.frame_id = stringFromPython(pythonBorrowAttrString(header, "frame_id"));
++  if (rostime_converter(pythonBorrowAttrString(header, "stamp"), &transform.header.stamp) != 1)
++    return NULL;
++
++  PyObject *mtransform = pythonBorrowAttrString(py_transform, "transform");
++
++  PyObject *translation = pythonBorrowAttrString(mtransform, "translation");
++  if (!checkTranslationType(translation)) {
++    PyErr_SetString(PyExc_TypeError, "transform.translation must have members x, y, z");
++    return NULL;
++  }
++
++  transform.transform.translation.x = PyFloat_AsDouble(pythonBorrowAttrString(translation, "x"));
++  transform.transform.translation.y = PyFloat_AsDouble(pythonBorrowAttrString(translation, "y"));
++  transform.transform.translation.z = PyFloat_AsDouble(pythonBorrowAttrString(translation, "z"));
++
++  PyObject *rotation = pythonBorrowAttrString(mtransform, "rotation");
++  if (!checkRotationType(rotation)) {
++    PyErr_SetString(PyExc_TypeError, "transform.rotation must have members w, x, y, z");
++    return NULL;
++  }
++
++  transform.transform.rotation.x = PyFloat_AsDouble(pythonBorrowAttrString(rotation, "x"));
++  transform.transform.rotation.y = PyFloat_AsDouble(pythonBorrowAttrString(rotation, "y"));
++  transform.transform.rotation.z = PyFloat_AsDouble(pythonBorrowAttrString(rotation, "z"));
++  transform.transform.rotation.w = PyFloat_AsDouble(pythonBorrowAttrString(rotation, "w"));
++
++  bc->setTransform(transform, authority);
++  Py_RETURN_NONE;
++}
++
++static PyObject *setTransformStatic(PyObject *self, PyObject *args)
++{
++  tf2::BufferCore *bc = ((buffer_core_t*)self)->bc;
++  PyObject *py_transform;
++  char *authority;
++
++  if (!PyArg_ParseTuple(args, "Os", &py_transform, &authority))
++    return NULL;
++
++  geometry_msgs::TransformStamped transform;
++  PyObject *header = pythonBorrowAttrString(py_transform, "header");
++  transform.child_frame_id = stringFromPython(pythonBorrowAttrString(py_transform, "child_frame_id"));
++  transform.header.frame_id = stringFromPython(pythonBorrowAttrString(header, "frame_id"));
++  if (rostime_converter(pythonBorrowAttrString(header, "stamp"), &transform.header.stamp) != 1)
++    return NULL;
++
++  PyObject *mtransform = pythonBorrowAttrString(py_transform, "transform");
++  PyObject *translation = pythonBorrowAttrString(mtransform, "translation");
++  if (!checkTranslationType(translation)) {
++    PyErr_SetString(PyExc_TypeError, "transform.translation must be of type Vector3");
++    return NULL;
++  }
++
++  transform.transform.translation.x = PyFloat_AsDouble(pythonBorrowAttrString(translation, "x"));
++  transform.transform.translation.y = PyFloat_AsDouble(pythonBorrowAttrString(translation, "y"));
++  transform.transform.translation.z = PyFloat_AsDouble(pythonBorrowAttrString(translation, "z"));
++
++  PyObject *rotation = pythonBorrowAttrString(mtransform, "rotation");
++  if (!checkRotationType(rotation)) {
++    PyErr_SetString(PyExc_TypeError, "transform.rotation must be of type Quaternion");
++    return NULL;
++  }
++
++  transform.transform.rotation.x = PyFloat_AsDouble(pythonBorrowAttrString(rotation, "x"));
++  transform.transform.rotation.y = PyFloat_AsDouble(pythonBorrowAttrString(rotation, "y"));
++  transform.transform.rotation.z = PyFloat_AsDouble(pythonBorrowAttrString(rotation, "z"));
++  transform.transform.rotation.w = PyFloat_AsDouble(pythonBorrowAttrString(rotation, "w"));
++
++  // only difference to above is is_static == True
++  bc->setTransform(transform, authority, true);
++  Py_RETURN_NONE;
++}
++
++static PyObject *clear(PyObject *self, PyObject *args)
++{
++  tf2::BufferCore *bc = ((buffer_core_t*)self)->bc;
++  bc->clear();
++  Py_RETURN_NONE;
++}
++
++static PyObject *_frameExists(PyObject *self, PyObject *args)
++{
++  tf2::BufferCore *bc = ((buffer_core_t*)self)->bc;
++  char *frame_id_str;
++  if (!PyArg_ParseTuple(args, "s", &frame_id_str))
++    return NULL;
++  return PyBool_FromLong(bc->_frameExists(frame_id_str));
++}
++
++static PyObject *_getFrameStrings(PyObject *self, PyObject *args)
++{
++  tf2::BufferCore *bc = ((buffer_core_t*)self)->bc;
++  std::vector< std::string > ids;
++  bc->_getFrameStrings(ids);
++  return asListOfStrings(ids);
++}
++
++static PyObject *_allFramesAsDot(PyObject *self, PyObject *args, PyObject *kw)
++{
++  tf2::BufferCore *bc = ((buffer_core_t*)self)->bc;
++  static const char *keywords[] = { "time", NULL };
++  ros::Time time;
++  if (!PyArg_ParseTupleAndKeywords(args, kw, "|O&", (char**)keywords, rostime_converter, &time))
++    return NULL;
++  return stringToPython(bc->_allFramesAsDot(time.toSec()));
++}
++
++
++static struct PyMethodDef buffer_core_methods[] =
++{
++  {"all_frames_as_yaml", allFramesAsYAML, METH_VARARGS},
++  {"all_frames_as_string", allFramesAsString, METH_VARARGS},
++  {"set_transform", setTransform, METH_VARARGS},
++  {"set_transform_static", setTransformStatic, METH_VARARGS},
++  {"can_transform_core", (PyCFunction)canTransformCore, METH_VARARGS | METH_KEYWORDS},
++  {"can_transform_full_core", (PyCFunction)canTransformFullCore, METH_VARARGS | METH_KEYWORDS},
++  {"_chain", (PyCFunction)_chain, METH_VARARGS | METH_KEYWORDS},
++  {"clear", (PyCFunction)clear, METH_VARARGS | METH_KEYWORDS},
++  {"_frameExists", (PyCFunction)_frameExists, METH_VARARGS},
++  {"_getFrameStrings", (PyCFunction)_getFrameStrings, METH_VARARGS},
++  {"_allFramesAsDot", (PyCFunction)_allFramesAsDot, METH_VARARGS | METH_KEYWORDS},
++  {"get_latest_common_time", (PyCFunction)getLatestCommonTime, METH_VARARGS},
++  {"lookup_transform_core", (PyCFunction)lookupTransformCore, METH_VARARGS | METH_KEYWORDS},
++  {"lookup_transform_full_core", (PyCFunction)lookupTransformFullCore, METH_VARARGS | METH_KEYWORDS},
++  //{"lookupTwistCore", (PyCFunction)lookupTwistCore, METH_VARARGS | METH_KEYWORDS},
++  //{"lookupTwistFullCore", lookupTwistFullCore, METH_VARARGS},
++  //{"getTFPrefix", (PyCFunction)getTFPrefix, METH_VARARGS},
++  {NULL,          NULL}
++};
++
++static PyMethodDef module_methods[] = {
++  // {"Transformer", mkTransformer, METH_VARARGS},
++  {0, 0, 0},
++};
++
++bool staticInit() {
++#if PYTHON_API_VERSION >= 1007
++  tf2_exception = PyErr_NewException((char*)"tf2.TransformException", NULL, NULL);
++  tf2_connectivityexception = PyErr_NewException((char*)"tf2.ConnectivityException", tf2_exception, NULL);
++  tf2_lookupexception = PyErr_NewException((char*)"tf2.LookupException", tf2_exception, NULL);
++  tf2_extrapolationexception = PyErr_NewException((char*)"tf2.ExtrapolationException", tf2_exception, NULL);
++  tf2_invalidargumentexception = PyErr_NewException((char*)"tf2.InvalidArgumentException", tf2_exception, NULL);
++  tf2_timeoutexception = PyErr_NewException((char*)"tf2.TimeoutException", tf2_exception, NULL);
++#else
++  tf2_exception = stringToPython("tf2.error");
++  tf2_connectivityexception = stringToPython("tf2.ConnectivityException");
++  tf2_lookupexception = stringToPython("tf2.LookupException");
++  tf2_extrapolationexception = stringToPython("tf2.ExtrapolationException");
++  tf2_invalidargumentexception = stringToPython("tf2.InvalidArgumentException");
++  tf2_timeoutexception = stringToPython("tf2.TimeoutException");
++#endif
++
++  pModulerospy        = pythonImport("rospy");
++  pModulegeometrymsgs = pythonImport("geometry_msgs.msg");
++
++  if(pModulegeometrymsgs == NULL)
++  {
++    printf("Cannot load geometry_msgs module");
++    return false;
++  }
++
++  buffer_core_Type.tp_alloc = PyType_GenericAlloc;
++  buffer_core_Type.tp_new = PyType_GenericNew;
++  buffer_core_Type.tp_init = BufferCore_init;
++  buffer_core_Type.tp_flags = Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE;
++  buffer_core_Type.tp_methods = buffer_core_methods;
++  if (PyType_Ready(&buffer_core_Type) != 0)
++    return false;
++  return true;
++}
++
++PyObject *moduleInit(PyObject *m) {
++  PyModule_AddObject(m, "BufferCore", (PyObject *)&buffer_core_Type);
++  PyObject *d = PyModule_GetDict(m);
++  PyDict_SetItemString(d, "TransformException", tf2_exception);
++  PyDict_SetItemString(d, "ConnectivityException", tf2_connectivityexception);
++  PyDict_SetItemString(d, "LookupException", tf2_lookupexception);
++  PyDict_SetItemString(d, "ExtrapolationException", tf2_extrapolationexception);
++  PyDict_SetItemString(d, "InvalidArgumentException", tf2_invalidargumentexception);
++  PyDict_SetItemString(d, "TimeoutException", tf2_timeoutexception);
++  return m;
++}
++
++#if PY_MAJOR_VERSION < 3
++extern "C"
++{
++  ROS_HELPER_EXPORT void init_tf2()
++  {
++    if (!staticInit())
++      return;
++    moduleInit(Py_InitModule("_tf2", module_methods));
++  }
++}
++
++#else
++struct PyModuleDef tf_module = {
++  PyModuleDef_HEAD_INIT, // base
++  "_tf2",                // name
++  NULL,                  // docstring
++  -1,                    // state size (but we're using globals)
++  module_methods         // methods
++};
++
++PyMODINIT_FUNC PyInit__tf2()
++{
++  if (!staticInit())
++    return NULL;
++  return moduleInit(PyModule_Create(&tf_module));
++}
++#endif
+--- /dev/null
++++ ros-noetic-tf2-py-0.7.7/src/tf2_py/__init__.py
+@@ -0,0 +1,38 @@
++#! /usr/bin/python
++#***********************************************************
++#* Software License Agreement (BSD License)
++#*
++#*  Copyright (c) 2009, Willow Garage, Inc.
++#*  All rights reserved.
++#*
++#*  Redistribution and use in source and binary forms, with or without
++#*  modification, are permitted provided that the following conditions
++#*  are met:
++#*
++#*   * Redistributions of source code must retain the above copyright
++#*     notice, this list of conditions and the following disclaimer.
++#*   * Redistributions in binary form must reproduce the above
++#*     copyright notice, this list of conditions and the following
++#*     disclaimer in the documentation and/or other materials provided
++#*     with the distribution.
++#*   * Neither the name of Willow Garage, Inc. nor the names of its
++#*     contributors may be used to endorse or promote products derived
++#*     from this software without specific prior written permission.
++#*
++#*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++#*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++#*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++#*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++#*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++#*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++#*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++#*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++#*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++#*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++#*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++#*  POSSIBILITY OF SUCH DAMAGE.
++#*
++#* Author: Eitan Marder-Eppstein
++#***********************************************************
++from __future__ import absolute_import
++from ._tf2 import *

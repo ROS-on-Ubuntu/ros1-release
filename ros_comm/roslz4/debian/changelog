@@ -1,0 +1,340 @@
+ros-noetic-roslz4 (1.16.0-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Tue, 14 Feb 2023 16:00:00 -0000
+
+ros-noetic-roslz4 (1.15.15-0jammy) jammy; urgency=high
+
+  * Move @jacobperron from maintainer to author (#2302 <https://github.com/ros/ros_comm/issues/2302>)
+  * Contributors: Shane Loretz
+
+ -- Michael Carroll <michael@openrobotics.org>  Tue, 22 Nov 2022 16:00:00 -0000
+
+ros-noetic-roslz4 (1.15.14-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 05 Jan 2022 16:00:00 -0000
+
+ros-noetic-roslz4 (1.15.13-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Tue, 21 Sep 2021 16:00:00 -0000
+
+ros-noetic-roslz4 (1.15.12-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Mon, 20 Sep 2021 16:00:00 -0000
+
+ros-noetic-roslz4 (1.15.11-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Mon, 05 Apr 2021 16:00:00 -0000
+
+ros-noetic-roslz4 (1.15.10-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 17 Mar 2021 16:00:00 -0000
+
+ros-noetic-roslz4 (1.15.9-0jammy) jammy; urgency=high
+
+  * Update maintainers (#2075 <https://github.com/ros/ros_comm/issues/2075>)
+  * Fix spelling (#2066 <https://github.com/ros/ros_comm/issues/2066>)
+  * Contributors: Shane Loretz, tomoya
+
+ -- Michael Carroll <michael@openrobotics.org>  Thu, 15 Oct 2020 16:00:00 -0000
+
+ros-noetic-roslz4 (1.15.8-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 22 Jul 2020 16:00:00 -0000
+
+ros-noetic-roslz4 (1.15.7-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 27 May 2020 16:00:00 -0000
+
+ros-noetic-roslz4 (1.15.6-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 20 May 2020 16:00:00 -0000
+
+ros-noetic-roslz4 (1.15.5-0jammy) jammy; urgency=high
+
+  * use undefined dynamic_lookup on macOS (#1923 <https://github.com/ros/ros_comm/issues/1923>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Thu, 14 May 2020 16:00:00 -0000
+
+ros-noetic-roslz4 (1.15.4-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 18 Mar 2020 16:00:00 -0000
+
+ros-noetic-roslz4 (1.15.3-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Thu, 27 Feb 2020 16:00:00 -0000
+
+ros-noetic-roslz4 (1.15.2-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Mon, 24 Feb 2020 16:00:00 -0000
+
+ros-noetic-roslz4 (1.15.1-0jammy) jammy; urgency=high
+
+  * use setuptools instead of distutils (#1870 <https://github.com/ros/ros_comm/issues/1870>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 23 Feb 2020 16:00:00 -0000
+
+ros-noetic-roslz4 (1.15.0-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Thu, 20 Feb 2020 16:00:00 -0000
+
+ros-noetic-roslz4 (1.14.4-0jammy) jammy; urgency=high
+
+  * bump CMake minimum version to avoid CMP0048 warning (#1869 <https://github.com/ros/ros_comm/issues/1869>)
+  * add alternative lz4 name for Windows (#1821 <https://github.com/ros/ros_comm/issues/1821>)
+  * check for XXH_malloc NULL return (#1778 <https://github.com/ros/ros_comm/issues/1778>)
+  * update install destination for roslz4 (#1620 <https://github.com/ros/ros_comm/issues/1620>)
+  * fix issues when built or run on Windows (#1466 <https://github.com/ros/ros_comm/issues/1466>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 19 Feb 2020 16:00:00 -0000
+
+ros-noetic-roslz4 (1.14.3-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 05 Aug 2018 16:00:00 -0000
+
+ros-noetic-roslz4 (1.14.2-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Tue, 05 Jun 2018 16:00:00 -0000
+
+ros-noetic-roslz4 (1.14.1-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 20 May 2018 16:00:00 -0000
+
+ros-noetic-roslz4 (1.14.0-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 20 May 2018 16:00:00 -0000
+
+ros-noetic-roslz4 (1.13.6-0jammy) jammy; urgency=high
+
+  * adding decompress to free(state) before return (#1313 <https://github.com/ros/ros_comm/issues/1313>)
+  * allow building on Trusty (#1236 <https://github.com/ros/ros_comm/issues/1236>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 04 Feb 2018 16:00:00 -0000
+
+ros-noetic-roslz4 (1.13.5-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 08 Nov 2017 16:00:00 -0000
+
+ros-noetic-roslz4 (1.13.4-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 01 Nov 2017 16:00:00 -0000
+
+ros-noetic-roslz4 (1.13.3-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Tue, 24 Oct 2017 16:00:00 -0000
+
+ros-noetic-roslz4 (1.13.2-0jammy) jammy; urgency=high
+
+  * replace deprecated lz4 function call (#1136 <https://github.com/ros/ros_comm/issues/1136>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Mon, 14 Aug 2017 16:00:00 -0000
+
+ros-noetic-roslz4 (1.13.1-0jammy) jammy; urgency=high
+
+  * add XXH_NAMESPACE, for namespace emulation in C (#1065 <https://github.com/ros/ros_comm/pull/1065>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 26 Jul 2017 16:00:00 -0000
+
+ros-noetic-roslz4 (1.13.0-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Tue, 21 Feb 2017 16:00:00 -0000
+
+ros-noetic-roslz4 (1.12.7-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Thu, 16 Feb 2017 16:00:00 -0000
+
+ros-noetic-roslz4 (1.12.6-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Tue, 25 Oct 2016 16:00:00 -0000
+
+ros-noetic-roslz4 (1.12.5-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Thu, 29 Sep 2016 16:00:00 -0000
+
+ros-noetic-roslz4 (1.12.4-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 18 Sep 2016 16:00:00 -0000
+
+ros-noetic-roslz4 (1.12.3-0jammy) jammy; urgency=high
+
+  * set lz4_FOUND in order to continue using it with catkin_package(DEPENDS) (ros/catkin#813 <https://github.com/ros/catkin/issues/813>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Fri, 16 Sep 2016 16:00:00 -0000
+
+ros-noetic-roslz4 (1.12.2-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Thu, 02 Jun 2016 16:00:00 -0000
+
+ros-noetic-roslz4 (1.12.1-0jammy) jammy; urgency=high
+
+  * use directory specific compiler flags (#785 <https://github.com/ros/ros_comm/pull/785>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 17 Apr 2016 16:00:00 -0000
+
+ros-noetic-roslz4 (1.12.0-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Thu, 17 Mar 2016 16:00:00 -0000
+
+ros-noetic-roslz4 (1.11.18-0jammy) jammy; urgency=high
+
+  * fix compiler warnings
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 16 Mar 2016 16:00:00 -0000
+
+ros-noetic-roslz4 (1.11.17-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Thu, 10 Mar 2016 16:00:00 -0000
+
+ros-noetic-roslz4 (1.11.16-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 08 Nov 2015 16:00:00 -0000
+
+ros-noetic-roslz4 (1.11.15-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Mon, 12 Oct 2015 16:00:00 -0000
+
+ros-noetic-roslz4 (1.11.14-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Fri, 18 Sep 2015 16:00:00 -0000
+
+ros-noetic-roslz4 (1.11.13-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Mon, 27 Apr 2015 16:00:00 -0000
+
+ros-noetic-roslz4 (1.11.12-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 26 Apr 2015 16:00:00 -0000
+
+ros-noetic-roslz4 (1.11.11-0jammy) jammy; urgency=high
+
+  * fix import of compiled library with Python 3.x (#563 <https://github.com/ros/ros_comm/pull/563>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 15 Apr 2015 16:00:00 -0000
+
+ros-noetic-roslz4 (1.11.10-0jammy) jammy; urgency=high
+
+  * disable lz4 Python bindings on Android (#521 <https://github.com/ros/ros_comm/pull/521>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 21 Dec 2014 16:00:00 -0000
+
+ros-noetic-roslz4 (1.11.9-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 17 Aug 2014 16:00:00 -0000
+
+ros-noetic-roslz4 (1.11.8-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 03 Aug 2014 16:00:00 -0000
+
+ros-noetic-roslz4 (1.11.7-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Thu, 17 Jul 2014 16:00:00 -0000
+
+ros-noetic-roslz4 (1.11.6-0jammy) jammy; urgency=high
+
+  * fix finding specific version of PythonLibs with CMake 3
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 09 Jul 2014 16:00:00 -0000
+
+ros-noetic-roslz4 (1.11.5-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Mon, 23 Jun 2014 16:00:00 -0000
+
+ros-noetic-roslz4 (1.11.4-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 15 Jun 2014 16:00:00 -0000
+
+ros-noetic-roslz4 (1.11.3-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Tue, 20 May 2014 16:00:00 -0000
+
+ros-noetic-roslz4 (1.11.2-0jammy) jammy; urgency=high
+
+  * fix symbol problem on OSX (#405 <https://github.com/ros/ros_comm/issues/405>)
+  * fix return value in the Python module (#406 <https://github.com/ros/ros_comm/issues/406>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 07 May 2014 16:00:00 -0000
+
+ros-noetic-roslz4 (1.11.1-0jammy) jammy; urgency=high
+
+  * initial release
+
+ -- Michael Carroll <michael@openrobotics.org>  Tue, 06 May 2014 16:00:00 -0000
+
+

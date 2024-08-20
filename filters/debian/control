@@ -1,0 +1,13 @@
+Source: ros-noetic-filters
+Section: misc
+Priority: optional
+Maintainer: Tully Foote <tfoote@willowgarage.com>
+Build-Depends: debhelper (>= 9.0.0), libboost-dev, ros-noetic-catkin (>= 0.5.68), ros-noetic-pluginlib, ros-noetic-rosconsole, ros-noetic-roscpp, ros-noetic-roslib, ros-noetic-rostest
+Homepage: http://ros.org/wiki/filters
+Standards-Version: 3.9.2
+
+Package: ros-noetic-filters
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libboost-dev, ros-noetic-pluginlib, ros-noetic-rosconsole, ros-noetic-roscpp, ros-noetic-roslib
+Description: This library provides a standardized interface for processing data as a sequence of filters.
+ This package contains a base class upon which to build specific implementations as well as an interface which dynamically loads filters based on runtime parameters.

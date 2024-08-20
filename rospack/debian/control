@@ -1,0 +1,12 @@
+Source: ros-noetic-rospack
+Section: misc
+Priority: optional
+Maintainer: Dirk Thomas <dthomas@osrfoundation.org>
+Build-Depends: debhelper (>= 9.0.0), libboost-filesystem-dev, libboost-program-options-dev, libboost-system-dev, libgtest-dev, libtinyxml2-dev, pkg-config, python3-coverage, python3-dev, ros-noetic-catkin (>= 0.5.68), ros-noetic-cmake-modules
+Homepage: http://wiki.ros.org/rospack
+Standards-Version: 3.9.2
+
+Package: ros-noetic-rospack
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libboost-filesystem-dev, libboost-program-options-dev, libboost-system-dev, libtinyxml2-dev, pkg-config, python3-catkin-pkg-modules, python3-dev, python3-rosdep-modules, ros-noetic-ros-environment
+Description: ROS Package Tool

@@ -1,0 +1,13 @@
+Source: ros-noetic-control-msgs
+Section: misc
+Priority: optional
+Maintainer: Bence Magyar <bence.magyar.robotics@gmail.com>
+Build-Depends: debhelper (>= 9.0.0), ros-noetic-actionlib-msgs, ros-noetic-catkin, ros-noetic-geometry-msgs, ros-noetic-message-generation, ros-noetic-std-msgs, ros-noetic-trajectory-msgs
+Homepage: http://ros.org/wiki/control_msgs
+Standards-Version: 3.9.2
+
+Package: ros-noetic-control-msgs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-noetic-actionlib-msgs, ros-noetic-geometry-msgs, ros-noetic-message-runtime, ros-noetic-std-msgs, ros-noetic-trajectory-msgs
+Description: control_msgs contains base messages and actions useful for controlling robots.
+ It provides representations for controller setpoints and joint and cartesian trajectories.

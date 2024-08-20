@@ -1,0 +1,584 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-rviz-python-tutorial (0.11.0-0jammy) jammy; urgency=high
+Author: William Woodall <william@osrfoundation.org>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-rviz-python-tutorial-0.11.0/CHANGELOG.rst
+@@ -0,0 +1,38 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package rviz_python_tutorial
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++0.11.0 (2020-05-13)
++-------------------
++
++0.10.4 (2020-05-13)
++-------------------
++* Updated RViz import (`#60 <https://github.com/ros-visualization/visualization_tutorials/issues/60>`_)
++* Updated to use ``catkin_install_python()`` (`#59 <https://github.com/ros-visualization/visualization_tutorials/issues/59>`_)
++* Updated required CMake version to avoid CMP0048 warning (`#57 <https://github.com/ros-visualization/visualization_tutorials/issues/57>`_)
++* Contributors: Alejandro Hernández Cordero, Shane Loretz
++
++0.10.3 (2018-05-09)
++-------------------
++* Fixed QWidget not defined bug in rviz_python_tutorial (`#41 <https://github.com/ros-visualization/visualization_tutorials/issues/41>`_)
++* Contributors: Zihan Chen
++
++0.10.2 (2018-01-05)
++-------------------
++
++0.10.1 (2016-04-21)
++-------------------
++
++0.10.0 (2016-04-21)
++-------------------
++
++0.9.2 (2015-09-21)
++------------------
++
++0.9.1 (2015-01-26)
++------------------
++
++0.9.0 (2014-03-24)
++------------------
++* set myself (william) as maintainer
++* Contributors: William Woodall
+--- /dev/null
++++ ros-noetic-rviz-python-tutorial-0.11.0/CMakeLists.txt
+@@ -0,0 +1,13 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(rviz_python_tutorial)
++find_package(catkin REQUIRED COMPONENTS rviz)
++catkin_package()
++
++## Install rules
++
++install(FILES
++  config.myviz
++  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
++
++catkin_install_python(PROGRAMS myviz.py
++  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+--- /dev/null
++++ ros-noetic-rviz-python-tutorial-0.11.0/config.myviz
+@@ -0,0 +1,89 @@
++Title: RViz Python Tutorial
++Panels:
++  []
++Visualization Manager:
++  Class: ""
++  Displays:
++    - Alpha: 0.5
++      Cell Size: 1
++      Class: rviz/Grid
++      Color: 160; 160; 164
++      Enabled: true
++      Line Style:
++        Line Width: 0.03
++        Value: Billboards
++      Name: Grid
++      Normal Cell Count: 0
++      Offset:
++        Value: 0; 0; 0
++        X: 0
++        Y: 0
++        Z: 0
++      Plane: XY
++      Plane Cell Count: 10
++      Reference Frame: <Fixed Frame>
++      Value: true
++  Enabled: true
++  Global Options:
++    Background Color: 48; 48; 48
++    Fixed Frame: /map
++  Name: root
++  Tools:
++    - Class: rviz/MoveCamera
++    - Class: rviz/Interact
++    - Class: rviz/Select
++    - Class: rviz/SetInitialPose
++      Topic: /initialpose
++    - Class: rviz/SetGoal
++      Topic: /move_base_simple/goal
++  Value: true
++  Views:
++    Current:
++      Class: rviz/Orbit
++      Distance: 23.7169
++      Focal Point:
++        Value: 2.265e-06; 3.8147e-06; -3.8147e-06
++        X: 2.26498e-06
++        Y: 3.8147e-06
++        Z: -3.8147e-06
++      Name: Current View
++      Near Clip Distance: 0.01
++      Pitch: 0.349797
++      Target Frame: <Fixed Frame>
++      Value: Orbit (rviz)
++      Yaw: 2.6004
++    Saved:
++      - Class: rviz/Orbit
++        Distance: 23.7169
++        Focal Point:
++          Value: 2.265e-06; 3.8147e-06; -3.8147e-06
++          X: 2.26498e-06
++          Y: 3.8147e-06
++          Z: -3.8147e-06
++        Name: Top View
++        Near Clip Distance: 0.01
++        Pitch: 1.5698
++        Target Frame: <Fixed Frame>
++        Value: Orbit (rviz)
++        Yaw: 1.5654
++      - Class: rviz/Orbit
++        Distance: 23.7169
++        Focal Point:
++          Value: 2.265e-06; 3.8147e-06; -3.8147e-06
++          X: 2.26498e-06
++          Y: 3.8147e-06
++          Z: -3.8147e-06
++        Name: Side View
++        Near Clip Distance: 0.01
++        Pitch: 0.0347963
++        Target Frame: <Fixed Frame>
++        Value: Orbit (rviz)
++        Yaw: 1.5854
++Window Geometry:
++  Height: 1406
++  Hide Left Dock: false
++  Hide Right Dock: false
++  QMainWindow State: 000000ff00000000fd00000004000000000000013c00000487fc0200000007fb000000100044006900730070006c0061007900730100000041000002930000000000000000fb0000001200530065006c0065006300740069006f006e01000000410000013a0000000000000000fb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb0000000c00540065006c0065006f00700100000041000004870000000000000000fb0000000c0042007500740074006f006e01000003de000001320000000000000000000000010000010f00000487fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a005600690065007700730100000041000004870000000000000000fb0000001200530065006c0065006300740069006f006e010000025a000000b2000000000000000000000002000004b0000000ddfc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000005ce0000006afc0100000003fb0000000800540069006d00650000000000000004b00000000000000000fb0000000800540069006d00650100000000000004500000000000000000fb0000001c0045007800740072006100200043006f006e00740072006f006c00730000000000000005ce000000c200ffffff000005ce0000051f00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730000000000ffffffff0000000000000000
++  Width: 1508
++  X: 134
++  Y: 52
+--- /dev/null
++++ ros-noetic-rviz-python-tutorial-0.11.0/doc-src/conf.py
+@@ -0,0 +1,25 @@
++import sys, os
++
++sys.path += [ os.path.abspath( '.' )]
++
++extensions = [ 'sphinx.ext.extlinks',
++               'tutorialformatter' ]
++
++# The master toctree document.
++master_doc = 'index'
++
++# The suffix of source filenames.
++source_suffix = '.rst'
++
++project = u'rviz_python_tutorial'
++
++copyright = u'2012,  Willow Garage, Inc'
++
++# If true, sectionauthor and moduleauthor directives will be shown in the
++# output. They are ignored by default.
++show_authors = True
++
++# The name of the Pygments (syntax highlighting) style to use.
++pygments_style = 'sphinx'
++
++extlinks = {'srcdir': ('https://github.com/ros-visualization/visualization_tutorials/blob/groovy-devel/rviz_python_tutorial/%s', '')}
+--- /dev/null
++++ ros-noetic-rviz-python-tutorial-0.11.0/doc-src/index.rst
+@@ -0,0 +1,48 @@
++RViz Python Tutorial
++====================
++
++Overview
++--------
++
++RViz is not just a visualizer application, it is also a Python
++library!  Much of RViz's functionality can be accessed from Python
++code by importing the librviz Python bindings.
++
++This tutorial shows a simple example of creating a visualizer
++(rviz::VisualizationFrame) as a child widget along with other Qt
++widgets, programmatically loading a config file, then connecting a
++slider and some Qt push buttons to change display a display property
++and the viewpoint.
++
++The source code for this tutorial is in the rviz_python_tutorial
++package. You can check out the source directly or (if you use Ubuntu)
++you can just apt-get install the pre-compiled Debian package like so::
++
++    sudo apt-get install ros-groovy-visualization-tutorials
++
++The running application looks like this:
++
++.. image:: myviz.png
++
++The Code: myviz.py
++------------------
++
++The full text of myviz.py is here: :srcdir:`myviz.py`
++
++.. tutorial-formatter:: ../myviz.py
++
++Running
++-------
++
++Just type::
++
++    roscd rviz_python_tutorial
++    ./myviz.py
++
++myviz.py loads its config file from the current directory, so you need
++to run it from the directory it comes in, or adapt the script to find
++the file.
++
++There are more classes in RViz which do not yet have Python bindings.
++If you find important ones are missing, please request them as
++"enhancement" issues on the RViz project on github.
+--- /dev/null
++++ ros-noetic-rviz-python-tutorial-0.11.0/doc-src/tutorialformatter.py
+@@ -0,0 +1,132 @@
++"""
++    tutorialformatter
++    ===========================
++
++    This extension provides a directive to include a source code file
++    in a document, but with certain comments from the file formatted
++    as regular document text.  This allows code for a tutorial to look like:
++
++        /// BEGIN_TUTORIAL
++        /// This next line adds one.
++        i = i + 1;
++        /// Then we need to double it.
++        i = i * 2;
++        /// END_TUTORIAL
++
++    And have it formatted as
++
++    This next line adds one.::
++        i = i + 1;
++
++    Then we need to double it.::
++        i = i * 2;
++
++    The special-looking comment character sequence at the start of
++    each text line can be anything not starting or ending with
++    whitespace.  tutorialformatter starts by scanning the file for the
++    string BEGIN_TUTORIAL.  When it finds it, it takes all the
++    characters before BEGIN_TUTORIAL on that line, strips whitespace
++    from the left, and uses that as the text marker.  So this would
++    also be fine:
++
++        #My Tutorial# BEGIN_TUTORIAL
++        #My Tutorial# This next line adds one.
++        i = i + 1
++        #My Tutorial# Then we need to double it.
++        i = i * 2
++        #My Tutorial# END_TUTORIAL
++
++    .. moduleauthor::  Dave Hershberger <hersh@willowgarage.com>
++"""
++
++__version__ = '0.1.0'
++
++import os
++from docutils.parsers import rst
++from docutils.parsers.rst.directives import flag, unchanged
++from docutils.statemachine import string2lines
++from pygments.lexers import get_lexer_for_filename
++
++class TutorialFormatterDirective(rst.Directive):
++    has_content = False
++    final_argument_whitespace = True
++    required_arguments = 1
++
++    option_spec = dict(shell=flag, prompt=flag, nostderr=flag,
++                       in_srcdir=flag, extraargs=unchanged,
++                       until=unchanged)
++
++    def run(self):
++        filename = self.arguments[0]
++        text_tag = None
++        tag_len = 0
++
++        filepath = self.state.document.settings.env.srcdir
++        absfilename = os.path.join( filepath, filename )
++        if absfilename.endswith('.h'):
++            language = 'c++'
++        elif absfilename.endswith('CMakeLists.txt'):
++            language = 'cmake'
++        else:
++            try:
++                language = get_lexer_for_filename( absfilename ).name.lower()
++                if language == 'text only':
++                    language = 'none'
++            except:
++                language = 'none'
++        code_prefix = '\n.. code-block:: ' + language + '\n\n'
++        code_suffix = '\n'
++
++        print "tutorial-formatter running on", absfilename
++        file_ = open( absfilename, 'r' )
++        text_to_process = ""
++        current_block = ""
++        in_code = False
++        in_text = False
++        in_tutorial = False
++        for line in file_:
++            if not in_tutorial:
++                begin_pos = line.find( 'BEGIN_TUTORIAL' )
++                if begin_pos != -1:
++                    text_tag = line[:begin_pos].lstrip()
++                    tag_len = len( text_tag )
++                    in_tutorial = True
++                continue
++            if line.find( 'END_TUTORIAL' ) != -1:
++                break
++            stripped = line.lstrip()
++            if stripped.startswith( text_tag.strip() ):
++                if in_code:
++                    text_to_process += code_prefix + current_block + code_suffix
++                    current_block = ""
++                    in_code = False
++                in_text = True
++                addition = stripped[tag_len:]
++                if addition == '' or addition[-1] != '\n':
++                    addition += '\n'
++                current_block += addition
++            else:
++                if in_text:
++                    text_to_process += current_block
++                    current_block = ""
++                    in_text = False
++                    in_code = True # Code to show begins right after tagged text
++                if in_code:
++                    current_block += ' ' + line
++        if in_code:
++            text_to_process += code_prefix + current_block + code_suffix
++        elif in_text:
++            text_to_process += current_block
++
++        # Debug writes...
++        #print 'text_to_process ='
++        #print text_to_process
++        #print '= text_to_process'
++
++        lines = string2lines( text_to_process )
++        self.state_machine.insert_input( lines, absfilename )
++
++        return []
++
++def setup(app):
++    app.add_directive('tutorial-formatter', TutorialFormatterDirective)
+--- /dev/null
++++ ros-noetic-rviz-python-tutorial-0.11.0/myviz.py
+@@ -0,0 +1,165 @@
++#!/usr/bin/env python
++
++## BEGIN_TUTORIAL
++##
++## Imports
++## ^^^^^^^
++##
++## First we start with the standard ros Python import line:
++import roslib; roslib.load_manifest('rviz_python_tutorial')
++
++## Then load sys to get sys.argv.
++import sys
++
++## Next import all the Qt bindings into the current namespace, for
++## convenience.  This uses the "python_qt_binding" package which hides
++## differences between PyQt and PySide, and works if at least one of
++## the two is installed.  The RViz Python bindings use
++## python_qt_binding internally, so you should use it here as well.
++from python_qt_binding.QtGui import *
++from python_qt_binding.QtCore import *
++try:
++    from python_qt_binding.QtWidgets import *
++except ImportError:
++    pass
++
++## Finally import the RViz bindings themselves.
++from rviz import bindings as rviz
++
++## The MyViz class is the main container widget.
++class MyViz( QWidget ):
++
++    ## MyViz Constructor
++    ## ^^^^^^^^^^^^^^^^^
++    ##
++    ## Its constructor creates and configures all the component widgets:
++    ## frame, thickness_slider, top_button, and side_button, and adds them
++    ## to layouts.
++    def __init__(self):
++        QWidget.__init__(self)
++
++        ## rviz.VisualizationFrame is the main container widget of the
++        ## regular RViz application, with menus, a toolbar, a status
++        ## bar, and many docked subpanels.  In this example, we
++        ## disable everything so that the only thing visible is the 3D
++        ## render window.
++        self.frame = rviz.VisualizationFrame()
++
++        ## The "splash path" is the full path of an image file which
++        ## gets shown during loading.  Setting it to the empty string
++        ## suppresses that behavior.
++        self.frame.setSplashPath( "" )
++
++        ## VisualizationFrame.initialize() must be called before
++        ## VisualizationFrame.load().  In fact it must be called
++        ## before most interactions with RViz classes because it
++        ## instantiates and initializes the VisualizationManager,
++        ## which is the central class of RViz.
++        self.frame.initialize()
++
++        ## The reader reads config file data into the config object.
++        ## VisualizationFrame reads its data from the config object.
++        reader = rviz.YamlConfigReader()
++        config = rviz.Config()
++        reader.readFile( config, "config.myviz" )
++        self.frame.load( config )
++
++        ## You can also store any other application data you like in
++        ## the config object.  Here we read the window title from the
++        ## map key called "Title", which has been added by hand to the
++        ## config file.
++        self.setWindowTitle( config.mapGetChild( "Title" ).getValue() )
++
++        ## Here we disable the menu bar (from the top), status bar
++        ## (from the bottom), and the "hide-docks" buttons, which are
++        ## the tall skinny buttons on the left and right sides of the
++        ## main render window.
++        self.frame.setMenuBar( None )
++        self.frame.setStatusBar( None )
++        self.frame.setHideButtonVisibility( False )
++
++        ## frame.getManager() returns the VisualizationManager
++        ## instance, which is a very central class.  It has pointers
++        ## to other manager objects and is generally required to make
++        ## any changes in an rviz instance.
++        self.manager = self.frame.getManager()
++
++        ## Since the config file is part of the source code for this
++        ## example, we know that the first display in the list is the
++        ## grid we want to control.  Here we just save a reference to
++        ## it for later.
++        self.grid_display = self.manager.getRootDisplayGroup().getDisplayAt( 0 )
++        
++        ## Here we create the layout and other widgets in the usual Qt way.
++        layout = QVBoxLayout()
++        layout.addWidget( self.frame )
++        
++        thickness_slider = QSlider( Qt.Horizontal )
++        thickness_slider.setTracking( True )
++        thickness_slider.setMinimum( 1 )
++        thickness_slider.setMaximum( 1000 )
++        thickness_slider.valueChanged.connect( self.onThicknessSliderChanged )
++        layout.addWidget( thickness_slider )
++        
++        h_layout = QHBoxLayout()
++        
++        top_button = QPushButton( "Top View" )
++        top_button.clicked.connect( self.onTopButtonClick )
++        h_layout.addWidget( top_button )
++        
++        side_button = QPushButton( "Side View" )
++        side_button.clicked.connect( self.onSideButtonClick )
++        h_layout.addWidget( side_button )
++        
++        layout.addLayout( h_layout )
++        
++        self.setLayout( layout )
++
++    ## Handle GUI events
++    ## ^^^^^^^^^^^^^^^^^
++    ##
++    ## After the constructor, for this example the class just needs to
++    ## respond to GUI events.  Here is the slider callback.
++    ## rviz.Display is a subclass of rviz.Property.  Each Property can
++    ## have sub-properties, forming a tree.  To change a Property of a
++    ## Display, use the subProp() function to walk down the tree to
++    ## find the child you need.
++    def onThicknessSliderChanged( self, new_value ):
++        if self.grid_display != None:
++            self.grid_display.subProp( "Line Style" ).subProp( "Line Width" ).setValue( new_value / 1000.0 )
++
++    ## The view buttons just call switchToView() with the name of a saved view.
++    def onTopButtonClick( self ):
++        self.switchToView( "Top View" );
++        
++    def onSideButtonClick( self ):
++        self.switchToView( "Side View" );
++        
++    ## switchToView() works by looping over the views saved in the
++    ## ViewManager and looking for one with a matching name.
++    ##
++    ## view_man.setCurrentFrom() takes the saved view
++    ## instance and copies it to set the current view
++    ## controller.
++    def switchToView( self, view_name ):
++        view_man = self.manager.getViewManager()
++        for i in range( view_man.getNumViews() ):
++            if view_man.getViewAt( i ).getName() == view_name:
++                view_man.setCurrentFrom( view_man.getViewAt( i ))
++                return
++        print( "Did not find view named %s." % view_name )
++
++## Start the Application
++## ^^^^^^^^^^^^^^^^^^^^^
++##
++## That is just about it.  All that's left is the standard Qt
++## top-level application code: create a QApplication, instantiate our
++## class, and start Qt's main event loop (app.exec_()).
++if __name__ == '__main__':
++    app = QApplication( sys.argv )
++
++    myviz = MyViz()
++    myviz.resize( 500, 500 )
++    myviz.show()
++
++    app.exec_()
+--- /dev/null
++++ ros-noetic-rviz-python-tutorial-0.11.0/package.xml
+@@ -0,0 +1,22 @@
++<package>
++  <name>rviz_python_tutorial</name>
++  <version>0.11.0</version>
++  <description>
++     Tutorials showing how to call into rviz internals from python scripts.
++  </description>
++  <maintainer email="william@osrfoundation.org">William Woodall</maintainer>
++  <license>BSD</license>
++
++  <url>http://ros.org/wiki/rviz_python_tutorial</url>
++  <author>Dave Hershberger</author>
++
++  <buildtool_depend>catkin</buildtool_depend>
++
++  <build_depend>rviz</build_depend>
++
++  <run_depend>rviz</run_depend>
++
++  <export>
++      <rosdoc config="${prefix}/rosdoc.yaml"/>
++  </export>
++</package>
+--- /dev/null
++++ ros-noetic-rviz-python-tutorial-0.11.0/rosdoc.yaml
+@@ -0,0 +1,2 @@
++- builder: sphinx
++  sphinx_root_dir: doc-src

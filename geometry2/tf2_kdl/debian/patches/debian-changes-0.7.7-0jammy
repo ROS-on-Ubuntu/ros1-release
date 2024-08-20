@@ -1,0 +1,1343 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-tf2-kdl (0.7.7-0jammy) jammy; urgency=high
+Author: Tully Foote <tfoote@osrfoundation.org>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-tf2-kdl-0.7.7/CHANGELOG.rst
+@@ -0,0 +1,245 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package tf2_kdl
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++0.7.7 (2023-10-13)
++------------------
++
++0.7.6 (2022-10-11)
++------------------
++
++0.7.5 (2020-09-01)
++------------------
++
++0.7.4 (2020-09-01)
++------------------
++
++0.7.3 (2020-08-25)
++------------------
++
++0.7.2 (2020-06-08)
++------------------
++* fix shebang line for python3 (`#466 <https://github.com/ros/geometry2/issues/466>`_)
++* Contributors: Mikael Arguedas
++
++0.7.1 (2020-05-13)
++------------------
++* import setup from setuptools instead of distutils-core (`#449 <https://github.com/ros/geometry2/issues/449>`_)
++* Contributors: Alejandro Hernández Cordero
++
++0.7.0 (2020-03-09)
++------------------
++* Replace kdl packages with rosdep keys (`#447 <https://github.com/ros/geometry2/issues/447>`_)
++* Bump CMake version to avoid CMP0048 warning (`#445 <https://github.com/ros/geometry2/issues/445>`_)
++* Make kdl headers available (`#419 <https://github.com/ros/geometry2/issues/419>`_)
++* Fix python3 compatibility for noetic (`#416 <https://github.com/ros/geometry2/issues/416>`_)
++* Merge pull request `#404 <https://github.com/ros/geometry2/issues/404>`_ from otamachan/remove-load-manifest
++* Python 3 compatibility: relative imports and print statement
++* Contributors: Shane Loretz, Tamaki Nishino, Timon Engelke, Tully Foote
++
++0.6.5 (2018-11-16)
++------------------
++
++0.6.4 (2018-11-06)
++------------------
++
++0.6.3 (2018-07-09)
++------------------
++
++0.6.2 (2018-05-02)
++------------------
++* Adds additional conversions for tf2, KDL, Eigen (`#292 <https://github.com/ros/geometry2/issues/292>`_)
++  - adds non-stamped Eigen to Transform function
++  - converts Eigen Matrix Vectors to and from geometry_msgs::Twist
++  - adds to/from message for geometry_msgs::Pose and KDL::Frame
++* Contributors: Ian McMahon
++
++0.6.1 (2018-03-21)
++------------------
++
++0.6.0 (2018-03-21)
++------------------
++
++0.5.17 (2018-01-01)
++-------------------
++* Merge pull request `#257 <https://github.com/ros/geometry2/issues/257>`_ from delftrobotics-forks/python3
++  Make tf2_py python3 compatible again
++* Use python3 print function.
++* Contributors: Maarten de Vries, Tully Foote
++
++0.5.16 (2017-07-14)
++-------------------
++* store gtest return value as int (`#229 <https://github.com/ros/geometry2/issues/229>`_)
++* Find eigen in a much nicer way.
++* Switch tf2_kdl over to package.xml format 2.
++* Contributors: Chris Lalancette, dhood
++
++0.5.15 (2017-01-24)
++-------------------
++
++0.5.14 (2017-01-16)
++-------------------
++* Add Python documentation for tf2_kdl
++* Document kdl
++* Contributors: Jackie Kay
++
++0.5.13 (2016-03-04)
++-------------------
++* converting python test script into unit test
++* Don't export catkin includes
++* Contributors: Jochen Sprickerhof, Tully Foote
++
++0.5.12 (2015-08-05)
++-------------------
++* Add kdl::Frame to TransformStamped conversion
++* Contributors: Paul Bovbel
++
++0.5.11 (2015-04-22)
++-------------------
++
++0.5.10 (2015-04-21)
++-------------------
++
++0.5.9 (2015-03-25)
++------------------
++
++0.5.8 (2015-03-17)
++------------------
++* remove useless Makefile files
++* fix ODR violations
++* Contributors: Vincent Rabaud
++
++0.5.7 (2014-12-23)
++------------------
++* fixing install rules and adding backwards compatible include with #warning
++* Contributors: Tully Foote
++
++0.5.6 (2014-09-18)
++------------------
++
++0.5.5 (2014-06-23)
++------------------
++
++0.5.4 (2014-05-07)
++------------------
++
++0.5.3 (2014-02-21)
++------------------
++* finding eigen from cmake_modules instead of from catkin
++* Contributors: Tully Foote
++
++0.5.2 (2014-02-20)
++------------------
++* add cmake_modules dependency for eigen find_package rules
++* Contributors: Tully Foote
++
++0.5.1 (2014-02-14)
++------------------
++
++0.5.0 (2014-02-14)
++------------------
++
++0.4.10 (2013-12-26)
++-------------------
++
++0.4.9 (2013-11-06)
++------------------
++
++0.4.8 (2013-11-06)
++------------------
++
++0.4.7 (2013-08-28)
++------------------
++
++0.4.6 (2013-08-28)
++------------------
++
++0.4.5 (2013-07-11)
++------------------
++
++0.4.4 (2013-07-09)
++------------------
++* making repo use CATKIN_ENABLE_TESTING correctly and switching rostest to be a test_depend with that change.
++
++0.4.3 (2013-07-05)
++------------------
++
++0.4.2 (2013-07-05)
++------------------
++
++0.4.1 (2013-07-05)
++------------------
++
++0.4.0 (2013-06-27)
++------------------
++* moving convert methods back into tf2 because it does not have any ros dependencies beyond ros::Time which is already a dependency of tf2
++* Cleaning up unnecessary dependency on roscpp
++* converting contents of tf2_ros to be properly namespaced in the tf2_ros namespace
++* Cleaning up packaging of tf2 including:
++  removing unused nodehandle
++  cleaning up a few dependencies and linking
++  removing old backup of package.xml
++  making diff minimally different from tf version of library
++* Restoring test packages and bullet packages.
++  reverting 3570e8c42f9b394ecbfd9db076b920b41300ad55 to get back more of the packages previously implemented
++  reverting 04cf29d1b58c660fdc999ab83563a5d4b76ab331 to fix `#7 <https://github.com/ros/geometry_experimental/issues/7>`_
++* passing unit tests
++
++0.3.6 (2013-03-03)
++------------------
++* fix compilation under Oneiric
++
++0.3.5 (2013-02-15 14:46)
++------------------------
++* 0.3.4 -> 0.3.5
++
++0.3.4 (2013-02-15 13:14)
++------------------------
++* 0.3.3 -> 0.3.4
++
++0.3.3 (2013-02-15 11:30)
++------------------------
++* 0.3.2 -> 0.3.3
++
++0.3.2 (2013-02-15 00:42)
++------------------------
++* 0.3.1 -> 0.3.2
++* fixed missing include export & tf2_ros dependecy
++
++0.3.1 (2013-02-14)
++------------------
++* fixing version number in tf2_kdl
++* catkinized tf2_kdl
++
++0.3.0 (2013-02-13)
++------------------
++* fixing groovy-devel
++* removing bullet and kdl related packages
++* catkinizing geometry-experimental
++* catkinizing tf2_kdl
++* fix for kdl rotaiton constrition
++* add twist, wrench and pose conversion to kdl, fix message to message conversion by adding specific conversion functions
++* merge tf2_cpp and tf2_py into tf2_ros
++* Got transform with types working in python
++* A working first version of transforming and converting between different types
++* Moving from camelCase to undescores to be in line with python style guides
++* kdl unittest passing
++* whitespace test
++* add support for PointStamped geometry_msgs
++* Fixing script
++* set transform for test
++* add advanced api
++* working to transform kdl objects with dummy buffer_core
++* plugin for py kdl
++* add regression tests for geometry_msgs point, vector and pose
++* add frame unit tests to kdl and bullet
++* add first regression tests for kdl and bullet tf
++* add bullet transforms, and create tests for bullet and kdl
++* transform for vector3stamped message
++* move implementation into library
++* add advanced api
++* compiling again with new design
++* renaming classes
++* compiling now
++* almost compiling version of template code
++* add test to start compiling
+--- /dev/null
++++ ros-noetic-tf2-kdl-0.7.7/CMakeLists.txt
+@@ -0,0 +1,61 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(tf2_kdl)
++
++find_package(orocos_kdl)
++find_package(catkin REQUIRED COMPONENTS cmake_modules tf2 tf2_ros tf2_msgs)
++
++# Finding Eigen is somewhat complicated because of our need to support Ubuntu
++# all the way back to saucy.  First we look for the Eigen3 cmake module
++# provided by the libeigen3-dev on newer Ubuntu.  If that fails, then we
++# fall-back to the version provided by cmake_modules, which is a stand-in.
++find_package(Eigen3 QUIET)
++if(NOT EIGEN3_FOUND)
++  find_package(cmake_modules REQUIRED)
++  find_package(Eigen REQUIRED)
++  set(EIGEN3_INCLUDE_DIRS ${EIGEN_INCLUDE_DIRS})
++endif()
++
++# Note that eigen 3.2 (on Ubuntu Wily) only provides EIGEN3_INCLUDE_DIR,
++# not EIGEN3_INCLUDE_DIRS, so we have to set the latter from the former.
++if(NOT EIGEN3_INCLUDE_DIRS)
++  set(EIGEN3_INCLUDE_DIRS ${EIGEN3_INCLUDE_DIR})
++endif()
++
++
++catkin_package(
++  INCLUDE_DIRS include ${EIGEN3_INCLUDE_DIRS}
++  DEPENDS EIGEN3 orocos_kdl
++)
++
++
++catkin_python_setup()
++link_directories(${orocos_kdl_LIBRARY_DIRS})
++
++include_directories(include ${catkin_INCLUDE_DIRS} ${EIGEN3_INCLUDE_DIRS} ${GTEST_INCLUDE_DIRS})
++
++
++install(DIRECTORY include/${PROJECT_NAME}/
++        DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION})
++
++catkin_install_python(PROGRAMS scripts/test.py
++         DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
++)
++
++
++if(CATKIN_ENABLE_TESTING)
++
++  find_package(catkin REQUIRED COMPONENTS rostest tf2 tf2_ros tf2_msgs)
++
++  add_executable(test_kdl EXCLUDE_FROM_ALL test/test_tf2_kdl.cpp)
++  find_package(Threads)
++  target_include_directories(test_kdl PUBLIC ${orocos_kdl_INCLUDE_DIRS})
++  target_link_libraries(test_kdl ${catkin_LIBRARIES} ${GTEST_LIBRARIES} ${orocos_kdl_LIBRARIES} ${GTEST_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
++
++  add_rostest(${CMAKE_CURRENT_SOURCE_DIR}/test/test.launch)
++  add_rostest(${CMAKE_CURRENT_SOURCE_DIR}/test/test_python.launch)
++
++  if(TARGET tests)
++    add_dependencies(tests test_kdl)
++  endif()
++
++endif()
+--- /dev/null
++++ ros-noetic-tf2-kdl-0.7.7/conf.py
+@@ -0,0 +1,206 @@
++# -*- coding: utf-8 -*-
++#
++# tf2 documentation build configuration file, created by
++# sphinx-quickstart on Mon Jun  1 14:21:53 2009.
++#
++# This file is execfile()d with the current directory set to its containing dir.
++#
++# Note that not all possible configuration values are present in this
++# autogenerated file.
++#
++# All configuration values have a default; values that are commented out
++# serve to show the default.
++
++import roslib
++#roslib.load_manifest('tf2_kdl')
++import sys, os
++
++# If extensions (or modules to document with autodoc) are in another directory,
++# add these directories to sys.path here. If the directory is relative to the
++# documentation root, use os.path.abspath to make it absolute, like shown here.
++# sys.path.append(os.path.abspath('./src/tf2_kdl'))
++
++# -- General configuration -----------------------------------------------------
++
++# Add any Sphinx extension module names here, as strings. They can be extensions
++# coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
++extensions = ['sphinx.ext.autodoc', 'sphinx.ext.doctest', 'sphinx.ext.intersphinx', 'sphinx.ext.pngmath']
++
++# Add any paths that contain templates here, relative to this directory.
++templates_path = ['_templates']
++
++# The suffix of source filenames.
++source_suffix = '.rst'
++
++# The encoding of source files.
++#source_encoding = 'utf-8'
++
++# The master toctree document.
++master_doc = 'index'
++
++# General information about the project.
++project = u'tf2_kdl'
++copyright = u'2016, Open Source Robotics Foundation'
++
++# The version info for the project you're documenting, acts as replacement for
++# |version| and |release|, also used in various other places throughout the
++# built documents.
++#
++# The short X.Y version.
++version = '0.5'
++# The full version, including alpha/beta/rc tags.
++release = '0.5.13'
++
++# The language for content autogenerated by Sphinx. Refer to documentation
++# for a list of supported languages.
++#language = None
++
++# There are two options for replacing |today|: either, you set today to some
++# non-false value, then it is used:
++#today = ''
++# Else, today_fmt is used as the format for a strftime call.
++#today_fmt = '%B %d, %Y'
++
++# List of documents that shouldn't be included in the build.
++#unused_docs = []
++
++# List of directories, relative to source directory, that shouldn't be searched
++# for source files.
++exclude_trees = ['_build']
++
++exclude_patterns = ['_CHANGELOG.rst']
++
++# The reST default role (used for this markup: `text`) to use for all documents.
++#default_role = None
++
++# If true, '()' will be appended to :func: etc. cross-reference text.
++#add_function_parentheses = True
++
++# If true, the current module name will be prepended to all description
++# unit titles (such as .. function::).
++#add_module_names = True
++
++# If true, sectionauthor and moduleauthor directives will be shown in the
++# output. They are ignored by default.
++#show_authors = False
++
++# The name of the Pygments (syntax highlighting) style to use.
++pygments_style = 'sphinx'
++
++# A list of ignored prefixes for module index sorting.
++#modindex_common_prefix = []
++
++
++# -- Options for HTML output ---------------------------------------------------
++
++# The theme to use for HTML and HTML Help pages.  Major themes that come with
++# Sphinx are currently 'default' and 'sphinxdoc'.
++html_theme = 'default'
++
++# Theme options are theme-specific and customize the look and feel of a theme
++# further.  For a list of options available for each theme, see the
++# documentation.
++#html_theme_options = {}
++
++# Add any paths that contain custom themes here, relative to this directory.
++#html_theme_path = []
++
++# The name for this set of Sphinx documents.  If None, it defaults to
++# "<project> v<release> documentation".
++#html_title = None
++
++# A shorter title for the navigation bar.  Default is the same as html_title.
++#html_short_title = None
++
++# The name of an image file (relative to this directory) to place at the top
++# of the sidebar.
++#html_logo = None
++
++# The name of an image file (within the static path) to use as favicon of the
++# docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
++# pixels large.
++#html_favicon = None
++
++# Add any paths that contain custom static files (such as style sheets) here,
++# relative to this directory. They are copied after the builtin static files,
++# so a file named "default.css" will overwrite the builtin "default.css".
++#html_static_path = ['_static']
++
++# If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
++# using the given strftime format.
++#html_last_updated_fmt = '%b %d, %Y'
++
++# If true, SmartyPants will be used to convert quotes and dashes to
++# typographically correct entities.
++#html_use_smartypants = True
++
++# Custom sidebar templates, maps document names to template names.
++#html_sidebars = {}
++
++# Additional templates that should be rendered to pages, maps page names to
++# template names.
++#html_additional_pages = {}
++
++# If false, no module index is generated.
++#html_use_modindex = True
++
++# If false, no index is generated.
++#html_use_index = True
++
++# If true, the index is split into individual pages for each letter.
++#html_split_index = False
++
++# If true, links to the reST sources are added to the pages.
++#html_show_sourcelink = True
++
++# If true, an OpenSearch description file will be output, and all pages will
++# contain a <link> tag referring to it.  The value of this option must be the
++# base URL from which the finished HTML is served.
++#html_use_opensearch = ''
++
++# If nonempty, this is the file name suffix for HTML files (e.g. ".xhtml").
++#html_file_suffix = ''
++
++# Output file base name for HTML help builder.
++htmlhelp_basename = 'tfdoc'
++
++
++# -- Options for LaTeX output --------------------------------------------------
++
++# The paper size ('letter' or 'a4').
++#latex_paper_size = 'letter'
++
++# The font size ('10pt', '11pt' or '12pt').
++#latex_font_size = '10pt'
++
++# Grouping the document tree into LaTeX files. List of tuples
++# (source start file, target name, title, author, documentclass [howto/manual]).
++latex_documents = [
++  ('index', 'tf.tex', u'stereo\\_utils Documentation',
++   u'Tully Foote and Eitan Marder-Eppstein', 'manual'),
++]
++
++# The name of an image file (relative to this directory) to place at the top of
++# the title page.
++#latex_logo = None
++
++# For "manual" documents, if this is true, then toplevel headings are parts,
++# not chapters.
++#latex_use_parts = False
++
++# Additional stuff for the LaTeX preamble.
++#latex_preamble = ''
++
++# Documents to append as an appendix to all manuals.
++#latex_appendices = []
++
++# If false, no module index is generated.
++#latex_use_modindex = True
++
++
++# Example configuration for intersphinx: refer to the Python standard library.
++intersphinx_mapping = {
++    'http://docs.python.org/': None,
++    'http://docs.opencv.org/3.0-last-rst/': None,
++    'http://docs.scipy.org/doc/numpy' : None
++    }
+--- /dev/null
++++ ros-noetic-tf2-kdl-0.7.7/include/tf2_kdl/tf2_kdl.h
+@@ -0,0 +1,309 @@
++/*
++ * Copyright (c) 2008, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++/** \author Wim Meeussen */
++
++#ifndef TF2_KDL_H
++#define TF2_KDL_H
++
++#include <tf2/convert.h>
++#include <kdl/frames.hpp>
++#include <geometry_msgs/PointStamped.h>
++#include <geometry_msgs/TwistStamped.h>
++#include <geometry_msgs/WrenchStamped.h>
++#include <geometry_msgs/PoseStamped.h>
++#include <geometry_msgs/Pose.h>
++
++
++namespace tf2
++{
++/** \brief Convert a timestamped transform to the equivalent KDL data type.
++ * \param t The transform to convert, as a geometry_msgs TransformedStamped message.
++ * \return The transform message converted to an KDL Frame.
++ */
++inline
++KDL::Frame transformToKDL(const geometry_msgs::TransformStamped& t)
++  {
++    return KDL::Frame(KDL::Rotation::Quaternion(t.transform.rotation.x, t.transform.rotation.y,
++						t.transform.rotation.z, t.transform.rotation.w),
++		      KDL::Vector(t.transform.translation.x, t.transform.translation.y, t.transform.translation.z));
++  }
++
++/** \brief Convert an KDL Frame to the equivalent geometry_msgs message type.
++ * \param k The transform to convert, as an KDL Frame.
++ * \return The transform converted to a TransformStamped message.
++ */
++inline
++geometry_msgs::TransformStamped kdlToTransform(const KDL::Frame& k)
++{
++  geometry_msgs::TransformStamped t;
++  t.transform.translation.x = k.p.x();
++  t.transform.translation.y = k.p.y();
++  t.transform.translation.z = k.p.z();
++  k.M.GetQuaternion(t.transform.rotation.x, t.transform.rotation.y, t.transform.rotation.z, t.transform.rotation.w);
++  return t;
++}
++
++// ---------------------
++// Vector
++// ---------------------
++/** \brief Apply a geometry_msgs TransformStamped to an KDL-specific Vector type.
++ * This function is a specialization of the doTransform template defined in tf2/convert.h.
++ * \param t_in The vector to transform, as a timestamped KDL Vector data type.
++ * \param t_out The transformed vector, as a timestamped KDL Vector data type.
++ * \param transform The timestamped transform to apply, as a TransformStamped message.
++ */
++template <>
++inline
++  void doTransform(const tf2::Stamped<KDL::Vector>& t_in, tf2::Stamped<KDL::Vector>& t_out, const geometry_msgs::TransformStamped& transform)
++  {
++    t_out = tf2::Stamped<KDL::Vector>(transformToKDL(transform) * t_in, transform.header.stamp, transform.header.frame_id);
++  }
++
++/** \brief Convert a stamped KDL Vector type to a PointStamped message.
++ * This function is a specialization of the toMsg template defined in tf2/convert.h.
++ * \param in The timestamped KDL Vector to convert.
++ * \return The vector converted to a PointStamped message.
++ */
++inline
++geometry_msgs::PointStamped toMsg(const tf2::Stamped<KDL::Vector>& in)
++{
++  geometry_msgs::PointStamped msg;
++  msg.header.stamp = in.stamp_;
++  msg.header.frame_id = in.frame_id_;
++  msg.point.x = in[0];
++  msg.point.y = in[1];
++  msg.point.z = in[2];
++  return msg;
++}
++
++/** \brief Convert a PointStamped message type to a stamped KDL-specific Vector type.
++ * This function is a specialization of the fromMsg template defined in tf2/convert.h
++ * \param msg The PointStamped message to convert.
++ * \param out The point converted to a timestamped KDL Vector.
++ */
++inline
++void fromMsg(const geometry_msgs::PointStamped& msg, tf2::Stamped<KDL::Vector>& out)
++{
++  out.stamp_ = msg.header.stamp;
++  out.frame_id_ = msg.header.frame_id;
++  out[0] = msg.point.x;
++  out[1] = msg.point.y;
++  out[2] = msg.point.z;
++}
++
++// ---------------------
++// Twist
++// ---------------------
++/** \brief Apply a geometry_msgs TransformStamped to an KDL-specific Twist type.
++ * This function is a specialization of the doTransform template defined in tf2/convert.h.
++ * \param t_in The twist to transform, as a timestamped KDL Twist data type.
++ * \param t_out The transformed Twist, as a timestamped KDL Frame data type.
++ * \param transform The timestamped transform to apply, as a TransformStamped message.
++ */
++template <>
++inline
++  void doTransform(const tf2::Stamped<KDL::Twist>& t_in, tf2::Stamped<KDL::Twist>& t_out, const geometry_msgs::TransformStamped& transform)
++  {
++    t_out = tf2::Stamped<KDL::Twist>(transformToKDL(transform) * t_in, transform.header.stamp, transform.header.frame_id);
++  }
++
++/** \brief Convert a stamped KDL Twist type to a TwistStamped message.
++ * This function is a specialization of the toMsg template defined in tf2/convert.h.
++ * \param in The timestamped KDL Twist to convert.
++ * \return The twist converted to a TwistStamped message.
++ */
++inline
++geometry_msgs::TwistStamped toMsg(const tf2::Stamped<KDL::Twist>& in)
++{
++  geometry_msgs::TwistStamped msg;
++  msg.header.stamp = in.stamp_;
++  msg.header.frame_id = in.frame_id_;
++  msg.twist.linear.x = in.vel[0];
++  msg.twist.linear.y = in.vel[1];
++  msg.twist.linear.z = in.vel[2];
++  msg.twist.angular.x = in.rot[0];
++  msg.twist.angular.y = in.rot[1];
++  msg.twist.angular.z = in.rot[2];
++  return msg;
++}
++
++/** \brief Convert a TwistStamped message type to a stamped KDL-specific Twist type.
++ * This function is a specialization of the fromMsg template defined in tf2/convert.h
++ * \param msg The TwistStamped message to convert.
++ * \param out The twist converted to a timestamped KDL Twist.
++ */
++inline
++void fromMsg(const geometry_msgs::TwistStamped& msg, tf2::Stamped<KDL::Twist>& out)
++{
++  out.stamp_ = msg.header.stamp;
++  out.frame_id_ = msg.header.frame_id;
++  out.vel[0] = msg.twist.linear.x;
++  out.vel[1] = msg.twist.linear.y;
++  out.vel[2] = msg.twist.linear.z;
++  out.rot[0] = msg.twist.angular.x;
++  out.rot[1] = msg.twist.angular.y;
++  out.rot[2] = msg.twist.angular.z;
++}
++
++
++// ---------------------
++// Wrench
++// ---------------------
++/** \brief Apply a geometry_msgs TransformStamped to an KDL-specific Wrench type.
++ * This function is a specialization of the doTransform template defined in tf2/convert.h.
++ * \param t_in The wrench to transform, as a timestamped KDL Wrench data type.
++ * \param t_out The transformed Wrench, as a timestamped KDL Frame data type.
++ * \param transform The timestamped transform to apply, as a TransformStamped message.
++ */
++template <>
++inline
++  void doTransform(const tf2::Stamped<KDL::Wrench>& t_in, tf2::Stamped<KDL::Wrench>& t_out, const geometry_msgs::TransformStamped& transform)
++  {
++    t_out = tf2::Stamped<KDL::Wrench>(transformToKDL(transform) * t_in, transform.header.stamp, transform.header.frame_id);
++  }
++
++/** \brief Convert a stamped KDL Wrench type to a WrenchStamped message.
++ * This function is a specialization of the toMsg template defined in tf2/convert.h.
++ * \param in The timestamped KDL Wrench to convert.
++ * \return The wrench converted to a WrenchStamped message.
++ */
++inline
++geometry_msgs::WrenchStamped toMsg(const tf2::Stamped<KDL::Wrench>& in)
++{
++  geometry_msgs::WrenchStamped msg;
++  msg.header.stamp = in.stamp_;
++  msg.header.frame_id = in.frame_id_;
++  msg.wrench.force.x = in.force[0];
++  msg.wrench.force.y = in.force[1];
++  msg.wrench.force.z = in.force[2];
++  msg.wrench.torque.x = in.torque[0];
++  msg.wrench.torque.y = in.torque[1];
++  msg.wrench.torque.z = in.torque[2];
++  return msg;
++}
++
++/** \brief Convert a WrenchStamped message type to a stamped KDL-specific Wrench type.
++ * This function is a specialization of the fromMsg template defined in tf2/convert.h
++ * \param msg The WrenchStamped message to convert.
++ * \param out The wrench converted to a timestamped KDL Wrench.
++ */
++inline
++void fromMsg(const geometry_msgs::WrenchStamped& msg, tf2::Stamped<KDL::Wrench>& out)
++{
++  out.stamp_ = msg.header.stamp;
++  out.frame_id_ = msg.header.frame_id;
++  out.force[0] = msg.wrench.force.x;
++  out.force[1] = msg.wrench.force.y;
++  out.force[2] = msg.wrench.force.z;
++  out.torque[0] = msg.wrench.torque.x;
++  out.torque[1] = msg.wrench.torque.y;
++  out.torque[2] = msg.wrench.torque.z;
++}
++
++
++
++
++// ---------------------
++// Frame
++// ---------------------
++/** \brief Apply a geometry_msgs TransformStamped to a KDL-specific Frame data type.
++ * This function is a specialization of the doTransform template defined in tf2/convert.h.
++ * \param t_in The frame to transform, as a timestamped KDL Frame.
++ * \param t_out The transformed frame, as a timestamped KDL Frame.
++ * \param transform The timestamped transform to apply, as a TransformStamped message.
++ */
++template <>
++inline
++  void doTransform(const tf2::Stamped<KDL::Frame>& t_in, tf2::Stamped<KDL::Frame>& t_out, const geometry_msgs::TransformStamped& transform)
++  {
++    t_out = tf2::Stamped<KDL::Frame>(transformToKDL(transform) * t_in, transform.header.stamp, transform.header.frame_id);
++  }
++
++/** \brief Convert a stamped KDL Frame type to a Pose message.
++ * This function is a specialization of the toMsg template defined in tf2/convert.h.
++ * \param in The timestamped KDL Frame to convert.
++ * \return The frame converted to a Pose message.
++ */
++inline
++geometry_msgs::Pose toMsg(const KDL::Frame& in)
++{
++  geometry_msgs::Pose msg;
++  msg.position.x = in.p[0];
++  msg.position.y = in.p[1];
++  msg.position.z = in.p[2];
++  in.M.GetQuaternion(msg.orientation.x, msg.orientation.y, msg.orientation.z, msg.orientation.w);
++  return msg;
++}
++
++/** \brief Convert a Pose message type to a KDL Frame.
++ * This function is a specialization of the fromMsg template defined in tf2/convert.h.
++ * \param msg The Pose message to convert.
++ * \param out The pose converted to a KDL Frame.
++ */
++inline
++void fromMsg(const geometry_msgs::Pose& msg, KDL::Frame& out)
++{
++  out.p[0] = msg.position.x;
++  out.p[1] = msg.position.y;
++  out.p[2] = msg.position.z;
++  out.M = KDL::Rotation::Quaternion(msg.orientation.x, msg.orientation.y, msg.orientation.z, msg.orientation.w);
++}
++
++/** \brief Convert a stamped KDL Frame type to a Pose message.
++ * This function is a specialization of the toMsg template defined in tf2/convert.h.
++ * \param in The timestamped KDL Frame to convert.
++ * \return The frame converted to a PoseStamped message.
++ */
++inline
++geometry_msgs::PoseStamped toMsg(const tf2::Stamped<KDL::Frame>& in)
++{
++  geometry_msgs::PoseStamped msg;
++  msg.header.stamp = in.stamp_;
++  msg.header.frame_id = in.frame_id_;
++  msg.pose = toMsg(static_cast<const KDL::Frame&>(in));
++  return msg;
++}
++
++/** \brief Convert a Pose message transform type to a stamped KDL Frame.
++ * This function is a specialization of the fromMsg template defined in tf2/convert.h.
++ * \param msg The PoseStamped message to convert.
++ * \param out The pose converted to a timestamped KDL Frame.
++ */
++inline
++void fromMsg(const geometry_msgs::PoseStamped& msg, tf2::Stamped<KDL::Frame>& out)
++{
++  out.stamp_ = msg.header.stamp;
++  out.frame_id_ = msg.header.frame_id;
++  fromMsg(msg.pose, static_cast<KDL::Frame&>(out));
++}
++
++} // namespace
++
++#endif // TF2_KDL_H
+--- /dev/null
++++ ros-noetic-tf2-kdl-0.7.7/include/tf2_kdl/tf2_kdl/tf2_kdl.h
+@@ -0,0 +1,3 @@
++#warning This header is at the wrong path you should include <tf2_kdl/tf2_kdl.h>
++
++#include <tf2_kdl/tf2_kdl.h>
+--- /dev/null
++++ ros-noetic-tf2-kdl-0.7.7/index.rst
+@@ -0,0 +1,14 @@
++tf2_kdl documentation
++=====================
++
++This is the Python API reference of the tf2_kdl package.
++
++.. automodule:: tf2_kdl.tf2_kdl
++    :members:
++    :undoc-members:
++
++Indices and tables
++==================
++
++* :ref:`genindex`
++* :ref:`search`
+--- /dev/null
++++ ros-noetic-tf2-kdl-0.7.7/mainpage.dox
+@@ -0,0 +1,19 @@
++/**
++\mainpage
++\htmlinclude manifest.html
++
++\b tf2_kdl contains functions for converting between geometry_msgs and KDL data types.
++
++This library is an implementation of the templated conversion interface specified in tf/convert.h.
++It enables easy conversion from geometry_msgs Transform and Point types to the types specified
++by the Orocos KDL (Kinematics and Dynamics Library) API (see http://www.orocos.org/kdl).
++
++See the <A HREF="http://wiki.ros.org/tf2/Tutorials/Migration/DataConversions">Conversions overview</A>
++wiki page for more information about datatype conversion in tf2.
++
++\section codeapi Code API 
++
++This library consists of one header only, tf2_kdl/tf2_kdl.h, which consists mostly of
++specializations of template functions defined in tf2/convert.h.
++
++*/
+--- /dev/null
++++ ros-noetic-tf2-kdl-0.7.7/package.xml
+@@ -0,0 +1,27 @@
++<package format="2">
++  <name>tf2_kdl</name>
++  <version>0.7.7</version>
++  <description>
++    KDL binding for tf2
++  </description>
++  <maintainer email="tfoote@osrfoundation.org">Tully Foote</maintainer>
++  <author>Wim Meeussen</author>
++  <license>BSD</license>
++
++  <url type="website">http://ros.org/wiki/tf2</url>
++
++  <buildtool_depend version_gte="0.5.68">catkin</buildtool_depend>
++
++  <build_depend>cmake_modules</build_depend> <!-- needed for eigen -->
++  <build_depend>eigen</build_depend> <!-- needed by kdl internally -->
++
++  <build_export_depend>eigen</build_export_depend> <!-- needed by kdl internally -->
++
++  <depend>liborocos-kdl-dev</depend>
++  <depend>tf2</depend>
++  <depend>tf2_ros</depend>
++
++  <test_depend>ros_environment</test_depend>
++  <test_depend>rostest</test_depend>
++
++</package>
+--- /dev/null
++++ ros-noetic-tf2-kdl-0.7.7/rosdoc.yaml
+@@ -0,0 +1,7 @@
++ - builder: doxygen
++   name: C++ API
++   output_dir: c++
++   file_patterns: '*.c *.cpp *.h *.cc *.hh *.dox'
++ - builder: sphinx
++   name: Python API
++   output_dir: python
+--- /dev/null
++++ ros-noetic-tf2-kdl-0.7.7/scripts/test.py
+@@ -0,0 +1,76 @@
++#!/usr/bin/env python
++
++from __future__ import print_function
++
++import unittest
++import rospy
++import PyKDL
++import tf2_ros
++import tf2_kdl
++from geometry_msgs.msg import TransformStamped
++from copy import deepcopy
++
++class KDLConversions(unittest.TestCase):
++    def test_transform(self):
++        b = tf2_ros.Buffer()
++        t = TransformStamped()
++        t.transform.translation.x = 1
++        t.transform.rotation.x = 1
++        t.header.stamp = rospy.Time(2.0)
++        t.header.frame_id = 'a'
++        t.child_frame_id = 'b'
++        b.set_transform(t, 'eitan_rocks')
++        out = b.lookup_transform('a','b', rospy.Time(2.0), rospy.Duration(2.0))
++        self.assertEqual(out.transform.translation.x, 1)
++        self.assertEqual(out.transform.rotation.x, 1)
++        self.assertEqual(out.header.frame_id, 'a')
++        self.assertEqual(out.child_frame_id, 'b')
++
++        v = PyKDL.Vector(1,2,3)
++        out = b.transform(tf2_ros.Stamped(v, rospy.Time(2), 'a'), 'b')
++        self.assertEqual(out.x(), 0)
++        self.assertEqual(out.y(), -2)
++        self.assertEqual(out.z(), -3)
++
++        f = PyKDL.Frame(PyKDL.Rotation.RPY(1,2,3), PyKDL.Vector(1,2,3))
++        out = b.transform(tf2_ros.Stamped(f, rospy.Time(2), 'a'), 'b')
++        print(out)
++        self.assertEqual(out.p.x(), 0)
++        self.assertEqual(out.p.y(), -2)
++        self.assertEqual(out.p.z(), -3)
++        # TODO(tfoote) check values of rotation
++
++        t = PyKDL.Twist(PyKDL.Vector(1,2,3), PyKDL.Vector(4,5,6))
++        out = b.transform(tf2_ros.Stamped(t, rospy.Time(2), 'a'), 'b')
++        self.assertEqual(out.vel.x(), 1)
++        self.assertEqual(out.vel.y(), -8)
++        self.assertEqual(out.vel.z(), 2)
++        self.assertEqual(out.rot.x(), 4)
++        self.assertEqual(out.rot.y(), -5)
++        self.assertEqual(out.rot.z(), -6)
++
++        w = PyKDL.Wrench(PyKDL.Vector(1,2,3), PyKDL.Vector(4,5,6))
++        out = b.transform(tf2_ros.Stamped(w, rospy.Time(2), 'a'), 'b')
++        self.assertEqual(out.force.x(), 1)
++        self.assertEqual(out.force.y(), -2)
++        self.assertEqual(out.force.z(), -3)
++        self.assertEqual(out.torque.x(), 4)
++        self.assertEqual(out.torque.y(), -8)
++        self.assertEqual(out.torque.z(), -4)
++
++    def test_convert(self):
++        v = PyKDL.Vector(1,2,3)
++        vs = tf2_ros.Stamped(v, rospy.Time(2), 'a')
++        vs2 = tf2_ros.convert(vs, PyKDL.Vector)
++        self.assertEqual(vs.x(), 1)
++        self.assertEqual(vs.y(), 2)
++        self.assertEqual(vs.z(), 3)
++        self.assertEqual(vs2.x(), 1)
++        self.assertEqual(vs2.y(), 2)
++        self.assertEqual(vs2.z(), 3)
++
++
++if __name__ == '__main__':
++    import rosunit
++    rospy.init_node('test_tf2_kdl_python')
++    rosunit.unitrun("test_tf2_kdl", "test_tf2_kdl_python", KDLConversions)
+--- /dev/null
++++ ros-noetic-tf2-kdl-0.7.7/setup.py
+@@ -0,0 +1,13 @@
++#!/usr/bin/env python
++
++from setuptools import setup
++from catkin_pkg.python_setup import generate_distutils_setup
++
++d = generate_distutils_setup(
++   ##  don't do this unless you want a globally visible script
++   # scripts=['script/test.py'],
++   packages=['tf2_kdl'],
++   package_dir={'': 'src'}
++)
++
++setup(**d)
+--- /dev/null
++++ ros-noetic-tf2-kdl-0.7.7/src/tf2_kdl/__init__.py
+@@ -0,0 +1 @@
++from .tf2_kdl import *
+--- /dev/null
++++ ros-noetic-tf2-kdl-0.7.7/src/tf2_kdl/tf2_kdl.py
+@@ -0,0 +1,153 @@
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++# 
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions are met:
++# 
++#     * Redistributions of source code must retain the above copyright
++#       notice, this list of conditions and the following disclaimer.
++#     * Redistributions in binary form must reproduce the above copyright
++#       notice, this list of conditions and the following disclaimer in the
++#       documentation and/or other materials provided with the distribution.
++#     * Neither the name of the Willow Garage, Inc. nor the names of its
++#       contributors may be used to endorse or promote products derived from
++#       this software without specific prior written permission.
++# 
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++# author: Wim Meeussen
++
++import PyKDL
++import rospy
++import tf2_ros
++from geometry_msgs.msg import PointStamped
++
++def transform_to_kdl(t):
++    """Convert a geometry_msgs Transform message to a PyKDL Frame.
++
++    :param t: The Transform message to convert.
++    :type t: geometry_msgs.msg.TransformStamped
++    :return: The converted PyKDL frame.
++    :rtype: PyKDL.Frame
++    """
++
++    return PyKDL.Frame(PyKDL.Rotation.Quaternion(t.transform.rotation.x, t.transform.rotation.y,
++                                                 t.transform.rotation.z, t.transform.rotation.w),
++                       PyKDL.Vector(t.transform.translation.x,
++                                    t.transform.translation.y,
++                                    t.transform.translation.z))
++
++
++def do_transform_vector(vector, transform):
++    """Apply a transform in the form of a geometry_msgs message to a PyKDL vector.
++
++    :param vector: The PyKDL vector to transform.
++    :type vector: PyKDL.Vector
++    :param transform: The transform to apply.
++    :type transform: geometry_msgs.msg.TransformStamped
++    :return: The transformed vector.
++    :rtype: PyKDL.Vector
++    """
++    res = transform_to_kdl(transform) * vector
++    res.header = transform.header
++    return res
++
++tf2_ros.TransformRegistration().add(PyKDL.Vector, do_transform_vector)
++
++def to_msg_vector(vector):
++    """Convert a PyKDL Vector to a geometry_msgs PointStamped message.
++
++    :param vector: The vector to convert.
++    :type vector: PyKDL.Vector
++    :return: The converted vector/point.
++    :rtype: geometry_msgs.msg.PointStamped
++    """
++    msg = PointStamped()
++    msg.header = vector.header
++    msg.point.x = vector[0]
++    msg.point.y = vector[1]
++    msg.point.z = vector[2]
++    return msg
++
++tf2_ros.ConvertRegistration().add_to_msg(PyKDL.Vector, to_msg_vector)
++
++def from_msg_vector(msg):
++    """Convert a PointStamped message to a stamped PyKDL Vector.
++
++    :param msg: The PointStamped message to convert.
++    :type msg: geometry_msgs.msg.PointStamped
++    :return: The timestamped converted PyKDL vector.
++    :rtype: PyKDL.Vector
++    """
++    vector = PyKDL.Vector(msg.point.x, msg.point.y, msg.point.z)
++    return tf2_ros.Stamped(vector, msg.header.stamp, msg.header.frame_id)
++
++tf2_ros.ConvertRegistration().add_from_msg(PyKDL.Vector, from_msg_vector)
++
++def convert_vector(vector):
++    """Convert a generic stamped triplet message to a stamped PyKDL Vector.
++
++    :param vector: The message to convert.
++    :return: The timestamped converted PyKDL vector.
++    :rtype: PyKDL.Vector
++    """
++    return tf2_ros.Stamped(PyKDL.Vector(vector), vector.header.stamp, vector.header.frame_id)
++
++tf2_ros.ConvertRegistration().add_convert((PyKDL.Vector, PyKDL.Vector), convert_vector)
++
++def do_transform_frame(frame, transform):
++    """Apply a transform in the form of a geometry_msgs message to a PyKDL Frame.
++
++    :param frame: The PyKDL frame to transform.
++    :type frame: PyKDL.Frame
++    :param transform: The transform to apply.
++    :type transform: geometry_msgs.msg.TransformStamped
++    :return: The transformed PyKDL frame.
++    :rtype: PyKDL.Frame
++    """
++    res = transform_to_kdl(transform) * frame
++    res.header = transform.header
++    return res
++tf2_ros.TransformRegistration().add(PyKDL.Frame, do_transform_frame)
++
++def do_transform_twist(twist, transform):
++    """Apply a transform in the form of a geometry_msgs message to a PyKDL Twist.
++
++    :param twist: The PyKDL twist to transform.
++    :type twist: PyKDL.Twist
++    :param transform: The transform to apply.
++    :type transform: geometry_msgs.msg.TransformStamped
++    :return: The transformed PyKDL twist.
++    :rtype: PyKDL.Twist
++    """
++    res = transform_to_kdl(transform) * twist
++    res.header = transform.header
++    return res
++tf2_ros.TransformRegistration().add(PyKDL.Twist, do_transform_twist)
++
++
++# Wrench
++def do_transform_wrench(wrench, transform):
++    """Apply a transform in the form of a geometry_msgs message to a PyKDL Wrench.
++
++    :param wrench: The PyKDL wrench to transform.
++    :type wrench: PyKDL.Wrench
++    :param transform: The transform to apply.
++    :type transform: geometry_msgs.msg.TransformStamped
++    :return: The transformed PyKDL wrench.
++    :rtype: PyKDL.Wrench
++    """
++    res = transform_to_kdl(transform) * wrench
++    res.header = transform.header
++    return res
++tf2_ros.TransformRegistration().add(PyKDL.Wrench, do_transform_wrench)
+--- /dev/null
++++ ros-noetic-tf2-kdl-0.7.7/test/test.launch
+@@ -0,0 +1,3 @@
++<launch>
++  <test test-name="test_tf_kdl" pkg="tf2_kdl" type="test_kdl" time-limit="120" />
++</launch>
+\ No newline at end of file
+--- /dev/null
++++ ros-noetic-tf2-kdl-0.7.7/test/test_python.launch
+@@ -0,0 +1,3 @@
++<launch>
++  <test test-name="test_tf2_kdl_python" pkg="tf2_kdl" type="test.py" time-limit="120" launch-prefix="python$(env ROS_PYTHON_VERSION)"/>
++</launch>
+--- /dev/null
++++ ros-noetic-tf2-kdl-0.7.7/test/test_tf2_kdl.cpp
+@@ -0,0 +1,131 @@
++/*
++ * Copyright (c) 2008, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++/** \author Wim Meeussen */
++
++
++#include <tf2_kdl/tf2_kdl.h>
++#include <kdl/frames_io.hpp>
++#include <gtest/gtest.h>
++#include "tf2_ros/buffer.h"
++
++
++tf2_ros::Buffer* tf_buffer;
++static const double EPS = 1e-3;
++
++TEST(TfKDL, Frame)
++{
++  tf2::Stamped<KDL::Frame> v1(KDL::Frame(KDL::Rotation::RPY(M_PI, 0, 0), KDL::Vector(1,2,3)), ros::Time(2.0), "A");
++
++
++  // simple api
++  KDL::Frame v_simple = tf_buffer->transform(v1, "B", ros::Duration(2.0));
++  EXPECT_NEAR(v_simple.p[0], -9, EPS);
++  EXPECT_NEAR(v_simple.p[1], 18, EPS);
++  EXPECT_NEAR(v_simple.p[2], 27, EPS);
++  double r, p, y;
++  v_simple.M.GetRPY(r, p, y);
++  EXPECT_NEAR(r, 0.0, EPS);
++  EXPECT_NEAR(p, 0.0, EPS);
++  EXPECT_NEAR(y, 0.0, EPS);
++  
++
++  // advanced api
++  KDL::Frame v_advanced = tf_buffer->transform(v1, "B", ros::Time(2.0),
++					       "A", ros::Duration(3.0));
++  EXPECT_NEAR(v_advanced.p[0], -9, EPS);
++  EXPECT_NEAR(v_advanced.p[1], 18, EPS);
++  EXPECT_NEAR(v_advanced.p[2], 27, EPS);
++  v_advanced.M.GetRPY(r, p, y);
++  EXPECT_NEAR(r, 0.0, EPS);
++  EXPECT_NEAR(p, 0.0, EPS);
++  EXPECT_NEAR(y, 0.0, EPS);
++
++}
++
++
++
++TEST(TfKDL, Vector)
++{
++  tf2::Stamped<KDL::Vector> v1(KDL::Vector(1,2,3), ros::Time(2.0), "A");
++
++
++  // simple api
++  KDL::Vector v_simple = tf_buffer->transform(v1, "B", ros::Duration(2.0));
++  EXPECT_NEAR(v_simple[0], -9, EPS);
++  EXPECT_NEAR(v_simple[1], 18, EPS);
++  EXPECT_NEAR(v_simple[2], 27, EPS);
++
++  // advanced api
++  KDL::Vector v_advanced = tf_buffer->transform(v1, "B", ros::Time(2.0),
++					       "A", ros::Duration(3.0));
++  EXPECT_NEAR(v_advanced[0], -9, EPS);
++  EXPECT_NEAR(v_advanced[1], 18, EPS);
++  EXPECT_NEAR(v_advanced[2], 27, EPS);
++}
++
++TEST(TfKDL, ConvertVector)
++{
++  tf2::Stamped<KDL::Vector> v(KDL::Vector(1,2,3), ros::Time(), "my_frame");
++
++  tf2::Stamped<KDL::Vector> v1 = v;
++  tf2::convert(v1, v1);
++
++  EXPECT_EQ(v, v1);
++
++  tf2::Stamped<KDL::Vector> v2(KDL::Vector(3,4,5), ros::Time(), "my_frame2");
++  tf2::convert(v1, v2);
++
++  EXPECT_EQ(v, v2);
++  EXPECT_EQ(v1, v2);
++}
++
++
++int main(int argc, char **argv){
++  testing::InitGoogleTest(&argc, argv);
++  ros::init(argc, argv, "test");
++  ros::NodeHandle n;
++
++  tf_buffer = new tf2_ros::Buffer();
++
++  // populate buffer
++  geometry_msgs::TransformStamped t;
++  t.transform.translation.x = 10;
++  t.transform.translation.y = 20;
++  t.transform.translation.z = 30;
++  t.transform.rotation.x = 1;
++  t.header.stamp = ros::Time(2.0);
++  t.header.frame_id = "A";
++  t.child_frame_id = "B";
++  tf_buffer->setTransform(t, "test");
++
++  int retval = RUN_ALL_TESTS();
++  delete tf_buffer;
++  return retval;
++}

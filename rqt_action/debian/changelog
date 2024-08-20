@@ -1,0 +1,189 @@
+ros-noetic-rqt-action (0.4.9-0jammy) jammy; urgency=high
+
+  * Add gbiggs as maintainer (#2 <https://github.com/ros-visualization/rqt_action/issues/2>)
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Thu, 18 May 2017 16:00:00 -0000
+
+ros-noetic-rqt-action (0.4.8-0jammy) jammy; urgency=high
+
+
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Wed, 26 Apr 2017 16:00:00 -0000
+
+ros-noetic-rqt-action (0.4.7-0jammy) jammy; urgency=high
+
+
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Wed, 01 Mar 2017 16:00:00 -0000
+
+ros-noetic-rqt-action (0.4.6-0jammy) jammy; urgency=high
+
+
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Sun, 26 Feb 2017 16:00:00 -0000
+
+ros-noetic-rqt-action (0.4.5-0jammy) jammy; urgency=high
+
+
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Thu, 02 Feb 2017 16:00:00 -0000
+
+ros-noetic-rqt-action (0.4.4-0jammy) jammy; urgency=high
+
+
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Mon, 23 Jan 2017 16:00:00 -0000
+
+ros-noetic-rqt-action (0.4.3-0jammy) jammy; urgency=high
+
+
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Tue, 01 Nov 2016 16:00:00 -0000
+
+ros-noetic-rqt-action (0.4.2-0jammy) jammy; urgency=high
+
+
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Sun, 18 Sep 2016 16:00:00 -0000
+
+ros-noetic-rqt-action (0.4.1-0jammy) jammy; urgency=high
+
+
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Sun, 15 May 2016 16:00:00 -0000
+
+ros-noetic-rqt-action (0.4.0-0jammy) jammy; urgency=high
+
+
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Tue, 26 Apr 2016 16:00:00 -0000
+
+ros-noetic-rqt-action (0.3.13-0jammy) jammy; urgency=high
+
+
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Mon, 07 Mar 2016 16:00:00 -0000
+
+ros-noetic-rqt-action (0.3.12-0jammy) jammy; urgency=high
+
+
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Thu, 23 Jul 2015 16:00:00 -0000
+
+ros-noetic-rqt-action (0.3.11-0jammy) jammy; urgency=high
+
+
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Wed, 29 Apr 2015 16:00:00 -0000
+
+ros-noetic-rqt-action (0.3.10-0jammy) jammy; urgency=high
+
+
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Tue, 30 Sep 2014 16:00:00 -0000
+
+ros-noetic-rqt-action (0.3.9-0jammy) jammy; urgency=high
+
+
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Sun, 17 Aug 2014 16:00:00 -0000
+
+ros-noetic-rqt-action (0.3.8-0jammy) jammy; urgency=high
+
+
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Mon, 14 Jul 2014 16:00:00 -0000
+
+ros-noetic-rqt-action (0.3.7-0jammy) jammy; urgency=high
+
+  * export architecture_independent flag in package.xml (#254 <https://github.com/ros-visualization/rqt_common_plugins/issues/254>)
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Thu, 10 Jul 2014 16:00:00 -0000
+
+ros-noetic-rqt-action (0.3.6-0jammy) jammy; urgency=high
+
+
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Sun, 01 Jun 2014 16:00:00 -0000
+
+ros-noetic-rqt-action (0.3.5-0jammy) jammy; urgency=high
+
+
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Tue, 06 May 2014 16:00:00 -0000
+
+ros-noetic-rqt-action (0.3.4-0jammy) jammy; urgency=high
+
+
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Mon, 27 Jan 2014 16:00:00 -0000
+
+ros-noetic-rqt-action (0.3.3-0jammy) jammy; urgency=high
+
+  * add groups for rqt plugins, renamed some plugins (#167 <https://github.com/ros-visualization/rqt_common_plugins/issues/167>)
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Tue, 07 Jan 2014 16:00:00 -0000
+
+ros-noetic-rqt-action (0.3.2-0jammy) jammy; urgency=high
+
+
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Sun, 13 Oct 2013 16:00:00 -0000
+
+ros-noetic-rqt-action (0.3.1-0jammy) jammy; urgency=high
+
+
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Tue, 08 Oct 2013 16:00:00 -0000
+
+ros-noetic-rqt-action (0.3.0-0jammy) jammy; urgency=high
+
+
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Tue, 27 Aug 2013 16:00:00 -0000
+
+ros-noetic-rqt-action (0.2.17-0jammy) jammy; urgency=high
+
+
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Wed, 03 Jul 2013 16:00:00 -0000
+
+ros-noetic-rqt-action (0.2.16-0jammy) jammy; urgency=high
+
+
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Tue, 09 Apr 2013 05:33:00 -0000
+
+ros-noetic-rqt-action (0.2.15-0jammy) jammy; urgency=high
+
+
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Mon, 08 Apr 2013 16:02:00 -0000
+
+ros-noetic-rqt-action (0.2.14-0jammy) jammy; urgency=high
+
+
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Wed, 13 Mar 2013 16:00:00 -0000
+
+ros-noetic-rqt-action (0.2.13-0jammy) jammy; urgency=high
+
+
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Mon, 11 Mar 2013 14:14:00 -0000
+
+ros-noetic-rqt-action (0.2.12-0jammy) jammy; urgency=high
+
+
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Mon, 11 Mar 2013 05:56:00 -0000
+
+ros-noetic-rqt-action (0.2.11-0jammy) jammy; urgency=high
+
+  * Now depends on rqt_msg to eliminate GUI files from this package
+  * Fix; IndexError: list index out of range (#26 <https://github.com/ros-visualization/rqt_common_plugins/issues/26>)
+  * first release of this package into groovy
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Thu, 07 Mar 2013 16:00:00 -0000
+
+

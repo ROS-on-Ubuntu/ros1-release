@@ -1,0 +1,2423 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-roslz4 (1.16.0-0jammy) jammy; urgency=high
+Author: Michael Carroll <michael@openrobotics.org>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-roslz4-1.16.0/CHANGELOG.rst
+@@ -0,0 +1,193 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package roslz4
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++1.16.0 (2023-02-15)
++-------------------
++
++1.15.15 (2022-11-23)
++--------------------
++* Move @jacobperron from maintainer to author (`#2302 <https://github.com/ros/ros_comm/issues/2302>`_)
++* Contributors: Shane Loretz
++
++1.15.14 (2022-01-06)
++--------------------
++
++1.15.13 (2021-09-22)
++--------------------
++
++1.15.12 (2021-09-21)
++--------------------
++
++1.15.11 (2021-04-06)
++--------------------
++
++1.15.10 (2021-03-18)
++--------------------
++
++1.15.9 (2020-10-16)
++-------------------
++* Update maintainers (`#2075 <https://github.com/ros/ros_comm/issues/2075>`_)
++* Fix spelling (`#2066 <https://github.com/ros/ros_comm/issues/2066>`_)
++* Contributors: Shane Loretz, tomoya
++
++1.15.8 (2020-07-23)
++-------------------
++
++1.15.7 (2020-05-28)
++-------------------
++
++1.15.6 (2020-05-21)
++-------------------
++
++1.15.5 (2020-05-15)
++-------------------
++* use undefined dynamic_lookup on macOS (`#1923 <https://github.com/ros/ros_comm/issues/1923>`_)
++
++1.15.4 (2020-03-19)
++-------------------
++
++1.15.3 (2020-02-28)
++-------------------
++
++1.15.2 (2020-02-25)
++-------------------
++
++1.15.1 (2020-02-24)
++-------------------
++* use setuptools instead of distutils (`#1870 <https://github.com/ros/ros_comm/issues/1870>`_)
++
++1.15.0 (2020-02-21)
++-------------------
++
++1.14.4 (2020-02-20)
++-------------------
++* bump CMake minimum version to avoid CMP0048 warning (`#1869 <https://github.com/ros/ros_comm/issues/1869>`_)
++* add alternative lz4 name for Windows (`#1821 <https://github.com/ros/ros_comm/issues/1821>`_)
++* check for XXH_malloc NULL return (`#1778 <https://github.com/ros/ros_comm/issues/1778>`_)
++* update install destination for roslz4 (`#1620 <https://github.com/ros/ros_comm/issues/1620>`_)
++* fix issues when built or run on Windows (`#1466 <https://github.com/ros/ros_comm/issues/1466>`_)
++
++1.14.3 (2018-08-06)
++-------------------
++
++1.14.2 (2018-06-06)
++-------------------
++
++1.14.1 (2018-05-21)
++-------------------
++
++1.14.0 (2018-05-21)
++-------------------
++
++1.13.6 (2018-02-05)
++-------------------
++* adding decompress to free(state) before return (`#1313 <https://github.com/ros/ros_comm/issues/1313>`_)
++* allow building on Trusty (`#1236 <https://github.com/ros/ros_comm/issues/1236>`_)
++
++1.13.5 (2017-11-09)
++-------------------
++
++1.13.4 (2017-11-02)
++-------------------
++
++1.13.3 (2017-10-25)
++-------------------
++
++1.13.2 (2017-08-15)
++-------------------
++* replace deprecated lz4 function call (`#1136 <https://github.com/ros/ros_comm/issues/1136>`_)
++
++1.13.1 (2017-07-27)
++-------------------
++* add XXH_NAMESPACE, for namespace emulation in C (`#1065 <https://github.com/ros/ros_comm/pull/1065>`_)
++
++1.13.0 (2017-02-22)
++-------------------
++
++1.12.7 (2017-02-17)
++-------------------
++
++1.12.6 (2016-10-26)
++-------------------
++
++1.12.5 (2016-09-30)
++-------------------
++
++1.12.4 (2016-09-19)
++-------------------
++
++1.12.3 (2016-09-17)
++-------------------
++* set lz4_FOUND in order to continue using it with catkin_package(DEPENDS) (`ros/catkin#813 <https://github.com/ros/catkin/issues/813>`_)
++
++1.12.2 (2016-06-03)
++-------------------
++
++1.12.1 (2016-04-18)
++-------------------
++* use directory specific compiler flags (`#785 <https://github.com/ros/ros_comm/pull/785>`_)
++
++1.12.0 (2016-03-18)
++-------------------
++
++1.11.18 (2016-03-17)
++--------------------
++* fix compiler warnings
++
++1.11.17 (2016-03-11)
++--------------------
++
++1.11.16 (2015-11-09)
++--------------------
++
++1.11.15 (2015-10-13)
++--------------------
++
++1.11.14 (2015-09-19)
++--------------------
++
++1.11.13 (2015-04-28)
++--------------------
++
++1.11.12 (2015-04-27)
++--------------------
++
++1.11.11 (2015-04-16)
++--------------------
++* fix import of compiled library with Python 3.x (`#563 <https://github.com/ros/ros_comm/pull/563>`_)
++
++1.11.10 (2014-12-22)
++--------------------
++* disable lz4 Python bindings on Android (`#521 <https://github.com/ros/ros_comm/pull/521>`_)
++
++1.11.9 (2014-08-18)
++-------------------
++
++1.11.8 (2014-08-04)
++-------------------
++
++1.11.7 (2014-07-18)
++-------------------
++
++1.11.6 (2014-07-10)
++-------------------
++* fix finding specific version of PythonLibs with CMake 3
++
++1.11.5 (2014-06-24)
++-------------------
++
++1.11.4 (2014-06-16)
++-------------------
++
++1.11.3 (2014-05-21)
++-------------------
++
++1.11.2 (2014-05-08)
++-------------------
++* fix symbol problem on OSX (`#405 <https://github.com/ros/ros_comm/issues/405>`_)
++* fix return value in the Python module (`#406 <https://github.com/ros/ros_comm/issues/406>`_)
++
++1.11.1 (2014-05-07)
++-------------------
++* initial release
+--- /dev/null
++++ ros-noetic-roslz4-1.16.0/CMakeLists.txt
+@@ -0,0 +1,95 @@
++cmake_minimum_required(VERSION 3.0.2)
++
++project(roslz4)
++
++if(NOT WIN32)
++  set_directory_properties(PROPERTIES COMPILE_OPTIONS "-Wall;-Wextra")
++endif()
++
++find_package(catkin REQUIRED COMPONENTS cpp_common)
++
++find_path(lz4_INCLUDE_DIRS NAMES lz4.h)
++if (NOT lz4_INCLUDE_DIRS)
++  message(FATAL_ERROR "lz4 includes not found")
++endif()
++
++find_library(lz4_LIBRARIES NAMES lz4 liblz4)
++if (NOT lz4_LIBRARIES)
++  message(FATAL_ERROR "lz4 library not found")
++endif()
++set(lz4_FOUND TRUE)
++
++catkin_python_setup()
++
++catkin_package(
++  INCLUDE_DIRS include
++  LIBRARIES roslz4
++  DEPENDS lz4)
++
++include_directories(include ${lz4_INCLUDE_DIRS} ${catkin_INCLUDE_DIRS})
++add_library(roslz4 src/lz4s.c src/xxhash.c)
++if (NOT WIN32)
++  set_source_files_properties(
++    src/lz4s.c
++    PROPERTIES COMPILE_FLAGS "-Wno-sign-compare")
++endif()
++set_source_files_properties(
++  src/lz4s.c src/xxhash.c
++PROPERTIES COMPILE_DEFINITIONS "XXH_NAMESPACE=ROSLZ4_")
++target_link_libraries(roslz4 ${lz4_LIBRARIES} ${catkin_LIBRARIES})
++
++if(NOT ANDROID)
++# Python bindings
++set(Python_ADDITIONAL_VERSIONS "${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}")
++find_package(PythonLibs "${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}" REQUIRED)
++include_directories(${PYTHON_INCLUDE_PATH})
++
++add_library(roslz4_py src/_roslz4module.c)
++if (NOT WIN32)
++  set_source_files_properties(
++    src/_roslz4module.c
++    PROPERTIES COMPILE_FLAGS "-Wno-missing-field-initializers -Wno-unused-variable -Wno-strict-aliasing")
++endif()
++set_target_properties(roslz4_py PROPERTIES
++  LIBRARY_OUTPUT_DIRECTORY ${CATKIN_DEVEL_PREFIX}/${PYTHON_INSTALL_DIR}/roslz4)
++if (NOT WIN32)
++  set_target_properties(roslz4_py PROPERTIES OUTPUT_NAME roslz4 PREFIX "_" SUFFIX ".so")
++  if (APPLE)
++    set_target_properties(roslz4_py PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
++  endif()
++else()
++  set_target_properties(roslz4_py PROPERTIES OUTPUT_NAME _roslz4 SUFFIX ".pyd")
++endif()
++if (NOT APPLE)
++  target_link_libraries(roslz4_py roslz4 ${catkin_LIBRARIES} ${PYTHON_LIBRARIES})
++else()
++  target_link_libraries(roslz4_py roslz4 ${catkin_LIBRARIES})
++endif()
++endif()
++
++# Install library
++install(TARGETS roslz4
++  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
++  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
++  RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
++)
++
++if(NOT ANDROID)
++install(TARGETS roslz4_py
++  ARCHIVE DESTINATION ${CATKIN_PACKAGE_PYTHON_DESTINATION}
++  LIBRARY DESTINATION ${CATKIN_PACKAGE_PYTHON_DESTINATION}
++  RUNTIME DESTINATION ${CATKIN_PACKAGE_PYTHON_DESTINATION})
++endif()
++
++install(DIRECTORY include/${PROJECT_NAME}
++  DESTINATION ${CATKIN_GLOBAL_INCLUDE_DESTINATION}
++  FILES_MATCHING PATTERN "*.h"
++)
++
++# Testing
++if (CATKIN_ENABLE_TESTING)
++  catkin_add_gtest(test_roslz4 test/roslz4_test.cpp)
++  if (TARGET test_roslz4)
++    target_link_libraries(test_roslz4 roslz4 ${catkin_LIBRARIES})
++  endif()
++endif()
+--- /dev/null
++++ ros-noetic-roslz4-1.16.0/include/roslz4/lz4s.h
+@@ -0,0 +1,107 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++*
++*  Copyright (c) 2014, Ben Charrow
++*  All rights reserved.
++*
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++*
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of Willow Garage, Inc. nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++*
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++********************************************************************/
++
++#ifndef ROSLZ4_LZ4S_H
++#define ROSLZ4_LZ4S_H
++
++#include <lz4.h>
++#include <ros/macros.h>
++
++// Import/export for windows dll's and visibility for gcc shared libraries.
++#ifdef ROS_BUILD_SHARED_LIBS // ros is being built around shared libraries
++  #ifdef roslz4_EXPORTS // we are building a shared lib/dll
++    #define ROSLZ4S_DECL ROS_HELPER_EXPORT
++  #else // we are using shared lib/dll
++    #define ROSLZ4S_DECL ROS_HELPER_IMPORT
++  #endif
++#else // ros is being built around static libraries
++  #define ROSLZ4S_DECL
++#endif
++
++#ifdef __cplusplus
++extern "C" {
++#endif
++
++// Return codes
++const int ROSLZ4_MEMORY_ERROR = -5;
++const int ROSLZ4_PARAM_ERROR = -4;
++const int ROSLZ4_DATA_ERROR = -3;
++const int ROSLZ4_OUTPUT_SMALL = -2;
++const int ROSLZ4_ERROR = -1;
++const int ROSLZ4_OK = 0;
++const int ROSLZ4_STREAM_END = 2;
++
++// Actions
++const int ROSLZ4_RUN = 0;
++const int ROSLZ4_FINISH = 1;
++
++typedef struct {
++  char *input_next;
++  int input_left;
++
++  char *output_next;
++  int output_left;
++
++  int total_in;
++  int total_out;
++
++  int block_size_id;
++
++  // Internal use
++  void *state;
++} roslz4_stream;
++
++// Low level functions
++ROSLZ4S_DECL int roslz4_blockSizeFromIndex(int block_id);
++
++ROSLZ4S_DECL int roslz4_compressStart(roslz4_stream *stream, int block_size_id);
++ROSLZ4S_DECL int roslz4_compress(roslz4_stream *stream, int action);
++ROSLZ4S_DECL void roslz4_compressEnd(roslz4_stream *stream);
++
++ROSLZ4S_DECL int roslz4_decompressStart(roslz4_stream *stream);
++ROSLZ4S_DECL int roslz4_decompress(roslz4_stream *stream);
++ROSLZ4S_DECL void roslz4_decompressEnd(roslz4_stream *str);
++
++// Oneshot compression / decompression
++ROSLZ4S_DECL int roslz4_buffToBuffCompress(char *input, unsigned int input_size,
++                                           char *output, unsigned int *output_size,
++                                           int block_size_id);
++ROSLZ4S_DECL int roslz4_buffToBuffDecompress(char *input, unsigned int input_size,
++                                             char *output, unsigned int *output_size);
++
++#ifdef __cplusplus
++}
++#endif
++
++#endif // ROSLZ4_LZ4S_H
+--- /dev/null
++++ ros-noetic-roslz4-1.16.0/package.xml
+@@ -0,0 +1,24 @@
++<?xml version="1.0"?>
++<package>
++  <name>roslz4</name>
++  <version>1.16.0</version>
++  <description>
++    A Python and C++ implementation of the LZ4 streaming format.  Large data
++    streams are split into blocks which are compressed using the very fast LZ4
++    compression algorithm.
++  </description>
++  <maintainer email="michael@openrobotics.org">Michael Carroll</maintainer>
++  <maintainer email="sloretz@openrobotics.org">Shane Loretz</maintainer>
++  <license>BSD</license>
++  <author email="bcharrow@seas.upenn.edu">Ben Charrow</author>
++  <author email="jacob@openrobotics.org">Jacob Perron</author>
++
++  <buildtool_depend>catkin</buildtool_depend>
++
++  <build_depend>lz4</build_depend>
++  <build_depend>cpp_common</build_depend>
++
++  <run_depend>lz4</run_depend>
++
++  <test_depend>rosunit</test_depend>
++</package>
+--- /dev/null
++++ ros-noetic-roslz4-1.16.0/setup.py
+@@ -0,0 +1,10 @@
++from setuptools import setup
++from catkin_pkg.python_setup import generate_distutils_setup
++
++d = generate_distutils_setup(
++    packages=['roslz4'],
++    package_dir={'': 'src'},
++    requires=[],
++)
++
++setup(**d)
+--- /dev/null
++++ ros-noetic-roslz4-1.16.0/src/_roslz4module.c
+@@ -0,0 +1,452 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++*
++*  Copyright (c) 2014, Ben Charrow
++*  All rights reserved.
++*
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++*
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of Willow Garage, Inc. nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++*
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++********************************************************************/
++
++#include "Python.h"
++
++#include "roslz4/lz4s.h"
++
++struct module_state {
++  PyObject *error;
++};
++
++#if PY_MAJOR_VERSION >= 3
++#define GETSTATE(m) ((struct module_state*)PyModule_GetState(m))
++#else
++#define GETSTATE(m) (&_state)
++static struct module_state _state;
++#endif
++
++/* Taken from Python's _bz2module.c */
++static int
++grow_buffer(PyObject **buf)
++{
++    /* Expand the buffer by an amount proportional to the current size,
++       giving us amortized linear-time behavior. Use a less-than-double
++       growth factor to avoid excessive allocation. */
++    size_t size = PyBytes_GET_SIZE(*buf);
++    size_t new_size = size + (size >> 3) + 6;
++    if (new_size > size) {
++        return _PyBytes_Resize(buf, new_size);
++    } else {  /* overflow */
++        PyErr_SetString(PyExc_OverflowError,
++                        "Unable to allocate buffer - output too large");
++        return -1;
++    }
++}
++
++/*============================== LZ4Compressor ==============================*/
++
++typedef struct {
++    PyObject_HEAD
++    roslz4_stream stream;
++} LZ4Compressor;
++
++static void
++LZ4Compressor_dealloc(LZ4Compressor *self)
++{
++  roslz4_compressEnd(&self->stream);
++  Py_TYPE(self)->tp_free((PyObject*)self);
++}
++
++static int
++LZ4Compressor_init(LZ4Compressor *self, PyObject *args, PyObject *kwds)
++{
++  (void)kwds;
++  if (!PyArg_ParseTuple(args, ":__init__")) {
++    return -1;
++  }
++
++  int ret = roslz4_compressStart(&self->stream, 6);
++  if (ret != ROSLZ4_OK) {
++    PyErr_SetString(PyExc_RuntimeError, "error initializing roslz4 stream");
++    return -1;
++  }
++  return 0;
++}
++
++static PyObject *
++compress_impl(LZ4Compressor *self, Py_buffer *input, PyObject *output)
++{
++  /* Allocate output string */
++  int initial_size = roslz4_blockSizeFromIndex(self->stream.block_size_id) + 64;
++  output = PyBytes_FromStringAndSize(NULL, initial_size);
++  if (!output) {
++    if (input != NULL) { PyBuffer_Release(input); }
++    return NULL;
++  }
++
++  /* Setup stream */
++  int action;
++  if (input != NULL) {
++    action = ROSLZ4_RUN;
++    self->stream.input_next = input->buf;
++    self->stream.input_left = input->len;
++  } else {
++    action = ROSLZ4_FINISH;
++    self->stream.input_next = NULL;
++    self->stream.input_left = 0;
++  }
++  self->stream.output_next = PyBytes_AS_STRING(output);
++  self->stream.output_left = PyBytes_GET_SIZE(output);
++
++  /* Compress data */
++  int status;
++  int output_written = 0;
++  while ((action == ROSLZ4_FINISH) ||
++         (action == ROSLZ4_RUN && self->stream.input_left > 0)) {
++    int out_start = self->stream.total_out;
++    status = roslz4_compress(&self->stream, action);
++    output_written += self->stream.total_out - out_start;
++    if (status == ROSLZ4_OK) {
++      continue;
++    } else if (status == ROSLZ4_STREAM_END) {
++      break;
++    } else if (status == ROSLZ4_OUTPUT_SMALL) {
++      if (grow_buffer(&output) < 0) {
++        goto error;
++      }
++      self->stream.output_next = PyBytes_AS_STRING(output) + output_written;
++      self->stream.output_left = PyBytes_GET_SIZE(output) - output_written;
++    } else if (status == ROSLZ4_PARAM_ERROR) {
++      PyErr_SetString(PyExc_IOError, "bad block size parameter");
++      goto error;
++    } else if (status == ROSLZ4_ERROR) {
++      PyErr_SetString(PyExc_IOError, "error compressing");
++      goto error;
++    } else {
++      PyErr_Format(PyExc_RuntimeError, "unhandled return code %i", status);
++      goto error;
++    }
++  }
++
++  /* Shrink return buffer */
++  if (output_written != PyBytes_GET_SIZE(output)) {
++    _PyBytes_Resize(&output, output_written);
++  }
++
++  if (input != NULL) { PyBuffer_Release(input); }
++  return output;
++
++error:
++  if (input != NULL) { PyBuffer_Release(input); }
++  Py_XDECREF(output);
++  return NULL;
++}
++
++static PyObject *
++LZ4Compressor_compress(LZ4Compressor *self, PyObject *args)
++{
++  Py_buffer input;
++  PyObject *output = NULL;
++
++  /* TODO: Keyword argument */
++  if (!PyArg_ParseTuple(args, "s*:compress", &input)) {
++    return NULL;
++  }
++
++  return compress_impl(self, &input, output);
++}
++
++static PyObject *
++LZ4Compressor_flush(LZ4Compressor *self, PyObject *args)
++{
++  PyObject *output = NULL;
++
++  if (!PyArg_ParseTuple(args, ":flush")) {
++    return NULL;
++  }
++
++  return compress_impl(self, NULL, output);
++}
++
++
++static PyMethodDef LZ4Compressor_methods[] = {
++  {"compress", (PyCFunction)LZ4Compressor_compress, METH_VARARGS, "method doc"},
++  {"flush", (PyCFunction)LZ4Compressor_flush, METH_VARARGS, "method doc"},
++  {NULL} /* Sentinel */
++};
++
++static PyTypeObject LZ4Compressor_Type = {
++    PyVarObject_HEAD_INIT(NULL, 0)
++    "_roslz4.LZ4Compressor",           /* tp_name */
++    sizeof(LZ4Compressor),             /* tp_basicsize */
++    0,                                 /* tp_itemsize */
++    (destructor)LZ4Compressor_dealloc, /* tp_dealloc */
++    0,                                 /* tp_print */
++    0,                                 /* tp_getattr */
++    0,                                 /* tp_setattr */
++    0,                                 /* tp_compare */
++    0,                                 /* tp_repr */
++    0,                                 /* tp_as_number */
++    0,                                 /* tp_as_sequence */
++    0,                                 /* tp_as_mapping */
++    0,                                 /* tp_hash */
++    0,                                 /* tp_call */
++    0,                                 /* tp_str */
++    0,                                 /* tp_getattro */
++    0,                                 /* tp_setattro */
++    0,                                 /* tp_as_buffer */
++    Py_TPFLAGS_DEFAULT,                /* tp_flags */
++    "LZ4Compressor objects",           /* tp_doc */
++    0,                                 /* tp_traverse */
++    0,                                 /* tp_clear */
++    0,                                 /* tp_richcompare */
++    0,                                 /* tp_weaklistoffset */
++    0,                                 /* tp_iter */
++    0,                                 /* tp_iternext */
++    LZ4Compressor_methods,             /* tp_methods */
++    0,                                 /* tp_members */
++    0,                                 /* tp_getset */
++    0,                                 /* tp_base */
++    0,                                 /* tp_dict */
++    0,                                 /* tp_descr_get */
++    0,                                 /* tp_descr_set */
++    0,                                 /* tp_dictoffset */
++    (initproc)LZ4Compressor_init       /* tp_init */
++};
++
++/*============================= LZ4Decompressor =============================*/
++
++typedef struct {
++    PyObject_HEAD
++    roslz4_stream stream;
++} LZ4Decompressor;
++
++static void
++LZ4Decompressor_dealloc(LZ4Decompressor *self)
++{
++  roslz4_decompressEnd(&self->stream);
++  Py_TYPE(self)->tp_free((PyObject*)self);
++}
++
++static int
++LZ4Decompressor_init(LZ4Decompressor *self, PyObject *args, PyObject *kwds)
++{
++  (void)kwds;
++  if (!PyArg_ParseTuple(args, ":__init__")) {
++    return -1;
++  }
++
++  int ret = roslz4_decompressStart(&self->stream);
++  if (ret != ROSLZ4_OK) {
++    PyErr_SetString(PyExc_RuntimeError, "error initializing roslz4 stream");
++    return -1;
++  }
++  return 0;
++}
++
++static PyObject *
++LZ4Decompressor_decompress(LZ4Decompressor *self, PyObject *args)
++{
++  Py_buffer input;
++  PyObject *output = NULL;
++
++  /* TODO: Keyword argument */
++  if (!PyArg_ParseTuple(args, "s*:decompress", &input)) {
++    return NULL;
++  }
++
++  /* Allocate 1 output block. If header not read, use compression block size */
++  int block_size;
++  if (self->stream.block_size_id == -1 ) {
++    block_size = roslz4_blockSizeFromIndex(6);
++  } else {
++    block_size = roslz4_blockSizeFromIndex(self->stream.block_size_id);
++  }
++
++  output = PyBytes_FromStringAndSize(NULL, block_size);
++  if (!output) {
++    PyBuffer_Release(&input);
++    return NULL;
++  }
++
++  /* Setup stream */
++  self->stream.input_next = input.buf;
++  self->stream.input_left = input.len;
++  self->stream.output_next = PyBytes_AS_STRING(output);
++  self->stream.output_left = PyBytes_GET_SIZE(output);
++
++  int output_written = 0;
++  while (self->stream.input_left > 0) {
++    int out_start = self->stream.total_out;
++    int status = roslz4_decompress(&self->stream);
++    output_written += self->stream.total_out - out_start;
++    if (status == ROSLZ4_OK) {
++      continue;
++    } else if (status == ROSLZ4_STREAM_END) {
++      break;
++    } else if (status == ROSLZ4_OUTPUT_SMALL) {
++      if (grow_buffer(&output) < 0) {
++        goto error;
++      }
++      self->stream.output_next = PyBytes_AS_STRING(output) + output_written;
++      self->stream.output_left = PyBytes_GET_SIZE(output) - output_written;
++    } else if (status == ROSLZ4_ERROR) {
++      PyErr_SetString(PyExc_IOError, "error decompressing");
++      goto error;
++    } else if (status == ROSLZ4_DATA_ERROR) {
++      PyErr_SetString(PyExc_IOError, "malformed data to decompress");
++      goto error;
++    } else {
++      PyErr_Format(PyExc_RuntimeError, "unhandled return code %i", status);
++      goto error;
++    }
++  }
++
++  if (output_written != PyBytes_GET_SIZE(output)) {
++    _PyBytes_Resize(&output, output_written);
++  }
++
++  PyBuffer_Release(&input);
++  return output;
++
++error:
++  PyBuffer_Release(&input);
++  Py_XDECREF(output);
++  return NULL;
++}
++
++static PyMethodDef LZ4Decompressor_methods[] = {
++  {"decompress", (PyCFunction)LZ4Decompressor_decompress, METH_VARARGS, "method doc"},
++  {NULL} /* Sentinel */
++};
++
++static PyTypeObject LZ4Decompressor_Type = {
++    PyVarObject_HEAD_INIT(NULL, 0)
++    "_roslz4.LZ4Decompressor",           /* tp_name */
++    sizeof(LZ4Decompressor),             /* tp_basicsize */
++    0,                                   /* tp_itemsize */
++    (destructor)LZ4Decompressor_dealloc, /* tp_dealloc */
++    0,                                   /* tp_print */
++    0,                                   /* tp_getattr */
++    0,                                   /* tp_setattr */
++    0,                                   /* tp_compare */
++    0,                                   /* tp_repr */
++    0,                                   /* tp_as_number */
++    0,                                   /* tp_as_sequence */
++    0,                                   /* tp_as_mapping */
++    0,                                   /* tp_hash */
++    0,                                   /* tp_call */
++    0,                                   /* tp_str */
++    0,                                   /* tp_getattro */
++    0,                                   /* tp_setattro */
++    0,                                   /* tp_as_buffer */
++    Py_TPFLAGS_DEFAULT,                  /* tp_flags */
++    "LZ4Decompressor objects",           /* tp_doc */
++    0,                                   /* tp_traverse */
++    0,                                   /* tp_clear */
++    0,                                   /* tp_richcompare */
++    0,                                   /* tp_weaklistoffset */
++    0,                                   /* tp_iter */
++    0,                                   /* tp_iternext */
++    LZ4Decompressor_methods,             /* tp_methods */
++    0,                                   /* tp_members */
++    0,                                   /* tp_getset */
++    0,                                   /* tp_base */
++    0,                                   /* tp_dict */
++    0,                                   /* tp_descr_get */
++    0,                                   /* tp_descr_set */
++    0,                                   /* tp_dictoffset */
++    (initproc)LZ4Decompressor_init       /* tp_init */
++};
++
++
++/*========================== Module initialization ==========================*/
++
++#if PY_MAJOR_VERSION >= 3
++
++static int roslz4_traverse(PyObject *m, visitproc visit, void *arg) {
++  Py_VISIT(GETSTATE(m)->error);
++  return 0;
++}
++
++static int roslz4_clear(PyObject *m) {
++  Py_CLEAR(GETSTATE(m)->error);
++  return 0;
++}
++
++static struct PyModuleDef moduledef = {
++  PyModuleDef_HEAD_INIT,
++  "_roslz4",
++  NULL,
++  sizeof(struct module_state),
++  NULL,
++  NULL,
++  roslz4_traverse,
++  roslz4_clear,
++  NULL
++};
++#define INITERROR return NULL
++
++PyObject *
++PyInit__roslz4(void)
++
++#else
++#define INITERROR return
++
++void
++init_roslz4(void)
++#endif
++{
++  PyObject *m;
++
++  LZ4Compressor_Type.tp_new = PyType_GenericNew;
++  if (PyType_Ready(&LZ4Compressor_Type) < 0) {
++    INITERROR;
++  }
++
++  LZ4Decompressor_Type.tp_new = PyType_GenericNew;
++  if (PyType_Ready(&LZ4Decompressor_Type) < 0) {
++    INITERROR;
++  }
++
++#if PY_MAJOR_VERSION >= 3
++  m = PyModule_Create(&moduledef);
++#else
++  m = Py_InitModule("_roslz4", NULL);
++#endif
++
++  if (m == NULL) {
++    INITERROR;
++  }
++
++  Py_INCREF(&LZ4Compressor_Type);
++  PyModule_AddObject(m, "LZ4Compressor", (PyObject *)&LZ4Compressor_Type);
++  Py_INCREF(&LZ4Decompressor_Type);
++  PyModule_AddObject(m, "LZ4Decompressor", (PyObject *)&LZ4Decompressor_Type);
++
++#if PY_MAJOR_VERSION >= 3
++  return m;
++#endif
++}
+--- /dev/null
++++ ros-noetic-roslz4-1.16.0/src/lz4s.c
+@@ -0,0 +1,647 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++*
++*  Copyright (c) 2014, Ben Charrow
++*  All rights reserved.
++*
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++*
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of Willow Garage, Inc. nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++*
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++********************************************************************/
++
++#include "roslz4/lz4s.h"
++
++#include "xxhash.h"
++
++#include <stdint.h>
++#include <string.h>
++#include <stdio.h>
++#include <stdlib.h>
++
++#if 0
++#define DEBUG(...) fprintf(stderr, __VA_ARGS__)
++#else
++#define DEBUG(...)
++#endif
++
++// Make sure the LZ4 library has the function we need
++// Note that the later versions of LZ4 contain a different macro that does this version math, but the earlier
++// versions lack it.
++#define LZ4_VERSION (LZ4_VERSION_MAJOR * 100 * 100 + LZ4_VERSION_MINOR * 100 + LZ4_VERSION_RELEASE)
++#if LZ4_VERSION >= 10701
++#define LZ4_COMPRESS_DEFAULT LZ4_compress_default
++#else
++#define LZ4_COMPRESS_DEFAULT LZ4_compress_limitedOutput
++#endif
++
++// magic numbers
++const uint32_t kMagicNumber = 0x184D2204;
++const uint32_t kEndOfStream = 0x00000000;
++
++// Bitmasks
++const uint8_t k1Bits = 0x01;
++const uint8_t k2Bits = 0x03;
++const uint8_t k3Bits = 0x07;
++const uint8_t k4Bits = 0x0F;
++const uint8_t k8Bits = 0xFF;
++
++uint32_t readUInt32(unsigned char *buffer) {
++  return ((buffer[0] <<  0) | (buffer[1] <<  8) |
++          (buffer[2] << 16) | (buffer[3] << 24));
++}
++
++void writeUInt32(unsigned char *buffer, uint32_t val) {
++  buffer[0] = val & 0xFF;
++  buffer[1] = (val >> 8) & 0xFF;
++  buffer[2] = (val >> 16) & 0xFF;
++  buffer[3] = (val >> 24) & 0xFF;
++}
++
++#ifndef _MSC_VER
++int min(int a, int b) {
++  return a < b ? a : b;
++}
++#endif
++
++/*========================== Low level compression ==========================*/
++
++typedef struct {
++  int block_independence_flag;
++  int block_checksum_flag;
++  int stream_checksum_flag;
++
++  char *buffer;
++  int buffer_size;
++  int buffer_offset;
++
++  int finished; // 1 if done compressing/decompressing; 0 otherwise
++
++  void* xxh32_state;
++
++  // Compression state
++  int wrote_header;
++
++  // Decompression state
++  char header[10];
++  uint32_t block_size; // Size of current block
++  int block_size_read; // # of bytes read for current block_size
++  int block_uncompressed; // 1 if block is uncompressed, 0 otherwise
++  uint32_t stream_checksum; // Storage for checksum
++  int stream_checksum_read; // # of bytes read for stream_checksum
++} stream_state;
++
++void advanceInput(roslz4_stream *str, int nbytes) {
++  str->input_next += nbytes;
++  str->input_left -= nbytes;
++  str->total_in += nbytes;
++}
++
++void advanceOutput(roslz4_stream *str, int nbytes) {
++  str->output_next += nbytes;
++  str->output_left -= nbytes;
++  str->total_out += nbytes;
++}
++
++void fillUInt32(roslz4_stream *str, uint32_t *dest_val, int *offset) {
++  char *dest = (char*) dest_val;
++  int to_copy = min(4 - *offset, str->input_left);
++  memcpy(dest + *offset, str->input_next, to_copy);
++  advanceInput(str, to_copy);
++  *offset += to_copy;
++}
++
++int writeHeader(roslz4_stream *str) {
++  if (str->output_left < 7) {
++    return ROSLZ4_OUTPUT_SMALL; // Output must have 7 bytes
++  }
++
++  stream_state *state = str->state;
++  writeUInt32((unsigned char*) str->output_next, kMagicNumber);
++  int version = 1;
++  char *out = str->output_next;
++  *(out+4)  = ((unsigned)version                        & k2Bits) << 6;
++  *(out+4) |= ((unsigned)state->block_independence_flag & k1Bits) << 5;
++  *(out+4) |= ((unsigned)state->block_checksum_flag     & k1Bits) << 4;
++  *(out+4) |= ((unsigned)state->stream_checksum_flag    & k1Bits) << 2;
++  *(out+5)  = ((unsigned)str->block_size_id             & k3Bits) << 4;
++
++  // Checksum: 2nd byte of hash of header flags
++  unsigned char checksum = (XXH32(str->output_next + 4, 2, 0) >> 8) & k8Bits;
++  *(str->output_next+6) = checksum;
++
++  advanceOutput(str, 7);
++  DEBUG("writeHeader() Put 7 bytes in output\n");
++
++  return ROSLZ4_OK;
++}
++
++int writeEOS(roslz4_stream *str) {
++  if (str->output_left < 8) {
++    return ROSLZ4_OUTPUT_SMALL;
++  }
++
++  stream_state *state = str->state;
++  state->finished = 1;
++  writeUInt32((unsigned char*) str->output_next, kEndOfStream);
++  advanceOutput(str, 4);
++
++  uint32_t stream_checksum = XXH32_digest(state->xxh32_state);
++  writeUInt32((unsigned char*) str->output_next, stream_checksum);
++  advanceOutput(str, 4);
++  state->xxh32_state = NULL;
++
++  DEBUG("writeEOS() Wrote 8 bytes to output %i\n", str->output_left);
++  return ROSLZ4_STREAM_END;
++}
++
++// If successful, number of bytes written to output
++// If error, LZ4 return code
++int bufferToOutput(roslz4_stream *str) {
++  stream_state *state = str->state;
++  uint32_t uncomp_size = state->buffer_offset;
++  if (state->buffer_offset == 0) {
++    return 0; // No data to flush
++  } else if (str->output_left - 4 < uncomp_size) {
++    DEBUG("bufferToOutput() Not enough space left in output\n");
++    return ROSLZ4_OUTPUT_SMALL;
++  }
++
++  DEBUG("bufferToOutput() Flushing %i bytes, %i left in output\n",
++        state->buffer_offset, str->output_left);
++
++  // Shrink output by 1 to detect if data is not compressible
++  uint32_t comp_size = LZ4_COMPRESS_DEFAULT(state->buffer,
++                                            str->output_next + 4,
++                                            (int) state->buffer_offset,
++                                            (int) uncomp_size - 1);
++  uint32_t wrote;
++  if (comp_size > 0) {
++    DEBUG("bufferToOutput() Compressed to %i bytes\n", comp_size);
++    // Write compressed data size
++    wrote = 4 + comp_size;
++    writeUInt32((unsigned char*)str->output_next, comp_size);
++  } else {
++    // Write uncompressed data
++    DEBUG("bufferToOutput() Can't compress, copying input\n");
++    memcpy(str->output_next + 4, state->buffer, uncomp_size);
++    // Write uncompressed data size.  Signal data is uncompressed with high
++    // order bit; won't confuse decompression because max block size is < 2GB
++    wrote = 4 + uncomp_size;
++    writeUInt32((unsigned char*) str->output_next, uncomp_size | 0x80000000);
++  }
++
++  advanceOutput(str, wrote);
++  state->buffer_offset -= uncomp_size;
++
++  DEBUG("bufferToOutput() Ate %i from buffer, wrote %i to output (%i)\n",
++        uncomp_size, wrote, str->output_left);
++  return wrote;
++}
++
++// Copy as much data as possible from input to internal buffer
++// Return number of bytes written if successful, LZ4 error code on error
++int inputToBuffer(roslz4_stream *str) {
++  stream_state *state = str->state;
++  if (str->input_left == 0 ||
++      state->buffer_size == state->buffer_offset) {
++    return 0;
++  }
++  int buffer_left = state->buffer_size - state->buffer_offset;
++  int to_copy = min(str->input_left, buffer_left);
++
++  int ret = XXH32_update(state->xxh32_state, str->input_next, to_copy);
++  if (ret == XXH_ERROR) { return ROSLZ4_ERROR; }
++
++  memcpy(state->buffer + state->buffer_offset, str->input_next, to_copy);
++  advanceInput(str, to_copy);
++  state->buffer_offset += to_copy;
++
++  DEBUG("inputToBuffer() Wrote % 5i bytes to buffer (size=% 5i)\n",
++        to_copy, state->buffer_offset);
++  return to_copy;
++}
++
++int streamStateAlloc(roslz4_stream *str) {
++  stream_state *state = (stream_state*) malloc(sizeof(stream_state));
++  if (state == NULL) {
++    return ROSLZ4_MEMORY_ERROR; // Allocation of state failed
++  }
++  str->state = state;
++
++  str->block_size_id = -1;
++  state->block_independence_flag = 1;
++  state->block_checksum_flag = 0;
++  state->stream_checksum_flag = 1;
++
++  state->finished = 0;
++
++  state->xxh32_state = XXH32_init(0);
++  if (state->xxh32_state == NULL) {
++    if (state->buffer != NULL) {
++      free(state->buffer);
++    }
++    free(state);
++    str->state = NULL;
++    return ROSLZ4_MEMORY_ERROR; // Allocation failed
++  }
++  state->stream_checksum = 0;
++  state->stream_checksum_read = 0;
++
++  state->wrote_header = 0;
++
++  state->buffer_offset = 0;
++  state->buffer_size = 0;
++  state->buffer = NULL;
++
++  state->block_size = 0;
++  state->block_size_read = 0;
++  state->block_uncompressed = 0;
++
++  str->total_in = 0;
++  str->total_out = 0;
++
++  return ROSLZ4_OK;
++}
++
++int streamResizeBuffer(roslz4_stream *str, int block_size_id) {
++  stream_state *state = str->state;
++  if (!(4 <= block_size_id && block_size_id <= 7)) {
++    return ROSLZ4_PARAM_ERROR; // Invalid block size
++  }
++
++  str->block_size_id = block_size_id;
++  state->buffer_offset = 0;
++  state->buffer_size = roslz4_blockSizeFromIndex(str->block_size_id);
++  state->buffer = (char*) malloc(sizeof(char) * state->buffer_size);
++  if (state->buffer == NULL) {
++    return ROSLZ4_MEMORY_ERROR; // Allocation of buffer failed
++  }
++  return ROSLZ4_OK;
++}
++
++void streamStateFree(roslz4_stream *str) {
++  stream_state *state = str->state;
++  if (state != NULL) {
++    if (state->buffer != NULL) {
++      free(state->buffer);
++    }
++    if (state->xxh32_state != NULL) {
++      XXH32_digest(state->xxh32_state);
++    }
++    free(state);
++    str->state = NULL;
++  }
++}
++
++int roslz4_blockSizeFromIndex(int block_id) {
++  return (1 << (8 + (2 * block_id)));
++}
++
++int roslz4_compressStart(roslz4_stream *str, int block_size_id) {
++  int ret = streamStateAlloc(str);
++  if (ret < 0) { return ret; }
++  return streamResizeBuffer(str, block_size_id);
++}
++
++int roslz4_compress(roslz4_stream *str, int action) {
++  int ret;
++  stream_state *state = str->state;
++  if (action != ROSLZ4_RUN && action != ROSLZ4_FINISH) {
++    return ROSLZ4_PARAM_ERROR; // Unrecognized compression action
++  } else if (state->finished) {
++    return ROSLZ4_ERROR; // Cannot call action on finished stream
++  }
++
++  if (!state->wrote_header) {
++    ret = writeHeader(str);
++    if (ret < 0) { return ret; }
++    state->wrote_header = 1;
++  }
++
++  // Copy input to internal buffer, compressing when full or finishing stream
++  int read = 0, wrote = 0;
++  do {
++    read = inputToBuffer(str);
++    if (read < 0) { return read; }
++
++    wrote = 0;
++    if (action == ROSLZ4_FINISH || state->buffer_offset == state->buffer_size) {
++      wrote = bufferToOutput(str);
++      if (wrote < 0) { return wrote; }
++    }
++  } while (read > 0 || wrote > 0);
++
++  // Signal end of stream if finishing up, otherwise done
++  if (action == ROSLZ4_FINISH) {
++    return writeEOS(str);
++  } else {
++    return ROSLZ4_OK;
++  }
++}
++
++void roslz4_compressEnd(roslz4_stream *str) {
++  streamStateFree(str);
++}
++
++/*========================= Low level decompression =========================*/
++
++int roslz4_decompressStart(roslz4_stream *str) {
++  return streamStateAlloc(str);
++  // Can't allocate internal buffer, block size is unknown until header is read
++}
++
++// Return 1 if header is present, 0 if more data is needed,
++// LZ4 error code (< 0) if error
++int processHeader(roslz4_stream *str) {
++  stream_state *state = str->state;
++  if (str->total_in >= 7) {
++    return 1;
++  }
++  // Populate header buffer
++  int to_copy = min(7 - str->total_in, str->input_left);
++  memcpy(state->header + str->total_in, str->input_next, to_copy);
++  advanceInput(str, to_copy);
++  if (str->total_in < 7) {
++    return 0;
++  }
++
++  // Parse header buffer
++  unsigned char *header = (unsigned char*) state->header;
++  uint32_t magic_number = readUInt32(header);
++  if (magic_number != kMagicNumber) {
++    return ROSLZ4_DATA_ERROR; // Stream does not start with magic number
++  }
++  // Check descriptor flags
++  int version                 = (header[4] >> 6) & k2Bits;
++  int block_independence_flag = (header[4] >> 5) & k1Bits;
++  int block_checksum_flag     = (header[4] >> 4) & k1Bits;
++  int stream_size_flag        = (header[4] >> 3) & k1Bits;
++  int stream_checksum_flag    = (header[4] >> 2) & k1Bits;
++  int reserved1               = (header[4] >> 1) & k1Bits;
++  int preset_dictionary_flag  = (header[4] >> 0) & k1Bits;
++
++  int reserved2               = (header[5] >> 7) & k1Bits;
++  int block_max_id            = (header[5] >> 4) & k3Bits;
++  int reserved3               = (header[5] >> 0) & k4Bits;
++
++  // LZ4 standard requirements
++  if (version != 1) {
++    return ROSLZ4_DATA_ERROR; // Wrong version number
++  }
++  if (reserved1 != 0 || reserved2 != 0 || reserved3 != 0) {
++    return ROSLZ4_DATA_ERROR; // Reserved bits must be 0
++  }
++  if (!(4 <= block_max_id && block_max_id <= 7)) {
++    return ROSLZ4_DATA_ERROR; // Invalid block size
++  }
++
++  // Implementation requirements
++  if (stream_size_flag != 0) {
++    return ROSLZ4_DATA_ERROR; // Stream size not supported
++  }
++  if (preset_dictionary_flag != 0) {
++    return ROSLZ4_DATA_ERROR; // Dictionary not supported
++  }
++  if (block_independence_flag != 1) {
++    return ROSLZ4_DATA_ERROR; // Block dependence not supported
++  }
++  if (block_checksum_flag != 0) {
++    return ROSLZ4_DATA_ERROR; // Block checksums not supported
++  }
++  if (stream_checksum_flag != 1) {
++    return ROSLZ4_DATA_ERROR; // Must have stream checksum
++  }
++
++  int header_checksum = (XXH32(header + 4, 2, 0) >> 8) & k8Bits;
++  int stored_header_checksum = (header[6] >> 0) & k8Bits;
++  if (header_checksum != stored_header_checksum) {
++    return ROSLZ4_DATA_ERROR; // Header checksum doesn't match
++  }
++
++  int ret = streamResizeBuffer(str, block_max_id);
++  if (ret == ROSLZ4_OK) {
++    return 1;
++  } else {
++    return ret;
++  }
++}
++
++// Read block size, return 1 if value is stored in state->block_size 0 otherwise
++int readBlockSize(roslz4_stream *str) {
++  stream_state *state = str->state;
++  if (state->block_size_read < 4) {
++    fillUInt32(str, &state->block_size, &state->block_size_read);
++    if (state->block_size_read == 4) {
++      state->block_size = readUInt32((unsigned char*)&state->block_size);
++      state->block_uncompressed = ((unsigned)state->block_size >> 31) & k1Bits;
++      state->block_size &= 0x7FFFFFFF;
++      DEBUG("readBlockSize() Block size = %i uncompressed = %i\n",
++            state->block_size, state->block_uncompressed);
++      return 1;
++    } else {
++      return 0;
++    }
++  }
++  return 1;
++}
++
++// Copy at most one blocks worth of data from input to internal buffer.
++// Return 1 if whole block has been read, 0 if not, LZ4 error otherwise
++int readBlock(roslz4_stream *str) {
++  stream_state *state = str->state;
++  if (state->block_size_read != 4 || state->block_size == kEndOfStream) {
++    return ROSLZ4_ERROR;
++  }
++
++  int block_left = state->block_size - state->buffer_offset;
++  int to_copy = min(str->input_left, block_left);
++  memcpy(state->buffer + state->buffer_offset, str->input_next, to_copy);
++  advanceInput(str, to_copy);
++  state->buffer_offset += to_copy;
++  DEBUG("readBlock() Read %i bytes from input (block = %i/%i)\n",
++        to_copy, state->buffer_offset, state->block_size);
++  return state->buffer_offset == state->block_size;
++}
++
++int decompressBlock(roslz4_stream *str) {
++  stream_state *state = str->state;
++  if (state->block_size_read != 4 || state->block_size != state->buffer_offset) {
++    // Internal error: Can't decompress block, it's not in buffer
++    return ROSLZ4_ERROR;
++  }
++
++  if (state->block_uncompressed) {
++    if (str->output_left >= state->block_size) {
++      memcpy(str->output_next, state->buffer, state->block_size);
++      int ret = XXH32_update(state->xxh32_state, str->output_next,
++                             state->block_size);
++      if (ret == XXH_ERROR) { return ROSLZ4_ERROR; }
++      advanceOutput(str, state->block_size);
++      state->block_size_read = 0;
++      state->buffer_offset = 0;
++      return ROSLZ4_OK;
++    } else {
++      return ROSLZ4_OUTPUT_SMALL;
++    }
++  } else {
++    int decomp_size;
++    decomp_size = LZ4_decompress_safe(state->buffer, str->output_next,
++                                      state->block_size, str->output_left);
++    if (decomp_size < 0) {
++      if (str->output_left >= state->buffer_size) {
++        return ROSLZ4_DATA_ERROR; // Must be a problem with the data stream
++      } else {
++        // Data error or output is small; increase output to disambiguate
++        return ROSLZ4_OUTPUT_SMALL;
++      }
++    } else {
++      int ret = XXH32_update(state->xxh32_state, str->output_next, decomp_size);
++      if (ret == XXH_ERROR) { return ROSLZ4_ERROR; }
++      advanceOutput(str, decomp_size);
++      state->block_size_read = 0;
++      state->buffer_offset = 0;
++      return ROSLZ4_OK;
++    }
++  }
++}
++
++int readChecksum(roslz4_stream *str) {
++  stream_state *state = str->state;
++  fillUInt32(str, &state->stream_checksum, &state->stream_checksum_read);
++  if (state->stream_checksum_read == 4) {
++    state->finished = 1;
++    state->stream_checksum = readUInt32((unsigned char*)&state->stream_checksum);
++    uint32_t checksum = XXH32_digest(state->xxh32_state);
++    state->xxh32_state = NULL;
++    if (checksum == state->stream_checksum) {
++      return ROSLZ4_STREAM_END;
++    } else {
++      return ROSLZ4_DATA_ERROR;
++    }
++  }
++  return ROSLZ4_OK;
++}
++
++int roslz4_decompress(roslz4_stream *str) {
++  stream_state *state = str->state;
++  if (state->finished) {
++    return ROSLZ4_ERROR; // Already reached end of stream
++  }
++
++  // Return if header isn't present or error was encountered
++  int ret = processHeader(str);
++  if (ret <= 0) {
++    return ret;
++  }
++
++  // Read in blocks and decompress them as long as there's data to be processed
++  while (str->input_left > 0) {
++    ret = readBlockSize(str);
++    if (ret == 0) { return ROSLZ4_OK; }
++
++    if (state->block_size == kEndOfStream) {
++      return readChecksum(str);
++    }
++
++    ret = readBlock(str);
++    if (ret == 0) { return ROSLZ4_OK; }
++    else if (ret < 0) { return ret; }
++
++    ret = decompressBlock(str);
++    if (ret < 0) { return ret; }
++  }
++  return ROSLZ4_OK;
++}
++
++void roslz4_decompressEnd(roslz4_stream *str) {
++  streamStateFree(str);
++}
++
++/*=================== Oneshot compression / decompression ===================*/
++
++int roslz4_buffToBuffCompress(char *input, unsigned int input_size,
++                              char *output, unsigned int *output_size,
++                              int block_size_id) {
++  roslz4_stream stream;
++  stream.input_next = input;
++  stream.input_left = input_size;
++  stream.output_next = output;
++  stream.output_left = *output_size;
++
++  int ret;
++  ret = roslz4_compressStart(&stream, block_size_id);
++  if (ret != ROSLZ4_OK) {
++    roslz4_compressEnd(&stream);
++    return ret;
++  }
++
++  while (stream.input_left > 0 && ret != ROSLZ4_STREAM_END) {
++    ret = roslz4_compress(&stream, ROSLZ4_FINISH);
++    if (ret == ROSLZ4_ERROR || ret == ROSLZ4_OUTPUT_SMALL) {
++      roslz4_compressEnd(&stream);
++      return ret;
++    }
++  }
++
++  *output_size = *output_size - stream.output_left;
++  roslz4_compressEnd(&stream);
++
++  if (stream.input_left == 0 && ret == ROSLZ4_STREAM_END) {
++    return ROSLZ4_OK; // Success
++  } else {
++    return ROSLZ4_ERROR; // User did not provide exact buffer
++  }
++}
++
++int roslz4_buffToBuffDecompress(char *input, unsigned int input_size,
++                                char *output, unsigned int *output_size) {
++  roslz4_stream stream;
++  stream.input_next = input;
++  stream.input_left = input_size;
++  stream.output_next = output;
++  stream.output_left = *output_size;
++
++  int ret;
++  ret = roslz4_decompressStart(&stream);
++  if (ret != ROSLZ4_OK) { return ret; }
++
++  while (stream.input_left > 0 && ret != ROSLZ4_STREAM_END) {
++    ret = roslz4_decompress(&stream);
++    if (ret < 0) {
++      roslz4_decompressEnd(&stream);
++      return ret;
++    }
++  }
++
++  *output_size = *output_size - stream.output_left;
++  roslz4_decompressEnd(&stream);
++
++  if (stream.input_left == 0 && ret == ROSLZ4_STREAM_END) {
++    return ROSLZ4_OK; // Success
++  } else {
++    return ROSLZ4_ERROR; // User did not provide exact buffer
++  }
++}
+--- /dev/null
++++ ros-noetic-roslz4-1.16.0/src/roslz4/__init__.py
+@@ -0,0 +1,42 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2014, Ben Charrow
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++from ._roslz4 import *
++
++def compress(data):
++    compressor = LZ4Compressor()
++    return compressor.compress(data) + compressor.flush()
++
++def decompress(data):
++    decompressor = LZ4Decompressor()
++    output = decompressor.decompress(data)
++    return output
+--- /dev/null
++++ ros-noetic-roslz4-1.16.0/src/xxhash.c
+@@ -0,0 +1,478 @@
++/*
++xxHash - Fast Hash algorithm
++Copyright (C) 2012-2014, Yann Collet.
++BSD 2-Clause License (http://www.opensource.org/licenses/bsd-license.php)
++
++Redistribution and use in source and binary forms, with or without
++modification, are permitted provided that the following conditions are
++met:
++
++* Redistributions of source code must retain the above copyright
++notice, this list of conditions and the following disclaimer.
++* Redistributions in binary form must reproduce the above
++copyright notice, this list of conditions and the following disclaimer
++in the documentation and/or other materials provided with the
++distribution.
++
++THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
++A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
++OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
++SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
++LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
++DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
++THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
++(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
++OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++
++You can contact the author at :
++- xxHash source repository : http://code.google.com/p/xxhash/
++*/
++
++
++//**************************************
++// Tuning parameters
++//**************************************
++// Unaligned memory access is automatically enabled for "common" CPU, such as x86.
++// For others CPU, the compiler will be more cautious, and insert extra code to ensure aligned access is respected.
++// If you know your target CPU supports unaligned memory access, you want to force this option manually to improve performance.
++// You can also enable this parameter if you know your input data will always be aligned (boundaries of 4, for U32).
++#if defined(__ARM_FEATURE_UNALIGNED) || defined(__i386) || defined(_M_IX86) || defined(__x86_64__) || defined(_M_X64)
++#  define XXH_USE_UNALIGNED_ACCESS 1
++#endif
++
++// XXH_ACCEPT_NULL_INPUT_POINTER :
++// If the input pointer is a null pointer, xxHash default behavior is to trigger a memory access error, since it is a bad pointer.
++// When this option is enabled, xxHash output for null input pointers will be the same as a null-length input.
++// This option has a very small performance cost (only measurable on small inputs).
++// By default, this option is disabled. To enable it, uncomment below define :
++//#define XXH_ACCEPT_NULL_INPUT_POINTER 1
++
++// XXH_FORCE_NATIVE_FORMAT :
++// By default, xxHash library provides endian-independent Hash values, based on little-endian convention.
++// Results are therefore identical for little-endian and big-endian CPU.
++// This comes at a performance cost for big-endian CPU, since some swapping is required to emulate little-endian format.
++// Should endian-independence be of no importance for your application, you may set the #define below to 1.
++// It will improve speed for Big-endian CPU.
++// This option has no impact on Little_Endian CPU.
++#define XXH_FORCE_NATIVE_FORMAT 0
++
++
++//**************************************
++// Compiler Specific Options
++//**************************************
++// Disable some Visual warning messages
++#ifdef _MSC_VER  // Visual Studio
++#  pragma warning(disable : 4127)      // disable: C4127: conditional expression is constant
++#endif
++
++#ifdef _MSC_VER    // Visual Studio
++#  define FORCE_INLINE static __forceinline
++#else 
++#  ifdef __GNUC__
++#    define FORCE_INLINE static inline __attribute__((always_inline))
++#  else
++#    define FORCE_INLINE static inline
++#  endif
++#endif
++
++
++//**************************************
++// Includes & Memory related functions
++//**************************************
++#include "xxhash.h"
++// Modify the local functions below should you wish to use some other memory related routines
++// for malloc(), free()
++#include <stdlib.h>
++FORCE_INLINE void* XXH_malloc(size_t s) { return malloc(s); }
++FORCE_INLINE void  XXH_free  (void* p)  { free(p); }
++// for memcpy()
++#include <string.h>
++FORCE_INLINE void* XXH_memcpy(void* dest, const void* src, size_t size) { return memcpy(dest,src,size); }
++
++
++//**************************************
++// Basic Types
++//**************************************
++#if defined (__STDC_VERSION__) && __STDC_VERSION__ >= 199901L   // C99
++# include <stdint.h>
++  typedef uint8_t  BYTE;
++  typedef uint16_t U16;
++  typedef uint32_t U32;
++  typedef  int32_t S32;
++  typedef uint64_t U64;
++#else
++  typedef unsigned char      BYTE;
++  typedef unsigned short     U16;
++  typedef unsigned int       U32;
++  typedef   signed int       S32;
++  typedef unsigned long long U64;
++#endif
++
++#if defined(__GNUC__)  && !defined(XXH_USE_UNALIGNED_ACCESS)
++#  define _PACKED __attribute__ ((packed))
++#else
++#  define _PACKED
++#endif
++
++#if !defined(XXH_USE_UNALIGNED_ACCESS) && !defined(__GNUC__)
++#  ifdef __IBMC__
++#    pragma pack(1)
++#  else
++#    pragma pack(push, 1)
++#  endif
++#endif
++
++typedef struct _U32_S { U32 v; } _PACKED U32_S;
++
++#if !defined(XXH_USE_UNALIGNED_ACCESS) && !defined(__GNUC__)
++#  pragma pack(pop)
++#endif
++
++#define A32(x) (((U32_S *)(x))->v)
++
++
++//***************************************
++// Compiler-specific Functions and Macros
++//***************************************
++#define GCC_VERSION (__GNUC__ * 100 + __GNUC_MINOR__)
++
++// Note : although _rotl exists for minGW (GCC under windows), performance seems poor
++#if defined(_MSC_VER)
++#  define XXH_rotl32(x,r) _rotl(x,r)
++#else
++#  define XXH_rotl32(x,r) ((x << r) | (x >> (32 - r)))
++#endif
++
++#if defined(_MSC_VER)     // Visual Studio
++#  define XXH_swap32 _byteswap_ulong
++#elif GCC_VERSION >= 403
++#  define XXH_swap32 __builtin_bswap32
++#else
++static inline U32 XXH_swap32 (U32 x) {
++    return  ((x << 24) & 0xff000000 ) |
++        ((x <<  8) & 0x00ff0000 ) |
++        ((x >>  8) & 0x0000ff00 ) |
++        ((x >> 24) & 0x000000ff );}
++#endif
++
++
++//**************************************
++// Constants
++//**************************************
++#define PRIME32_1   2654435761U
++#define PRIME32_2   2246822519U
++#define PRIME32_3   3266489917U
++#define PRIME32_4    668265263U
++#define PRIME32_5    374761393U
++
++
++//**************************************
++// Architecture Macros
++//**************************************
++typedef enum { XXH_bigEndian=0, XXH_littleEndian=1 } XXH_endianess;
++#ifndef XXH_CPU_LITTLE_ENDIAN   // It is possible to define XXH_CPU_LITTLE_ENDIAN externally, for example using a compiler switch
++    static const int one = 1;
++#   define XXH_CPU_LITTLE_ENDIAN   (*(char*)(&one))
++#endif
++
++
++//**************************************
++// Macros
++//**************************************
++#define XXH_STATIC_ASSERT(c)   { enum { XXH_static_assert = 1/(!!(c)) }; }    // use only *after* variable declarations
++
++
++//****************************
++// Memory reads
++//****************************
++typedef enum { XXH_aligned, XXH_unaligned } XXH_alignment;
++
++FORCE_INLINE U32 XXH_readLE32_align(const U32* ptr, XXH_endianess endian, XXH_alignment align)
++{ 
++    if (align==XXH_unaligned)
++        return endian==XXH_littleEndian ? A32(ptr) : XXH_swap32(A32(ptr)); 
++    else
++        return endian==XXH_littleEndian ? *ptr : XXH_swap32(*ptr); 
++}
++
++FORCE_INLINE U32 XXH_readLE32(const U32* ptr, XXH_endianess endian) { return XXH_readLE32_align(ptr, endian, XXH_unaligned); }
++
++
++//****************************
++// Simple Hash Functions
++//****************************
++FORCE_INLINE U32 XXH32_endian_align(const void* input, int len, U32 seed, XXH_endianess endian, XXH_alignment align)
++{
++    const BYTE* p = (const BYTE*)input;
++    const BYTE* const bEnd = p + len;
++    U32 h32;
++
++#ifdef XXH_ACCEPT_NULL_INPUT_POINTER
++    if (p==NULL) { len=0; p=(const BYTE*)(size_t)16; }
++#endif
++
++    if (len>=16)
++    {
++        const BYTE* const limit = bEnd - 16;
++        U32 v1 = seed + PRIME32_1 + PRIME32_2;
++        U32 v2 = seed + PRIME32_2;
++        U32 v3 = seed + 0;
++        U32 v4 = seed - PRIME32_1;
++
++        do
++        {
++            v1 += XXH_readLE32_align((const U32*)p, endian, align) * PRIME32_2; v1 = XXH_rotl32(v1, 13); v1 *= PRIME32_1; p+=4;
++            v2 += XXH_readLE32_align((const U32*)p, endian, align) * PRIME32_2; v2 = XXH_rotl32(v2, 13); v2 *= PRIME32_1; p+=4;
++            v3 += XXH_readLE32_align((const U32*)p, endian, align) * PRIME32_2; v3 = XXH_rotl32(v3, 13); v3 *= PRIME32_1; p+=4;
++            v4 += XXH_readLE32_align((const U32*)p, endian, align) * PRIME32_2; v4 = XXH_rotl32(v4, 13); v4 *= PRIME32_1; p+=4;
++        } while (p<=limit);
++
++        h32 = XXH_rotl32(v1, 1) + XXH_rotl32(v2, 7) + XXH_rotl32(v3, 12) + XXH_rotl32(v4, 18);
++    }
++    else
++    {
++        h32  = seed + PRIME32_5;
++    }
++
++    h32 += (U32) len;
++
++    while (p<=bEnd-4)
++    {
++        h32 += XXH_readLE32_align((const U32*)p, endian, align) * PRIME32_3;
++        h32  = XXH_rotl32(h32, 17) * PRIME32_4 ;
++        p+=4;
++    }
++
++    while (p<bEnd)
++    {
++        h32 += (*p) * PRIME32_5;
++        h32 = XXH_rotl32(h32, 11) * PRIME32_1 ;
++        p++;
++    }
++
++    h32 ^= h32 >> 15;
++    h32 *= PRIME32_2;
++    h32 ^= h32 >> 13;
++    h32 *= PRIME32_3;
++    h32 ^= h32 >> 16;
++
++    return h32;
++}
++
++
++U32 XXH32(const void* input, int len, U32 seed)
++{
++#if 0
++    // Simple version, good for code maintenance, but unfortunately slow for small inputs
++    void* state = XXH32_init(seed);
++    XXH32_update(state, input, len);
++    return XXH32_digest(state);
++#else
++    XXH_endianess endian_detected = (XXH_endianess)XXH_CPU_LITTLE_ENDIAN;
++
++#  if !defined(XXH_USE_UNALIGNED_ACCESS)
++    if ((((size_t)input) & 3))   // Input is aligned, let's leverage the speed advantage
++    {
++        if ((endian_detected==XXH_littleEndian) || XXH_FORCE_NATIVE_FORMAT)
++            return XXH32_endian_align(input, len, seed, XXH_littleEndian, XXH_aligned);
++        else
++            return XXH32_endian_align(input, len, seed, XXH_bigEndian, XXH_aligned);
++    }
++#  endif
++
++    if ((endian_detected==XXH_littleEndian) || XXH_FORCE_NATIVE_FORMAT)
++        return XXH32_endian_align(input, len, seed, XXH_littleEndian, XXH_unaligned);
++    else
++        return XXH32_endian_align(input, len, seed, XXH_bigEndian, XXH_unaligned);
++#endif
++}
++
++
++//****************************
++// Advanced Hash Functions
++//****************************
++
++struct XXH_state32_t
++{
++    U64 total_len;
++    U32 seed;
++    U32 v1;
++    U32 v2;
++    U32 v3;
++    U32 v4;
++    int memsize;
++    char memory[16];
++};
++
++
++int XXH32_sizeofState() 
++{
++    XXH_STATIC_ASSERT(XXH32_SIZEOFSTATE >= sizeof(struct XXH_state32_t));   // A compilation error here means XXH32_SIZEOFSTATE is not large enough
++    return sizeof(struct XXH_state32_t); 
++}
++
++
++XXH_errorcode XXH32_resetState(void* state_in, U32 seed)
++{ 
++    struct XXH_state32_t * state = (struct XXH_state32_t *) state_in;
++    state->seed = seed;
++    state->v1 = seed + PRIME32_1 + PRIME32_2;
++    state->v2 = seed + PRIME32_2;
++    state->v3 = seed + 0;
++    state->v4 = seed - PRIME32_1;
++    state->total_len = 0;
++    state->memsize = 0;
++    return XXH_OK;
++}
++
++
++void* XXH32_init (U32 seed)
++{
++    void* state = XXH_malloc (sizeof(struct XXH_state32_t));
++    if (state != NULL)
++    {
++      XXH32_resetState(state, seed);
++    }
++    return state;
++}
++
++
++FORCE_INLINE XXH_errorcode XXH32_update_endian (void* state_in, const void* input, int len, XXH_endianess endian)
++{
++    struct XXH_state32_t * state = (struct XXH_state32_t *) state_in;
++    const BYTE* p = (const BYTE*)input;
++    const BYTE* const bEnd = p + len;
++
++#ifdef XXH_ACCEPT_NULL_INPUT_POINTER
++    if (input==NULL) return XXH_ERROR;
++#endif
++
++    state->total_len += len;
++
++    if (state->memsize + len < 16)   // fill in tmp buffer
++    {
++        XXH_memcpy(state->memory + state->memsize, input, len);
++        state->memsize +=  len;
++        return XXH_OK;
++    }
++
++    if (state->memsize)   // some data left from previous update
++    {
++        XXH_memcpy(state->memory + state->memsize, input, 16-state->memsize);
++        {
++            const U32* p32 = (const U32*)state->memory;
++            state->v1 += XXH_readLE32(p32, endian) * PRIME32_2; state->v1 = XXH_rotl32(state->v1, 13); state->v1 *= PRIME32_1; p32++;
++            state->v2 += XXH_readLE32(p32, endian) * PRIME32_2; state->v2 = XXH_rotl32(state->v2, 13); state->v2 *= PRIME32_1; p32++; 
++            state->v3 += XXH_readLE32(p32, endian) * PRIME32_2; state->v3 = XXH_rotl32(state->v3, 13); state->v3 *= PRIME32_1; p32++;
++            state->v4 += XXH_readLE32(p32, endian) * PRIME32_2; state->v4 = XXH_rotl32(state->v4, 13); state->v4 *= PRIME32_1; p32++;
++        }
++        p += 16-state->memsize;
++        state->memsize = 0;
++    }
++
++    if (p <= bEnd-16)
++    {
++        const BYTE* const limit = bEnd - 16;
++        U32 v1 = state->v1;
++        U32 v2 = state->v2;
++        U32 v3 = state->v3;
++        U32 v4 = state->v4;
++
++        do
++        {
++            v1 += XXH_readLE32((const U32*)p, endian) * PRIME32_2; v1 = XXH_rotl32(v1, 13); v1 *= PRIME32_1; p+=4;
++            v2 += XXH_readLE32((const U32*)p, endian) * PRIME32_2; v2 = XXH_rotl32(v2, 13); v2 *= PRIME32_1; p+=4;
++            v3 += XXH_readLE32((const U32*)p, endian) * PRIME32_2; v3 = XXH_rotl32(v3, 13); v3 *= PRIME32_1; p+=4;
++            v4 += XXH_readLE32((const U32*)p, endian) * PRIME32_2; v4 = XXH_rotl32(v4, 13); v4 *= PRIME32_1; p+=4;
++        } while (p<=limit);
++
++        state->v1 = v1;
++        state->v2 = v2;
++        state->v3 = v3;
++        state->v4 = v4;
++    }
++
++    if (p < bEnd)
++    {
++        XXH_memcpy(state->memory, p, bEnd-p);
++        state->memsize = (int)(bEnd-p);
++    }
++
++    return XXH_OK;
++}
++
++XXH_errorcode XXH32_update (void* state_in, const void* input, int len)
++{
++    XXH_endianess endian_detected = (XXH_endianess)XXH_CPU_LITTLE_ENDIAN;
++    
++    if ((endian_detected==XXH_littleEndian) || XXH_FORCE_NATIVE_FORMAT)
++        return XXH32_update_endian(state_in, input, len, XXH_littleEndian);
++    else
++        return XXH32_update_endian(state_in, input, len, XXH_bigEndian);
++}
++
++
++
++FORCE_INLINE U32 XXH32_intermediateDigest_endian (void* state_in, XXH_endianess endian)
++{
++    struct XXH_state32_t * state = (struct XXH_state32_t *) state_in;
++    const BYTE * p = (const BYTE*)state->memory;
++    BYTE* bEnd = (BYTE*)state->memory + state->memsize;
++    U32 h32;
++
++    if (state->total_len >= 16)
++    {
++        h32 = XXH_rotl32(state->v1, 1) + XXH_rotl32(state->v2, 7) + XXH_rotl32(state->v3, 12) + XXH_rotl32(state->v4, 18);
++    }
++    else
++    {
++        h32  = state->seed + PRIME32_5;
++    }
++
++    h32 += (U32) state->total_len;
++
++    while (p<=bEnd-4)
++    {
++        h32 += XXH_readLE32((const U32*)p, endian) * PRIME32_3;
++        h32  = XXH_rotl32(h32, 17) * PRIME32_4;
++        p+=4;
++    }
++
++    while (p<bEnd)
++    {
++        h32 += (*p) * PRIME32_5;
++        h32 = XXH_rotl32(h32, 11) * PRIME32_1;
++        p++;
++    }
++
++    h32 ^= h32 >> 15;
++    h32 *= PRIME32_2;
++    h32 ^= h32 >> 13;
++    h32 *= PRIME32_3;
++    h32 ^= h32 >> 16;
++
++    return h32;
++}
++
++
++U32 XXH32_intermediateDigest (void* state_in)
++{
++    XXH_endianess endian_detected = (XXH_endianess)XXH_CPU_LITTLE_ENDIAN;
++    
++    if ((endian_detected==XXH_littleEndian) || XXH_FORCE_NATIVE_FORMAT)
++        return XXH32_intermediateDigest_endian(state_in, XXH_littleEndian);
++    else
++        return XXH32_intermediateDigest_endian(state_in, XXH_bigEndian);
++}
++
++
++U32 XXH32_digest (void* state_in)
++{
++    U32 h32 = XXH32_intermediateDigest(state_in);
++
++    XXH_free(state_in);
++
++    return h32;
++}
+--- /dev/null
++++ ros-noetic-roslz4-1.16.0/src/xxhash.h
+@@ -0,0 +1,186 @@
++/*
++   xxHash - Fast Hash algorithm
++   Header File
++   Copyright (C) 2012-2014, Yann Collet.
++   BSD 2-Clause License (http://www.opensource.org/licenses/bsd-license.php)
++
++   Redistribution and use in source and binary forms, with or without
++   modification, are permitted provided that the following conditions are
++   met:
++  
++       * Redistributions of source code must retain the above copyright
++   notice, this list of conditions and the following disclaimer.
++       * Redistributions in binary form must reproduce the above
++   copyright notice, this list of conditions and the following disclaimer
++   in the documentation and/or other materials provided with the
++   distribution.
++  
++   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
++   A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
++   OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
++   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
++   LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
++   DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
++   THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
++   (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
++   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++
++   You can contact the author at :
++   - xxHash source repository : http://code.google.com/p/xxhash/
++*/
++
++/* Notice extracted from xxHash homepage :
++
++xxHash is an extremely fast Hash algorithm, running at RAM speed limits.
++It also successfully passes all tests from the SMHasher suite.
++
++Comparison (single thread, Windows Seven 32 bits, using SMHasher on a Core 2 Duo @3GHz)
++
++Name            Speed       Q.Score   Author
++xxHash          5.4 GB/s     10
++CrapWow         3.2 GB/s      2       Andrew
++MumurHash 3a    2.7 GB/s     10       Austin Appleby
++SpookyHash      2.0 GB/s     10       Bob Jenkins
++SBox            1.4 GB/s      9       Bret Mulvey
++Lookup3         1.2 GB/s      9       Bob Jenkins
++SuperFastHash   1.2 GB/s      1       Paul Hsieh
++CityHash64      1.05 GB/s    10       Pike & Alakuijala
++FNV             0.55 GB/s     5       Fowler, Noll, Vo
++CRC32           0.43 GB/s     9
++MD5-32          0.33 GB/s    10       Ronald L. Rivest
++SHA1-32         0.28 GB/s    10
++
++Q.Score is a measure of quality of the hash function. 
++It depends on successfully passing SMHasher test set. 
++10 is a perfect score.
++*/
++
++#pragma once
++
++#if defined (__cplusplus)
++extern "C" {
++#endif
++
++
++//****************************
++// Type
++//****************************
++typedef enum { XXH_OK=0, XXH_ERROR } XXH_errorcode;
++
++/*!XXH_NAMESPACE, aka Namespace Emulation :
++
++If you want to include _and expose_ xxHash functions from within your own library,
++but also want to avoid symbol collisions with other libraries which may also include xxHash,
++
++you can use XXH_NAMESPACE, to automatically prefix any public symbol from xxhash library
++with the value of XXH_NAMESPACE (therefore, avoid NULL and numeric values).
++
++Note that no change is required within the calling program as long as it includes `xxhash.h` :
++regular symbol name will be automatically translated by this header.
++*/
++#ifdef XXH_NAMESPACE
++#  define XXH_CAT(A,B) A##B
++#  define XXH_NAME2(A,B) XXH_CAT(A,B)
++#  define XXH32 XXH_NAME2(XXH_NAMESPACE, XXH32)
++#  define XXH32_sizeofState XXH_NAME2(XXH_NAMESPACE, XXH32_sizeofState)
++#  define XXH32_resetState XXH_NAME2(XXH_NAMESPACE, XXH32_resetState)
++#  define XXH32_init XXH_NAME2(XXH_NAMESPACE, XXH32_init)
++#  define XXH32_update XXH_NAME2(XXH_NAMESPACE, XXH32_update)
++#  define XXH32_intermediateDigest XXH_NAME2(XXH_NAMESPACE, XXH32_intermediateDigest)
++#  define XXH32_digest XXH_NAME2(XXH_NAMESPACE, XXH32_digest)
++#endif
++
++
++//****************************
++// Simple Hash Functions
++//****************************
++
++unsigned int XXH32 (const void* input, int len, unsigned int seed);
++
++/*
++XXH32() :
++    Calculate the 32-bits hash of sequence of length "len" stored at memory address "input".
++    The memory between input & input+len must be valid (allocated and read-accessible).
++    "seed" can be used to alter the result predictably.
++    This function successfully passes all SMHasher tests.
++    Speed on Core 2 Duo @ 3 GHz (single thread, SMHasher benchmark) : 5.4 GB/s
++    Note that "len" is type "int", which means it is limited to 2^31-1.
++    If your data is larger, use the advanced functions below.
++*/
++
++
++
++//****************************
++// Advanced Hash Functions
++//****************************
++
++void*         XXH32_init   (unsigned int seed);
++XXH_errorcode XXH32_update (void* state, const void* input, int len);
++unsigned int  XXH32_digest (void* state);
++
++/*
++These functions calculate the xxhash of an input provided in several small packets,
++as opposed to an input provided as a single block.
++
++It must be started with :
++void* XXH32_init()
++The function returns a pointer which holds the state of calculation.
++
++This pointer must be provided as "void* state" parameter for XXH32_update().
++XXH32_update() can be called as many times as necessary.
++The user must provide a valid (allocated) input.
++The function returns an error code, with 0 meaning OK, and any other value meaning there is an error.
++Note that "len" is type "int", which means it is limited to 2^31-1. 
++If your data is larger, it is recommended to chunk your data into blocks 
++of size for example 2^30 (1GB) to avoid any "int" overflow issue.
++
++Finally, you can end the calculation anytime, by using XXH32_digest().
++This function returns the final 32-bits hash.
++You must provide the same "void* state" parameter created by XXH32_init().
++Memory will be freed by XXH32_digest().
++*/
++
++
++int           XXH32_sizeofState();
++XXH_errorcode XXH32_resetState(void* state, unsigned int seed);
++
++#define       XXH32_SIZEOFSTATE 48
++typedef struct { long long ll[(XXH32_SIZEOFSTATE+(sizeof(long long)-1))/sizeof(long long)]; } XXH32_stateSpace_t;
++/*
++These functions allow user application to make its own allocation for state.
++
++XXH32_sizeofState() is used to know how much space must be allocated for the xxHash 32-bits state.
++Note that the state must be aligned to access 'long long' fields. Memory must be allocated and referenced by a pointer.
++This pointer must then be provided as 'state' into XXH32_resetState(), which initializes the state.
++
++For static allocation purposes (such as allocation on stack, or freestanding systems without malloc()),
++use the structure XXH32_stateSpace_t, which will ensure that memory space is large enough and correctly aligned to access 'long long' fields.
++*/
++
++
++unsigned int XXH32_intermediateDigest (void* state);
++/*
++This function does the same as XXH32_digest(), generating a 32-bit hash,
++but preserve memory context.
++This way, it becomes possible to generate intermediate hashes, and then continue feeding data with XXH32_update().
++To free memory context, use XXH32_digest(), or free().
++*/
++
++
++
++//****************************
++// Deprecated function names
++//****************************
++// The following translations are provided to ease code transition
++// You are encouraged to no longer this function names
++#define XXH32_feed   XXH32_update
++#define XXH32_result XXH32_digest
++#define XXH32_getIntermediateResult XXH32_intermediateDigest
++
++
++
++#if defined (__cplusplus)
++}
++#endif
+--- /dev/null
++++ ros-noetic-roslz4-1.16.0/test/roslz4_test.cpp
+@@ -0,0 +1,133 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++*
++*  Copyright (c) 2014, Ben Charrow
++*  All rights reserved.
++*
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++*
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of Willow Garage, Inc. nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++*
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++********************************************************************/
++
++#include <gtest/gtest.h>
++
++#include <roslz4/lz4s.h>
++
++class CompressATest :public testing::Test {
++protected:
++  void SetUp() {
++    for (size_t i = 0; i < sizeof(input); ++i) {
++      input[i] = 'a';
++    }
++    for (size_t i = 0; i < sizeof(output); ++i) {
++      output[i] = 0;
++    }
++    for (size_t i = 0; i < sizeof(other); ++i) {
++      other[i] = 0;
++    }
++  }
++
++  char input[1024];
++  char output[1048];
++  char other[1024];
++};
++
++TEST_F(CompressATest, Stream) {
++  // Compression
++  roslz4_stream stream;
++  int ret;
++  ret = roslz4_compressStart(&stream, 4);
++  ASSERT_EQ(ROSLZ4_OK, ret);
++
++  stream.input_left = sizeof(input);
++  stream.input_next = input;
++  stream.output_left = sizeof(output);
++  stream.output_next = output;
++
++  int counter;
++  for (counter = 0; ret == ROSLZ4_OK; ++counter) {
++    ret = roslz4_compress(&stream, ROSLZ4_FINISH);
++  }
++  ASSERT_EQ(ROSLZ4_STREAM_END, ret);
++
++  int output_size = stream.output_next - output;
++  roslz4_compressEnd(&stream);
++
++  // Decompression
++  stream.input_left = output_size;
++  stream.input_next = output;
++  stream.output_left = sizeof(other);
++  stream.output_next = other;
++
++  ret = roslz4_decompressStart(&stream);
++  ASSERT_EQ(ROSLZ4_OK, ret);
++
++  ret = roslz4_decompress(&stream);
++  ASSERT_EQ(ROSLZ4_STREAM_END, ret);
++
++  roslz4_decompressEnd(&stream);
++
++  for (size_t i = 0; i < sizeof(other); ++i) {
++    ASSERT_EQ(input[i], other[i]) <<  "Original and uncompressed data differ at index " << i;
++  }
++}
++
++TEST_F(CompressATest, Oneshot) {
++  // Compression
++  unsigned int comp_size = sizeof(output);
++  int ret = roslz4_buffToBuffCompress(input, sizeof(input), output, &comp_size,
++                                      4);
++  ASSERT_EQ(ROSLZ4_OK, ret);
++
++  // Decompression
++  unsigned int decomp_size = sizeof(other);
++  ret = roslz4_buffToBuffDecompress(output, comp_size, other, &decomp_size);
++  ASSERT_EQ(ROSLZ4_OK, ret);
++  ASSERT_EQ(sizeof(input), decomp_size);
++
++  for (size_t i = 0; i < sizeof(other); ++i) {
++    ASSERT_EQ(input[i], other[i]) << "Original and uncompressed data differ at index " << i;
++  }
++}
++
++TEST_F(CompressATest, OneshotDataCorruption) {
++  unsigned int comp_size = sizeof(output);
++  int ret = roslz4_buffToBuffCompress(input, sizeof(input), output, &comp_size,
++                                      4);
++  ASSERT_EQ(ROSLZ4_OK, ret);
++
++  output[20] += 1;
++
++  unsigned int decomp_size = sizeof(other);
++  ret = roslz4_buffToBuffDecompress(output, comp_size, other, &decomp_size);
++  ASSERT_EQ(ROSLZ4_DATA_ERROR, ret);
++}
++
++
++int main(int argc, char **argv) {
++  testing::InitGoogleTest(&argc, argv);
++  return RUN_ALL_TESTS();
++}

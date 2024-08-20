@@ -1,0 +1,1871 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-diagnostic-common-diagnostics (1.11.0-0jammy) jammy; urgency=high
+ .
+   * Added ram monitor (#222 <https://github.com/ros/diagnostics/issues/222>)
+   * Improve sensor output processing in sensors_monitor.py (#223 <https://github.com/ros/diagnostics/issues/223>)
+   * Decode bytes into string in ntp_monitor (#220 <https://github.com/ros/diagnostics/issues/220>)
+     Co-authored-by: Maxime Noizet <mailto:maxime.noizet@etu.utc.fr>
+   * Add missing lm-sensors dependency for sensors_monitor.py (#198 <https://github.com/ros/diagnostics/issues/198>)
+     Co-authored-by: Vincent Rousseau <mailto:vincent.rousseau@sabi-agri.com>
+   * Contributors: Noizet Maxime, Rousseau Vincent, chrisflesher
+Author: Guglielmo Gemignani <guglielmo.gemignani@gmail.com>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-diagnostic-common-diagnostics-1.11.0/CHANGELOG.rst
+@@ -0,0 +1,165 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package diagnostic_common_diagnostics
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++1.11.0 (2021-12-31)
++-------------------
++* Added ram monitor (`#222 <https://github.com/ros/diagnostics/issues/222>`_)
++* Improve sensor output processing in sensors_monitor.py (`#223 <https://github.com/ros/diagnostics/issues/223>`_)
++* Decode bytes into string in ntp_monitor (`#220 <https://github.com/ros/diagnostics/issues/220>`_)
++  Co-authored-by: Maxime Noizet <maxime.noizet@etu.utc.fr>
++* Add missing lm-sensors dependency for sensors_monitor.py (`#198 <https://github.com/ros/diagnostics/issues/198>`_)
++  Co-authored-by: Vincent Rousseau <vincent.rousseau@sabi-agri.com>
++* Contributors: Noizet Maxime, Rousseau Vincent, chrisflesher
++
++1.10.4 (2021-03-14)
++-------------------
++* Port diagnostic common diagnostics to python 3
++* fix(cpu_monitor): Exception on shutdown (`#186 <https://github.com/ros/diagnostics/issues/186>`_)
++  Catch sigint properly
++* Contributors: Rein Appeldoorn, gemignani
++
++1.10.3 (2020-12-05)
++-------------------
++* Update maintainer info
++* Contributors: gemignani
++
++1.10.2 (2020-09-03)
++-------------------
++
++1.10.1 (2020-08-20)
++-------------------
++* Fix minor issues
++* Fix shebang line for python3 (`#141 <https://github.com/ros/diagnostics/issues/141>`_)
++* Contributors: Mikael Arguedas, gemignani
++
++1.10.0 (2020-08-11)
++-------------------
++* Add feature of window avereging for cpu monitor (`#153 <https://github.com/ros/diagnostics/issues/153>`_)
++* Make Guglielmo Gemignani ROS1 maintainer (`#155 <https://github.com/ros/diagnostics/issues/155>`_)
++* Contributors: Guglielmo Gemignani, Rein Appeldoorn, gemignani
++
++1.9.4 (2020-04-01)
++------------------
++* noetic release (`#136 <https://github.com/ros/diagnostics/issues/136>`_)
++* Contributors: Alejandro Hernández Cordero
++
++1.9.3 (2018-05-02)
++------------------
++
++1.9.2 (2017-07-15)
++------------------
++* FIX: add missing dependency
++* Contributors: trainman419
++
++1.9.1 (2017-07-15)
++------------------
++* Add queue size parameters on Publishers
++* Minor python updates
++* Added CPU percentage monitor
++  CPU monitor that outputs the average CPU percentage and a percentage per
++  CPU. The user can specify the warning CPU percentage. When one CPU exceeds
++  this percentage, the diagnostics status is set to WARN.
++* Contributors: Rein Appeldoorn, trainman419
++
++1.9.0 (2017-04-25)
++------------------
++* Remove warning for missing queue size specification
++* Contributors: sandeep
++
++1.8.10 (2016-06-14)
++-------------------
++
++1.8.9 (2016-03-02)
++------------------
++
++1.8.8 (2015-08-06)
++------------------
++
++1.8.7 (2015-01-09)
++------------------
++* Remove libsensors node because it isn't portable.
++* Contributors: trainman419
++
++1.8.6 (2014-12-10)
++------------------
++* Add voltage sensor support
++* Add ignore_sensors parameter
++* Add license agreement
++* Style cleanup and error handling
++* Initial commit of libsensors based sensors_monitor
++* Contributors: Mitchell Wills, trainman419
++
++1.8.5 (2014-07-29)
++------------------
++
++1.8.4 (2014-07-24 20:51)
++------------------------
++
++1.8.3 (2014-04-23)
++------------------
++* ntp_diagnostic now publishing more frequently to avoid stale
++* added install rules for the common diagnostics scripts
++* Contributors: Brice Rebsamen
++
++1.8.2 (2014-04-08)
++------------------
++
++1.8.1 (2014-04-07)
++------------------
++* Add myself as maintainer
++* fixed exporting python API to address `#10 <https://github.com/ros/diagnostics/issues/10>`_
++* Contributors: Austin Hendrix, Brice Rebsamen
++
++1.8.0 (2013-04-03)
++------------------
++
++1.7.11 (2014-07-24 20:24)
++-------------------------
++
++1.7.10 (2013-02-22)
++-------------------
++* Changed package.xml version number before releasing
++* added missing license header
++* added missing license header
++* Contributors: Aaron Blasdel, Brice Rebsamen
++
++1.7.9 (2012-12-14)
++------------------
++* add missing dep to catkin
++* updated setup.py
++* Contributors: Dirk Thomas
++
++1.7.8 (2012-12-06)
++------------------
++* fix setup.py requires
++* Contributors: Dirk Thomas
++
++1.7.7 (2012-11-10)
++------------------
++
++1.7.6 (2012-11-07 23:32)
++------------------------
++
++1.7.5 (2012-11-07 21:53)
++------------------------
++
++1.7.4 (2012-11-07 20:18)
++------------------------
++
++1.7.3 (2012-11-04)
++------------------
++
++1.7.2 (2012-10-30 22:31)
++------------------------
++
++1.7.1 (2012-10-30 15:30)
++------------------------
++* fix a few things after the first release
++* Contributors: Vincent Rabaud
++
++1.7.0 (2012-10-29)
++------------------
++* catkinize the stack
++* backport the Python API from 1.7.0
++* Contributors: Vincent Rabaud
+--- /dev/null
++++ ros-noetic-diagnostic-common-diagnostics-1.11.0/CMakeLists.txt
+@@ -0,0 +1,32 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(diagnostic_common_diagnostics)
++
++# Load catkin and all dependencies required for this package
++find_package(catkin REQUIRED COMPONENTS diagnostic_updater)
++
++catkin_python_setup()
++
++catkin_package()
++
++catkin_python_setup()
++
++if(CATKIN_ENABLE_TESTING)
++  find_package(rostest REQUIRED)
++
++  # Test CPU Monitor
++  add_rostest(test/launch/test_cpu_monitor.launch)
++  add_rostest(test/launch/test_cpu_monitor_level_ok.launch)
++  add_rostest(test/launch/test_cpu_monitor_level_warn.launch)
++  add_rostest(test/launch/test_ram_monitor.launch)
++  add_rostest(test/launch/test_ram_monitor_level_ok.launch)
++  add_rostest(test/launch/test_ram_monitor_level_warn.launch)
++endif()
++
++catkin_install_python(PROGRAMS
++  src/diagnostic_common_diagnostics/cpu_monitor.py
++  src/diagnostic_common_diagnostics/ram_monitor.py
++  src/diagnostic_common_diagnostics/hd_monitor.py
++  src/diagnostic_common_diagnostics/ntp_monitor.py
++  src/diagnostic_common_diagnostics/sensors_monitor.py
++  src/diagnostic_common_diagnostics/tf_monitor.py
++  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+--- /dev/null
++++ ros-noetic-diagnostic-common-diagnostics-1.11.0/mainpage.dox
+@@ -0,0 +1,25 @@
++/**
++\mainpage
++\htmlinclude manifest.html
++
++\b diagnostic_common_diagnostics contains a few common diagnostic nodes
++
++- tf_monitor publishes diagnostic messages reporting on the health of
++the TF tree. It is based on tfwtf.
++
++
++\section codeapi Code API
++
++<!--
++Provide links to specific auto-generated API documentation within your
++package that is of particular interest to a reader. Doxygen will
++document pretty much every part of your code, so do your best here to
++point the reader to the actual API.
++
++If your codebase is fairly large or has different sets of APIs, you
++should use the doxygen 'group' tag to keep these APIs together. For
++example, the roscpp documentation has 'libros' group.
++-->
++
++
++*/
+--- /dev/null
++++ ros-noetic-diagnostic-common-diagnostics-1.11.0/package.xml
+@@ -0,0 +1,34 @@
++<package>
++  <name>diagnostic_common_diagnostics</name>
++  <version>1.11.0</version>
++  <description>diagnostic_common_diagnostics</description>
++  <author email="brice.rebsamen@gmail.com">Brice Rebsamen</author>
++  <maintainer email="guglielmo.gemignani@gmail.com">Guglielmo Gemignani</maintainer>
++  <maintainer email="namniart@gmail.com">Austin Hendrix</maintainer>
++
++  <license>BSD</license>
++
++  <url type="website">http://ros.org/wiki/diagnostic_common_diagnostics</url>
++<!-- <url type="bugtracker"></url> -->
++
++  <buildtool_depend>catkin</buildtool_depend>
++
++  <build_depend>rospy</build_depend>
++  <build_depend>diagnostic_updater</build_depend>
++  <build_depend>rostest</build_depend>
++
++  <run_depend>diagnostic_updater</run_depend>
++  <run_depend>hddtemp</run_depend>
++  <run_depend>lm-sensors</run_depend>
++  <run_depend>rospy</run_depend>
++  <run_depend>tf</run_depend>
++  <run_depend>python3-psutil</run_depend>
++
++  <!-- <test_depend>diagnostic_updater</test_depend> -->
++  <!-- <test_depend>rospy</test_depend> -->
++  <!-- <test_depend>tf</test_depend> -->
++
++  <export>
++    <architecture_independent/>
++  </export>
++</package>
+--- /dev/null
++++ ros-noetic-diagnostic-common-diagnostics-1.11.0/setup.py
+@@ -0,0 +1,12 @@
++#!/usr/bin/env python
++
++from setuptools import setup
++from catkin_pkg.python_setup import generate_distutils_setup
++
++d = generate_distutils_setup(
++    packages=['diagnostic_common_diagnostics'],
++    package_dir={'': 'src'},
++    requires=['genpy', 'numpy', 'rosgraph', 'roslib', 'rospkg']
++)
++
++setup(**d)
+--- /dev/null
++++ ros-noetic-diagnostic-common-diagnostics-1.11.0/src/diagnostic_common_diagnostics/cpu_monitor.py
+@@ -0,0 +1,98 @@
++#!/usr/bin/env python
++#
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2017, TNO IVS, Helmond, Netherlands
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of the TNO IVS nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++# \author Rein Appeldoorn
++
++import collections
++import socket
++
++import psutil
++import rospy
++from diagnostic_msgs.msg import DiagnosticStatus
++from diagnostic_updater import DiagnosticTask, Updater
++
++
++class CpuTask(DiagnosticTask):
++    def __init__(self, warning_percentage, window=1):
++        DiagnosticTask.__init__(self, "CPU Information")
++        self._warning_percentage = int(warning_percentage)
++        self._readings = collections.deque(maxlen=window)
++
++    def _get_average_reading(self):
++        def avg(lst):
++            return float(sum(lst)) / len(lst) if lst else float('nan')
++
++        return [avg(cpu_percentages) for cpu_percentages in zip(*self._readings)]
++
++    def run(self, stat):
++        self._readings.append(psutil.cpu_percent(percpu=True))
++        cpu_percentages = self._get_average_reading()
++        cpu_average = sum(cpu_percentages) / len(cpu_percentages)
++
++        stat.add("CPU Load Average", "{:.2f}".format(cpu_average))
++
++        warn = False
++        for idx, val in enumerate(cpu_percentages):
++            stat.add("CPU {} Load".format(idx), "{:.2f}".format(val))
++            if val > self._warning_percentage:
++                warn = True
++
++        if warn:
++            stat.summary(DiagnosticStatus.WARN,
++                         "At least one CPU exceeds {:d} percent".format(self._warning_percentage))
++        else:
++            stat.summary(DiagnosticStatus.OK, "CPU Average {:.2f} percent".format(cpu_average))
++
++        return stat
++
++
++def main():
++    hostname = socket.gethostname()
++    rospy.init_node('cpu_monitor_%s' % hostname.replace("-", "_"))
++
++    updater = Updater()
++    updater.setHardwareID(hostname)
++    updater.add(CpuTask(rospy.get_param("~warning_percentage", 90), rospy.get_param("~window", 1)))
++
++    rate = rospy.Rate(rospy.get_param("~rate", 1))
++    while not rospy.is_shutdown():
++        rate.sleep()
++        updater.update()
++
++
++if __name__ == '__main__':
++    try:
++        main()
++    except (rospy.ROSInterruptException, KeyboardInterrupt) as e:
++        pass
+--- /dev/null
++++ ros-noetic-diagnostic-common-diagnostics-1.11.0/src/diagnostic_common_diagnostics/hd_monitor.py
+@@ -0,0 +1,374 @@
++#!/usr/bin/env python
++# -*- coding: utf-8 -*-
++#
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of the Willow Garage nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++# \author Kevin Watts
++
++from __future__ import with_statement
++import roslib
++import rospy
++import traceback
++import threading
++import sys
++import subprocess
++import socket
++from diagnostic_msgs.msg import DiagnosticArray, DiagnosticStatus, KeyValue
++
++roslib.load_manifest('diagnostic_common_diagnostics')
++low_hd_level = 5
++critical_hd_level = 1
++
++hd_temp_warn = 55  # 3580, setting to 55C to after checking manual
++hd_temp_error = 70  # Above this temperature, hard drives will have serious problems
++
++stat_dict = { 0: 'OK', 1: 'Warning', 2: 'Error' }
++temp_dict = { 0: 'OK', 1: 'Hot', 2: 'Critical Hot' }
++usage_dict = { 0: 'OK', 1: 'Low Disk Space', 2: 'Very Low Disk Space' }
++
++REMOVABLE = ['/dev/sg1', '/dev/sdb'] # Store removable drives so we can ignore if removed
++
++
++# Connects to hddtemp daemon to get temp, HD make.
++def get_hddtemp_data(hostname='localhost', port=7634):
++    try:
++        hd_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
++        hd_sock.connect((hostname, port))
++        sock_data = ''
++        while True:
++            newdat = hd_sock.recv(1024)
++            if len(newdat) == 0:
++                break
++            sock_data = sock_data + str(newdat)
++        hd_sock.close()
++
++        sock_vals = sock_data.split('|')
++
++        # Format of output looks like ' | DRIVE | MAKE | TEMP | '
++        idx = 0
++
++        drives = []
++        makes = []
++        temps = []
++        while idx + 5 < len(sock_vals):
++            this_drive = sock_vals[idx + 1]
++            this_make = sock_vals[idx + 2]
++            this_temp = sock_vals[idx + 3]
++
++            # Sometimes we get duplicate makes if hard drives are mounted
++            # to two different points
++            if this_make in makes:
++                idx += 5
++                continue
++
++            drives.append(this_drive)
++            makes.append(this_make)
++            temps.append(this_temp)
++
++            idx += 5
++
++        return True, drives, makes, temps
++    except Exception:
++        rospy.logerr(traceback.format_exc())
++        return False, ['Exception'], [traceback.format_exc()], ['0']
++
++
++def update_status_stale(stat, last_update_time):
++    time_since_update = rospy.get_time() - last_update_time
++
++    stale_status = 'OK'
++    if 20 < time_since_update <= 35:
++        stale_status = 'Lagging'
++        if stat.level == DiagnosticStatus.OK:
++            stat.message = stale_status
++        elif stat.message.find(stale_status) < 0:
++            stat.message = ', '.join([stat.message, stale_status])
++        stat.level = max(stat.level, DiagnosticStatus.WARN)
++    if time_since_update > 35:
++        stale_status = 'Stale'
++        if stat.level == DiagnosticStatus.OK:
++            stat.message = stale_status
++        elif stat.message.find(stale_status) < 0:
++            stat.message = ', '.join([stat.message, stale_status])
++        stat.level = max(stat.level, DiagnosticStatus.ERROR)
++
++    stat.values.pop(0)
++    stat.values.pop(0)
++    stat.values.insert(0, KeyValue(key='Update Status', value=stale_status))
++    stat.values.insert(1, KeyValue(key='Time Since Update', value=str(time_since_update)))
++
++
++class hd_monitor():
++    def __init__(self, hostname, diag_hostname, home_dir=''):
++        self._mutex = threading.Lock()
++
++        self._hostname = hostname
++        self._no_temp_warn = rospy.get_param('~no_hd_temp_warn', False)
++        if self._no_temp_warn:
++            rospy.logwarn('Not warning for HD temperatures is deprecated. This will be removed in D-turtle')
++        self._home_dir = home_dir
++
++        self._diag_pub = rospy.Publisher('/diagnostics', DiagnosticArray, queue_size=10)
++
++        self._last_temp_time = 0
++        self._last_usage_time = 0
++        self._last_publish_time = 0
++
++        self._temp_timer = None
++        self._usage_timer = None
++
++        self._temp_stat = DiagnosticStatus()
++        self._temp_stat.name = "%s HD Temperature" % diag_hostname
++        self._temp_stat.level = DiagnosticStatus.ERROR
++        self._temp_stat.hardware_id = hostname
++        self._temp_stat.message = 'No Data'
++        self._temp_stat.values = [KeyValue(key='Update Status', value='No Data'),
++                                  KeyValue(key='Time Since Last Update', value='N/A')]
++
++        if self._home_dir != '':
++            self._usage_stat = DiagnosticStatus()
++            self._usage_stat.level = DiagnosticStatus.ERROR
++            self._usage_stat.hardware_id = hostname
++            self._usage_stat.name = '%s HD Usage' % diag_hostname
++            self._usage_stat.values = [KeyValue(key='Update Status', value='No Data' ),
++                                       KeyValue(key='Time Since Last Update', value='N/A')]
++            self.check_disk_usage()
++
++        self.check_temps()
++
++    # Must have the lock to cancel everything
++    def cancel_timers(self):
++        if self._temp_timer:
++            self._temp_timer.cancel()
++            self._temp_timer = None
++
++        if self._usage_timer:
++            self._usage_timer.cancel()
++            self._usage_timer = None
++
++    def check_temps(self):
++        if rospy.is_shutdown():
++            with self._mutex:
++                self.cancel_timers()
++            return
++
++        diag_strs = [KeyValue(key='Update Status', value='OK'),
++                     KeyValue(key='Time Since Last Update', value='0')]
++        diag_level = DiagnosticStatus.OK
++
++        temp_ok, drives, makes, temps = get_hddtemp_data()
++
++        for index in range(0, len(drives)):
++            temp = temps[index]
++
++            if not temp.isnumeric() and drives[index] not in REMOVABLE:
++                temp_level = DiagnosticStatus.ERROR
++                temp_ok = False
++            elif not temp.isnumeric() and drives[index] in REMOVABLE:
++                temp_level = DiagnosticStatus.OK
++                temp = "Removed"
++            else:
++                temp_level = DiagnosticStatus.OK
++                if float(temp) > hd_temp_warn:
++                    temp_level = DiagnosticStatus.WARN
++                if float(temp) > hd_temp_error:
++                    temp_level = DiagnosticStatus.ERROR
++
++            diag_level = max(diag_level, temp_level)
++
++            diag_strs.append(KeyValue(key='Disk %d Temp Status' % index, value=temp_dict[temp_level]))
++            diag_strs.append(KeyValue(key='Disk %d Mount Pt.' % index, value=drives[index]))
++            diag_strs.append(KeyValue(key='Disk %d Device ID' % index, value=makes[index]))
++            diag_strs.append(KeyValue(key='Disk %d Temp' % index, value=temp))
++
++        if not temp_ok:
++            diag_level = DiagnosticStatus.ERROR
++
++        with self._mutex:
++            self._last_temp_time = rospy.get_time()
++            self._temp_stat.values = diag_strs
++            self._temp_stat.level = diag_level
++
++            # Give No Data message if we have no reading
++            self._temp_stat.message = temp_dict[diag_level]
++            if not temp_ok:
++                self._temp_stat.message = 'Error'
++
++            if self._no_temp_warn and temp_ok:
++                self._temp_stat.level = DiagnosticStatus.OK
++
++            if not rospy.is_shutdown():
++                self._temp_timer = threading.Timer(10.0, self.check_temps)
++                self._temp_timer.start()
++            else:
++                self.cancel_timers()
++
++    def check_disk_usage(self):
++        if rospy.is_shutdown():
++            with self._mutex:
++                self.cancel_timers()
++            return
++
++        diag_vals = [KeyValue(key='Update Status', value='OK'),
++                     KeyValue(key='Time Since Last Update', value='0')]
++        diag_level = DiagnosticStatus.OK
++        diag_message = 'OK'
++
++        try:
++            p = subprocess.Popen(["df", "-P", "--block-size=1G", self._home_dir],
++                                 stdout=subprocess.PIPE, stderr=subprocess.PIPE)
++            stdout, stderr = p.communicate()
++            retcode = p.returncode
++
++            if retcode == 0:
++
++                diag_vals.append(KeyValue(key='Disk Space Reading', value='OK'))
++                row_count = 0
++                for row in stdout.split('\n'):
++                    if len(row.split()) < 2:
++                        continue
++                    if not row.split()[1].isnumeric() or float(row.split()[1]) < 10:  # Ignore small drives
++                        continue
++
++                    row_count += 1
++                    g_available = row.split()[-3]
++                    name = row.split()[0]
++                    size = row.split()[1]
++                    mount_pt = row.split()[-1]
++
++                    if float(g_available) > low_hd_level:
++                        level = DiagnosticStatus.OK
++                    elif float(g_available) > critical_hd_level:
++                        level = DiagnosticStatus.WARN
++                    else:
++                        level = DiagnosticStatus.ERROR
++
++                    diag_vals.append(KeyValue(
++                        key='Disk %d Name' % row_count, value=name))
++                    diag_vals.append(KeyValue(
++                        key='Disk %d Available' % row_count, value=g_available))
++                    diag_vals.append(KeyValue(
++                        key='Disk %d Size' % row_count, value=size))
++                    diag_vals.append(KeyValue(
++                        key='Disk %d Status' % row_count, value=stat_dict[level]))
++                    diag_vals.append(KeyValue(
++                        key='Disk %d Mount Point' % row_count, value=mount_pt))
++
++                    diag_level = max(diag_level, level)
++                    diag_message = usage_dict[diag_level]
++
++            else:
++                diag_vals.append(KeyValue(key='Disk Space Reading', value='Failed'))
++                diag_level = DiagnosticStatus.ERROR
++                diag_message = stat_dict[diag_level]
++
++        except Exception:
++            rospy.logerr(traceback.format_exc())
++
++            diag_vals.append(KeyValue(key='Disk Space Reading', value='Exception'))
++            diag_vals.append(KeyValue(key='Disk Space Ex', value=traceback.format_exc()))
++
++            diag_level = DiagnosticStatus.ERROR
++            diag_message = stat_dict[diag_level]
++
++        # Update status
++        with self._mutex:
++            self._last_usage_time = rospy.get_time()
++            self._usage_stat.values = diag_vals
++            self._usage_stat.message = diag_message
++            self._usage_stat.level = diag_level
++
++            if not rospy.is_shutdown():
++                self._usage_timer = threading.Timer(5.0, self.check_disk_usage)
++                self._usage_timer.start()
++            else:
++                self.cancel_timers()
++
++    def publish_stats(self):
++        with self._mutex:
++            update_status_stale(self._temp_stat, self._last_temp_time)
++
++            msg = DiagnosticArray()
++            msg.header.stamp = rospy.get_rostime()
++            msg.status.append(self._temp_stat)
++            if self._home_dir != '':
++                update_status_stale(self._usage_stat, self._last_usage_time)
++                msg.status.append(self._usage_stat)
++
++            if rospy.get_time() - self._last_publish_time > 0.5:
++                self._diag_pub.publish(msg)
++                self._last_publish_time = rospy.get_time()
++
++
++# Todo: Need to check HD input/output too using iostat
++
++if __name__ == '__main__':
++    hostname = socket.gethostname()
++
++    import optparse
++    parser = optparse.OptionParser(usage="usage: hd_monitor.py [--diag-hostname=cX]")
++    parser.add_option("--diag-hostname", dest="diag_hostname",
++                      help="Computer name in diagnostics output (ex: 'c1')",
++                      metavar="DIAG_HOSTNAME",
++                      action="store", default = hostname)
++    options, args = parser.parse_args(rospy.myargv())
++
++    home_dir = ''
++    if len(args) > 1:
++        home_dir = args[1]
++
++    hostname_clean = hostname.translate(hostname.maketrans('-', '_'))
++    try:
++        rospy.init_node('hd_monitor_%s' % hostname_clean)
++    except rospy.exceptions.ROSInitException:
++        print('HD monitor is unable to initialize node. Master may not be running.')
++        sys.exit(0)
++
++    hd_monitor = hd_monitor(hostname, options.diag_hostname, home_dir)
++    rate = rospy.Rate(1.0)
++
++    try:
++        while not rospy.is_shutdown():
++            rate.sleep()
++            hd_monitor.publish_stats()
++    except KeyboardInterrupt:
++        pass
++    except Exception as e:
++        traceback.print_exc()
++        raise e
++
++    hd_monitor.cancel_timers()
++    sys.exit(0)
++
++
++
+--- /dev/null
++++ ros-noetic-diagnostic-common-diagnostics-1.11.0/src/diagnostic_common_diagnostics/ntp_monitor.py
+@@ -0,0 +1,195 @@
++#!/usr/bin/env python
++# -*- coding: utf-8 -*-
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of the Willow Garage nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import roslib
++roslib.load_manifest('diagnostic_common_diagnostics')
++import rospy
++import diagnostic_updater as DIAG
++
++import sys
++import threading
++import socket
++from subprocess import Popen, PIPE
++import time
++import re
++
++
++def ntp_diag(st, host, off, error_offset):
++    try:
++        p = Popen(["ntpdate", "-q", host], stdout=PIPE, stdin=PIPE, stderr=PIPE)
++        res = p.wait()
++        (o,e) = p.communicate()
++    except OSError as errno:
++        if errno == 4:
++            return None #ctrl-c interrupt
++        else:
++            raise
++    if (res == 0):
++        measured_offset = float(re.search("offset (.*),", o.decode()).group(1))*1000000
++
++        st.level = DIAG.DiagnosticStatus.OK
++        st.message = "OK"
++        st.values = [ DIAG.KeyValue("Offset (us)", str(measured_offset)),
++                        DIAG.KeyValue("Offset tolerance (us)", str(off)),
++                        DIAG.KeyValue("Offset tolerance (us) for Error", str(error_offset)) ]
++
++        if (abs(measured_offset) > off):
++            st.level = DIAG.DiagnosticStatus.WARN
++            st.message = "NTP Offset Too High"
++        if (abs(measured_offset) > error_offset):
++            st.level = DIAG.DiagnosticStatus.ERROR
++            st.message = "NTP Offset Too High"
++
++    else:
++        st.level = DIAG.DiagnosticStatus.ERROR
++        st.message = "Error Running ntpdate. Returned %d" % res
++        st.values = [ DIAG.KeyValue("Offset (us)", "N/A"),
++                        DIAG.KeyValue("Offset tolerance (us)", str(off)),
++                        DIAG.KeyValue("Offset tolerance (us) for Error", str(error_offset)),
++                        DIAG.KeyValue("Output", o),
++                        DIAG.KeyValue("Errors", e) ]
++
++    return st
++
++
++class NTPMonitor:
++    
++    def __init__(self, ntp_hostname, offset=500, self_offset=500,
++                 diag_hostname = None, error_offset = 5000000,
++                 do_self_test=True):
++
++        self.ntp_hostname = ntp_hostname
++        self.offset = offset
++        self.self_offset = self_offset
++        self.diag_hostname = diag_hostname
++        self.error_offset = error_offset
++        self.do_self_test = do_self_test
++        
++        self.hostname = socket.gethostname()
++        if self.diag_hostname is None:
++            self.diag_hostname = self.hostname
++
++        self.stat = DIAG.DiagnosticStatus()
++        self.stat.level = DIAG.DiagnosticStatus.OK
++        self.stat.name = "NTP offset from "+ self.diag_hostname + " to " + self.ntp_hostname
++        self.stat.message = "OK"
++        self.stat.hardware_id = self.hostname
++        self.stat.values = []
++
++        self.self_stat = DIAG.DiagnosticStatus()
++        self.self_stat.level = DIAG.DiagnosticStatus.OK
++        self.self_stat.name = "NTP self-offset for "+ self.diag_hostname
++        self.self_stat.message = "OK"
++        self.self_stat.hardware_id = self.hostname
++        self.self_stat.values = []
++
++        self.mutex = threading.Lock()
++        self.pub = rospy.Publisher("/diagnostics", DIAG.DiagnosticArray, queue_size=10)
++
++        # we need to periodically republish this
++        self.current_msg = None
++        self.pubtimer = rospy.Timer(rospy.Duration(.1), self.pubCB)
++        self.checktimer = rospy.Timer(rospy.Duration(.1), self.checkCB, True)
++
++    def pubCB(self, ev):
++        with self.mutex:
++            if self.current_msg:
++                self.pub.publish(self.current_msg)
++
++    def checkCB(self, ev):
++        new_msg = DIAG.DiagnosticArray()
++        new_msg.header.stamp = rospy.get_rostime()
++
++        st = ntp_diag(self.stat, self.ntp_hostname, self.offset, self.error_offset)
++        if st is not None:
++            new_msg.status.append(st)
++
++        if self.do_self_test:
++            st = ntp_diag(self.self_stat, self.hostname, self.self_offset, self.error_offset)
++            if st is not None:
++                new_msg.status.append(st)
++
++        with self.mutex:
++            self.current_msg = new_msg
++
++        self.checktimer = rospy.Timer(rospy.Duration(10), self.checkCB, True)
++
++
++def ntp_monitor_main(argv=sys.argv):
++    import optparse
++    parser = optparse.OptionParser(usage="usage: ntp_monitor ntp-hostname []")
++    parser.add_option("--offset-tolerance", dest="offset_tol",
++                      action="store", default=500,
++                      help="Offset from NTP host", metavar="OFFSET-TOL")
++    parser.add_option("--error-offset-tolerance", dest="error_offset_tol",
++                      action="store", default=5000000,
++                      help="Offset from NTP host. Above this is error", metavar="OFFSET-TOL")
++    parser.add_option("--self_offset-tolerance", dest="self_offset_tol",
++                      action="store", default=500,
++                      help="Offset from self", metavar="SELF_OFFSET-TOL")
++    parser.add_option("--diag-hostname", dest="diag_hostname",
++                      help="Computer name in diagnostics output (ex: 'c1')",
++                      metavar="DIAG_HOSTNAME",
++                      action="store", default=None)
++    parser.add_option("--no-self-test", dest="do_self_test",
++                      help="Disable self test",
++                      action="store_false", default=True)
++    options, args = parser.parse_args(rospy.myargv())
++
++    if (len(args) != 2):
++        parser.error("Invalid arguments. Must have HOSTNAME [args]. %s" % args)
++
++
++    try:
++        offset = int(options.offset_tol)
++        self_offset = int(options.self_offset_tol)
++        error_offset = int(options.error_offset_tol)
++    except:
++        parser.error("Offsets must be numbers")
++
++    ntp_monitor = NTPMonitor(args[1], offset, self_offset,
++                             options.diag_hostname, error_offset,
++                             options.do_self_test)
++
++    rospy.spin()
++
++if __name__ == "__main__":
++    rospy.init_node("ntp_monitor", anonymous=True)
++    try:
++        ntp_monitor_main(rospy.myargv())
++    except KeyboardInterrupt: pass
++    except SystemExit: pass
++    except:
++        import traceback
++        traceback.print_exc()
+--- /dev/null
++++ ros-noetic-diagnostic-common-diagnostics-1.11.0/src/diagnostic_common_diagnostics/ram_monitor.py
+@@ -0,0 +1,85 @@
++#!/usr/bin/env python
++#
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2017, TNO IVS, Helmond, Netherlands
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of the TNO IVS nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++# \author Rein Appeldoorn
++
++import collections
++import socket
++
++import psutil
++import rospy
++from diagnostic_msgs.msg import DiagnosticStatus
++from diagnostic_updater import DiagnosticTask, Updater
++
++
++class RamTask(DiagnosticTask):
++    def __init__(self, warning_percentage, window=1):
++        DiagnosticTask.__init__(self, "RAM Information")
++        self._warning_percentage = int(warning_percentage)
++        self._readings = collections.deque(maxlen=window)
++
++    def run(self, stat):
++        self._readings.append(psutil.virtual_memory().percent)
++        ram_average = sum(self._readings) / len(self._readings)
++
++        stat.add("RAM Load Average", "{:.2f}".format(ram_average))
++
++        if ram_average > self._warning_percentage:
++            stat.summary(DiagnosticStatus.WARN,
++                         "RAM Average exceeds {:d} percent".format(self._warning_percentage))
++        else:
++            stat.summary(DiagnosticStatus.OK, "RAM Average {:.2f} percent".format(ram_average))
++
++        return stat
++
++
++def main():
++    hostname = socket.gethostname()
++    rospy.init_node('ram_monitor_%s' % hostname.replace("-", "_"))
++
++    updater = Updater()
++    updater.setHardwareID(hostname)
++    updater.add(RamTask(rospy.get_param("~warning_percentage", 90), rospy.get_param("~window", 1)))
++
++    rate = rospy.Rate(rospy.get_param("~rate", 1))
++    while not rospy.is_shutdown():
++        rate.sleep()
++        updater.update()
++
++
++if __name__ == '__main__':
++    try:
++        main()
++    except (rospy.ROSInterruptException, KeyboardInterrupt) as e:
++        pass
+--- /dev/null
++++ ros-noetic-diagnostic-common-diagnostics-1.11.0/src/diagnostic_common_diagnostics/sensors_monitor.py
+@@ -0,0 +1,242 @@
++#!/usr/bin/env python
++
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2012, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of the Willow Garage nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++from __future__ import with_statement, division
++
++import roslib
++import rospy
++import diagnostic_updater as DIAG
++
++import socket
++import subprocess
++import math
++import re
++import sys
++from io import StringIO
++roslib.load_manifest('diagnostic_common_diagnostics')
++
++
++class Sensor(object):
++    def __init__(self):
++        self.critical = None
++        self.min = None
++        self.max = None
++        self.input = None
++        self.name = None
++        self.type = None
++        self.high = None
++        self.alarm = None
++
++    def __repr__(self):
++        return 'Sensor object (name: {}, type: {})'.format(self.name,
++                                                           self.type)
++
++    def getCrit(self):
++        return self.critical
++
++    def getMin(self):
++        return self.min
++
++    def getMax(self):
++        return self.max
++
++    def getInput(self):
++        return self.input
++
++    def getName(self):
++        return self.name
++
++    def getType(self):
++        return self.type
++
++    def getHigh(self):
++        return self.high
++
++    def getAlarm(self):
++        return self.alarm
++
++    def __str__(self):
++        lines = []
++        lines.append(str(self.name))
++        lines.append("\t" + "Type:  " + str(self.type))
++        if self.input:
++            lines.append("\t" + "Input: " + str(self.input))
++        if self.min:
++            lines.append("\t" + "Min:   " + str(self.min))
++        if self.max:
++            lines.append("\t" + "Max:   " + str(self.max))
++        if self.high:
++            lines.append("\t" + "High:  " + str(self.high))
++        if self.critical:
++            lines.append("\t" + "Crit:  " + str(self.critical))
++        lines.append("\t" + "Alarm: " + str(self.alarm))
++        return "\n".join(lines)
++
++
++def parse_sensor_line(line):
++    sensor = Sensor()
++    line = line.lstrip()
++    [name, reading] = line.split(":")
++
++    try:
++        [sensor.name, sensor.type] = name.rsplit(" ", 1)
++    except ValueError:
++        return None
++
++    if sensor.name == "Core":
++        sensor.name = name
++        sensor.type = "Temperature"
++    elif sensor.name.find("Physical id") != -1:
++        sensor.name = name
++        sensor.type = "Temperature"
++
++    try:
++        [reading, params] = reading.lstrip().split("(")
++    except ValueError:
++        return None
++
++    sensor.alarm = False
++    if line.find("ALARM") != -1:
++        sensor.alarm = True
++
++    if reading.find("°C") == -1:
++        sensor.input = float(reading.split()[0])
++    else:
++        sensor.input = float(reading.split("°C")[0])
++
++    params = params.split(",")
++    for param in params:
++        m = re.search("[0-9]+.[0-9]*", param)
++        if param.find("min") != -1:
++            sensor.min = float(m.group(0))
++        elif param.find("max") != -1:
++            sensor.max = float(m.group(0))
++        elif param.find("high") != -1:
++            sensor.high = float(m.group(0))
++        elif param.find("crit") != -1:
++            sensor.critical = float(m.group(0))
++
++    return sensor
++
++
++def _rads_to_rpm(rads):
++    return rads / (2 * math.pi) * 60
++
++
++def _rpm_to_rads(rpm):
++    return rpm * (2 * math.pi) / 60
++
++
++def parse_sensors_output(output):
++    out = StringIO(output if isinstance(output, str) else output.decode('utf-8'))
++
++    sensorList = []
++    for line in out.readlines():
++        # Check for a colon
++        if ":" in line and "Adapter" not in line:
++            try:
++                s = parse_sensor_line(line)
++            except Exception as exc:
++                rospy.logwarn('Unable to parse line "%s", due to %s', line, exc)
++            if s is not None:
++                sensorList.append(s)
++    return sensorList
++
++
++def get_sensors():
++    p = subprocess.Popen('sensors', stdout=subprocess.PIPE,
++                         stderr=subprocess.PIPE, shell=True)
++    (o, e) = p.communicate()
++    if not p.returncode == 0:
++        return ''
++    if not o:
++        return ''
++    return o
++
++
++class SensorsMonitor(object):
++
++    def __init__(self, hostname):
++        self.hostname = hostname
++        self.ignore_fans = rospy.get_param('~ignore_fans', False)
++        rospy.loginfo("Ignore fanspeed warnings: %s" % self.ignore_fans)
++
++        self.updater = DIAG.Updater()
++        self.updater.setHardwareID("none")
++        self.updater.add('%s Sensor Status' % self.hostname, self.monitor)
++
++        self.timer = rospy.Timer(rospy.Duration(1), self.timer_cb)
++
++    def timer_cb(self, dummy):
++        self.updater.update()
++
++    def monitor(self, stat):
++        try:
++            stat.summary(DIAG.OK, "OK")
++            for sensor in parse_sensors_output(get_sensors()):
++                if sensor.getType() == "Temperature":
++                    if sensor.getInput() > sensor.getCrit():
++                        stat.mergeSummary(DIAG.ERROR, "Critical Temperature")
++                    elif sensor.getInput() > sensor.getHigh():
++                        stat.mergeSummary(DIAG.WARN, "High Temperature")
++                    stat.add(" ".join([sensor.getName(), sensor.getType()]), sensor.getInput())
++                elif sensor.getType() == "Voltage":
++                    if sensor.getInput() < sensor.getMin():
++                        stat.mergeSummary(DIAG.ERROR, "Low Voltage")
++                    elif sensor.getInput() > sensor.getMax():
++                        stat.mergeSummary(DIAG.ERROR, "High Voltage")
++                    stat.add(" ".join([sensor.getName(), sensor.getType()]), sensor.getInput())
++                elif sensor.getType() == "Speed":
++                    if not self.ignore_fans:
++                        if sensor.getInput() < sensor.getMin():
++                            stat.mergeSummary(DIAG.ERROR, "No Fan Speed")
++                    stat.add(" ".join([sensor.getName(), sensor.getType()]), sensor.getInput())
++        except Exception:
++            import traceback
++            rospy.logerr('Unable to process lm-sensors data')
++            rospy.logerr(traceback.format_exc())
++        return stat
++
++
++if __name__ == '__main__':
++    hostname = socket.gethostname()
++    hostname_clean = hostname.translate(hostname.maketrans('-', '_'))
++    try:
++        rospy.init_node('sensors_monitor_%s' % hostname_clean)
++    except rospy.ROSInitException:
++        print('Unable to initialize node. Master may not be running')
++        sys.exit(0)
++
++    monitor = SensorsMonitor(hostname)
++    rospy.spin()
+--- /dev/null
++++ ros-noetic-diagnostic-common-diagnostics-1.11.0/src/diagnostic_common_diagnostics/tf_monitor.py
+@@ -0,0 +1,185 @@
++#!/usr/bin/env python
++# -*- coding: utf-8 -*-
++
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2012, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of the Willow Garage nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++'''
++A node to check the TF tree
++
++A big chunk of the code was copied from tfwtf, the wtf plugin for tf.
++'''
++
++import roslib; roslib.load_manifest('diagnostic_common_diagnostics')
++import rospy
++import diagnostic_updater as DIAG
++
++
++
++#-------------------------------------------------------------------------------
++# Copying from tfwtf.py begins here
++
++import time
++import tf.msg
++
++# global list of messages received
++_msgs = []
++
++def rostime_delta(ctx):
++    deltas = {}
++    for m, stamp, callerid in _msgs:
++        for t in m.transforms:
++            d = t.header.stamp - stamp
++            secs = d.to_sec()
++            if abs(secs) > 1.:
++                if callerid in deltas:
++                    if abs(secs) > abs(deltas[callerid]):
++                        deltas[callerid] = secs
++                else:
++                    deltas[callerid]  = secs
++
++    errors = []
++    for k, v in deltas.items():
++        errors.append("receiving transform from [%s] that differed from ROS time by %ss"%(k, v))
++    return errors
++
++def reparenting(ctx):
++    errors = []
++    parent_id_map = {}
++    for m, stamp, callerid in _msgs:
++        for t in m.transforms:
++            frame_id = t.child_frame_id
++            parent_id = t.header.frame_id
++            if frame_id in parent_id_map and parent_id_map[frame_id] != parent_id:
++                msg = "reparenting of [%s] to [%s] by [%s]"%(frame_id, parent_id, callerid)
++                parent_id_map[frame_id] = parent_id
++                if msg not in errors:
++                    errors.append(msg)
++            else:
++                parent_id_map[frame_id] = parent_id
++    return errors
++
++def cycle_detection(ctx):
++    max_depth = 100
++    errors = []
++    parent_id_map = {}
++    for m, stamp, callerid in _msgs:
++        for t in m.transforms:
++            frame_id = t.child_frame_id
++            parent_id = t.header.frame_id
++            parent_id_map[frame_id] = parent_id
++
++    for frame in parent_id_map:
++        frame_list = []
++        current_frame = frame
++        count = 0
++        while count < max_depth + 2:
++            count = count + 1
++            frame_list.append(current_frame)
++            try:
++                current_frame = parent_id_map[current_frame]
++            except KeyError:
++                break
++            if current_frame == frame:
++                errors.append("Frame %s is in a loop. It's loop has elements:\n%s"% (frame, " -> ".join(frame_list)))
++                break
++
++
++    return errors
++
++def multiple_authority(ctx):
++    errors = []
++    authority_map = {}
++    for m, stamp, callerid in _msgs:
++        for t in m.transforms:
++            frame_id = t.child_frame_id
++            parent_id = t.header.frame_id
++            if frame_id in authority_map and authority_map[frame_id] != callerid:
++                msg = "node [%s] publishing transform [%s] with parent [%s] already published by node [%s]"%(callerid, frame_id, parent_id, authority_map[frame_id])
++                authority_map[frame_id] = callerid
++                if msg not in errors:
++                    errors.append(msg)
++            else:
++                authority_map[frame_id] = callerid
++    return errors
++
++def no_msgs(ctx):
++    return not _msgs
++
++# rospy subscriber callback for /tf
++def _tf_handle(msg):
++    _msgs.append((msg, rospy.get_rostime(), msg._connection_header['callerid']))
++
++
++# Copying from tfwtf.py stops here
++#-------------------------------------------------------------------------------
++
++
++def make_diag_fn(fn, errlvl, errmsg, okmsg="OK"):
++    '''A diagnostic function generator'''
++
++    def diag_fn(stat):
++        stat.summary(0, okmsg)
++
++        res = fn(None)
++        if isinstance(res, bool):
++            if res:
++                stat.summary(errlvl, errmsg)
++        elif isinstance(res, list):
++            if len(res)>0:
++                stat.summary(errlvl, errmsg)
++                for i,r in enumerate(res):
++                    stat.add("Error %d" % (i+1), r)
++
++        return stat
++
++    return diag_fn
++
++
++rospy.init_node('tf_monitor')
++
++
++diag_updater = DIAG.Updater()
++diag_updater.setHardwareID('none')
++diag_updater.add('Messaging status', make_diag_fn(no_msgs, DIAG.WARN, 'No tf messages received') )
++diag_updater.add('Time status', make_diag_fn(rostime_delta, DIAG.WARN, 'Received out-of-date/future transforms') )
++diag_updater.add('Reparenting status', make_diag_fn(reparenting, DIAG.ERROR, 'TF re-parenting contention') )
++diag_updater.add('Cycle status', make_diag_fn(cycle_detection, DIAG.ERROR, 'TF cycle detection') )
++diag_updater.add('Multiple authority status', make_diag_fn(multiple_authority, DIAG.ERROR, 'TF multiple authority contention') )
++
++
++while not rospy.is_shutdown():
++    _msgs = []
++    sub1 = rospy.Subscriber('/tf', tf.msg.tfMessage, _tf_handle)
++    time.sleep(1.0)
++    sub1.unregister()
++    diag_updater.update()
+--- /dev/null
++++ ros-noetic-diagnostic-common-diagnostics-1.11.0/test/cpu_monitor_psutil_mock.py
+@@ -0,0 +1,63 @@
++#!/usr/bin/env python
++#
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2017, TNO IVS, Helmond, Netherlands
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of the TNO IVS nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++# \author Rein Appeldoorn
++
++
++import sys
++from argparse import ArgumentParser
++
++
++class PSUtilMock:
++    CPU_PERCENTAGE = 0
++
++    def __init__(self):
++        pass
++
++    @staticmethod
++    def cpu_percent(percpu=False):
++        if percpu:
++            return [PSUtilMock.CPU_PERCENTAGE] * 4
++
++
++if __name__ == '__main__':
++    parser = ArgumentParser()
++    parser.add_argument('--percentage', default=50, type=int)
++    args = parser.parse_known_args()[0]
++
++    sys.modules['psutil'] = PSUtilMock
++    from diagnostic_common_diagnostics import cpu_monitor
++
++    PSUtilMock.CPU_PERCENTAGE = args.percentage
++    cpu_monitor.main()
+--- /dev/null
++++ ros-noetic-diagnostic-common-diagnostics-1.11.0/test/launch/test_cpu_monitor.launch
+@@ -0,0 +1,6 @@
++<launch>
++  <node pkg="diagnostic_common_diagnostics" type="cpu_monitor.py" name="cpu_monitor" output="screen">
++  </node>
++
++  <test test-name="test_cpu_monitor_output" pkg="diagnostic_common_diagnostics" type="test_cpu_monitor.py"/>
++</launch>
+--- /dev/null
++++ ros-noetic-diagnostic-common-diagnostics-1.11.0/test/launch/test_cpu_monitor_level_ok.launch
+@@ -0,0 +1,9 @@
++<launch>
++  <node pkg="diagnostic_common_diagnostics" type="cpu_monitor_psutil_mock.py" name="cpu_monitor" args="--percentage 50">
++    <param name="warning_percentage" value="60" />
++  </node>
++
++  <test test-name="test_cpu_monitor_output" pkg="diagnostic_common_diagnostics" type="test_cpu_monitor.py">
++    <param name="expected_level" value="0" />
++  </test>
++</launch>
+--- /dev/null
++++ ros-noetic-diagnostic-common-diagnostics-1.11.0/test/launch/test_cpu_monitor_level_warn.launch
+@@ -0,0 +1,9 @@
++<launch>
++  <node pkg="diagnostic_common_diagnostics" type="cpu_monitor_psutil_mock.py" name="cpu_monitor" args="--percentage 80">
++    <param name="warning_percentage" value="60" />
++  </node>
++
++  <test test-name="test_cpu_monitor_output" pkg="diagnostic_common_diagnostics" type="test_cpu_monitor.py">
++    <param name="expected_level" value="1" />
++  </test>
++</launch>
+--- /dev/null
++++ ros-noetic-diagnostic-common-diagnostics-1.11.0/test/launch/test_ram_monitor.launch
+@@ -0,0 +1,6 @@
++<launch>
++  <node pkg="diagnostic_common_diagnostics" type="ram_monitor.py" name="ram_monitor" output="screen">
++  </node>
++
++  <test test-name="test_cpu_monitor_output" pkg="diagnostic_common_diagnostics" type="test_ram_monitor.py"/>
++</launch>
+--- /dev/null
++++ ros-noetic-diagnostic-common-diagnostics-1.11.0/test/launch/test_ram_monitor_level_ok.launch
+@@ -0,0 +1,9 @@
++<launch>
++  <node pkg="diagnostic_common_diagnostics" type="ram_monitor_psutil_mock.py" name="ram_monitor" args="--percentage 50">
++    <param name="warning_percentage" value="60" />
++  </node>
++
++  <test test-name="test_ram_monitor_output" pkg="diagnostic_common_diagnostics" type="test_ram_monitor.py">
++    <param name="expected_level" value="0" />
++  </test>
++</launch>
+--- /dev/null
++++ ros-noetic-diagnostic-common-diagnostics-1.11.0/test/launch/test_ram_monitor_level_warn.launch
+@@ -0,0 +1,9 @@
++<launch>
++  <node pkg="diagnostic_common_diagnostics" type="ram_monitor_psutil_mock.py" name="ram_monitor" args="--percentage 80">
++    <param name="warning_percentage" value="60" />
++  </node>
++
++  <test test-name="test_ram_monitor_output" pkg="diagnostic_common_diagnostics" type="test_ram_monitor.py">
++    <param name="expected_level" value="1" />
++  </test>
++</launch>
+--- /dev/null
++++ ros-noetic-diagnostic-common-diagnostics-1.11.0/test/ram_monitor_psutil_mock.py
+@@ -0,0 +1,65 @@
++#!/usr/bin/env python
++#
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2017, TNO IVS, Helmond, Netherlands
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of the TNO IVS nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++# \author Rein Appeldoorn
++
++
++import sys
++from argparse import ArgumentParser
++
++
++class PSUtilMockVirtualMemory:
++
++    def __init__(self, percent):
++        self.percent = percent
++
++
++class PSUtilMock:
++    RAM_PERCENTAGE = 0
++
++    @staticmethod
++    def virtual_memory():
++        return PSUtilMockVirtualMemory(PSUtilMock.RAM_PERCENTAGE)
++
++
++if __name__ == '__main__':
++    parser = ArgumentParser()
++    parser.add_argument('--percentage', default=50, type=int)
++    args = parser.parse_known_args()[0]
++
++    sys.modules['psutil'] = PSUtilMock
++    from diagnostic_common_diagnostics import ram_monitor
++
++    PSUtilMock.RAM_PERCENTAGE = args.percentage
++    ram_monitor.main()
+--- /dev/null
++++ ros-noetic-diagnostic-common-diagnostics-1.11.0/test/test_cpu_monitor.py
+@@ -0,0 +1,77 @@
++#!/usr/bin/env python
++#
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2017, TNO IVS, Helmond, Netherlands
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of the TNO IVS nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++# \author Rein Appeldoorn
++
++
++import unittest
++import rospy
++import rostest
++from diagnostic_msgs.msg import DiagnosticArray
++
++
++class TestCPUMonitor(unittest.TestCase):
++
++    def diagnostics_callback(self, msg):
++        self._msg = msg
++
++    def test_cpu_monitor_diagnostics(self):
++        rospy.init_node('test_cpu_monitor')
++        self._expected_level = None
++        if rospy.has_param('~expected_level'):
++            self._expected_level = rospy.get_param('~expected_level')
++
++        self._subscriber = rospy.Subscriber('diagnostics', DiagnosticArray, self.diagnostics_callback)
++        self._msg = None
++
++        while not self._msg:
++            rospy.sleep(.1)
++        self._subscriber.unregister()
++
++        self.assertEqual(len(self._msg.status), 1)
++        status = self._msg.status[0]
++
++        for v in status.values:
++            percentage = float(v.value)
++            self.assertGreaterEqual(percentage, 0)
++            self.assertLessEqual(percentage, 100)
++
++        if self._expected_level:
++            self.assertEqual(self._expected_level, status.level)
++
++
++PKG = 'diagnostics_common_diagnostics'
++NAME = 'test_cpu_monitor'
++if __name__ == '__main__':
++    rostest.unitrun(PKG, NAME, TestCPUMonitor)
+--- /dev/null
++++ ros-noetic-diagnostic-common-diagnostics-1.11.0/test/test_ram_monitor.py
+@@ -0,0 +1,77 @@
++#!/usr/bin/env python
++#
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2017, TNO IVS, Helmond, Netherlands
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of the TNO IVS nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++# \author Rein Appeldoorn
++
++
++import unittest
++import rospy
++import rostest
++from diagnostic_msgs.msg import DiagnosticArray
++
++
++class TestRamMonitor(unittest.TestCase):
++
++    def diagnostics_callback(self, msg):
++        self._msg = msg
++
++    def test_ram_monitor_diagnostics(self):
++        rospy.init_node('test_ram_monitor')
++        self._expected_level = None
++        if rospy.has_param('~expected_level'):
++            self._expected_level = rospy.get_param('~expected_level')
++
++        self._subscriber = rospy.Subscriber('diagnostics', DiagnosticArray, self.diagnostics_callback)
++        self._msg = None
++
++        while not self._msg:
++            rospy.sleep(.1)
++        self._subscriber.unregister()
++
++        self.assertEqual(len(self._msg.status), 1)
++        status = self._msg.status[0]
++
++        for v in status.values:
++            percentage = float(v.value)
++            self.assertGreaterEqual(percentage, 0)
++            self.assertLessEqual(percentage, 100)
++
++        if self._expected_level:
++            self.assertEqual(self._expected_level, status.level)
++
++
++PKG = 'diagnostics_common_diagnostics'
++NAME = 'test_ram_monitor'
++if __name__ == '__main__':
++    rostest.unitrun(PKG, NAME, TestRamMonitor)

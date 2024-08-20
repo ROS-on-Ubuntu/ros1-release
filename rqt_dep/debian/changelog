@@ -1,0 +1,279 @@
+ros-noetic-rqt-dep (0.4.12-0jammy) jammy; urgency=high
+
+  * Fix rqt_dep for Noetic. (#16 <https://github.com/ros-visualization/rqt_dep/issues/16>)
+  * Contributors: Ivan Santiago Paunovic
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Sun, 09 May 2021 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.4.11-0jammy) jammy; urgency=high
+
+  * Update maintainers (#13 <https://github.com/ros-visualization/rqt_dep/issues/13>)
+  * Fix shebang line for python3 (#12 <https://github.com/ros-visualization/rqt_dep/issues/12>)
+  * Bump CMake minimum version to avoid CMP0048 warning
+  * Contributors: Dirk Thomas, Ivan Santiago Paunovic, Mikael Arguedas
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Tue, 06 Apr 2021 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.4.10-0jammy) jammy; urgency=high
+
+  * add Python 3 conditional dependencies (#11 <https://github.com/ros-visualization/rqt_dep/issues/11>)
+  * updating to flake8 style (#8 <https://github.com/ros-visualization/rqt_dep/issues/8>)
+  * autopep8 and gitignore (#7 <https://github.com/ros-visualization/rqt_dep/issues/7>)
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Mon, 16 Mar 2020 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.4.9-0jammy) jammy; urgency=high
+
+  * catch exceptions caused by threading to prevent crashing UI (#4 <https://github.com/ros-visualization/rqt_dep/issues/4>)
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Wed, 23 May 2018 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.4.8-0jammy) jammy; urgency=high
+
+
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Sun, 23 Apr 2017 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.4.7-0jammy) jammy; urgency=high
+
+
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Wed, 01 Mar 2017 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.4.6-0jammy) jammy; urgency=high
+
+
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Sun, 26 Feb 2017 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.4.5-0jammy) jammy; urgency=high
+
+
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Thu, 02 Feb 2017 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.4.4-0jammy) jammy; urgency=high
+
+  * use Python 3 compatible syntax (#421 <https://github.com/ros-visualization/rqt_common_plugins/pull/421>)
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Mon, 23 Jan 2017 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.4.3-0jammy) jammy; urgency=high
+
+
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Tue, 01 Nov 2016 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.4.2-0jammy) jammy; urgency=high
+
+  * fix newer mock version (#397 <https://github.com/ros-visualization/rqt_common_plugins/issues/397>)
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Sun, 18 Sep 2016 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.4.1-0jammy) jammy; urgency=high
+
+
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Sun, 15 May 2016 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.4.0-0jammy) jammy; urgency=high
+
+  * Support Qt 5 (in Kinetic and higher) as well as Qt 4 (in Jade and earlier) (#359 <https://github.com/ros-visualization/rqt_common_plugins/pull/359>)
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Tue, 26 Apr 2016 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.3.13-0jammy) jammy; urgency=high
+
+
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Mon, 07 Mar 2016 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.3.12-0jammy) jammy; urgency=high
+
+
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Thu, 23 Jul 2015 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.3.11-0jammy) jammy; urgency=high
+
+  * install rqt_dep globally (#286 <https://github.com/ros-visualization/rqt_common_plugins/pull/286>)
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Wed, 29 Apr 2015 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.3.10-0jammy) jammy; urgency=high
+
+  * update plugin scripts to use full name to avoid future naming collisions
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Tue, 30 Sep 2014 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.3.9-0jammy) jammy; urgency=high
+
+
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Sun, 17 Aug 2014 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.3.8-0jammy) jammy; urgency=high
+
+
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Mon, 14 Jul 2014 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.3.7-0jammy) jammy; urgency=high
+
+  * export architecture_independent flag in package.xml (#254 <https://github.com/ros-visualization/rqt_common_plugins/issues/254>)
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Thu, 10 Jul 2014 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.3.6-0jammy) jammy; urgency=high
+
+
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Sun, 01 Jun 2014 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.3.5-0jammy) jammy; urgency=high
+
+  * using CATKIN_ENABLE_TESTING to optionally configure tests (#220 <https://github.com/ros-visualization/rqt_common_plugins/pull/220>)
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Tue, 06 May 2014 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.3.4-0jammy) jammy; urgency=high
+
+
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Mon, 27 Jan 2014 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.3.3-0jammy) jammy; urgency=high
+
+  * add groups for rqt plugins, renamed some plugins (#167 <https://github.com/ros-visualization/rqt_common_plugins/issues/167>)
+  * make it a non ros plugin startable without a roscore (#200 <https://github.com/ros-visualization/rqt_common_plugins/issues/200>)
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Tue, 07 Jan 2014 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.3.2-0jammy) jammy; urgency=high
+
+
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Sun, 13 Oct 2013 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.3.1-0jammy) jammy; urgency=high
+
+
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Tue, 08 Oct 2013 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.3.0-0jammy) jammy; urgency=high
+
+  * add partial support for metapackages
+  * fix rendering of icons on OS X (ros-visualization/rqt#83 <https://github.com/ros-visualization/rqt/issues/83>)
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Tue, 27 Aug 2013 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.2.17-0jammy) jammy; urgency=high
+
+  * fix handling ResourceNotFound for not found packages in graph
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Wed, 03 Jul 2013 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.2.16-0jammy) jammy; urgency=high
+
+
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Tue, 09 Apr 2013 05:33:00 -0000
+
+ros-noetic-rqt-dep (0.2.15-0jammy) jammy; urgency=high
+
+
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Mon, 08 Apr 2013 16:02:00 -0000
+
+ros-noetic-rqt-dep (0.2.14-0jammy) jammy; urgency=high
+
+
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Wed, 13 Mar 2013 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.2.13-0jammy) jammy; urgency=high
+
+
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Mon, 11 Mar 2013 14:14:00 -0000
+
+ros-noetic-rqt-dep (0.2.12-0jammy) jammy; urgency=high
+
+
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Mon, 11 Mar 2013 05:56:00 -0000
+
+ros-noetic-rqt-dep (0.2.11-0jammy) jammy; urgency=high
+
+  * add combo to filter wet/dry packages
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Thu, 07 Mar 2013 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.2.10-0jammy) jammy; urgency=high
+
+
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Mon, 21 Jan 2013 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.2.9-0jammy) jammy; urgency=high
+
+
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Wed, 16 Jan 2013 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.2.8-0jammy) jammy; urgency=high
+
+  * improve graph generation, get rid of redundant traversal, remove max edge limit
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Thu, 10 Jan 2013 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.2.7-0jammy) jammy; urgency=high
+
+
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Sun, 23 Dec 2012 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.2.6-0jammy) jammy; urgency=high
+
+
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Sat, 22 Dec 2012 16:00:00 -0000
+
+ros-noetic-rqt-dep (0.2.5-0jammy) jammy; urgency=high
+
+
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Fri, 21 Dec 2012 11:11:00 -0000
+
+ros-noetic-rqt-dep (0.2.4-0jammy) jammy; urgency=high
+
+
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Thu, 20 Dec 2012 17:13:00 -0000
+
+ros-noetic-rqt-dep (0.2.3-0jammy) jammy; urgency=high
+
+
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Thu, 20 Dec 2012 16:24:00 -0000
+
+ros-noetic-rqt-dep (0.2.2-0jammy) jammy; urgency=high
+
+
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Thu, 20 Dec 2012 10:29:00 -0000
+
+ros-noetic-rqt-dep (0.2.1-0jammy) jammy; urgency=high
+
+
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Thu, 20 Dec 2012 09:47:00 -0000
+
+ros-noetic-rqt-dep (0.2.0-0jammy) jammy; urgency=high
+
+  * first release of this package into Groovy
+
+ -- Ivan Paunovic <ivanpauno@ekumenlabs.com>  Thu, 20 Dec 2012 09:39:00 -0000
+
+

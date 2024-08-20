@@ -1,0 +1,1275 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-smclib (1.8.6-0jammy) jammy; urgency=high
+Author: Michael Carroll <michael@openrobotics.org>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-smclib-1.8.6/CHANGELOG.rst
+@@ -0,0 +1,124 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package smclib
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++1.8.6 (2020-08-28)
++------------------
++
++1.8.5 (2020-05-14)
++------------------
++* Use setuptools instead of distutils (`#61 <https://github.com/ros/bond_core/issues/61>`_)
++* Bump CMake minimum version to use CMP0048 (`#58 <https://github.com/ros/bond_core/issues/58>`_)
++* Contributors: Alejandro Hernández Cordero, Michael Carroll
++
++1.8.4 (2020-02-24)
++------------------
++* remove windows.h to avoid namespace pollutions. (`#46 <https://github.com/ros/bond_core/issues/46>`_)
++* Make Michael Carroll the maintainer (`#40 <https://github.com/ros/bond_core/issues/40>`_)
++* Contributors: James Xu, Mikael Arguedas
++
++1.8.3 (2018-08-17)
++------------------
++
++1.8.2 (2018-04-27)
++------------------
++
++1.8.1 (2017-10-27)
++------------------
++* fix package.xml to comply with schema (`#30 <https://github.com/ros/bond_core/issues/30>`_)
++* Contributors: Mikael Arguedas
++
++1.8.0 (2017-07-27)
++------------------
++* C++ style (`#28 <https://github.com/ros/bond_core/issues/28>`_)
++* switch to package format 2 (`#27 <https://github.com/ros/bond_core/issues/27>`_)
++* remove trailing whitespaces (`#26 <https://github.com/ros/bond_core/issues/26>`_)
++* Closer to pep8 compliance (`#25 <https://github.com/ros/bond_core/issues/25>`_)
++* Contributors: Mikael Arguedas
++
++1.7.19 (2017-03-27)
++-------------------
++
++1.7.18 (2016-10-24)
++-------------------
++
++1.7.17 (2016-03-15)
++-------------------
++* update maintainer
++* Contributors: Mikael Arguedas
++
++1.7.16 (2014-10-30)
++-------------------
++
++1.7.15 (2014-10-28)
++-------------------
++
++1.7.14 (2014-05-08)
++-------------------
++* Export architecture_independent flag in package.xml `#4 <https://github.com/ros/bond_core/pull/4>`_
++* Update maintainer field
++* Contributors: Esteve Fernandez, Scott K Logan, Vincent Rabaud
++
++1.7.13 (2013-08-21)
++-------------------
++
++1.7.12 (2013-06-06)
++-------------------
++
++1.7.11 (2013-03-13)
++-------------------
++
++1.7.10 (2013-01-13)
++-------------------
++
++1.7.9 (2012-12-27)
++------------------
++* modified dep type of catkin
++* Contributors: Dirk Thomas
++
++1.7.8 (2012-12-13)
++------------------
++* update setup() to use generate_distutils_setup
++* Contributors: Dirk Thomas
++
++1.7.7 (2012-12-06)
++------------------
++* Updated url tags in package.xml's `#1 <https://github.com/ros/bond_core/pull/1>`_
++* removed executable bit from header file
++* Contributors: Dirk Thomas, William Woodall
++
++1.7.6 (2012-10-30)
++------------------
++* fix catkin function order
++* Contributors: Dirk Thomas
++
++1.7.5 (2012-10-27)
++------------------
++* clean up package.xml files
++* updated setup.py files
++* Contributors: Dirk Thomas
++
++1.7.4 (2012-10-06)
++------------------
++
++1.7.3 (2012-10-02 00:19)
++------------------------
++
++1.7.2 (2012-10-02 00:06)
++------------------------
++* add the missing catkin dependency
++* Contributors: Vincent Rabaud
++
++1.7.1 (2012-10-01 19:00)
++------------------------
++
++1.7.0 (2012-10-01 16:51)
++------------------------
++* catkinize bond
++* Downloading smclib from code.ros.org
++  --HG--
++  extra : rebase_source : d17dff0350b44646e6a952fc2cc883156ba9f4a4
++* Moving bond into common
++  --HG--
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk%4032634
++* Contributors: Stuart Glaser, Vincent Rabaud, sglaser
+--- /dev/null
++++ ros-noetic-smclib-1.8.6/CMakeLists.txt
+@@ -0,0 +1,12 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(smclib)
++
++find_package(catkin REQUIRED)
++catkin_package(INCLUDE_DIRS include)
++
++catkin_python_setup()
++
++# install the include folder
++install(DIRECTORY include/${PROJECT_NAME}/
++        DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
++)
+--- /dev/null
++++ ros-noetic-smclib-1.8.6/include/smclib/statemap.h
+@@ -0,0 +1,855 @@
++//
++// The contents of this file are subject to the Mozilla Public
++// License Version 1.1 (the "License"); you may not use this file
++// except in compliance with the License. You may obtain a copy
++// of the License at http://www.mozilla.org/MPL/
++//
++// Software distributed under the License is distributed on an
++// "AS IS" basis, WITHOUT WARRANTY OF ANY KIND, either express or
++// implied. See the License for the specific language governing
++// rights and limitations under the License.
++//
++// The Original Code is State Machine Compiler (SMC).
++//
++// The Initial Developer of the Original Code is Charles W. Rapp.
++// Portions created by Charles W. Rapp are
++// Copyright (C) 2000 - 2007. Charles W. Rapp.
++// All Rights Reserved.
++//
++// Contributor(s):
++//
++// Namespace
++//  statemap
++//
++// Description
++//  This namespace contains the finite state machine context
++//  class. The user can derive FSM contexts from this class and
++//  interface to them with the methods of this class.
++//
++// Notes
++//  The finite state machine needs to be initialized to the
++//  starting state of the FSM.  This must be done manually in
++//  the constructor of the derived class.
++//
++// Author
++//  C. W. Rapp
++//
++// RCS ID
++// $Id: statemap.h,v 1.15 2009/11/24 20:42:39 cwrapp Exp $
++//
++// CHANGE LOG
++// (See bottom of file)
++//
++
++#ifndef SMCLIB__STATEMAP_H_
++#define SMCLIB__STATEMAP_H_
++
++#if (__GNUC__ > 3 || (__GNUC__ == 3 && __GNUC_MINOR__ >= 1))
++#include <iostream>
++#if defined(SMC_NO_EXCEPTIONS)
++#include <cassert>
++#endif  // SMC_NO_EXCEPTIONS
++#include <cstdio>
++#elif defined(WIN32)
++#include <iostream>
++#if defined(SMC_NO_EXCEPTIONS)
++#include <cassert>
++#endif  // SMC_NO_EXCEPTIONS
++#else
++#include <iostream.h>
++#if defined(SMC_NO_EXCEPTIONS)
++#include <assert.h>
++#endif  // SMC_NO_EXCEPTIONS
++#include <stdio.h>
++#endif
++#if !defined(SMC_NO_EXCEPTIONS)
++#include <stdexcept>
++#include <cstring>
++#endif
++
++#include <string>
++
++// Limit names to 100 ASCII characters.
++// Why 100? Because it is a round number.
++#define MAX_NAME_LEN 100
++
++namespace statemap
++{
++//---------------------------------------------------------------
++// Routines.
++//
++
++inline char* copyString(const char *s)
++{
++    char *retval = NULL;
++
++    if (s != NULL)
++    {
++        retval = new char[MAX_NAME_LEN + 1];
++        retval[MAX_NAME_LEN] = '\0';
++        (void) std::strncpy(retval, s, MAX_NAME_LEN);
++    }
++
++    return (retval);
++}
++
++//---------------------------------------------------------------
++// Exception Classes.
++//
++
++#ifndef SMC_NO_EXCEPTIONS
++// Base class for all SMC exceptions.
++class SmcException :
++    public std::runtime_error
++{
++    //-----------------------------------------------------------
++    // Member methods
++    //
++    public:
++        // Destructor.
++        virtual ~SmcException() throw()
++        {};
++
++    protected:
++        // Constructor.
++        SmcException(const std::string& reason)
++        : std::runtime_error(reason)
++        {};
++
++    private:
++        // Default construction not allowed.
++        SmcException();
++
++    //-----------------------------------------------------------
++    // Member data.
++    //
++    public:
++    protected:
++    private:
++};
++
++// This class is thrown when a pop is issued on an empty
++// state stack.
++class PopOnEmptyStateStackException :
++    public SmcException
++{
++    //-----------------------------------------------------------
++    // Member methods.
++    //
++    public:
++        // Default constructor.
++        PopOnEmptyStateStackException()
++        : SmcException("no state to pop from state stack")
++        {};
++
++        // Destructor.
++        virtual ~PopOnEmptyStateStackException() throw()
++        {};
++
++    protected:
++    private:
++    //-----------------------------------------------------------
++    // Member data.
++    //
++    public:
++    protected:
++    private:
++};
++
++// This class is thrown when a transition is issued
++// but there is no current state. This happens when
++// a transition is issued from within a transition
++// action.
++class StateUndefinedException :
++    public SmcException
++{
++    //-----------------------------------------------------------
++    // Member methods.
++    //
++    public:
++        // Default constructor.
++        StateUndefinedException()
++        : SmcException("transition invoked while in transition")
++        {};
++
++        // Destructor.
++        virtual ~StateUndefinedException() throw()
++        {};
++
++    protected:
++    private:
++    //-----------------------------------------------------------
++    // Member data.
++    //
++    public:
++    protected:
++    private:
++};
++
++// This class is thrown when a transition is issued
++// but there is no code to handle it.
++class TransitionUndefinedException :
++    public SmcException
++{
++    //-----------------------------------------------------------
++    // Member methods.
++    //
++    public:
++        // Default constructor.
++        TransitionUndefinedException()
++        : SmcException("no such transition in current state"),
++          _state(NULL),
++          _transition(NULL)
++        {};
++
++        // Construct an exception using the specified state
++        // and transition.
++        TransitionUndefinedException(const char *state,
++                                     const char *transition)
++        : SmcException("no such transition in current state"),
++          _state(copyString(state)),
++          _transition(copyString(transition))
++        {};
++
++        // Copy constructor.
++        TransitionUndefinedException(
++            const TransitionUndefinedException& ex)
++        : SmcException("no such transition in current state"),
++          _state(copyString(ex._state)),
++          _transition(copyString(ex._transition))
++        {};
++
++        // Destructor.
++        virtual ~TransitionUndefinedException() throw()
++        {
++            if (_state != NULL)
++            {
++                delete[] _state;
++                _state = NULL;
++            }
++
++            if (_transition != NULL)
++            {
++                delete[] _transition;
++                _transition = NULL;
++            }
++        };
++
++        // Assignment operator.
++        const TransitionUndefinedException&
++            operator=(const TransitionUndefinedException& ex)
++        {
++            // Don't do self assignment.
++            if (this != &ex)
++            {
++                if (_state != NULL)
++                {
++                    delete[] _state;
++                    _state = NULL;
++                }
++
++                if (_transition != NULL)
++                {
++                    delete[] _transition;
++                    _transition = NULL;
++                }
++
++                _state = copyString(ex._state);
++                _transition = copyString(ex._transition);
++            }
++
++            return (*this);
++        };
++
++        // Returns the state. May be NULL.
++        const char* getState() const
++        {
++            return(_state);
++        };
++
++        // Returns the transition. May be NULL.
++        const char* getTransition() const
++        {
++            return (_transition);
++        };
++
++    protected:
++    private:
++    //-----------------------------------------------------------
++    // Member data.
++    //
++    public:
++    protected:
++    private:
++        char *_state;
++        char *_transition;
++};
++
++// This class is thrown when a state ID is either less than
++// the minimal value or greater than the maximal value.
++class IndexOutOfBoundsException :
++    public SmcException
++{
++    //-----------------------------------------------------------
++    // Member methods.
++    //
++    public:
++        // Default constructor.
++        IndexOutOfBoundsException()
++        : SmcException("index out of bounds"),
++          _index(0),
++          _minIndex(0),
++          _maxIndex(0)
++        {};
++
++        // Constructs an exception using the specified index,
++        // minimum index and maximum index.
++        IndexOutOfBoundsException(const int index,
++                                  const int minIndex,
++                                  const int maxIndex)
++        : SmcException("index out of bounds"),
++          _index(index),
++          _minIndex(minIndex),
++          _maxIndex(maxIndex)
++        {};
++
++        // Copy constructor.
++        IndexOutOfBoundsException(
++            const IndexOutOfBoundsException& ex)
++        : SmcException("index out of bounds"),
++          _index(ex._index),
++          _minIndex(ex._minIndex),
++          _maxIndex(ex._maxIndex)
++        {};
++
++        // Destructor.
++        virtual ~IndexOutOfBoundsException() throw()
++        {};
++
++        // Assignment operator.
++        const IndexOutOfBoundsException&
++            operator=(const IndexOutOfBoundsException& ex)
++        {
++            // Don't do self assignment.
++            if (this != &ex)
++            {
++                _index = ex._index;
++                _minIndex = ex._minIndex;
++                _maxIndex = ex._maxIndex;
++            }
++
++            return (*this);
++        };
++
++        // Returns the out-of-bounds index.
++        int getIndex() const
++        {
++            return(_index);
++        };
++
++        // Returns the minimum allowed index value.
++        int getMinIndex() const
++        {
++            return (_minIndex);
++        };
++
++        // Returns the maximum allowed index value.
++        int getMaxIndex() const
++        {
++            return (_maxIndex);
++        };
++
++    protected:
++    private:
++    //-----------------------------------------------------------
++    // Member data.
++    //
++    public:
++    protected:
++    private:
++        int _index;
++        int _minIndex;
++        int _maxIndex;
++};
++#endif  // !SMC_NO_EXCEPTIONS
++
++//
++// end of Exception Classes.
++//---------------------------------------------------------------
++
++class State
++{
++//-----------------------------------------------------------
++// Member functions.
++//
++public:
++    const char* getName() const
++    {
++        return (_name);
++    };
++
++    int getId() const
++    {
++        return (_stateId);
++    }
++
++protected:
++    State(const char *name, int stateId)
++    : _name(NULL),
++      _stateId(stateId)
++    {
++        if (name != NULL)
++        {
++            _name = copyString(name);
++        }
++        else
++        {
++            _name = copyString("NAME NOT SET");
++        }
++    };
++
++    virtual ~State()
++    {
++        if (_name != NULL)
++        {
++            delete[] _name;
++            _name = NULL;
++        }
++    };
++
++private:
++    // Make the default and copy constructors private to
++    // prevent their use.
++    State() {}
++    State(const State&) {}
++
++//-----------------------------------------------------------
++// Member data.
++//
++public:
++protected:
++    // This state's printable name.
++    char *_name;
++
++    // This state's unique identifier.
++    int _stateId;
++
++private:
++};
++
++class FSMContext
++{
++//-----------------------------------------------------------
++// Nested classes.
++//
++public:
++protected:
++private:
++    // Implements the state stack.
++    class StateEntry
++    {
++    //-------------------------------------------------------
++    // Member functions.
++    //
++    public:
++        StateEntry(State *state, StateEntry *next)
++        : _state(state),
++          _next(next)
++        {};
++
++        ~StateEntry()
++        {
++            _state = NULL;
++            _next = NULL;
++        };
++
++        State* getState()
++        {
++            return(_state);
++        };
++
++        StateEntry* getNext()
++        {
++            return(_next);
++        };
++
++    protected:
++    private:
++    //-------------------------------------------------------
++    // Member data.
++    //
++    public:
++    protected:
++    private:
++        State *_state;
++        StateEntry *_next;
++
++    //-------------------------------------------------------
++    // Friends
++    //
++        friend class FSMContext;
++    };  // end of class StateEntry
++
++//-----------------------------------------------------------
++// Member functions
++//
++public:
++    // Destructor.
++    virtual ~FSMContext()
++    {
++        StateEntry *state;
++
++        if (_transition != NULL)
++        {
++            delete[] _transition;
++            _transition = NULL;
++        }
++
++        // But we did allocate the state stack.
++        while (_state_stack != NULL)
++        {
++            state = _state_stack;
++            _state_stack = _state_stack->_next;
++            delete state;
++        }
++    };
++
++    // Comparison and assignment operators
++    // Assignment operator
++    FSMContext& operator=(const FSMContext& fsm)
++    {
++        // Don't do the assignment if the left and right
++        // hand sides are the same object.
++        if (this != &fsm)
++        {
++            _state = fsm._state;
++        }
++
++        return(*this);
++    };
++
++    // Starts the finite state machine running by executing
++    // the initial state's entry actions.
++    virtual void enterStartState() = 0;
++
++    // Exact same object (is it me?)
++    int same(const FSMContext& fsm) const
++    {
++        return(this == &fsm);
++    };
++
++    // Returns the debug flag's current setting.
++    bool getDebugFlag()
++    {
++        return(_debug_flag);
++    };
++
++    // Sets the debug flag. A true value means debugging
++    // is on and false means off.
++    void setDebugFlag(bool flag)
++    {
++        _debug_flag = flag;
++        return;
++    };
++
++#ifdef SMC_USES_IOSTREAMS
++    // Returns the stream to which debug output is written.
++    std::ostream& getDebugStream()
++    {
++        return (*_debug_stream);
++    };
++
++    // Sets the debug output stream.
++    void setDebugStream(std::ostream& debug_stream)
++    {
++        _debug_stream = &debug_stream;
++        return;
++    }
++#endif  // SMC_USES_IOSTREAMS
++
++    // Is this state machine already inside a transition?
++    // Yes if state is null.
++    bool isInTransition() const
++    {
++        return(_state == NULL ? true : false);
++    };
++
++    // Returns the current transition's name.
++    // Used only for debugging purposes.
++    char* getTransition()
++    {
++        return (_transition);
++    };
++
++    // Saves away the transition name only if debugging
++    // is turned on.
++    void setTransition(const char *transition)
++    {
++        if (_transition != NULL)
++        {
++            delete[] _transition;
++            _transition = NULL;
++        }
++
++        _transition = copyString(transition);
++
++        return;
++    };
++
++    // Clears the current state.
++    void clearState()
++    {
++        _previous_state = _state;
++        _state = NULL;
++    };
++
++    // Returns the state which a transition left.
++    // May be NULL.
++    State* getPreviousState()
++    {
++        return (_previous_state);
++    }
++
++    // Sets the current state to the specified state.
++    void setState(const State& state)
++    {
++        _state = const_cast<State *>(&state);
++
++        if (_debug_flag == true)
++        {
++#ifdef SMC_USES_IOSTREAMS
++            *_debug_stream << "ENTER STATE     : "
++                           << _state->getName()
++                           << std::endl;
++#else
++            TRACE("ENTER STATE     : %s\n\r",
++                  _state->getName());
++#endif  // SMC_USES_IOSTREAMS
++        }
++    };
++
++    // Returns true if the state stack is empty and false
++    // otherwise.
++    bool isStateStackEmpty() const
++    {
++        return (_state_stack == NULL);
++    }
++
++    // Returns the state stack's depth.
++    int getStateStackDepth() const
++    {
++        StateEntry *state_ptr;
++        int retval;
++
++        for (state_ptr = _state_stack, retval = 0;
++             state_ptr != NULL;
++             state_ptr = state_ptr->getNext(), ++retval)
++            ;
++
++        return (retval);
++    }
++
++    // Push the current state on top of the state stack
++    // and make the specified state the current state.
++    void pushState(const State& state)
++    {
++        StateEntry *new_entry;
++
++        // Do the push only if there is a state to be pushed
++        // on the stack.
++        if (_state != NULL)
++        {
++            new_entry = new StateEntry(_state, _state_stack);
++            _state_stack = new_entry;
++        }
++
++        _state = const_cast<State *>(&state);
++
++        if (_debug_flag == true)
++        {
++#ifdef SMC_USES_IOSTREAMS
++            *_debug_stream << "PUSH TO STATE   : "
++                           << _state->getName()
++                           << std::endl;
++#else
++            TRACE("PUSH TO STATE   : %s\n\r",
++                  _state->getName());
++#endif  // SMC_USES_IOSTREAMS
++        }
++    };
++
++    // Make the state on top of the state stack the
++    // current state.
++    void popState()
++    {
++        StateEntry *entry;
++
++        // Popping when there was no previous push is an error.
++#ifdef SMC_NO_EXCEPTIONS
++        assert(_state_stack != NULL);
++#else
++        if (_state_stack == NULL)
++        {
++            throw PopOnEmptyStateStackException();
++        }
++#endif  // SMC_NO_EXCEPTIONS
++
++        _state = _state_stack->getState();
++        entry = _state_stack;
++        _state_stack = _state_stack->getNext();
++        delete entry;
++
++        if (_debug_flag == true)
++        {
++#ifdef SMC_USES_IOSTREAMS
++            *_debug_stream << "POP TO STATE    : "
++                           << _state->getName()
++                           << std::endl;
++#else
++            TRACE("POP TO STATE    : %s\n\r",
++                  _state->getName());
++#endif  // SMC_USES_IOSTREAMS
++        }
++    };
++
++    // Remove all states from the state stack.
++    void emptyStateStack()
++    {
++        StateEntry *state_ptr,
++                   *next_ptr;
++
++        for (state_ptr = _state_stack;
++             state_ptr != NULL;
++             state_ptr = next_ptr)
++        {
++            next_ptr = state_ptr->getNext();
++            delete state_ptr;
++        }
++
++        _state_stack = NULL;
++    };
++
++protected:
++    // Default constructor.
++    FSMContext(const State& state)
++    : _state(const_cast<State *>(&state)),
++      _previous_state(NULL),
++      _state_stack(NULL),
++      _transition(NULL),
++#ifdef SMC_USES_IOSTREAMS
++      _debug_flag(false),
++      _debug_stream(&std::cerr)
++#else
++      _debug_flag(false)
++#endif  // SMC_USES_IOSTREAMS
++    {};
++
++private:
++    // I don't believe that it makes sense to copy a
++    // context. It may make sense to copy the application
++    // class but the new object is *not* in the same
++    // state as the old - the new object must start in
++    // the FSM's initial state. Therefore, the copy
++    // constructor is private in order to prevent it
++    // being used.
++    FSMContext(const FSMContext&)
++    {};
++
++//-----------------------------------------------------------
++// Member data
++//
++public:
++protected:
++    // The current state of the finite state machine.
++    State *_state;
++
++    // Remember which state a transition left.
++    State *_previous_state;
++
++    // The stack of pushed states.
++    StateEntry *_state_stack;
++
++    // The current transition *name*. Use for debugging
++    // purposes.
++    char *_transition;
++
++private:
++    // When this flag is set to true, this class will print
++    // out debug messages.
++    bool _debug_flag;
++
++// Include the following only if C++ iostreams are being used.
++#ifdef SMC_USES_IOSTREAMS
++    // When FSM debugging is on, debug messages will be
++    // written to this output stream. This stream is set to
++    // standard error by default.
++    std::ostream *_debug_stream;
++#endif  // SMC_USES_IOSTREAMS
++};  // end of class FSMContext
++}  // namespace statemap
++
++//
++// CHANGE LOG
++// $Log: statemap.h,v $
++// Revision 1.15  2009/11/24 20:42:39  cwrapp
++// v. 6.0.1 update
++//
++// Revision 1.14  2009/03/01 18:20:40  cwrapp
++// Preliminary v. 6.0.0 commit.
++//
++// Revision 1.13  2008/05/20 18:31:12  cwrapp
++// ----------------------------------------------------------------------
++//
++// Committing release 5.1.0.
++//
++// Modified Files:
++//  Makefile README.txt smc.mk tar_list.txt bin/Smc.jar
++//  examples/Ant/EX1/build.xml examples/Ant/EX2/build.xml
++//  examples/Ant/EX3/build.xml examples/Ant/EX4/build.xml
++//  examples/Ant/EX5/build.xml examples/Ant/EX6/build.xml
++//  examples/Ant/EX7/build.xml examples/Ant/EX7/src/Telephone.java
++//  examples/Java/EX1/Makefile examples/Java/EX4/Makefile
++//  examples/Java/EX5/Makefile examples/Java/EX6/Makefile
++//  examples/Java/EX7/Makefile examples/Ruby/EX1/Makefile
++//  lib/statemap.jar lib/C++/statemap.h lib/Java/Makefile
++//  lib/Php/statemap.php lib/Scala/Makefile
++//  lib/Scala/statemap.scala net/sf/smc/CODE_README.txt
++//  net/sf/smc/README.txt net/sf/smc/Smc.java
++// ----------------------------------------------------------------------
++//
++// Revision 1.12  2007/12/28 12:34:40  cwrapp
++// Version 5.0.1 check-in.
++//
++// Revision 1.11  2007/08/05 12:58:54  cwrapp
++// Version 5.0.1 check-in. See net/sf/smc/CODE_README.txt for more information.
++//
++// Revision 1.10  2007/01/15 00:23:50  cwrapp
++// Release 4.4.0 initial commit.
++//
++// Revision 1.9  2006/07/11 18:28:22  cwrapp
++// Move SmcException::copyString() to a package-wide routine.
++//
++// Revision 1.8  2006/04/22 12:45:24  cwrapp
++// Version 4.3.1
++//
++// Revision 1.7  2005/06/08 11:09:14  cwrapp
++// + Updated Python code generator to place "pass" in methods with empty
++//   bodies.
++// + Corrected FSM errors in Python example 7.
++// + Removed unnecessary includes from C++ examples.
++// + Corrected errors in top-level makefile's distribution build.
++//
++// Revision 1.6  2005/05/28 18:44:13  cwrapp
++// Updated C++, Java and Tcl libraries, added CSharp, Python and VB.
++//
++// Revision 1.2  2005/02/21 19:01:42  charlesr
++// Changed State::_id to State::_stateId because of Object-C++
++// reserved word conflict.
++//
++// Revision 1.1  2004/05/31 13:44:41  charlesr
++// Added support for non-iostreams output.
++//
++// Revision 1.0  2003/12/14 20:37:49  charlesr
++// Initial revision
++
++#endif  // SMCLIB__STATEMAP_H_
+--- /dev/null
++++ ros-noetic-smclib-1.8.6/mainpage.dox
+@@ -0,0 +1,26 @@
++/**
++\mainpage
++\htmlinclude manifest.html
++
++\b smclib is ... 
++
++<!-- 
++Provide an overview of your package.
++-->
++
++
++\section codeapi Code API
++
++<!--
++Provide links to specific auto-generated API documentation within your
++package that is of particular interest to a reader. Doxygen will
++document pretty much every part of your code, so do your best here to
++point the reader to the actual API.
++
++If your codebase is fairly large or has different sets of APIs, you
++should use the doxygen 'group' tag to keep these APIs together. For
++example, the roscpp documentation has 'libros' group.
++-->
++
++
++*/
+--- /dev/null
++++ ros-noetic-smclib-1.8.6/package.xml
+@@ -0,0 +1,31 @@
++<?xml version="1.0"?>
++<?xml-model
++  href="http://download.ros.org/schema/package_format3.xsd"
++  schematypens="http://www.w3.org/2001/XMLSchema"?>
++<package format="3">
++  <name>smclib</name>
++  <version>1.8.6</version>
++  <description>
++    The State Machine Compiler (SMC) from http://smc.sourceforge.net/
++    converts a language-independent description of a state machine
++    into the source code to support that state machine.
++
++    This package contains the libraries that a compiled state machine
++    depends on, but it does not contain the compiler itself.
++  </description>
++  <maintainer email="michael@openrobotics.org">Michael Carroll</maintainer>
++  <license>Mozilla Public License Version 1.1</license>
++
++  <url type="website">http://smc.sourceforge.net/</url>
++  <url type="bugtracker">https://github.com/ros/bond_core/issues</url>
++  <url type="repository">https://github.com/ros/bond_core</url>
++  <author>Various</author>
++
++  <buildtool_depend>catkin</buildtool_depend>
++  <buildtool_depend condition="$ROS_PYTHON_VERSION == 2">python-setuptools</buildtool_depend>
++  <buildtool_depend condition="$ROS_PYTHON_VERSION == 3">python3-setuptools</buildtool_depend>
++
++  <export>
++    <architecture_independent/>
++  </export>
++</package>
+--- /dev/null
++++ ros-noetic-smclib-1.8.6/python/smclib/statemap.py
+@@ -0,0 +1,171 @@
++#
++# The contents of this file are subject to the Mozilla Public
++# License Version 1.1 (the "License"); you may not use this file
++# except in compliance with the License. You may obtain a copy of
++# the License at http://www.mozilla.org/MPL/
++#
++# Software distributed under the License is distributed on an "AS
++# IS" basis, WITHOUT WARRANTY OF ANY KIND, either express or
++# implied. See the License for the specific language governing
++# rights and limitations under the License.
++#
++# The Original Code is State Machine Compiler (SMC).
++#
++# The Initial Developer of the Original Code is Charles W. Rapp.
++# Portions created by Charles W. Rapp are
++# Copyright (C) 2005. Charles W. Rapp.
++# All Rights Reserved.
++#
++# Port to Python by Francois Perrad, francois.perrad@gadz.org
++# Copyright 2004, Francois Perrad.
++# All Rights Reserved.
++#
++# Contributor(s):
++#
++# RCS ID
++# $Id: statemap.py,v 1.7 2009/11/24 20:42:39 cwrapp Exp $
++#
++# See: http://smc.sourceforge.net/
++#
++
++import sys
++
++
++class StateUndefinedException(Exception):
++    """A StateUndefinedException is thrown by
++    an SMC-generated state machine whenever a transition is taken
++    and there is no state currently set. This occurs when a
++    transition is issued from within a transition action."""
++    pass
++
++
++class TransitionUndefinedException(Exception):
++    """A TransitionUndefinedException is thrown by
++    an SMC-generated state machine whenever a transition is taken
++    which:
++     - Is not explicitly defined in the current state.
++     - Is not explicitly defined in the current FSM's default state.
++     - There is no Default transition in the current state."""
++    pass
++
++
++class State(object):
++    """base State class"""
++
++    def __init__(self, name, id):
++        self._name = name
++        self._id = id
++
++    def getName(self):
++        """Returns the state's printable name."""
++        return self._name
++
++    def getId(self):
++        """Returns the state's unique identifier."""
++        return self._id
++
++
++class FSMContext(object):
++    """The user can derive FSM contexts from this class and interface
++    to them with the methods of this class.
++
++    The finite state machine needs to be initialized to the starting
++    state of the FSM.  This must be done manually in the constructor
++    of the derived class.
++    """
++
++    def __init__(self, state):
++        self._state = state
++        self._previous_state = None
++        self._state_stack = []
++        self._transition = None
++        self._debug_flag = False
++        self._debug_stream = sys.stderr
++
++    def getDebugFlag(self):
++        """Returns the debug flag's current setting."""
++        return self._debug_flag
++
++    def setDebugFlag(self, flag):
++        """Sets the debug flag.
++        A true value means debugging is on and false means off."""
++        self._debug_flag = flag
++
++    def getDebugStream(self):
++        """Returns the stream to which debug output is written."""
++        return self._debug_stream
++
++    def setDebugStream(self, stream):
++        """Sets the debug output stream."""
++        self._debug_stream = stream
++
++    def getState(self):
++        """Returns the current state."""
++        if self._state is None:
++            raise StateUndefinedException
++        return self._state
++
++    def isInTransition(self):
++        """Is this state machine already inside a transition?
++        True if state is undefined."""
++        if self._state is None:
++            return True
++        else:
++            return False
++
++    def getTransition(self):
++        """Returns the current transition's name.
++        Used only for debugging purposes."""
++        return self._transition
++
++    def clearState(self):
++        """Clears the current state."""
++        self._previous_state = self._state
++        self._state = None
++
++    def getPreviousState(self):
++        """Returns the state which a transition left.
++        May be None"""
++        return self._previous_state
++
++    def setState(self, state):
++        """Sets the current state to the specified state."""
++        if not isinstance(state, State):
++            raise ValueError("state should be a statemap.State")
++        self._state = state
++        if self._debug_flag:
++            self._debug_stream.write("NEW STATE       : %s\n" % self._state.getName())
++
++    def isStateStackEmpty(self):
++        """Returns True if the state stack is empty and False otherwise."""
++        return len(self._state_stack) == 0
++
++    def getStateStackDepth(self):
++        """Returns the state stack's depth."""
++        return len(self._state_stack)
++
++    def pushState(self, state):
++        """Push the current state on top of the state stack
++        and make the specified state the current state."""
++        if not isinstance(state, State):
++            raise ValueError("state should be a statemap.State")
++        if self._state is not None:
++            self._state_stack.append(self._state)
++        self._state = state
++        if self._debug_flag:
++            self._debug_stream.write("PUSH TO STATE   : %s\n" % self._state.getName())
++
++    def popState(self):
++        """Make the state on top of the state stack the current state."""
++        if len(self._state_stack) == 0:
++            if self._debug_flag:
++                self._debug_stream.write("POPPING ON EMPTY STATE STACK.\n")
++            raise ValueError("empty state stack")
++        else:
++            self._state = self._state_stack.pop()
++            if self._debug_flag:
++                self._debug_stream.write("POP TO STATE    : %s\n" % self._state.getName())
++
++    def emptyStateStack(self):
++        """Remove all states from the state stack."""
++        self._state_stack = []
+--- /dev/null
++++ ros-noetic-smclib-1.8.6/setup.py
+@@ -0,0 +1,12 @@
++#!/usr/bin/env python
++
++from setuptools import setup
++
++from catkin_pkg.python_setup import generate_distutils_setup
++
++d = generate_distutils_setup(
++    packages=['smclib'],
++    package_dir={'': 'python'}
++)
++
++setup(**d)

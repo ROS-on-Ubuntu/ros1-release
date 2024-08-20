@@ -1,0 +1,289 @@
+ros-noetic-rqt-topic (0.4.13-0jammy) jammy; urgency=high
+
+  * fix python3 install (#36 <https://github.com/ros-visualization/rqt_topic/issues/36>)
+  * Update Open Robotics Maintainer (#27 <https://github.com/ros-visualization/rqt_topic/issues/27>)
+  * fix shebang line for python3 (#18 <https://github.com/ros-visualization/rqt_topic/issues/18>)
+  * Contributors: Mabel Zhang, Mikael Arguedas, Scott K Logan
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Wed, 17 Nov 2021 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.4.12-0jammy) jammy; urgency=high
+
+  * bump CMake minimum version to avoid CMP0048 warning
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Tue, 10 Mar 2020 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.4.11-0jammy) jammy; urgency=high
+
+  * fix TypeError in Python 3 (#7 <https://github.com/ros-visualization/rqt_topic/issues/7>)
+  * add Python 3 conditional dependencies (#13 <https://github.com/ros-visualization/rqt_topic/issues/13>)
+  * fix dictionary changed size during iteration (#10 <https://github.com/ros-visualization/rqt_topic/issues/10>)
+  * autopep8 (#6 <https://github.com/ros-visualization/rqt_topic/issues/6>)
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Wed, 08 Jan 2020 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.4.10-0jammy) jammy; urgency=high
+
+  * fix order by bandwidth column (#4 <https://github.com/ros-visualization/rqt_topic/issues/4>)
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Wed, 15 Nov 2017 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.4.9-0jammy) jammy; urgency=high
+
+  * fix section resize toggle with Qt5 (#2 <https://github.com/ros-visualization/rqt_topic/issues/2>)
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Sun, 05 Nov 2017 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.4.8-0jammy) jammy; urgency=high
+
+
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Sun, 23 Apr 2017 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.4.7-0jammy) jammy; urgency=high
+
+
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Wed, 01 Mar 2017 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.4.6-0jammy) jammy; urgency=high
+
+  * remove usage of undocumented cStringIO.StringIO len attribute (#434 <https://github.com/ros-visualization/rqt_common_plugins/pull/434>)
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Sun, 26 Feb 2017 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.4.5-0jammy) jammy; urgency=high
+
+
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Thu, 02 Feb 2017 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.4.4-0jammy) jammy; urgency=high
+
+  * use Python 3 compatible syntax (#421 <https://github.com/ros-visualization/rqt_common_plugins/pull/421>)
+  * catch unhandled exceptions when rosmaster disappears while widget is running (#419 <https://github.com/ros-visualization/rqt_common_plugins/pull/419>)
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Mon, 23 Jan 2017 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.4.3-0jammy) jammy; urgency=high
+
+
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Tue, 01 Nov 2016 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.4.2-0jammy) jammy; urgency=high
+
+
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Sun, 18 Sep 2016 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.4.1-0jammy) jammy; urgency=high
+
+
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Sun, 15 May 2016 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.4.0-0jammy) jammy; urgency=high
+
+  * Support Qt 5 (in Kinetic and higher) as well as Qt 4 (in Jade and earlier) (#359 <https://github.com/ros-visualization/rqt_common_plugins/pull/359>)
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Tue, 26 Apr 2016 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.3.13-0jammy) jammy; urgency=high
+
+  * check for divide by zero and data failures
+  * Contributors: Aaron Blasdel
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Mon, 07 Mar 2016 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.3.12-0jammy) jammy; urgency=high
+
+  * Save/Restore of headers added
+  * Contributors: Aaron Blasdel
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Thu, 23 Jul 2015 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.3.11-0jammy) jammy; urgency=high
+
+
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Wed, 29 Apr 2015 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.3.10-0jammy) jammy; urgency=high
+
+  * update plugin scripts to use full name to avoid future naming collisions
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Tue, 30 Sep 2014 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.3.9-0jammy) jammy; urgency=high
+
+
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Sun, 17 Aug 2014 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.3.8-0jammy) jammy; urgency=high
+
+
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Mon, 14 Jul 2014 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.3.7-0jammy) jammy; urgency=high
+
+  * export architecture_independent flag in package.xml (#254 <https://github.com/ros-visualization/rqt_common_plugins/issues/254>)
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Thu, 10 Jul 2014 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.3.6-0jammy) jammy; urgency=high
+
+
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Sun, 01 Jun 2014 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.3.5-0jammy) jammy; urgency=high
+
+
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Tue, 06 May 2014 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.3.4-0jammy) jammy; urgency=high
+
+
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Mon, 27 Jan 2014 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.3.3-0jammy) jammy; urgency=high
+
+  * add groups for rqt plugins, renamed some plugins (#167 <https://github.com/ros-visualization/rqt_common_plugins/issues/167>)
+  * catch and show exceptions #198 <https://github.com/ros-visualization/rqt_common_plugins/issues/198>
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Tue, 07 Jan 2014 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.3.2-0jammy) jammy; urgency=high
+
+
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Sun, 13 Oct 2013 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.3.1-0jammy) jammy; urgency=high
+
+  * improve rqt_topic initialization time (#62 <https://github.com/ros-visualization/rqt_common_plugins/issues/62>)
+  * modified toggling topics to use checkbox instead of context menu (#75 <https://github.com/ros-visualization/rqt_common_plugins/issues/75>)
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Tue, 08 Oct 2013 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.3.0-0jammy) jammy; urgency=high
+
+  * fix cleaning old data in rqt_topic (fix #74 <https://github.com/ros-visualization/rqt_common_plugins/issues/74>)
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Tue, 27 Aug 2013 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.2.17-0jammy) jammy; urgency=high
+
+
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Wed, 03 Jul 2013 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.2.16-0jammy) jammy; urgency=high
+
+
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Tue, 09 Apr 2013 05:33:00 -0000
+
+ros-noetic-rqt-topic (0.2.15-0jammy) jammy; urgency=high
+
+  * Improve API (now either name or msg type are select-able in order to select which topics to monitor).
+  * API change to accept a list of the topics that this plugin watches.
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Mon, 08 Apr 2013 16:02:00 -0000
+
+ros-noetic-rqt-topic (0.2.14-0jammy) jammy; urgency=high
+
+
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Wed, 13 Mar 2013 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.2.13-0jammy) jammy; urgency=high
+
+
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Mon, 11 Mar 2013 14:14:00 -0000
+
+ros-noetic-rqt-topic (0.2.12-0jammy) jammy; urgency=high
+
+
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Mon, 11 Mar 2013 05:56:00 -0000
+
+ros-noetic-rqt-topic (0.2.11-0jammy) jammy; urgency=high
+
+
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Thu, 07 Mar 2013 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.2.10-0jammy) jammy; urgency=high
+
+
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Mon, 21 Jan 2013 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.2.9-0jammy) jammy; urgency=high
+
+
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Wed, 16 Jan 2013 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.2.8-0jammy) jammy; urgency=high
+
+
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Thu, 10 Jan 2013 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.2.7-0jammy) jammy; urgency=high
+
+
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Sun, 23 Dec 2012 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.2.6-0jammy) jammy; urgency=high
+
+
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Sat, 22 Dec 2012 16:00:00 -0000
+
+ros-noetic-rqt-topic (0.2.5-0jammy) jammy; urgency=high
+
+
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Fri, 21 Dec 2012 11:11:00 -0000
+
+ros-noetic-rqt-topic (0.2.4-0jammy) jammy; urgency=high
+
+
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Thu, 20 Dec 2012 17:13:00 -0000
+
+ros-noetic-rqt-topic (0.2.3-0jammy) jammy; urgency=high
+
+
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Thu, 20 Dec 2012 16:24:00 -0000
+
+ros-noetic-rqt-topic (0.2.2-0jammy) jammy; urgency=high
+
+
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Thu, 20 Dec 2012 10:29:00 -0000
+
+ros-noetic-rqt-topic (0.2.1-0jammy) jammy; urgency=high
+
+
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Thu, 20 Dec 2012 09:47:00 -0000
+
+ros-noetic-rqt-topic (0.2.0-0jammy) jammy; urgency=high
+
+  * first release of this package into groovy
+
+ -- Dorian Scholz <scholz@sim.tu-darmstadt.de>  Thu, 20 Dec 2012 09:39:00 -0000
+
+

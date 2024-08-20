@@ -1,0 +1,231 @@
+ros-noetic-genpy (0.6.15-0jammy) jammy; urgency=high
+
+  * Update maintainers (#135 <https://github.com/ros/genpy/issues/135>)
+  * Check for Python 3 before looking up codec (#134 <https://github.com/ros/genpy/issues/134>)
+  * Add check for float32 and float64 to check_type (#131 <https://github.com/ros/genpy/issues/131>)
+  * Contributors: Dirk Thomas, Martin Günther, Shane Loretz
+
+ -- Mabel Zhang <mabel@openrobotics.org>  Sun, 11 Apr 2021 16:00:00 -0000
+
+ros-noetic-genpy (0.6.14-0jammy) jammy; urgency=high
+
+  * create Struct objects to save memory (#129 <https://github.com/ros/genpy/issues/129>)
+
+ -- Mabel Zhang <mabel@openrobotics.org>  Sun, 09 Aug 2020 16:00:00 -0000
+
+ros-noetic-genpy (0.6.13-0jammy) jammy; urgency=high
+
+  * don't raise exceptions on unicode decode error (#127 <https://github.com/ros/genpy/issues/127>)
+
+ -- Mabel Zhang <mabel@openrobotics.org>  Sun, 19 Jul 2020 16:00:00 -0000
+
+ros-noetic-genpy (0.6.12-0jammy) jammy; urgency=high
+
+  * fix check_type for uint8[] to accept bytes (#123 <https://github.com/ros/genpy/issues/123>)
+
+ -- Mabel Zhang <mabel@openrobotics.org>  Wed, 27 May 2020 16:00:00 -0000
+
+ros-noetic-genpy (0.6.11-0jammy) jammy; urgency=high
+
+  * support non-int integral time parameters (#121 <https://github.com/ros/genpy/issues/121>)
+
+ -- Mabel Zhang <mabel@openrobotics.org>  Mon, 11 May 2020 16:00:00 -0000
+
+ros-noetic-genpy (0.6.10-0jammy) jammy; urgency=high
+
+  * various code cleanup (#117 <https://github.com/ros/genpy/issues/117>)
+  * update logic for newer PyYAML output for dump() (#116 <https://github.com/ros/genpy/issues/116>)
+  * small optimization in dynamic.py (#109 <https://github.com/ros/genpy/issues/109>)
+  * use setuptools instead of distutils (#115 <https://github.com/ros/genpy/issues/115>)
+  * bump CMake version to avoid CMP0048 warning (#114 <https://github.com/ros/genpy/issues/114>)
+  * serialization: always set _x var for correct exception msg (#113 <https://github.com/ros/genpy/issues/113>)
+  * sort generated imports to make them reproducible (#111 <https://github.com/ros/genpy/issues/111>)
+  * make the generated "struct" constructs reproducible (#110 <https://github.com/ros/genpy/issues/110>)
+
+ -- Mabel Zhang <mabel@openrobotics.org>  Thu, 23 Jan 2020 16:00:00 -0000
+
+ros-noetic-genpy (0.6.9-0jammy) jammy; urgency=high
+
+  * fix Python 3 buffer handling (#106 <https://github.com/ros/genpy/issues/106>)
+  * Python 3 compatibility (#104 <https://github.com/ros/genpy/issues/104>)
+  * fix usage of undefined variables in exception (#105 <https://github.com/ros/genpy/issues/105>)
+  * convert map iterator to list (#103 <https://github.com/ros/genpy/issues/103>)
+  * fix negative limit check for signed ints (#102 <https://github.com/ros/genpy/issues/102>)
+  * failing test case for UTF-8 encoded characters in comments (#95 <https://github.com/ros/genpy/issues/95>)
+
+ -- Mabel Zhang <mabel@openrobotics.org>  Wed, 02 Oct 2019 16:00:00 -0000
+
+ros-noetic-genpy (0.6.8-0jammy) jammy; urgency=high
+
+  * check size of fixed sized arrays when serializing (#92 <https://github.com/ros/genpy/issues/92>)
+  * allow returning derived types in overloaded operators (#100 <https://github.com/ros/genpy/issues/100>)
+  * reload() was move into importlib in Python 3 (#98 <https://github.com/ros/genpy/issues/98>)
+  * fix _convert_getattr for handling uint8[] message fields in Python 3 (#96 <https://github.com/ros/genpy/issues/96>)
+
+ -- Mabel Zhang <mabel@openrobotics.org>  Sun, 03 Mar 2019 16:00:00 -0000
+
+ros-noetic-genpy (0.6.7-0jammy) jammy; urgency=high
+
+  * use errno to detect existing dir (#89 <https://github.com/ros/genpy/issues/89>)
+  * fix typo (#84 <https://github.com/ros/genpy/issues/84>)
+
+ -- Mabel Zhang <mabel@openrobotics.org>  Wed, 25 Oct 2017 16:00:00 -0000
+
+ros-noetic-genpy (0.6.6-0jammy) jammy; urgency=high
+
+  * add escaping for strings which is valid in YAML (#79 <https://github.com/ros/genpy/issues/79>)
+  * fix inefficient canon method in rostime (#77 <https://github.com/ros/genpy/issues/77>)
+
+ -- Mabel Zhang <mabel@openrobotics.org>  Wed, 26 Jul 2017 16:00:00 -0000
+
+ros-noetic-genpy (0.6.5-0jammy) jammy; urgency=high
+
+  * expose spec for dynamically generated messages (#75 <https://github.com/ros/genpy/issues/75>)
+
+ -- Mabel Zhang <mabel@openrobotics.org>  Sun, 05 Mar 2017 16:00:00 -0000
+
+ros-noetic-genpy (0.6.4-0jammy) jammy; urgency=high
+
+  * fix default value for non-primitive fixed-size arrays, regression of 0.6.1 (#74 <https://github.com/ros/genpy/issues/74>)
+
+ -- Mabel Zhang <mabel@openrobotics.org>  Sun, 26 Feb 2017 16:00:00 -0000
+
+ros-noetic-genpy (0.6.3-0jammy) jammy; urgency=high
+
+  * fix Python 3 regressions (#71 <https://github.com/ros/genpy/issues/71>)
+  * use Python safe subfields for nested types (#69 <https://github.com/ros/genpy/issues/69>)
+
+ -- Mabel Zhang <mabel@openrobotics.org>  Sun, 23 Oct 2016 16:00:00 -0000
+
+ros-noetic-genpy (0.6.2-0jammy) jammy; urgency=high
+
+  * fix regression regarding lazy init introduced in 0.6.1 (#67 <https://github.com/ros/genpy/issues/67>)
+
+ -- Mabel Zhang <mabel@openrobotics.org>  Fri, 02 Sep 2016 16:00:00 -0000
+
+ros-noetic-genpy (0.6.1-0jammy) jammy; urgency=high
+
+  * lazy init struct (#65 <https://github.com/ros/genpy/issues/65>)
+  * fix default value of lists to not expand to N items in the generated code (#64 <https://github.com/ros/genpy/issues/64>)
+  * simpler and more canonical hash (#55 <https://github.com/ros/genpy/pull/55>)
+  * various improvements to the time and duration classes (#63 <https://github.com/ros/genpy/issues/63>)
+
+ -- Mabel Zhang <mabel@openrobotics.org>  Thu, 01 Sep 2016 16:00:00 -0000
+
+ros-noetic-genpy (0.6.0-0jammy) jammy; urgency=high
+
+  * change semantic of integer division for duration (#59 <https://github.com/ros/genpy/issues/59>)
+
+ -- Mabel Zhang <mabel@openrobotics.org>  Wed, 20 Apr 2016 16:00:00 -0000
+
+ros-noetic-genpy (0.5.9-0jammy) jammy; urgency=high
+
+  * warn about using floor division of durations (#58 <https://github.com/ros/genpy/issues/58>)
+  * allow durations to be divided by other durations (#48 <https://github.com/ros/genpy/issues/48>)
+  * avoid adding newline in msg_generator (#47 <https://github.com/ros/genpy/issues/47>, #51 <https://github.com/ros/genpy/issues/51>)
+
+ -- Mabel Zhang <mabel@openrobotics.org>  Mon, 18 Apr 2016 16:00:00 -0000
+
+ros-noetic-genpy (0.5.8-0jammy) jammy; urgency=high
+
+  * right align nsec fields of timestamps (#45 <https://github.com/ros/genpy/issues/45>)
+  * fix order of imports in generated init files deterministic (#44 <https://github.com/ros/genpy/issues/44>)
+  * fix exception handling code using undefined variable (#42 <https://github.com/ros/genpy/issues/42>)
+  * add test for expected exception when serializing wrong type
+
+ -- Mabel Zhang <mabel@openrobotics.org>  Tue, 08 Mar 2016 16:00:00 -0000
+
+ros-noetic-genpy (0.5.7-0jammy) jammy; urgency=high
+
+  * add line about encoding to generated Python files (#41 <https://github.com/ros/genpy/issues/41>)
+
+ -- Mabel Zhang <mabel@openrobotics.org>  Sun, 08 Nov 2015 16:00:00 -0000
+
+ros-noetic-genpy (0.5.6-0jammy) jammy; urgency=high
+
+  * fix handling of dynamic message classes with names containing other message classes as substrings (#40 <https://github.com/ros/genpy/pull/40>)
+
+ -- Mabel Zhang <mabel@openrobotics.org>  Sun, 11 Oct 2015 16:00:00 -0000
+
+ros-noetic-genpy (0.5.5-0jammy) jammy; urgency=high
+
+  * fix handling of dynamic message classes with the same name (#37 <https://github.com/ros/genpy/issues/37>)
+  * fix Duration.abs() when sec is zero (#35 <https://github.com/ros/genpy/issues/35>)
+
+ -- Mabel Zhang <mabel@openrobotics.org>  Fri, 18 Sep 2015 16:00:00 -0000
+
+ros-noetic-genpy (0.5.4-0jammy) jammy; urgency=high
+
+  * add support for fixed-width floating-point and integer array values (ros/ros_comm#400 <https://github.com/ros/ros_comm/issues/400>)
+  * add missing test dependency on yaml
+
+ -- Mabel Zhang <mabel@openrobotics.org>  Sun, 21 Dec 2014 16:00:00 -0000
+
+ros-noetic-genpy (0.5.3-0jammy) jammy; urgency=high
+
+  * make TVal more similar to generated messages for introspection (ros/std_msgs#6 <https://github.com/ros/std_msgs/issues/6>)
+
+ -- Mabel Zhang <mabel@openrobotics.org>  Sun, 01 Jun 2014 16:00:00 -0000
+
+ros-noetic-genpy (0.5.2-0jammy) jammy; urgency=high
+
+  * fix usage of load_manifest() introduced in 0.5.1 (#28 <https://github.com/ros/genpy/issues/28>)
+
+ -- Mabel Zhang <mabel@openrobotics.org>  Wed, 07 May 2014 16:00:00 -0000
+
+ros-noetic-genpy (0.5.1-0jammy) jammy; urgency=high
+
+  * resolve message classes from dry packages (ros/ros_comm#293 <https://github.com/ros/ros_comm/issues/293>)
+  * add architecture_independent flag in package.xml (#27 <https://github.com/ros/genpy/issues/27>)
+
+ -- Mabel Zhang <mabel@openrobotics.org>  Tue, 06 May 2014 16:00:00 -0000
+
+ros-noetic-genpy (0.5.0-0jammy) jammy; urgency=high
+
+  * use catkin_install_python() to install Python scripts (#25 <https://github.com/ros/genpy/issues/25>)
+
+ -- Mabel Zhang <mabel@openrobotics.org>  Mon, 24 Feb 2014 16:00:00 -0000
+
+ros-noetic-genpy (0.4.15-0jammy) jammy; urgency=high
+
+  * python 3 compatibility (#22 <https://github.com/ros/genpy/issues/22>)
+  * use PYTHON_EXECUTABLE when invoking scripts for better Windows support (#23 <https://github.com/ros/genpy/issues/23>)
+  * improve exception message when message type does not match (#21 <https://github.com/ros/genpy/issues/21>)
+
+ -- Mabel Zhang <mabel@openrobotics.org>  Mon, 06 Jan 2014 16:00:00 -0000
+
+ros-noetic-genpy (0.4.14-0jammy) jammy; urgency=high
+
+  * make genpy relocatable (ros/catkin#490 <https://github.com/ros/catkin/issues/490>)
+  * enable int/long values for list of time/duration (#13 <https://github.com/ros/genpy/issues/13>)
+  * fix issue with time/duration message fields (without std_msgs prefix) when used as array (ros/ros_comm#252 <https://github.com/ros/ros_comm/issues/252>)
+  * fix Time() for seconds being of type long on 32-bit systems (fix #15 <https://github.com/ros/genpy/issues/15>)
+  * fix passing keys to _fill_message_args (#20 <https://github.com/ros/genpy/issues/20>)
+
+ -- Mabel Zhang <mabel@openrobotics.org>  Tue, 20 Aug 2013 16:00:00 -0000
+
+ros-noetic-genpy (0.4.13-0jammy) jammy; urgency=high
+
+  * check for CATKIN_ENABLE_TESTING to enable configure without tests
+
+ -- Mabel Zhang <mabel@openrobotics.org>  Tue, 02 Jul 2013 16:00:00 -0000
+
+ros-noetic-genpy (0.4.12-0jammy) jammy; urgency=high
+
+  * fix deserialize bytes in Python3 (#10 <https://github.com/ros/genpy/issues/10>)
+
+ -- Mabel Zhang <mabel@openrobotics.org>  Mon, 17 Jun 2013 16:00:00 -0000
+
+ros-noetic-genpy (0.4.11-0jammy) jammy; urgency=high
+
+  * fix handling spaces in folder names (ros/catkin#375 <https://github.com/ros/catkin/issues/375>)
+
+ -- Mabel Zhang <mabel@openrobotics.org>  Thu, 07 Mar 2013 16:00:00 -0000
+
+ros-noetic-genpy (0.4.10-0jammy) jammy; urgency=high
+
+  * first public release for Groovy
+
+ -- Mabel Zhang <mabel@openrobotics.org>  Thu, 20 Dec 2012 16:00:00 -0000
+
+

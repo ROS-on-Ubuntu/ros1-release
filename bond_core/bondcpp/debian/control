@@ -1,0 +1,12 @@
+Source: ros-noetic-bondcpp
+Section: misc
+Priority: optional
+Maintainer: Michael Carroll <michael@openrobotics.org>
+Build-Depends: debhelper (>= 9.0.0), libboost-date-time-dev, libboost-dev, libboost-thread-dev, ros-noetic-bond, ros-noetic-catkin, ros-noetic-cmake-modules (>= 0.3.2), ros-noetic-roscpp, ros-noetic-smclib, uuid-dev
+Homepage: http://www.ros.org/wiki/bondcpp
+Standards-Version: 3.9.2
+
+Package: ros-noetic-bondcpp
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libboost-date-time-dev, libboost-dev, libboost-thread-dev, ros-noetic-bond, ros-noetic-roscpp, ros-noetic-smclib, uuid-dev
+Description: C++ implementation of bond, a mechanism for checking when another process has terminated.

@@ -1,0 +1,315 @@
+ros-noetic-actionlib-msgs (1.13.1-0jammy) jammy; urgency=high
+
+  * Update package maintainers (#168 <https://github.com/ros/common_msgs/issues/168>)
+  * Contributors: Michel Hidalgo
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Sun, 10 Jan 2021 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.13.0-0jammy) jammy; urgency=high
+
+  * Bump CMake version to avoid CMP0048 warning (#158 <https://github.com/ros/common_msgs/issues/158>)
+  * Contributors: Shane Loretz
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Wed, 20 May 2020 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.12.7-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Mon, 05 Nov 2018 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.12.6-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Wed, 02 May 2018 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.12.5-0jammy) jammy; urgency=high
+
+  * Fix spelling mistakes
+  * Contributors: trorornmn
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Thu, 29 Sep 2016 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.12.4-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Sun, 21 Feb 2016 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.12.3-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Sun, 19 Apr 2015 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.12.2-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Fri, 20 Mar 2015 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.12.1-0jammy) jammy; urgency=high
+
+  * updating outdated urls. fixes #52 <https://github.com/ros/common_msgs/issues/52>.
+  * Contributors: Tully Foote
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Mon, 16 Mar 2015 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.12.0-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Sun, 28 Dec 2014 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.11.6-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Mon, 03 Nov 2014 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.11.5-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Sun, 26 Oct 2014 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.11.4-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Wed, 18 Jun 2014 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.11.3-0jammy) jammy; urgency=high
+
+  * Export architecture_independent flag in package.xml
+  * Contributors: Scott K Logan
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Tue, 06 May 2014 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.11.2-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Wed, 23 Apr 2014 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.11.1-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Tue, 15 Apr 2014 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.11.0-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Mon, 03 Mar 2014 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.10.6-0jammy) jammy; urgency=high
+
+  * fix actionlib_msgs for dry
+  * use catkin_install_python() to install Python scripts #29 <https://github.com/ros/common_msgs/issues/29>
+  * Contributors: Dirk Thomas
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Wed, 26 Feb 2014 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.10.5-0jammy) jammy; urgency=high
+
+  * removing usage of catkin function not guaranteed available fixes #30 <https://github.com/ros/common_msgs/issues/30>
+  * Contributors: Tully Foote
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Mon, 24 Feb 2014 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.10.4-0jammy) jammy; urgency=high
+
+  * remove catkin usage from CMake extra file (fix #27 <https://github.com/ros/common_msgs/issues/27>)
+  * Contributors: Dirk Thomas
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Mon, 17 Feb 2014 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.10.3-0jammy) jammy; urgency=high
+
+  * python 3 compatibility
+  * prefix invocation of python script with PYTHON_EXECUTABLE (ros/genpy#23 <https://github.com/ros/genpy/issues/23>)
+  * make generated cmake relocatable
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Mon, 06 Jan 2014 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.10.2-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Sun, 18 Aug 2013 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.10.1-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Thu, 15 Aug 2013 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.10.0-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Fri, 12 Jul 2013 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.9.16-0jammy) jammy; urgency=high
+
+  * update email in package.xml
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Mon, 20 May 2013 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.9.15-0jammy) jammy; urgency=high
+
+  * fix handling spaces in folder names (ros/catkin#375 <https://github.com/ros/catkin/issues/375>)
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Thu, 07 Mar 2013 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.9.14-0jammy) jammy; urgency=high
+
+  * fix bug using ARGV in list(FIND) directly (ros/genmsg#18 <https://github.com/ros/genmsg/issues/18>)
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Fri, 18 Jan 2013 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.9.13-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Sat, 12 Jan 2013 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.9.12-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Tue, 01 Jan 2013 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.9.11-0jammy) jammy; urgency=high
+
+  * add message_generation as a run dep for downstream
+  * modified dep type of catkin
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Sun, 16 Dec 2012 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.9.10-0jammy) jammy; urgency=high
+
+  * add missing downstream depend
+  * switched from langs to message_* packages
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Wed, 12 Dec 2012 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.9.9-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Wed, 21 Nov 2012 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.9.8-0jammy) jammy; urgency=high
+
+  * add globbing for action files
+  * updated variable to latest catkin
+  * refactored extra file from 'in' to 'em'
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Tue, 13 Nov 2012 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.9.7-0jammy) jammy; urgency=high
+
+  * fix catkin function order
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Mon, 29 Oct 2012 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.9.6-0jammy) jammy; urgency=high
+
+  * updated cmake min version to 2.8.3, use cmake_parse_arguments instead of custom macro
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Wed, 17 Oct 2012 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.9.5-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Thu, 27 Sep 2012 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.9.4-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Thu, 27 Sep 2012 10:06:00 -0000
+
+ros-noetic-actionlib-msgs (1.9.3-0jammy) jammy; urgency=high
+
+  * cleanup
+  * updated to latest catkin
+  * fixed dependencies and more
+  * updated to latest catkin: created package.xmls, updated CmakeLists.txt
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Thu, 27 Sep 2012 09:39:00 -0000
+
+ros-noetic-actionlib-msgs (1.9.2-0jammy) jammy; urgency=high
+
+  * updated pkg-config in manifest.xml
+  * updated catkin variables
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Tue, 04 Sep 2012 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.9.1-0jammy) jammy; urgency=high
+
+  * use install destination variables, removed manual installation of manifests
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Mon, 03 Sep 2012 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.9.0-0jammy) jammy; urgency=high
+
+  * updated to current catkin
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Tue, 28 Aug 2012 16:00:00 -0000
+
+ros-noetic-actionlib-msgs (1.8.13-0jammy) jammy; urgency=high
+
+
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Thu, 26 Jul 2012 18:34:15 +0800
+
+ros-noetic-actionlib-msgs (1.8.8-0jammy) jammy; urgency=high
+
+  * make find_package REQUIRED
+  * removed obsolete catkin tag from manifest files
+  * Fix up install-time finding of script, plus add a missing genmsg import
+  * Convert legacy rosbuild support to use newer genaction.py script
+  * Expose old actionlib_msgs interface to dry users.  Dry actionlib builds and
+    tests cleanly.
+  * adding manifest exports
+  * removed depend, added catkin
+  * stripping depend and export tags from common_msgs manifests as msg dependencies are now declared in cmake and stack.yaml.  Also removed bag migration exports
+  * install a file that rosbuild users have hardcoded an include for
+  * bye bye vestigial MSG_DIRS
+  * rosbuild2 -> catkin
+  * no include dir in actionlib_msgs
+  * actionlib_msgs: getting rid of other build files
+  * adios rosbuild2 in manifest.xml
+  * catkin updates
+  * catkin_project
+  * catkin: only generate .msg files if .action file has changed
+  * catkin: changed actionlib_msg to generate .msg files at cmake time
+  * Integrate actionlib_msgs into catkin
+  * rosbuild2 on windows tweaks (more)
+  * rosbuild2 windows tweaks
+  * url fix
+  * removed extra slashes that caused trouble on OSX
+  * rosbuild2 taking shape
+  * rosbuild2 taking shape
+  * removing all the extra exports
+  * msg folder generation now parallel safe. #4286 <https://github.com/ros/common_msgs/issues/4286>
+  * Fixing build dependency race condition. Trac #4255 <https://github.com/ros/common_msgs/issues/4255>
+  * Added Ubuntu platform tags to manifest
+  * Now using /usr/bin/env python. Trac #3863 <https://github.com/ros/common_msgs/issues/3863>
+  * Copying action generators from actionlib to actionlib_msgs
+  * updating review status
+  * Updating actionlib_msgs comments (#3003 <https://github.com/ros/common_msgs/issues/3003>)
+  * filling out manifest
+  * Documenting GoalStatus message
+  * Forgot to commit files to actionlib_msgs
+  * Moving actionlib messages into common_msgs/actionlib_msgs. Trac #2504 <https://github.com/ros/common_msgs/issues/2504>
+
+ -- Michel Hidalgo <michel@ekumenlabs.com>  Tue, 12 Jun 2012 14:36:00 -0000
+
+

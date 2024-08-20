@@ -1,0 +1,295 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-bond (1.8.6-0jammy) jammy; urgency=high
+Author: Michael Carroll <michael@openrobotics.org>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-bond-1.8.6/BondSM.sm
+@@ -0,0 +1,38 @@
++// -*- tab-width: 4; -*-
++
++%start SM::WaitingForSister
++%class BondSM
++%header bondcpp/bond.h
++
++%map SM
++%%
++//		Transition				End State			Action(s)
++WaitingForSister {
++		SisterAlive				Alive				{ Connected(); }
++		SisterDead				Dead				{ Connected(); SisterDied(); Death(); }
++		ConnectTimeout			Dead				{ Death(); }
++		Die						Dead				{ Death(); }
++}
++Alive {
++		SisterAlive				Alive				{ Heartbeat(); }
++		SisterDead				Dead				{ SisterDied(); Death(); }
++		HeartbeatTimeout		Dead				{ Death(); }
++		Die						AwaitSisterDeath	{ StartDying(); }
++}
++AwaitSisterDeath {
++		SisterAlive				AwaitSisterDeath	{}
++		HeartbeatTimeout		AwaitSisterDeath	{}
++		Die						AwaitSisterDeath	{}
++		SisterDead				Dead				{ Death(); }
++		DisconnectTimeout		Dead				{ Death(); }
++}
++Dead {
++		SisterAlive				Dead				{}
++		SisterDead				Dead				{}
++		DisconnectTimeout		Dead				{}
++		HeartbeatTimeout		Dead				{}
++		ConnectTimeout			Dead				{}
++		Die						Dead				{}
++}
++
++%%
+--- /dev/null
++++ ros-noetic-bond-1.8.6/CHANGELOG.rst
+@@ -0,0 +1,124 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package bond
++^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++1.8.6 (2020-08-28)
++------------------
++
++1.8.5 (2020-05-14)
++------------------
++* Bump CMake minimum version to use CMP0048 (`#58 <https://github.com/ros/bond_core/issues/58>`_)
++* Contributors: Michael Carroll
++
++1.8.4 (2020-02-24)
++------------------
++* Make Michael Carroll the maintainer (`#40 <https://github.com/ros/bond_core/issues/40>`_)
++* Contributors: Mikael Arguedas
++
++1.8.3 (2018-08-17)
++------------------
++
++1.8.2 (2018-04-27)
++------------------
++
++1.8.1 (2017-10-27)
++------------------
++* fix package.xml to comply with schema (`#30 <https://github.com/ros/bond_core/issues/30>`_)
++* Contributors: Mikael Arguedas
++
++1.8.0 (2017-07-27)
++------------------
++* switch to package format 2 (`#27 <https://github.com/ros/bond_core/issues/27>`_)
++* Contributors: Mikael Arguedas
++
++1.7.19 (2017-03-27)
++-------------------
++
++1.7.18 (2016-10-24)
++-------------------
++
++1.7.17 (2016-03-15)
++-------------------
++* update maintainer
++* Contributors: Mikael Arguedas
++
++1.7.16 (2014-10-30)
++-------------------
++
++1.7.15 (2014-10-28)
++-------------------
++
++1.7.14 (2014-05-08)
++-------------------
++* Export architecture_independent flag in package.xml `#4 <https://github.com/ros/bond_core/pull/4>`_
++* Update maintainer field
++* Contributors: Esteve Fernandez, Scott K Logan, Vincent Rabaud
++
++1.7.13 (2013-08-21)
++-------------------
++
++1.7.12 (2013-06-06)
++-------------------
++
++1.7.11 (2013-03-13)
++-------------------
++
++1.7.10 (2013-01-13)
++-------------------
++
++1.7.9 (2012-12-27)
++------------------
++* modified dep type of catkin
++* Contributors: Dirk Thomas
++
++1.7.8 (2012-12-13)
++------------------
++* add missing downstream depend
++* switched from langs to message\_* packages
++* Contributors: Dirk Thomas
++
++1.7.7 (2012-12-06)
++------------------
++* Updated url tags in package.xml's  `#1 <https://github.com/ros/bond_core/pull/1>`_
++* Contributors: William Woodall
++
++1.7.6 (2012-10-30)
++------------------
++* fix catkin function order
++* Contributors: Dirk Thomas
++
++1.7.5 (2012-10-27)
++------------------
++* clean up package.xml files
++* Contributors: Dirk Thomas
++
++1.7.4 (2012-10-06)
++------------------
++
++1.7.3 (2012-10-02 00:19)
++------------------------
++
++1.7.2 (2012-10-02 00:06)
++------------------------
++* add the missing catkin dependency
++* Contributors: Vincent Rabaud
++
++1.7.1 (2012-10-01 19:00)
++------------------------
++
++1.7.0 (2012-10-01 16:51)
++------------------------
++* catkinize the package and bump to 1.7.0 even though it is not tagged yet
++* Modified bond's state machine to handle "alive" messages from the sibling when already dead.
++  --HG--
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk%4036189
++* Added global "bond_disable_heartbeat_timeout" parameter
++  --HG--
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk%4036106
++* The bond state machine more gracefully handles excessive requests to die.
++  --HG--
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk%4032653
++* Moving bond into common
++  --HG--
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk%4032634
++* Contributors: Vincent Rabaud, sglaser
+--- /dev/null
++++ ros-noetic-bond-1.8.6/CMakeLists.txt
+@@ -0,0 +1,14 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(bond)
++
++find_package(catkin REQUIRED message_generation std_msgs)
++
++add_message_files(DIRECTORY msg
++  FILES
++  Constants.msg
++  Status.msg
++)
++
++generate_messages(DEPENDENCIES std_msgs)
++
++catkin_package(CATKIN_DEPENDS message_runtime std_msgs)
+--- /dev/null
++++ ros-noetic-bond-1.8.6/mainpage.dox
+@@ -0,0 +1,26 @@
++/**
++\mainpage
++\htmlinclude manifest.html
++
++\b link is ... 
++
++<!-- 
++Provide an overview of your package.
++-->
++
++
++\section codeapi Code API
++
++<!--
++Provide links to specific auto-generated API documentation within your
++package that is of particular interest to a reader. Doxygen will
++document pretty much every part of your code, so do your best here to
++point the reader to the actual API.
++
++If your codebase is fairly large or has different sets of APIs, you
++should use the doxygen 'group' tag to keep these APIs together. For
++example, the roscpp documentation has 'libros' group.
++-->
++
++
++*/
+--- /dev/null
++++ ros-noetic-bond-1.8.6/msg/Constants.msg
+@@ -0,0 +1,7 @@
++float32 DEAD_PUBLISH_PERIOD = 0.05
++float32 DEFAULT_CONNECT_TIMEOUT = 10.0
++float32 DEFAULT_HEARTBEAT_TIMEOUT = 4.0
++float32 DEFAULT_DISCONNECT_TIMEOUT = 2.0
++float32 DEFAULT_HEARTBEAT_PERIOD = 1.0
++
++string DISABLE_HEARTBEAT_TIMEOUT_PARAM=/bond_disable_heartbeat_timeout
+\ No newline at end of file
+--- /dev/null
++++ ros-noetic-bond-1.8.6/msg/Status.msg
+@@ -0,0 +1,9 @@
++Header header
++string id  # ID of the bond
++string instance_id  # Unique ID for an individual in a bond
++bool active
++
++# Including the timeouts for the bond makes it easier to debug mis-matches
++# between the two sides.
++float32 heartbeat_timeout
++float32 heartbeat_period
+\ No newline at end of file
+--- /dev/null
++++ ros-noetic-bond-1.8.6/package.xml
+@@ -0,0 +1,31 @@
++<?xml version="1.0"?>
++<?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
++<package format="2">
++  <name>bond</name>
++  <version>1.8.6</version>
++  <description>
++    A bond allows two processes, A and B, to know when the other has
++    terminated, either cleanly or by crashing.  The bond remains
++    connected until it is either broken explicitly or until a
++    heartbeat times out.
++  </description>
++  <maintainer email="michael@openrobotics.org">Michael Carroll</maintainer>
++  <license>BSD</license>
++
++  <url type="website">http://www.ros.org/wiki/bond</url>
++  <url type="bugtracker">https://github.com/ros/bond_core/issues</url>
++  <url type="repository">https://github.com/ros/bond_core</url>
++  <author>Stuart Glaser</author>
++
++  <buildtool_depend>catkin</buildtool_depend>
++
++  <build_depend>message_generation</build_depend>
++  <build_depend>std_msgs</build_depend>
++
++  <exec_depend>message_runtime</exec_depend>
++  <exec_depend>std_msgs</exec_depend>
++
++  <export>
++    <architecture_independent/>
++  </export>
++</package>

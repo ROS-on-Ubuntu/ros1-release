@@ -1,0 +1,94 @@
+ros-noetic-rqt-gui-py (0.5.3-0jammy) jammy; urgency=high
+
+  * Update maintainers (#233 <https://github.com/ros-visualization/rqt/issues/233>) (#237 <https://github.com/ros-visualization/rqt/issues/237>)
+  * Contributors: Michael Jeronimo
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Thu, 24 Mar 2022 16:00:00 -0000
+
+ros-noetic-rqt-gui-py (0.5.2-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Thu, 11 Jun 2020 16:00:00 -0000
+
+ros-noetic-rqt-gui-py (0.5.1-0jammy) jammy; urgency=high
+
+  * bump CMake minimum version to avoid CMP0048 warning (#219 <https://github.com/ros-visualization/rqt/issues/219>)
+  * style changes (#143 <https://github.com/ros-visualization/rqt/issues/143>)
+  * autopep8 (#137 <https://github.com/ros-visualization/rqt/issues/137>)
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Mon, 09 Mar 2020 16:00:00 -0000
+
+ros-noetic-rqt-gui-py (0.5.0-0jammy) jammy; urgency=high
+
+  * version bump to match version of migrated package rqt_py_common
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Sun, 23 Apr 2017 16:00:00 -0000
+
+ros-noetic-rqt-gui-py (0.3.2-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Mon, 23 Jan 2017 16:00:00 -0000
+
+ros-noetic-rqt-gui-py (0.3.1-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Thu, 31 Mar 2016 16:00:00 -0000
+
+ros-noetic-rqt-gui-py (0.3.0-0jammy) jammy; urgency=high
+
+  * switch to Qt5 (#106 <https://github.com/ros-visualization/rqt/pull/106>)
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Thu, 31 Mar 2016 16:00:00 -0000
+
+ros-noetic-rqt-gui-py (0.2.14-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Mon, 03 Mar 2014 16:00:00 -0000
+
+ros-noetic-rqt-gui-py (0.2.13-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Tue, 07 Jan 2014 16:00:00 -0000
+
+ros-noetic-rqt-gui-py (0.2.12-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Tue, 08 Oct 2013 16:00:00 -0000
+
+ros-noetic-rqt-gui-py (0.2.11-0jammy) jammy; urgency=high
+
+  * detect master with background thread (ros-visualization/rqt_common_plugins#169 <https://github.com/ros-visualization/rqt_common_plugins/issues/169>)
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Thu, 05 Sep 2013 16:00:00 -0000
+
+ros-noetic-rqt-gui-py (0.2.10-0jammy) jammy; urgency=high
+
+  * check for master before loading a plugin and ask the user if not found (#67 <https://github.com/ros-visualization/rqt/issues/67>)
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Tue, 20 Aug 2013 16:00:00 -0000
+
+ros-noetic-rqt-gui-py (0.2.9-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Wed, 05 Jun 2013 16:00:00 -0000
+
+ros-noetic-rqt-gui-py (0.2.8-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Thu, 10 Jan 2013 16:00:00 -0000
+
+ros-noetic-rqt-gui-py (0.2.7-0jammy) jammy; urgency=high
+
+  * first public release for Groovy
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Sun, 30 Dec 2012 16:00:00 -0000
+
+

@@ -1,0 +1,110 @@
+ros-noetic-angles (1.9.13-0jammy) jammy; urgency=high
+
+  * Update the angle normalization function to a simpler implementation (#19 <https://github.com/ros/angles/issues/19>)
+    * Update the angle normalization function for a simpler alternative
+    * Simplify 2*pi angle wrapping.
+    * Simplify/fasten the C++ implementation of angle normalization (removes one fmod call)
+  * Bump CMake version to avoid CMP0048 warning (#20 <https://github.com/ros/angles/issues/20>)
+  * Contributors: Alexis Paques, Shane Loretz
+
+ -- Tully Foote <tfoote@osrfoundation.org>  Tue, 10 Mar 2020 16:00:00 -0000
+
+ros-noetic-angles (1.9.12-0jammy) jammy; urgency=high
+
+  * Added support for "large limits" (#16 <https://github.com/ros/angles/issues/16>)
+  * Small documentation updates.
+  * Contributors: Franco Fusco, Tully Foote
+
+ -- Tully Foote <tfoote@osrfoundation.org>  Tue, 07 Jan 2020 16:00:00 -0000
+
+ros-noetic-angles (1.9.11-0jammy) jammy; urgency=high
+
+  * Add a python implementation of angles
+  * Do not use catkin_add_gtest if CATKIN_ENABLE_TESTING
+  * Contributors: David V. Lu, David V. Lu!!, Ryohei Ueda
+
+ -- Tully Foote <tfoote@osrfoundation.org>  Thu, 13 Apr 2017 16:00:00 -0000
+
+ros-noetic-angles (1.9.10-0jammy) jammy; urgency=high
+
+  * Export architecture_independent flag in package.xml
+  * Simply and improve performance of shortest_angular_distance(). adding two unit test cases
+  * check for CATKIN_ENABLE_TESTING
+  * Contributors: Derek King, Lukas Bulwahn, Scott K Logan, Tully Foote
+
+ -- Tully Foote <tfoote@osrfoundation.org>  Sun, 28 Dec 2014 16:00:00 -0000
+
+ros-noetic-angles (1.9.9-0jammy) jammy; urgency=high
+
+  * catkin as a buildtool dependency
+  * Contributors: Tully Foote
+
+ -- Tully Foote <tfoote@osrfoundation.org>  Fri, 22 Mar 2013 16:00:00 -0000
+
+ros-noetic-angles (1.9.8-0jammy) jammy; urgency=high
+
+  * Removed 'copyright' tag from package.xml
+  * Contributors: William Woodall
+
+ -- Tully Foote <tfoote@osrfoundation.org>  Tue, 04 Dec 2012 16:00:00 -0000
+
+ros-noetic-angles (1.9.7-0jammy) jammy; urgency=high
+
+  * fix typo
+  * Contributors: Vincent Rabaud
+
+ -- Tully Foote <tfoote@osrfoundation.org>  Tue, 02 Oct 2012 13:23:00 -0000
+
+ros-noetic-angles (1.9.6-0jammy) jammy; urgency=high
+
+  * comply to the new catkin API
+  * Contributors: Vincent Rabaud
+
+ -- Tully Foote <tfoote@osrfoundation.org>  Tue, 02 Oct 2012 07:39:00 -0000
+
+ros-noetic-angles (1.9.5-0jammy) jammy; urgency=high
+
+  * fixes to build
+  * Contributors: Ioan Sucan
+
+ -- Tully Foote <tfoote@osrfoundation.org>  Sun, 16 Sep 2012 10:11:00 -0000
+
+ros-noetic-angles (1.9.4-0jammy) jammy; urgency=high
+
+  * rename the include folder to angles as it should be
+  * Contributors: Vincent Rabaud
+
+ -- Tully Foote <tfoote@osrfoundation.org>  Sat, 15 Sep 2012 17:24:00 -0000
+
+ros-noetic-angles (1.9.3-0jammy) jammy; urgency=high
+
+  * fix relative path
+  * Contributors: Ioan Sucan
+
+ -- Tully Foote <tfoote@osrfoundation.org>  Sun, 02 Sep 2012 16:55:00 -0000
+
+ros-noetic-angles (1.9.2-0jammy) jammy; urgency=high
+
+
+
+ -- Tully Foote <tfoote@osrfoundation.org>  Sun, 02 Sep 2012 16:32:00 -0000
+
+ros-noetic-angles (1.9.1-0jammy) jammy; urgency=high
+
+  * add proper manifest
+  * Contributors: Ioan Sucan
+
+ -- Tully Foote <tfoote@osrfoundation.org>  Mon, 23 Jul 2012 16:00:00 -0000
+
+ros-noetic-angles (1.9.0-0jammy) jammy; urgency=high
+
+  * fix the test for the new headers
+  * fix the guard
+  * package builds with catkin
+  * remove useless header
+  * copying from geometry/
+  * Contributors: Ioan Sucan, Vincent Rabaud
+
+ -- Tully Foote <tfoote@osrfoundation.org>  Sun, 22 Jul 2012 16:00:00 -0000
+
+

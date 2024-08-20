@@ -1,0 +1,905 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-bondpy (1.8.6-0jammy) jammy; urgency=high
+ .
+   * bondpy: Prevent exception in Bond.shutdown() (#62 <https://github.com/ros/bond_core/issues/62>)
+   * Contributors: Martin Pecka
+Author: Michael Carroll <michael@openrobotics.org>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-bondpy-1.8.6/CHANGELOG.rst
+@@ -0,0 +1,175 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package bondpy
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++1.8.6 (2020-08-28)
++------------------
++* bondpy: Prevent exception in Bond.shutdown() (`#62 <https://github.com/ros/bond_core/issues/62>`_)
++* Contributors: Martin Pecka
++
++1.8.5 (2020-05-14)
++------------------
++* Use setuptools instead of distutils (`#61 <https://github.com/ros/bond_core/issues/61>`_)
++* Bump CMake minimum version to use CMP0048 (`#58 <https://github.com/ros/bond_core/issues/58>`_)
++* Contributors: Alejandro Hernández Cordero, Michael Carroll
++
++1.8.4 (2020-02-24)
++------------------
++* Fix import (`#48 <https://github.com/ros/bond_core/issues/48>`_)
++* Make Michael Carroll the maintainer (`#40 <https://github.com/ros/bond_core/issues/40>`_)
++* Contributors: Markus Grimm, Mikael Arguedas
++
++1.8.3 (2018-08-17)
++------------------
++
++1.8.2 (2018-04-27)
++------------------
++
++1.8.1 (2017-10-27)
++------------------
++* fix package.xml to comply with schema (`#30 <https://github.com/ros/bond_core/issues/30>`_)
++* Contributors: Mikael Arguedas
++
++1.8.0 (2017-07-27)
++------------------
++* switch to package format 2 (`#27 <https://github.com/ros/bond_core/issues/27>`_)
++* Closer to pep8 compliance (`#25 <https://github.com/ros/bond_core/issues/25>`_)
++* Python3 compatibility (`#24 <https://github.com/ros/bond_core/issues/24>`_)
++* Fixes problem with bondpy not exiting with the node (`#21 <https://github.com/ros/bond_core/issues/21>`_)
++* Contributors: Aaron Miller, Mikael Arguedas
++
++1.7.19 (2017-03-27)
++-------------------
++
++1.7.18 (2016-10-24)
++-------------------
++
++1.7.17 (2016-03-15)
++-------------------
++* Queue size for a publisher `#10 <https://github.com/ros/bond_core/issues/10>`_
++  Squash the warning.
++* update maintainer
++* Made code a bit more readable `#12 <https://github.com/ros/bond_core/pull/12>`_
++* made local timer a member so we can cancel it during shutdown `#11 <https://github.com/ros/bond_core/pull/11>`_
++* Contributors: Daniel Stonier, Esteve Fernandez, Hugo Boyer, Mikael Arguedas
++
++1.7.16 (2014-10-30)
++-------------------
++
++1.7.15 (2014-10-28)
++-------------------
++
++1.7.14 (2014-05-08)
++-------------------
++* Export architecture_independent flag in package.xml `#4 <https://github.com/ros/bond_core/pull/4>`_
++* bondpy: Add catkin_package call to CMakeLists.txt `#3 <https://github.com/ros/bond_core/pull/3>`_
++  If catkin_package is not called, the package.xml is not installed
++* Update maintainer field
++* Contributors: Esteve Fernandez, Scott K Logan, Vincent Rabaud
++
++1.7.13 (2013-08-21)
++-------------------
++
++1.7.12 (2013-06-06)
++-------------------
++
++1.7.11 (2013-03-13)
++-------------------
++
++1.7.10 (2013-01-13)
++-------------------
++
++1.7.9 (2012-12-27)
++------------------
++* fix wrong module for Duration
++* add missing dep on rospy
++* modified dep type of catkin
++* Contributors: Dirk Thomas
++
++1.7.8 (2012-12-13)
++------------------
++* update setup() to use generate_distutils_setup
++* Contributors: Dirk Thomas
++
++1.7.7 (2012-12-06)
++------------------
++* Updated url tags in package.xml's `#1 <https://github.com/ros/bond_core/pull/1>`_
++* Contributors: William Woodall
++
++1.7.6 (2012-10-30)
++------------------
++* fix catkin function order
++* Contributors: Dirk Thomas
++
++1.7.5 (2012-10-27)
++------------------
++* clean up package.xml files
++* fixed python module import
++* updated setup.py files
++* Contributors: Dirk Thomas
++
++1.7.4 (2012-10-06)
++------------------
++
++1.7.3 (2012-10-02 00:19)
++------------------------
++* fix package building issues
++* Contributors: Vincent Rabaud
++
++1.7.2 (2012-10-02 00:06)
++------------------------
++* add the missing catkin dependency
++* Contributors: Vincent Rabaud
++
++1.7.1 (2012-10-01 19:00)
++------------------------
++
++1.7.0 (2012-10-01 16:51)
++------------------------
++* catkinize the package and bump to 1.7.0 even though it is not tagged yet
++* Reverting all changes that were meant to debug test failures on the build farm.
++  --HG--
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk%4036308
++* More testing bond on the build farm: being careful to shutdown bond instances between tests.
++  --HG--
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk%4036300
++* bond tests: debugging around the message publishing.
++  --HG--
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk%4036262
++* Bond tests: debugging around state transition
++  --HG--
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk%4036259
++* bump.  Just making the build farm build again
++  --HG--
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk%4036258
++* bond tests: typo
++  --HG--
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk%4036257
++* Bond: debug info about status message.  Still tracking down test errors on the build farm
++  --HG--
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk%4036256
++* More debug info for tracking down test failures in the build farm.
++  --HG--
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk%4036255
++* Modified bond's state machine to handle "alive" messages from the sibling when already dead.
++  --HG--
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk%4036189
++* Added global "bond_disable_heartbeat_timeout" parameter
++  --HG--
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk%4036106
++* In bond, wait_until_formed and wait_until_broken terminate when ROS shuts down.
++  --HG--
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk%4035632
++* removed wiki syntax from description
++  --HG--
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk%4035392
++* Creating package descriptions for bondpy, bondcpp, and test_bond.
++  --HG--
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk%4035354
++* The bond state machine more gracefully handles excessive requests to die.
++  --HG--
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk%4032653
++* Moving bond into common
++  --HG--
++  extra : convert_revision : svn%3Aeb33c2ac-9c88-4c90-87e0-44a10359b0c3/stacks/common/trunk%4032634
++* Contributors: Vincent Rabaud, kwc, sglaser
+--- /dev/null
++++ ros-noetic-bondpy-1.8.6/CMakeLists.txt
+@@ -0,0 +1,8 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(bondpy)
++
++find_package(catkin REQUIRED)
++
++catkin_python_setup()
++
++catkin_package()
+--- /dev/null
++++ ros-noetic-bondpy-1.8.6/mainpage.dox
+@@ -0,0 +1,26 @@
++/**
++\mainpage
++\htmlinclude manifest.html
++
++\b linkpy is ... 
++
++<!-- 
++Provide an overview of your package.
++-->
++
++
++\section codeapi Code API
++
++<!--
++Provide links to specific auto-generated API documentation within your
++package that is of particular interest to a reader. Doxygen will
++document pretty much every part of your code, so do your best here to
++point the reader to the actual API.
++
++If your codebase is fairly large or has different sets of APIs, you
++should use the doxygen 'group' tag to keep these APIs together. For
++example, the roscpp documentation has 'libros' group.
++-->
++
++
++*/
+--- /dev/null
++++ ros-noetic-bondpy-1.8.6/package.xml
+@@ -0,0 +1,36 @@
++<?xml version="1.0"?>
++<?xml-model
++  href="http://download.ros.org/schema/package_format3.xsd"
++  schematypens="http://www.w3.org/2001/XMLSchema"?>
++<package format="3">
++  <name>bondpy</name>
++  <version>1.8.6</version>
++  <description>
++    Python implementation of bond, a mechanism for checking when
++    another process has terminated.
++  </description>
++  <maintainer email="michael@openrobotics.org">Michael Carroll</maintainer>
++  <license>BSD</license>
++
++  <url type="website">http://www.ros.org/wiki/bondpy</url>
++  <url type="bugtracker">https://github.com/ros/bond_core/issues</url>
++  <url type="repository">https://github.com/ros/bond_core</url>
++  <author>Stuart Glaser</author>
++
++  <buildtool_depend>catkin</buildtool_depend>
++
++  <build_depend>bond</build_depend>
++  <build_depend>rospy</build_depend>
++  <build_depend>smclib</build_depend>
++
++  <exec_depend>rospy</exec_depend>
++  <exec_depend>smclib</exec_depend>
++  <exec_depend>uuid</exec_depend>
++
++  <buildtool_depend condition="$ROS_PYTHON_VERSION == 2">python-setuptools</buildtool_depend>
++  <buildtool_depend condition="$ROS_PYTHON_VERSION == 3">python3-setuptools</buildtool_depend>
++
++  <export>
++    <architecture_independent/>
++  </export>
++</package>
+--- /dev/null
++++ ros-noetic-bondpy-1.8.6/python/bondpy/BondSM_sm.py
+@@ -0,0 +1,235 @@
++# ex: set ro:
++# DO NOT EDIT.
++# generated by smc (http://smc.sourceforge.net/)
++# from file : BondSM_sm.sm
++
++from smclib import statemap
++
++
++class BondSMState(statemap.State):
++
++    def Entry(self, fsm):
++        pass
++
++    def Exit(self, fsm):
++        pass
++
++    def ConnectTimeout(self, fsm):
++        self.Default(fsm)
++
++    def Die(self, fsm):
++        self.Default(fsm)
++
++    def DisconnectTimeout(self, fsm):
++        self.Default(fsm)
++
++    def HeartbeatTimeout(self, fsm):
++        self.Default(fsm)
++
++    def SisterAlive(self, fsm):
++        self.Default(fsm)
++
++    def SisterDead(self, fsm):
++        self.Default(fsm)
++
++    def Default(self, fsm):
++        msg = "\n\tState: %s\n\tTransition: %s" % (
++            fsm.getState().getName(), fsm.getTransition())
++        raise statemap.TransitionUndefinedException(msg)
++
++
++class SM_Default(BondSMState):
++    pass
++
++
++class SM_WaitingForSister(SM_Default):
++
++    def ConnectTimeout(self, fsm):
++        ctxt = fsm.getOwner()
++        fsm.getState().Exit(fsm)
++        fsm.clearState()
++        try:
++            ctxt.Death()
++        finally:
++            fsm.setState(SM.Dead)
++            fsm.getState().Entry(fsm)
++
++    def Die(self, fsm):
++        ctxt = fsm.getOwner()
++        fsm.getState().Exit(fsm)
++        fsm.clearState()
++        try:
++            ctxt.Death()
++        finally:
++            fsm.setState(SM.Dead)
++            fsm.getState().Entry(fsm)
++
++    def SisterAlive(self, fsm):
++        ctxt = fsm.getOwner()
++        fsm.getState().Exit(fsm)
++        fsm.clearState()
++        try:
++            ctxt.Connected()
++        finally:
++            fsm.setState(SM.Alive)
++            fsm.getState().Entry(fsm)
++
++    def SisterDead(self, fsm):
++        ctxt = fsm.getOwner()
++        fsm.getState().Exit(fsm)
++        fsm.clearState()
++        try:
++            ctxt.Connected()
++            ctxt.SisterDied()
++            ctxt.Death()
++        finally:
++            fsm.setState(SM.Dead)
++            fsm.getState().Entry(fsm)
++
++
++class SM_Alive(SM_Default):
++
++    def Die(self, fsm):
++        ctxt = fsm.getOwner()
++        fsm.getState().Exit(fsm)
++        fsm.clearState()
++        try:
++            ctxt.StartDying()
++        finally:
++            fsm.setState(SM.AwaitSisterDeath)
++            fsm.getState().Entry(fsm)
++
++    def HeartbeatTimeout(self, fsm):
++        ctxt = fsm.getOwner()
++        fsm.getState().Exit(fsm)
++        fsm.clearState()
++        try:
++            ctxt.Death()
++        finally:
++            fsm.setState(SM.Dead)
++            fsm.getState().Entry(fsm)
++
++    def SisterAlive(self, fsm):
++        ctxt = fsm.getOwner()
++        fsm.getState().Exit(fsm)
++        fsm.clearState()
++        try:
++            ctxt.Heartbeat()
++        finally:
++            fsm.setState(SM.Alive)
++            fsm.getState().Entry(fsm)
++
++    def SisterDead(self, fsm):
++        ctxt = fsm.getOwner()
++        fsm.getState().Exit(fsm)
++        fsm.clearState()
++        try:
++            ctxt.SisterDied()
++            ctxt.Death()
++        finally:
++            fsm.setState(SM.Dead)
++            fsm.getState().Entry(fsm)
++
++
++class SM_AwaitSisterDeath(SM_Default):
++
++    def Die(self, fsm):
++        fsm.getState().Exit(fsm)
++        fsm.setState(SM.AwaitSisterDeath)
++        fsm.getState().Entry(fsm)
++
++    def DisconnectTimeout(self, fsm):
++        ctxt = fsm.getOwner()
++        fsm.getState().Exit(fsm)
++        fsm.clearState()
++        try:
++            ctxt.Death()
++        finally:
++            fsm.setState(SM.Dead)
++            fsm.getState().Entry(fsm)
++
++    def HeartbeatTimeout(self, fsm):
++        fsm.getState().Exit(fsm)
++        fsm.setState(SM.AwaitSisterDeath)
++        fsm.getState().Entry(fsm)
++
++    def SisterAlive(self, fsm):
++        fsm.getState().Exit(fsm)
++        fsm.setState(SM.AwaitSisterDeath)
++        fsm.getState().Entry(fsm)
++
++    def SisterDead(self, fsm):
++        ctxt = fsm.getOwner()
++        fsm.getState().Exit(fsm)
++        fsm.clearState()
++        try:
++            ctxt.Death()
++        finally:
++            fsm.setState(SM.Dead)
++            fsm.getState().Entry(fsm)
++
++
++class SM_Dead(SM_Default):
++
++    def ConnectTimeout(self, fsm):
++        fsm.getState().Exit(fsm)
++        fsm.setState(SM.Dead)
++        fsm.getState().Entry(fsm)
++
++    def Die(self, fsm):
++        fsm.getState().Exit(fsm)
++        fsm.setState(SM.Dead)
++        fsm.getState().Entry(fsm)
++
++    def DisconnectTimeout(self, fsm):
++        fsm.getState().Exit(fsm)
++        fsm.setState(SM.Dead)
++        fsm.getState().Entry(fsm)
++
++    def HeartbeatTimeout(self, fsm):
++        fsm.getState().Exit(fsm)
++        fsm.setState(SM.Dead)
++        fsm.getState().Entry(fsm)
++
++    def SisterAlive(self, fsm):
++        fsm.getState().Exit(fsm)
++        fsm.setState(SM.Dead)
++        fsm.getState().Entry(fsm)
++
++    def SisterDead(self, fsm):
++        fsm.getState().Exit(fsm)
++        fsm.setState(SM.Dead)
++        fsm.getState().Entry(fsm)
++
++
++class SM(object):
++
++    WaitingForSister = SM_WaitingForSister('SM.WaitingForSister', 0)
++    Alive = SM_Alive('SM.Alive', 1)
++    AwaitSisterDeath = SM_AwaitSisterDeath('SM.AwaitSisterDeath', 2)
++    Dead = SM_Dead('SM.Dead', 3)
++    Default = SM_Default('SM.Default', -1)
++
++
++class BondSM_sm(statemap.FSMContext):
++
++    def __init__(self, owner):
++        statemap.FSMContext.__init__(self, SM.WaitingForSister)
++        self._owner = owner
++
++    def __getattr__(self, attrib):
++        def trans_sm(*arglist):
++            self._transition = attrib
++            getattr(self.getState(), attrib)(self, *arglist)
++            self._transition = None
++        return trans_sm
++
++    def enterStartState(self):
++        self._state.Entry(self)
++
++    def getOwner(self):
++        return self._owner
++
++# Local variables:
++#  buffer-read-only: t
++# End:
+--- /dev/null
++++ ros-noetic-bondpy-1.8.6/python/bondpy/bondpy.py
+@@ -0,0 +1,366 @@
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions are met:
++#
++#     * Redistributions of source code must retain the above copyright
++#       notice, this list of conditions and the following disclaimer.
++#     * Redistributions in binary form must reproduce the above copyright
++#       notice, this list of conditions and the following disclaimer in the
++#       documentation and/or other materials provided with the distribution.
++#     * Neither the name of the Willow Garage, Inc. nor the names of its
++#       contributors may be used to endorse or promote products derived from
++#       this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++## \author Stuart Glaser
++
++import threading
++import time
++import uuid
++
++import rospy
++
++from . import BondSM_sm
++
++from bond.msg import Constants, Status
++
++
++def as_ros_duration(d):
++    if not isinstance(d, rospy.Duration):
++        return rospy.Duration.from_sec(d)
++    return d
++
++
++def as_float_duration(d):
++    if isinstance(d, rospy.Duration):
++        return d.to_sec()
++    return d
++
++
++## Internal use only
++class Timeout:
++    def __init__(self, duration, on_timeout=None):
++        self.duration = duration
++        self.timer = threading.Timer(0, self._on_timer)
++        self.timer.daemon = True
++        self.deadline = time.time()
++        self.on_timeout = on_timeout
++
++    def reset(self):
++        self.timer.cancel()
++        self.timer = threading.Timer(self.duration.to_sec(), self._on_timer)
++        self.timer.daemon = True
++        self.timer.start()
++        self.deadline = time.time() + self.duration.to_sec()
++        return self
++
++    def cancel(self):
++        self.timer.cancel()
++
++    def left(self):
++        return max(rospy.Duration(0), rospy.Duration(self.deadline - time.time()))
++
++    def _on_timer(self):
++        if self.on_timeout:
++            self.on_timeout()
++
++
++## \brief Forms a bond to monitor another process.
++#
++# The Bond class implements a bond, allowing you to monitor another
++# process and be notified when it dies.  In turn, it will be notified
++# when you die.
++class Bond(object):
++    ## \brief Constructs a bond, but does not connect.
++    #
++    # \param topic The topic used to exchange the bond status messages.
++    # \param id The ID of the bond, which should match the ID used on
++    #           the sister's end
++    # \param on_broken callback that will be called when the bond is broken.
++    # \param on_formed callback that will be called when the bond is formed.
++    def __init__(self, topic, id, on_broken=None, on_formed=None):
++        self.__started = False
++        self.topic = topic
++        self.id = id
++        self.instance_id = str(uuid.uuid4())
++        self.sister_instance_id = None
++        self.on_broken = on_broken
++        self.on_formed = on_formed
++        self.is_shutdown = False
++        self.sister_died_first = False
++        # Timeout for wait_until_formed
++        self.deadline = None
++
++        # Callbacks must be called outside of the locks and after the
++        # state machine finishes transitioning.
++        self.pending_callbacks = []
++
++        self.sm = BondSM_sm.BondSM_sm(self)
++        # self.sm.setDebugFlag(True)
++        self.lock = threading.RLock()
++        self.condition = threading.Condition(self.lock)
++
++        # Sets the default timeout values
++        self.connect_timeout = Constants.DEFAULT_CONNECT_TIMEOUT
++        self.heartbeat_timeout = Constants.DEFAULT_HEARTBEAT_TIMEOUT
++        self.disconnect_timeout = Constants.DEFAULT_DISCONNECT_TIMEOUT
++        self.heartbeat_period = Constants.DEFAULT_HEARTBEAT_PERIOD
++
++        self.sub = None
++
++        # queue_size 1 : avoid having a client receive backed up, potentially
++        # late heartbearts, discussion@https://github.com/ros/bond_core/pull/10
++        self.pub = rospy.Publisher(self.topic, Status, queue_size=1)
++
++    def get_connect_timeout(self):
++        return self.__connect_timeout
++
++    def set_connect_timeout(self, dur):
++        assert not self.__started
++        self.__connect_timeout = dur
++        self.connect_timer = Timeout(as_ros_duration(dur), self._on_connect_timeout)
++    connect_timeout = property(get_connect_timeout, set_connect_timeout)
++
++    def get_heartbeat_timeout(self):
++        return self.__heartbeat_timeout
++
++    def set_heartbeat_timeout(self, dur):
++        assert not self.__started
++        self.__heartbeat_timeout = dur
++        self.heartbeat_timer = Timeout(as_ros_duration(dur), self._on_heartbeat_timeout)
++    heartbeat_timeout = property(get_heartbeat_timeout, set_heartbeat_timeout)
++
++    def get_disconnect_timeout(self):
++        return self.__disconnect_timeout
++
++    def set_disconnect_timeout(self, dur):
++        assert not self.__started
++        self.__disconnect_timeout = dur
++        self.disconnect_timer = Timeout(as_ros_duration(dur), self._on_disconnect_timeout)
++    disconnect_timeout = property(get_disconnect_timeout, set_disconnect_timeout)
++
++    def get_heartbeat_period(self):
++        return self.__heartbeat_period
++
++    def set_heartbeat_period(self, per):
++        assert not self.__started
++        self.__heartbeat_period = as_float_duration(per)
++    heartbeat_period = property(get_heartbeat_period, set_heartbeat_period)
++
++    ## \brief Starts the bond and connects to the sister process.
++    def start(self):
++        with self.lock:
++            self.connect_timer.reset()
++            self.sub = rospy.Subscriber(self.topic, Status, self._on_bond_status)
++
++            self.thread = threading.Thread(target=self._publishing_thread)
++            self.thread.daemon = True
++            self.thread.start()
++            self.__started = True
++
++    def _on_connect_timeout(self):
++        with self.lock:
++            self.sm.ConnectTimeout()
++        self._flush_pending_callbacks()
++
++    def _on_heartbeat_timeout(self):
++        # Checks that heartbeat timeouts haven't been disabled globally
++        disable_heartbeat_timeout = rospy.get_param(
++            Constants.DISABLE_HEARTBEAT_TIMEOUT_PARAM, False)
++        if disable_heartbeat_timeout:
++            rospy.logwarn(
++                "Heartbeat timeout is disabled.  Not breaking bond (topic: %s, id: %s)" %
++                (self.topic, self.id))
++            return
++
++        with self.lock:
++            self.sm.HeartbeatTimeout()
++        self._flush_pending_callbacks()
++
++    def _on_disconnect_timeout(self):
++        with self.lock:
++            self.sm.DisconnectTimeout()
++        self._flush_pending_callbacks()
++
++    def __del__(self):
++        self.shutdown()
++
++    def shutdown(self):
++        if not self.is_shutdown:
++            if self.sub is not None:
++                self.sub.unregister()
++            with self.lock:
++                self.is_shutdown = True
++                if self.sm.getState().getName() != 'SM.Dead':
++                    self.break_bond()
++                self.pub.unregister()
++                self.condition.notify_all()
++                self.connect_timer.cancel()
++                if self.deadline:
++                    self.deadline.cancel()
++
++    def _on_bond_status(self, msg):
++        # Filters out messages from other bonds and messages from ourself
++        if msg.id == self.id and msg.instance_id != self.instance_id:
++            with self.lock:
++                if not self.sister_instance_id:
++                    self.sister_instance_id = msg.instance_id
++
++                if msg.instance_id != self.sister_instance_id:
++                    rospy.logerr(
++                        "More than two locations are trying to use a single bond (topic: %s, id: %s).  " +
++                        "You should only instantiate at most two bond instances for each (topic, id) pair." %
++                        (self.topic, self.id))
++                    return
++
++                if msg.active:
++                    self.sm.SisterAlive()
++                else:
++                    self.sm.SisterDead()
++
++                    # Immediate ack for sister's death notification
++                    if self.sister_died_first:
++                        self._publish(False)
++            self._flush_pending_callbacks()
++
++    def _publish(self, active):
++        msg = Status()
++        msg.header.stamp = rospy.Time.now()
++        msg.id = self.id
++        msg.instance_id = self.instance_id
++        msg.active = active
++        msg.heartbeat_timeout = self.heartbeat_timeout
++        msg.heartbeat_period = self.heartbeat_period
++        self.pub.publish(msg)
++
++    def _publishing_thread(self):
++        with self.lock:
++            # Publishing ALIVE
++            while not self.is_shutdown and self.sm.getState().getName() in ['SM.WaitingForSister', 'SM.Alive']:
++                self._publish(True)
++                self.condition.wait(self.heartbeat_period)
++
++            # Publishing DEAD
++            while not self.is_shutdown and self.sm.getState().getName() == 'SM.AwaitSisterDeath':
++                self._publish(False)
++                self.condition.wait(Constants.DEAD_PUBLISH_PERIOD)
++
++    def _flush_pending_callbacks(self):
++        callbacks = []
++        with self.lock:
++            callbacks = self.pending_callbacks
++            self.pending_callbacks = []
++        for c in callbacks:
++            c()
++
++    ## \brief INTERNAL
++    def Connected(self):
++        self.connect_timer.cancel()
++        self.condition.notify_all()
++        if self.on_formed:
++            self.pending_callbacks.append(self.on_formed)
++
++    ## \brief INTERNAL
++    def Heartbeat(self):
++        self.heartbeat_timer.reset()
++
++    ## \brief INTERNAL
++    def SisterDied(self):
++        self.sister_died_first = True
++
++    ## \brief INTERNAL
++    def Death(self):
++        self.condition.notify_all()
++        self.heartbeat_timer.cancel()
++        self.disconnect_timer.cancel()
++        if self.on_broken:
++            self.pending_callbacks.append(self.on_broken)
++
++    ## \brief INTERNAL
++    def StartDying(self):
++        self.heartbeat_timer.cancel()
++        self.disconnect_timer.reset()
++
++    ## \brief Sets the formed callback
++    def set_formed_callback(self, on_formed):
++        with self.lock:
++            self.on_formed = on_formed
++
++    ## \brief Sets the broken callback
++    def set_broken_callback(self, on_broken):
++        with self.lock:
++            self.on_broken = on_broken
++
++    ## \brief Blocks until the bond is formed for at most 'duration'.
++    #
++    # \param timeout Maximum duration to wait.  If None then this call will not timeout.
++    # \return true iff the bond has been formed.
++    def wait_until_formed(self, timeout=None):
++        if self.deadline:
++            self.deadline.cancel()
++            self.deadline = None
++        if timeout:
++            self.deadline = Timeout(timeout).reset()
++        with self.lock:
++            while self.sm.getState().getName() == 'SM.WaitingForSister':
++                if rospy.is_shutdown():
++                    break
++                if self.deadline and self.deadline.left() == rospy.Duration(0):
++                    break
++                wait_duration = 0.1
++                if self.deadline:
++                    wait_duration = min(wait_duration, self.deadline.left().to_sec())
++                self.condition.wait(wait_duration)
++            return self.sm.getState().getName() != 'SM.WaitingForSister'
++
++    ## \brief Blocks until the bond is broken for at most 'duration'.
++    #
++    # \param timeout Maximum duration to wait.  If None then this call will not timeout.
++    # \return true iff the bond has been broken, even if it has never been formed.
++    def wait_until_broken(self, timeout=None):
++        if self.deadline:
++            self.deadline.cancel()
++            self.deadline = None
++        if timeout:
++            self.deadline = Timeout(timeout).reset()
++        with self.lock:
++            while self.sm.getState().getName() != 'SM.Dead':
++                if rospy.is_shutdown():
++                    break
++                if self.deadline and self.deadline.left() == rospy.Duration(0):
++                    break
++                wait_duration = 0.1
++                if self.deadline:
++                    wait_duration = min(wait_duration, self.deadline.left().to_sec())
++                self.condition.wait(wait_duration)
++            return self.sm.getState().getName() == 'SM.Dead'
++
++    ## \brief Indicates if the bond is broken
++    # \return true iff the bond has been broken.
++    def is_broken(self):
++        with self.lock:
++            return self.sm.getState().getName() == 'SM.Dead'
++
++    ## \brief Breaks the bond, notifying the other process.
++    def break_bond(self):
++        with self.lock:
++            self.sm.Die()
++            self._publish(False)
++        self._flush_pending_callbacks()
++
++    def __repr__(self):
++        return "[Bond %s, Instance %s (%s)]" % \
++            (self.id, self.instance_id, self.sm.getState().getName())
+--- /dev/null
++++ ros-noetic-bondpy-1.8.6/setup.py
+@@ -0,0 +1,12 @@
++#!/usr/bin/env python
++
++from setuptools import setup
++
++from catkin_pkg.python_setup import generate_distutils_setup
++
++d = generate_distutils_setup(
++    packages=['bondpy'],
++    package_dir={'': 'python'}
++)
++
++setup(**d)

@@ -1,0 +1,4028 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-diagnostic-updater (1.11.0-0jammy) jammy; urgency=high
+ .
+   * Use DiagnosticLevel enum instead of hardcoded integers (#208 <https://github.com/ros/diagnostics/issues/208>)
+     Spellcheck fixes
+   * Contributors: Amilcar Lucas
+Author: Guglielmo Gemignani <guglielmo.gemignani@gmail.com>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-diagnostic-updater-1.11.0/CHANGELOG.rst
+@@ -0,0 +1,323 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package diagnostic_updater
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++1.11.0 (2021-12-31)
++-------------------
++* Use DiagnosticLevel enum instead of hardcoded integers (`#208 <https://github.com/ros/diagnostics/issues/208>`_)
++  Spellcheck fixes
++* Contributors: Amilcar Lucas
++
++1.10.4 (2021-03-14)
++-------------------
++* Fix some doc typos and remove travis config (`#173 <https://github.com/ros/diagnostics/issues/173>`_)
++  * cleate -> create
++  * single single -> single
++  * remove travis config
++* Contributors: Mikael Arguedas
++
++1.10.3 (2020-12-05)
++-------------------
++* Use get_param_cached in diagnostic_updater
++* Diagnostic status msg is not included but being used (`#163 <https://github.com/ros/diagnostics/issues/163>`_)
++  * Diagnostic status msg is not included but being used
++  * Update update_functions.h
++* Change depends to catkin_depends for catkin packages (`#162 <https://github.com/ros/diagnostics/issues/162>`_)
++  * Change depends to catkin_depends for catkin packages
++  * The library also depends on catkin_libs
++* Update maintainer info
++* Contributors: Tobias Fischer, gemignani
++
++1.10.2 (2020-09-03)
++-------------------
++* Estract TimestampStatus run to cpp
++* Contributors: Guglielmo Gemignani
++
++1.10.1 (2020-08-20)
++-------------------
++* Resolve div by zero in updater (`#108 <https://github.com/ros/diagnostics/issues/108>`_)
++* Use std::isfinite due to deprecation on osx (`#113 <https://github.com/ros/diagnostics/issues/113>`_)
++* Remove extra (not needed) trailing ':' (`#116 <https://github.com/ros/diagnostics/issues/116>`_)
++* Fix GCC warnings with -Wpedantic (`#124 <https://github.com/ros/diagnostics/issues/124>`_)
++* Add SlowTimeStampStatus (`#144 <https://github.com/ros/diagnostics/issues/144>`_)
++* Contributors: Enrique Fernandez Perdomo, Jacob Perron, Martin Pecka, Stephan Sundermann, William Hudgins, gemignani
++
++1.10.0 (2020-08-11)
++-------------------
++* Make Guglielmo Gemignani ROS1 maintainer (`#155 <https://github.com/ros/diagnostics/issues/155>`_)
++* Test build fix on Windows build. (`#8 <https://github.com/ros/diagnostics/issues/8>`_) (`#138 <https://github.com/ros/diagnostics/issues/138>`_)
++* Contributors: Guglielmo Gemignani, Sean Yen
++
++1.9.4 (2020-04-01)
++------------------
++* noetic release (`#136 <https://github.com/ros/diagnostics/issues/136>`_)
++* Merge pull request `#105 <https://github.com/ros/diagnostics/issues/105>`_ from mikepurvis/py3-httplib
++  Fix httplib import for Python 3.
++* Fix httplib import for Python 3.
++* Merge pull request `#97 <https://github.com/ros/diagnostics/issues/97>`_ from kejxu/fix_windows_build_issue
++  fix windows build issue
++* Merge branch 'indigo-devel' into fix_windows_build_issue
++* update windows bringup (`#5 <https://github.com/ros/diagnostics/issues/5>`_)
++* avoid ERROR from windows.h
++* windows bringup
++* Merge pull request `#86 <https://github.com/ros/diagnostics/issues/86>`_ from icolwell/diagnostic_status_custom_names
++  Custom names for FrequencyStatus and TimeStampStatus
++* Remove C++11 features
++* Wording
++* Custom names for existing diagnostics tasks
++* Merge pull request `#84 <https://github.com/ros/diagnostics/issues/84>`_ from nbussas/frequency_status_name
++  Make FrequencyStatus' name configurable
++* Make FrequencyStatus' name configurable
++* Contributors: Alejandro Hernández Cordero, Austin, Ian Colwell, James Xu, Mike Purvis, Nils Bussas, Sean Yen
++
++1.9.3 (2018-05-02)
++------------------
++* Merge pull request `#73 <https://github.com/ros/diagnostics/issues/73>`_ from tue-robotics/indigo-devel
++  Add a simple Heartbeat-DiagnosticTask
++* Add Python version of Heartbeat DiagnosticTask
++* Add a very very simple Heartbeat DiagnosticTask
++* Contributors: Austin, Loy van Beek, loy
++
++1.9.2 (2017-07-15)
++------------------
++
++1.9.1 (2017-07-15)
++------------------
++* Add queue size parameters on Publishers
++* Minor python updates
++* Contributors: trainman419
++
++1.9.0 (2017-04-25)
++------------------
++* make rostest in CMakeLists optional (`ros/rosdistro#3010 <https://github.com/ros/rosdistro/issues/3010>`_)
++* Fixed bug with merge summary in status wrapper
++* Contributors: Lukas Bulwahn, pAIgn10
++
++1.8.10 (2016-06-14)
++-------------------
++
++1.8.9 (2016-03-02)
++------------------
++
++1.8.8 (2015-08-06)
++------------------
++
++1.8.7 (2015-01-09)
++------------------
++
++1.8.6 (2014-12-10)
++------------------
++* Add queue_size to diagnostic_updater for Python.
++  cf. http://wiki.ros.org/rospy/Overview/Publishers%20and%20Subscribers#queue_size:_publish.28.29_behavior_and_queuing
++* Contributors: Mike Purvis
++
++1.8.5 (2014-07-29)
++------------------
++
++1.8.4 (2014-07-24 20:51)
++------------------------
++
++1.8.3 (2014-04-23)
++------------------
++* Initialize next_time\_ properly.
++  Fixes `#20 <https://github.com/ros/diagnostics/issues/20>`_
++* Add failing test for fast updater
++* Contributors: Austin Hendrix
++
++1.8.2 (2014-04-08)
++------------------
++* Fix linking. All tests pass.
++  Fixes `#12 <https://github.com/ros/diagnostics/issues/12>`_
++* Most tests pass
++* Fix doc reference. Fixes `#14 <https://github.com/ros/diagnostics/issues/14>`_
++* Contributors: Austin Hendrix
++
++1.8.1 (2014-04-07)
++------------------
++* Add myself as maintainer
++* Added ability to supply a custom node name (prefix) to Updater
++* Added ability to supply node handle and private node handle to Updater
++* fixed exporting python API to address `#10 <https://github.com/ros/diagnostics/issues/10>`_
++* fixed test related issues in some CMakeLists
++* check for CATKIN_ENABLE_TESTING
++* Contributors: Aero, Austin Hendrix, Brice Rebsamen, Lukas Bulwahn, Mitchell Wills
++
++1.8.0 (2013-04-03)
++------------------
++
++1.7.11 (2014-07-24 20:24)
++-------------------------
++* Fix linking on tests
++* support python binding of diagnostic_updater on groovy
++* Contributors: Ryohei Ueda, trainman419
++
++1.7.10 (2013-02-22)
++-------------------
++* Changed package.xml version number before releasing
++* added missing license header
++* added missing license headers
++* Contributors: Aaron Blasdel, Brice Rebsamen
++
++1.7.9 (2012-12-14)
++------------------
++* add missing dep to catkin
++* Contributors: Dirk Thomas
++
++1.7.8 (2012-12-06)
++------------------
++* missing includedirs from roscpp cause compile errors.
++  diagnostic_aggregator/include/diagnostic_aggregator/status_item.h:45:21: fatal error: ros/ros.h: No such file or directory
++  diagnostics/diagnostic_updater/include/diagnostic_updater/diagnostic_updater.h:42:29: fatal error: ros/node_handle.h: No such file or directory
++  compilation terminated.
++* Contributors: Thibault Kruse
++
++1.7.7 (2012-11-10)
++------------------
++
++1.7.6 (2012-11-07 23:32)
++------------------------
++
++1.7.5 (2012-11-07 21:53)
++------------------------
++
++1.7.4 (2012-11-07 20:18)
++------------------------
++
++1.7.3 (2012-11-04)
++------------------
++* fix the non-existing xml
++* Contributors: Vincent Rabaud
++
++1.7.2 (2012-10-30 22:31)
++------------------------
++* fix rostest
++* Contributors: Vincent Rabaud
++
++1.7.1 (2012-10-30 15:30)
++------------------------
++* fix a few things after the first release
++* fix a few things all over
++* Contributors: Vincent Rabaud
++
++1.7.0 (2012-10-29)
++------------------
++* catkinize the stack
++* backport the Python API from 1.7.0
++* use the proper gtest macro
++* Created branch 1.7.0 and reverted corresponding changes in trunk and tag 1.7.0
++  As a result branch 1.7.0 contains the new python API, and trunk corresponds to 1.6.4
++* Added Python API to diagnostic_updater
++* Fixing docs for frequency status parameters, `#5093 <https://github.com/ros/diagnostics/issues/5093>`_
++* Remove unused (according to K. Watts) class that depends on now
++  nonexistent ros::Message
++* Remove unused (according to K. Watts) class that depends on now
++  nonexistent ros::Message
++* Fixing formatting for diagnostic updater's update_functions. `#4523 <https://github.com/ros/diagnostics/issues/4523>`_
++* Adding std_msgs dependency to diagnostic_aggregator. `#4491 <https://github.com/ros/diagnostics/issues/4491>`_
++* Deprecated message methods removed in diagnostics updater
++* Added Ubuntu platform tags to manifest
++* Corrected the version number in which removeByName was added.
++* Added a removeByName method that allows a diagnostic task to be removed from a diagnostic_updater.
++* Adding checks to diagnostic status wrapper to verify output from bool values
++* Removed special handling of uint8 in diagnostic_status_wrapper. Uint8 isn't always bool.
++* DiagnosticStatusWrapper now has bool support in add() function. `#3860 <https://github.com/ros/diagnostics/issues/3860>`_
++* Marked diagnostic_updater and self_test as doc reviewed.
++* Tweaked examples and documentation based on doc review feedback.
++* Dox updates for diagnostic updater
++* Changed error to warning level in frequency status regression test
++* Removed ROS API from doxygen. Added setHardwareID method to example code.
++* Fixing param name in diagnostic updater
++* Reporting frequency problems as warning, not error in diagnostic_updater, `#3555 <https://github.com/ros/diagnostics/issues/3555>`_
++* Took out all deprecated stuff from diagnostic_updater.
++* Made diagnostic_updater example go into bin directory.
++* Changed getParam to getParamCached.
++* Updated review status to API cleared.
++* Returned check of diagnostic_period to only happen when the update happens pending fix of ROS 0.0, -0.0, -0.0, 0.11215413361787796, -0.0)
++* Finished example and documentation. Renamed CombinationDiagnosticUpdater to CompositeDiagnosticUpdater.
++* Added setHardwareID to diagnostic_updater.
++* Reintroduced an Updater constructor that takes a node handle because a lot of nodes actually depend on it.
++* Bug slipped into previous checkin.
++* Updating documentation. Took NodeHandle parameter out of Updater constructor.
++* Added setHardwareID method, and now warns if it is not used.
++* Got rid of ComposableDiagnosticTask. Now all tasks are composable.
++* Modified diagnostic_period so that it gets checked every time the update method is called. This way a long period can get shortened without waiting for the long period to expire.
++* When a diagnostic task is first added to a diagnostic_updater, the initial status is now OK instead of error.
++* Added timestamp to diagnostic updater publish call. Auto-filling of timestamps is deprecated in ROS 0.10
++* Fixed spurious newline in string that was preventing compilation of diagnostic_updater users.
++* Finished updating the diagnostics for diagnostic_updater.
++* Commented the DiagnosedPublisher classes.
++* Added some comments to diagnostic_updater and made ComposableDiagnosticTask::split_run protected.
++* Updated diagnosed publisher code to be able to work with a CameraPublisher
++* Getting diagnostic_updater to compile.  Still spewing a bunch of warnings.
++* Added extra debugging options to self_test and diagnostic_updater. On by default for self_test, off for diagnostic_updater. When on, failing statuses will be printed to the console.
++* updated self_test, diagnostic_updater, dynamic_reconfigure and wge100_camera to use new ~ namespace access method
++* Corrected diagnostic status merge logic.
++* diagnostics 0.1 commit. Removed diagnostic_analyzer/generic_analyzer and integrated into diagnostic_aggregator.
++* Add a method to clear the DiagnosticStatus values in DiagnosticStatusWrapper.
++  Clear old values when reusing DiagnosticStatusWrapper.
++* Took out adds and addsf from diagnostic_updater/DiagnosticStatusWrapper now that all other nodes
++  have been modified.
++* Converted adds into add and add-f into addf. Left the old ones, but they
++  are now deprecated.
++* Updated self test for new diagnostic format.
++* Updated DiagnosticStatusWrapper for changes in diagnostic format.
++* Cleaned up DiagnosticStatusWrapper in response to change in diagnostic
++  message.
++* Fixes for diagnostic_msgs::KeyValue::label -> key
++* fixing through diagnostic_updater
++* Changed DiagnosticMessage to DiagnosticArray
++* Changed DiagnosticValue to KeyValue
++* Fixed bug in declaration of deprecated class.
++* Deprecated old self_test and diagnostic_updater APIs.
++* Minor improvements to diagnostic updater.
++* Allowed Publisher to be changed in a DiagnosedPublisher. This allows the
++  Publisher to be created later than the DiagnosedPublisher.
++* add cstdio include for gcc 4.4
++* Took out const_cast that became unnecessary thanks to the resolution of
++  ticket `#1228 <https://github.com/ros/diagnostics/issues/1228>`_.
++* Added missing includes.
++* robot_msgs/Diagnostic*  to diagnostic_msgs/Diagnostic* and robot_srvs/SelfTest into diagnostic_msgs too
++* Added DiagnosedPublisher and HeaderlessDiagnosedPublisher to automatically
++  publish diagnostics upon publication, and integrated them with the
++  forearm_camera.
++  Started writing an outling of the driver_base classes.
++* Committing change from Blaise's tree
++* Added a formatted summary method to DiagnosticStatusWrapper.
++* Corrected a bug in the frequency updater, and made it and the timestamp
++  updaters thread safe.
++* Added a TimeStampStatus diagnostic to monitor that timestamps are
++  reasonably close to now.
++* Slowed timing by 10x in test case to improve odds of passing on 64 bit
++  architectures.
++* Corrected some bugs that could have caused undefined behavior.
++  Added support for automatically publishing a "Starting up" message before
++  the while the node is initializing.
++  Did some refactoring.
++* Fixed a bug in how function classes were being added to the Updater.
++* Fixed a bug in frequency diagnostic reporting.
++* Modified update functions so that they are function classes. Added a
++  correspondence convenience add method to Updater_base.
++* Corrected a possibly infinite recursion in adds.
++* Small fix to compatibility layer for old-style nodes
++* Upgraded the diagnostic_updater to use NodeHandles, and to allow more
++  general functions to be used.
++  Started adding update_functions to do common diagnostic publishing tasks.
++  This will be populated more later.
++* Added a DiagnosticStatusWrapper class derived from DiagnosticStatus. It adds a few methods to more
++  conveniently set the DiagnosticStatus's fields. The diagnostic_updater has been updated so that it can work
++  with DiagnosticStatus or DiagnosticStatusWrapper.:
++* diagnostic_updater: Now can be used with classes that don't inherit from Node.
++* roscpp API changes
++  * ros::node -> ros::Node
++  * ros::msg -> ros::Message
++  * deprecated methods removed
++  * rosconsole/rosconsole.h -> ros/console.h
++  * goodbye rosthread
++* bogus dependency
++* results from changing ros::Time constructor and all uses of it I can find
++* Adding node name into diagnostic updater status names.
++* Moving package review status from wiki to manifests
++* Changing form of advertise in diagnostic updater.
++* Removing old printf from diagnostic_updater.
++* Checking in package for easy diagnostic updating.
++* Contributors: Vincent Rabaud, blaise, blaisegassend, bricerebsamen, ehberger, gerkey, jfaustwg, jleibs, leibs, morgan_quigley, pmihelich, rob_wheeler, straszheim, tfoote, vrabaud, watts, wattsk
+--- /dev/null
++++ ros-noetic-diagnostic-updater-1.11.0/CMakeLists.txt
+@@ -0,0 +1,40 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(diagnostic_updater)
++
++# Load catkin and all dependencies required for this package
++find_package(catkin REQUIRED diagnostic_msgs roscpp std_msgs)
++
++catkin_python_setup()
++
++catkin_package(CATKIN_DEPENDS diagnostic_msgs roscpp std_msgs
++               INCLUDE_DIRS include
++	       LIBRARIES ${PROJECT_NAME}
++)
++
++include_directories(include ${catkin_INCLUDE_DIRS})
++add_executable(example src/example.cpp)
++add_library(${PROJECT_NAME}
++  src/timestamp_status.cpp)
++target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES})
++target_link_libraries(example ${catkin_LIBRARIES})
++
++#set(LOCAL_GTEST_DIR "gtest-1.7.0")
++# gtest could be included in ${catkin_INCLUDE_DIRS}, prepend local gtest include directory so it's searched first
++#include_directories(BEFORE ${LOCAL_GTEST_DIR}/include)
++
++if(CATKIN_ENABLE_TESTING)
++  find_package(rostest REQUIRED)
++  add_rostest_gtest(diagnostic_updater_test test/diagnostic_updater_test.xml test/diagnostic_updater_test.cpp)
++  add_rostest(test/diagnostic_updater_fast_test.xml)
++  target_link_libraries(diagnostic_updater_test ${catkin_LIBRARIES} ${PROJECT_NAME})
++endif()
++
++install(DIRECTORY include/${PROJECT_NAME}/
++        DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
++)
++
++install(TARGETS ${PROJECT_NAME}
++    RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
++    ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
++    LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
++)
+--- /dev/null
++++ ros-noetic-diagnostic-updater-1.11.0/include/diagnostic_updater/DiagnosticStatusWrapper.h
+@@ -0,0 +1,270 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++* 
++*  Copyright (c) 2008, Willow Garage, Inc.
++*  All rights reserved.
++* 
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++* 
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++* 
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++
++/**
++ * @author Blaise Gassend
++ */
++
++#ifndef DIAGNOSTICMESSAGEWRAPPER_HH
++#define DIAGNOSTICMESSAGEWRAPPER_HH
++
++#include <vector>
++#include <string>
++#include <sstream>
++#include <stdarg.h>
++#include <cstdio>
++
++#include "ros/ros.h"
++
++#include "diagnostic_msgs/DiagnosticStatus.h"
++
++namespace diagnostic_updater
++{
++
++  /**
++   *
++   * \brief Wrapper for the diagnostic_msgs::DiagnosticStatus message that
++   * makes it easier to update.
++   *
++   * This class handles common string formatting and vector handling issues
++   * for filling the diagnostic_msgs::DiagnosticStatus message. It is a subclass of
++   * diagnostic_msgs::DiagnosticStatus, so it can be passed directly to
++   * diagnostic publish calls.
++   * 
++   */
++  class DiagnosticStatusWrapper : public diagnostic_msgs::DiagnosticStatus
++  {
++    public:
++
++      /**
++       * \brief Fills out the level and message fields of the DiagnosticStatus.
++       *
++       * \param lvl Numerical level to assign to this Status (OK, Warn, Err).
++       * \param s Descriptive status message.
++       */
++      void summary(unsigned char lvl, const std::string s)
++      {
++        level = lvl;
++        message = s;
++      }
++
++      /**
++       * \brief Merges a level and message with the existing ones. 
++       *
++       * It is sometimes useful to merge two DiagnosticStatus messages. In that case,
++       * the key value pairs can be unioned, but the level and summary message
++       * have to be merged more intelligently. This function does the merge in
++       * an intelligent manner, combining the summary in *this, with the one
++       * that is passed in.
++       *
++       * The combined level is the greater of the two levels to be merged.
++       * If both levels are non-zero (not OK), the messages are combined with a
++       * semicolon separator. If only one level is zero, and the other is
++       * non-zero, the message for the zero level is discarded. If both are
++       * zero, the new message is ignored.
++       *
++       * \param lvl Numerical level to of the merged-in summary.
++       * \param s Descriptive status message for the merged-in summary.
++       */
++
++      void mergeSummary(unsigned char lvl, const std::string s)
++      {
++        if ((lvl>0) && (level>0))
++        {
++          if (!message.empty())
++            message += "; ";
++          message += s;
++        }
++        else if (lvl > level)
++          message = s;
++
++        if (lvl > level)
++          level = lvl;
++      }
++
++      /**
++       * \brief Version of mergeSummary that merges in the summary from
++       * another DiagnosticStatus.
++       *
++       * \param src DiagnosticStatus from which to merge the summary.
++       */
++      
++      void mergeSummary(const diagnostic_msgs::DiagnosticStatus &src)
++      {
++        mergeSummary(src.level, src.message);
++      }
++      
++      /**
++       * \brief Formatted version of mergeSummary.
++       *
++       * This method is identical to mergeSummary, except that the message is
++       * an sprintf-style format string.
++       * 
++       * \param lvl Numerical level to of the merged-in summary.
++       * \param format Format string for the descriptive status message for the 
++       * merged-in summary.
++       * \param ... Values to be formatted by the format string.
++       */
++
++      void mergeSummaryf(unsigned char lvl, const char *format, ...)
++      {
++        va_list va;
++        char buff[1000]; // @todo This could be done more elegantly.
++        va_start(va, format);
++        if (vsnprintf(buff, 1000, format, va) >= 1000)
++          ROS_DEBUG("Really long string in DiagnosticStatusWrapper::addf, it was truncated.");
++        std::string value = std::string(buff);
++        mergeSummary(lvl, value);
++        va_end(va);
++      }
++
++      /**
++       * \brief Formatted version of summary.
++       *
++       * This method is identical to summary, except that the message is an
++       * sprintf-style format string.
++       *
++       * \param lvl Numerical level to assign to this Status (OK, Warn, Err).
++       * \param s Format string for the descriptive status message.
++       * \param ... Values to be formatted by the format string.
++       *
++       */
++      void summaryf(unsigned char lvl, const char *format, ...)
++      {
++        va_list va;
++        char buff[1000]; // @todo This could be done more elegantly.
++        va_start(va, format);
++        if (vsnprintf(buff, 1000, format, va) >= 1000)
++          ROS_DEBUG("Really long string in DiagnosticStatusWrapper::addf, it was truncated.");
++        std::string value = std::string(buff);
++        summary(lvl, value);
++        va_end(va);
++      }
++                       
++      /**
++       * \brief clears the summary, setting the level to zero and the
++       * message to "".
++       */
++      void clearSummary()
++      {
++        summary(0, "");
++      }
++      
++      /**
++       * \brief copies the summary from a DiagnosticStatus message
++       *
++       * \param src StatusWrapper to copy the summary from.
++       */
++      void summary(const diagnostic_msgs::DiagnosticStatus &src)
++      {
++        summary(src.level, src.message);
++      }
++
++      /**
++       * \brief Add a key-value pair.
++       *
++       * This method adds a key-value pair. Any type that has a << stream
++       * operator can be passed as the second argument.  Formatting is done
++       * using a std::stringstream.
++       *
++       * \param key Key to be added.  \param value Value to be added.
++       */
++      template<class T>
++        void add(const std::string &key, const T &val)
++        {
++          std::stringstream ss;
++          ss << val;
++          std::string sval = ss.str();
++          add(key, sval);
++        }
++
++      /**
++       * \brief Add a key-value pair using a format string.
++       *
++       * This method adds a key-value pair. A format string is used to set the
++       * value. The current implementation limits the value to 1000 characters
++       * in length.
++       */
++
++      void addf(const std::string &key, const char *format, ...); // In practice format will always be a char *
++
++      /**
++       * \brief Clear the key-value pairs.
++       *
++       * The values vector containing the key-value pairs is cleared.
++       */
++
++      void clear()
++      {
++        values.clear();
++      }
++  };
++
++  template<>
++    inline void DiagnosticStatusWrapper::add<std::string>(const std::string &key, const std::string &s)
++    {
++      diagnostic_msgs::KeyValue ds;
++      ds.key = key;
++      ds.value = s;
++      values.push_back(ds);
++    }
++
++///\brief For bool, diagnostic value is "True" or "False"
++template<>
++inline void DiagnosticStatusWrapper::add<bool>(const std::string &key, const bool &b)
++{
++  diagnostic_msgs::KeyValue ds;
++  ds.key = key;
++  ds.value = b ? "True" : "False";
++
++  values.push_back(ds);
++}
++
++  // Need to place addf after DiagnosticStatusWrapper::add<std::string> or
++  // gcc complains that the specialization occurs after instatiation.
++  inline void DiagnosticStatusWrapper::addf(const std::string &key, const char *format, ...) // In practice format will always be a char *
++  {
++    va_list va;
++    char buff[1000]; // @todo This could be done more elegantly.
++    va_start(va, format);
++    if (vsnprintf(buff, 1000, format, va) >= 1000)
++      ROS_DEBUG("Really long string in DiagnosticStatusWrapper::addf, it was truncated.");
++    std::string value = std::string(buff);
++    add(key, value);
++    va_end(va);
++  }
++
++
++}
++#endif
+--- /dev/null
++++ ros-noetic-diagnostic-updater-1.11.0/include/diagnostic_updater/diagnostic_updater.h
+@@ -0,0 +1,592 @@
++/*********************************************************************
++ * Software License Agreement (BSD License)
++ * 
++ *  Copyright (c) 2008, Willow Garage, Inc.
++ *  All rights reserved.
++ * 
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted provided that the following conditions
++ *  are met:
++ * 
++ *   * Redistributions of source code must retain the above copyright
++ *     notice, this list of conditions and the following disclaimer.
++ *   * Redistributions in binary form must reproduce the above
++ *     copyright notice, this list of conditions and the following
++ *     disclaimer in the documentation and/or other materials provided
++ *     with the distribution.
++ *   * Neither the name of the Willow Garage nor the names of its
++ *     contributors may be used to endorse or promote products derived
++ *     from this software without specific prior written permission.
++ * 
++ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++ *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++ *  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++ *  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++ *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++ *  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++ *  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++ *  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++ *  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++ *  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++ *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ *  POSSIBILITY OF SUCH DAMAGE.
++ *********************************************************************/
++
++#ifndef DIAGNOSTICUPDATER_HH
++#define DIAGNOSTICUPDATER_HH
++
++#include <stdexcept>
++#include <vector>
++#include <string>
++
++#include "ros/node_handle.h"
++#include "ros/this_node.h"
++
++#include "diagnostic_msgs/DiagnosticArray.h"
++#include "diagnostic_msgs/DiagnosticStatus.h"
++#include "diagnostic_updater/DiagnosticStatusWrapper.h"
++
++#include <boost/thread.hpp>
++
++namespace diagnostic_updater
++{
++
++  typedef boost::function<void(DiagnosticStatusWrapper&)> TaskFunction;
++  typedef boost::function<void(diagnostic_msgs::DiagnosticStatus&)> UnwrappedTaskFunction;
++
++  /**
++   * \brief DiagnosticTask is an abstract base class for collecting diagnostic data.
++   *
++   * Subclasses are provided for generating common diagnostic information.
++   *
++   * A DiagnosticTask has a name, and a function that is called to create a
++   * DiagnosticStatusWrapper.
++   */
++
++  class DiagnosticTask
++  {
++    public:
++      /**
++       * \brief Constructs a DiagnosticTask setting its name in the process.
++       */
++      DiagnosticTask(const std::string name) : name_(name)
++      {}
++
++      /**
++       * \brief Returns the name of the DiagnosticTask.
++       */
++      const std::string &getName()
++      {
++        return name_;
++      }
++
++      /**
++       * \brief Fills out this Task's DiagnosticStatusWrapper.
++       */
++      virtual void run(diagnostic_updater::DiagnosticStatusWrapper &stat) = 0;
++
++      /**
++       * Virtual destructor as this is a base class.
++       */
++      virtual ~DiagnosticTask()
++      {}
++
++    private:
++      const std::string name_;
++  };
++
++  /**
++   * \brief a DiagnosticTask based on a boost::function.
++   *
++   * The GenericFunctionDiagnosticTask calls the function when it updates. The function 
++   * updates the DiagnosticStatusWrapper and collects data. 
++   * 
++   * This is useful for gathering information about a device or driver, like temperature,
++   * calibration, etc.
++   */
++  template <class T>
++  class GenericFunctionDiagnosticTask : public DiagnosticTask
++  {
++    public:
++      /**
++       * Constructs a GenericFunctionDiagnosticTask based on the given name and
++       * function.
++       *
++       * \param name Name of the function.
++       *
++       * \param fn Function to be called when DiagnosticTask::run is called.
++       */
++      GenericFunctionDiagnosticTask(const std::string &name, boost::function<void(T&)> fn) : 
++        DiagnosticTask(name), fn_(fn)
++      {}
++
++      virtual void run(DiagnosticStatusWrapper &stat)
++      {
++        fn_(stat);
++      }
++
++    private:
++      const std::string name_;
++      const TaskFunction fn_;
++  };
++
++  typedef GenericFunctionDiagnosticTask<diagnostic_msgs::DiagnosticStatus> UnwrappedFunctionDiagnosticTask;
++  typedef GenericFunctionDiagnosticTask<DiagnosticStatusWrapper> FunctionDiagnosticTask;
++
++  /**
++   * \brief Merges CompositeDiagnosticTask into a single DiagnosticTask.
++   *
++   * The CompositeDiagnosticTask allows multiple DiagnosticTask instances to
++   * be combined into a single task that produces a single
++   * DiagnosticStatusWrapped. The output of the combination has the max of
++   * the status levels, and a concatenation of the non-zero-level messages.
++   *
++   * For instance, this could be used to combine the calibration and offset data from an 
++   * IMU driver.
++   */
++  class CompositeDiagnosticTask : public DiagnosticTask
++  {
++    public:
++      /**
++       * \brief Constructs a CompositeDiagnosticTask with the given name.
++       */
++      CompositeDiagnosticTask(const std::string name) : DiagnosticTask(name)
++      {}
++
++      /**
++       * \brief Runs each child and merges their outputs.
++       */
++      virtual void run(DiagnosticStatusWrapper &stat)
++      {
++        DiagnosticStatusWrapper combined_summary;
++        DiagnosticStatusWrapper original_summary;
++
++        original_summary.summary(stat);
++
++        for (std::vector<DiagnosticTask *>::iterator i = tasks_.begin();
++            i != tasks_.end(); i++)
++        {
++          // Put the summary that was passed in.
++          stat.summary(original_summary);
++          // Let the next task add entries and put its summary.
++          (*i)->run(stat); 
++          // Merge the new summary into the combined summary.
++          combined_summary.mergeSummary(stat);
++        }
++
++        // Copy the combined summary into the output.
++        stat.summary(combined_summary);
++      }
++
++      /**
++       * \brief Adds a child CompositeDiagnosticTask.
++       *
++       * This CompositeDiagnosticTask will be called each time this
++       * CompositeDiagnosticTask is run.
++       */
++      void addTask(DiagnosticTask *t)
++      {
++        tasks_.push_back(t);
++      }
++
++    private:
++      std::vector<DiagnosticTask *> tasks_;
++  };
++
++  /**
++   * \brief Internal use only.
++   *
++   * Base class for diagnostic_updater::Updater and self_test::Dispatcher.
++   * The class manages a collection of diagnostic updaters. It contains the
++   * common functionality used for producing diagnostic updates and for
++   * self-tests.
++   */
++  class DiagnosticTaskVector
++  {
++    protected:
++      /**
++       * \brief Class used to represent a diagnostic task internally in
++       * DiagnosticTaskVector.
++       */
++      class DiagnosticTaskInternal
++      {
++        public:
++          DiagnosticTaskInternal(const std::string name, TaskFunction f) :
++            name_(name), fn_(f)
++        {}
++
++          void run(diagnostic_updater::DiagnosticStatusWrapper &stat) const
++          {
++            stat.name = name_;
++            fn_(stat);
++          }
++
++          const std::string &getName() const
++          {
++            return name_;
++          }
++
++        private:
++          std::string name_;
++          TaskFunction fn_;
++      };
++
++      boost::mutex lock_;
++
++      /**
++       * \brief Returns the vector of tasks.
++       */
++      const std::vector<DiagnosticTaskInternal> &getTasks()
++      {
++        return tasks_;
++      }
++
++    public:    
++      /**
++       * \brief Add a DiagnosticTask embodied by a name and function to the
++       * DiagnosticTaskVector
++       *
++       * \param name Name to autofill in the DiagnosticStatusWrapper for this task.
++       * 
++       * \param f Function to call to fill out the DiagnosticStatusWrapper.
++       * This function need not remain valid after the last time the tasks are
++       * called, and in particular it need not be valid at the time the
++       * DiagnosticTaskVector is destructed.
++       */
++
++      void add(const std::string &name, TaskFunction f)
++      {
++        DiagnosticTaskInternal int_task(name, f);
++        addInternal(int_task);
++      }
++
++      /**
++       * \brief Add a DiagnosticTask to the DiagnosticTaskVector
++       *
++       * \param task The DiagnosticTask to be added. It must remain live at
++       * least until the last time its diagnostic method is called. It need not be
++       * valid at the time the DiagnosticTaskVector is destructed.
++       */
++
++      void add(DiagnosticTask &task)
++      {
++        TaskFunction f = boost::bind(&DiagnosticTask::run, &task, _1);
++        add(task.getName(), f);
++      }
++
++      /**
++       * \brief Add a DiagnosticTask embodied by a name and method to the
++       * DiagnosticTaskVector
++       *
++       * \param name Name to autofill in the DiagnosticStatusWrapper for this task.
++       *
++       * \param c Class instance the method is being called on.
++       * 
++       * \param f Method to call to fill out the DiagnosticStatusWrapper.
++       * This method need not remain valid after the last time the tasks are
++       * called, and in particular it need not be valid at the time the
++       * DiagnosticTaskVector is destructed.
++       */
++      template <class T>
++        void add(const std::string name, T *c, void (T::*f)(diagnostic_updater::DiagnosticStatusWrapper&))
++        {
++          DiagnosticTaskInternal int_task(name, boost::bind(f, c, _1));
++          addInternal(int_task);
++        }
++
++
++        /**
++         * \brief Remove a task based on its name.
++         *
++         * Removes the first task that matches the specified name. (New in
++         * version 1.1.2)
++         *
++         * \param name Name of the task to remove.
++         *
++         * \return Returns true if a task matched and was removed.
++         */
++         
++         bool removeByName(const std::string name)
++         {
++           boost::mutex::scoped_lock lock(lock_); 
++           for (std::vector<DiagnosticTaskInternal>::iterator iter = tasks_.begin();
++               iter != tasks_.end(); iter++)
++           {
++             if (iter->getName() == name)
++             {
++               tasks_.erase(iter);
++               return true;
++             }
++
++             diagnostic_updater::DiagnosticStatusWrapper status;
++           }
++           return false;
++         }
++
++    private:
++      /**
++       * Allows an action to be taken when a task is added. The Updater class
++       * uses this to immediately publish a diagnostic that says that the node
++       * is loading.
++       */
++      virtual void addedTaskCallback(DiagnosticTaskInternal &)
++      {}
++      std::vector<DiagnosticTaskInternal> tasks_;
++
++    protected:
++      /**
++       * Common code for all add methods.
++       */
++      void addInternal(DiagnosticTaskInternal &task)
++      {
++        boost::mutex::scoped_lock lock(lock_);
++        tasks_.push_back(task); 
++        addedTaskCallback(task);
++      }
++  };
++
++  /**
++   * \brief Manages a list of diagnostic tasks, and calls them in a
++   * rate-limited manner.
++   *
++   * This class manages a list of diagnostic tasks. Its update function
++   * should be called frequently. At some predetermined rate, the update
++   * function will cause all the diagnostic tasks to run, and will collate
++   * and publish the resulting diagnostics. The publication rate is
++   * determined by the "~diagnostic_period" ros parameter.
++   *
++   * The class also allows an update to be forced when something significant
++   * has happened, and allows a single message to be broadcast on all the
++   * diagnostics if normal operation of the node is suspended for some
++   * reason.
++   */
++  class Updater : public DiagnosticTaskVector
++  {
++    public:
++      bool verbose_;
++
++      /**
++       * \brief Constructs an updater class.
++       *
++       * \param h Node handle from which to get the diagnostic_period
++       * parameter.
++       */
++    Updater(ros::NodeHandle h = ros::NodeHandle(), ros::NodeHandle ph = ros::NodeHandle("~"), std::string node_name = ros::this_node::getName()) : private_node_handle_(ph), node_handle_(h), node_name_(node_name)
++    {
++      setup();
++    }
++
++      /**
++       * \brief Causes the diagnostics to update if the inter-update interval
++       * has been exceeded.
++       */
++      void update()
++      {
++        ros::Time now_time = ros::Time::now();
++        if (now_time < next_time_) {
++          // @todo put this back in after fix of #2157 update_diagnostic_period(); // Will be checked in force_update otherwise.
++          return;
++        }
++
++        force_update();
++      }
++
++      /**
++       * \brief Forces the diagnostics to update.
++       *
++       * Useful if the node has undergone a drastic state change that should be
++       * published immediately.
++       */
++      void force_update()
++      {
++        update_diagnostic_period();
++
++        next_time_ = ros::Time::now() + ros::Duration().fromSec(period_);
++
++        if (node_handle_.ok())
++        {
++          bool warn_nohwid = hwid_.empty();
++          
++          std::vector<diagnostic_msgs::DiagnosticStatus> status_vec;
++
++          boost::mutex::scoped_lock lock(lock_); // Make sure no adds happen while we are processing here.
++          const std::vector<DiagnosticTaskInternal> &tasks = getTasks();
++          for (std::vector<DiagnosticTaskInternal>::const_iterator iter = tasks.begin();
++              iter != tasks.end(); iter++)
++          {
++            diagnostic_updater::DiagnosticStatusWrapper status;
++
++            status.name = iter->getName();
++            status.level = 2;
++            status.message = "No message was set";
++            status.hardware_id = hwid_;
++
++            iter->run(status);
++
++            status_vec.push_back(status);
++                                         
++            if (status.level)
++              warn_nohwid = false;
++
++            if (verbose_ && status.level)
++              ROS_WARN("Non-zero diagnostic status. Name: '%s', status %i: '%s'", status.name.c_str(), status.level, status.message.c_str());
++          }
++
++          if (warn_nohwid && !warn_nohwid_done_)
++          {
++            ROS_WARN("diagnostic_updater: No HW_ID was set. This is probably a bug. Please report it. For devices that do not have a HW_ID, set this value to 'none'. This warning only occurs once all diagnostics are OK so it is okay to wait until the device is open before calling setHardwareID.");
++            warn_nohwid_done_ = true;
++          }
++
++          publish(status_vec);
++        }
++      }
++
++      /**
++       * \brief Returns the interval between updates.
++       */
++
++      double getPeriod()
++      {
++        return period_;
++      }
++
++      // Destructor has trouble because the node is already shut down.
++      /*~Updater()
++        {
++      // Create a new node handle and publisher because the existing one is 
++      // probably shut down at this stage.
++
++      ros::NodeHandle newnh; 
++      node_handle_ = newnh; 
++      publisher_ = node_handle_.advertise<diagnostic_msgs::DiagnosticArray>("/diagnostics", 1);
++      broadcast(2, "Node shut down"); 
++      }*/
++
++      /**
++       * \brief Output a message on all the known DiagnosticStatus.
++       *
++       * Useful if something drastic is happening such as shutdown or a
++       * self-test.
++       *
++       * \param lvl Level of the diagnostic being output.
++       *
++       * \param msg Status message to output.
++       */
++
++      void broadcast(int lvl, const std::string msg)
++      {
++        std::vector<diagnostic_msgs::DiagnosticStatus> status_vec;
++
++        const std::vector<DiagnosticTaskInternal> &tasks = getTasks();
++        for (std::vector<DiagnosticTaskInternal>::const_iterator iter = tasks.begin();
++            iter != tasks.end(); iter++)
++        {
++          diagnostic_updater::DiagnosticStatusWrapper status;
++
++          status.name = iter->getName();
++          status.summary(lvl, msg);
++
++          status_vec.push_back(status);
++        }
++
++        publish(status_vec);
++      }
++
++      void setHardwareIDf(const char *format, ...)
++      {
++        va_list va;
++        char buff[1000]; // @todo This could be done more elegantly.
++        va_start(va, format);
++        if (vsnprintf(buff, 1000, format, va) >= 1000)
++          ROS_DEBUG("Really long string in diagnostic_updater::setHardwareIDf.");
++        hwid_ = std::string(buff);
++        va_end(va);
++      }
++
++      void setHardwareID(const std::string &hwid)
++      {
++        hwid_ = hwid;
++      }
++
++    private:
++      /**
++       * Recheck the diagnostic_period on the parameter server. (Cached)
++       */
++
++      void update_diagnostic_period()
++      {
++        double old_period = period_;
++        private_node_handle_.getParamCached("diagnostic_period", period_);
++        next_time_ += ros::Duration(period_ - old_period); // Update next_time_
++      }
++
++      /**
++       * Publishes a single diagnostic status.
++       */
++      void publish(diagnostic_msgs::DiagnosticStatus &stat)
++      {
++        std::vector<diagnostic_msgs::DiagnosticStatus> status_vec;
++        status_vec.push_back(stat);
++        publish(status_vec);
++      }
++
++      /**
++       * Publishes a vector of diagnostic statuses.
++       */
++      void publish(std::vector<diagnostic_msgs::DiagnosticStatus> &status_vec)
++      {
++        for  (std::vector<diagnostic_msgs::DiagnosticStatus>::iterator 
++            iter = status_vec.begin(); iter != status_vec.end(); iter++)
++        {
++          iter->name = 
++            node_name_.substr(1) + std::string(": ") + iter->name;
++        }
++        diagnostic_msgs::DiagnosticArray msg;
++        msg.status = status_vec;
++        msg.header.stamp = ros::Time::now(); // Add timestamp for ROS 0.10
++        publisher_.publish(msg);
++      }
++
++      /**
++       * Publishes on /diagnostics and reads the diagnostic_period parameter.
++       */
++      void setup()
++      {
++        publisher_ = node_handle_.advertise<diagnostic_msgs::DiagnosticArray>("/diagnostics", 1);
++
++        period_ = 1.0;
++        next_time_ = ros::Time::now() + ros::Duration(period_);
++        update_diagnostic_period();
++
++        verbose_ = false;
++        warn_nohwid_done_ = false;
++      }
++
++      /**
++       * Causes a placeholder DiagnosticStatus to be published as soon as a
++       * diagnostic task is added to the Updater.
++       */
++      virtual void addedTaskCallback(DiagnosticTaskInternal &task)
++      {
++        DiagnosticStatusWrapper stat;
++        stat.name = task.getName();
++        stat.summary(0, "Node starting up");
++        publish(stat);
++      }
++
++      ros::NodeHandle private_node_handle_;
++      ros::NodeHandle node_handle_;
++      ros::Publisher publisher_;
++
++      ros::Time next_time_;
++
++      double period_;
++      std::string hwid_;
++      std::string node_name_;
++      bool warn_nohwid_done_;
++  };
++
++}
++
++#endif
+--- /dev/null
++++ ros-noetic-diagnostic-updater-1.11.0/include/diagnostic_updater/publisher.h
+@@ -0,0 +1,243 @@
++/*********************************************************************
++ * Software License Agreement (BSD License)
++ *
++ *  Copyright (c) 2009, Willow Garage, Inc.
++ *  All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted provided that the following conditions
++ *  are met:
++ *
++ *   * Redistributions of source code must retain the above copyright
++ *     notice, this list of conditions and the following disclaimer.
++ *   * Redistributions in binary form must reproduce the above
++ *     copyright notice, this list of conditions and the following
++ *     disclaimer in the documentation and/or other materials provided
++ *     with the distribution.
++ *   * Neither the name of the Willow Garage nor the names of its
++ *     contributors may be used to endorse or promote products derived
++ *     from this software without specific prior written permission.
++ *
++ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++ *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++ *  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++ *  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++ *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++ *  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++ *  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++ *  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++ *  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++ *  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++ *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ *  POSSIBILITY OF SUCH DAMAGE.
++ *********************************************************************/
++
++// Author: Blaise Gassend
++#ifndef __DIAGNOSTIC_UPDATER__DRIVER_H__
++#define __DIAGNOSTIC_UPDATER__DRIVER_H__
++
++#include <ros/publisher.h>
++#include <ros/subscription.h>
++#include <diagnostic_updater/update_functions.h>
++
++namespace diagnostic_updater
++{
++     
++/**
++ * \brief A class to facilitate making diagnostics for a topic using a
++ * FrequencyStatus. 
++ *
++ * The word "headerless" in the class name refers to the fact that it is
++ * mainly designed for use with messages that do not have a header, and
++ * that cannot therefore be checked using a TimeStampStatus.
++ */
++
++class HeaderlessTopicDiagnostic : public CompositeDiagnosticTask
++{
++public:
++/**
++ * \brief Constructs a HeaderlessTopicDiagnostic. 
++ *
++ * \param name The name of the topic that is being diagnosed.
++ *
++ * \param diag The diagnostic_updater that the CompositeDiagnosticTask
++ * should add itself to.
++ *
++ * \param freq The parameters for the FrequencyStatus class that will be
++ * computing statistics.
++ */
++	
++	HeaderlessTopicDiagnostic(
++      std::string name,
++      diagnostic_updater::Updater &diag,
++      const diagnostic_updater::FrequencyStatusParam &freq) :
++    CompositeDiagnosticTask(name + " topic status"), 
++    freq_(freq)
++  {
++    addTask(&freq_);
++    diag.add(*this);
++  }
++
++  virtual ~HeaderlessTopicDiagnostic()
++  {}
++  
++  /**
++	 * \brief Signals that a publication has occurred.
++	 */
++
++  virtual void tick()
++  {
++    freq_.tick();
++  }
++  
++  /**
++	 * \brief Clears the frequency statistics.
++	 */
++
++  virtual void clear_window()
++  {
++    freq_.clear();
++  }
++
++private:
++  diagnostic_updater::FrequencyStatus freq_;
++};
++
++/**
++ * \brief A class to facilitate making diagnostics for a topic using a
++ * FrequencyStatus and TimeStampStatus. 
++ */
++
++class TopicDiagnostic : public HeaderlessTopicDiagnostic
++{
++public:
++/**
++ * \brief Constructs a TopicDiagnostic. 
++ *
++ * \param name The name of the topic that is being diagnosed.
++ *
++ * \param diag The diagnostic_updater that the CompositeDiagnosticTask
++ * should add itself to.
++ *
++ * \param freq The parameters for the FrequencyStatus class that will be
++ * computing statistics.
++ *
++ * \param stamp The parameters for the TimeStampStatus class that will be
++ * computing statistics.
++ */
++	
++  TopicDiagnostic(
++      std::string name,
++      diagnostic_updater::Updater &diag,
++      const diagnostic_updater::FrequencyStatusParam &freq,
++      const diagnostic_updater::TimeStampStatusParam &stamp) : 
++    HeaderlessTopicDiagnostic(name, diag, freq), 
++    stamp_(stamp)
++  {
++    addTask(&stamp_);
++  }
++  
++  virtual ~TopicDiagnostic()
++  {}
++  
++  /**
++	 * This method should never be called on a TopicDiagnostic as a timestamp
++	 * is needed to collect the timestamp diagnostics. It is defined here to
++	 * prevent the inherited tick method from being used accidentally.
++	 */
++	virtual void tick() { ROS_FATAL("tick(void) has been called on a TopicDiagnostic. This is never correct. Use tick(ros::Time &) instead."); }
++
++  /**
++	 * \brief Collects statistics and publishes the message.
++	 *
++	 * \param stamp Timestamp to use for interval computation by the
++	 * TimeStampStatus class.
++	 */
++  virtual void tick(const ros::Time &stamp)
++  {
++    stamp_.tick(stamp);
++    HeaderlessTopicDiagnostic::tick();
++  }
++  
++private:
++  TimeStampStatus stamp_;
++};
++
++/**
++ * \brief A TopicDiagnostic combined with a ros::Publisher.
++ *
++ * For a standard ros::Publisher, this class allows the ros::Publisher and
++ * the TopicDiagnostic to be combined for added convenience.
++ */
++
++template<class T>
++class DiagnosedPublisher : public TopicDiagnostic
++{
++public:
++/**
++ * \brief Constructs a DiagnosedPublisher. 
++ *
++ * \param pub The publisher on which statistics are being collected.
++ *
++ * \param diag The diagnostic_updater that the CompositeDiagnosticTask
++ * should add itself to.
++ *
++ * \param freq The parameters for the FrequencyStatus class that will be
++ * computing statistics.
++ *
++ * \param stamp The parameters for the TimeStampStatus class that will be
++ * computing statistics.
++ */
++	
++  DiagnosedPublisher(const ros::Publisher &pub,
++      diagnostic_updater::Updater &diag, 
++      const diagnostic_updater::FrequencyStatusParam &freq, 
++      const diagnostic_updater::TimeStampStatusParam &stamp) : 
++    TopicDiagnostic(pub.getTopic(), diag, freq, stamp),
++    publisher_(pub)
++  {}
++
++  virtual ~DiagnosedPublisher()
++  {}
++  
++  /**
++	 * \brief Collects statistics and publishes the message.
++	 *
++	 * The timestamp to be used by the TimeStampStatus class will be
++	 * extracted from message.header.stamp.
++	 */
++	virtual void publish(const boost::shared_ptr<T>& message) {
++		tick(message->header.stamp); publisher_.publish(message); }
++ 
++  /**
++	 * \brief Collects statistics and publishes the message.
++	 *
++	 * The timestamp to be used by the TimeStampStatus class will be
++	 * extracted from message.header.stamp.
++	 */
++	virtual void publish(const T& message) { tick(message.header.stamp);
++		publisher_.publish(message); }
++
++  /**
++	 * \brief Returns the publisher.
++	 */
++  ros::Publisher getPublisher() const
++  {
++    return publisher_;
++  }
++
++  /**
++	 * \brief Changes the publisher.
++	 */
++  void setPublisher(ros::Publisher pub)
++  {
++    publisher_ = pub;
++  }
++
++private:
++  ros::Publisher publisher_;
++};
++
++}
++
++#endif
+--- /dev/null
++++ ros-noetic-diagnostic-updater-1.11.0/include/diagnostic_updater/update_functions.h
+@@ -0,0 +1,412 @@
++/*********************************************************************
++ * Software License Agreement (BSD License)
++ *
++ *  Copyright (c) 2009, Willow Garage, Inc.
++ *  All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted provided that the following conditions
++ *  are met:
++ *
++ *   * Redistributions of source code must retain the above copyright
++ *     notice, this list of conditions and the following disclaimer.
++ *   * Redistributions in binary form must reproduce the above
++ *     copyright notice, this list of conditions and the following
++ *     disclaimer in the documentation and/or other materials provided
++ *     with the distribution.
++ *   * Neither the name of the Willow Garage nor the names of its
++ *     contributors may be used to endorse or promote products derived
++ *     from this software without specific prior written permission.
++ *
++ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++ *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++ *  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++ *  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++ *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++ *  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++ *  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++ *  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++ *  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++ *  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++ *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ *  POSSIBILITY OF SUCH DAMAGE.
++ *********************************************************************/
++
++/// Author: Blaise Gassend
++
++#ifndef __DIAGNOSTIC_STATUS__UPDATE_FUNCTIONS_H__
++#define __DIAGNOSTIC_STATUS__UPDATE_FUNCTIONS_H__
++
++#include <diagnostic_updater/diagnostic_updater.h>
++#include "diagnostic_msgs/DiagnosticStatus.h"
++#include <math.h>
++
++namespace diagnostic_updater
++{
++
++  /**
++   * \brief A structure that holds the constructor parameters for the
++   * FrequencyStatus class.
++   */
++  struct FrequencyStatusParam
++  {
++    /**
++     * \brief Creates a filled-out FrequencyStatusParam.
++     */
++
++    FrequencyStatusParam(double *min_freq, double *max_freq, double tolerance = 0.1, int window_size = 5) :
++      min_freq_(min_freq), max_freq_(max_freq), tolerance_(tolerance), window_size_(window_size)
++    {}
++
++    /**
++     * \brief Minimum acceptable frequency.
++     *
++     * A pointer is used so that the value can be updated.
++     */
++
++    double *min_freq_;
++
++    /**
++     * \brief Maximum acceptable frequency.
++     *
++     * A pointer is used so that the value can be updated.
++     */
++
++    double *max_freq_;
++
++    /**
++     * \brief Tolerance with which bounds must be satisfied.
++     *
++     * Acceptable values are from *min_freq_ * (1 - torelance_) to *max_freq_ *
++     * (1 + tolerance_).
++     *
++     * Common use cases are to set tolerance_ to zero, or to assign the same
++     * value to *max_freq_ and min_freq_.
++     */
++
++    double tolerance_;
++
++    /**
++     * \brief Number of events to consider in the statistics.
++     */
++    int window_size_;
++  };
++
++  /**
++   * \brief A diagnostic task that monitors the frequency of an event.
++   *
++   * This diagnostic task monitors the frequency of calls to its tick method,
++   * and creates corresponding diagnostics. It will report a warning if the frequency is
++   * outside acceptable bounds, and report an error if there have been no events in the latest
++   * window.
++   */
++
++  class FrequencyStatus : public DiagnosticTask
++  {
++    private:
++      const FrequencyStatusParam params_;
++
++      int count_;
++      std::vector <ros::Time> times_;
++      std::vector <int> seq_nums_;
++      int hist_indx_;
++      boost::mutex lock_;
++
++    public:
++      /**
++       * \brief Constructs a FrequencyStatus class with the given parameters.
++       */
++
++      FrequencyStatus(const FrequencyStatusParam &params, std::string name) :
++        DiagnosticTask(name), params_(params),
++        times_(params_.window_size_), seq_nums_(params_.window_size_)
++      {
++        clear();
++      }
++
++      /**
++       * \brief Constructs a FrequencyStatus class with the given parameters.
++       *        Uses a default diagnostic task name of "Frequency Status".
++       */
++
++      FrequencyStatus(const FrequencyStatusParam &params) :
++        DiagnosticTask("Frequency Status"), params_(params),
++        times_(params_.window_size_), seq_nums_(params_.window_size_)
++      {
++        clear();
++      }
++
++      /**
++       * \brief Resets the statistics.
++       */
++
++      void clear()
++      {
++        boost::mutex::scoped_lock lock(lock_);
++        ros::Time curtime = ros::Time::now();
++        count_ = 0;
++
++        for (int i = 0; i < params_.window_size_; i++)
++        {
++          times_[i] = curtime;
++          seq_nums_[i] = count_;
++        }
++
++        hist_indx_ = 0;
++      }
++
++      /**
++       * \brief Signals that an event has occurred.
++       */
++      void tick()
++      {
++        boost::mutex::scoped_lock lock(lock_);
++        //ROS_DEBUG("TICK %i", count_);
++        count_++;
++      }
++
++      virtual void run(diagnostic_updater::DiagnosticStatusWrapper &stat)
++      {
++        boost::mutex::scoped_lock lock(lock_);
++        ros::Time curtime = ros::Time::now();
++        int curseq = count_;
++        int events = curseq - seq_nums_[hist_indx_];
++        double window = (curtime - times_[hist_indx_]).toSec();
++        double freq = 0;
++
++        if (window != 0)
++        {
++            freq = events / window;
++        }
++        seq_nums_[hist_indx_] = curseq;
++        times_[hist_indx_] = curtime;
++        hist_indx_ = (hist_indx_ + 1) % params_.window_size_;
++
++        if (events == 0)
++        {
++          stat.summary(diagnostic_msgs::DiagnosticStatus::ERROR, "No events recorded.");
++        }
++        else if (window != 0 && freq < *params_.min_freq_ * (1 - params_.tolerance_))
++        {
++          stat.summary(diagnostic_msgs::DiagnosticStatus::WARN, "Frequency too low.");
++        }
++        else if (window != 0 && freq > *params_.max_freq_ * (1 + params_.tolerance_))
++        {
++          stat.summary(diagnostic_msgs::DiagnosticStatus::WARN, "Frequency too high.");
++        }
++        else if (window != 0)
++        {
++          stat.summary(diagnostic_msgs::DiagnosticStatus::OK, "Desired frequency met");
++        }
++
++        stat.addf("Events in window", "%d", events);
++        stat.addf("Events since startup", "%d", count_);
++        stat.addf("Duration of window (s)", "%f", window);
++        if (window != 0) {
++            stat.addf("Actual frequency (Hz)", "%f",freq);
++        }
++        if (*params_.min_freq_ == *params_.max_freq_)
++          stat.addf("Target frequency (Hz)", "%f",*params_.min_freq_);
++        if (*params_.min_freq_ > 0)
++          stat.addf("Minimum acceptable frequency (Hz)", "%f",
++              *params_.min_freq_ * (1 - params_.tolerance_));
++
++        if (std::isfinite(*params_.max_freq_))
++          stat.addf("Maximum acceptable frequency (Hz)", "%f",
++              *params_.max_freq_ * (1 + params_.tolerance_));
++      }
++  };
++
++  /**
++   * \brief A structure that holds the constructor parameters for the
++   * TimeStampStatus class.
++   */
++
++  struct TimeStampStatusParam
++  {
++    /**
++     * \brief Creates a filled-out TimeStampStatusParam.
++     */
++
++    TimeStampStatusParam(const double min_acceptable = -1, const double max_acceptable = 5) :
++      max_acceptable_(max_acceptable), min_acceptable_(min_acceptable)
++    {}
++
++    /**
++     * \brief Maximum acceptable difference between two timestamps.
++     */
++
++    double max_acceptable_;
++
++    /**
++     * \brief Minimum acceptable difference between two timestamps.
++     */
++
++    double min_acceptable_;
++  };
++
++  /**
++   * \brief Default TimeStampStatusParam. This is like calling the
++   * constructor with no arguments.
++   */
++
++  static TimeStampStatusParam DefaultTimeStampStatusParam = TimeStampStatusParam();
++
++  /**
++   * \brief Diagnostic task to monitor the interval between events.
++   *
++   * This diagnostic task monitors the difference between consecutive events,
++   * and creates corresponding diagnostics. An error occurs if the interval
++   * between consecutive events is too large or too small. An error condition
++   * will only be reported during a single diagnostic report unless it
++   * persists. Tallies of errors are also maintained to keep track of errors
++   * in a more persistent way.
++   */
++
++  class TimeStampStatus : public DiagnosticTask
++  {
++    private:
++      void init()
++      {
++        early_count_ = 0;
++        late_count_ = 0;
++        zero_count_ = 0;
++        zero_seen_ = false;
++        max_delta_ = 0;
++        min_delta_ = 0;
++        deltas_valid_ = false;
++      }
++
++    public:
++      /**
++       * \brief Constructs the TimeStampStatus with the given parameters.
++       */
++
++      TimeStampStatus(const TimeStampStatusParam &params, std::string name) :
++        DiagnosticTask(name),
++        params_(params)
++      {
++        init();
++      }
++
++      /**
++       * \brief Constructs the TimeStampStatus with the given parameters.
++       *        Uses a default diagnostic task name of "Timestamp Status".
++       */
++
++      TimeStampStatus(const TimeStampStatusParam &params) :
++        DiagnosticTask("Timestamp Status"),
++        params_(params)
++      {
++        init();
++      }
++
++      /**
++       * \brief Constructs the TimeStampStatus with the default parameters.
++       *        Uses a default diagnostic task name of "Timestamp Status".
++       */
++
++      TimeStampStatus() :
++        DiagnosticTask("Timestamp Status")
++      {
++        init();
++      }
++
++      /**
++       * \brief Signals an event. Timestamp stored as a double.
++       *
++       * \param stamp The timestamp of the event that will be used in computing
++       * intervals.
++       */
++
++      void tick(double stamp)
++      {
++        boost::mutex::scoped_lock lock(lock_);
++
++        if (stamp == 0)
++        {
++          zero_seen_ = true;
++        }
++        else
++        {
++          double delta = ros::Time::now().toSec() - stamp;
++
++          if (!deltas_valid_ || delta > max_delta_)
++            max_delta_ = delta;
++
++          if (!deltas_valid_ || delta < min_delta_)
++            min_delta_ = delta;
++
++          deltas_valid_ = true;
++        }
++      }
++
++      /**
++       * \brief Signals an event.
++       *
++       * \param t The timestamp of the event that will be used in computing
++       * intervals.
++       */
++
++      void tick(const ros::Time t)
++      {
++        tick(t.toSec());
++      }
++
++      virtual void run(diagnostic_updater::DiagnosticStatusWrapper &stat);
++
++    private:
++      TimeStampStatusParam params_;
++      int early_count_;
++      int late_count_;
++      int zero_count_;
++      bool zero_seen_;
++      double max_delta_;
++      double min_delta_;
++      bool deltas_valid_;
++      boost::mutex lock_;
++  };
++
++  /**
++   * A TimeStampStatus task that doesn't report periods with no data as a warning. This comes handy if the diagnosed
++   * topic has lower frequency than the diagnostic period.
++   */
++  class SlowTimeStampStatus : public TimeStampStatus
++  {
++    public:
++      SlowTimeStampStatus(const TimeStampStatusParam& params, const std::string& name) : TimeStampStatus(params, name)
++      {}
++
++      SlowTimeStampStatus(const TimeStampStatusParam& params) : TimeStampStatus(params)
++      {}
++
++      SlowTimeStampStatus()
++      {}
++  };
++
++ /**
++ * \brief Diagnostic task to monitor whether a node is alive
++ *
++ * This diagnostic task always reports as OK and 'Alive' when it runs
++ */
++
++  class Heartbeat : public DiagnosticTask
++  {
++  public:
++    /**
++     * \brief Constructs a HeartBeat
++     */
++
++    Heartbeat() :
++      DiagnosticTask("Heartbeat")
++    {
++    }
++
++    virtual void run(diagnostic_updater::DiagnosticStatusWrapper &stat)
++    {
++      stat.summary(0, "Alive");
++    }
++  };
++}
++
++#endif
+--- /dev/null
++++ ros-noetic-diagnostic-updater-1.11.0/mainpage.dox
+@@ -0,0 +1,27 @@
++/**
++
++@mainpage diagnostic_updater
++
++@htmlinclude manifest.html
++
++\b \ref diagnostic_updater contains assorted C++ classes to assist in diagnostic
++publication. These libraries are commonly used by device drivers as part of the diagnostics toolchain. The main parts of diagnostic_updater are:
++
++ - \ref diagnostic_updater::DiagnosticStatusWrapper, a wrapper providing
++   convenience functions for working with \ref
++   diagnostics_msgs::DiagnosticStatus.
++
++ - \ref Updater, a class for managing periodic publishing of the \ref
++   diagnostic_updater::DiagnosticStatusWrapper output by a set of \ref
++   diagnostic_updater::DiagnosticTask.
++
++ - \ref diagnostic_updater::TopicDiagnostic and \ref
++   diagnostic_updater::HeaderlessTopicDiagnostic for calculating and
++   publishing statistics on timestamps and publication frequencies, and
++   their corresponding \ref diagnostic_updater::DiagnosedPublisher and \ref
++   diagnostic_updater::HeaderlessDiagnosedPublisher to update the
++   statistics automatically when publications are made to a topic.
++
++Example uses of these classes can be found in \ref src/example.cpp.
++ 
++ */                                     
+--- /dev/null
++++ ros-noetic-diagnostic-updater-1.11.0/package.xml
+@@ -0,0 +1,36 @@
++<package>
++  <name>diagnostic_updater</name>
++  <version>1.11.0</version>
++  <description>diagnostic_updater contains tools for easily updating diagnostics. it is commonly used in device drivers to keep track of the status of output topics, device status, etc.</description>
++  <author>Kevin Watts</author>
++  <author email="brice.rebsamen@gmail.com">Brice Rebsamen</author>
++  <maintainer email="guglielmo.gemignani@gmail.com">Guglielmo Gemignani</maintainer>
++  <maintainer email="namniart@gmail.com">Austin Hendrix</maintainer>
++
++  <license>BSD</license>
++
++  <url type="website">http://www.ros.org/wiki/diagnostic_updater</url>
++<!-- <url type="bugtracker"></url> -->
++
++  <author>Jeremy Leibs</author>
++  <author>Blaise Gassend</author>
++
++  <buildtool_depend version_gte="0.5.68">catkin</buildtool_depend>
++
++  <build_depend>diagnostic_msgs</build_depend>
++  <build_depend>roscpp</build_depend>
++  <build_depend>rostest</build_depend>
++  <build_depend>std_msgs</build_depend>
++
++  <run_depend>diagnostic_msgs</run_depend>
++  <run_depend>roscpp</run_depend>
++  <run_depend>std_msgs</run_depend>
++
++  <!-- <test_depend>roscpp</test_depend> -->
++  <!-- <test_depend>diagnostic_msgs</test_depend> -->
++  <!-- <test_depend>std_msgs</test_depend> -->
++
++  <export>
++    <architecture_independent/>
++  </export>
++</package>
+--- /dev/null
++++ ros-noetic-diagnostic-updater-1.11.0/setup.py
+@@ -0,0 +1,11 @@
++#!/usr/bin/env python
++
++from setuptools import setup
++from catkin_pkg.python_setup import generate_distutils_setup
++
++d = generate_distutils_setup(
++    packages=['diagnostic_updater'],
++    package_dir={'': 'src'}
++)
++
++setup(**d)
+--- /dev/null
++++ ros-noetic-diagnostic-updater-1.11.0/src/diagnostic_updater/__init__.py
+@@ -0,0 +1,39 @@
++#! /usr/bin/env python
++#
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2012, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of the Willow Garage nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++# -*- coding: utf-8 -*-
++from ._diagnostic_status_wrapper import *
++from ._diagnostic_updater import *
++from ._update_functions import *
++from ._publisher import *
+--- /dev/null
++++ ros-noetic-diagnostic-updater-1.11.0/src/diagnostic_updater/_diagnostic_status_wrapper.py
+@@ -0,0 +1,143 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2012, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++# -*- coding: utf-8 -*-
++
++""" diagnostic_updater for Python.
++@author Brice Rebsamen <brice [dot] rebsamen [gmail]>
++"""
++
++import rospy
++from diagnostic_msgs.msg import DiagnosticStatus, KeyValue
++
++OK = DiagnosticStatus.OK
++WARN = DiagnosticStatus.WARN
++ERROR = DiagnosticStatus.ERROR
++
++class DiagnosticStatusWrapper(DiagnosticStatus):
++    """ Wrapper for the diagnostic_msgs::DiagnosticStatus message that makes it
++    easier to update.
++
++    This class handles common string formatting and vector handling issues
++    for filling the diagnostic_msgs::DiagnosticStatus message. It is a subclass of
++    diagnostic_msgs::DiagnosticStatus, so it can be passed directly to
++    diagnostic publish calls.
++    """
++
++    def __init__(self, *args, **kwds):
++        """
++        Constructor. Any message fields that are implicitly/explicitly
++        set to None will be assigned a default value. The recommend
++        use is keyword arguments as this is more robust to future message
++        changes.  You cannot mix in-order arguments and keyword arguments.
++
++        The available fields are:
++        level,name,message,hardware_id,values
++
++        @param args: complete set of field values, in .msg order
++        @param kwds: use keyword arguments corresponding to message field names
++        to set specific fields.
++        """
++        DiagnosticStatus.__init__(self, *args, **kwds)
++
++
++    def summary(self, *args):
++        """ Fills out the level and message fields of the DiagnosticStatus.
++
++        Usage:
++        summary(diagnostic_status): Copies the summary from a DiagnosticStatus message
++        summary(lvl,msg): sets from lvl and messages
++        """
++        if len(args)==1:
++            self.level = args[0].level
++            self.message = args[0].message
++        elif len(args)==2:
++            self.level = args[0]
++            self.message = str(args[1])
++
++
++    def clearSummary(self):
++        """ Clears the summary, setting the level to zero and the message to "".
++        """
++        self.summary(0, "")
++
++
++    def mergeSummary(self, *args):
++        """ Merges a level and message with the existing ones.
++
++        It is sometimes useful to merge two DiagnosticStatus messages. In that case,
++        the key value pairs can be unioned, but the level and summary message
++        have to be merged more intelligently. This function does the merge in
++        an intelligent manner, combining the summary in *this, with the one
++        that is passed in.
++
++        The combined level is the greater of the two levels to be merged.
++        If both levels are non-zero (not OK), the messages are combined with a
++        semicolon separator. If only one level is zero, and the other is
++        non-zero, the message for the zero level is discarded. If both are
++        zero, the new message is ignored.
++
++        Usage:
++        mergeSummary(diagnostic_status): merge from a DiagnosticStatus message
++        mergeSummary(lvl,msg): sets from lvl and msg
++        """
++        if len(args)==1:
++            lvl = args[0].level
++            msg = args[0].message
++        elif len(args)==2:
++            lvl = args[0]
++            msg = args[1]
++
++        if (lvl>0) == (self.level>0):
++            if len(self.message)>0:
++                self.message += "; "
++            self.message += msg
++        elif lvl > self.level:
++            self.message = msg
++
++        if lvl > self.level:
++            self.level = lvl
++
++
++    def add(self, key, val):
++        """ Add a key-value pair.
++
++        This method adds a key-value pair. Any type that has a << stream
++        operator can be passed as the second argument.  Formatting is done
++        using a std::stringstream.
++
++        @type key string
++        @param key Key to be added.
++        @type value string
++        @param value Value to be added.
++        """
++        self.values.append(KeyValue(key,str(val)))
+--- /dev/null
++++ ros-noetic-diagnostic-updater-1.11.0/src/diagnostic_updater/_diagnostic_updater.py
+@@ -0,0 +1,345 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2012, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++# -*- coding: utf-8 -*-
++
++""" diagnostic_updater for Python.
++@author Brice Rebsamen <brice [dot] rebsamen [gmail]>
++"""
++
++import rospy
++import threading
++from diagnostic_msgs.msg import DiagnosticArray
++
++try:
++    import httplib
++except ImportError:
++    import http.client as httplib
++
++from ._diagnostic_status_wrapper import *
++
++class DiagnosticTask:
++    """DiagnosticTask is an abstract base class for collecting diagnostic data.
++
++    Subclasses are provided for generating common diagnostic information.
++    A DiagnosticTask has a name, and a function that is called to create a
++    DiagnosticStatusWrapper.
++    """
++
++    def __init__(self, name):
++        """Constructs a DiagnosticTask setting its name in the process."""
++        self.name = name
++
++    def getName(self):
++        """Returns the name of the DiagnosticTask."""
++        return self.name
++
++    def run(self, stat):
++        """Fills out this Task's DiagnosticStatusWrapper.
++        @param stat: the DiagnosticStatusWrapper to fill
++        @return the filled DiagnosticStatusWrapper
++        """
++        return stat
++
++
++
++class FunctionDiagnosticTask(DiagnosticTask):
++    """A DiagnosticTask based on a function.
++
++    The FunctionDiagnosticTask calls the function when it updates. The
++    function updates the DiagnosticStatusWrapper and collects data.
++
++    This is useful for gathering information about a device or driver, like temperature,
++    calibration, etc.
++    """
++
++    def __init__(self, name, fn):
++        """Constructs a GenericFunctionDiagnosticTask based on the given name and function.
++        @param name Name of the function.
++        @param fn Function to be called when run is called.
++        """
++        DiagnosticTask.__init__(self, name)
++        self.fn = fn
++
++    def run(self, stat):
++        return self.fn(stat)
++
++
++
++class CompositeDiagnosticTask(DiagnosticTask):
++    """Merges CompositeDiagnosticTask into a single DiagnosticTask.
++
++    The CompositeDiagnosticTask allows multiple DiagnosticTask instances to
++    be combined into a single task that produces a single
++    DiagnosticStatusWrapped. The output of the combination has the max of
++    the status levels, and a concatenation of the non-zero-level messages.
++
++    For instance, this could be used to combine the calibration and offset data
++    from an IMU driver.
++    """
++
++    def __init__(self, name):
++        """Constructs a CompositeDiagnosticTask with the given name."""
++        DiagnosticTask.__init__(self, name)
++        self.tasks = []
++
++    def run(self, stat):
++        """Runs each child and merges their outputs."""
++        combined_summary = DiagnosticStatusWrapper()
++        original_summary = DiagnosticStatusWrapper()
++
++        original_summary.summary(stat)
++
++        for task in self.tasks:
++            # Put the summary that was passed in.
++            stat.summary(original_summary)
++            # Let the next task add entries and put its summary.
++            stat = task.run(stat)
++            # Merge the new summary into the combined summary.
++            combined_summary.mergeSummary(stat)
++
++
++        # Copy the combined summary into the output.
++        stat.summary(combined_summary)
++        return stat
++
++    def addTask(self, t):
++        """Adds a child CompositeDiagnosticTask.
++
++        This CompositeDiagnosticTask will be called each time this
++        CompositeDiagnosticTask is run.
++        """
++        self.tasks.append(t)
++
++
++
++class DiagnosticTaskVector:
++    """Internal use only.
++
++    Base class for diagnostic_updater::Updater and self_test::Dispatcher.
++    The class manages a collection of diagnostic updaters. It contains the
++    common functionality used for producing diagnostic updates and for
++    self-tests.
++    """
++
++    class DiagnosticTaskInternal:
++        """Class used to represent a diagnostic task internally in
++        DiagnosticTaskVector.
++        """
++
++        def __init__(self, name, fn):
++            self.name = name
++            self.fn = fn
++
++        def run(self, stat):
++            stat.name = self.name
++            return self.fn(stat)
++
++
++    def __init__(self):
++        self.tasks = []
++        self.lock = threading.Lock()
++
++    def addedTaskCallback(self, task):
++        """Allows an action to be taken when a task is added. The Updater class
++        uses this to immediately publish a diagnostic that says that the node
++        is loading.
++        """
++        pass
++
++    def add(self, *args):
++        """Add a task to the DiagnosticTaskVector.
++
++        Usage:
++        add(task): where task is a DiagnosticTask
++        add(name, fn): add a DiagnosticTask embodied by a name and function
++        """
++        if len(args)==1:
++            task = DiagnosticTaskVector.DiagnosticTaskInternal(args[0].getName(), args[0].run)
++        elif len(args)==2:
++            task = DiagnosticTaskVector.DiagnosticTaskInternal(args[0], args[1])
++
++        with self.lock:
++            self.tasks.append(task)
++            self.addedTaskCallback(task)
++
++    def removeByName(self, name):
++        """Removes a task based on its name.
++
++        Removes the first task that matches the specified name. (New in
++        version 1.1.2)
++
++        @param name Name of the task to remove.
++        @return Returns true if a task matched and was removed.
++        """
++        found = False
++        with self.lock:
++            for i in range(len(self.tasks)):
++                if self.tasks[i].name == name:
++                    self.tasks.pop(i)
++                    found = True
++                    break
++        return found
++
++
++
++
++class Updater(DiagnosticTaskVector):
++    """Manages a list of diagnostic tasks, and calls them in a rate-limited manner.
++
++    This class manages a list of diagnostic tasks. Its update function
++    should be called frequently. At some predetermined rate, the update
++    function will cause all the diagnostic tasks to run, and will collate
++    and publish the resulting diagnostics. The publication rate is
++    determined by the "~diagnostic_period" ros parameter.
++
++    The class also allows an update to be forced when something significant
++    has happened, and allows a single message to be broadcast on all the
++    diagnostics if normal operation of the node is suspended for some
++    reason.
++    """
++
++    def __init__(self):
++        """Constructs an updater class."""
++        DiagnosticTaskVector.__init__(self)
++        self.publisher = rospy.Publisher("/diagnostics", DiagnosticArray, queue_size=10)
++
++        self.last_time = rospy.Time.now()
++        self.last_time_period_checked = self.last_time
++        self.period = 1
++
++        self.verbose = False
++        self.hwid = ""
++        self.warn_nohwid_done = False
++
++    def update(self):
++        """Causes the diagnostics to update if the inter-update interval
++        has been exceeded.
++        """
++        self._check_diagnostic_period()
++        if rospy.Time.now() >= self.last_time + rospy.Duration(self.period):
++            self.force_update()
++
++    def force_update(self):
++        """Forces the diagnostics to update.
++
++        Useful if the node has undergone a drastic state change that should be
++        published immediately.
++        """
++        self.last_time = rospy.Time.now()
++
++        warn_nohwid = len(self.hwid)==0
++
++        status_vec = []
++
++        with self.lock: # Make sure no adds happen while we are processing here.
++            for task in self.tasks:
++                status = DiagnosticStatusWrapper()
++                status.name = task.name
++                status.level = 2
++                status.message = "No message was set"
++                status.hardware_id = self.hwid
++
++                stat = task.run(status)
++
++                status_vec.append(status)
++
++                if status.level:
++                    warn_nohwid = False
++
++                if self.verbose and status.level:
++                    rospy.logwarn("Non-zero diagnostic status. Name: '%s', status %i: '%s'" %
++                                (status.name, status.level, status.message))
++
++        if warn_nohwid and not self.warn_nohwid_done:
++            rospy.logwarn("diagnostic_updater: No HW_ID was set. This is probably a bug. Please report it. For devices that do not have a HW_ID, set this value to 'none'. This warning only occurs once all diagnostics are OK so it is okay to wait until the device is open before calling setHardwareID.");
++            self.warn_nohwid_done = True
++
++        self.publish(status_vec)
++
++    def broadcast(self, lvl, msg):
++        """Outputs a message on all the known DiagnosticStatus.
++
++        Useful if something drastic is happening such as shutdown or a self-test.
++
++        @param lvl Level of the diagnostic being output.
++        @param msg Status message to output.
++        """
++
++        status_vec = []
++
++        for task in self.tasks:
++            status = DiagnosticStatusWrapper()
++            status.name = task.name
++            status.summary(lvl, msg)
++            status_vec.append(status)
++
++        self.publish(status_vec)
++
++    def setHardwareID(self, hwid):
++        self.hwid = hwid
++
++    def _check_diagnostic_period(self):
++        """Recheck the diagnostic_period on the parameter server."""
++
++        # This was getParamCached() call in the cpp code. i.e. it would throttle
++        # the actual call to the parameter server using a notification of change
++        # mechanism.
++        # This is not available in rospy. Hence I throttle the call to the
++        # parameter server using a standard timeout mechanism (4Hz)
++
++        now = rospy.Time.now()
++        if  now >= self.last_time_period_checked + rospy.Duration(0.25):
++            try:
++                self.period = rospy.get_param_cached("~diagnostic_period", 1)
++                self.last_time_period_checked = now
++            except (httplib.CannotSendRequest, httplib.ResponseNotReady):
++                pass
++
++    def publish(self, msg):
++        """Publishes a single diagnostic status or a vector of diagnostic statuses."""
++        if not type(msg) is list:
++            msg = [msg]
++
++        for stat in msg:
++            stat.name = rospy.get_name()[1:]+ ": " + stat.name
++
++        da = DiagnosticArray()
++        da.status = msg
++        da.header.stamp = rospy.Time.now() # Add timestamp for ROS 0.10
++        self.publisher.publish(da)
++
++    def addedTaskCallback(self, task):
++        stat = DiagnosticStatusWrapper()
++        stat.name = task.name
++        stat.summary(0, "Node starting up")
++        self.publish(stat)
+--- /dev/null
++++ ros-noetic-diagnostic-updater-1.11.0/src/diagnostic_updater/_publisher.py
+@@ -0,0 +1,144 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2012, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++# -*- coding: utf-8 -*-
++
++""" diagnostic_updater for Python.
++@author Brice Rebsamen <brice [dot] rebsamen [gmail]>
++"""
++
++import rospy
++import threading
++from ._update_functions import *
++
++
++class HeaderlessTopicDiagnostic(CompositeDiagnosticTask):
++    """A class to facilitate making diagnostics for a topic using a
++    FrequencyStatus.
++
++    The word "headerless" in the class name refers to the fact that it is
++    mainly designed for use with messages that do not have a header, and
++    that cannot therefore be checked using a TimeStampStatus.
++    """
++
++    def __init__(self, name, diag, freq):
++        """Constructs a HeaderlessTopicDiagnostic.
++
++        @param name The name of the topic that is being diagnosed.
++
++        @param diag The diagnostic_updater that the CompositeDiagnosticTask
++        should add itself to.
++
++        @param freq The parameters for the FrequencyStatus class that will be
++        computing statistics.
++        """
++        CompositeDiagnosticTask.__init__(self, name + " topic status")
++        self.diag = diag
++        self.freq = FrequencyStatus(freq)
++        self.addTask(self.freq)
++        self.diag.add(self)
++
++    def tick(self):
++        """Signals that a publication has occurred."""
++        self.freq.tick()
++
++    def clear_window(self):
++        """Clears the frequency statistics."""
++        self.freq.clear()
++
++
++class TopicDiagnostic(HeaderlessTopicDiagnostic):
++    """A class to facilitate making diagnostics for a topic using a
++    FrequencyStatus and TimeStampStatus.
++    """
++
++    def __init__(self, name, diag, freq, stamp):
++        """Constructs a TopicDiagnostic.
++
++        @param name The name of the topic that is being diagnosed.
++
++        @param diag The diagnostic_updater that the CompositeDiagnosticTask
++        should add itself to.
++
++        @param freq The parameters for the FrequencyStatus class that will be
++        computing statistics.
++
++        @param stamp The parameters for the TimeStampStatus class that will be
++        computing statistics.
++        """
++
++        HeaderlessTopicDiagnostic.__init__(self, name, diag, freq)
++        self.stamp = TimeStampStatus(stamp)
++        self.addTask(self.stamp)
++
++    def tick(self, stamp):
++        """Collects statistics and publishes the message.
++
++        @param stamp Timestamp to use for interval computation by the
++        TimeStampStatus class.
++        """
++        self.stamp.tick(stamp)
++        HeaderlessTopicDiagnostic.tick(self)
++
++
++class DiagnosedPublisher(TopicDiagnostic):
++    """A TopicDiagnostic combined with a ros::Publisher.
++
++    For a standard ros::Publisher, this class allows the ros::Publisher and
++    the TopicDiagnostic to be combined for added convenience.
++    """
++
++    def __init__(self, pub, diag, freq, stamp):
++        """Constructs a DiagnosedPublisher.
++
++        @param pub The publisher on which statistics are being collected.
++
++        @param diag The diagnostic_updater that the CompositeDiagnosticTask
++        should add itself to.
++
++        @param freq The parameters for the FrequencyStatus class that will be
++        computing statistics.
++
++        @param stamp The parameters for the TimeStampStatus class that will be
++        computing statistics.
++        """
++        TopicDiagnostic.__init__(self, pub.name, diag, freq, stamp)
++        self.publisher = pub
++
++    def publish(self, message):
++        """Collects statistics and publishes the message.
++
++        The timestamp to be used by the TimeStampStatus class will be
++        extracted from message.header.stamp.
++        """
++        self.tick(message.header.stamp)
++        self.publisher.publish(message)
+--- /dev/null
++++ ros-noetic-diagnostic-updater-1.11.0/src/diagnostic_updater/_update_functions.py
+@@ -0,0 +1,235 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2012, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++# -*- coding: utf-8 -*-
++
++""" diagnostic_updater for Python.
++@author Brice Rebsamen <brice [dot] rebsamen [gmail]>
++"""
++
++import rospy
++from ._diagnostic_updater import *
++
++
++class FrequencyStatusParam:
++    """A structure that holds the constructor parameters for the FrequencyStatus
++    class.
++
++    Implementation note: the min_freq and max_freq parameters in the C += 1 code
++    are stored as pointers, so that if they are updated, the new values are used.
++    To emulate this behavior, we here use a dictionary to hold them: {'min','max'}
++
++    freq_bound is a dictionary with keys 'min' and 'max', containing the min
++    and max acceptable frequencies.
++
++    tolerance is the tolerance with which bounds must be satisfied. Acceptable
++    values are from freq_bound['min'] * (1 - torelance) to
++    freq_bound['max'] * (1 + tolerance). Common use cases are to set
++    tolerance to zero, or to assign the same value to freq_bound['min'] and
++    freq_bound['max']
++
++    window_size is the number of events to consider in the statistics.
++    """
++
++    def __init__(self, freq_bound, tolerance = 0.1, window_size = 5):
++        """Creates a filled-out FrequencyStatusParam."""
++        self.freq_bound = freq_bound
++        self.tolerance = tolerance
++        self.window_size = window_size
++
++
++class FrequencyStatus(DiagnosticTask):
++    """A diagnostic task that monitors the frequency of an event.
++
++    This diagnostic task monitors the frequency of calls to its tick method,
++    and creates corresponding diagnostics. It will report a warning if the
++    frequency is outside acceptable bounds, and report an error if there have
++    been no events in the latest window.
++    """
++
++    def __init__(self, params, name = "FrequencyStatus"):
++        """Constructs a FrequencyStatus class with the given parameters."""
++        DiagnosticTask.__init__(self, name)
++        self.params = params
++        self.lock = threading.Lock()
++        self.clear()
++
++    def clear(self):
++        """Resets the statistics."""
++        with self.lock:
++            self.count = 0
++            curtime = rospy.Time.now()
++            self.times = [curtime for i in range(self.params.window_size)]
++            self.seq_nums = [0 for i in range(self.params.window_size)]
++            self.hist_indx = 0
++
++    def tick(self):
++        """Signals that an event has occurred."""
++        with self.lock:
++            self.count += 1
++
++    def run(self, stat):
++        with self.lock:
++            curtime = rospy.Time.now()
++            curseq = self.count
++            events = curseq - self.seq_nums[self.hist_indx]
++            window = (curtime - self.times[self.hist_indx]).to_sec()
++            freq = events / window
++            self.seq_nums[self.hist_indx] = curseq
++            self.times[self.hist_indx] = curtime
++            self.hist_indx = (self.hist_indx + 1) % self.params.window_size
++
++            if events == 0:
++                stat.summary(2, "No events recorded.")
++            elif freq < self.params.freq_bound['min'] * (1 - self.params.tolerance):
++                stat.summary(1, "Frequency too low.")
++            elif 'max' in self.params.freq_bound and freq > self.params.freq_bound['max'] * (1 + self.params.tolerance):
++                stat.summary(1, "Frequency too high.")
++            else:
++                stat.summary(0, "Desired frequency met")
++
++            stat.add("Events in window", "%d" % events)
++            stat.add("Events since startup", "%d" % self.count)
++            stat.add("Duration of window (s)", "%f" % window)
++            stat.add("Actual frequency (Hz)", "%f" % freq)
++            if 'max' in self.params.freq_bound and self.params.freq_bound['min'] == self.params.freq_bound['max']:
++                stat.add("Target frequency (Hz)", "%f" % self.params.freq_bound['min'])
++            if self.params.freq_bound['min'] > 0:
++                stat.add("Minimum acceptable frequency (Hz)", "%f" % (self.params.freq_bound['min'] * (1 - self.params.tolerance)))
++            if 'max' in self.params.freq_bound:
++                stat.add("Maximum acceptable frequency (Hz)", "%f" % (self.params.freq_bound['max'] * (1 + self.params.tolerance)))
++
++        return stat
++
++
++class TimeStampStatusParam:
++    """A structure that holds the constructor parameters for the TimeStampStatus class.
++
++    max_acceptable: maximum acceptable difference between two timestamps.
++    min_acceptable: minimum acceptable difference between two timestamps.
++    """
++
++    def __init__(self, min_acceptable = -1, max_acceptable = 5):
++        """Creates a filled-out TimeStampStatusParam."""
++        self.max_acceptable = max_acceptable
++        self.min_acceptable = min_acceptable
++
++
++class TimeStampStatus(DiagnosticTask):
++    """Diagnostic task to monitor the interval between events.
++
++    This diagnostic task monitors the difference between consecutive events,
++    and creates corresponding diagnostics. An error occurs if the interval
++    between consecutive events is too large or too small. An error condition
++    will only be reported during a single diagnostic report unless it
++    persists. Tallies of errors are also maintained to keep track of errors
++    in a more persistent way.
++    """
++
++    def __init__(self, params = TimeStampStatusParam(), name = "Timestamp Status"):
++        """Constructs the TimeStampStatus with the given parameters."""
++        DiagnosticTask.__init__(self, name)
++        self.params = params
++        self.lock = threading.Lock()
++        self.early_count = 0
++        self.late_count = 0
++        self.zero_count = 0
++        self.zero_seen = False
++        self.max_delta = 0
++        self.min_delta = 0
++        self.deltas_valid = False
++
++    def tick(self, stamp):
++        """Signals an event.
++        @param stamp The timestamp of the event that will be used in computing
++        intervals. Can be either a double or a ros::Time.
++        """
++        if not isinstance(stamp, float):
++            stamp = stamp.to_sec()
++
++        with self.lock:
++            if stamp == 0:
++                self.zero_seen = True
++            else:
++                delta = rospy.Time.now().to_sec() - stamp
++                if not self.deltas_valid or delta > self.max_delta:
++                    self.max_delta = delta
++                if not self.deltas_valid or delta < self.min_delta:
++                    self.min_delta = delta
++                self.deltas_valid = True
++
++    def run(self, stat):
++        with self.lock:
++
++            stat.summary(0, "Timestamps are reasonable.")
++            if not self.deltas_valid:
++                stat.summary(1, "No data since last update.")
++            else:
++                if self.min_delta < self.params.min_acceptable:
++                    stat.summary(2, "Timestamps too far in future seen.")
++                    self.early_count += 1
++                if self.max_delta > self.params.max_acceptable:
++                    stat.summary(2, "Timestamps too far in past seen.")
++                    self.late_count += 1
++                if self.zero_seen:
++                    stat.summary(2, "Zero timestamp seen.")
++                    self.zero_count += 1
++
++            stat.add("Earliest timestamp delay:", "%f" % self.min_delta)
++            stat.add("Latest timestamp delay:", "%f" % self.max_delta)
++            stat.add("Earliest acceptable timestamp delay:", "%f" % self.params.min_acceptable)
++            stat.add("Latest acceptable timestamp delay:", "%f" % self.params.max_acceptable)
++            stat.add("Late diagnostic update count:", "%i" % self.late_count)
++            stat.add("Early diagnostic update count:", "%i" % self.early_count)
++            stat.add("Zero seen diagnostic update count:", "%i" % self.zero_count)
++
++            self.deltas_valid = False
++            self.min_delta = 0
++            self.max_delta = 0
++            self.zero_seen = False
++
++        return stat
++
++
++class Heartbeat(DiagnosticTask):
++    """Diagnostic task to monitor whether a node is alive
++
++    This diagnostic task always reports as OK and 'Alive' when it runs
++    """
++
++    def __init__(self):
++        """Constructs a HeartBeat"""
++        DiagnosticTask.__init__(self, "Heartbeat")
++
++    def run(self, stat):
++        stat.summary(0, "Alive")
++        return stat
+--- /dev/null
++++ ros-noetic-diagnostic-updater-1.11.0/src/example.cpp
+@@ -0,0 +1,247 @@
++/*********************************************************************
++ * Software License Agreement (BSD License)
++ * 
++ *  Copyright (c) 2008, Willow Garage, Inc.
++ *  All rights reserved.
++ * 
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted provided that the following conditions
++ *  are met:
++ * 
++ *   * Redistributions of source code must retain the above copyright
++ *     notice, this list of conditions and the following disclaimer.
++ *   * Redistributions in binary form must reproduce the above
++ *     copyright notice, this list of conditions and the following
++ *     disclaimer in the documentation and/or other materials provided
++ *     with the distribution.
++ *   * Neither the name of the Willow Garage nor the names of its
++ *     contributors may be used to endorse or promote products derived
++ *     from this software without specific prior written permission.
++ * 
++ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++ *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++ *  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++ *  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++ *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++ *  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++ *  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++ *  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++ *  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++ *  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++ *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ *  POSSIBILITY OF SUCH DAMAGE.
++ *********************************************************************/
++
++#include <diagnostic_updater/diagnostic_updater.h>
++#include <std_msgs/Bool.h>
++#include <diagnostic_updater/publisher.h>
++
++// ERROR defined in windows.h causes name collision, undefine the macro to fix the issue
++#ifdef ERROR
++#undef ERROR
++#endif
++
++double time_to_launch;
++
++/*
++ *\brief Used as a tutorial for loading and using diagnostic updater
++ *
++ * DummyClass and dummy_diagnostics show how to use a diagnostic_updater
++ * class.
++ */
++
++void dummy_diagnostic(diagnostic_updater::DiagnosticStatusWrapper &stat)
++{
++  // DiagnosticStatusWrapper are a derived class of 
++  // diagnostic_msgs::DiagnosticStatus provides a set of convenience
++  // methods.
++  
++  // summary and summaryf set the level and message.
++  if (time_to_launch < 10)
++    // summaryf for formatted text.
++    stat.summaryf(diagnostic_msgs::DiagnosticStatus::ERROR, "Buckle your seat belt. Launch in %f seconds!", time_to_launch);
++  else
++    // summary for unformatted text.
++    stat.summary(diagnostic_msgs::DiagnosticStatus::OK, "Launch is in a long time. Have a soda.");
++
++  // add and addf are used to append key-value pairs.
++  stat.add("Diagnostic Name", "dummy");
++  // add transparently handles conversion to string (using a string_stream).
++  stat.add("Time to Launch", time_to_launch);
++  // addf allows arbitrary printf style formatting.
++  stat.addf("Geeky thing to say", "The square of the time to launch %f is %f", 
++      time_to_launch, time_to_launch * time_to_launch);
++}
++
++class DummyClass
++{
++public:
++  void produce_diagnostics(diagnostic_updater::DiagnosticStatusWrapper &stat)
++  {
++    stat.summary(diagnostic_msgs::DiagnosticStatus::WARN, "This is a silly updater.");
++
++    stat.add("Stupidicity of this updater", 1000.);
++  }
++};
++
++class DummyTask : public diagnostic_updater::DiagnosticTask
++{
++public:
++  DummyTask() : DiagnosticTask("Updater Derived from DiagnosticTask")
++  {}
++
++  void run(diagnostic_updater::DiagnosticStatusWrapper &stat)
++  {
++    stat.summary(diagnostic_msgs::DiagnosticStatus::WARN, "This is another silly updater.");
++    stat.add("Stupidicity of this updater", 2000.);
++  }
++};
++
++void check_lower_bound(diagnostic_updater::DiagnosticStatusWrapper &stat)
++{
++  if (time_to_launch > 5)
++    stat.summary(diagnostic_msgs::DiagnosticStatus::OK, "Lower-bound OK");
++  else
++    stat.summary(diagnostic_msgs::DiagnosticStatus::ERROR, "Too low");
++
++  stat.add("Low-Side Margin", time_to_launch - 5);
++}
++
++void check_upper_bound(diagnostic_updater::DiagnosticStatusWrapper &stat)
++{
++  if (time_to_launch < 10)
++    stat.summary(diagnostic_msgs::DiagnosticStatus::OK, "Upper-bound OK");
++  else
++    stat.summary(diagnostic_msgs::DiagnosticStatus::WARN, "Too high");
++
++  stat.add("Top-Side Margin", 10 - time_to_launch);
++}
++
++int main(int argc, char **argv)
++{
++  ros::init(argc, argv, "diagnostic_updater_example");
++  
++  ros::NodeHandle nh;
++  
++  // The Updater class advertises to /diagnostics, and has a
++  // ~diagnostic_period parameter that says how often the diagnostics
++  // should be published.
++  diagnostic_updater::Updater updater;
++
++  // The diagnostic_updater::Updater class will fill out the hardware_id
++  // field of the diagnostic_msgs::DiagnosticStatus message. You need to
++  // use the setHardwareID() or setHardwareIDf() methods to set the
++  // hardware ID. 
++  //
++  // The hardware ID should be able to identify the specific device you are
++  // working with.  If it is not appropriate to fill out a hardware ID in
++  // your case, you should call setHardwareIDf("none") to avoid warnings.
++  // (A warning will be generated as soon as your node updates with no
++  // non-OK statuses.)
++  updater.setHardwareID("none"); 
++  // Or...
++  updater.setHardwareIDf("Device-%i-%i", 27, 46);
++
++  // Diagnostic tasks are added to the Updater. They will later be run when
++  // the updater decides to update. The add method is heavily overloaded
++  // for convenience. Check doxygen for the full list of add methods.
++  updater.add("Function updater", dummy_diagnostic);
++  DummyClass dc;
++  updater.add("Method updater", &dc, &DummyClass::produce_diagnostics);
++  
++  // Internally, updater.add converts its arguments into a DiagnosticTask.
++  // Sometimes it can be useful to work directly with DiagnosticTasks. Look
++  // at FrequencyStatus and TimestampStatus in update_functions.h for a
++  // real-life example of how to make a DiagnosticTask by deriving from
++  // DiagnosticTask.
++  
++  // Alternatively, a FunctionDiagnosticTask is a derived class from
++  // DiagnosticTask that can be used to create a DiagnosticTask from
++  // a function. This will be useful when combining multiple diagnostic
++  // tasks using a CompositeDiagnosticTask.
++  diagnostic_updater::FunctionDiagnosticTask lower("Lower-bound check",
++      boost::bind(&check_lower_bound, _1));
++  diagnostic_updater::FunctionDiagnosticTask upper("Upper-bound check",
++      boost::bind(&check_upper_bound, _1));
++
++  // If you want to merge the outputs of two diagnostic tasks together, you
++  // can create a CompositeDiagnosticTask, also a derived class from
++  // DiagnosticTask. For example, we could combine the upper and lower
++  // bounds check into a single DiagnosticTask.
++  diagnostic_updater::CompositeDiagnosticTask bounds("Bound check");
++  bounds.addTask(&lower);
++  bounds.addTask(&upper);
++
++  // We can then add the CompositeDiagnosticTask to our Updater. When it is
++  // run, the overall name will be the name of the composite task, i.e., 
++  // "Bound check". The summary will be a combination of the summary of the
++  // lower and upper tasks (see \ref
++  // DiagnosticStatusWrapper::mergeSummarSummary for details on how the
++  // merging is done). The lists of key-value pairs will be concatenated.
++  updater.add(bounds);
++
++  // You can broadcast a message in all the DiagnosticStatus if your node
++  // is in a special state.
++  updater.broadcast(0, "Doing important initialization stuff.");
++
++  ros::Publisher pub1 = nh.advertise<std_msgs::Bool>("topic1", 1);
++  ros::Publisher pub2_temp = nh.advertise<std_msgs::Bool>("topic2", 1);
++  ros::Duration(2).sleep(); // It isn't important if it doesn't take time.
++
++  // Some diagnostic tasks are very common, such as checking the rate
++  // at which a topic is publishing, or checking that timestamps are
++  // sufficiently recent. FrequencyStatus and TimestampStatus can do these
++  // checks for you. 
++  //
++  // Usually you would instantiate them via a HeaderlessTopicDiagnostic
++  // (FrequencyStatus only, for topics that do not contain a header) or a
++  // TopicDiagnostic (FrequencyStatus and TimestampStatus, for topics that
++  // do contain a header). 
++  //
++  // Some values are passed to the constructor as pointers. If these values
++  // are changed, the FrequencyStatus/TimestampStatus will start operating
++  // with the new values. 
++  //
++  // Refer to diagnostic_updater::FrequencyStatusParam and
++  // diagnostic_updater::TimestampStatusParam documentation for details on
++  // what the parameters mean:
++  double min_freq = 0.5; // If you update these values, the
++  double max_freq = 2; // HeaderlessTopicDiagnostic will use the new values.
++  diagnostic_updater::HeaderlessTopicDiagnostic pub1_freq("topic1", updater,
++      diagnostic_updater::FrequencyStatusParam(&min_freq, &max_freq, 0.1, 10));
++
++  // Note that TopicDiagnostic, HeaderlessDiagnosedPublisher,
++  // HeaderlessDiagnosedPublisher and DiagnosedPublisher all descend from
++  // CompositeDiagnosticTask, so you can add your own fields to them using
++  // the addTask method.
++  //
++  // Each time pub1_freq is updated, lower will also get updated and its
++  // output will be merged with the output from pub1_freq.
++  pub1_freq.addTask(&lower); // (This wouldn't work if lower was stateful).
++
++  // If we know that the state of the node just changed, we can force an
++  // immediate update.
++  updater.force_update();
++
++  // We can remove a task by refering to its name.
++  if (!updater.removeByName("Bound check"))
++    ROS_ERROR("The Bound check task was not found when trying to remove it.");
++
++  while (nh.ok())
++  {
++    std_msgs::Bool msg;
++    ros::Duration(0.1).sleep();
++    
++    // Calls to pub1 have to be accompanied by calls to pub1_freq to keep
++    // the statistics up to date.
++    msg.data = false;
++    pub1.publish(msg);
++    pub1_freq.tick();
++
++    // We can call updater.update whenever is convenient. It will take care
++    // of rate-limiting the updates.
++    updater.update();
++  }
++
++  return 0; 
++}
+--- /dev/null
++++ ros-noetic-diagnostic-updater-1.11.0/src/example.py
+@@ -0,0 +1,248 @@
++#!/usr/bin/env python
++
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2012, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++# -*- coding: utf-8 -*-
++
++"""
++@author Brice Rebsamen <brice [dot] rebsamen [gmail]>
++"""
++
++import roslib
++roslib.load_manifest('diagnostic_updater')
++import rospy
++import diagnostic_updater
++import diagnostic_msgs
++import std_msgs
++
++
++time_to_launch = 0
++
++'''Used as a tutorial for loading and using diagnostic updater.
++
++DummyClass and dummy_diagnostics show how to use a diagnostic_updater
++class.
++'''
++
++def dummy_diagnostic(stat):
++    # stat is supposed to be of type diagnostic_updater.DiagnosticStatusWrapper
++    # DiagnosticStatusWrapper is a derived class of
++    # diagnostic_msgs.msg.DiagnosticStatus that provides a set of convenience
++    # methods.
++
++    # summary sets the level and message.
++    # As opposed to the C++ API, there is no summaryf function: use python's
++    # string formatting instead
++    if time_to_launch < 10:
++        # summary for formatted text.
++        stat.summary(diagnostic_msgs.msg.DiagnosticStatus.ERROR,
++            "Buckle your seat belt. Launch in %f seconds!" % time_to_launch)
++    else:
++        # summary for unformatted text. It's just the same ;)
++        stat.summary(diagnostic_msgs.msg.DiagnosticStatus.OK,
++            "Launch is in a long time. Have a soda.")
++
++    # add is used to append key-value pairs.
++    # Again, as oppose to the C++ API, there is no addf function. The second
++    # argument is always converted to a str using the str() function.
++    stat.add("Diagnostic Name", "dummy")
++    # add transparently handles conversion to string (using str()).
++    stat.add("Time to Launch", time_to_launch)
++    # add allows arbitrary printf style formatting.
++    stat.add("Geeky thing to say", "The square of the time to launch %f is %f" % \
++        (time_to_launch, time_to_launch * time_to_launch) )
++
++    # As opposed to the C++ diagnostic function which modifies its argument,
++    # the python version must return the modified message.
++    return stat
++
++
++class DummyClass:
++    def produce_diagnostics(self, stat):
++        stat.summary(diagnostic_msgs.msg.DiagnosticStatus.WARN, "This is a silly updater.")
++        stat.add("Stupidicity of this updater", 1000.)
++        return stat
++
++
++class DummyTask(diagnostic_updater.DiagnosticTask):
++    def __init__(self):
++        diagnostic_updater.DiagnosticTask.__init__(self,
++            "Updater Derived from DiagnosticTask")
++
++    def run(self, stat):
++        stat.summary(diagnostic_msgs.msg.DiagnosticStatus.WARN,
++            "This is another silly updater.")
++        stat.add("Stupidicity of this updater", 2000.)
++        return stat
++
++
++def check_lower_bound(stat):
++    if time_to_launch > 5:
++        stat.summary(diagnostic_msgs.msg.DiagnosticStatus.OK, "Lower-bound OK")
++    else:
++        stat.summary(diagnostic_msgs.msg.DiagnosticStatus.ERROR, "Too low")
++    stat.add("Low-Side Margin", time_to_launch - 5)
++    return stat
++
++
++def check_upper_bound(stat):
++    if time_to_launch < 10:
++        stat.summary(diagnostic_msgs.msg.DiagnosticStatus.OK, "Upper-bound OK")
++    else:
++        stat.summary(diagnostic_msgs.msg.DiagnosticStatus.WARN, "Too high")
++    stat.add("Top-Side Margin", 10 - time_to_launch)
++    return stat
++
++
++if __name__=='__main__':
++    rospy.init_node("diagnostic_updater_example")
++
++    # The Updater class advertises to /diagnostics, and has a
++    # ~diagnostic_period parameter that says how often the diagnostics
++    # should be published.
++    updater = diagnostic_updater.Updater()
++
++    # The diagnostic_updater.Updater class will fill out the hardware_id
++    # field of the diagnostic_msgs.msg.DiagnosticStatus message. You need to
++    # use the setHardwareID() method to set the hardware ID.
++    #
++    # The hardware ID should be able to identify the specific device you are
++    # working with.  If it is not appropriate to fill out a hardware ID in
++    # your case, you should call setHardwareID("none") to avoid warnings.
++    # (A warning will be generated as soon as your node updates with no
++    # non-OK statuses.)
++    updater.setHardwareID("none")
++    # Or...
++    updater.setHardwareID("Device-%i-%i" % (27, 46) )
++
++    # Diagnostic tasks are added to the Updater. They will later be run when
++    # the updater decides to update.
++    # As opposed to the C++ API, there is only one add function. It can take
++    # several types of arguments:
++    #  - add(task): where task is a DiagnosticTask
++    #  - add(name, fn): add a DiagnosticTask embodied by a name and function
++    updater.add("Function updater", dummy_diagnostic)
++    dc = DummyClass()
++    updater.add("Method updater", dc.produce_diagnostics)
++
++    # Internally, updater.add converts its arguments into a DiagnosticTask.
++    # Sometimes it can be useful to work directly with DiagnosticTasks. Look
++    # at FrequencyStatus and TimestampStatus in update_functions for a
++    # real-life example of how to make a DiagnosticTask by deriving from
++    # DiagnosticTask.
++
++    # Alternatively, a FunctionDiagnosticTask is a derived class from
++    # DiagnosticTask that can be used to create a DiagnosticTask from
++    # a function. This will be useful when combining multiple diagnostic
++    # tasks using a CompositeDiagnosticTask.
++    lower = diagnostic_updater.FunctionDiagnosticTask("Lower-bound check",
++        check_lower_bound)
++    upper = diagnostic_updater.FunctionDiagnosticTask("Upper-bound check",
++        check_upper_bound)
++
++    # If you want to merge the outputs of two diagnostic tasks together, you
++    # can create a CompositeDiagnosticTask, also a derived class from
++    # DiagnosticTask. For example, we could combine the upper and lower
++    # bounds check into a single DiagnosticTask.
++    bounds = diagnostic_updater.CompositeDiagnosticTask("Bound check")
++    bounds.addTask(lower)
++    bounds.addTask(upper)
++
++    # We can then add the CompositeDiagnosticTask to our Updater. When it is
++    # run, the overall name will be the name of the composite task, i.e.,
++    # "Bound check". The summary will be a combination of the summary of the
++    # lower and upper tasks (see DiagnosticStatusWrapper.mergeSummary for
++    # details on how the merging is done). The lists of key-value pairs will be
++    # concatenated.
++    updater.add(bounds)
++
++    # You can broadcast a message in all the DiagnosticStatus if your node
++    # is in a special state.
++    updater.broadcast(0, "Doing important initialization stuff.")
++
++    pub1 = rospy.Publisher("topic1", std_msgs.msg.Bool, queue_size=10)
++    pub2_temp = rospy.Publisher("topic2", std_msgs.msg.Bool, queue_size=10)
++    rospy.sleep(2) # It isn't important if it doesn't take time.
++
++    # Some diagnostic tasks are very common, such as checking the rate
++    # at which a topic is publishing, or checking that timestamps are
++    # sufficiently recent. FrequencyStatus and TimestampStatus can do these
++    # checks for you.
++    #
++    # Usually you would instantiate them via a HeaderlessTopicDiagnostic
++    # (FrequencyStatus only, for topics that do not contain a header) or a
++    # TopicDiagnostic (FrequencyStatus and TimestampStatus, for topics that
++    # do contain a header).
++    #
++    # Some values are passed to the constructor as pointers. If these values
++    # are changed, the FrequencyStatus/TimestampStatus will start operating
++    # with the new values.
++    #
++    # Refer to diagnostic_updater.FrequencyStatusParam and
++    # diagnostic_updater.TimestampStatusParam documentation for details on
++    # what the parameters mean:
++    freq_bounds = {'min':0.5, 'max':2} # If you update these values, the
++    # HeaderlessTopicDiagnostic will use the new values.
++    pub1_freq = diagnostic_updater.HeaderlessTopicDiagnostic("topic1", updater,
++        diagnostic_updater.FrequencyStatusParam(freq_bounds, 0.1, 10))
++
++    # Note that TopicDiagnostic, HeaderlessDiagnosedPublisher,
++    # HeaderlessDiagnosedPublisher and DiagnosedPublisher all descend from
++    # CompositeDiagnosticTask, so you can add your own fields to them using
++    # the addTask method.
++    #
++    # Each time pub1_freq is updated, lower will also get updated and its
++    # output will be merged with the output from pub1_freq.
++    pub1_freq.addTask(lower) # (This wouldn't work if lower was stateful).
++
++    # If we know that the state of the node just changed, we can force an
++    # immediate update.
++    updater.force_update()
++
++    # We can remove a task by refering to its name.
++    if not updater.removeByName("Bound check"):
++        rospy.logerr("The Bound check task was not found when trying to remove it.")
++
++    while not rospy.is_shutdown():
++        msg = std_msgs.msg.Bool()
++        rospy.sleep(0.1)
++
++        # Calls to pub1 have to be accompanied by calls to pub1_freq to keep
++        # the statistics up to date.
++        msg.data = False
++        pub1.publish(msg)
++        pub1_freq.tick()
++
++        # We can call updater.update whenever is convenient. It will take care
++        # of rate-limiting the updates.
++        updater.update()
+--- /dev/null
++++ ros-noetic-diagnostic-updater-1.11.0/src/timestamp_status.cpp
+@@ -0,0 +1,54 @@
++#include <diagnostic_updater/update_functions.h>
++
++using namespace diagnostic_updater;
++
++void TimeStampStatus::run(DiagnosticStatusWrapper& stat) {
++    boost::mutex::scoped_lock lock(lock_);
++
++    using diagnostic_msgs::DiagnosticStatus;
++
++    stat.summary(DiagnosticStatus::OK, "Timestamps are reasonable.");
++    if (!deltas_valid_)
++    {
++      const auto no_data_is_problem = dynamic_cast<SlowTimeStampStatus*>(this) == nullptr;
++      const auto status = no_data_is_problem ? DiagnosticStatus::WARN : DiagnosticStatus::OK;
++      stat.summary(status, "No data since last update.");
++
++      stat.add("Earliest timestamp delay", "No data");
++      stat.add("Latest timestamp delay", "No data");
++    }
++    else
++    {
++      if (min_delta_ < params_.min_acceptable_)
++      {
++	stat.summary(DiagnosticStatus::ERROR, "Timestamps too far in future seen.");
++	early_count_++;
++      }
++    
++      if (max_delta_ > params_.max_acceptable_)
++      {
++	stat.summary(DiagnosticStatus::ERROR, "Timestamps too far in past seen.");
++	late_count_++;
++      }
++
++      if (zero_seen_)
++      {
++	stat.summary(DiagnosticStatus::ERROR, "Zero timestamp seen.");
++	zero_count_++;
++      }
++
++      stat.addf("Earliest timestamp delay", "%f", min_delta_);
++      stat.addf("Latest timestamp delay", "%f", max_delta_);
++    }
++
++    stat.addf("Earliest acceptable timestamp delay", "%f", params_.min_acceptable_);
++    stat.addf("Latest acceptable timestamp delay", "%f", params_.max_acceptable_);
++    stat.add("Late diagnostic update count", late_count_);
++    stat.add("Early diagnostic update count", early_count_);
++    stat.add("Zero seen diagnostic update count", zero_count_);
++
++    deltas_valid_ = false;
++    min_delta_ = 0;
++    max_delta_ = 0;
++    zero_seen_ = false;
++}
+--- /dev/null
++++ ros-noetic-diagnostic-updater-1.11.0/test/diagnostic_updater_fast_test.xml
+@@ -0,0 +1,6 @@
++<launch>
++  <test pkg="diagnostic_updater" type="diagnostic_updater_test" test-name="diagnostic_updater_test">
++    <param name="diagnostic_period" value="0.1"/>
++  </test>
++</launch>
++
+--- /dev/null
++++ ros-noetic-diagnostic-updater-1.11.0/test/diagnostic_updater_test.cpp
+@@ -0,0 +1,308 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++* 
++*  Copyright (c) 2008, Willow Garage, Inc.
++*  All rights reserved.
++* 
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++* 
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++* 
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++
++#include <gtest/gtest.h>
++#include <diagnostic_updater/diagnostic_updater.h>
++#include <diagnostic_updater/update_functions.h>
++#include <diagnostic_updater/DiagnosticStatusWrapper.h>
++#ifndef _WIN32
++#include <unistd.h>
++#endif
++
++using namespace diagnostic_updater;
++
++class TestClass 
++{
++public: 
++  void unwrapped(diagnostic_msgs::DiagnosticStatus &s)
++  {
++  }
++
++  void wrapped(DiagnosticStatusWrapper &s)
++  {
++  }
++};
++                                   
++TEST(DiagnosticUpdater, testDiagnosticUpdater)
++{
++  class classFunction : public DiagnosticTask
++  {
++  public:
++    classFunction() : DiagnosticTask("classFunction")
++    {}
++
++    void run(DiagnosticStatusWrapper &s) 
++    {
++      s.summary(0, "Test is running");
++      s.addf("Value", "%f", 5);
++      s.add("String", "Toto");
++      s.add("Floating", 5.55);
++      s.add("Integer", 5);
++      s.addf("Formatted %s %i", "Hello", 5);
++      s.add("Bool", true);
++    }
++  };
++  
++  TestClass c;
++  ros::NodeHandle nh;
++  
++  Updater updater;
++  
++  updater.add("wrapped", &c, &TestClass::wrapped);
++  
++  classFunction cf;
++  updater.add(cf);
++}
++
++TEST(DiagnosticUpdater, testDiagnosticStatusWrapperKeyValuePairs)
++{
++  DiagnosticStatusWrapper stat;
++  
++  const char *message = "dummy";
++  int level = 1;
++  stat.summary(level, message);
++  EXPECT_STREQ(message, stat.message.c_str()) << "DiagnosticStatusWrapper::summary failed to set message";
++  EXPECT_EQ(level, stat.level) << "DiagnosticStatusWrapper::summary failed to set level";
++
++  stat.addf("toto", "%.1f", 5.0);
++  stat.add("baba", 5);
++  stat.addf("foo", "%05i", 27);
++
++  stat.add("bool", true);
++  stat.add("bool2", false);
++  
++  EXPECT_STREQ("5.0", stat.values[0].value.c_str()) << "Bad value, adding a value with addf";
++  EXPECT_STREQ("5", stat.values[1].value.c_str()) << "Bad value, adding a string with add";
++  EXPECT_STREQ("00027", stat.values[2].value.c_str()) << "Bad value, adding a string with addf";
++  EXPECT_STREQ("toto", stat.values[0].key.c_str()) << "Bad label, adding a value with add";
++  EXPECT_STREQ("baba", stat.values[1].key.c_str()) << "Bad label, adding a string with add";
++  EXPECT_STREQ("foo", stat.values[2].key.c_str()) << "Bad label, adding a string with addf";
++
++  EXPECT_STREQ("bool", stat.values[3].key.c_str()) << "Bad label, adding a true bool key with add";
++  EXPECT_STREQ("True", stat.values[3].value.c_str()) << "Bad label, adding a true bool with add";
++
++  EXPECT_STREQ("bool2", stat.values[4].key.c_str()) << "Bad label, adding a false bool key with add";
++  EXPECT_STREQ("False", stat.values[4].value.c_str()) << "Bad label, adding a false bool with add";
++}
++
++TEST(DiagnosticUpdater, testDiagnosticStatusWrapperMergeSummary)
++{
++  DiagnosticStatusWrapper stat;
++
++  stat.summary(diagnostic_msgs::DiagnosticStatus::OK, "Old");
++  stat.mergeSummary(diagnostic_msgs::DiagnosticStatus::OK, "New");
++  EXPECT_EQ(diagnostic_msgs::DiagnosticStatus::OK, stat.level) << "Bad level, merging levels (OK,OK)";
++  EXPECT_STREQ("Old", stat.message.c_str()) << "Bad summary, merging levels (OK,OK)";
++
++  stat.summary(diagnostic_msgs::DiagnosticStatus::OK, "Old");
++  stat.mergeSummary(diagnostic_msgs::DiagnosticStatus::WARN, "New");
++  EXPECT_EQ(diagnostic_msgs::DiagnosticStatus::WARN, stat.level) << "Bad level, merging levels (OK,WARN)";
++  EXPECT_STREQ("New", stat.message.c_str()) << "Bad summary, merging levels (OK,WARN)";
++
++  stat.summary(diagnostic_msgs::DiagnosticStatus::WARN, "Old");
++  stat.mergeSummary(diagnostic_msgs::DiagnosticStatus::WARN, "New");
++  EXPECT_EQ(diagnostic_msgs::DiagnosticStatus::WARN, stat.level) << "Bad level, merging levels (WARN,WARN)";
++  EXPECT_STREQ("Old; New", stat.message.c_str()) << "Bad summary, merging levels (WARN,WARN)";
++
++  stat.summary(diagnostic_msgs::DiagnosticStatus::WARN, "Old");
++  stat.mergeSummary(diagnostic_msgs::DiagnosticStatus::ERROR, "New");
++  EXPECT_EQ(diagnostic_msgs::DiagnosticStatus::ERROR, stat.level) << "Bad level, merging levels (WARN,ERROR)";
++  EXPECT_STREQ("Old; New", stat.message.c_str()) << "Bad summary, merging levels (WARN,ERROR)";
++}
++
++TEST(DiagnosticUpdater, testFrequencyStatus)
++{
++  double minFreq = 10;
++  double maxFreq = 20;
++  
++  ros::Time::init();
++  ros::Time time(0, 0);
++  ros::Time::setNow(time);
++
++  FrequencyStatus fs(FrequencyStatusParam(&minFreq, &maxFreq, 0.5, 2));
++
++  const int MS_TO_NS = 1000000;
++
++  DiagnosticStatusWrapper stat[5];
++  fs.tick();
++  time += ros::Duration(0, 20 * MS_TO_NS); ros::Time::setNow(time);
++  fs.run(stat[0]); // Should be too fast, 20 ms for 1 tick, lower limit should be 33ms.
++  time += ros::Duration(0, 50 * MS_TO_NS); ros::Time::setNow(time);
++  fs.tick();
++  fs.run(stat[1]); // Should be good, 70 ms for 2 ticks, lower limit should be 66 ms.
++  time += ros::Duration(0, 300 * MS_TO_NS); ros::Time::setNow(time);
++  fs.tick();
++  fs.run(stat[2]); // Should be good, 350 ms for 2 ticks, upper limit should be 400 ms.
++  time += ros::Duration(0, 150 * MS_TO_NS); ros::Time::setNow(time);
++  fs.tick();
++  fs.run(stat[3]); // Should be too slow, 450 ms for 2 ticks, upper limit should be 400 ms.
++  fs.clear();
++  fs.run(stat[4]); // Should be good, just cleared it.
++
++  using diagnostic_msgs::DiagnosticStatus;
++
++  EXPECT_EQ(DiagnosticStatus::WARN, stat[0].level) << "max frequency exceeded but not reported";
++  EXPECT_EQ(DiagnosticStatus::OK, stat[1].level) << "within max frequency but reported error";
++  EXPECT_EQ(DiagnosticStatus::OK, stat[2].level) << "within min frequency but reported error";
++  EXPECT_EQ(DiagnosticStatus::WARN, stat[3].level) << "min frequency exceeded but not reported";
++  EXPECT_EQ(DiagnosticStatus::ERROR, stat[4].level) << "freshly cleared should fail";
++  EXPECT_STREQ("", stat[0].name.c_str()) << "Name should not be set by FrequencyStatus";
++  EXPECT_STREQ("Frequency Status", fs.getName().c_str()) << "Name should be \"Frequency Status\"";
++}
++
++TEST(DiagnosticUpdater, testSlowFrequencyStatus)
++{
++  // We have a slow topic (~0.5 Hz) and call the run() method once a second. This ensures that if the window size
++  // is large enough (longer than 1/min_frequency * duration_between_run_calls), the diagnostics correctly reports
++  // the frequency status even in time windows where no ticks happened.
++
++  double minFreq = 0.25;
++  double maxFreq = 0.75;
++
++  ros::Time::init();
++  ros::Time time(0, 0);
++  ros::Time::setNow(time);
++
++  FrequencyStatus fs(FrequencyStatusParam(&minFreq, &maxFreq, 0.0, 5));
++
++  DiagnosticStatusWrapper stat[8];
++  fs.tick();
++  time += ros::Duration(1, 0); ros::Time::setNow(time);
++  fs.run(stat[0]); // too high, 1 event in 1 sec window
++  time += ros::Duration(1, 0); ros::Time::setNow(time);
++  fs.run(stat[1]); // ok, 1 event in 2 sec window
++  fs.tick();
++  time += ros::Duration(1, 0); ros::Time::setNow(time);
++  fs.run(stat[2]); // ok, 2 events in 3 sec window
++  time += ros::Duration(1, 0); ros::Time::setNow(time);
++  fs.run(stat[3]); // ok, 2 events in 4 sec window
++  time += ros::Duration(1, 0); ros::Time::setNow(time);
++  fs.run(stat[4]); // ok, 2 events in 5 sec window
++  time += ros::Duration(1, 0); ros::Time::setNow(time);
++  fs.run(stat[5]); // too low, 1 event in 5 sec window (first tick went out of window)
++  time += ros::Duration(1, 0); ros::Time::setNow(time);
++  fs.run(stat[6]); // too low, 1 event in 5 sec window (first tick went out of window)
++  time += ros::Duration(1, 0); ros::Time::setNow(time);
++  fs.run(stat[7]); // no events (second tick went out of window)
++  time += ros::Duration(1, 0); ros::Time::setNow(time);
++
++  using diagnostic_msgs::DiagnosticStatus;
++
++  EXPECT_EQ(DiagnosticStatus::WARN, stat[0].level) << "max frequency exceeded but not reported";
++  EXPECT_EQ(DiagnosticStatus::OK, stat[1].level) << "within frequency limits but reported error";
++  EXPECT_EQ(DiagnosticStatus::OK, stat[2].level) << "within frequency limits but reported error";
++  EXPECT_EQ(DiagnosticStatus::OK, stat[3].level) << "within frequency limits but reported error";
++  EXPECT_EQ(DiagnosticStatus::OK, stat[4].level) << "within frequency limits but reported error";
++  EXPECT_EQ(DiagnosticStatus::WARN, stat[5].level) << "min frequency exceeded but not reported";
++  EXPECT_EQ(DiagnosticStatus::WARN, stat[6].level) << "min frequency exceeded but not reported";
++  EXPECT_EQ(DiagnosticStatus::ERROR, stat[7].level) << "no events should fail";
++}
++
++TEST(DiagnosticUpdater, testTimeStampStatus)
++{
++  ros::Time::init();
++  ros::Time time(1, 0);
++  ros::Time::setNow(time);
++
++  TimeStampStatus ts(DefaultTimeStampStatusParam);
++
++  DiagnosticStatusWrapper stat[5];
++  ts.run(stat[0]);
++  ts.tick(time.toSec() + 2);
++  ts.run(stat[1]);
++  ts.tick(time);
++  ts.run(stat[2]);
++  ts.tick(time.toSec() - 4);
++  ts.run(stat[3]);
++  ts.tick(time.toSec() - 6);
++  ts.run(stat[4]);
++
++  using diagnostic_msgs::DiagnosticStatus;
++
++  EXPECT_EQ(DiagnosticStatus::WARN, stat[0].level) << "no data should return a warning";
++  EXPECT_EQ(DiagnosticStatus::ERROR, stat[1].level) << "too far future not reported";
++  EXPECT_EQ(DiagnosticStatus::OK, stat[2].level) << "now not accepted";
++  EXPECT_EQ(DiagnosticStatus::OK, stat[3].level) << "4 seconds ago not accepted";
++  EXPECT_EQ(DiagnosticStatus::ERROR, stat[4].level) << "too far past not reported";
++  EXPECT_STREQ("", stat[0].name.c_str()) << "Name should not be set by TimeStapmStatus";
++  EXPECT_STREQ("Timestamp Status", ts.getName().c_str()) << "Name should be \"Timestamp Status\"";
++}
++
++TEST(DiagnosticUpdater, testSlowTimeStampStatus)
++{
++  // We have a slow topic (< 1 Hz) and call the run() method once a second. If we set the no_data_is_problem parameter
++  // to false, updates without data should not generate a warning but should be treated as ok.
++
++  ros::Time::init();
++  ros::Time time(1, 0);
++  ros::Time::setNow(time);
++
++  SlowTimeStampStatus ts(TimeStampStatusParam(-1, 5));
++
++  DiagnosticStatusWrapper stat[11];
++  ts.run(stat[0]); // no events
++  ts.tick(time.toSec() + 2);
++  ts.run(stat[1]);
++  ts.run(stat[2]);
++  ts.tick(time.toSec() - 4);
++  ts.run(stat[3]);
++  ts.run(stat[4]);
++  ts.run(stat[5]);
++  ts.run(stat[6]);
++  ts.tick(time.toSec() - 6);
++  ts.run(stat[7]);
++  ts.run(stat[8]);
++  ts.run(stat[9]);
++  ts.run(stat[10]);
++
++  using diagnostic_msgs::DiagnosticStatus;
++
++  EXPECT_EQ(DiagnosticStatus::OK, stat[0].level) << "no data should be ok";
++  EXPECT_EQ(DiagnosticStatus::ERROR, stat[1].level) << "too far future not reported";
++  EXPECT_EQ(DiagnosticStatus::OK, stat[2].level) << "no data should be ok";
++  EXPECT_EQ(DiagnosticStatus::OK, stat[3].level) << "4 seconds ago not accepted";
++  EXPECT_EQ(DiagnosticStatus::OK, stat[4].level) << "no data should be ok";
++  EXPECT_EQ(DiagnosticStatus::OK, stat[5].level) << "no data should be ok";
++  EXPECT_EQ(DiagnosticStatus::OK, stat[6].level) << "no data should be ok";
++  EXPECT_EQ(DiagnosticStatus::ERROR, stat[7].level) << "too far past not reported";
++  EXPECT_EQ(DiagnosticStatus::OK, stat[8].level) << "no data should be ok";
++  EXPECT_EQ(DiagnosticStatus::OK, stat[9].level) << "no data should be ok";
++  EXPECT_EQ(DiagnosticStatus::OK, stat[10].level) << "no data should be ok";
++}
++
++int main(int argc, char **argv){
++  ros::init(argc, argv, "test_node");
++  testing::InitGoogleTest(&argc, argv);
++  return RUN_ALL_TESTS();
++}
+--- /dev/null
++++ ros-noetic-diagnostic-updater-1.11.0/test/diagnostic_updater_test.py
+@@ -0,0 +1,130 @@
++#!/usr/bin/env python
++# -*- coding: utf-8 -*-
++
++"""
++@author Brice Rebsamen <brice [dot] rebsamen [gmail]>
++"""
++
++import roslib
++roslib.load_manifest('diagnostic_updater')
++import rospy
++from diagnostic_updater import *
++import unittest
++import time
++
++class ClassFunction(DiagnosticTask):
++    def __init__(self):
++        DiagnosticTask.__init__(self, "classFunction")
++
++    def run(self, stat):
++        stat.summary(0, "Test is running")
++        stat.add("Value", "%f" % 5)
++        stat.add("String", "Toto")
++        stat.add("Floating", 5.55)
++        stat.add("Integer", 5)
++        stat.add("Formatted", "%s %i", "Hello", 5)
++        stat.add("Bool", True)
++        return stat
++
++class TestClass:
++    def wrapped(stat):
++        return stat
++
++
++class TestDiagnosticStatusWrapper(unittest.TestCase):
++
++    def testDiagnosticUpdater(self):
++        updater = Updater()
++
++        c = TestClass()
++        updater.add("wrapped", c.wrapped)
++
++        cf = ClassFunction()
++        updater.add(cf)
++
++
++    def testDiagnosticStatusWrapper(self):
++        stat = DiagnosticStatusWrapper()
++
++        message = "dummy"
++        level = 1
++        stat.summary(level, message)
++        self.assertEqual(message, stat.message, "DiagnosticStatusWrapper::summary failed to set message")
++        self.assertEqual(level, stat.level, "DiagnosticStatusWrapper::summary failed to set level")
++
++        stat.add("toto", "%.1f" % 5.0)
++        stat.add("baba", 5)
++        stat.add("foo", "%05i" % 27)
++        stat.add("bool", True)
++        stat.add("bool2", False)
++
++        self.assertEqual("5.0", stat.values[0].value, "Bad value, adding a value with addf")
++        self.assertEqual("5", stat.values[1].value, "Bad value, adding a string with add")
++        self.assertEqual("00027", stat.values[2].value, "Bad value, adding a string with addf")
++        self.assertEqual("toto", stat.values[0].key, "Bad label, adding a value with add")
++        self.assertEqual("baba", stat.values[1].key, "Bad label, adding a string with add")
++        self.assertEqual("foo", stat.values[2].key, "Bad label, adding a string with addf")
++
++        self.assertEqual("bool", stat.values[3].key, "Bad label, adding a true bool key with add")
++        self.assertEqual("True", stat.values[3].value, "Bad value, adding a true bool with add")
++
++        self.assertEqual("bool2", stat.values[4].key, "Bad label, adding a false bool key with add")
++        self.assertEqual("False", stat.values[4].value, "Bad value, adding a false bool with add")
++
++
++    def testFrequencyStatus(self):
++        freq_bound = {'min': 10, 'max': 20}
++
++        fs = FrequencyStatus(FrequencyStatusParam(freq_bound, 0.5, 2))
++
++        stat = [DiagnosticStatusWrapper() for i in range(5)]
++        fs.tick()
++        time.sleep(.02)
++        stat[0] = fs.run(stat[0]) # Should be too fast, 20 ms for 1 tick, lower limit should be 33ms.
++        time.sleep(.05)
++        fs.tick()
++        stat[1] = fs.run(stat[1]) # Should be good, 70 ms for 2 ticks, lower limit should be 66 ms.
++        time.sleep(.3)
++        fs.tick()
++        stat[2] = fs.run(stat[2]) # Should be good, 350 ms for 2 ticks, upper limit should be 400 ms.
++        time.sleep(.15)
++        fs.tick()
++        stat[3] = fs.run(stat[3]) # Should be too slow, 450 ms for 2 ticks, upper limit should be 400 ms.
++        fs.clear()
++        stat[4] = fs.run(stat[4]) # Should be good, just cleared it.
++
++        self.assertEqual(1, stat[0].level, "max frequency exceeded but not reported")
++        self.assertEqual(0, stat[1].level, "within max frequency but reported error")
++        self.assertEqual(0, stat[2].level, "within min frequency but reported error")
++        self.assertEqual(1, stat[3].level, "min frequency exceeded but not reported")
++        self.assertEqual(2, stat[4].level, "freshly cleared should fail")
++        self.assertEqual("", stat[0].name, "Name should not be set by FrequencyStatus")
++        self.assertEqual("Frequency Status", fs.getName(), "Name should be \"Frequency Status\"")
++
++
++    def testTimeStampStatus(self):
++        ts = TimeStampStatus()
++
++        stat = [DiagnosticStatusWrapper() for i in range(5)]
++        stat[0] = ts.run(stat[0])
++        ts.tick(rospy.Time.now().to_sec() + 2)
++        stat[1] = ts.run(stat[1])
++        ts.tick(rospy.Time.now())
++        stat[2] = ts.run(stat[2])
++        ts.tick(rospy.Time.now().to_sec() - 4)
++        stat[3] = ts.run(stat[3])
++        ts.tick(rospy.Time.now().to_sec() - 6)
++        stat[4] = ts.run(stat[4])
++
++        self.assertEqual(1, stat[0].level, "no data should return a warning")
++        self.assertEqual(2, stat[1].level, "too far future not reported")
++        self.assertEqual(0, stat[2].level, "now not accepted")
++        self.assertEqual(0, stat[3].level, "4 seconds ago not accepted")
++        self.assertEqual(2, stat[4].level, "too far past not reported")
++        self.assertEqual("", stat[0].name, "Name should not be set by TimeStapmStatus")
++        self.assertEqual("Timestamp Status", ts.getName(), "Name should be \"Timestamp Status\"")
++
++
++if __name__ == '__main__':
++    rospy.init_node("test_node")
++    unittest.main()
+\ No newline at end of file
+--- /dev/null
++++ ros-noetic-diagnostic-updater-1.11.0/test/diagnostic_updater_test.xml
+@@ -0,0 +1,4 @@
++<launch>
++  <test pkg="diagnostic_updater" type="diagnostic_updater_test" test-name="diagnostic_updater_test"/>
++</launch>
++
+--- /dev/null
++++ ros-noetic-diagnostic-updater-1.11.0/test/test_DiagnosticStatusWrapper.py
+@@ -0,0 +1,76 @@
++#!/usr/bin/env python
++# -*- coding: utf-8 -*-
++
++"""
++@author Brice Rebsamen <brice [dot] rebsamen [gmail]>
++"""
++
++import roslib
++roslib.load_manifest('diagnostic_updater')
++import rospy
++from diagnostic_updater import *
++import unittest
++
++
++class TestDiagnosticStatusWrapper(unittest.TestCase):
++    def test_init_empty(self):
++        d = DiagnosticStatusWrapper()
++        self.assertEqual(d.level, 0)
++        self.assertEqual(d.message, "")
++        self.assertEqual(d.values, [])
++
++    def test_init_lvl_msg(self):
++        d = DiagnosticStatusWrapper(level=1, message="test")
++        self.assertEqual(d.level, 1)
++        self.assertEqual(d.message, "test")
++        self.assertEqual(d.values, [])
++
++    def test_summary_lvl_msg(self):
++        d = DiagnosticStatusWrapper()
++        d.summary(1, "test")
++        self.assertEqual(d.level, 1)
++        self.assertEqual(d.message, "test")
++
++    def test_summary_dmsg(self):
++        d = DiagnosticStatusWrapper(level=0, message="ok")
++        m = DiagnosticStatus(level=1, message="warn")
++        d.summary(m)
++        self.assertEqual(d.level, 1)
++        self.assertEqual(d.message, "warn")
++
++    def test_clear_summary(self):
++        d = DiagnosticStatusWrapper(level=0, message="ok")
++        d.clearSummary()
++        self.assertEqual(d.level, 0)
++        self.assertEqual(d.message, "")
++
++    def test_merge_summary_lvl_msg(self):
++        d = DiagnosticStatusWrapper(level=0, message="ok")
++        d.mergeSummary(1, "warn")
++        self.assertEqual(d.level, 1)
++        self.assertEqual(d.message, "warn")
++
++        d.mergeSummary(2, "err")
++        self.assertEqual(d.level, 2)
++        self.assertEqual(d.message, "warn; err")
++
++    def test_merge_summary_dmsg(self):
++        d = DiagnosticStatusWrapper(level=0, message="ok")
++        m = DiagnosticStatus(level=1, message="warn")
++        d.mergeSummary(m)
++        self.assertEqual(d.level, 1)
++        self.assertEqual(d.message, "warn")
++
++        m = DiagnosticStatus(level=2, message="err")
++        d.mergeSummary(m)
++        self.assertEqual(d.level, 2)
++        self.assertEqual(d.message, "warn; err")
++
++    def test_add(self):
++        d = DiagnosticStatusWrapper()
++        d.add('key','val')
++        self.assertEqual(d.values[0].key, 'key')
++        self.assertEqual(d.values[0].value, 'val')
++
++if __name__ == '__main__':
++    unittest.main()
+\ No newline at end of file

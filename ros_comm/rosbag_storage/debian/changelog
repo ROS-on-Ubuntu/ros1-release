@@ -1,0 +1,398 @@
+ros-noetic-rosbag-storage (1.16.0-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Tue, 14 Feb 2023 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.15.15-0jammy) jammy; urgency=high
+
+  * Move @jacobperron from maintainer to author (#2302 <https://github.com/ros/ros_comm/issues/2302>)
+  * Add missing include (#2248 <https://github.com/ros/ros_comm/issues/2248>)
+  * Contributors: Jochen Sprickerhof, Shane Loretz
+
+ -- Michael Carroll <michael@openrobotics.org>  Tue, 22 Nov 2022 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.15.14-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 05 Jan 2022 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.15.13-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Tue, 21 Sep 2021 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.15.12-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Mon, 20 Sep 2021 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.15.11-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Mon, 05 Apr 2021 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.15.10-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 17 Mar 2021 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.15.9-0jammy) jammy; urgency=high
+
+  * Update maintainers (#2075 <https://github.com/ros/ros_comm/issues/2075>)
+  * Fix compatibility issue with boost 1.73 and above (#2023 <https://github.com/ros/ros_comm/issues/2023>)
+  * Contributors: Sean Yen, Shane Loretz
+
+ -- Michael Carroll <michael@openrobotics.org>  Thu, 15 Oct 2020 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.15.8-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 22 Jul 2020 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.15.7-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 27 May 2020 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.15.6-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 20 May 2020 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.15.5-0jammy) jammy; urgency=high
+
+  * fix brief description comments after members (#1920 <https://github.com/ros/ros_comm/issues/1920>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Thu, 14 May 2020 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.15.4-0jammy) jammy; urgency=high
+
+  * restrict boost dependencies to components used (#1871 <https://github.com/ros/ros_comm/issues/1871>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 18 Mar 2020 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.15.3-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Thu, 27 Feb 2020 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.15.2-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Mon, 24 Feb 2020 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.15.1-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 23 Feb 2020 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.15.0-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Thu, 20 Feb 2020 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.14.4-0jammy) jammy; urgency=high
+
+  * catch polymorphic exceptions by reference (#1887 <https://github.com/ros/ros_comm/issues/1887>)
+  * bump CMake minimum version to avoid CMP0048 warning (#1869 <https://github.com/ros/ros_comm/issues/1869>)
+  * use find_library for abs path of crypto and gpgme libraries (#1867 <https://github.com/ros/ros_comm/issues/1867>)
+  * remove unnecessary writing to map in write only mode (#1798 <https://github.com/ros/ros_comm/issues/1798>)
+  * check for fclose returning 0 (#1750 <https://github.com/ros/ros_comm/issues/1750>)
+  * fix windows build (#1687 <https://github.com/ros/ros_comm/issues/1687>)
+  * move bag encryption plugins into separate library (#1499 <https://github.com/ros/ros_comm/issues/1499>)
+  * modernization: replaced BOOST_FOREACH with range-based for loops, used algorithm, where appropriated (#1640 <https://github.com/ros/ros_comm/issues/1640>)
+  * fix dangeling if-else (#1637 <https://github.com/ros/ros_comm/issues/1637>)
+  * fix infinite loop in rosbag buffer resize (#1623 <https://github.com/ros/ros_comm/issues/1623>)
+  * update CMakeLists.txt in rosbag_storage (#1618 <https://github.com/ros/ros_comm/issues/1618>)
+  * fix various test problems (#1601 <https://github.com/ros/ros_comm/issues/1601>)
+  * visibility macros update (#1591 <https://github.com/ros/ros_comm/issues/1591>)
+  * fix issues when built or run on Windows (#1466 <https://github.com/ros/ros_comm/issues/1466>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 19 Feb 2020 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.14.3-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 05 Aug 2018 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.14.2-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Tue, 05 Jun 2018 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.14.1-0jammy) jammy; urgency=high
+
+  * add in -D_FILE_OFFSET_BITS=64 on machines less than 64-bits (#1406 <https://github.com/ros/ros_comm/issues/1406>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 20 May 2018 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.14.0-0jammy) jammy; urgency=high
+
+  * specialize BagCallbackT for MessageInstance (#1374 <https://github.com/ros/ros_comm/issues/1374>)
+  * fix compiler warning of test_aes_encryptor (#1376 <https://github.com/ros/ros_comm/issues/1376>)
+  * implement bag encryption/decryption (#1206 <https://github.com/ros/ros_comm/issues/1206>)
+  * use boost::shared_ptr to fix memory leak (#1373 <https://github.com/ros/ros_comm/issues/1373>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 20 May 2018 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.13.6-0jammy) jammy; urgency=high
+
+  * performance improvement for lower/upper bound (#1223 <https://github.com/ros/ros_comm/issues/1223>)
+  * use namespaced logging macros of console_bridge instead of deprecated macros (#1239 <https://github.com/ros/ros_comm/issues/1239>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 04 Feb 2018 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.13.5-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 08 Nov 2017 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.13.4-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 01 Nov 2017 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.13.3-0jammy) jammy; urgency=high
+
+  * fix corrupted messages when reopening a rosbag with a different file (#1176 <https://github.com/ros/ros_comm/issues/1176>)
+  * addd rosbag::Bag::isOpen (#1190 <https://github.com/ros/ros_comm/issues/1190>)
+  * enable rosbag::Bag move operations if compiler support is available (#1189 <https://github.com/ros/ros_comm/issues/1189>)
+  * check if bzfile_ and lz4s_ handle is valid before reading/writing/closing (#1183 <https://github.com/ros/ros_comm/issues/1183>)
+  * fix an out of bounds read in rosbag::View::iterator::increment() (#1191 <https://github.com/ros/ros_comm/issues/1191>)
+  * replace usage deprecated console_bridge macros (#1149 <https://github.com/ros/ros_comm/issues/1149>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Tue, 24 Oct 2017 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.13.2-0jammy) jammy; urgency=high
+
+  * fix whitespace warnings with g++ 7 (#1138 <https://github.com/ros/ros_comm/issues/1138>)
+  * remove deprecated dynamic exception specifications (#1137 <https://github.com/ros/ros_comm/issues/1137>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Mon, 14 Aug 2017 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.13.1-0jammy) jammy; urgency=high
+
+  * fix buffer overflow vulnerability (#1092 <https://github.com/ros/ros_comm/issues/1092>)
+  * fix rosbag::View::iterator copy assignment operator (#1017 <https://github.com/ros/ros_comm/issues/1017>)
+  * fix open mode on Windows (#1005 <https://github.com/ros/ros_comm/pull/1005>)
+  * add swap function instead of copy constructor / assignment operator for rosbag::Bag (#1000 <https://github.com/ros/ros_comm/issues/1000>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 26 Jul 2017 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.13.0-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Tue, 21 Feb 2017 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.12.7-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Thu, 16 Feb 2017 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.12.6-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Tue, 25 Oct 2016 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.12.5-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Thu, 29 Sep 2016 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.12.4-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 18 Sep 2016 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.12.3-0jammy) jammy; urgency=high
+
+  * make Bag constructor explicit (#835 <https://github.com/ros/ros_comm/pull/835>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Fri, 16 Sep 2016 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.12.2-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Thu, 02 Jun 2016 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.12.1-0jammy) jammy; urgency=high
+
+  * use directory specific compiler flags (#785 <https://github.com/ros/ros_comm/pull/785>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 17 Apr 2016 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.12.0-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Thu, 17 Mar 2016 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.11.18-0jammy) jammy; urgency=high
+
+  * fix compiler warnings
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 16 Mar 2016 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.11.17-0jammy) jammy; urgency=high
+
+  * use boost::make_shared instead of new for constructing boost::shared_ptr (#740 <https://github.com/ros/ros_comm/issues/740>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Thu, 10 Mar 2016 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.11.16-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 08 Nov 2015 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.11.15-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Mon, 12 Oct 2015 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.11.14-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Fri, 18 Sep 2015 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.11.13-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Mon, 27 Apr 2015 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.11.12-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 26 Apr 2015 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.11.11-0jammy) jammy; urgency=high
+
+  * support large bagfiles (>2GB) on 32-bit systems (#464 <https://github.com/ros/ros_comm/issues/464>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 15 Apr 2015 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.11.10-0jammy) jammy; urgency=high
+
+  * fix various defects reported by coverity
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 21 Dec 2014 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.11.9-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 17 Aug 2014 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.11.8-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 03 Aug 2014 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.11.7-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Thu, 17 Jul 2014 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.11.6-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 09 Jul 2014 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.11.5-0jammy) jammy; urgency=high
+
+  * convert to use console bridge from upstream debian package (ros/rosdistro#4633 <https://github.com/ros/rosdistro/issues/4633>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Mon, 23 Jun 2014 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.11.4-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 15 Jun 2014 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.11.3-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Tue, 20 May 2014 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.11.2-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 07 May 2014 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.11.1-0jammy) jammy; urgency=high
+
+  * add lz4 compression to rosbag (Python and C++) (#356 <https://github.com/ros/ros_comm/issues/356>)
+  * move rosbag dox to rosbag_storage (#389 <https://github.com/ros/ros_comm/issues/389>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Tue, 06 May 2014 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.11.0-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Mon, 03 Mar 2014 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.10.0-0jammy) jammy; urgency=high
+
+  * remove use of __connection header
+
+ -- Michael Carroll <michael@openrobotics.org>  Mon, 10 Feb 2014 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.9.54-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 26 Jan 2014 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.9.53-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Mon, 13 Jan 2014 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.9.52-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Tue, 07 Jan 2014 16:00:00 -0000
+
+ros-noetic-rosbag-storage (1.9.51-0jammy) jammy; urgency=high
+
+  * move several client library independent parts from ros_comm into roscpp_core, split rosbag storage specific stuff from client library usage (#299 <https://github.com/ros/ros_comm/issues/299>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Mon, 06 Jan 2014 16:00:00 -0000
+
+

@@ -1,0 +1,8 @@
+ros-noetic-roscpp-core (0.7.3-0jammy) jammy; urgency=high
+
+  * Changed maintainer to Martin Pecka
+  * Contributors: Martin Pecka
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 14 Jun 2023 16:00:00 -0000
+
+

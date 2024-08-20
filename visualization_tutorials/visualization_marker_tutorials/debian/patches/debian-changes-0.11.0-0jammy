@@ -1,0 +1,415 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-visualization-marker-tutorials (0.11.0-0jammy) jammy; urgency=high
+Author: William Woodall <william@osrfoundation.org>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-visualization-marker-tutorials-0.11.0/CHANGELOG.rst
+@@ -0,0 +1,38 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package visualization_marker_tutorials
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++0.11.0 (2020-05-13)
++-------------------
++
++0.10.4 (2020-05-13)
++-------------------
++* Updated required CMake version to avoid CMP0048 warning (`#57 <https://github.com/ros-visualization/visualization_tutorials/issues/57>`_)
++* Updated to use ``ros::Duration`` for sleeping to gain cross-platform support (`#48 <https://github.com/ros-visualization/visualization_tutorials/issues/48>`_)
++* Contributors: Alejandro Hernández Cordero, Sean Yen [MSFT]
++
++0.10.3 (2018-05-09)
++-------------------
++
++0.10.2 (2018-01-05)
++-------------------
++
++0.10.1 (2016-04-21)
++-------------------
++
++0.10.0 (2016-04-21)
++-------------------
++
++0.9.2 (2015-09-21)
++------------------
++
++0.9.1 (2015-01-26)
++------------------
++* Now checks number of subscribers before publishing any markers.
++* Documented the new DELETEALL feature.
++* Contributors: Dave Coleman, Victor Lamoine
++
++0.9.0 (2014-03-24)
++------------------
++* set myself (william) as maintainer
++* Contributors: William Woodall
+--- /dev/null
++++ ros-noetic-visualization-marker-tutorials-0.11.0/CMakeLists.txt
+@@ -0,0 +1,48 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(visualization_marker_tutorials)
++
++find_package(catkin REQUIRED COMPONENTS roscpp visualization_msgs)
++
++###################################
++## catkin specific configuration ##
++###################################
++## The catkin_package macro generates cmake config files for your package
++## Declare things to be passed to dependent projects
++## LIBRARIES: libraries you create in this project that dependent projects also need
++## CATKIN_DEPENDS: catkin_packages dependent projects also need
++## DEPENDS: system dependencies of this project that dependent projects also need
++
++catkin_package(
++  CATKIN_DEPENDS roscpp visualization_msgs
++)
++
++###########
++## Build ##
++###########
++
++include_directories(include
++  ${catkin_INCLUDE_DIRS}
++)
++
++add_executable(basic_shapes src/basic_shapes.cpp)
++target_link_libraries(basic_shapes
++   ${catkin_LIBRARIES}
++)
++
++add_executable(points_and_lines src/points_and_lines.cpp)
++target_link_libraries(points_and_lines
++   ${catkin_LIBRARIES}
++)
++
++#############
++## Install ##
++#############
++
++## Mark executables and/or libraries for installation
++install(TARGETS 
++  basic_shapes
++  points_and_lines
++  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
++  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
++  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
++)
+--- /dev/null
++++ ros-noetic-visualization-marker-tutorials-0.11.0/package.xml
+@@ -0,0 +1,22 @@
++<?xml version="1.0"?>
++<package>
++  <name>visualization_marker_tutorials</name>
++  <version>0.11.0</version>
++  <description>The visulalization_marker_tutorials package</description>
++
++  <maintainer email="william@osrfoundation.org">William Woodall</maintainer>
++
++  <license>BSD</license>
++  <url type="website">http://ros.org/wiki/visualization_marker_tutorials</url>
++
++  <author>Josh Faust</author>
++
++  <buildtool_depend>catkin</buildtool_depend>
++
++  <build_depend>roscpp</build_depend>
++  <build_depend>visualization_msgs</build_depend>
++
++  <run_depend>roscpp</run_depend>
++  <run_depend>visualization_msgs</run_depend>
++
++</package>
+\ No newline at end of file
+--- /dev/null
++++ ros-noetic-visualization-marker-tutorials-0.11.0/src/basic_shapes.cpp
+@@ -0,0 +1,144 @@
++/*
++ * Copyright (c) 2010, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++// %Tag(FULLTEXT)%
++// %Tag(INCLUDES)%
++#include <ros/ros.h>
++#include <visualization_msgs/Marker.h>
++// %EndTag(INCLUDES)%
++
++// %Tag(INIT)%
++int main( int argc, char** argv )
++{
++  ros::init(argc, argv, "basic_shapes");
++  ros::NodeHandle n;
++  ros::Rate r(1);
++  ros::Publisher marker_pub = n.advertise<visualization_msgs::Marker>("visualization_marker", 1);
++// %EndTag(INIT)%
++
++  // Set our initial shape type to be a cube
++// %Tag(SHAPE_INIT)%
++  uint32_t shape = visualization_msgs::Marker::CUBE;
++// %EndTag(SHAPE_INIT)%
++
++// %Tag(MARKER_INIT)%
++  while (ros::ok())
++  {
++    visualization_msgs::Marker marker;
++    // Set the frame ID and timestamp.  See the TF tutorials for information on these.
++    marker.header.frame_id = "/my_frame";
++    marker.header.stamp = ros::Time::now();
++// %EndTag(MARKER_INIT)%
++
++    // Set the namespace and id for this marker.  This serves to create a unique ID
++    // Any marker sent with the same namespace and id will overwrite the old one
++// %Tag(NS_ID)%
++    marker.ns = "basic_shapes";
++    marker.id = 0;
++// %EndTag(NS_ID)%
++
++    // Set the marker type.  Initially this is CUBE, and cycles between that and SPHERE, ARROW, and CYLINDER
++// %Tag(TYPE)%
++    marker.type = shape;
++// %EndTag(TYPE)%
++
++    // Set the marker action.  Options are ADD, DELETE, and new in ROS Indigo: 3 (DELETEALL)
++// %Tag(ACTION)%
++    marker.action = visualization_msgs::Marker::ADD;
++// %EndTag(ACTION)%
++
++    // Set the pose of the marker.  This is a full 6DOF pose relative to the frame/time specified in the header
++// %Tag(POSE)%
++    marker.pose.position.x = 0;
++    marker.pose.position.y = 0;
++    marker.pose.position.z = 0;
++    marker.pose.orientation.x = 0.0;
++    marker.pose.orientation.y = 0.0;
++    marker.pose.orientation.z = 0.0;
++    marker.pose.orientation.w = 1.0;
++// %EndTag(POSE)%
++
++    // Set the scale of the marker -- 1x1x1 here means 1m on a side
++// %Tag(SCALE)%
++    marker.scale.x = 1.0;
++    marker.scale.y = 1.0;
++    marker.scale.z = 1.0;
++// %EndTag(SCALE)%
++
++    // Set the color -- be sure to set alpha to something non-zero!
++// %Tag(COLOR)%
++    marker.color.r = 0.0f;
++    marker.color.g = 1.0f;
++    marker.color.b = 0.0f;
++    marker.color.a = 1.0;
++// %EndTag(COLOR)%
++
++// %Tag(LIFETIME)%
++    marker.lifetime = ros::Duration();
++// %EndTag(LIFETIME)%
++
++    // Publish the marker
++// %Tag(PUBLISH)%
++    while (marker_pub.getNumSubscribers() < 1)
++    {
++      if (!ros::ok())
++      {
++        return 0;
++      }
++      ROS_WARN_ONCE("Please create a subscriber to the marker");
++      ros::Duration(1.0).sleep();
++    }
++    marker_pub.publish(marker);
++// %EndTag(PUBLISH)%
++
++    // Cycle between different shapes
++// %Tag(CYCLE_SHAPES)%
++    switch (shape)
++    {
++    case visualization_msgs::Marker::CUBE:
++      shape = visualization_msgs::Marker::SPHERE;
++      break;
++    case visualization_msgs::Marker::SPHERE:
++      shape = visualization_msgs::Marker::ARROW;
++      break;
++    case visualization_msgs::Marker::ARROW:
++      shape = visualization_msgs::Marker::CYLINDER;
++      break;
++    case visualization_msgs::Marker::CYLINDER:
++      shape = visualization_msgs::Marker::CUBE;
++      break;
++    }
++// %EndTag(CYCLE_SHAPES)%
++
++// %Tag(SLEEP_END)%
++    r.sleep();
++  }
++// %EndTag(SLEEP_END)%
++}
++// %EndTag(FULLTEXT)%
+--- /dev/null
++++ ros-noetic-visualization-marker-tutorials-0.11.0/src/points_and_lines.cpp
+@@ -0,0 +1,124 @@
++/*
++ * Copyright (c) 2010, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++// %Tag(FULLTEXT)%
++#include <ros/ros.h>
++#include <visualization_msgs/Marker.h>
++
++#include <cmath>
++
++int main( int argc, char** argv )
++{
++  ros::init(argc, argv, "points_and_lines");
++  ros::NodeHandle n;
++  ros::Publisher marker_pub = n.advertise<visualization_msgs::Marker>("visualization_marker", 10);
++
++  ros::Rate r(30);
++
++  float f = 0.0;
++  while (ros::ok())
++  {
++// %Tag(MARKER_INIT)%
++    visualization_msgs::Marker points, line_strip, line_list;
++    points.header.frame_id = line_strip.header.frame_id = line_list.header.frame_id = "/my_frame";
++    points.header.stamp = line_strip.header.stamp = line_list.header.stamp = ros::Time::now();
++    points.ns = line_strip.ns = line_list.ns = "points_and_lines";
++    points.action = line_strip.action = line_list.action = visualization_msgs::Marker::ADD;
++    points.pose.orientation.w = line_strip.pose.orientation.w = line_list.pose.orientation.w = 1.0;
++// %EndTag(MARKER_INIT)%
++
++// %Tag(ID)%
++    points.id = 0;
++    line_strip.id = 1;
++    line_list.id = 2;
++// %EndTag(ID)%
++
++// %Tag(TYPE)%
++    points.type = visualization_msgs::Marker::POINTS;
++    line_strip.type = visualization_msgs::Marker::LINE_STRIP;
++    line_list.type = visualization_msgs::Marker::LINE_LIST;
++// %EndTag(TYPE)%
++
++// %Tag(SCALE)%
++    // POINTS markers use x and y scale for width/height respectively
++    points.scale.x = 0.2;
++    points.scale.y = 0.2;
++
++    // LINE_STRIP/LINE_LIST markers use only the x component of scale, for the line width
++    line_strip.scale.x = 0.1;
++    line_list.scale.x = 0.1;
++// %EndTag(SCALE)%
++
++// %Tag(COLOR)%
++    // Points are green
++    points.color.g = 1.0f;
++    points.color.a = 1.0;
++
++    // Line strip is blue
++    line_strip.color.b = 1.0;
++    line_strip.color.a = 1.0;
++
++    // Line list is red
++    line_list.color.r = 1.0;
++    line_list.color.a = 1.0;
++// %EndTag(COLOR)%
++
++// %Tag(HELIX)%
++    // Create the vertices for the points and lines
++    for (uint32_t i = 0; i < 100; ++i)
++    {
++      float y = 5 * sin(f + i / 100.0f * 2 * M_PI);
++      float z = 5 * cos(f + i / 100.0f * 2 * M_PI);
++
++      geometry_msgs::Point p;
++      p.x = (int32_t)i - 50;
++      p.y = y;
++      p.z = z;
++
++      points.points.push_back(p);
++      line_strip.points.push_back(p);
++
++      // The line list needs two points for each line
++      line_list.points.push_back(p);
++      p.z += 1.0;
++      line_list.points.push_back(p);
++    }
++// %EndTag(HELIX)%
++
++    marker_pub.publish(points);
++    marker_pub.publish(line_strip);
++    marker_pub.publish(line_list);
++
++    r.sleep();
++
++    f += 0.04;
++  }
++}
++// %EndTag(FULLTEXT)%
++

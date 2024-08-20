@@ -1,0 +1,12 @@
+Source: ros-noetic-rqt-robot-steering
+Section: misc
+Priority: optional
+Maintainer: Dirk Thomas <dthomas@osrfoundation.org>
+Build-Depends: debhelper (>= 9.0.0), ros-noetic-catkin
+Homepage: http://wiki.ros.org/rqt_robot_steering
+Standards-Version: 3.9.2
+
+Package: ros-noetic-rqt-robot-steering
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, python3-rospkg, ros-noetic-geometry-msgs, ros-noetic-python-qt-binding (>= 0.2.19), ros-noetic-rostopic, ros-noetic-rqt-gui, ros-noetic-rqt-gui-py
+Description: rqt_robot_steering provides a GUI plugin for steering a robot using Twist messages.

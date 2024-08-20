@@ -1,0 +1,12 @@
+Source: ros-noetic-rosbag-migration-rule
+Section: misc
+Priority: optional
+Maintainer: Dirk Thomas <dthomas@osrfoundation.org>
+Build-Depends: debhelper (>= 9.0.0), ros-noetic-catkin
+Homepage: http://ros.org/wiki/rosbag_migration_rule
+Standards-Version: 3.9.2
+
+Package: ros-noetic-rosbag-migration-rule
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, 
+Description: This empty package allows to export rosbag migration rule files without depending on rosbag.

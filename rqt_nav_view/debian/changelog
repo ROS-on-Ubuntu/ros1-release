@@ -1,0 +1,196 @@
+ros-noetic-rqt-nav-view (0.5.7-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Tue, 25 Apr 2017 16:00:00 -0000
+
+ros-noetic-rqt-nav-view (0.5.6-0jammy) jammy; urgency=high
+
+  * use Python 3 compatible syntax (#121 <https://github.com/ros-visualization/rqt_robot_plugins/pull/121>)
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Mon, 23 Jan 2017 16:00:00 -0000
+
+ros-noetic-rqt-nav-view (0.5.5-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Tue, 01 Nov 2016 16:00:00 -0000
+
+ros-noetic-rqt-nav-view (0.5.4-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Sun, 18 Sep 2016 16:00:00 -0000
+
+ros-noetic-rqt-nav-view (0.5.3-0jammy) jammy; urgency=high
+
+  * fix mouse wheel delta in Qt 5 (#105 <https://github.com/ros-visualization/rqt_robot_plugins/pull/105>)
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Sun, 15 May 2016 16:00:00 -0000
+
+ros-noetic-rqt-nav-view (0.5.2-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Thu, 28 Apr 2016 16:00:00 -0000
+
+ros-noetic-rqt-nav-view (0.5.1-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Wed, 27 Apr 2016 16:00:00 -0000
+
+ros-noetic-rqt-nav-view (0.5.0-0jammy) jammy; urgency=high
+
+  * Support Qt 5 (in Kinetic and higher) as well as Qt 4 (in Jade and earlier) (#101 <https://github.com/ros-visualization/rqt_robot_plugins/pull/101>)
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Tue, 26 Apr 2016 16:00:00 -0000
+
+ros-noetic-rqt-nav-view (0.4.3-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Mon, 07 Mar 2016 16:00:00 -0000
+
+ros-noetic-rqt-nav-view (0.4.2-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Thu, 23 Jul 2015 16:00:00 -0000
+
+ros-noetic-rqt-nav-view (0.4.1-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Wed, 29 Apr 2015 16:00:00 -0000
+
+ros-noetic-rqt-nav-view (0.4.0-0jammy) jammy; urgency=high
+
+  * update script to use full plugin name
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Tue, 04 Nov 2014 16:00:00 -0000
+
+ros-noetic-rqt-nav-view (0.3.7-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Sun, 17 Aug 2014 16:00:00 -0000
+
+ros-noetic-rqt-nav-view (0.3.6-0jammy) jammy; urgency=high
+
+  * fix compatibility with Groovy, use queue_size for Python publishers only when available (#67 <https://github.com/ros-visualization/rqt_robot_plugins/pull/67>)
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Thu, 10 Jul 2014 16:00:00 -0000
+
+ros-noetic-rqt-nav-view (0.3.5-0jammy) jammy; urgency=high
+
+  * use queue_size for Python publishers
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Sun, 01 Jun 2014 16:00:00 -0000
+
+ros-noetic-rqt-nav-view (0.3.4-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Tue, 06 May 2014 16:00:00 -0000
+
+ros-noetic-rqt-nav-view (0.3.3-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Mon, 27 Jan 2014 16:00:00 -0000
+
+ros-noetic-rqt-nav-view (0.3.2-0jammy) jammy; urgency=high
+
+  * add groups for rqt plugins (ros-visualization/rqt_common_plugins#167 <https://github.com/ros-visualization/rqt_common_plugins/issues/167>)
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Tue, 07 Jan 2014 16:00:00 -0000
+
+ros-noetic-rqt-nav-view (0.3.1-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Tue, 08 Oct 2013 16:00:00 -0000
+
+ros-noetic-rqt-nav-view (0.3.0-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Tue, 27 Aug 2013 16:00:00 -0000
+
+ros-noetic-rqt-nav-view (0.2.16-0jammy) jammy; urgency=high
+
+  * First public release for Hydro @130s
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Mon, 08 Jul 2013 16:00:00 -0000
+
+ros-noetic-rqt-nav-view (0.2.15-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Wed, 24 Apr 2013 16:00:00 -0000
+
+ros-noetic-rqt-nav-view (0.2.14-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Thu, 11 Apr 2013 16:00:00 -0000
+
+ros-noetic-rqt-nav-view (0.2.13-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Mon, 08 Apr 2013 16:00:00 -0000
+
+ros-noetic-rqt-nav-view (0.2.12-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Sat, 06 Apr 2013 10:22:00 -0000
+
+ros-noetic-rqt-nav-view (0.2.11-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Sat, 06 Apr 2013 10:00:00 -0000
+
+ros-noetic-rqt-nav-view (0.2.10-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Wed, 03 Apr 2013 16:00:00 -0000
+
+ros-noetic-rqt-nav-view (0.2.9-0jammy) jammy; urgency=high
+
+  * Ensured that nav_view_dash_widget removes the widget when clicked a second time
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Wed, 06 Mar 2013 16:00:00 -0000
+
+ros-noetic-rqt-nav-view (0.2.8-0jammy) jammy; urgency=high
+
+  * Fix
+    
+      * Map scrolling fixed.
+      * Drag and drop works everywhere now.
+      * Fix map colors.
+    
+  * Enhancement
+    
+      * NavFn should be the default.
+      * Goals can now be set.
+      * Initial pose can now be set.
+      * Don't update without map.
+      * Don't regenerate unless map changes.
+      * Only use one transform listener.
+      * Topics can be drag and dropped.
+    
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Thu, 10 Jan 2013 16:00:00 -0000
+
+ros-noetic-rqt-nav-view (0.2.7-0jammy) jammy; urgency=high
+
+  * First public release for Groovy
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Sun, 23 Dec 2012 07:58:00 -0000
+
+

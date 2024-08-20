@@ -1,0 +1,12 @@
+Source: ros-noetic-qwt-dependency
+Section: misc
+Priority: optional
+Maintainer: Dirk Thomas <dthomas@osrfoundation.org>
+Build-Depends: debhelper (>= 9.0.0), ros-noetic-catkin
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-noetic-qwt-dependency
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, 
+Description: This encapsulates the Qwt dependency for a specific ROS distribution and its Qt version

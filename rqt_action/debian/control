@@ -1,0 +1,13 @@
+Source: ros-noetic-rqt-action
+Section: misc
+Priority: optional
+Maintainer: Mikael Arguedas <mikael@osrfoundation.org>
+Build-Depends: debhelper (>= 9.0.0), ros-noetic-catkin
+Homepage: http://wiki.ros.org/rqt_action
+Standards-Version: 3.9.2
+
+Package: ros-noetic-rqt-action
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-noetic-rospy, ros-noetic-rqt-msg, ros-noetic-rqt-py-common
+Description: rqt_action provides a feature to introspect all available ROS action (from actionlib) types.
+ By utilizing rqt_msg, the output format is unified with it and rqt_srv. Note that the actions shown on this plugin is the ones that are stored on your machine, not on the ROS core your rqt instance connects to.

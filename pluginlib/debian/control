@@ -1,0 +1,13 @@
+Source: ros-noetic-pluginlib
+Section: misc
+Priority: optional
+Maintainer: Steven! Ragnarök <stevenragnarok@osrfoundation.org>
+Build-Depends: debhelper (>= 9.0.0), libboost-dev, libboost-filesystem-dev, libtinyxml2-dev, ros-noetic-catkin (>= 0.5.68), ros-noetic-class-loader, ros-noetic-cmake-modules, ros-noetic-rosconsole, ros-noetic-roslib (>= 1.11.1)
+Homepage: http://www.ros.org/wiki/pluginlib
+Standards-Version: 3.9.2
+
+Package: ros-noetic-pluginlib
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libboost-dev, libboost-filesystem-dev, libtinyxml2-dev, ros-noetic-class-loader, ros-noetic-rosconsole, ros-noetic-roslib (>= 1.11.1)
+Description: The pluginlib package provides tools for writing and dynamically loading plugins using the ROS build infrastructure.
+ To work, these tools require plugin providers to register their plugins in the package.xml of their package.

@@ -1,0 +1,392 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-control-msgs (1.5.2-0jammy) jammy; urgency=high
+ .
+   * Bump CMake version to avoid CMP0048 (#40 <https://github.com/ros-controls/control_msgs/issues/40>)
+   * Contributors: Shane Loretz
+Author: Bence Magyar <bence.magyar.robotics@gmail.com>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-control-msgs-1.5.2/CHANGELOG.rst
+@@ -0,0 +1,81 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package control_msgs
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++1.5.2 (2020-03-11)
++------------------
++* Bump CMake version to avoid CMP0048 (`#40 <https://github.com/ros-controls/control_msgs/issues/40>`_)
++* Contributors: Shane Loretz
++
++1.5.1 (2019-11-27)
++------------------
++* add description of JointControllerState.msg (`#30 <https://github.com/ros-controls/control_msgs/issues/30>`_)
++* Contributors: Shuang Li
++
++1.5.0 (2019-02-19)
++------------------
++* Adding a JointJog msg
++* Replace Adolfo with Bence as maintainer
++* Contributors: AndyZe, Bence Magyar
++
++1.4.0 (2016-04-15)
++------------------
++* Add antiwindup to JointControllerState message definition
++* Add PidState message
++* Contributors: Paul Bovbel
++
++1.3.1 (2015-03-05)
++------------------
++* Export architecture_independent flag in package.xml
++* Change package maintainer.
++* Contributors: Adolfo Rodriguez Tsouroukdissian, Scott K Logan
++
++1.3.0 (2014-02-27)
++------------------
++* Add error_string to action result.
++* Contributors: Adolfo Rodriguez Tsouroukdissian
++
++1.2.0 (2013-04-25)
++------------------
++
++1.1.6 (2013-02-11)
++------------------
++* adds missing feedback field to PointHeadAction
++* Contributors: Adam Leeper
++
++1.1.5 (2013-01-23)
++------------------
++* changes PointHeadAction.action to PointHead.action
++* Contributors: Adam Leeper
++
++1.1.4 (2013-01-22)
++------------------
++* this now contains all messages, services and actions that used to be in ros_controllers and/or pr2_controllers_msgs
++* copy JointControllerState and JointTrajectoryControllerState  from pr2_controllers_msgs
++* copy GripperCommand from pr2_controllers_msgs
++* modified dep type of catkin
++* Contributors: Dirk Thomas, Ioan Sucan
++
++1.1.3 (2012-12-13)
++------------------
++* fix dep
++* add missing downstream depend
++* switched from langs to message_* packages
++* Contributors: Dirk Thomas
++
++1.1.2 (2012-12-03)
++------------------
++
++1.1.1 (2012-11-19 15:52)
++------------------------
++* added metapackage for backward compatibility
++* Contributors: Ioan Sucan
++
++1.1.0 (2012-11-19 14:54)
++------------------------
++* port to catkin
++* add bogus dependency on rospy, to get ros_comm
++* Added documentation for the FollowJointTrajectory action and the JointTolerance message.
++* Added PointHeadAction to control_msgs
++* First cut at a FollowJointTrajectory action
++* Contributors: Brian Gerkey, Ioan Sucan, Stuart Glaser
+--- /dev/null
++++ ros-noetic-control-msgs-1.5.2/CMakeLists.txt
+@@ -0,0 +1,27 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(control_msgs)
++
++find_package(catkin REQUIRED actionlib_msgs geometry_msgs message_generation std_msgs trajectory_msgs)
++
++add_action_files(DIRECTORY action FILES
++  FollowJointTrajectory.action
++  GripperCommand.action
++  JointTrajectory.action
++  PointHead.action
++  SingleJointPosition.action)
++
++add_message_files(DIRECTORY msg FILES
++  GripperCommand.msg
++  JointControllerState.msg
++  JointJog.msg
++  JointTolerance.msg
++  JointTrajectoryControllerState.msg
++  PidState.msg)
++
++add_service_files(DIRECTORY srv FILES
++  QueryCalibrationState.srv
++  QueryTrajectoryState.srv)
++
++generate_messages(DEPENDENCIES actionlib_msgs geometry_msgs std_msgs trajectory_msgs)
++
++catkin_package(CATKIN_DEPENDS actionlib_msgs geometry_msgs message_runtime std_msgs trajectory_msgs)
+--- /dev/null
++++ ros-noetic-control-msgs-1.5.2/action/FollowJointTrajectory.action
+@@ -0,0 +1,52 @@
++# The joint trajectory to follow
++trajectory_msgs/JointTrajectory trajectory
++
++# Tolerances for the trajectory.  If the measured joint values fall
++# outside the tolerances the trajectory goal is aborted.  Any
++# tolerances that are not specified (by being omitted or set to 0) are
++# set to the defaults for the action server (often taken from the
++# parameter server).
++
++# Tolerances applied to the joints as the trajectory is executed.  If
++# violated, the goal aborts with error_code set to
++# PATH_TOLERANCE_VIOLATED.
++JointTolerance[] path_tolerance
++
++# To report success, the joints must be within goal_tolerance of the
++# final trajectory value.  The goal must be achieved by time the
++# trajectory ends plus goal_time_tolerance.  (goal_time_tolerance
++# allows some leeway in time, so that the trajectory goal can still
++# succeed even if the joints reach the goal some time after the
++# precise end time of the trajectory).
++#
++# If the joints are not within goal_tolerance after "trajectory finish
++# time" + goal_time_tolerance, the goal aborts with error_code set to
++# GOAL_TOLERANCE_VIOLATED
++JointTolerance[] goal_tolerance
++duration goal_time_tolerance
++
++---
++int32 error_code
++int32 SUCCESSFUL = 0
++int32 INVALID_GOAL = -1
++int32 INVALID_JOINTS = -2
++int32 OLD_HEADER_TIMESTAMP = -3
++int32 PATH_TOLERANCE_VIOLATED = -4
++int32 GOAL_TOLERANCE_VIOLATED = -5
++
++# Human readable description of the error code. Contains complementary
++# information that is especially useful when execution fails, for instance:
++# - INVALID_GOAL: The reason for the invalid goal (e.g., the requested
++#   trajectory is in the past).
++# - INVALID_JOINTS: The mismatch between the expected controller joints
++#   and those provided in the goal.
++# - PATH_TOLERANCE_VIOLATED and GOAL_TOLERANCE_VIOLATED: Which joint
++#   violated which tolerance, and by how much.
++string error_string
++
++---
++Header header
++string[] joint_names
++trajectory_msgs/JointTrajectoryPoint desired
++trajectory_msgs/JointTrajectoryPoint actual
++trajectory_msgs/JointTrajectoryPoint error
+--- /dev/null
++++ ros-noetic-control-msgs-1.5.2/action/GripperCommand.action
+@@ -0,0 +1,11 @@
++GripperCommand command
++---
++float64 position  # The current gripper gap size (in meters)
++float64 effort    # The current effort exerted (in Newtons)
++bool stalled      # True iff the gripper is exerting max effort and not moving
++bool reached_goal # True iff the gripper position has reached the commanded setpoint
++---
++float64 position  # The current gripper gap size (in meters)
++float64 effort    # The current effort exerted (in Newtons)
++bool stalled      # True iff the gripper is exerting max effort and not moving
++bool reached_goal # True iff the gripper position has reached the commanded setpoint
+--- /dev/null
++++ ros-noetic-control-msgs-1.5.2/action/JointTrajectory.action
+@@ -0,0 +1,3 @@
++trajectory_msgs/JointTrajectory trajectory
++---
++---
+--- /dev/null
++++ ros-noetic-control-msgs-1.5.2/action/PointHead.action
+@@ -0,0 +1,8 @@
++geometry_msgs/PointStamped target
++geometry_msgs/Vector3 pointing_axis
++string pointing_frame
++duration min_duration
++float64 max_velocity
++---
++---
++float64 pointing_angle_error
+--- /dev/null
++++ ros-noetic-control-msgs-1.5.2/action/SingleJointPosition.action
+@@ -0,0 +1,9 @@
++float64 position
++duration min_duration
++float64 max_velocity
++---
++---
++Header header
++float64 position
++float64 velocity
++float64 error
+--- /dev/null
++++ ros-noetic-control-msgs-1.5.2/msg/GripperCommand.msg
+@@ -0,0 +1,2 @@
++float64 position
++float64 max_effort
+--- /dev/null
++++ ros-noetic-control-msgs-1.5.2/msg/JointControllerState.msg
+@@ -0,0 +1,29 @@
++# This message presents current controller state of one joint.
++
++# Header timestamp should be update time of controller state
++Header header
++
++# The set point, that is, desired state.
++float64 set_point
++
++# Current value of the process (ie: latest sensor measurement on the controlled value).
++float64 process_value
++
++# First time-derivative of the process value.
++float64 process_value_dot
++
++# The error of the controlled value, essentially process_value - set_point (for a regular PID implementation).
++float64 error
++
++# Time between two consecutive updates/execution of the control law.
++float64 time_step
++
++# Current output of the controller.
++float64 command
++
++# Current PID parameters of the controller.
++float64 p
++float64 i
++float64 d
++float64 i_clamp
++bool antiwindup
+--- /dev/null
++++ ros-noetic-control-msgs-1.5.2/msg/JointJog.msg
+@@ -0,0 +1,20 @@
++# Used in time-stamping the message.
++Header header
++
++# Name list of the joints. You don't need to specify all joints of the
++# robot. Joint names are case-sensitive.
++string[] joint_names
++
++# A position command to the joints listed in joint_names.
++# The order must be identical.
++# Units are meters or radians.
++# If displacements and velocities are filled, a profiled motion is requested.
++float64[] displacements # or position_deltas
++
++# A velocity command to the joints listed in joint_names.
++# The order must be identical.
++# Units are m/s or rad/s.
++# If displacements and velocities are filled, a profiled motion is requested.
++float64[] velocities
++
++float64 duration
+--- /dev/null
++++ ros-noetic-control-msgs-1.5.2/msg/JointTolerance.msg
+@@ -0,0 +1,15 @@
++# The tolerances specify the amount the position, velocity, and
++# accelerations can vary from the setpoints.  For example, in the case
++# of trajectory control, when the actual position varies beyond
++# (desired position + position tolerance), the trajectory goal may
++# abort.
++# 
++# There are two special values for tolerances:
++#  * 0 - The tolerance is unspecified and will remain at whatever the default is
++#  * -1 - The tolerance is "erased".  If there was a default, the joint will be
++#         allowed to move without restriction.
++
++string name
++float64 position  # in radians or meters (for a revolute or prismatic joint, respectively)
++float64 velocity  # in rad/sec or m/sec
++float64 acceleration  # in rad/sec^2 or m/sec^2
+--- /dev/null
++++ ros-noetic-control-msgs-1.5.2/msg/JointTrajectoryControllerState.msg
+@@ -0,0 +1,5 @@
++Header header
++string[] joint_names
++trajectory_msgs/JointTrajectoryPoint desired
++trajectory_msgs/JointTrajectoryPoint actual
++trajectory_msgs/JointTrajectoryPoint error  # Redundant, but useful
+--- /dev/null
++++ ros-noetic-control-msgs-1.5.2/msg/PidState.msg
+@@ -0,0 +1,13 @@
++Header header
++duration timestep
++float64 error
++float64 error_dot
++float64 p_error
++float64 i_error
++float64 d_error
++float64 p_term
++float64 i_term
++float64 d_term
++float64 i_max
++float64 i_min
++float64 output
+--- /dev/null
++++ ros-noetic-control-msgs-1.5.2/package.xml
+@@ -0,0 +1,34 @@
++<package>
++  <name>control_msgs</name>
++  <version>1.5.2</version>
++  <description>
++    control_msgs contains base messages and actions useful for
++    controlling robots.  It provides representations for controller
++    setpoints and joint and cartesian trajectories.
++  </description>
++  <author email="sglaser@willowgarage.com">Stuart Glaser</author>
++  <maintainer email="bence.magyar.robotics@gmail.com">Bence Magyar</maintainer>
++
++  <license>BSD</license>
++
++  <url>http://ros.org/wiki/control_msgs</url>
++
++  <buildtool_depend>catkin</buildtool_depend>
++
++  <build_depend>message_generation</build_depend>
++  <build_depend>std_msgs</build_depend>
++  <build_depend>trajectory_msgs</build_depend>
++  <build_depend>geometry_msgs</build_depend>
++  <build_depend>actionlib_msgs</build_depend>
++
++
++  <run_depend>message_runtime</run_depend>
++  <run_depend>std_msgs</run_depend>
++  <run_depend>trajectory_msgs</run_depend>
++  <run_depend>geometry_msgs</run_depend>
++  <run_depend>actionlib_msgs</run_depend>
++
++  <export>
++    <architecture_independent/>
++  </export>
++</package>
+--- /dev/null
++++ ros-noetic-control-msgs-1.5.2/srv/QueryCalibrationState.srv
+@@ -0,0 +1,2 @@
++---
++bool is_calibrated
+\ No newline at end of file
+--- /dev/null
++++ ros-noetic-control-msgs-1.5.2/srv/QueryTrajectoryState.srv
+@@ -0,0 +1,6 @@
++time time
++---
++string[] name
++float64[] position
++float64[] velocity
++float64[] acceleration

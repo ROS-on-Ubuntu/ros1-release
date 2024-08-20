@@ -1,0 +1,125 @@
+ros-noetic-gencpp (0.7.0-0jammy) jammy; urgency=high
+
+  * Fix usage of deprecated std::allocator::rebind (#51 <https://github.com/ros/gencpp/issues/51>)
+  * Remove unnecessary map include (#48 <https://github.com/ros/gencpp/issues/48>)
+  * Contributors: Markus Vieth, poggenhans
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 25 Sep 2022 16:00:00 -0000
+
+ros-noetic-gencpp (0.6.5-0jammy) jammy; urgency=high
+
+  * add operator== & operator!= to message generation (#41 <https://github.com/ros/gencpp/issues/41>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Mon, 02 Mar 2020 16:00:00 -0000
+
+ros-noetic-gencpp (0.6.4-0jammy) jammy; urgency=high
+
+  * [windows] reducing the odds to have name collisions (#47 <https://github.com/ros/gencpp/issues/47>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 01 Mar 2020 16:00:00 -0000
+
+ros-noetic-gencpp (0.6.3-0jammy) jammy; urgency=high
+
+  * various code cleanup (#46 <https://github.com/ros/gencpp/issues/46>)
+  * package.xml format 3 (#45 <https://github.com/ros/gencpp/issues/45>)
+  * use setuptools instead of distutils (#43 <https://github.com/ros/gencpp/issues/43>)
+  * bump CMake version to avoid CMP0048 warning (#44 <https://github.com/ros/gencpp/issues/44>)
+  * two patches to make the generated headers reproducible (#42 <https://github.com/ros/gencpp/issues/42>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 23 Jan 2020 16:00:00 -0000
+
+ros-noetic-gencpp (0.6.2-0jammy) jammy; urgency=high
+
+  * add plugins the ability to also generate free functions (#40 <https://github.com/ros/gencpp/issues/40>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 17 Mar 2019 16:00:00 -0000
+
+ros-noetic-gencpp (0.6.1-0jammy) jammy; urgency=high
+
+  * enable Windows build (#38 <https://github.com/ros/gencpp/issues/38>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 03 Mar 2019 16:00:00 -0000
+
+ros-noetic-gencpp (0.6.0-0jammy) jammy; urgency=high
+
+  * add plugin support for generated C++ message headers (#32 <https://github.com/ros/gencpp/pull/32>)
+  * put all the message integer constants into a common enum (#25 <https://github.com/ros/gencpp/issues/25>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 28 Jan 2018 16:00:00 -0000
+
+ros-noetic-gencpp (0.5.5-0jammy) jammy; urgency=high
+
+  * fix extra semicolon warning (#26 <https://github.com/ros/gencpp/issues/26>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 26 Jun 2016 16:00:00 -0000
+
+ros-noetic-gencpp (0.5.4-0jammy) jammy; urgency=high
+
+  * fix unused parameter warning (#24 <https://github.com/ros/gencpp/issues/24>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 13 Mar 2016 16:00:00 -0000
+
+ros-noetic-gencpp (0.5.3-0jammy) jammy; urgency=high
+
+  * remove copyright header from generated code (#20 <https://github.com/ros/gencpp/issues/20>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 21 Dec 2014 16:00:00 -0000
+
+ros-noetic-gencpp (0.5.2-0jammy) jammy; urgency=high
+
+  * add architecture_independent flag in package.xml (#19 <https://github.com/ros/gencpp/issues/19>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Tue, 06 May 2014 16:00:00 -0000
+
+ros-noetic-gencpp (0.5.1-0jammy) jammy; urgency=high
+
+  * use catkin_install_python() to install Python scripts (#18 <https://github.com/ros/gencpp/issues/18>)
+  * add 'u' suffix to unsigned enum values to avoid compiler warning (#16 <https://github.com/ros/gencpp/issues/16>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 23 Feb 2014 16:00:00 -0000
+
+ros-noetic-gencpp (0.5.0-0jammy) jammy; urgency=high
+
+  * remove __connection_header from message template (#3 <https://github.com/ros/gencpp/issues/3>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Tue, 28 Jan 2014 16:00:00 -0000
+
+ros-noetic-gencpp (0.4.16-0jammy) jammy; urgency=high
+
+  * fix warning about empty message definition (ros/ros_comm#344 <https://github.com/ros/ros_comm/issues/344>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 26 Jan 2014 16:00:00 -0000
+
+ros-noetic-gencpp (0.4.15-0jammy) jammy; urgency=high
+
+  * python 3 compatibility
+  * fix generated code of message definition with windows line endings (#6 <https://github.com/ros/gencpp/issues/6>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Mon, 06 Jan 2014 16:00:00 -0000
+
+ros-noetic-gencpp (0.4.14-0jammy) jammy; urgency=high
+
+  * make gencpp relocatable (ros/catkin#490 <https://github.com/ros/catkin/issues/490>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Tue, 20 Aug 2013 16:00:00 -0000
+
+ros-noetic-gencpp (0.4.13-0jammy) jammy; urgency=high
+
+  * update message targets to depend on template
+  * update msg template to generate empty functions without warnings about unused variables (#4 <https://github.com/ros/gencpp/issues/4>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Mon, 17 Jun 2013 16:00:00 -0000
+
+ros-noetic-gencpp (0.4.12-0jammy) jammy; urgency=high
+
+  * fix handling spaces in folder names (ros/catkin#375 <https://github.com/ros/catkin/issues/375>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 07 Mar 2013 16:00:00 -0000
+
+ros-noetic-gencpp (0.4.11-0jammy) jammy; urgency=high
+
+  * first public release for Groovy
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 20 Dec 2012 16:00:00 -0000
+
+

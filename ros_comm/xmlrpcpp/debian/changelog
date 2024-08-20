@@ -1,0 +1,474 @@
+ros-noetic-xmlrpcpp (1.16.0-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Tue, 14 Feb 2023 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.15.15-0jammy) jammy; urgency=high
+
+  * Move @jacobperron from maintainer to author (#2302 <https://github.com/ros/ros_comm/issues/2302>)
+  * Contributors: Shane Loretz
+
+ -- Michael Carroll <michael@openrobotics.org>  Tue, 22 Nov 2022 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.15.14-0jammy) jammy; urgency=high
+
+  * Keep the persistent connection only if rosmaster supports http1.1 (#2208 <https://github.com/ros/ros_comm/issues/2208>)
+  * Contributors: Chen Lihui
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 05 Jan 2022 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.15.13-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Tue, 21 Sep 2021 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.15.12-0jammy) jammy; urgency=high
+
+  * Fix XMLRPC endless loop (#2185 <https://github.com/ros/ros_comm/issues/2185>)
+  * Fix build when gtest is not available (#2177 <https://github.com/ros/ros_comm/issues/2177>)
+  * Contributors: Chris Lalancette, Wolfgang Merkt
+
+ -- Michael Carroll <michael@openrobotics.org>  Mon, 20 Sep 2021 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.15.11-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Mon, 05 Apr 2021 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.15.10-0jammy) jammy; urgency=high
+
+  * Portable fix to recent Windows build breaks (#2110 <https://github.com/ros/ros_comm/issues/2110>)
+  * Contributors: Sean Yen
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 17 Mar 2021 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.15.9-0jammy) jammy; urgency=high
+
+  * Update maintainers (#2075 <https://github.com/ros/ros_comm/issues/2075>)
+  * Fix to address CVE-2020-16124 (#2065 <https://github.com/ros/ros_comm/issues/2065>)
+  * Fix spelling (#2066 <https://github.com/ros/ros_comm/issues/2066>)
+  * Fix XmlRpcValue::_doubleFormat being unused (#2003 <https://github.com/ros/ros_comm/issues/2003>)
+  * Contributors: Shane Loretz, Sid Faber, tomoya
+
+ -- Michael Carroll <michael@openrobotics.org>  Thu, 15 Oct 2020 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.15.8-0jammy) jammy; urgency=high
+
+  * add const versions of XmlRpcValue converting operators (#1978 <https://github.com/ros/ros_comm/issues/1978>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 22 Jul 2020 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.15.7-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 27 May 2020 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.15.6-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 20 May 2020 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.15.5-0jammy) jammy; urgency=high
+
+  * check if enough FDs are free, instead counting the total free FDs (#1929 <https://github.com/ros/ros_comm/issues/1929>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Thu, 14 May 2020 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.15.4-0jammy) jammy; urgency=high
+
+  * restrict boost dependencies to components used (#1871 <https://github.com/ros/ros_comm/issues/1871>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 18 Mar 2020 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.15.3-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Thu, 27 Feb 2020 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.15.2-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Mon, 24 Feb 2020 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.15.1-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 23 Feb 2020 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.15.0-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Thu, 20 Feb 2020 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.14.4-0jammy) jammy; urgency=high
+
+  * bump CMake minimum version to avoid CMP0048 warning (#1869 <https://github.com/ros/ros_comm/issues/1869>)
+  * [Windows] workaround WSAPoll doesn't report failed connections (#1816 <https://github.com/ros/ros_comm/issues/1816>)
+  * fix base64 decode error on ARM platforms (#1853 <https://github.com/ros/ros_comm/issues/1853>)
+  * use c++11 std::snprintf (#1820 <https://github.com/ros/ros_comm/issues/1820>)
+  * fix dead loop if accept connection error in XmlRpcServer (#1791 <https://github.com/ros/ros_comm/issues/1791>)
+  * fix test build errors (#1723 <https://github.com/ros/ros_comm/issues/1723>)
+  * fix base64 encode error (#1769 <https://github.com/ros/ros_comm/issues/1769>)
+  * XmlRpcValue added bool assignment operator (#1709 <https://github.com/ros/ros_comm/issues/1709>)
+  * add const indexer for xmlrpc (#1759 <https://github.com/ros/ros_comm/issues/1759>)
+  * xmlrpcpp: fixed invalid zero index (#1631 <https://github.com/ros/ros_comm/issues/1631>)
+  * avoid calling memcpy on NULL pointer with size 0 (#1546 <https://github.com/ros/ros_comm/issues/1546>)
+  * revert "Revert "move the winsock2.h into cpp."" (#1588 <https://github.com/ros/ros_comm/issues/1588>)
+  * visibility macros update (#1591 <https://github.com/ros/ros_comm/issues/1591>)
+  * remove explicit -std=c++11, default to 14
+  * fix test code build issues on Windows (#1479 <https://github.com/ros/ros_comm/issues/1479>)
+  * fix issues when built or run on Windows (#1466 <https://github.com/ros/ros_comm/issues/1466>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 19 Feb 2020 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.14.3-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 05 Aug 2018 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.14.2-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Tue, 05 Jun 2018 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.14.1-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 20 May 2018 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.14.0-0jammy) jammy; urgency=high
+
+  * fixes for OSX (#1402 <https://github.com/ros/ros_comm/issues/1402>)
+  * take XmlRpcValue by *const* ref. in operator<< (#1350 <https://github.com/ros/ros_comm/issues/1350>)
+  * fix various compiler warnings on bionic (#1325 <https://github.com/ros/ros_comm/issues/1325>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 20 May 2018 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.13.6-0jammy) jammy; urgency=high
+
+  * fix xmlrpc timeout using monotonic clock (#1249 <https://github.com/ros/ros_comm/issues/1249>)
+  * add tests and bug fixes for XmlRpcServer (#1243 <https://github.com/ros/ros_comm/issues/1243>)
+  * add test and fix uninitialized data in XmlRpcClient (#1244 <https://github.com/ros/ros_comm/issues/1244>)
+  * make xmlrpcpp specific include directory work in devel space (#1261 <https://github.com/ros/ros_comm/issues/1261>)
+  * add base64 tests (#1242 <https://github.com/ros/ros_comm/issues/1242>)
+  * add unit tests for XmlRpcDispatch (#1232 <https://github.com/ros/ros_comm/issues/1232>)
+  * add unit tests and bug fixes for XmlRpcClient (#1221 <https://github.com/ros/ros_comm/issues/1221>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 04 Feb 2018 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.13.5-0jammy) jammy; urgency=high
+
+  * add unit tests and bug fixes for XmlRpcSocket (#1218 <https://github.com/ros/ros_comm/issues/1218>)
+  * add tests for XmlRpcValue and XML conversion (#1216 <https://github.com/ros/ros_comm/issues/1216>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 08 Nov 2017 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.13.4-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 01 Nov 2017 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.13.3-0jammy) jammy; urgency=high
+
+  * fix problem when configuring tests without gtest being available (#1197 <https://github.com/ros/ros_comm/issues/1197>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Tue, 24 Oct 2017 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.13.2-0jammy) jammy; urgency=high
+
+  * use poll() in favor of select() in the XmlRPCDispatcher (#833 <https://github.com/ros/ros_comm/issues/833>)
+  * fix fall through warnings with g++ 7 (#1139 <https://github.com/ros/ros_comm/issues/1139>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Mon, 14 Aug 2017 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.13.1-0jammy) jammy; urgency=high
+
+  * switch to libb64 for base64 encoding/decoding (#1046 <https://github.com/ros/ros_comm/issues/1046>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 26 Jul 2017 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.13.0-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Tue, 21 Feb 2017 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.12.7-0jammy) jammy; urgency=high
+
+  * move headers to include/xmlrpcpp (#962 <https://github.com/ros/ros_comm/issues/962>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Thu, 16 Feb 2017 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.12.6-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Tue, 25 Oct 2016 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.12.5-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Thu, 29 Sep 2016 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.12.4-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 18 Sep 2016 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.12.3-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Fri, 16 Sep 2016 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.12.2-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Thu, 02 Jun 2016 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.12.1-0jammy) jammy; urgency=high
+
+  * use directory specific compiler flags (#785 <https://github.com/ros/ros_comm/pull/785>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 17 Apr 2016 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.12.0-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Thu, 17 Mar 2016 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.11.18-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 16 Mar 2016 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.11.17-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Thu, 10 Mar 2016 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.11.16-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 08 Nov 2015 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.11.15-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Mon, 12 Oct 2015 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.11.14-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Fri, 18 Sep 2015 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.11.13-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Mon, 27 Apr 2015 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.11.12-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 26 Apr 2015 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.11.11-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 15 Apr 2015 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.11.10-0jammy) jammy; urgency=high
+
+  * improve Android support (#537 <https://github.com/ros/ros_comm/pull/537>)
+  * fix various defects reported by coverity
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 21 Dec 2014 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.11.9-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 17 Aug 2014 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.11.8-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 03 Aug 2014 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.11.7-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Thu, 17 Jul 2014 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.11.6-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 09 Jul 2014 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.11.5-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Mon, 23 Jun 2014 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.11.4-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 15 Jun 2014 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.11.3-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Tue, 20 May 2014 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.11.2-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 07 May 2014 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.11.1-0jammy) jammy; urgency=high
+
+  * fix day comparison for rpc value of type timestamp (#395 <https://github.com/ros/ros_comm/issues/395>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Tue, 06 May 2014 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.11.0-0jammy) jammy; urgency=high
+
+  * output error message when hostname lookup fails (#364 <https://github.com/ros/ros_comm/issues/364>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Mon, 03 Mar 2014 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.10.0-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Mon, 10 Feb 2014 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.9.54-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 26 Jan 2014 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.9.53-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Mon, 13 Jan 2014 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.9.52-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Tue, 07 Jan 2014 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.9.51-0jammy) jammy; urgency=high
+
+  * fix compilation and warnings with clang (#291 <https://github.com/ros/ros_comm/issues/291>)
+
+ -- Michael Carroll <michael@openrobotics.org>  Mon, 06 Jan 2014 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.9.50-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Thu, 03 Oct 2013 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.9.49-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Sun, 15 Sep 2013 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.9.48-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Tue, 20 Aug 2013 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.9.47-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Tue, 02 Jul 2013 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.9.46-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Mon, 17 Jun 2013 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.9.45-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 05 Jun 2013 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.9.44-0jammy) jammy; urgency=high
+
+  * fix install destination for dll's under Windows
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 20 Mar 2013 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.9.43-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Tue, 12 Mar 2013 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.9.42-0jammy) jammy; urgency=high
+
+  * refine license description to LGPL-2.1
+
+ -- Michael Carroll <michael@openrobotics.org>  Thu, 07 Mar 2013 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.9.41-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Wed, 23 Jan 2013 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.9.40-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Carroll <michael@openrobotics.org>  Sat, 12 Jan 2013 16:00:00 -0000
+
+ros-noetic-xmlrpcpp (1.9.39-0jammy) jammy; urgency=high
+
+  * first public release for Groovy
+
+ -- Michael Carroll <michael@openrobotics.org>  Fri, 28 Dec 2012 16:00:00 -0000
+
+

@@ -1,0 +1,1846 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-rosnode (1.16.0-0jammy) jammy; urgency=high
+Author: Michael Carroll <michael@openrobotics.org>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-rosnode-1.16.0/CHANGELOG.rst
+@@ -0,0 +1,249 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package rosnode
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++1.16.0 (2023-02-15)
++-------------------
++
++1.15.15 (2022-11-23)
++--------------------
++* Move @jacobperron from maintainer to author (`#2302 <https://github.com/ros/ros_comm/issues/2302>`_)
++* Contributors: Shane Loretz
++
++1.15.14 (2022-01-06)
++--------------------
++
++1.15.13 (2021-09-22)
++--------------------
++
++1.15.12 (2021-09-21)
++--------------------
++
++1.15.11 (2021-04-06)
++--------------------
++
++1.15.10 (2021-03-18)
++--------------------
++
++1.15.9 (2020-10-16)
++-------------------
++* Update maintainers (`#2075 <https://github.com/ros/ros_comm/issues/2075>`_)
++* Fix spelling (`#2066 <https://github.com/ros/ros_comm/issues/2066>`_)
++* Clear cached URI for a node that has gone offline (`#2010 <https://github.com/ros/ros_comm/issues/2010>`_)
++* Add skip_cache parameter to rosnode_ping() (`#2009 <https://github.com/ros/ros_comm/issues/2009>`_)
++* Contributors: Shane Loretz, mabaue, tomoya
++
++1.15.8 (2020-07-23)
++-------------------
++
++1.15.7 (2020-05-28)
++-------------------
++
++1.15.6 (2020-05-21)
++-------------------
++
++1.15.5 (2020-05-15)
++-------------------
++
++1.15.4 (2020-03-19)
++-------------------
++
++1.15.3 (2020-02-28)
++-------------------
++
++1.15.2 (2020-02-25)
++-------------------
++
++1.15.1 (2020-02-24)
++-------------------
++* use setuptools instead of distutils (`#1870 <https://github.com/ros/ros_comm/issues/1870>`_)
++
++1.15.0 (2020-02-21)
++-------------------
++
++1.14.4 (2020-02-20)
++-------------------
++* bump CMake minimum version to avoid CMP0048 warning (`#1869 <https://github.com/ros/ros_comm/issues/1869>`_)
++* prevent indefinitely trapping in unknown error state (`#1854 <https://github.com/ros/ros_comm/issues/1854>`_)
++* duplicate test nodes which aren't available to other packages, add missing dependencies (`#1611 <https://github.com/ros/ros_comm/issues/1611>`_)
++* update wiki.ros.org URLs (`#1536 <https://github.com/ros/ros_comm/issues/1536>`_)
++* explicitly handle socket.timeout in rosnode ping (`#1517 <https://github.com/ros/ros_comm/issues/1517>`_)
++* show connection info on rosnode info (`#1497 <https://github.com/ros/ros_comm/issues/1497>`_)
++
++1.14.3 (2018-08-06)
++-------------------
++
++1.14.2 (2018-06-06)
++-------------------
++
++1.14.1 (2018-05-21)
++-------------------
++
++1.14.0 (2018-05-21)
++-------------------
++
++1.13.6 (2018-02-05)
++-------------------
++* fix docstrings (`#1278 <https://github.com/ros/ros_comm/issues/1278>`_)
++* fix documentation for cleanup_master_blacklist() (`#1253 <https://github.com/ros/ros_comm/issues/1253>`_)
++
++1.13.5 (2017-11-09)
++-------------------
++
++1.13.4 (2017-11-02)
++-------------------
++
++1.13.3 (2017-10-25)
++-------------------
++* return exit code 1 in case of errors (`#1178 <https://github.com/ros/ros_comm/issues/1178>`_)
++* sort output of rosnode info (`#1160 <https://github.com/ros/ros_comm/issues/1160>`_)
++* fix Python 3 compatibility (`#1166 <https://github.com/ros/ros_comm/issues/1166>`_)
++
++1.13.2 (2017-08-15)
++-------------------
++
++1.13.1 (2017-07-27)
++-------------------
++
++1.13.0 (2017-02-22)
++-------------------
++
++1.12.7 (2017-02-17)
++-------------------
++
++1.12.6 (2016-10-26)
++-------------------
++
++1.12.5 (2016-09-30)
++-------------------
++
++1.12.4 (2016-09-19)
++-------------------
++
++1.12.3 (2016-09-17)
++-------------------
++
++1.12.2 (2016-06-03)
++-------------------
++* add --quiet option (`#809 <https://github.com/ros/ros_comm/pull/809>`_)
++
++1.12.1 (2016-04-18)
++-------------------
++
++1.12.0 (2016-03-18)
++-------------------
++
++1.11.18 (2016-03-17)
++--------------------
++
++1.11.17 (2016-03-11)
++--------------------
++
++1.11.16 (2015-11-09)
++--------------------
++
++1.11.15 (2015-10-13)
++--------------------
++
++1.11.14 (2015-09-19)
++--------------------
++
++1.11.13 (2015-04-28)
++--------------------
++
++1.11.12 (2015-04-27)
++--------------------
++
++1.11.11 (2015-04-16)
++--------------------
++
++1.11.10 (2014-12-22)
++--------------------
++
++1.11.9 (2014-08-18)
++-------------------
++
++1.11.8 (2014-08-04)
++-------------------
++
++1.11.7 (2014-07-18)
++-------------------
++
++1.11.6 (2014-07-10)
++-------------------
++
++1.11.5 (2014-06-24)
++-------------------
++
++1.11.4 (2014-06-16)
++-------------------
++* Python 3 compatibility (`#426 <https://github.com/ros/ros_comm/issues/426>`_, `#427 <https://github.com/ros/ros_comm/issues/427>`_)
++
++1.11.3 (2014-05-21)
++-------------------
++
++1.11.2 (2014-05-08)
++-------------------
++
++1.11.1 (2014-05-07)
++-------------------
++* add architecture_independent flag in package.xml (`#391 <https://github.com/ros/ros_comm/issues/391>`_)
++
++1.11.0 (2014-03-04)
++-------------------
++* make rostest in CMakeLists optional (`ros/rosdistro#3010 <https://github.com/ros/rosdistro/issues/3010>`_)
++
++1.10.0 (2014-02-11)
++-------------------
++
++1.9.54 (2014-01-27)
++-------------------
++
++1.9.53 (2014-01-14)
++-------------------
++
++1.9.52 (2014-01-08)
++-------------------
++
++1.9.51 (2014-01-07)
++-------------------
++
++1.9.50 (2013-10-04)
++-------------------
++
++1.9.49 (2013-09-16)
++-------------------
++
++1.9.48 (2013-08-21)
++-------------------
++
++1.9.47 (2013-07-03)
++-------------------
++* check for CATKIN_ENABLE_TESTING to enable configure without tests
++
++1.9.46 (2013-06-18)
++-------------------
++* fix rosnode_ping to check if new node uri is valid before using it (`#235 <https://github.com/ros/ros_comm/issues/235>`_)
++
++1.9.45 (2013-06-06)
++-------------------
++* modify rosnode_ping to check for changed node uri if connection is refused (`#221 <https://github.com/ros/ros_comm/issues/221>`_)
++
++1.9.44 (2013-03-21)
++-------------------
++
++1.9.43 (2013-03-13)
++-------------------
++
++1.9.42 (2013-03-08)
++-------------------
++
++1.9.41 (2013-01-24)
++-------------------
++
++1.9.40 (2013-01-13)
++-------------------
++
++1.9.39 (2012-12-29)
++-------------------
++* first public release for Groovy
+--- /dev/null
++++ ros-noetic-rosnode-1.16.0/CMakeLists.txt
+@@ -0,0 +1,11 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(rosnode)
++find_package(catkin REQUIRED)
++catkin_package()
++
++catkin_python_setup()
++
++if(CATKIN_ENABLE_TESTING)
++  find_package(rostest)
++  add_rostest(test/rosnode.test)
++endif()
+--- /dev/null
++++ ros-noetic-rosnode-1.16.0/package.xml
+@@ -0,0 +1,31 @@
++<package>
++  <name>rosnode</name>
++  <version>1.16.0</version>
++  <description>
++    rosnode is a command-line tool for displaying debug information
++    about ROS <a href="http://wiki.ros.org/Nodes">Nodes</a>,
++    including publications, subscriptions and connections. It also
++    contains an experimental library for retrieving node
++    information. This library is intended for internal use only.
++  </description>
++  <maintainer email="michael@openrobotics.org">Michael Carroll</maintainer>
++  <maintainer email="sloretz@openrobotics.org">Shane Loretz</maintainer>
++  <license>BSD</license>
++
++  <url>http://ros.org/wiki/rosnode</url>
++  <author>Ken Conley</author>
++  <author email="dthomas@osrfoundation.org">Dirk Thomas</author>
++  <author email="jacob@openrobotics.org">Jacob Perron</author>
++
++  <buildtool_depend version_gte="0.5.68">catkin</buildtool_depend>
++
++  <build_depend>rostest</build_depend>
++
++  <run_depend>rosgraph</run_depend>
++  <run_depend>rostopic</run_depend>
++
++  <export>
++    <rosdoc config="rosdoc.yaml"/>
++    <architecture_independent/>
++  </export>
++</package>
+--- /dev/null
++++ ros-noetic-rosnode-1.16.0/rosdoc.yaml
+@@ -0,0 +1 @@
++ - builder: epydoc
+--- /dev/null
++++ ros-noetic-rosnode-1.16.0/scripts/rosnode
+@@ -0,0 +1,35 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import rosnode
++rosnode.rosnodemain()
+--- /dev/null
++++ ros-noetic-rosnode-1.16.0/setup.py
+@@ -0,0 +1,11 @@
++from setuptools import setup
++from catkin_pkg.python_setup import generate_distutils_setup
++
++d = generate_distutils_setup(
++    packages=['rosnode'],
++    package_dir={'': 'src'},
++    scripts=['scripts/rosnode'],
++    requires=['genmsg', 'genpy', 'roslib', 'rospkg']
++)
++
++setup(**d)
+--- /dev/null
++++ ros-noetic-rosnode-1.16.0/src/rosnode/__init__.py
+@@ -0,0 +1,833 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++# Revision $Id$
++
++"""
++rosnode implements the rosnode command-line tool and also provides a
++library for retrieving ROS Node information.
++"""
++
++from __future__ import print_function
++
++import os
++import errno
++import sys
++import socket
++import time
++import re
++try:
++    from xmlrpc.client import ServerProxy
++except ImportError:
++    from xmlrpclib import ServerProxy
++
++try: #py3k
++    import urllib.parse as urlparse
++except ImportError:
++    import urlparse
++
++from optparse import OptionParser
++import rosgraph
++import rosgraph.names
++import rostopic
++
++NAME='rosnode'
++ID = '/rosnode'
++# The string is defined in clients/rospy/src/rospy/impl/tcpros_base.py TCPROSTransport.get_transport_info
++CONNECTION_PATTERN = re.compile(r'\w+ connection on port (\d+) to \[(.*) on socket (\d+)\]')
++
++class ROSNodeException(Exception):
++    """
++    rosnode base exception type
++    """
++    pass
++class ROSNodeIOException(ROSNodeException):
++    """
++    Exceptions for communication-related (i/o) errors, generally due to Master or Node network communication issues.
++    """
++    pass
++
++# need for calling node APIs
++def _succeed(args):
++    code, msg, val = args
++    if code != 1:
++        raise ROSNodeException("remote call failed: %s"%msg)
++    return val
++
++_caller_apis = {}
++def get_api_uri(master, caller_id, skip_cache=False):
++    """
++    @param master: rosgraph Master instance
++    @type  master: rosgraph.Master
++    @param caller_id: node name
++    @type  caller_id: str
++    @param skip_cache: flag to skip cached data and force to lookup node from master
++    @type  skip_cache: bool
++    @return: xmlrpc URI of caller_id
++    @rtype: str
++    @raise ROSNodeIOException: if unable to communicate with master
++    """
++    caller_api = _caller_apis.get(caller_id, None)
++    if not caller_api or skip_cache:
++        try:
++            caller_api = master.lookupNode(caller_id)
++            _caller_apis[caller_id] = caller_api
++        except rosgraph.MasterError:
++            return None
++        except socket.error:
++            raise ROSNodeIOException("Unable to communicate with master!")
++    return caller_api
++
++def lookup_uri(master, system_state, topic, uri):
++    for l in system_state[0:2]:
++        for entry in l:
++            if entry[0] == topic:
++                for n in entry[1]:
++                    if rostopic.get_api(master, n) == uri:
++                        return '%s (%s)' % (n, uri)
++    return uri
++
++def get_node_names(namespace=None):
++    """
++    @param namespace: optional namespace to scope return values by. Namespace must already be resolved.
++    @type  namespace: str
++    @return: list of node caller IDs
++    @rtype: [str]
++    @raise ROSNodeIOException: if unable to communicate with master
++    """
++    master = rosgraph.Master(ID)
++    try:
++        state = master.getSystemState()
++    except socket.error:
++        raise ROSNodeIOException("Unable to communicate with master!")
++    nodes = []
++    if namespace:
++        # canonicalize namespace with leading/trailing slash
++        g_ns = rosgraph.names.make_global_ns(namespace)
++        for s in state:
++            for t, l in s:
++                nodes.extend([n for n in l if n.startswith(g_ns) or n == namespace])
++    else:
++        for s in state:
++            for t, l in s:
++                nodes.extend(l)
++    return list(set(nodes))
++
++def get_machines_by_nodes():
++    """
++    Find machines connected to nodes. This is a very costly procedure as it
++    must do N lookups with the Master, where N is the number of nodes.
++    
++    @return: list of machines connected
++    @rtype: [str]
++    @raise ROSNodeIOException: if unable to communicate with master
++    """
++
++    master = rosgraph.Master(ID)
++
++    # get all the node names, lookup their uris, parse the hostname
++    # from the uris, and then compare the resolved hostname against
++    # the requested machine name.
++    machines = []
++    node_names = get_node_names()
++    for n in node_names:
++        try:
++            uri = master.lookupNode(n)
++            h = urlparse.urlparse(uri).hostname
++            if h not in machines:
++                machines.append(h)
++
++        except socket.error:
++            raise ROSNodeIOException("Unable to communicate with master!")    
++        except rosgraph.MasterError:
++            # it's possible that the state changes as we are doing lookups. this is a soft-fail
++            continue
++    return machines
++
++
++def get_nodes_by_machine(machine):
++    """
++    Find nodes by machine name. This is a very costly procedure as it
++    must do N lookups with the Master, where N is the number of nodes.
++    
++    @return: list of nodes on the specified machine
++    @rtype: [str]
++    @raise ROSNodeException: if machine name cannot be resolved to an address
++    @raise ROSNodeIOException: if unable to communicate with master
++    """
++    
++    master = rosgraph.Master(ID)
++    try:
++        machine_actual = [host[4][0] for host in socket.getaddrinfo(machine, 0, 0, 0, socket.SOL_TCP)]
++    except:
++        raise ROSNodeException("cannot resolve machine name [%s] to address"%machine)
++
++    # get all the node names, lookup their uris, parse the hostname
++    # from the uris, and then compare the resolved hostname against
++    # the requested machine name.
++    matches = [machine] + machine_actual
++    not_matches = [] # cache lookups
++    node_names = get_node_names()
++    retval = []
++    for n in node_names:
++        try:
++            try:
++                uri = master.lookupNode(n)
++            except rosgraph.MasterError:
++                # it's possible that the state changes as we are doing lookups. this is a soft-fail
++                continue
++
++            h = urlparse.urlparse(uri).hostname
++            if h in matches:
++                retval.append(n)
++            elif h in not_matches:
++                continue
++            else:
++                r = [host[4][0] for host in socket.getaddrinfo(h, 0, 0, 0, socket.SOL_TCP)]
++                if set(r) & set(machine_actual):
++                    matches.append(r)
++                    retval.append(n)
++                else:
++                    not_matches.append(r)                        
++        except socket.error:
++            raise ROSNodeIOException("Unable to communicate with master!")    
++    return retval
++
++def kill_nodes(node_names):
++    """
++    Call shutdown on the specified nodes
++
++    @return: list of nodes that shutdown was called on successfully and list of failures
++    @rtype: ([str], [str])
++    """
++    master = rosgraph.Master(ID)
++    
++    success = []
++    fail = []
++    tocall = []
++    try:
++        # lookup all nodes keeping track of lookup failures for return value
++        for n in node_names:
++            try:
++                uri = master.lookupNode(n)
++                tocall.append([n, uri])
++            except:
++                fail.append(n)
++    except socket.error:
++        raise ROSNodeIOException("Unable to communicate with master!")
++
++    for n, uri in tocall:
++        # the shutdown call can sometimes fail to succeed if the node
++        # tears down during the request handling, so we assume success
++        try:
++            p = ServerProxy(uri)
++            _succeed(p.shutdown(ID, 'user request'))
++        except:
++            pass
++        success.append(n)            
++
++    return success, fail
++
++def _sub_rosnode_listnodes(namespace=None, list_uri=False, list_all=False):
++    """
++    Subroutine for rosnode_listnodes(). Composes list of strings to print to screen.
++    
++    @param namespace: (default None) namespace to scope list to. 
++    @type  namespace: str
++    @param list_uri: (default False) return uris of nodes instead of names. 
++    @type  list_uri: bool
++    @param list_all: (default False) return names and uris of nodes as combined strings
++    @type  list_all: bool
++    @return: new-line separated string containing list of all nodes
++    @rtype: str
++    """
++    master = rosgraph.Master(ID)
++    nodes = get_node_names(namespace)
++    nodes.sort()
++    if list_all:
++        return '\n'.join(["%s \t%s"%(get_api_uri(master, n) or 'unknown address', n) for n in nodes])
++    elif list_uri:
++        return '\n'.join([(get_api_uri(master, n) or 'unknown address') for n in nodes])
++    else:
++        return '\n'.join(nodes)
++    
++def rosnode_listnodes(namespace=None, list_uri=False, list_all=False):
++    """
++    Print list of all ROS nodes to screen.
++
++    @param namespace: namespace to scope list to
++    @type  namespace: str
++    @param list_uri: print uris of nodes instead of names
++    @type  list_uri: bool
++    @param list_all: print node names and uris
++    @param list_all: bool    
++    """
++    print(_sub_rosnode_listnodes(namespace=namespace, list_uri=list_uri, list_all=list_all))
++    
++def rosnode_ping(node_name, max_count=None, verbose=False, skip_cache=False):
++    """
++    Test connectivity to node by calling its XMLRPC API
++    @param node_name: name of node to ping
++    @type  node_name: str
++    @param max_count: number of ping requests to make
++    @type  max_count: int
++    @param verbose: print ping information to screen
++    @type  verbose: bool
++    @param skip_cache: flag to skip cached data and force to lookup from master
++    @type  skip_cache: bool
++    @return: True if node pinged
++    @rtype: bool
++    @raise ROSNodeIOException: if unable to communicate with master
++    """
++    master = rosgraph.Master(ID)
++    node_api = get_api_uri(master, node_name, skip_cache=skip_cache)
++    if not node_api:
++        print("cannot ping [%s]: unknown node"%node_name, file=sys.stderr)
++        return False
++
++    timeout = 3.
++
++    if verbose:
++        print("pinging %s with a timeout of %ss"%(node_name, timeout))
++    socket.setdefaulttimeout(timeout)
++    node = ServerProxy(node_api)
++    lastcall = 0.
++    count = 0
++    acc = 0.
++    try:
++        while True:
++            try:
++                start = time.time()
++                pid = _succeed(node.getPid(ID))
++                end = time.time()
++
++                dur = (end-start)*1000.
++                acc += dur
++                count += 1
++
++                if verbose:
++                    print("xmlrpc reply from %s\ttime=%fms"%(node_api, dur))
++                # 1s between pings
++            except socket.timeout:
++                print("connection to [%s] timed out"%node_name, file=sys.stderr)
++                return False
++            except socket.error as e:
++                # 3786: catch ValueError on unpack as socket.error is not always a tuple
++                try:
++                    # #3659
++                    errnum, msg = e.args
++                    if errnum == -2: #name/service unknown
++                        p = urlparse.urlparse(node_api)
++                        print("ERROR: Unknown host [%s] for node [%s]"%(p.hostname, node_name), file=sys.stderr)
++                    elif errnum == errno.ECONNREFUSED:
++                        # check if node url has changed
++                        new_node_api = get_api_uri(master,node_name, skip_cache=True)
++                        if not new_node_api:
++                            print("cannot ping [%s]: unknown node"%node_name, file=sys.stderr)
++                            return False
++                        if new_node_api != node_api:
++                            if verbose:
++                                print("node url has changed from [%s] to [%s], retrying to ping"%(node_api, new_node_api))
++                            node_api = new_node_api
++                            node = ServerProxy(node_api)
++                            continue
++                        print("ERROR: connection refused to [%s]"%(node_api), file=sys.stderr)
++                    else:
++                        print("connection to [%s] failed"%node_name, file=sys.stderr)
++                    return False
++                except ValueError:
++                    print("unknown network error contacting node: %s"%(str(e)))
++                    return False
++            if max_count and count >= max_count:
++                break
++            time.sleep(1.0)
++    except KeyboardInterrupt:
++        pass
++            
++    if verbose and count > 1:
++        print("ping average: %fms"%(acc/count))
++    return True
++
++def rosnode_ping_all(verbose=False, skip_cache=False):
++    """
++    Ping all running nodes
++    @return [str], [str]: pinged nodes, un-pingable nodes
++    @raise ROSNodeIOException: if unable to communicate with master
++    """
++    master = rosgraph.Master(ID)
++    try:
++        state = master.getSystemState()
++    except socket.error:
++        raise ROSNodeIOException("Unable to communicate with master!")
++
++    nodes = []
++    for s in state:
++        for t, l in s:
++            nodes.extend(l)
++    nodes = list(set(nodes)) #uniq
++    if verbose:
++        print("Will ping the following nodes: \n"+''.join([" * %s\n"%n for n in nodes]))
++    pinged = []
++    unpinged = []
++    for node in nodes:
++        if rosnode_ping(node, max_count=1, verbose=verbose, skip_cache=skip_cache):
++            pinged.append(node)
++        else:
++            unpinged.append(node)
++    return pinged, unpinged
++    
++def cleanup_master_blacklist(master, blacklist):
++    """
++    Remove registrations from ROS Master and node cache (_caller_apis) that match blacklist.    
++    @param master: rosgraph Master instance
++    @type  master: rosgraph.Master
++    @param blacklist: list of nodes to scrub
++    @type  blacklist: [str]
++    """
++    pubs, subs, srvs = master.getSystemState()
++    for n in blacklist:
++        print("Unregistering", n)
++        node_api = get_api_uri(master, n)
++        for t, l in pubs:
++            if n in l:
++                master_n = rosgraph.Master(n)
++                master_n.unregisterPublisher(t, node_api)
++        for t, l in subs:
++            if n in l:
++                master_n = rosgraph.Master(n)
++                master_n.unregisterSubscriber(t, node_api)
++        for s, l in srvs:
++            if n in l:
++                service_api = master.lookupService(s)
++                master_n = rosgraph.Master(n)
++                master_n.unregisterService(s, service_api)
++        _caller_apis.pop(n, None)
++
++def cleanup_master_whitelist(master, whitelist):
++    """
++    Remove registrations from ROS Master that do not match whitelist.
++    @param master: rosgraph Master instance
++    @type  master: rosgraph.Master
++    @param whitelist: list of nodes to keep
++    @type  whitelist: list of nodes to keep
++   """
++    pubs, subs, srvs = master.getSystemState()
++    for t, l in pubs:
++        for n in l:
++            if n not in whitelist:
++                node_api = get_api_uri(master, n)
++                master_n = rosgraph.Master(n)
++                master_n.unregisterPublisher(t, node_api)
++    for t, l in subs:
++        for n in l:
++            if n not in whitelist:
++                node_api = get_api_uri(master, n)
++                master_n = rosgraph.Master(n)                
++                master_n.unregisterSubscriber(t, node_api)
++    for s, l in srvs:
++        for n in l:
++            if n not in whitelist:
++                service_api = master.lookupService(s)
++                master_n = rosgraph.Master(n)
++                master_n.unregisterService(s, service_api)
++
++def rosnode_cleanup():
++    """
++    This is a semi-hidden routine for cleaning up stale node
++    registration information on the ROS Master. The intent is to
++    remove this method once Master TTLs are properly implemented.
++    """
++    pinged, unpinged = rosnode_ping_all()
++    if unpinged:
++        master = rosgraph.Master(ID)
++        print("Unable to contact the following nodes:")
++        print('\n'.join(' * %s'%n for n in unpinged))
++        print("Warning: these might include alive and functioning nodes, e.g. in unstable networks.")
++        print("Cleanup will purge all information about these nodes from the master.")
++        print("Please type y or n to continue:")
++        input = sys.stdin.readline()
++        while not input.strip() in ['y', 'n']:
++            input = sys.stdin.readline()
++        if input.strip() == 'n':
++            print('aborting')
++            return
++        
++        cleanup_master_blacklist(master, unpinged)
++
++        print("done")
++
++def get_node_info_description(node_name):
++    def topic_type(t, pub_topics):
++        matches = [t_type for t_name, t_type in pub_topics if t_name == t]
++        if matches:
++            return matches[0]
++        return 'unknown type'
++
++    master = rosgraph.Master(ID)
++
++    # go through the master system state first
++    try:
++        state = master.getSystemState()
++        pub_topics = master.getPublishedTopics('/')
++    except socket.error:
++        raise ROSNodeIOException("Unable to communicate with master!")
++    pubs = sorted([t for t, l in state[0] if node_name in l])
++    subs = sorted([t for t, l in state[1] if node_name in l])
++    srvs = sorted([t for t, l in state[2] if node_name in l])
++
++    buff = "Node [%s]"%node_name
++    if pubs:
++        buff += "\nPublications: \n"
++        buff += '\n'.join([" * %s [%s]"%(l, topic_type(l, pub_topics)) for l in pubs]) + '\n'
++    else:
++        buff += "\nPublications: None\n"
++    if subs:
++        buff += "\nSubscriptions: \n"
++        buff += '\n'.join([" * %s [%s]"%(l, topic_type(l, pub_topics)) for l in subs]) + '\n'
++    else:
++        buff += "\nSubscriptions: None\n"        
++    if srvs:
++        buff += "\nServices: \n"
++        buff += '\n'.join([" * %s"%l for l in srvs]) + '\n'
++    else:
++        buff += "\nServices: None\n"
++        
++    return buff
++
++def get_node_connection_info_description(node_api, master):
++    #turn down timeout on socket library
++    socket.setdefaulttimeout(5.0)
++    node = ServerProxy(node_api)
++    system_state = master.getSystemState()
++
++    try:
++        pid = _succeed(node.getPid(ID))
++        buff = "Pid: %s\n"%pid
++        #master_uri = _succeed(node.getMasterUri(ID))
++        businfo = _succeed(node.getBusInfo(ID))
++        if businfo:
++            buff += "Connections:\n"
++            for info in businfo:
++                dest_id   = info[1]
++                direction = info[2]
++                transport = info[3]
++                topic     = info[4]
++                if len(info) > 5:
++                    connected = info[5]
++                else:
++                    connected = True #backwards compatibility
++
++                if connected:
++                    buff += " * topic: %s\n"%topic
++
++                    # older ros publisher implementations don't report a URI
++                    buff += "    * to: %s\n"%lookup_uri(master, system_state, topic, dest_id)
++                    if direction == 'i':
++                        buff += "    * direction: inbound"
++                    elif direction == 'o':
++                        buff += "    * direction: outbound"
++                    else:
++                        buff += "    * direction: unknown"
++                    if len(info) > 6:
++                        match = CONNECTION_PATTERN.match(info[6])
++                        if match is not None:
++                            buff += " (%s - %s) [%s]" % match.groups()
++                    buff += "\n"
++                    buff += "    * transport: %s\n"%transport
++    except socket.error:
++        raise ROSNodeIOException("Communication with node[%s] failed!"%(node_api))
++    return buff
++
++def rosnode_info(node_name, quiet=False):
++    """
++    Print information about node, including subscriptions and other debugging information. This will query the node over the network.
++    
++    @param node_name: name of ROS node
++    @type  node_name: str
++    @raise ROSNodeIOException: if unable to communicate with master
++    """
++    def topic_type(t, pub_topics):
++        matches = [t_type for t_name, t_type in pub_topics if t_name == t]
++        if matches:
++            return matches[0]
++        return 'unknown type'
++
++    master = rosgraph.Master(ID)
++    node_name = rosgraph.names.script_resolve_name('rosnode', node_name)
++
++    print('-'*80)
++    print(get_node_info_description(node_name))
++        
++    node_api = get_api_uri(master, node_name)
++    if not node_api:
++        print("cannot contact [%s]: unknown node"%node_name, file=sys.stderr)
++        return
++
++    if not quiet:
++        print("\ncontacting node %s ..." % node_api)
++        print(get_node_connection_info_description(node_api, master))
++
++# backwards compatibility (deprecated)
++rosnode_debugnode = rosnode_info
++
++def _rosnode_cmd_list(argv):
++    """
++    Implements rosnode 'list' command.
++    """
++    args = argv[2:]
++    parser = OptionParser(usage="usage: %prog list", prog=NAME)
++    parser.add_option("-u",
++                      dest="list_uri", default=False,
++                      action="store_true",
++                      help="list XML-RPC URIs")
++    parser.add_option("-a","--all",
++                      dest="list_all", default=False,
++                      action="store_true",
++                      help="list all information")
++    (options, args) = parser.parse_args(args)
++    namespace = None
++    if len(args) > 1:
++        parser.error("invalid args: you may only specify one namespace")
++    elif len(args) == 1:
++        namespace = rosgraph.names.script_resolve_name('rostopic', args[0])
++    rosnode_listnodes(namespace=namespace, list_uri=options.list_uri, list_all=options.list_all)
++
++def _rosnode_cmd_info(argv):
++    """
++    Implements rosnode 'info' command.
++    """
++    args = argv[2:]
++    parser = OptionParser(usage="usage: %prog info [options] node1 [node2...]",
++                          prog=NAME)
++    parser.add_option("-q", "--quiet",
++                      dest="quiet", default=False,
++                      action="store_true",
++                      help="Prints only basic information such as pubs/subs and does not contact nodes for more information")
++    (options, args) = parser.parse_args(args)
++    if not args:
++        parser.error("You must specify at least one node name")        
++    for node in args:
++        rosnode_info(node, options.quiet)
++
++def _rosnode_cmd_machine(argv):
++    """
++    Implements rosnode 'machine' command.
++
++    @raise ROSNodeException: if user enters in unrecognized machine name
++    """
++    args = argv[2:]
++    parser = OptionParser(usage="usage: %prog machine [machine-name]", prog=NAME)
++    (options, args) = parser.parse_args(args)
++    if len(args) > 1:
++        parser.error("please enter only one machine name")
++    elif len(args) == 0:
++        machines = get_machines_by_nodes()
++        machines.sort()
++        print('\n'.join(machines))
++    else:
++        nodes = get_nodes_by_machine(args[0])
++        nodes.sort()
++        print('\n'.join(nodes))
++
++def _rosnode_cmd_kill(argv):
++    """
++    Implements rosnode 'kill' command.
++
++    @raise ROSNodeException: if user enters in unrecognized nodes
++    """
++    args = argv[2:]
++    parser = OptionParser(usage="usage: %prog kill [node]...", prog=NAME)
++    parser.add_option("-a","--all",
++                      dest="kill_all", default=False,
++                      action="store_true",
++                      help="kill all nodes")
++
++    (options, args) = parser.parse_args(args)
++    if options.kill_all:
++        if args:
++            parser.error("invalid arguments with kill all (-a) option")
++        args = get_node_names()
++        args.sort()
++    elif not args:
++        node_list = get_node_names()
++        node_list.sort()
++        if not node_list:
++            print("No nodes running", file=sys.stderr)
++            return 0
++        
++        sys.stdout.write('\n'.join(["%s. %s"%(i+1, n) for i,n in enumerate(node_list)]))
++        sys.stdout.write("\n\nPlease enter the number of the node you wish to kill.\n> ")
++        selection = ''
++        while not selection:
++            selection = sys.stdin.readline().strip()
++            try:
++                selection = int(selection) 
++                if selection <= 0:
++                    print("ERROR: invalid selection. Please enter a number (ctrl-C to cancel)")
++            except:
++                print("ERROR: please enter a number (ctrl-C to cancel)")
++                sys.stdout.flush()
++                selection = ''
++        args = [node_list[selection - 1]]
++    else:
++        # validate args
++        args = [rosgraph.names.script_resolve_name(ID, n) for n in args]
++        node_list = get_node_names()
++        unknown = [n for n in args if not n in node_list]
++        if unknown:
++            raise ROSNodeException("Unknown node(s):\n"+'\n'.join([" * %s"%n for n in unknown]))
++    if len(args) > 1:
++        print("killing:\n"+'\n'.join([" * %s"%n for n in args]))
++    else:
++        print("killing %s"%(args[0]))
++            
++    success, fail = kill_nodes(args)
++    if fail:
++        print("ERROR: Failed to kill:\n"+'\n'.join([" * %s"%n for n in fail]), file=sys.stderr)
++        return 1
++    print("killed")
++    return 0
++        
++def _rosnode_cmd_cleanup(argv):
++    """
++    Implements rosnode 'cleanup' command.
++    @param argv: command-line args
++    @type  argv: [str]
++    """
++    args = argv[2:]
++    parser = OptionParser(usage="usage: %prog cleanup", prog=NAME)
++    (options, args) = parser.parse_args(args)
++    rosnode_cleanup()
++
++def _rosnode_cmd_ping(argv):
++    """
++    Implements rosnode 'ping' command.
++    @param argv: command-line args
++    @type  argv: [str]
++    """
++    args = argv[2:]    
++    parser = OptionParser(usage="usage: %prog ping [options] <node>", prog=NAME)
++    parser.add_option("--all", "-a",
++                      dest="ping_all", default=False,
++                      action="store_true",
++                      help="ping all nodes")
++    parser.add_option("-c",
++                      dest="ping_count", default=None, metavar="COUNT",type="int",
++                      help="number of pings to send. Not available with --all")
++    (options, args) = parser.parse_args(args)
++
++    node_name = None
++    if not options.ping_all:
++        if not args:
++            try:
++                parser.error("Please enter a node to ping. Available nodes are:\n"+_sub_rosnode_listnodes())
++            except:
++                # master is offline, but user did have invalid usage, so display correct usage first
++                parser.error("Please enter a node to ping")
++        elif len(args) > 1:
++            parser.error("you may only specify one input node")
++        elif len(args) == 1:
++            node_name = rosgraph.names.script_resolve_name('rosnode', args[0])
++            print("rosnode: node is [%s]"%node_name)
++    else:
++        if args:
++            parser.error("Invalid arguments '%s' used with --all"%(' '.join(args)))
++        elif options.ping_count:
++            parser.error("-c may not be used with --all")
++            
++    if options.ping_all:
++        rosnode_ping_all(verbose=True)
++    else:
++        rosnode_ping(node_name, verbose=True, max_count=options.ping_count)
++    
++def _fullusage(return_error=True):
++    """
++    Prints rosnode usage information.
++    @param return_error whether to exit with error code os.EX_USAGE
++    """
++    print("""rosnode is a command-line tool for printing information about ROS Nodes.
++
++Commands:
++\trosnode ping\ttest connectivity to node
++\trosnode list\tlist active nodes
++\trosnode info\tprint information about node
++\trosnode machine\tlist nodes running on a particular machine or list machines
++\trosnode kill\tkill a running node
++\trosnode cleanup\tpurge registration information of unreachable nodes
++
++Type rosnode <command> -h for more detailed usage, e.g. 'rosnode ping -h'
++""")
++    if return_error:
++        sys.exit(getattr(os, 'EX_USAGE', 1))
++    else:
++        sys.exit(0)
++
++def rosnodemain(argv=None):
++    """
++    Prints rosnode main entrypoint.
++    @param argv: override sys.argv
++    @param argv: [str]
++    """
++    if argv == None:
++        argv = sys.argv
++    if len(argv) == 1:
++        _fullusage()
++    try:
++        command = argv[1]
++        if command == 'ping':
++            sys.exit(_rosnode_cmd_ping(argv) or 0)
++        elif command == 'list':
++            sys.exit(_rosnode_cmd_list(argv) or 0)
++        elif command == 'info':
++            sys.exit(_rosnode_cmd_info(argv) or 0)
++        elif command == 'machine':
++            sys.exit(_rosnode_cmd_machine(argv) or 0)
++        elif command == 'cleanup':
++            sys.exit(_rosnode_cmd_cleanup(argv) or 0)
++        elif command == 'kill':
++            sys.exit(_rosnode_cmd_kill(argv) or 0)
++        elif command == '--help':
++            _fullusage(False)
++        else:
++            _fullusage()
++    except socket.error:
++        print("Network communication failed. Most likely failed to communicate with master.", file=sys.stderr)
++        sys.exit(1)
++    except rosgraph.MasterError as e:
++        print("ERROR: "+str(e), file=sys.stderr)
++        sys.exit(1)
++    except ROSNodeException as e:
++        print("ERROR: "+str(e), file=sys.stderr)
++        sys.exit(1)
++    except KeyboardInterrupt:
++        pass
+--- /dev/null
++++ ros-noetic-rosnode-1.16.0/test/check_rosnode_command_online.py
+@@ -0,0 +1,125 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import os
++import signal
++import sys 
++import time
++import unittest
++
++import rospy
++import std_msgs.msg
++import rostest
++
++from subprocess import Popen, PIPE, check_call, call
++
++def run_for(cmd, secs):
++    popen = Popen(cmd, stdout=PIPE, stderr=PIPE, close_fds=True)
++    timeout_t = time.time() + secs
++    while time.time() < timeout_t:
++        time.sleep(0.1)
++    os.kill(popen.pid, signal.SIGKILL)
++    
++class TestRosnodeOnline(unittest.TestCase):
++
++    def setUp(self):
++        self.vals = set()
++        self.msgs = {}
++
++    def callback(self, msg, val):
++        self.vals.add(val)
++        self.msgs[val] = msg
++        
++    def test_rosnode(self):
++        topics = ['/chatter', '/foo/chatter', '/bar/chatter']
++        
++        # wait for network to initialize
++        rospy.init_node('test')
++        nodes = ['/talker', '/foo/talker', '/bar/talker', rospy.get_caller_id()]
++        
++        for i, t in enumerate(topics):
++            rospy.Subscriber(t, std_msgs.msg.String, self.callback, i)
++        all = set(range(0, len(topics)))
++
++        timeout_t = time.time() + 10.
++        while time.time() < timeout_t and self.vals != all:
++            time.sleep(0.1)
++        self.assertEquals(self.vals, all, "failed to initialize graph correctly")
++            
++
++        # network is initialized
++        cmd = 'rosnode'
++
++        # list
++        # - we aren't matching against the core services as those can make the test suites brittle
++        output = Popen([cmd, 'list'], stdout=PIPE).communicate()[0]
++        output = output.decode()
++        l = set(output.split())
++        for t in nodes:
++            self.assert_(t in l, "%s not in %s"%(t, l))
++
++        output = Popen([cmd, 'list', '-a'], stdout=PIPE).communicate()[0]
++        output = output.decode()
++        l = set(output.split())
++        for t in nodes:
++            for e in l:
++                if t in e:
++                    break
++            else:
++                self.fail("did not find [%s] in list [%s]"%(t, l))
++
++        output = Popen([cmd, 'list', '-u'], stdout=PIPE).communicate()[0]
++        output = output.decode() 
++        l = set(output.split())
++        self.assert_(len(l), "list -u is empty")
++        for e in l:
++            self.assert_(e.startswith('http://'))
++
++        for name in nodes:
++            # type
++            output = Popen([cmd, 'info', name], stdout=PIPE).communicate()[0]
++            output = output.decode()
++            # not really validating output as much as making sure it's not broken
++            self.assert_(name in output)
++            self.assert_('chatter' in output)
++            self.assert_('Publications' in output)
++            self.assert_('Subscriptions' in output)                        
++
++            if 0:
++                #ping
++                stdout, stderr = run_for([cmd, 'ping', name], 3.)
++
++PKG = 'test_rosnode'
++NAME = 'test_rosnode_command_line_online'
++if __name__ == '__main__':
++    rostest.run(PKG, NAME, TestRosnodeOnline, sys.argv)
+--- /dev/null
++++ ros-noetic-rosnode-1.16.0/test/rosnode.test
+@@ -0,0 +1,24 @@
++<launch>
++  <node name="talker" pkg="rosnode" type="talker.py" />
++  <group ns="foo">
++    <node name="talker" pkg="rosnode" type="talker.py" />
++  </group>
++  <group ns="bar">
++    <node name="talker" pkg="rosnode" type="talker.py" />
++  </group>
++  <group ns="baz">
++    <node name="talker1" pkg="rosnode" type="talker.py" />
++    <node name="talker2" pkg="rosnode" type="talker.py" />
++    <node name="talker3" pkg="rosnode" type="talker.py" />
++  </group>
++  <group ns="listeners">
++    <node name="listener" pkg="rosnode" type="listener.py" />
++  </group>
++  <group ns="to_kill">  
++    <node name="kill1" pkg="rosnode" type="talker.py" />
++    <node name="kill2" pkg="rosnode" type="talker.py" />
++    <node name="kill3" pkg="rosnode" type="talker.py" />
++    <node name="kill4" pkg="rosnode" type="talker.py" />
++  </group>
++  <test test-name="rosnode_command_line_online" pkg="rosnode" type="check_rosnode_command_online.py" />
++</launch>
+--- /dev/null
++++ ros-noetic-rosnode-1.16.0/test/test_rosnode.py
+@@ -0,0 +1,263 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import os
++import sys 
++import time
++import unittest
++
++try:
++    from cStringIO import StringIO
++except ImportError:
++    from io import StringIO
++from subprocess import Popen, PIPE, check_call, call
++
++from contextlib import contextmanager
++@contextmanager
++def fakestdout():
++    realstdout = sys.stdout
++    fakestdout = StringIO()
++    sys.stdout = fakestdout
++    yield fakestdout
++    sys.stdout = realstdout
++
++def tolist(b):
++    return [x.strip() for x in b.getvalue().split('\n') if x.strip()]
++
++class TestRosnode(unittest.TestCase):
++
++    def __init__(self, *args):
++        unittest.TestCase.__init__(self, *args)
++        self.vals = set()
++        
++        # wait for network to initialize
++        import rospy
++        import std_msgs.msg
++        rospy.init_node('test')
++        topics = ['/chatter', '/foo/chatter', '/bar/chatter']        
++        subs = [rospy.Subscriber(t, std_msgs.msg.String, self.callback, i) for i, t in enumerate(topics)]
++        all = set(range(0, len(topics)))
++
++        timeout_t = time.time() + 10.
++        while time.time() < timeout_t and self.vals != all:
++            time.sleep(0.1)
++        [s.unregister() for s in subs]
++
++    def setUp(self):
++        self.vals = set()
++        self.msgs = {}
++
++    def callback(self, msg, val):
++        self.vals.add(val)
++
++    def _check(self, expected, actual):
++        """
++        Make sure all elements of expected are present in actual
++        """
++        for t in expected:
++            self.assert_(t in actual)
++            
++    def _notcheck(self, not_expected, actual):
++        """
++        Make sure all elements of not_expected are not present in actual
++        """
++        for t in not_expected:
++            self.failIf(t in actual)
++        
++
++    def test_rosnode_info(self):
++        import rosnode
++        cmd = 'rosnode'
++
++        nodes = ['/talker',
++                 '/foo/talker',
++                 '/bar/talker',
++                 '/baz/talker1',
++                 '/baz/talker2',
++                 '/baz/talker3',
++                 '/listeners/listener',
++                 '/rosout',
++                 ]
++        try:
++            rosnode._rosnode_cmd_info([cmd, 'info'])
++            self.fail("should have failed")
++        except SystemExit as e:
++            self.assertNotEquals(0, e.code)
++            
++        for n in nodes:
++            with fakestdout() as b:
++                rosnode._rosnode_cmd_info([cmd, 'info', n])
++                s = b.getvalue()
++                self.assert_("Node [%s]"%n in s)
++                self.assert_("Pid: " in s, s)
++        
++    def test_rosnode_list(self):
++        import rosnode
++        cmd = 'rosnode'
++
++        nodes = ['/talker',
++                 '/foo/talker',
++                 '/bar/talker',
++                 '/baz/talker1',
++                 '/baz/talker2',
++                 '/baz/talker3',
++                 '/rosout',
++                 ]
++        l = rosnode.get_node_names()
++        for t in nodes:
++            self.assert_(t in l)
++            
++        try:
++            rosnode._rosnode_cmd_list([cmd, 'list', 'one', 'two'])
++            self.fail("should have failed")
++        except SystemExit as e:
++            self.assertNotEquals(0, e.code)
++            
++        with fakestdout() as b:
++            rosnode._rosnode_cmd_list([cmd, 'list'])
++            self._check(nodes, tolist(b))
++        with fakestdout() as b:
++            rosnode._rosnode_cmd_list([cmd, 'list', '/'])
++            l = tolist(b)
++            self._check(nodes, l)
++            num_nodes = len(l)
++        # test -u uris
++        with fakestdout() as b:
++            rosnode._rosnode_cmd_list([cmd, 'list', '-u', '/'])
++            l = tolist(b)
++            self.assertEquals(num_nodes, len(l))
++            self.failIf([n for n in l if not n.startswith('http://')])
++        # test -a all
++        with fakestdout() as b:
++            rosnode._rosnode_cmd_list([cmd, 'list', '-a', '/'])
++            l = tolist(b)
++            uris = [x.split()[0] for x in l if x]
++            names = [x.split()[1] for x in l if x]
++            self._check(nodes, names) 
++            self.assertEquals(num_nodes, len(uris))
++            self.failIf([n for n in uris if not n.startswith('http://')])
++            
++            
++        # test with namespace
++        foon = [p for p in nodes if p.startswith('/foo/')]
++        not_foon = [p for p in nodes if not p.startswith('/foo/')]
++        for ns in ['foo', '/foo', '/foo/']:
++            with fakestdout() as b:
++                rosnode._rosnode_cmd_list([cmd, 'list', ns])
++                self._check(foon, tolist(b))
++                self._notcheck(not_foon, tolist(b))
++        bazn = [p for p in nodes if p.startswith('/baz/')]
++        not_bazn = [p for p in nodes if not p.startswith('/baz/')]
++        for ns in ['baz', '/baz', '/baz/']:
++            with fakestdout() as b:
++                rosnode._rosnode_cmd_list([cmd, 'list', ns])
++                self._check(bazn, tolist(b))
++                self._notcheck(not_bazn, tolist(b))
++            
++        # test with no match        
++        with fakestdout() as b:
++            rosnode._rosnode_cmd_list([cmd, 'list', '/not/a/namespace/'])
++            self.assertEquals([], tolist(b))
++            
++
++    def test_rosnode_usage(self):
++        import rosnode
++        cmd = 'rosnode'
++        for c in ['ping', 'list', 'info', 'machine', 'cleanup', 'kill']:
++            try:
++                with fakestdout() as b:
++                    rosnode.rosnodemain([cmd, c, '-h'])
++                    self.assert_("usage" in b.getvalue())
++                self.fail("should have exited on usage")
++            except SystemExit as e:
++                self.assertEquals(0, e.code)
++            
++    def test_rosnode_ping(self):
++        import rosnode
++        cmd = 'rosnode'
++        
++        self.failIf(rosnode.rosnode_ping('/fake_node', max_count=1))
++        self.assert_(rosnode.rosnode_ping('/rosout', max_count=1))
++        self.assert_(rosnode.rosnode_ping('/rosout', max_count=2))        
++
++        with fakestdout() as b:
++            self.assert_(rosnode.rosnode_ping('/rosout', max_count=2, verbose=True))
++            s = b.getvalue()
++            self.assert_('xmlrpc reply' in s, s)
++            self.assert_('ping average:' in s, s)
++            
++        # test via command-line API
++        rosnode._rosnode_cmd_ping([cmd, 'ping', '-c', '1', '/fake_node'])
++        with fakestdout() as b:
++            rosnode._rosnode_cmd_ping([cmd, 'ping', '-c', '1', '/rosout'])
++            s = b.getvalue()
++            self.assert_('xmlrpc reply' in s, s)
++        with fakestdout() as b:
++            rosnode._rosnode_cmd_ping([cmd, 'ping', '-c', '1', 'rosout'])
++            s = b.getvalue()
++            self.assert_('xmlrpc reply' in s, s)
++        with fakestdout() as b:
++            rosnode._rosnode_cmd_ping([cmd, 'ping', '-c', '2', 'rosout'])
++            s = b.getvalue()
++            self.assertEquals(2, s.count('xmlrpc reply'))
++        
++    def test_rosnode_ping_all(self):
++        import rosnode
++        cmd = 'rosnode'
++        
++        pinged, unpinged = rosnode.rosnode_ping_all(verbose=False)
++        self.assert_('/rosout' in pinged)
++        with fakestdout() as b:
++            pinged, unpinged = rosnode.rosnode_ping_all(verbose=True)
++            self.assert_('xmlrpc reply' in b.getvalue())
++            self.assert_('/rosout' in pinged)
++            
++    def test_rosnode_kill(self):
++        import rosnode
++        cmd = 'rosnode'
++        for n in ['to_kill/kill1', '/to_kill/kill2']:
++            self.assert_(rosnode.rosnode_ping(n, max_count=1))
++            rosnode._rosnode_cmd_kill([cmd, 'kill', n])
++            self.failIf(rosnode.rosnode_ping(n, max_count=1))
++        
++    def test_fullusage(self):
++        import rosnode
++        try:
++            rosnode._fullusage()
++        except SystemExit: pass
++        try:
++            rosnode.rosnodemain(['rosnode'])
++        except SystemExit: pass
++        try:
++            rosnode.rosnodemain(['rosnode', 'invalid'])        
++        except SystemExit: pass
+--- /dev/null
++++ ros-noetic-rosnode-1.16.0/test/test_rosnode_command_offline.py
+@@ -0,0 +1,88 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import os
++import sys 
++import unittest
++import time
++        
++from subprocess import Popen, PIPE, check_call, call
++
++class TestRosnodeOffline(unittest.TestCase):
++
++    def setUp(self):
++        pass
++
++    ## test that the rosmsg command works
++    def test_cmd_help(self):
++        cmd = 'rosnode'
++        sub = ['ping', 'machine', 'list', 'info', 'kill']
++        
++        output = Popen([cmd], stdout=PIPE).communicate()[0]
++        self.assert_('Commands' in output)
++        output = Popen([cmd, '-h'], stdout=PIPE).communicate()[0]
++        self.assert_('Commands' in output)
++        for c in sub:
++            # make sure command is in usage statement
++            self.assert_("%s %s"%(cmd, c) in output)
++
++        for c in sub:
++            output = Popen([cmd, c, '-h'], stdout=PIPE, stderr=PIPE).communicate()
++            self.assert_("Usage:" in output[0], "[%s]: %s"%(c, output))
++            self.assert_("%s %s"%(cmd, c) in output[0], "%s: %s"%(c, output[0]))
++            
++        # test no args on commands that require args
++        for c in ['ping', 'info']:
++            output = Popen([cmd, c], stdout=PIPE, stderr=PIPE).communicate()
++            self.assert_("Usage:" in output[0] or "Usage:" in output[1], "[%s]: %s"%(c, output))
++            
++    def test_offline(self):
++        cmd = 'rosnode'
++
++        # point at a different 'master'
++        env = os.environ.copy()
++        env['ROS_MASTER_URI'] = 'http://localhost:11312'
++        kwds = { 'env': env, 'stdout': PIPE, 'stderr': PIPE}
++
++        msg = "ERROR: Unable to communicate with master!\n"
++
++        output = Popen([cmd, 'list',], **kwds).communicate()
++        self.assert_(msg in output[1])
++        output = Popen([cmd, 'ping', 'talker'], **kwds).communicate()
++        self.assertEquals(msg, output[1])
++        output = Popen([cmd, 'info', 'talker'], **kwds).communicate()
++        self.assert_(msg in output[1])
++
++        output = Popen([cmd, 'kill', 'talker'], **kwds).communicate()
++        self.assert_(msg in output[1])
++        
+--- /dev/null
++++ ros-noetic-rosnode-1.16.0/test_nodes/listener.py
+@@ -0,0 +1,60 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++## Simple talker demo that listens to std_msgs/Strings published 
++## to the 'chatter' topic
++
++PKG = 'rosmaster' # this package name
++
++import rospy
++from std_msgs.msg import String
++
++def callback(data):
++    rospy.loginfo(rospy.get_caller_id()+"I heard %s",data.data)
++    
++def listener():
++
++    # in ROS, nodes are unique named. If two nodes with the same
++    # node are launched, the previous one is kicked off. The 
++    # anonymous=True flag means that rospy will choose a unique
++    # name for our 'talker' node so that multiple talkers can
++    # run simultaneously.
++    rospy.init_node('listener', anonymous=True)
++
++    rospy.Subscriber("chatter", String, callback)
++
++    # spin() simply keeps python from exiting until this node is stopped
++    rospy.spin()
++        
++if __name__ == '__main__':
++    listener()
+--- /dev/null
++++ ros-noetic-rosnode-1.16.0/test_nodes/talker.py
+@@ -0,0 +1,53 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++## Simple talker demo that published std_msgs/Strings messages
++## to the 'chatter' topic
++
++import rospy
++from std_msgs.msg import String
++
++def talker():
++    rospy.init_node('talker', anonymous=True)
++    pub = rospy.Publisher('chatter', String, queue_size=10)
++    r = rospy.Rate(10) # 10hz
++    while not rospy.is_shutdown():
++        str = "hello world %s"%rospy.get_time()
++        rospy.loginfo(str)
++        pub.publish(str)
++        r.sleep()
++        
++if __name__ == '__main__':
++    try:
++        talker()
++    except rospy.ROSInterruptException: pass

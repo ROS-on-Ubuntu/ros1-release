@@ -1,0 +1,1941 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-rosmsg (1.16.0-0jammy) jammy; urgency=high
+Author: Michael Carroll <michael@openrobotics.org>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-rosmsg-1.16.0/CHANGELOG.rst
+@@ -0,0 +1,248 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package rosmsg
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++1.16.0 (2023-02-15)
++-------------------
++
++1.15.15 (2022-11-23)
++--------------------
++* Move @jacobperron from maintainer to author (`#2302 <https://github.com/ros/ros_comm/issues/2302>`_)
++* Contributors: Shane Loretz
++
++1.15.14 (2022-01-06)
++--------------------
++
++1.15.13 (2021-09-22)
++--------------------
++
++1.15.12 (2021-09-21)
++--------------------
++
++1.15.11 (2021-04-06)
++--------------------
++
++1.15.10 (2021-03-18)
++--------------------
++* Clean up test dependencies (`#2103 <https://github.com/ros/ros_comm/issues/2103>`_)
++* Contributors: Kyle Fazzari
++
++1.15.9 (2020-10-16)
++-------------------
++* Update maintainers (`#2075 <https://github.com/ros/ros_comm/issues/2075>`_)
++* Fix spelling (`#2066 <https://github.com/ros/ros_comm/issues/2066>`_)
++* Contributors: Shane Loretz, tomoya
++
++1.15.8 (2020-07-23)
++-------------------
++
++1.15.7 (2020-05-28)
++-------------------
++
++1.15.6 (2020-05-21)
++-------------------
++
++1.15.5 (2020-05-15)
++-------------------
++
++1.15.4 (2020-03-19)
++-------------------
++
++1.15.3 (2020-02-28)
++-------------------
++
++1.15.2 (2020-02-25)
++-------------------
++
++1.15.1 (2020-02-24)
++-------------------
++* use setuptools instead of distutils (`#1870 <https://github.com/ros/ros_comm/issues/1870>`_)
++
++1.15.0 (2020-02-21)
++-------------------
++
++1.14.4 (2020-02-20)
++-------------------
++* bump CMake minimum version to avoid CMP0048 warning (`#1869 <https://github.com/ros/ros_comm/issues/1869>`_)
++* more Windows test code fixes (`#1727 <https://github.com/ros/ros_comm/issues/1727>`_)
++* [Windows] make test code to be more portable (`#1726 <https://github.com/ros/ros_comm/issues/1726>`_)
++* use condition attributes to specify Python 2 and 3 dependencies (`#1792 <https://github.com/ros/ros_comm/issues/1792>`_)
++* more Python 3 compatibility (`#1783 <https://github.com/ros/ros_comm/issues/1783>`_)
++* normalize paths before comparison in rosmsg (`#1586 <https://github.com/ros/ros_comm/issues/1586>`_)
++* update wiki.ros.org URLs (`#1536 <https://github.com/ros/ros_comm/issues/1536>`_)
++
++1.14.3 (2018-08-06)
++-------------------
++
++1.14.2 (2018-06-06)
++-------------------
++* import rosbag locally instead of at module level (`#1424 <https://github.com/ros/ros_comm/issues/1424>`_)
++
++1.14.1 (2018-05-21)
++-------------------
++
++1.14.0 (2018-05-21)
++-------------------
++
++1.13.6 (2018-02-05)
++-------------------
++
++1.13.5 (2017-11-09)
++-------------------
++
++1.13.4 (2017-11-02)
++-------------------
++
++1.13.3 (2017-10-25)
++-------------------
++
++1.13.2 (2017-08-15)
++-------------------
++
++1.13.1 (2017-07-27)
++-------------------
++* fix rosmsg show from bag (`#1006 <https://github.com/ros/ros_comm/pull/1006>`_)
++
++1.13.0 (2017-02-22)
++-------------------
++
++1.12.7 (2017-02-17)
++-------------------
++* add rosmsg info as alias of rosmsg show (`#941 <https://github.com/ros/ros_comm/issues/941>`_)
++
++1.12.6 (2016-10-26)
++-------------------
++
++1.12.5 (2016-09-30)
++-------------------
++
++1.12.4 (2016-09-19)
++-------------------
++
++1.12.3 (2016-09-17)
++-------------------
++* register nosetests only when testing is enabled (`#880 <https://github.com/ros/ros_comm/issues/880>`_)
++
++1.12.2 (2016-06-03)
++-------------------
++
++1.12.1 (2016-04-18)
++-------------------
++
++1.12.0 (2016-03-18)
++-------------------
++
++1.11.18 (2016-03-17)
++--------------------
++
++1.11.17 (2016-03-11)
++--------------------
++* improve rosmsg show to print error message and return non-zero rc when message is not found (`#691 <https://github.com/ros/ros_comm/issues/691>`_)
++
++1.11.16 (2015-11-09)
++--------------------
++
++1.11.15 (2015-10-13)
++--------------------
++
++1.11.14 (2015-09-19)
++--------------------
++
++1.11.13 (2015-04-28)
++--------------------
++
++1.11.12 (2015-04-27)
++--------------------
++
++1.11.11 (2015-04-16)
++--------------------
++
++1.11.10 (2014-12-22)
++--------------------
++
++1.11.9 (2014-08-18)
++-------------------
++
++1.11.8 (2014-08-04)
++-------------------
++
++1.11.7 (2014-07-18)
++-------------------
++
++1.11.6 (2014-07-10)
++-------------------
++
++1.11.5 (2014-06-24)
++-------------------
++
++1.11.4 (2014-06-16)
++-------------------
++* Python 3 compatibility (`#426 <https://github.com/ros/ros_comm/issues/426>`_)
++
++1.11.3 (2014-05-21)
++-------------------
++
++1.11.2 (2014-05-08)
++-------------------
++
++1.11.1 (2014-05-07)
++-------------------
++* fix rosmsg to find messages existing only in devel space (e.g. messages generated for actions) (`#385 <https://github.com/ros/ros_comm/issues/385>`_)
++* add architecture_independent flag in package.xml (`#391 <https://github.com/ros/ros_comm/issues/391>`_)
++
++1.11.0 (2014-03-04)
++-------------------
++
++1.10.0 (2014-02-11)
++-------------------
++
++1.9.54 (2014-01-27)
++-------------------
++
++1.9.53 (2014-01-14)
++-------------------
++
++1.9.52 (2014-01-08)
++-------------------
++
++1.9.51 (2014-01-07)
++-------------------
++
++1.9.50 (2013-10-04)
++-------------------
++
++1.9.49 (2013-09-16)
++-------------------
++* allow reusing rospack instance in rosmsg api
++
++1.9.48 (2013-08-21)
++-------------------
++
++1.9.47 (2013-07-03)
++-------------------
++
++1.9.46 (2013-06-18)
++-------------------
++
++1.9.45 (2013-06-06)
++-------------------
++
++1.9.44 (2013-03-21)
++-------------------
++
++1.9.43 (2013-03-13)
++-------------------
++
++1.9.42 (2013-03-08)
++-------------------
++
++1.9.41 (2013-01-24)
++-------------------
++
++1.9.40 (2013-01-13)
++-------------------
++* fix output of 'rossrv --help' (`#3979 <https://code.ros.org/trac/ros/ticket/3979>`_)
++
++1.9.39 (2012-12-29)
++-------------------
++* first public release for Groovy
+--- /dev/null
++++ ros-noetic-rosmsg-1.16.0/CMakeLists.txt
+@@ -0,0 +1,10 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(rosmsg)
++find_package(catkin)
++catkin_package()
++
++catkin_python_setup()
++
++if(CATKIN_ENABLE_TESTING)
++  catkin_add_nosetests(test)
++endif()
+--- /dev/null
++++ ros-noetic-rosmsg-1.16.0/package.xml
+@@ -0,0 +1,48 @@
++<?xml version="1.0"?>
++<?xml-model
++  href="http://download.ros.org/schema/package_format3.xsd"
++  schematypens="http://www.w3.org/2001/XMLSchema"?>
++<package format="3">
++  <name>rosmsg</name>
++  <version>1.16.0</version>
++  <description>
++    rosmsg contains two command-line tools: <tt>rosmsg</tt> and
++    <tt>rossrv</tt>. <tt>rosmsg</tt> is a command-line tool for
++    displaying information about <a
++    href="http://wiki.ros.org/msg">ROS Message
++    types</a>. <tt>rossrv</tt> is a command-line tool for displaying
++    information about <a href="http://wiki.ros.org/srv">ROS
++    Service types</a>.
++  </description>
++  <maintainer email="michael@openrobotics.org">Michael Carroll</maintainer>
++  <maintainer email="sloretz@openrobotics.org">Shane Loretz</maintainer>
++  <license>BSD</license>
++
++  <url type="website">http://wiki.ros.org/rosmsg</url>
++  <url type="bugtracker">https://github.com/ros/ros_comm/issues</url>
++  <url type="repository">https://github.com/ros/ros_comm</url>
++  <author>Ken Conley</author>
++  <author>Tully Foote</author>
++  <author email="dthomas@osrfoundation.org">Dirk Thomas</author>
++  <author email="jacob@openrobotics.org">Jacob Perron</author>
++
++  <buildtool_depend>catkin</buildtool_depend>
++
++  <exec_depend version_gte="0.6.4">catkin</exec_depend>
++  <exec_depend>genmsg</exec_depend>
++  <exec_depend version_gte="0.6.5">genpy</exec_depend>
++  <exec_depend condition="$ROS_PYTHON_VERSION == 2">python-rospkg</exec_depend>
++  <exec_depend condition="$ROS_PYTHON_VERSION == 3">python3-rospkg</exec_depend>
++  <exec_depend>rosbag</exec_depend>
++  <exec_depend>roslib</exec_depend>
++
++  <test_depend>rostest</test_depend>
++  <test_depend>std_msgs</test_depend>
++  <test_depend>std_srvs</test_depend>
++  <test_depend>diagnostic_msgs</test_depend>
++
++  <export>
++    <rosdoc config="rosdoc.yaml"/>
++    <architecture_independent/>
++  </export>
++</package>
+--- /dev/null
++++ ros-noetic-rosmsg-1.16.0/rosdoc.yaml
+@@ -0,0 +1 @@
++ - builder: epydoc
+--- /dev/null
++++ ros-noetic-rosmsg-1.16.0/scripts/rosmsg
+@@ -0,0 +1,35 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import rosmsg
++rosmsg.rosmsgmain()
+--- /dev/null
++++ ros-noetic-rosmsg-1.16.0/scripts/rosmsg-proto
+@@ -0,0 +1,54 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++from __future__ import print_function
++
++# check for yaml early
++import sys
++
++try:
++    import yaml
++    import collections
++    if "OrderedDict" not in collections.__dict__:
++        # don't want to fail
++        sys.exit(0)
++except:
++    # don't want to fail
++    sys.exit(0)
++
++import rosmsg
++
++if __name__ == "__main__":
++    result = rosmsg.rosmsg_cmd_prototype(sys.argv[1:])
++    if result != None:
++        print(result)
+--- /dev/null
++++ ros-noetic-rosmsg-1.16.0/scripts/rossrv
+@@ -0,0 +1,36 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import rosmsg
++from rosmsg import MODE_SRV
++rosmsg.rosmsgmain(rosmsg.MODE_SRV)
+--- /dev/null
++++ ros-noetic-rosmsg-1.16.0/setup.py
+@@ -0,0 +1,11 @@
++from setuptools import setup
++from catkin_pkg.python_setup import generate_distutils_setup
++
++d = generate_distutils_setup(
++    packages=['rosmsg'],
++    package_dir={'': 'src'},
++    scripts=['scripts/rosmsg', 'scripts/rosmsg-proto', 'scripts/rossrv'],
++    requires=['genmsg', 'rosbag', 'roslib', 'rospkg']
++)
++
++setup(**d)
+--- /dev/null
++++ ros-noetic-rosmsg-1.16.0/src/rosmsg/__init__.py
+@@ -0,0 +1,782 @@
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++"""
++Implements rosmsg/rossrv command-line tools.
++
++The code API of the rosmsg module is unstable. 
++"""
++
++from __future__ import print_function
++
++import collections
++import inspect
++import os
++import sys
++import yaml
++
++from catkin.find_in_workspaces import find_in_workspaces
++
++import rospkg
++import genmsg
++from genpy.dynamic import generate_dynamic
++
++import roslib.message
++
++from optparse import OptionParser
++
++MODE_MSG = '.msg'
++MODE_SRV = '.srv'
++
++class ROSMsgException(Exception): pass
++class RosMsgProtoException(Exception): pass
++class RosMsgProtoArgsException(Exception): pass
++
++# If flowtype chosen is default, instead use flow-style
++# False except if meeting objects or arrays with more than
++# this size of sub-elements
++MAX_DEFAULT_NON_FLOW_ITEMS = 4
++
++## copied from the web, recipe for ordered yaml output ######
++def construct_ordered_mapping(self, node, deep=False):
++    if not isinstance(node, yaml.MappingNode):
++        raise yaml.constructor.ConstructorError(None, None,
++                "expected a mapping node, but found %s" % node.id,
++                node.start_mark)
++    mapping = collections.OrderedDict()
++    for key_node, value_node in node.value:
++        key = self.construct_object(key_node, deep=deep)
++        if not isinstance(key, collections.Hashable):
++            raise yaml.constructor.ConstructorError("while constructing a mapping", node.start_mark,
++                    "found unhashable key", key_node.start_mark)
++        value = self.construct_object(value_node, deep=deep)
++        mapping[key] = value
++    return mapping
++
++def construct_yaml_map_with_ordered_dict(self, node):
++    data = collections.OrderedDict()
++    yield data
++    value = self.construct_mapping(node)
++    data.update(value)
++
++def represent_ordered_mapping(self, tag, mapping, flow_style=None):
++    value = []
++    node = yaml.MappingNode(tag, value, flow_style=flow_style)
++    if self.alias_key is not None:
++        self.represented_objects[self.alias_key] = node
++    best_style = True
++    if hasattr(mapping, 'items'):
++        mapping = list(mapping.items())
++    for item_key, item_value in mapping:
++        node_key = self.represent_data(item_key)
++        node_value = self.represent_data(item_value)
++        if not (isinstance(node_key, yaml.ScalarNode) and not node_key.style):
++            best_style = False
++        if not (isinstance(node_value, yaml.ScalarNode) and not node_value.style):
++            best_style = False
++        value.append((node_key, node_value))
++    if flow_style is None:
++        if self.default_flow_style is not None:
++            node.flow_style = self.default_flow_style
++        else:
++            node.flow_style = best_style
++    return node
++
++## end recipe for ordered yaml output ######
++
++
++def get_array_type_instance(field_type, default_package = None):
++    """
++    returns a single instance of field_type, where field_type can be a
++    message or ros primitive or an flexible size array.
++    """
++    field_type = field_type.strip().rstrip("[]")
++    if field_type == "empty":
++        return None
++    if not "/" in field_type:
++        # is either built-in, Header, or in same package
++        # it seems built-in types get a priority
++        if field_type in ['byte', 'int8', 'int16', 'int32', 'int64',\
++                          'char', 'uint8', 'uint16', 'uint32', 'uint64']:
++            return 0
++        elif field_type in ['float32', 'float64']:
++            return 0
++        elif field_type in ['string']:
++            return ""
++        elif field_type == 'bool':
++            return False
++        elif field_type == 'time':
++            field_type = "std_msgs/Time"
++        elif field_type == 'duration':
++            field_type = "std_msgs/Duration"
++        elif field_type == 'Header':
++            field_type = "std_msgs/Header"
++        else:
++            if default_package is None:
++                return None
++            field_type = default_package + "/" + field_type
++    msg_class = roslib.message.get_message_class(field_type)
++    if (msg_class == None):
++        # not important enough to raise exception?
++        return None
++    instance = msg_class()
++    return instance
++
++def get_yaml_for_msg(msg, prefix='', time_offset=None, current_time=None, field_filter=None, flow_style_ = None, fill_arrays_ = False):
++    """
++    Builds a YAML string of message.
++    @param msg: A object, dict or array
++    @param flow_style_: if True, produces one line with brackets, if false uses multiple lines with indentation, if None uses both using heuristics
++    @param prefix: prefixes all lines with this string
++    @param fill_arrays_: if True, for all flexible size arrays an element will be generated
++    @param current_time: currently not used. Only provided for API compatibility. current_time passes in the current time with respect to the message.
++    @type  current_time: Time
++    @param field_filter: filter the fields that are strified for Messages.
++    @type  field_filter: fn(Message)->iter(str)
++    @type  flow_style_: bool
++    @return: a string
++    """
++    def object_representer(dumper, obj):
++        ndict = collections.OrderedDict()
++        index = 0
++        # allow caller to select which fields of message are strified
++        if field_filter != None:
++            fields = list(field_filter(obj))
++        else:
++            fields = obj.__slots__
++        for key in fields:
++            if not key.startswith('_'):
++                val = getattr(obj, key)
++                if type(val) == list and len(val) > MAX_DEFAULT_NON_FLOW_ITEMS:
++                     dumper.default_flow_style = flow_style_
++                if time_offset is not None and isinstance(val, Time):
++                    ndict[key] = val-time_offset
++                # create initial array element (e.g. for code completion)
++                elif fill_arrays_ == True and val == []:
++                    message_type = obj._slot_types[index]
++                    if (obj._type != None) and "/" in obj._type:
++                        def_pack = obj._type.split("/")[0]
++                        instance = get_array_type_instance(message_type, default_package = def_pack)
++                    if instance == None:
++                        # not important enough to raise exception?
++                        ndict[key] = val
++                    else:
++                        ndict[key] = [instance]
++                elif not inspect.ismethod(val) and not inspect.isfunction(val):
++                    ndict[key] = val
++            index += 1
++        # as a hack, we improve the heuristics of pyyaml and say with less than 5 objects, no need for brackets
++        if len(ndict) > MAX_DEFAULT_NON_FLOW_ITEMS:
++            dumper.default_flow_style = flow_style_
++        return dumper.represent_dict(ndict)
++    yaml.representer.SafeRepresenter.add_representer(None, object_representer)
++
++     # we force False over None here and set the style in dumper, to
++     # avoid unnecessary outer brackets pyyaml chooses e.g. to
++     # represent msg Int32 as "{data: 0}"
++    initial_flow_style = False
++    if flow_style_ == True:
++        initial_flow_style = True
++
++    # need to set default flow style True for bash prototype
++    # means will generate one line with [] and {} brackets
++    # bash needs bracket notation for rostopic pub
++    txt = yaml.safe_dump(msg,
++                         # None, True, False (None chooses a compromise)
++                         default_flow_style = initial_flow_style,
++                         # Can be None, '', '\'', '"', '|', '>'.
++                         default_style = '',
++                         #indent=2, #>=2, indentation depth
++                         #line_break=?,
++                         #allow_unicode=?,
++                         #if true writes plenty of tags
++                         #canonical = False,
++                         #version={}?,
++                         #width=40,
++                         #encoding=?,
++                         #tags={}?,
++                         # when True, produces --- at start
++                         #explicit_start=False,
++                         # when True, produces ... at end
++                         #explicit_end=False
++                         )
++    if prefix != None and prefix != '':
++        result = prefix + ("\n"+prefix).join(txt.splitlines())
++    else:
++        result = txt.rstrip('\n')
++    return result
++
++
++def create_names_filter(names):
++    """
++    returns a function to use as filter that returns all objects slots except those with names in list.
++    """
++    return lambda obj : list(filter(lambda slotname : not slotname in names, obj.__slots__))
++
++
++def init_rosmsg_proto():
++    if "OrderedDict" in collections.__dict__:
++        yaml.constructor.BaseConstructor.construct_mapping = construct_ordered_mapping
++        yaml.constructor.Constructor.add_constructor(
++            'tag:yaml.org,2002:map',
++            construct_yaml_map_with_ordered_dict)
++
++        yaml.representer.BaseRepresenter.represent_mapping = represent_ordered_mapping
++        yaml.representer.Representer.add_representer(collections.OrderedDict,
++                                                     yaml.representer.SafeRepresenter.represent_dict)
++    
++def rosmsg_cmd_prototype(args):
++    init_rosmsg_proto()
++    parser = OptionParser(usage="usage: rosmsgproto msg/srv [options]",
++                          description="Produces output or a msg or service request, intended for tab completion support.")
++    parser.add_option("-f","--flow_style",
++                      dest="flow_style", type="int", default=None, action="store",
++                      help="if 1 always use brackets, if 0 never use brackets. Default is a heuristic mix.")
++    parser.add_option("-e","--empty-arrays",
++                      dest="empty_arrays", default=False, action="store_true",
++                      help="if true flexible size arrays are not filled with default instance")
++    parser.add_option("-s","--silent",
++                      dest="silent", default=False, action="store_true",
++                      help="if true suppresses all error messages")
++    parser.add_option("-p", "--prefix", metavar="prefix", default="",
++                      help="prefix to print before each line, can be used for indent")
++    parser.add_option("-H","--no-hyphens",
++                      dest="no_hyphens", default="", action="store_true",
++                      help="if true output has no outer hyphens")
++    parser.add_option("-x", "--exclude-slots", metavar="exclude_slots", default="",
++                      help="comma separated list of slot names not to print")
++
++    options, args = parser.parse_args(args)
++
++    try:
++        if len(args) < 2:
++            raise RosMsgProtoArgsException("Insufficient arguments")
++        mode = ".%s"%args[0]
++        message_type=args[1]
++        field_filter = None
++        if options.exclude_slots != None and options.exclude_slots.strip() != "":
++            field_filter = create_names_filter(options.exclude_slots.split(','))
++    
++        # possible extensions: options for
++        # - target language
++        # - initial values for standard types
++        # - get partial message (subtree)
++
++        # try to catch the user specifying code-style types and error
++        if '::' in message_type:
++            if not options.silent:
++                parser.error("rosmsgproto does not understand C++-style namespaces (i.e. '::').\nPlease refer to msg/srv types as 'package_name/Type'.")
++        elif '.' in message_type:
++            if not options.silent:
++                parser.error("invalid message type '%s'.\nPlease refer to msg/srv types as 'package_name/Type'." % message_type)
++        if not '/' in message_type:
++            # if only one such msg or srv exists, use it
++            results = []
++            for found in rosmsg_search(rospkg.RosPack(), mode, message_type):
++                results.append(found)
++            if len(results) > 1:
++                raise RosMsgProtoException("Ambiguous message name %s"%message_type)
++            elif len(results) < 1:
++                raise RosMsgProtoException("Unknown message name %s"%message_type)
++            else:
++                message_type=results[0]
++    
++        if mode == MODE_SRV:
++            msg_class = roslib.message.get_service_class(message_type)
++            if (msg_class == None):
++                raise RosMsgProtoException("Unknown service class: %s"%message_type)
++            instance = msg_class()._request_class()
++        elif mode == MODE_MSG:
++            msg_class = roslib.message.get_message_class(message_type)
++            if (msg_class == None):
++                raise RosMsgProtoException("Unknown message class: %s"%message_type)
++            instance = msg_class()
++        else:
++            raise RosMsgProtoException("Invalid mode: %s"%mode)
++        txt = get_yaml_for_msg(instance,
++                               prefix = options.prefix,
++                               flow_style_ = options.flow_style,
++                               fill_arrays_ = not options.empty_arrays,
++                               field_filter = field_filter)
++
++        if options.no_hyphens == True:
++            return txt
++        else:
++            return '"' + txt + '"'
++
++    except KeyError as e:
++        if not options.silent:
++            sys.stderr.write("Unknown message type: %s"%e, file=sys.stderr)
++            sys.exit(getattr(os, 'EX_USAGE', 1))
++    # except rospkg.InvalidROSPkgException as e:
++    #     if not options.silent:
++    #         print(file=sys.stderr, "Invalid package: '%s'"%e)
++    #         sys.exit(getattr(os, 'EX_USAGE', 1))
++    except ValueError as e:
++        if not options.silent:
++            sys.stderr.write("Invalid type: '%s'"%e)
++            sys.exit(getattr(os, 'EX_USAGE', 1))
++    except RosMsgProtoException as e:
++        if not options.silent:
++            sys.stderr.write(str(e))
++            sys.exit(1)
++    except RosMsgProtoArgsException as e:
++        if not options.silent:
++            sys.stderr.write("%s"%e)
++            sys.exit(getattr(os, 'EX_USAGE', 1))
++    except KeyboardInterrupt:
++        pass
++
++#### Start of rosmsg ####
++
++try:
++    from cStringIO import StringIO  # Python 2.x
++except ImportError:
++    from io import StringIO  # Python 3.x
++def spec_to_str(msg_context, spec, buff=None, indent=''):
++    """
++    Convert spec into a string representation. Helper routine for MsgSpec.
++    :param indent: internal use only, ``str``
++    :param buff: internal use only, ``StringIO``
++    :returns: string representation of spec, ``str``
++    """
++    if buff is None:
++        buff = StringIO()
++    for c in spec.constants:
++        buff.write("%s%s %s=%s\n"%(indent, c.type, c.name, c.val_text))
++    for type_, name in zip(spec.types, spec.names):
++        buff.write("%s%s %s\n"%(indent, type_, name))
++        base_type = genmsg.msgs.bare_msg_type(type_)
++        if not base_type in genmsg.msgs.BUILTIN_TYPES:
++            subspec = msg_context.get_registered(base_type)
++            spec_to_str(msg_context, subspec, buff, indent + '  ')
++    return buff.getvalue()
++
++def get_srv_text(type_, raw=False, rospack=None):
++    """
++    Get .srv file for type_ as text
++    :param type_: service type, ``str``
++    :param raw: if True, include comments and whitespace (default False), ``bool``
++    :returns: text of .srv file, ``str``
++    @raise ROSMsgException: if type_ is unknown
++    """
++    if rospack is None:
++        rospack = rospkg.RosPack()
++    srv_search_path = {}
++    msg_search_path = {}
++    for p in rospack.list():
++        package_paths = _get_package_paths(p, rospack)
++        msg_search_path[p] = [os.path.join(d, 'msg') for d in package_paths]
++        srv_search_path[p] = [os.path.join(d, 'srv') for d in package_paths]
++        
++    #TODO: cache context somewhere
++    context = genmsg.MsgContext.create_default()
++    try:
++        spec = genmsg.load_srv_by_type(context, type_, srv_search_path)
++        genmsg.load_depends(context, spec, msg_search_path)
++    except Exception as e:
++        raise ROSMsgException("Unknown srv type [%s]: %s"%(type_, e))
++    
++    if raw:
++        return spec.text
++    else:
++        return spec_to_str(context, spec.request)+'---\n'+spec_to_str(context, spec.response)
++
++def get_msg_text(type_, raw=False, rospack=None):
++    """
++    Get .msg file for type_ as text
++    :param type_: message type, ``str``
++    :param raw: if True, include comments and whitespace (default False), ``bool``
++    :returns: text of .msg file, ``str``
++    :raises :exc:`ROSMsgException` If type_ is unknown
++    """
++    if rospack is None:
++        rospack = rospkg.RosPack()
++    search_path = {}
++    for p in rospack.list():
++        package_paths = _get_package_paths(p, rospack)
++        search_path[p] = [os.path.join(d, 'msg') for d in package_paths]
++
++    context = genmsg.MsgContext.create_default()
++    try:
++        spec = genmsg.load_msg_by_type(context, type_, search_path)
++        genmsg.load_depends(context, spec, search_path)
++    except Exception as e:
++        raise ROSMsgException("Unable to load msg [%s]: %s"%(type_, e))
++    
++    if raw:
++        return spec.text
++    else:
++        return spec_to_str(context, spec)
++
++def rosmsg_debug(rospack, mode, type_, raw=False):
++    """
++    Prints contents of msg/srv file
++    :param mode: MODE_MSG or MODE_SRV, ``str``
++    """
++    if mode == MODE_SRV:
++        print(get_srv_text(type_, raw=raw, rospack=rospack))
++    elif mode == MODE_MSG:
++        print(get_msg_text(type_, raw=raw, rospack=rospack))
++    else:
++        raise ROSMsgException("Invalid mode for debug: %s"%mode)
++    
++def list_srvs(package, rospack=None):
++    """
++    List srvs contained in package
++    :param package: package name, ``str``
++    :param rospack: an optional rospack instance to be reused, ``rospkg.RosPack``
++    :returns: list of srvs in package, ``[str]``
++    """
++    return list_types(package, mode=MODE_SRV, rospack=rospack)
++
++def list_msgs(package, rospack=None):
++    """
++    List msgs contained in package
++    :param package: package name, ``str``
++    :param rospack: an optional rospack instance to be reused, ``rospkg.RosPack``
++    :returns: list of msgs in package, ``[str]``
++    """
++    return list_types(package, rospack=rospack)
++    
++def list_types(package, mode=MODE_MSG, rospack=None):
++    """
++    Lists msg/srvs contained in package
++    :param package: package name, ``str``
++    :param mode: MODE_MSG or MODE_SRV. Defaults to msgs, ``str``
++    :param rospack: an optional rospack instance to be reused, ``rospkg.RosPack``
++    :returns: list of msgs/srv in package, ``[str]``
++    """
++    if rospack is None:
++        rospack = rospkg.RosPack()
++    if mode == MODE_MSG:
++        subdir = 'msg'
++    elif mode == MODE_SRV:
++        subdir = 'srv'
++    else:
++        raise ValueError('Unknown mode for list_types: %s'%mode)
++
++    path = os.path.join(rospack.get_path(package), subdir)
++    
++    return [genmsg.resource_name(package, t) for t in _list_types(path, subdir, mode)]
++    
++def _msg_filter(ext):
++    def mfilter(f):
++        """
++        Predicate for filtering directory list. matches message files
++        :param f: filename, ``str``
++        """
++        return os.path.isfile(f) and f.endswith(ext)
++    return mfilter
++
++def _list_types(path, subdir, ext):
++    """
++    List all messages in the specified package
++    :param package str: name of package to search
++    :param include_depends bool: if True, will also list messages in package dependencies
++    :returns [str]: message type names
++    """
++    types = _list_resources(path, _msg_filter(ext))
++    result = [x[:-len(ext)] for x in types]
++    result.sort()
++    return result
++
++def _list_resources(path, rfilter=os.path.isfile):
++    """
++    List resources in a package directory within a particular
++    subdirectory. This is useful for listing messages, services, etc...
++    :param rfilter: resource filter function that returns true if filename is the desired resource type, ``fn(filename)->bool``
++    """
++    resources = []
++    if os.path.isdir(path):
++        resources = [f for f in os.listdir(path) if rfilter(os.path.join(path, f))]
++    else:
++        resources = []
++    return resources
++
++def iterate_packages(rospack, mode):
++    """
++    Iterator for packages that contain messages/services
++    :param mode: .msg or .srv, ``str``
++    """
++    if mode == MODE_MSG:
++        subdir = 'msg'
++    elif mode == MODE_SRV:
++        subdir = 'srv'
++    else:
++        raise ValueError('Unknown mode for iterate_packages: %s'%mode)
++
++    pkgs = rospack.list()
++    for p in pkgs:
++        package_paths = _get_package_paths(p, rospack)
++        for package_path in package_paths:
++            d = os.path.join(package_path, subdir)
++            if os.path.isdir(d):
++                yield p, d
++
++_catkin_workspace_to_source_spaces = {}
++_catkin_source_path_to_packages = {}
++
++def _get_package_paths(pkgname, rospack):
++    paths = []
++    path = rospack.get_path(pkgname)
++    paths.append(path)
++    results = find_in_workspaces(search_dirs=['share'], project=pkgname, first_match_only=True, workspace_to_source_spaces=_catkin_workspace_to_source_spaces, source_path_to_packages=_catkin_source_path_to_packages)
++    if results and results[0].replace(os.path.sep, '/') != path.replace(os.path.sep, '/'):
++        paths.append(results[0])
++    return paths
++    
++def rosmsg_search(rospack, mode, base_type):
++    """
++    Iterator for all packages that contain a message matching base_type
++
++    :param base_type: message base type to match, e.g. 'String' would match std_msgs/String, ``str``
++    """
++    for p, path in iterate_packages(rospack, mode):
++        if os.path.isfile(os.path.join(path, "%s%s"%(base_type, mode))):
++            yield genmsg.resource_name(p, base_type)
++
++def _stdin_arg(parser, full):
++    options, args = parser.parse_args(sys.argv[2:])    
++    # read in args from stdin pipe if not present
++    if not args:
++        arg = None
++        while not arg:
++            arg = sys.stdin.readline().strip()
++        return options, arg
++    else:
++        if len(args) > 1:
++            parser.error("you may only specify one %s"%full)
++        return options, args[0]
++    
++def rosmsg_cmd_show(mode, full, alias='show'):
++    import rosbag
++    cmd = "ros%s"%(mode[1:])
++    parser = OptionParser(usage="usage: %s %s [options] <%s>"%(cmd, alias, full))
++    parser.add_option("-r", "--raw",
++                      dest="raw", default=False,action="store_true",
++                      help="show raw message text, including comments")
++    parser.add_option("-b", "--bag",
++                      dest="bag", default=None,
++                      help="show message from .bag file", metavar="BAGFILE")
++    options, arg = _stdin_arg(parser, full)
++    if arg.endswith(mode):
++        arg = arg[:-(len(mode))]
++
++    # try to catch the user specifying code-style types and error
++    if '::' in arg:
++        parser.error(cmd+" does not understand C++-style namespaces (i.e. '::').\nPlease refer to msg/srv types as 'package_name/Type'.")
++    elif '.' in arg:
++        parser.error("invalid message type '%s'.\nPlease refer to msg/srv types as 'package_name/Type'." % arg)
++    if options.bag:
++        bag_file = options.bag
++        if not os.path.exists(bag_file):
++            raise ROSMsgException("ERROR: bag file [%s] does not exist"%bag_file)
++        for topic, msg, t in rosbag.Bag(bag_file).read_messages(raw=True):
++            datatype, _, _, _, pytype = msg
++            if datatype == arg:
++                if options.raw:
++                    print(pytype._full_text)
++                else:
++                    context = genmsg.MsgContext.create_default()
++                    msgs = generate_dynamic(datatype, pytype._full_text)
++                    for t, msg in msgs.items():
++                        context.register(t, msg._spec)
++                    print(spec_to_str(context, msgs[datatype]._spec))
++                break
++    else:
++        rospack = rospkg.RosPack()
++        if '/' in arg: #package specified
++            rosmsg_debug(rospack, mode, arg, options.raw)
++        else:
++            found_msgs = list(rosmsg_search(rospack, mode, arg))
++            if not found_msgs:
++                print("Could not find msg '%s'" % arg, file=sys.stderr)
++                return 1
++            for found in found_msgs:
++                print("[%s]:"%found)
++                rosmsg_debug(rospack, mode, found, options.raw)
++
++def rosmsg_md5(mode, type_):
++    try:
++        if mode == MODE_MSG:
++            msg_class = roslib.message.get_message_class(type_)
++        else:
++            msg_class = roslib.message.get_service_class(type_)            
++    except ImportError:
++        raise IOError("cannot load [%s]"%(type_))
++    if msg_class is not None:
++        return msg_class._md5sum
++    else:
++        raise IOError("cannot load [%s]"%(type_))        
++    
++def rosmsg_cmd_md5(mode, full):
++    parser = OptionParser(usage="usage: ros%s md5 <%s>"%(mode[1:], full))
++    options, arg = _stdin_arg(parser, full)
++
++    if '/' in arg: #package specified
++        try:
++            md5 = rosmsg_md5(mode, arg)
++            print(md5)
++        except IOError:
++            print("Cannot locate [%s]"%arg, file=sys.stderr)
++    else:
++        rospack = rospkg.RosPack()
++        matches = [m for m in rosmsg_search(rospack, mode, arg)]
++        for found in matches:
++            try:
++                md5 = rosmsg_md5(mode, found)
++                print("[%s]: %s"%(found, md5))
++            except IOError:
++                print("Cannot locate [%s]"%found, file=sys.stderr)
++        if not matches:
++            print("No messages matching the name [%s]"%arg, file=sys.stderr)
++                
++def rosmsg_cmd_package(mode, full):
++    parser = OptionParser(usage="usage: ros%s package <package>"%mode[1:])
++    parser.add_option("-s",
++                      dest="single_line", default=False,action="store_true",
++                      help="list all msgs on a single line")
++    options, arg = _stdin_arg(parser, full)
++    joinstring='\n'
++    if options.single_line:
++        joinstring=' '
++    print(joinstring.join(list_types(arg, mode=mode)))
++    
++def rosmsg_cmd_packages(mode, full, argv=None):
++    if argv is None:
++        argv = sys.argv[1:]
++    parser = OptionParser(usage="usage: ros%s packages"%mode[1:])
++    parser.add_option("-s",
++                      dest="single_line", default=False,action="store_true",
++                      help="list all packages on a single line")
++    options, args = parser.parse_args(argv[1:])
++    rospack = rospkg.RosPack()
++    joinstring='\n'
++    if options.single_line:
++        joinstring=' '
++    p1 = [p for p, _ in iterate_packages(rospack, mode)]
++    p1.sort()
++    print(joinstring.join(p1))
++    
++def rosmsg_cmd_list(mode, full, argv=None):
++    if argv is None:
++        argv = sys.argv[1:]
++    parser = OptionParser(usage="usage: ros%s list"%mode[1:])
++    options, args = parser.parse_args(argv[1:])
++    if mode == MODE_MSG:
++        subdir = 'msg'
++    elif mode == MODE_SRV:
++        subdir = 'srv'
++    else:
++        raise ValueError('Unknown mode for iterate_packages: %s'%mode)
++    rospack = rospkg.RosPack()
++    packs = sorted([x for x in iterate_packages(rospack, mode)])
++    for (p, direc) in packs:
++        for file in _list_types(direc, subdir, mode):
++            print( "%s/%s"%(p, file))
++        
++
++def fullusage(mode):
++    """
++    :param cmd: command name, ``str``
++    :returns: usage text for cmd, ``str``
++    """
++    cmd = 'ros' + mode[1:]
++    if mode == MODE_MSG:
++        type_ = 'Message'
++    else:
++        type_ = 'Service'
++    type_lower = type_.lower()
++    return """%(cmd)s is a command-line tool for displaying information about ROS %(type_)s types.
++
++Commands:
++\t%(cmd)s show\tShow %(type_lower)s description
++\t%(cmd)s info\tAlias for %(cmd)s show
++\t%(cmd)s list\tList all %(type_lower)ss
++\t%(cmd)s md5\tDisplay %(type_lower)s md5sum
++\t%(cmd)s package\tList %(type_lower)ss in a package
++\t%(cmd)s packages\tList packages that contain %(type_lower)ss
++
++Type %(cmd)s <command> -h for more detailed usage
++"""%locals()
++    
++def rosmsgmain(mode=MODE_MSG):
++    """
++    Main entry point for command-line tools (rosmsg/rossrv).
++    
++    rosmsg can interact with either ros messages or ros services. The mode
++    param indicates which
++    :param mode: MODE_MSG or MODE_SRV, ``str``
++    """
++    try:
++        if mode == MODE_MSG:
++            ext, full = mode, "message type"
++        elif mode == MODE_SRV:
++            ext, full = mode, "service type"
++        else:
++            raise ROSMsgException("Invalid mode: %s"%mode)
++        if len(sys.argv) == 1:
++            print(fullusage(mode))
++            sys.exit(0)
++
++        command = sys.argv[1]
++        if command in ('show', 'info'):
++            sys.exit(rosmsg_cmd_show(ext, full, command))
++        elif command == 'package':
++            rosmsg_cmd_package(ext, full)
++        elif command == 'packages':
++            rosmsg_cmd_packages(ext, full)
++        elif command == 'list':
++            rosmsg_cmd_list(ext, full)
++        elif command == 'md5':
++            rosmsg_cmd_md5(ext, full)
++        elif command == '--help':
++            print(fullusage(mode))
++            sys.exit(0)
++        else:
++            print(fullusage(mode))
++            sys.exit(getattr(os, 'EX_USAGE', 1))
++    except KeyError as e:
++        print("Unknown message type: %s"%e, file=sys.stderr)
++        sys.exit(getattr(os, 'EX_USAGE', 1))
++    except rospkg.ResourceNotFound as e:
++        print("Invalid package: %s"%e, file=sys.stderr)
++        sys.exit(getattr(os, 'EX_USAGE', 1))
++    except ValueError as e:
++        print("Invalid type: '%s'"%e, file=sys.stderr)
++        sys.exit(getattr(os, 'EX_USAGE', 1))
++    except ROSMsgException as e:
++        print(str(e), file=sys.stderr)
++        sys.exit(1)        
++    except KeyboardInterrupt:
++        pass
+--- /dev/null
++++ ros-noetic-rosmsg-1.16.0/test/DiagnosticStatus_raw.txt
+@@ -0,0 +1,11 @@
++byte OK=0
++byte WARN=1
++byte ERROR=2
++byte STALE=3
++byte level
++string name
++string message
++string hardware_id
++diagnostic_msgs/KeyValue[] values
++  string key
++  string value
+--- /dev/null
++++ ros-noetic-rosmsg-1.16.0/test/msg/DiagnosticStatus.msg
+@@ -0,0 +1,9 @@
++byte OK=0
++byte WARN=1
++byte ERROR=2
++byte STALE=3
++byte level
++string name
++string message
++string hardware_id
++diagnostic_msgs/KeyValue[] values
+--- /dev/null
++++ ros-noetic-rosmsg-1.16.0/test/msg/KeyValue.msg
+@@ -0,0 +1,2 @@
++string key
++string value
+--- /dev/null
++++ ros-noetic-rosmsg-1.16.0/test/srv/AddDiagnostics.srv
+@@ -0,0 +1,4 @@
++string load_namespace
++---
++bool success
++string message
+--- /dev/null
++++ ros-noetic-rosmsg-1.16.0/test/srv/SelfTest.srv
+@@ -0,0 +1,15 @@
++---
++string id
++byte passed
++diagnostic_msgs/DiagnosticStatus[] status
++  byte OK=0
++  byte WARN=1
++  byte ERROR=2
++  byte STALE=3
++  byte level
++  string name
++  string message
++  string hardware_id
++  diagnostic_msgs/KeyValue[] values
++    string key
++    string value
+--- /dev/null
++++ ros-noetic-rosmsg-1.16.0/test/test_rosmsg.py
+@@ -0,0 +1,183 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import os
++import sys 
++import unittest
++try:
++    from cStringIO import StringIO
++except ImportError:
++    from io import StringIO
++import time
++
++import rospkg
++        
++import rosmsg
++
++from subprocess import Popen, PIPE, check_call, call
++
++#TODO: currently have an extra copy of msg and srv files in local dir
++# for historical/porting reasons.  Ideally there would only be one copy
++# in test_ros instead.
++def get_test_path():
++    return os.path.abspath(os.path.dirname(__file__))
++
++class TestRosmsg(unittest.TestCase):
++
++    def setUp(self):
++        pass
++
++    def test_fullusage(self):
++        from rosmsg import MODE_MSG
++        text = rosmsg.fullusage(MODE_MSG)
++        self.assert_("Commands" in text)
++        cmds = ['show', 'md5', 'package', 'packages']
++        for c in cmds:
++            self.assert_(c in text)
++
++    def test_get_msg_text(self):
++        d = get_test_path()
++        msg_d = os.path.join(d, 'msg')
++        
++        test_message_package = 'diagnostic_msgs'
++        rospack = rospkg.RosPack()
++        msg_raw_d = os.path.join(rospack.get_path(test_message_package), 'msg')
++        t = 'KeyValue'
++        with open(os.path.join(msg_d, '%s.msg'%t), 'r') as f:
++            text = f.read()
++        with open(os.path.join(msg_raw_d, '%s.msg'%t), 'r') as f:
++            text_raw = f.read()
++
++        type_ = test_message_package+'/'+t
++        self.assertEquals(text, rosmsg.get_msg_text(type_, raw=False))
++        self.assertEquals(text_raw, rosmsg.get_msg_text(type_, raw=True))
++            
++        # test recursive types
++        t = 'DiagnosticStatus'
++        with open(os.path.join(d, '%s_raw.txt'%t), 'r') as f:
++            text = f.read()
++        with open(os.path.join(msg_raw_d, '%s.msg'%t), 'r') as f:
++            text_raw = f.read()
++        type_ = test_message_package+'/'+t
++        
++        self.assertEquals(text, rosmsg.get_msg_text(type_, raw=False))
++        self.assertEquals(text_raw, rosmsg.get_msg_text(type_, raw=True))
++
++    def test_iterate_packages(self):
++        from rosmsg import iterate_packages, MODE_MSG, MODE_SRV
++        import rospkg
++        rospack = rospkg.RosPack()
++        found = {}
++        for p, path in iterate_packages(rospack, MODE_MSG):
++            found[p] = path
++            assert os.path.basename(path) == 'msg', path
++            # make sure it's a package
++            assert rospack.get_path(p)
++        assert found
++        for p, path in iterate_packages(rospack, MODE_SRV):
++            found[p] = path
++            assert os.path.basename(path) == 'srv', path
++            # make sure it's a package
++            assert rospack.get_path(p)
++        assert found
++        
++    def test_list_types(self):
++        try:
++            l = rosmsg.list_types('rosmsg', '.foo')
++            self.fail("should have failed on invalid mode")
++        except ValueError: pass
++
++        # test msgs
++        l = rosmsg.list_types('rospy', mode='.msg')
++        self.assertEquals([], l)
++        l = rosmsg.list_types('diagnostic_msgs', mode='.msg')
++        for t in ['diagnostic_msgs/DiagnosticArray',
++                  'diagnostic_msgs/DiagnosticStatus',
++                  'diagnostic_msgs/KeyValue']:
++            assert t in l
++        
++        l = rosmsg.list_types('rospy', mode='.srv')
++        self.assertEquals([], l)        
++        l = rosmsg.list_types('diagnostic_msgs', mode='.srv')
++        for t in ['diagnostic_msgs/AddDiagnostics', 'diagnostic_msgs/SelfTest']:
++            assert t in l
++
++    def test_get_srv_text(self):
++        d = get_test_path()
++        srv_d = os.path.join(d, 'srv')
++        
++        test_srv_package = 'diagnostic_msgs'
++        rospack = rospkg.RosPack()
++        srv_raw_d = os.path.join(rospack.get_path(test_srv_package), 'srv')
++        for t in ['AddDiagnostics', 'SelfTest']:
++            with open(os.path.join(srv_d, '%s.srv'%t), 'r') as f:
++                text = f.read()
++            with open(os.path.join(srv_raw_d, '%s.srv'%t), 'r') as f:
++                text_raw = f.read()
++                
++            type_ = test_srv_package+'/'+t
++            self.assertEquals(text, rosmsg.get_srv_text(type_, raw=False))
++            self.assertEquals(text_raw, rosmsg.get_srv_text(type_, raw=True))
++
++    def test_rosmsg_cmd_packages(self):
++        from rosmsg import rosmsg_cmd_packages, MODE_MSG, MODE_SRV
++        with fakestdout() as b:
++            rosmsg_cmd_packages(MODE_MSG, 'foo', ['packages'])
++            val = b.getvalue().strip()
++            packages1 = val.split('\n')
++            assert 'std_msgs' in packages1
++        with fakestdout() as b:
++            rosmsg_cmd_packages(MODE_MSG, 'foo', ['packages', '-s'])
++            val = b.getvalue().strip()
++            packages2 = val.split(' ')
++            assert 'std_msgs' in packages2
++        assert set(packages1) == set(packages2), "%s vs. %s"%(packages1, packages2)
++
++    def test_rosmsg_cmd_list(self):
++        from rosmsg import rosmsg_cmd_list, MODE_MSG, MODE_SRV
++        with fakestdout() as b:
++            rosmsg_cmd_list(MODE_MSG, 'messages', ['list'])
++            val = b.getvalue().strip()
++            packages1 = val.split('\n')
++            assert 'std_msgs/String' in packages1
++
++    
++from contextlib import contextmanager
++@contextmanager
++def fakestdout():
++    realstdout = sys.stdout
++    fakestdout = StringIO()
++    sys.stdout = fakestdout
++    yield fakestdout
++    sys.stdout = realstdout
++        
+--- /dev/null
++++ ros-noetic-rosmsg-1.16.0/test/test_rosmsg_command_line.py
+@@ -0,0 +1,179 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import os
++import sys 
++import unittest
++import time
++
++import rospkg
++        
++from subprocess import Popen, PIPE, check_call, call
++
++_SCRIPT_FOLDER = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'scripts'))
++
++class TestRosmsg(unittest.TestCase):
++
++    def setUp(self):
++        self.new_environ = os.environ
++        self.new_environ["PYTHONPATH"] = os.path.join(os.getcwd(), "src")+os.pathsep+os.environ['PYTHONPATH']
++
++    ## test that the rosmsg command works
++    def test_cmd_help(self):
++        sub = ['show', 'md5', 'package', 'packages', 'list']
++        
++        for cmd in ['rosmsg', 'rossrv']:
++            glob_cmd=[sys.executable, os.path.join(_SCRIPT_FOLDER, cmd)]
++            output = Popen(glob_cmd, stdout=PIPE, env=self.new_environ).communicate()[0].decode()
++            self.assert_('Commands' in output)
++            output = Popen(glob_cmd+['-h'], stdout=PIPE, env=self.new_environ).communicate()[0].decode()
++            self.assert_('Commands' in output)
++            self.assert_('Traceback' not in output)
++            for c in sub:
++                self.assert_("%s %s"%(cmd, c) in output, "%s %s"%(cmd, c) + " not in "+ output + " of " + str(glob_cmd))
++                
++            for c in sub:
++                output = Popen(glob_cmd + [c, '-h'], stdout=PIPE, env=self.new_environ).communicate()[0].decode()
++                self.assert_('Usage' in output)
++                self.assert_("%s %s"%(cmd, c) in output, output)
++            
++    def test_cmd_packages(self):
++        # - single line
++        output1 = Popen(['rosmsg', 'packages', '-s'], stdout=PIPE).communicate()[0].decode()
++        # - multi-line
++        output2 = Popen(['rosmsg', 'packages'], stdout=PIPE).communicate()[0].decode()
++        l1 = [x for x in output1.split() if x]
++        l2 = [x.strip() for x in output2.split('\n') if x.strip()]
++        self.assertEquals(l1, l2)
++        for p in ['std_msgs', 'diagnostic_msgs']:
++            self.assert_(p in l1)
++        for p in ['std_srvs', 'rosmsg']:
++            self.assert_(p not in l1)
++
++        output1 = Popen(['rossrv', 'packages', '-s'], stdout=PIPE).communicate()[0].decode()
++        output2 = Popen(['rossrv', 'packages'], stdout=PIPE).communicate()[0].decode()
++        l1 = [x for x in output1.split() if x]
++        l2 = [x.strip() for x in output2.split('\n') if x.strip()]
++        self.assertEquals(l1, l2)
++        for p in ['std_srvs', 'diagnostic_msgs']:
++            self.assert_(p in l1)
++        for p in ['std_msgs', 'rospy']:
++            self.assert_(p not in l1)
++
++    def test_cmd_list(self):
++        # - multi-line
++        output1 = Popen([sys.executable, os.path.join(_SCRIPT_FOLDER,'rosmsg'), 'list'], stdout=PIPE).communicate()[0].decode()
++        l1 = [x.strip() for x in output1.split('\n') if x.strip()]
++        for p in ['std_msgs/String', 'diagnostic_msgs/DiagnosticArray']:
++            self.assert_(p in l1)
++        for p in ['std_srvs/Empty', 'roscpp/Empty']:
++            self.assert_(p not in l1)
++
++        output1 = Popen([sys.executable, os.path.join(_SCRIPT_FOLDER,'rossrv'), 'list'], stdout=PIPE).communicate()[0].decode()
++        l1 = [x.strip() for x in output1.split('\n') if x.strip()]
++        for p in ['std_srvs/Empty', 'roscpp/Empty']:
++            self.assert_(p in l1)
++        for p in ['std_msgs/String', 'diagnostic_msgs/DiagnosticStatus']:
++            self.assert_(p not in l1)
++        
++    def test_cmd_package(self):
++        # this test is obviously very brittle, but should stabilize as the tests stabilize
++        # - single line output
++        output1 = Popen(['rosmsg', 'package', '-s', 'diagnostic_msgs'], stdout=PIPE).communicate()[0].decode()
++        # - multi-line output
++        output2 = Popen(['rosmsg', 'package', 'diagnostic_msgs'], stdout=PIPE).communicate()[0].decode()
++        l = set([x for x in output1.split() if x])        
++        l2 = set([x.strip() for x in output2.split('\n') if x.strip()])
++        self.assertEquals(l, l2)
++        
++        for m in ['diagnostic_msgs/DiagnosticArray',
++                  'diagnostic_msgs/DiagnosticStatus',
++                  'diagnostic_msgs/KeyValue']:
++            self.assertTrue(m in l, l)
++        
++        output = Popen(['rossrv', 'package', '-s', 'diagnostic_msgs'], stdout=PIPE).communicate()[0].decode()
++        output2 = Popen(['rossrv', 'package','diagnostic_msgs'], stdout=PIPE).communicate()[0].decode()
++        l = set([x for x in output.split() if x])
++        l2 = set([x.strip() for x in output2.split('\n') if x.strip()])
++        self.assertEquals(l, l2)
++        
++        for m in ['diagnostic_msgs/AddDiagnostics', 'diagnostic_msgs/SelfTest']:
++            self.assertTrue(m in l, l)
++        
++    ## test that the rosmsg/rossrv show command works
++    def test_cmd_show(self):
++        output = Popen(['rosmsg', 'show', 'std_msgs/String'], stdout=PIPE).communicate()[0].decode()
++        self.assertEquals('string data', output.strip())
++
++        output = Popen(['rossrv', 'show', 'std_srvs/Empty'], stdout=PIPE).communicate()[0].decode()
++        self.assertEquals('---', output.strip())
++        output = Popen(['rossrv', 'show', 'std_srvs/Empty'], stdout=PIPE).communicate()[0].decode()
++        self.assertEquals('---', output.strip())
++        output = Popen(['rossrv', 'show', 'diagnostic_msgs/AddDiagnostics'], stdout=PIPE).communicate()[0].decode()
++        self.assertEquals('string load_namespace\n---\nbool success\nstring message', output.strip())
++
++        # test against test_rosmsg package
++        d = os.path.abspath(os.path.dirname(__file__))
++        msg_d = os.path.join(d, 'msg')
++        
++        test_message_package = 'diagnostic_msgs'
++        rospack = rospkg.RosPack()
++        msg_raw_d = os.path.join(rospack.get_path(test_message_package), 'msg')
++        
++        # - test with non-recursive types
++        t = 'KeyValue'
++        with open(os.path.join(msg_d, '%s.msg'%t), 'r') as f:
++            text = f.read()
++        with open(os.path.join(msg_raw_d, '%s.msg'%t), 'r') as f:
++            text_raw = f.read()
++        text = text.strip()
++        text_raw = text_raw.strip()
++        type_ =test_message_package+'/'+t
++        output = Popen(['rosmsg', 'show', type_], stdout=PIPE).communicate()[0].decode()
++        self.assertEquals(text, output.strip())
++        output = Popen(['rosmsg', 'show', '-r',type_], stdout=PIPE).communicate()[0].decode()
++        self.assertEquals(text_raw, output.strip())
++        output = Popen(['rosmsg', 'show', '--raw', type_], stdout=PIPE).communicate()[0].decode()
++        self.assertEquals(text_raw, output.strip())
++
++        # test as search
++        type_ = t
++        text_prefix = "[diagnostic_msgs/%s]:"%t
++        text = os.linesep.join([text_prefix, text])
++        text_raw = os.linesep.join([text_prefix, text_raw])
++        output = Popen(['rosmsg', 'show', type_], stdout=PIPE).communicate()[0].decode()
++        self.assertEquals(text, output.strip())
++        output = Popen(['rosmsg', 'show', '-r',type_], stdout=PIPE, stderr=PIPE).communicate()
++        self.assertEquals(text_raw, output[0].decode().strip(), "Failed: %s"%(str(output)))
++        output = Popen(['rosmsg', 'show', '--raw', type_], stdout=PIPE).communicate()[0].decode()
++        self.assertEquals(text_raw, output.strip())
+--- /dev/null
++++ ros-noetic-rosmsg-1.16.0/test/test_rosmsgproto.py
+@@ -0,0 +1,133 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2011, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++# Author: Thibault Kruse
++
++from __future__ import with_statement
++NAME = 'test_rosmsgproto'
++
++import os
++import sys 
++import unittest
++import time
++import std_msgs
++
++import rostest
++
++import rosmsg
++from rosmsg import *
++
++from nose.plugins.skip import SkipTest
++
++_NO_DICT=True
++if "OrderedDict" in collections.__dict__:
++    _NO_DICT=False
++
++class RosMsgProtoTest(unittest.TestCase):
++
++    def test_get_array_type_instance(self):
++        self.assertEqual(0, get_array_type_instance("int16[]"))
++        self.assertEqual(0, get_array_type_instance("char[]"))
++        self.assertEqual(0, get_array_type_instance("uint16[]"))
++        self.assertEqual(0, get_array_type_instance("int32[]"))
++        self.assertEqual(0, get_array_type_instance("uint16[]"))
++        self.assertEqual(False,get_array_type_instance("bool[]"))
++        self.assertEqual(0, get_array_type_instance("float32[]"))
++        self.assertEqual(0, get_array_type_instance("float64[]"))
++        self.assertEqual("", get_array_type_instance("string[]"))
++        self.assertFalse(None == get_array_type_instance("time[]"))
++        self.assertFalse(None == get_array_type_instance("duration[]"))
++        self.assertTrue(None == get_array_type_instance("colorRGBA[]"))
++        self.assertTrue(None == get_array_type_instance("empty[]"))
++        # TODO check for complex types
++
++
++    def test_create_names_filter(self):
++        class foo:
++            def __init__(self):
++                self.__slots__= ["bar","foo","bar","baz","bar"]
++        self.assertEqual(["foo", "baz"], create_names_filter("bar")(foo()))
++
++
++        
++    def test_rosmsg_cmd_prototype_std_msgs_Int16(self):
++        if _NO_DICT: raise SkipTest("Test skipped because Python version too low")
++        self.assertEqual('"data: 0"', rosmsg_cmd_prototype(["msg", "std_msgs/Int16"]))
++        self.assertEqual('data: 0', rosmsg_cmd_prototype(["msg", "std_msgs/Int16", "-H"]))
++        self.assertEqual('"  data: 0"', rosmsg_cmd_prototype(["msg", "std_msgs/Int16", "-p", "  "]))
++        self.assertEqual('  data: 0', rosmsg_cmd_prototype(["msg", "std_msgs/Int16", "-p", "  ", "-H"]))
++        self.assertEqual('"{}"', rosmsg_cmd_prototype(["msg", "std_msgs/Int16","-x", "data"]))
++
++    def test_rosmsg_cmd_prototype_std_msgs_String(self):
++        if _NO_DICT: raise SkipTest("Test skipped because Python version too low")
++        self.assertEqual('"data: \'\'"', rosmsg_cmd_prototype(["msg", "std_msgs/String"]))
++        self.assertEqual('data: \'\'', rosmsg_cmd_prototype(["msg", "std_msgs/String", "-H"]))
++        self.assertEqual('  data: \'\'', rosmsg_cmd_prototype(["msg", "std_msgs/String", "-p", "  ", "-H"]))
++
++    def test_rosmsg_cmd_prototype_std_msgs_Header(self):
++        if _NO_DICT: raise SkipTest("Test skipped because Python version too low")
++        self.assertEqual('"seq: 0\nstamp:\n  secs: 0\n  nsecs: 0\nframe_id: \'\'"', rosmsg_cmd_prototype(["msg", "std_msgs/Header"]))
++        self.assertEqual('"{seq: 0, stamp: {secs: 0, nsecs: 0}, frame_id: \'\'}"', rosmsg_cmd_prototype(["msg", "std_msgs/Header", "-f1"]))
++
++    def test_rosmsg_cmd_prototype_std_msgs_Bool(self):
++        if _NO_DICT: raise SkipTest("Test skipped because Python version too low")
++        self.assertEqual('"data: false"', rosmsg_cmd_prototype(["msg", "std_msgs/Bool"]))
++
++    def test_rosmsg_cmd_prototype_std_msgs_Time(self):
++        if _NO_DICT: raise SkipTest("Test skipped because Python version too low")
++        self.assertEqual('"data:\n  secs: 0\n  nsecs: 0"', rosmsg_cmd_prototype(["msg", "std_msgs/Time"]))
++        self.assertEqual('"{data: {secs: 0, nsecs: 0}}"', rosmsg_cmd_prototype(["msg", "std_msgs/Time", "-f1"]))
++
++    def test_rosmsg_cmd_prototype_std_msgs_Duration(self):
++        if _NO_DICT: raise SkipTest("Test skipped because Python version too low")
++        self.assertEqual('"data:\n  secs: 0\n  nsecs: 0"', rosmsg_cmd_prototype(["msg", "std_msgs/Duration"]))
++        self.assertEqual('"{data: {secs: 0, nsecs: 0}}"', rosmsg_cmd_prototype(["msg", "std_msgs/Duration", "-f1"]))
++
++    def test_rosmsg_cmd_prototype_std_msgs_ColorRGBA(self):
++        self.assertEqual('"r: 0.0\ng: 0.0\nb: 0.0\na: 0.0"', rosmsg_cmd_prototype(["msg", "std_msgs/ColorRGBA", "-f0"]))
++
++    def test_rosmsg_cmd_prototype_std_msgs_MultiArrayLayout(self):
++        self.assertEqual('"dim:\n- label: \'\'\n  size: 0\n  stride: 0\ndata_offset: 0"', rosmsg_cmd_prototype(["msg", "std_msgs/MultiArrayLayout"]))
++        self.assertEqual('"dim: []\ndata_offset: 0"', rosmsg_cmd_prototype(["msg", "std_msgs/MultiArrayLayout", "-e"]))
++
++    def test_rosmsg_cmd_prototype_std_msgs_Float64MultiArray(self):
++        self.assertEqual('"layout:\n  dim:\n  - label: \'\'\n    size: 0\n    stride: 0\n  data_offset: 0\ndata:\n- 0"', rosmsg_cmd_prototype(["msg", "std_msgs/Float64MultiArray"]))
++        self.assertEqual('"layout:\n  dim:\n  - label: \'\'\n    size: 0\n  data_offset: 0"', rosmsg_cmd_prototype(["msg", "std_msgs/Float64MultiArray", "-x", "stride,data"]))
++
++    def test_rosmsg_cmd_prototype_std_msgs_MultiArrayDimension(self):
++        self.assertEqual('"label: \'\'\nsize: 0\nstride: 0"', rosmsg_cmd_prototype(["msg", "std_msgs/MultiArrayDimension"]))
++
++    def test_rosmsg_cmd_prototype_std_msgs_Float32MultiArray(self):
++        self.assertEqual('"layout:\n  dim:\n  - label: \'\'\n    size: 0\n    stride: 0\n  data_offset: 0\ndata:\n- 0"', rosmsg_cmd_prototype(["msg", "std_msgs/Float32MultiArray"]))
++        self.assertEqual('"layout:\n  dim:\n  - label: \'\'\n    size: 0\n    stride: 0\n  data_offset: 0\ndata:\n- 0"', rosmsg_cmd_prototype(["msg", "std_msgs/Float32MultiArray", "-f0"]))
++        self.assertEqual('"{layout: {dim: [{label: \'\', size: 0, stride: 0}], data_offset: 0}, data: [0]}"', rosmsg_cmd_prototype(["msg", "std_msgs/Float32MultiArray", "-f1"]))
+--- /dev/null
++++ ros-noetic-rosmsg-1.16.0/test/test_rosmsgproto_command_line.py
+@@ -0,0 +1,103 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2011, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of Willow Garage, Inc. nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++# Author: Thibault Kruse
++
++from __future__ import with_statement
++NAME = 'test_rosmsgproto'
++
++import os
++import sys 
++import unittest
++import time
++import copy
++import rostest
++import subprocess
++from subprocess import Popen, PIPE, call
++import collections
++import rosmsg
++
++from nose.plugins.skip import SkipTest
++
++ROSMSGPROTO_FN = [sys.executable, os.path.join(os.getcwd(), '../scripts/rosmsg-proto')]
++_NO_DICT = True
++if "OrderedDict" in collections.__dict__:
++    _NO_DICT = False
++
++class RosMsgProtoCommandlineTestMsg(unittest.TestCase):
++
++    def setUp(self):
++        # proto depends on python 2.7 having OrderedDict
++        if _NO_DICT: raise SkipTest("Test skipped because Python version too low")
++        self.new_environ = os.environ
++        self.new_environ["PYTHONPATH"] = os.path.join(os.getcwd(), "src")+os.linesep+os.environ['PYTHONPATH']
++    
++    def testFail(self):
++        cmd = copy.copy(ROSMSGPROTO_FN)
++        cmd.extend(["msg", "foo123barxyz"])
++        call = subprocess.Popen(cmd, stdout = subprocess.PIPE, stderr = subprocess.PIPE, env = self.new_environ)
++        (output, erroutput) = call.communicate()
++        self.assertEqual(b'', output)
++        self.assertTrue('Unknown message name foo123barxyz' in erroutput.decode())
++
++    def testSilentFail(self):
++        cmd = copy.copy(ROSMSGPROTO_FN)
++        cmd.extend(["msg", "-s", "foo123barxyz"])
++        call = subprocess.Popen(cmd, stdout = subprocess.PIPE, stderr = subprocess.PIPE, env = self.new_environ)
++        (output, erroutput) = call.communicate()
++        self.assertEqual(b'', output)
++        self.assertEqual(b'', erroutput)
++
++    def testSilentFailCpp(self):
++        cmd = copy.copy(ROSMSGPROTO_FN)
++        cmd.extend(["msg", "-s", "foo123barxyz::bar"])
++        call = subprocess.Popen(cmd, stdout = subprocess.PIPE, stderr = subprocess.PIPE, env = self.new_environ)
++        (output, erroutput) = call.communicate()
++        self.assertEqual(b'', output)
++        self.assertEqual(b'', erroutput)
++
++    def testSilentFailDot(self):
++        cmd = copy.copy(ROSMSGPROTO_FN)
++        cmd.extend(["msg", "-s", "foo123barxyz.bar"])
++        call = subprocess.Popen(cmd, stdout = subprocess.PIPE, stderr = subprocess.PIPE, env = self.new_environ)
++        (output, erroutput) = call.communicate()
++        self.assertEqual(b'', output)
++        self.assertEqual(b'', erroutput)
++
++    def testSilentFailMode(self):
++        cmd = copy.copy(ROSMSGPROTO_FN)
++        cmd.extend(["msgfoobar", "-s", "foo123barxyz.bar"])
++        call = subprocess.Popen(cmd, stdout = subprocess.PIPE, stderr = subprocess.PIPE, env = self.new_environ)
++        (output, erroutput) = call.communicate()
++        self.assertEqual(b'', output)
++        self.assertEqual(b'', erroutput)

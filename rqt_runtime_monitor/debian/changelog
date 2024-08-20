@@ -1,0 +1,250 @@
+ros-noetic-rqt-runtime-monitor (0.5.10-0jammy) jammy; urgency=high
+
+  * Import setup from setuptools instead of distutils.core
+  * added LICENSE file
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Sun, 01 Oct 2023 16:00:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.5.9-0jammy) jammy; urgency=high
+
+  * fix shebang line for python3 (#6 <https://github.com/ros-visualization/rqt_runtime_monitor/issues/6>)
+  * Contributors: Mikael Arguedas
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Tue, 20 Apr 2021 16:00:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.5.8-0jammy) jammy; urgency=high
+
+  * use conditional dependencies for Python 3 (#3 <https://github.com/ros-visualization/rqt_runtime_monitor/issues/3>)
+  * bump CMake minimum version to avoid CMP0048 warning
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Mon, 16 Mar 2020 16:00:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.5.7-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Tue, 25 Apr 2017 16:00:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.5.6-0jammy) jammy; urgency=high
+
+  * use Python 3 compatible syntax (#121 <https://github.com/ros-visualization/rqt_robot_plugins/pull/121>)
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Mon, 23 Jan 2017 16:00:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.5.5-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Tue, 01 Nov 2016 16:00:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.5.4-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Sun, 18 Sep 2016 16:00:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.5.3-0jammy) jammy; urgency=high
+
+  * fix Qt5 compatibility (#104 <https://github.com/ros-visualization/rqt_robot_plugins/pull/104>)
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Sun, 15 May 2016 16:00:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.5.2-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Thu, 28 Apr 2016 16:00:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.5.1-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Wed, 27 Apr 2016 16:00:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.5.0-0jammy) jammy; urgency=high
+
+  * Support Qt 5 (in Kinetic and higher) as well as Qt 4 (in Jade and earlier) (#101 <https://github.com/ros-visualization/rqt_robot_plugins/pull/101>)
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Tue, 26 Apr 2016 16:00:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.4.3-0jammy) jammy; urgency=high
+
+  * STALE is defined for indigo and later
+  * Contributors: Michael Ferguson
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Mon, 07 Mar 2016 16:00:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.4.2-0jammy) jammy; urgency=high
+
+  * add support for stale state
+  * Contributors: Michael Ferguson
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Thu, 23 Jul 2015 16:00:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.4.1-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Wed, 29 Apr 2015 16:00:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.4.0-0jammy) jammy; urgency=high
+
+  * avoid marking items as stale when using sim time (#69 <https://github.com/ros-visualization/rqt_robot_plugins/issues/69>)
+  * allow remapping diagnostics topic
+  * update script to use full plugin name
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Tue, 04 Nov 2014 16:00:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.3.7-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Sun, 17 Aug 2014 16:00:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.3.6-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Thu, 10 Jul 2014 16:00:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.3.5-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Sun, 01 Jun 2014 16:00:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.3.4-0jammy) jammy; urgency=high
+
+  * fix selection persistence across state transitions (#60 <https://github.com/ros-visualization/rqt_robot_plugins/pull/60>)
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Tue, 06 May 2014 16:00:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.3.3-0jammy) jammy; urgency=high
+
+  * improve usability: fix selecting items, maintain current scroll position (#59 <https://github.com/ros-visualization/rqt_robot_plugins/issues/59>)
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Mon, 27 Jan 2014 16:00:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.3.2-0jammy) jammy; urgency=high
+
+  * add groups for rqt plugins (ros-visualization/rqt_common_plugins#167 <https://github.com/ros-visualization/rqt_common_plugins/issues/167>)
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Tue, 07 Jan 2014 16:00:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.3.1-0jammy) jammy; urgency=high
+
+  * fix refresh of html display for new messages (#49 <https://github.com/ros-visualization/rqt_robot_plugins/issues/49>)
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Tue, 08 Oct 2013 16:00:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.3.0-0jammy) jammy; urgency=high
+
+  * fix event handling (#39 <https://github.com/ros-visualization/rqt_robot_plugins/issues/39>)
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Tue, 27 Aug 2013 16:00:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.2.16-0jammy) jammy; urgency=high
+
+  * First public release into Hydro
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Mon, 08 Jul 2013 16:00:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.2.15-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Wed, 24 Apr 2013 16:00:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.2.14-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Thu, 11 Apr 2013 16:00:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.2.13-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Mon, 08 Apr 2013 16:00:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.2.12-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Sat, 06 Apr 2013 10:22:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.2.11-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Sat, 06 Apr 2013 10:00:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.2.10-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Wed, 03 Apr 2013 16:00:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.2.9-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Wed, 06 Mar 2013 16:00:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.2.8-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Thu, 10 Jan 2013 16:00:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.2.7-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Sun, 23 Dec 2012 07:58:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.2.6-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Sat, 22 Dec 2012 17:57:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.2.5-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Fri, 21 Dec 2012 11:11:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.2.4-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Thu, 20 Dec 2012 17:13:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.2.3-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Thu, 20 Dec 2012 16:24:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.2.2-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Thu, 20 Dec 2012 10:29:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.2.1-0jammy) jammy; urgency=high
+
+
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Thu, 20 Dec 2012 09:47:00 -0000
+
+ros-noetic-rqt-runtime-monitor (0.2.0-0jammy) jammy; urgency=high
+
+  * fix missing roslib
+  * catkinizing
+  * first public release into Groovy
+
+ -- Aaron Blasdel <ablasdel@gmail.com>  Thu, 20 Dec 2012 09:39:00 -0000
+
+

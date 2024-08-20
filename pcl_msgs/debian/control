@@ -1,0 +1,12 @@
+Source: ros-noetic-pcl-msgs
+Section: misc
+Priority: optional
+Maintainer: Paul Bovbel <paul@bovbel.com>
+Build-Depends: debhelper (>= 9.0.0), ros-noetic-catkin, ros-noetic-message-generation, ros-noetic-sensor-msgs, ros-noetic-std-msgs
+Homepage: http://wiki.ros.org/pcl_msgs
+Standards-Version: 3.9.2
+
+Package: ros-noetic-pcl-msgs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-noetic-message-runtime, ros-noetic-sensor-msgs, ros-noetic-std-msgs
+Description: Package containing PCL (Point Cloud Library)-related ROS messages.

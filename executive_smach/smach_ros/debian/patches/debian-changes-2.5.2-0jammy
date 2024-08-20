@@ -1,0 +1,2740 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-smach-ros (2.5.2-0jammy) jammy; urgency=high
+ .
+   * Fix is_running behaviour in case of exception in the state #50 <https://github.com/ros/executive_smach/issues/50>
+   * Executing an empty Concurrence container hangs forever #51 <https://github.com/ros/executive_smach/issues/51>
+Author: Isaac I. Y. Saito <gm130s@gmail.com>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-smach-ros-2.5.2/CHANGELOG.rst
+@@ -0,0 +1,57 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package smach_ros
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++2.5.2 (2023-06-13)
++------------------
++* Fix is_running behaviour in case of exception in the state `#50 <https://github.com/ros/executive_smach/issues/50>`_ 
++* Executing an empty Concurrence container hangs forever `#51 <https://github.com/ros/executive_smach/issues/51>`_
++
++2.5.1 (2023-02-15)
++------------------
++* Fix: response_slots when action goal is lost `#64 <https://github.com/ros/executive_smach/issues/64>`  
++* Fix: Typos
++
++2.5.0 (2020-05-14)
++------------------
++* Python 3 compatibility `#71 <https://github.com/ros/executive_smach/issues/71>`_
++* Bump CMake version to avoid CMP0048 warning
++* Contributors: Shane Loretz, ahcorde
++
++2.0.1 (2017-06-08)
++------------------
++* [fix] SimpleActionState will wait forever for a missing ActionServer `#41 <https://github.com/ros/executive_smach/pull/41>`_
++* [fix] monitor state callback args and adding unit test for monitor state that modifies userdata
++* [improve] Specify queue sizes for introspection publishers `#31 <https://github.com/ros/executive_smach/pull/31>`_
++* [improve] make ServiceState more robust to termination while waiting for service `#32 <https://github.com/ros/executive_smach/pull/32>`_
++* [build] make rostest in CMakeLists optional `#45 <https://github.com/ros/executive_smach/pull/45>`_
++* change MonitorState and document its behavior 
++* increment n_checks only *after* checking
++  otherwise, setting max_checks=1 results in a MonitorState that returns the 'valid' outcome for any message
++* [test] adding test for actionlib timeout
++* [maintenance] Update maintainer. switching to package.xml format 2
++* Contributors: Isaac I.Y. Saito, Jonathan Bohren, Loy, Lukas Bulwahn, Nils Berg, contradict
++
++2.0.0 (2014-04-17)
++------------------
++* smach_ros: Adding rostests to cmakelists
++* Merging changes, resolving conflicts, from strands-project (@cburbridge)
++* cleaning up and removing rosbuild support
++* merging groovy and hydro
++* Listing available goal slots in case of specifying wrong ones
++* Fix syntax errors, doc typos and indentations glitches
++* if monitor state prempted before executing, return.
++* Adding event for thread synchronization in concurrence and using event not condition in monitor state
++* Listing available goal slots in case of specifying wrong ones
++* [MonitorState] Make exception handler more verbose
++* edited monitor state to allow input and output keys
++* Contributors: Boris Gromov, Bruno Lacerda, Felix Kolbe, Hendrik Wiese, Jonathan Bohren, cburbridge
++
++1.3.1 (2013-07-22)
++------------------
++* adding changelogs
++* added missing catkin_package() calls in CMakeLists.txt files of packages smach and smach_ros
++* Updating maintainer name
++
++* added missing catkin_package() calls in CMakeLists.txt files of packages smach and smach_ros
++* Updating maintainer name
+--- /dev/null
++++ ros-noetic-smach-ros-2.5.2/CMakeLists.txt
+@@ -0,0 +1,21 @@
++cmake_minimum_required(VERSION 3.0.2)
++
++project(smach_ros)
++
++find_package(catkin REQUIRED)
++
++catkin_python_setup()
++
++catkin_package(
++  CATKIN_DEPENDS rospy rostopic std_msgs std_srvs actionlib actionlib_msgs smach smach_msgs
++)
++
++if(CATKIN_ENABLE_TESTING)
++  find_package(rostest REQUIRED)
++  add_rostest(test/state_machine.test)
++  add_rostest(test/sequence.test)
++  add_rostest(test/concurrence.test)
++  add_rostest(test/introspection.test)
++  add_rostest(test/smach_actionlib.test)
++  add_rostest(test/monitor.test)
++endif()
+--- /dev/null
++++ ros-noetic-smach-ros-2.5.2/epydoc.cfg
+@@ -0,0 +1,17 @@
++[epydoc]
++url: http://ros.org/wiki/smach_ros
++
++css: white 
++frames: no
++
++imports: yes
++inheritance: grouped
++private: no
++
++parse: yes
++introspect: no
++
++verbosity: 10
++#debug: 1
++
++graph: all
+--- /dev/null
++++ ros-noetic-smach-ros-2.5.2/package.xml
+@@ -0,0 +1,39 @@
++<?xml version="1.0"?>
++<package format="2">
++  <name>smach_ros</name>
++  <version>2.5.2</version>
++  <description>
++    The smach_ros package contains extensions for the SMACH library to
++    integrate it tightly with ROS.  For example, SMACH-ROS can call
++    ROS services, listen to ROS topics, and integrate
++    with <a href="http://www.ros.org/wiki/actionlib">actionlib</a>
++    both as a client, and a provider of action servers.  SMACH is a
++    new library that takes advantage of very old concepts in order to
++    quickly create robust robot behavior with maintainable and modular
++    code.
++  </description>
++
++  <maintainer email="gm130s@gmail.com">Isaac I. Y. Saito</maintainer>
++  <license>BSD</license>
++
++  <author>Jonathan Bohren</author>
++
++  <buildtool_depend>catkin</buildtool_depend>
++
++  <build_depend>rostest</build_depend>
++
++  <exec_depend>rospy</exec_depend>
++  <exec_depend>rostopic</exec_depend>
++  <exec_depend>std_msgs</exec_depend>
++  <exec_depend>std_srvs</exec_depend>
++  <exec_depend>actionlib</exec_depend>
++  <exec_depend>actionlib_msgs</exec_depend>
++
++  <exec_depend>smach</exec_depend>
++  <exec_depend>smach_msgs</exec_depend>
++
++  <!-- The export tag contains other, unspecified, tags -->
++  <export>
++    <rosdoc config="rosdoc.yaml"/>    
++  </export>
++</package>
+--- /dev/null
++++ ros-noetic-smach-ros-2.5.2/rosdoc.yaml
+@@ -0,0 +1,3 @@
++- builder: epydoc
++  output_dir: python
++  config: epydoc.cfg
+--- /dev/null
++++ ros-noetic-smach-ros-2.5.2/setup.py
+@@ -0,0 +1,11 @@
++#!/usr/bin/env python
++
++from setuptools import setup
++from catkin_pkg.python_setup import generate_distutils_setup
++
++d = generate_distutils_setup(
++   packages=['smach_ros'],
++   package_dir={'': 'src'}
++)
++
++setup(**d)
+--- /dev/null
++++ ros-noetic-smach-ros-2.5.2/src/smach_ros/__init__.py
+@@ -0,0 +1,62 @@
++# Copyright (c) 2010, Willow Garage, Inc.
++# All rights reserved.
++# 
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions are met:
++# 
++#     * Redistributions of source code must retain the above copyright
++#       notice, this list of conditions and the following disclaimer.
++#     * Redistributions in binary form must reproduce the above copyright
++#       notice, this list of conditions and the following disclaimer in the
++#       documentation and/or other materials provided with the distribution.
++#     * Neither the name of the Willow Garage, Inc. nor the names of its
++#       contributors may be used to endorse or promote products derived from
++#       this software without specific prior written permission.
++# 
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++
++# ROS imports
++import roslib; roslib.load_manifest('smach_ros')
++import rospy
++
++# SMACH
++import smach
++
++__all__ = ['set_preempt_handler',
++        'ActionServerWrapper',
++        'IntrospectionClient','IntrospectionServer',
++        'SimpleActionState',
++        'ServiceState',
++        'MonitorState',
++        'ConditionState']
++
++# Setup smach-ros interface
++smach.set_loggers(
++        rospy.loginfo,
++        rospy.logwarn,
++        rospy.logdebug,
++        rospy.logerr)
++
++smach.set_shutdown_check(rospy.is_shutdown)
++
++### Core classes
++from smach_ros.util import set_preempt_handler
++
++### Top-level Containers / Wrappers
++from smach_ros.action_server_wrapper import ActionServerWrapper
++from smach_ros.introspection import IntrospectionClient, IntrospectionServer
++
++### State Classes
++from smach_ros.simple_action_state import SimpleActionState
++from smach_ros.service_state import ServiceState
++from smach_ros.monitor_state import MonitorState
++from smach_ros.condition_state import ConditionState
+--- /dev/null
++++ ros-noetic-smach-ros-2.5.2/src/smach_ros/action_server_wrapper.py
+@@ -0,0 +1,264 @@
++import roslib; roslib.load_manifest('smach_ros')
++import rospy
++
++import copy
++import threading
++import traceback
++
++from actionlib.simple_action_server import SimpleActionServer
++from smach_msgs.msg import *
++import smach
++
++__all__ = ['ActionServerWrapper']
++
++class ActionServerWrapper():
++    """SMACH container wrapper with actionlib ActionServer.
++
++    Use this class to associate an action server with a smach
++    L{StateMachine<smach.state_machine.StateMachine>}. This allows invocation
++    of the state machine over the actionlib API/protocol.
++
++    This class delegates to a provided SMACH container and associates it with an
++    action server. The user can specify lists of outcomes which correspond to
++    different action result statuses (SUCCEEDED, ABORTED, PREEMPTED). Once the
++    delegate state machine leaves one of these outcomes, this wrapper class will
++    cause the state machine to terminate, and cause the action server to return
++    a result.
++
++    Note that this class does not inherit from L{smach.State<smach.State>} and
++    can only be used as a top-level container.
++    """
++
++    def __init__(self,
++            server_name, action_spec,
++            wrapped_container,
++            succeeded_outcomes = [],
++            aborted_outcomes = [],
++            preempted_outcomes = [],
++            goal_key = 'action_goal',
++            feedback_key = 'action_feedback',
++            result_key = 'action_result',
++            goal_slots_map = {},
++            feedback_slots_map = {},
++            result_slots_map = {},
++            expand_goal_slots = False,
++            pack_result_slots = False
++            ):
++        """Constructor.
++
++        @type server_name: string
++        @param server_name: The name of the action server that this container will
++        present.
++
++        @type action_spec: actionlib action msg
++        @param action_spec: The type of action this server will present
++
++        @type wrapped_container: L{StateMachine}
++        @param wrapped_container: The state machine to manipulate
++
++        @type succeeded_outcomes: array of strings
++        @param succeeded_outcomes: Array of terminal state labels which, when left,
++        should cause the action server to return SUCCEEDED as a result status.
++
++        @type aborted_outcomes: array of strings
++        @param aborted_outcomes: Array of terminal state labels which, when left,
++        should cause the action server to return ABORTED as a result status.
++
++        @type preempted_outcomes: array of strings
++        @param preempted_outcomes: Array of terminal state labels which, when left,
++        should cause the action server to return PREEMPTED as a result status.
++
++        @type goal_key: string
++        @param goal_key: The userdata key into which the action goal should be
++        stuffed when the action server receives one.
++
++        @type feedback_key: string
++        @param feedback_key: The userdata key into which the SMACH container
++        can put feedback information relevant to the action.
++
++        @type result_key: string
++        @param result_key: The userdata key into which the SMACH container
++        can put result information from this action.
++        """
++
++        # Store state machine
++        self.wrapped_container = wrapped_container
++        """State machine that this wrapper talks to."""
++
++        # Register state machine callbacks
++        self.wrapped_container.register_transition_cb(self.transition_cb)
++        self.wrapped_container.register_termination_cb(self.termination_cb)
++
++        # Grab reference to state machine user data (the user data in the children
++        # states scope)
++        self.userdata = smach.UserData()
++
++        # Store special userdata keys
++        self._goal_key = goal_key
++        self._feedback_key = feedback_key
++        self._result_key = result_key
++
++        self._goal_slots_map = goal_slots_map
++        self._feedback_slots_map = feedback_slots_map
++        self._result_slots_map = result_slots_map
++
++        self._expand_goal_slots = expand_goal_slots
++        self._pack_result_slots = pack_result_slots
++
++        # Store goal, result, and feedback types
++        self.userdata[self._goal_key] = copy.copy(action_spec().action_goal.goal)
++        self.userdata[self._result_key] = copy.copy(action_spec().action_result.result)
++        self.userdata[self._feedback_key] = copy.copy(action_spec().action_feedback.feedback)
++
++        # Action info
++        self._server_name = server_name
++        self._action_spec = action_spec
++
++        # Construct action server (don't start it until later)
++        self._action_server = SimpleActionServer(
++                self._server_name,
++                self._action_spec,
++                execute_cb=self.execute_cb,
++                auto_start=False)
++
++        # Store and check the terminal outcomes
++        self._succeeded_outcomes = set(succeeded_outcomes)
++        self._aborted_outcomes = set(aborted_outcomes)
++        self._preempted_outcomes = set(preempted_outcomes)
++
++        # Make sure the sets are disjoint
++        card_of_unions = len(self._succeeded_outcomes | self._aborted_outcomes | self._preempted_outcomes)
++        sum_of_cards = (len(self._succeeded_outcomes) + len(self._aborted_outcomes) + len(self._preempted_outcomes))
++        if card_of_unions != sum_of_cards:
++            rospy.logerr("Succeeded, aborted, and preempted outcome lists were not mutually disjoint... expect undefined behavior.")
++
++    def run_server(self):
++        """Run the state machine as an action server.
++        Note that this method does not block.
++        """
++
++        # Register action server callbacks
++        #self._action_server.register_goal_callback(self.goal_cb)
++        self._action_server.register_preempt_callback(self.preempt_cb)
++
++        # Stat server (because we disabled auto-start to register the callbacks)
++        self._action_server.start()
++
++        rospy.loginfo("Started SMACH action server wrapper, advertising as '%s'" % self._server_name)
++
++    ### State machine callbacks
++    def transition_cb(self, userdata, active_states):
++        """Transition callback passed to state machine.
++        This method is called each time the state machine transitions.
++        """
++        rospy.logdebug("Publishing action feedback.")
++        # Publish action feedback
++        self.publish_feedback(userdata)
++
++    def termination_cb(self, userdata, terminal_states, container_outcome):
++        """Termination callback passed to state machine.
++        This callback receives the final state and state machine outcome as
++        specified by the state-outcome map given to the delegate container
++        on construction (see L{ActionServerWrapper.__init__}).
++
++        Remember that in this context, the SMACH container is just a single state
++        object, which has an outcome like any other state; it is this outcome on
++        which we switch here. This method will determine from the state machine
++        outcome which result should be returned to the action client for this goal.
++        """
++        rospy.logdebug("Wrapped state machine has terminated with final state: "+str(terminal_states)+" and container outcome: "+str(container_outcome))
++
++    def publish_feedback(self, userdata):
++        """Publish the feedback message in the userdata db.
++        Note that this feedback is independent of smach.
++        """
++        if self._feedback_key in userdata:
++            # This was spewing errors after the fix to ticket #5033 was submitted
++            # in the case when _feedback_key is not set
++            # For now, the fix is just checking if it exists, and not publishing otherwise
++            # The spewage used to not happen because we were looking in self.userdata
++            # and the constructor of this class sets the feedback key there to an empty struct
++            # TODO figure out what the hell is going on here.
++            self._action_server.publish_feedback(userdata[self._feedback_key])
++        
++
++    ### Action server callbacks
++    def execute_cb(self, goal):
++        """Action server goal callback
++        This method is called when the action server associated with this state
++        machine receives a goal. This puts the goal into the userdata,
++        which is the userdata of the contained state.
++        """
++
++        # If the state machine is running, we should preempt it before executing it
++        # it again.
++        rospy.logdebug("Starting wrapped SMACH container") 
++
++        # Accept goal
++        #goal = self._action_server.accept_new_goal()
++
++        # Expand the goal into the root userdata for this server
++        if self._expand_goal_slots:
++            for slot in goal.__slots__:
++                self.userdata[slot] = getattr(goal, slot)
++
++        # Store the goal in the container local userdate
++        self.userdata[self._goal_key] = goal       
++
++        # Store mapped goal slots in local userdata
++        for from_key,to_key in ((k,self._goal_slots_map[k]) for k in self._goal_slots_map):
++            self.userdata[to_key] = getattr(goal,from_key)
++
++        # Run the state machine (this blocks)
++        try:
++            container_outcome = self.wrapped_container.execute(
++                    smach.Remapper(
++                        self.userdata,
++                        self.wrapped_container.get_registered_input_keys(),
++                        self.wrapped_container.get_registered_output_keys(),
++                        {}))
++
++        except smach.InvalidUserCodeError as ex:
++            rospy.logerr("Exception thrown while executing wrapped container.")
++            self._action_server.set_aborted()
++            return
++        except:
++            rospy.logerr("Exception thrown:while executing wrapped container: " + traceback.format_exc())
++            self._action_server.set_aborted()
++            return
++
++        # Grab the (potentially) populated result from the userdata
++        result = self.userdata[self._result_key]
++
++        # Store mapped slots in result
++        for from_key, to_key in ((k,self._result_slots_map[k]) for k in self._result_slots_map):
++            setattr(result, from_key, self.userdata[to_key])
++
++        # If any of the result members have been returned to the parent ud
++        # scope, overwrite the ones from the full structure
++        if self._pack_result_slots:
++            for slot in result.__slots__:
++                if slot in self.userdata:
++                    setattr(result, slot, self.userdata[slot])
++
++        # Set terminal state based on state machine state outcome
++        if container_outcome in self._succeeded_outcomes:
++            rospy.loginfo('SUCCEEDED')
++            self._action_server.set_succeeded(result)
++        elif container_outcome in self._preempted_outcomes:
++            rospy.loginfo('PREEMPTED')
++            self._action_server.set_preempted(result)
++        else: #if container_outcome in self._aborted_outcomes:
++            rospy.loginfo('ABORTED')
++            self._action_server.set_aborted(result)
++
++
++    def preempt_cb(self):
++        """Action server preempt callback.
++        This method is called when the action client preempts an active goal.
++
++        In this case, the StateMachine needs to propagate said preemption to
++        the currently active delegate action (the current state).
++        """
++        rospy.loginfo("Preempt on state machine requested!")
++        self.wrapped_container.request_preempt()
+--- /dev/null
++++ ros-noetic-smach-ros-2.5.2/src/smach_ros/condition_state.py
+@@ -0,0 +1,57 @@
++
++import roslib; roslib.load_manifest('smach_ros')
++import rospy
++
++import threading
++import traceback
++
++import smach
++
++__all__ = ['ConditionState']
++
++class ConditionState(smach.State):
++    """A state that will check a condition function a number of times.
++    
++    If max_checks > 1, it will block while the condition is false and once it
++    has checked max_checks times, it will return false.
++    """
++    def __init__(self,
++            cond_cb,
++            input_keys = [],
++            poll_rate = rospy.Duration(0.05),
++            timeout = None,
++            max_checks = 1):
++        smach.State.__init__(self,outcomes = ['true', 'false','preempted'], input_keys = input_keys)
++
++        self._cond_cb = cond_cb
++        if hasattr(cond_cb,'get_registered_input_keys') and hasattr(cond_cb,'get_registered_output_keys'):
++            self._cond_cb_input_keys = cond_cb.get_registered_input_keys()
++            self._cond_cb_output_keys = cond_cb.get_registered_output_keys()
++            self.register_input_keys(self._cond_cb_input_keys)
++            self.register_output_keys(self._cond_cb_output_keys)
++        self._poll_rate = poll_rate
++        self._timeout = timeout
++        self._max_checks = max_checks
++
++    def execute(self, ud):
++        start_time = rospy.Time.now()
++        n_checks = 0
++
++        while self._max_checks == -1 or n_checks <= self._max_checks:
++            # Check for timeout
++            if self._timeout and rospy.Time.now() - start_time > self._timeout:
++                break
++            # Check for preemption
++            if self.preempt_requested():
++                self.service_preempt()
++                return 'preempted'
++            # Call the condition
++            try:
++                if self._cond_cb(ud):
++                    return 'true'
++            except:
++                raise smach.InvalidUserCodeError("Error thrown while executing condition callback %s: " % str(self._cond_cb) +traceback.format_exc())
++            n_checks += 1
++            rospy.sleep(self._poll_rate)
++        
++        return 'false'
+--- /dev/null
++++ ros-noetic-smach-ros-2.5.2/src/smach_ros/introspection.py
+@@ -0,0 +1,311 @@
++
++import roslib; roslib.load_manifest('smach_ros')
++import rospy
++from std_msgs.msg import Header
++
++import base64
++import pickle
++import threading
++
++import rostopic
++import smach
++
++from smach_msgs.msg import SmachContainerStatus,SmachContainerInitialStatusCmd,SmachContainerStructure
++
++
++__all__ = ['IntrospectionClient','IntrospectionServer']
++
++# Topic names
++STATUS_TOPIC = '/smach/container_status'
++INIT_TOPIC = '/smach/container_init'
++STRUCTURE_TOPIC = '/smach/container_structure'
++
++class IntrospectionClient():
++    def get_servers(self):
++        """Get the base names that are broadcasting smach states."""
++
++        # Get the currently broadcasted smach introspection topics
++        topics = rostopic.find_by_type('smach_msgs/SmachContainerStatus')
++
++        return [t[:t.rfind(STATUS_TOPIC)] for t in topics]
++
++    def set_initial_state(self,
++            server,
++            path,
++            initial_states,
++            initial_userdata = smach.UserData(),
++            timeout = None):
++        """Set the initial state of a smach server.
++        
++        @type server: string
++        @param server: The name of the introspection server to which this client
++        should connect.
++
++        @type path: string
++        @param path: The path to the target container in the state machine.
++
++        @type initial_states: list of string
++        @param inital_state: The state the target container should take when it
++        starts. This is as list of at least one state label.
++
++        @type initial_userdata: UserData
++        @param initial_userdata: The userdata to inject into the target container.
++
++        @type timeout: rospy.Duration
++        @param timeout: Timeout for this call. If this is set to None, it will not
++        block, and the initial state may not be set before the target state machine
++        goes active.
++        """
++
++        # Construct initial state command
++        initial_status_msg = SmachContainerInitialStatusCmd(
++                path = path,
++                initial_states = initial_states,
++                local_data = base64.b64encode(pickle.dumps(initial_userdata._data,2)).decode('utf-8'))
++
++        # A status message to receive confirmation that the state was set properly
++        msg_response = SmachContainerStatus()
++
++        # Define a local callback to just stuff a local message
++        def local_cb(msg, msg_response):
++            rospy.logdebug("Received status response: "+str(msg))
++            msg_response.path = msg.path
++            msg_response.initial_states = msg.initial_states
++            msg_response.local_data = msg.local_data
++
++        # Create a subscriber to verify the request went through
++        state_sub = rospy.Subscriber(server+STATUS_TOPIC, SmachContainerStatus,
++                callback=local_cb, callback_args=msg_response)
++
++        # Create a publisher to send the command
++        rospy.logdebug("Sending initial state command: "+str(initial_status_msg.path)+" on topic '"+server+INIT_TOPIC+"'")
++        init_pub = rospy.Publisher(server+INIT_TOPIC,
++                SmachContainerInitialStatusCmd, queue_size=1)
++        init_pub.publish(initial_status_msg)
++
++        start_time = rospy.Time.now()
++
++        # Block until we get a new state back 
++        if timeout is not None:
++            while rospy.Time.now() - start_time < timeout:
++                # Send the initial state command
++                init_pub.publish(initial_status_msg)
++
++                # Filter messages that are from other containers
++                if msg_response.path == path:
++                    # Check if the heartbeat came back to match
++                    state_match = all([s in msg_response.initial_states for s in initial_states])
++                    local_data = smach.UserData()
++                    local_data._data = pickle.loads(base64.b64decode(msg_response.local_data))
++                    ud_match = all([\
++                            (key in local_data and local_data._data[key] == initial_userdata._data[key])\
++                            for key in initial_userdata._data])
++
++                    rospy.logdebug("STATE MATCH: "+str(state_match)+", UD_MATCH: "+str(ud_match))
++
++                    if state_match and ud_match:
++                        return True
++                rospy.sleep(0.3)
++            return False
++    
++
++class ContainerProxy():
++    """Smach Container Introspection proxy.
++
++    This class is used as a container for introspection and debugging.
++    """
++    def __init__(self, server_name, container, path, update_rate=rospy.Duration(2.0)):
++        """Constructor for tree-wide data structure.
++        """
++        self._path = path
++        self._container = container
++        self._update_rate = update_rate
++        self._status_pub_lock = threading.Lock()
++
++        # Advertise init service
++        self._init_cmd = rospy.Subscriber(
++                server_name + INIT_TOPIC,
++                SmachContainerInitialStatusCmd,
++                self._init_cmd_cb)
++
++        # Advertise structure publisher
++        self._structure_pub = rospy.Publisher(
++                name=server_name + STRUCTURE_TOPIC,
++                data_class=SmachContainerStructure,
++                queue_size=1)
++
++        # Advertise status publisher
++        self._status_pub = rospy.Publisher(
++                name=server_name + STATUS_TOPIC,
++                data_class=SmachContainerStatus,
++                queue_size=1)
++
++        # Set transition callback
++        container.register_transition_cb(self._transition_cb)
++
++        # Create thread to constantly publish
++        self._status_pub_thread = threading.Thread(name=server_name+':status_publisher',target=self._status_pub_loop)
++
++        self._structure_pub_thread = threading.Thread(name=server_name+':structure_publisher',target=self._structure_pub_loop)
++
++        self._keep_running = False
++
++    def start(self):
++        self._keep_running = True
++        self._status_pub_thread.start()
++        self._structure_pub_thread.start()
++    
++    def stop(self):
++        self._keep_running = False
++
++    def _status_pub_loop(self):
++        """Loop to publish the status and structure heartbeats."""
++        while not rospy.is_shutdown() and self._keep_running:
++            #TODO
++            self._publish_status('HEARTBEAT')
++            try:
++                end_time = rospy.Time.now() + self._update_rate
++                while not rospy.is_shutdown() and rospy.Time.now() < end_time:
++                    rospy.sleep(0.1)
++            except:
++                pass
++
++    def _structure_pub_loop(self):
++        """Loop to publish the status and structure heartbeats."""
++        while not rospy.is_shutdown() and self._keep_running:
++            self._publish_structure('HEARTBEAT')
++            try:
++                end_time = rospy.Time.now() + self._update_rate
++                while not rospy.is_shutdown() and rospy.Time.now() < end_time:
++                    rospy.sleep(0.1)
++            except:
++                pass
++
++    def _publish_structure(self, info_str=''):
++        path = self._path
++        children = list(self._container.get_children().keys())
++
++        internal_outcomes = [] 
++        outcomes_from = [] 
++        outcomes_to = [] 
++        for (outcome, from_label, to_label) in self._container.get_internal_edges():
++            internal_outcomes.append(str(outcome))
++            outcomes_from.append(str(from_label))
++            outcomes_to.append(str(to_label))
++        container_outcomes = self._container.get_registered_outcomes()
++
++        # Construct structure message
++        structure_msg = SmachContainerStructure(
++                Header(stamp = rospy.Time.now()),
++                path,
++                children,
++                internal_outcomes,
++                outcomes_from,
++                outcomes_to,
++                container_outcomes)
++        try:
++            self._structure_pub.publish(structure_msg)
++        except:
++            if not rospy.is_shutdown():
++                rospy.logerr("Publishing SMACH introspection structure message failed.")
++
++    def _publish_status(self, info_str=''):
++        """Publish current state of this container."""
++        # Construct messages
++        with self._status_pub_lock:
++            path = self._path
++            
++            #print str(structure_msg)
++            # Construct status message
++            #print self._container.get_active_states()
++            state_msg = SmachContainerStatus(
++                    Header(stamp = rospy.Time.now()),
++                    path,
++                    self._container.get_initial_states(),
++                    self._container.get_active_states(),
++                    base64.b64encode(pickle.dumps(self._container.userdata._data, 2)).decode('utf-8'),
++                    info_str)
++            # Publish message
++            self._status_pub.publish(state_msg)
++
++    ### Transition reporting
++    def _transition_cb(self, *args, **kwargs):
++        """Transition callback, passed to all internal nodes in the tree.
++        This callback locks an internal mutex, preventing any hooked transitions
++        from occurring while we're walking the tree.
++        """
++        info_str = (str(args) + ', ' + str(kwargs))
++        rospy.logdebug("Transitioning: "+info_str)
++        self._publish_status(info_str)
++
++    def _init_cmd_cb(self, msg):
++        """Initialize a tree's state and userdata."""
++        initial_states = msg.initial_states
++        local_data = msg.local_data
++
++        # Check if this init message is directed at this path
++        rospy.logdebug('Received init message for path: '+msg.path+' to '+str(initial_states))
++        if msg.path == self._path:
++            if all(s in self._container.get_children() for s in initial_states):
++                ud = smach.UserData()
++                ud._data = pickle.loads(base64.b64decode(msg.local_data))
++                rospy.logdebug("Setting initial state in smach path: '"+self._path+"' to '"+str(initial_states)+"' with userdata: "+str(ud._data))
++
++                # Set the initial state
++                self._container.set_initial_state(
++                        initial_states,
++                        ud)
++                # Publish initial state
++                self._publish_status("REMOTE_INIT")
++            else:
++                rospy.logerr("Attempting to set initial state in container '"+self._path+"' to '"+str(initial_states)+"', but this container only has states: "+str(self._container.get_children()))
++
++
++class IntrospectionServer():
++    """Server for providing introspection and control for smach."""
++    def __init__(self, server_name, state, path):
++        """Traverse the smach tree starting at root, and construct introspection
++        proxies for getting and setting debug state."""
++
++        # A list of introspection proxies
++        self._proxies = []
++
++        # Store args
++        self._server_name = server_name
++        self._state = state
++        self._path = path
++
++    def start(self):
++        # Construct proxies
++        self.construct(self._server_name, self._state, self._path)
++
++    def stop(self):
++        for proxy in self._proxies:
++            proxy.stop()
++
++    def construct(self, server_name, state, path):
++        """Recursively construct proxies to containers."""
++        # Construct a new proxy
++        proxy = ContainerProxy(server_name, state, path)
++
++        if path == '/':
++            path = ''
++
++        # Get a list of children that are also containers
++        for (label, child) in state.get_children().items():
++            # If this is also a container, recurse into it
++            if isinstance(child, smach.container.Container):
++                self.construct(server_name, child, path+'/'+label)
++
++        # Publish initial state
++        proxy._publish_status("Initial state")
++
++        # Start publisher threads
++        proxy.start()
++
++        # Store the proxy
++        self._proxies.append(proxy)
++
++    def clear(self):
++        """Clear all proxies in this server."""
++        self._proxies = []
+--- /dev/null
++++ ros-noetic-smach-ros-2.5.2/src/smach_ros/monitor_state.py
+@@ -0,0 +1,82 @@
++
++import roslib; roslib.load_manifest('smach_ros')
++import rospy
++
++import threading
++import traceback
++
++import smach
++
++__all__ = ['MonitorState']
++
++class MonitorState(smach.State):
++    """
++    A state that will check a given ROS topic with a condition function.
++    """
++    def __init__(self, topic, msg_type, cond_cb, max_checks=-1,input_keys = [],output_keys=[]):
++        """State constructor
++        @type topic string
++        @param topic the topic to monitor
++
++        @type msg_type a ROS message type
++        @param msg_type determines the type of the monitored topic
++
++        @type max_checks int
++        @param max_checks the number of messages to receive and evaluate. If cond_cb returns False for any
++               of them, the state will finish with outcome 'invalid'. If cond_cb returns True for 
++               all of them, the outcome will be 'valid'
++        
++        """
++        smach.State.__init__(
++            self,
++            outcomes=['valid','invalid','preempted'],
++            input_keys = input_keys,
++            output_keys = output_keys)
++
++        self._topic = topic
++        self._msg_type = msg_type
++        self._cond_cb = cond_cb
++        self._max_checks = max_checks
++        self._n_checks = 0
++
++        self._trigger_event = threading.Event()
++
++    def execute(self, ud):
++        # If prempted before even getting a chance, give up.
++        if self.preempt_requested():
++            self.service_preempt()
++            return 'preempted'
++
++        self._n_checks = 0
++        self._trigger_event.clear()
++
++        self._sub = rospy.Subscriber(self._topic, self._msg_type, self._cb, callback_args=ud)
++
++        self._trigger_event.wait()
++        self._sub.unregister()
++
++        if self.preempt_requested():
++            self.service_preempt()
++            return 'preempted'
++
++        if self._max_checks > 0 and self._n_checks >= self._max_checks:
++            return 'valid'
++
++        return 'invalid'
++
++    def _cb(self,msg,ud) :
++        try:
++            if self._cond_cb(ud, msg):
++                self._n_checks +=1
++            else:
++                self._trigger_event.set()
++        except Exception as e:
++            rospy.logerr("Error thrown while executing condition callback %s: %s" % (str(self._cond_cb), e))
++            self._trigger_event.set()
++            
++        if (self._max_checks > 0 and self._n_checks >= self._max_checks):
++            self._trigger_event.set()
++
++    def request_preempt(self):
++        smach.State.request_preempt(self)
++        self._trigger_event.set()
+--- /dev/null
++++ ros-noetic-smach-ros-2.5.2/src/smach_ros/service_state.py
+@@ -0,0 +1,212 @@
++
++import roslib; roslib.load_manifest('smach_ros')
++import rospy
++
++import threading
++import traceback
++
++import smach
++from smach.state import *
++
++__all__ = ['ServiceState']
++
++class ServiceState(smach.State):
++    """State for calling a service."""
++    def __init__(self,
++            # Service info
++            service_name,
++            service_spec,
++            # Request Policy
++            request = None,
++            request_cb = None,
++            request_cb_args = [],
++            request_cb_kwargs = {},
++            request_key = None,
++            request_slots = [],
++            # Response Policy
++            response_cb = None,
++            response_cb_args = [],
++            response_cb_kwargs = {},
++            response_key = None,
++            response_slots = [],
++            # Keys
++            input_keys = [],
++            output_keys = [],
++            outcomes = [],
++            ):
++
++        smach.State.__init__(self,outcomes=['succeeded','aborted','preempted'])
++
++        # Store Service info
++        self._service_name = service_name
++        self._service_spec = service_spec
++
++        self._proxy = None
++
++        # Store request policy
++        if request is None:
++            self._request = service_spec._request_class()
++        else:
++            self._request = request
++
++        
++        if request_cb is not None and not hasattr(request_cb, '__call__'):
++            raise smach.InvalidStateError("Request callback object given to ServiceState that IS NOT a function object")
++
++        self._request_cb = request_cb
++        self._request_cb_args = request_cb_args
++        self._request_cb_kwargs = request_cb_kwargs
++        if smach.has_smach_interface(request_cb):
++            self._request_cb_input_keys = request_cb.get_registered_input_keys()
++            self._request_cb_output_keys = request_cb.get_registered_output_keys()
++
++            self.register_input_keys(self._request_cb_input_keys)
++            self.register_output_keys(self._request_cb_output_keys)
++        else:
++            self._request_cb_input_keys = input_keys
++            self._request_cb_output_keys = output_keys
++
++        self._request_key = request_key
++        if request_key is not None:
++            self.register_input_keys([request_key])
++
++        self._request_slots = request_slots
++        self.register_input_keys(request_slots)
++
++        # Store response policy
++        if response_cb is not None and not hasattr(response_cb, '__call__'):
++            raise smach.InvalidStateError("Response callback object given to ServiceState that IS NOT a function object")
++
++        self._response_cb = response_cb
++        self._response_cb_args = response_cb_args
++        self._response_cb_kwargs = response_cb_kwargs
++        if smach.has_smach_interface(response_cb):
++            self._response_cb_input_keys = response_cb.get_registered_input_keys()
++            self._response_cb_output_keys = response_cb.get_registered_output_keys()
++            self._response_cb_outcomes = response_cb.get_registered_outcomes()
++
++            self.register_input_keys(self._response_cb_input_keys)
++            self.register_output_keys(self._response_cb_output_keys)
++            self.register_outcomes(self._response_cb_outcomes)
++        else:
++            self._response_cb_input_keys = input_keys
++            self._response_cb_output_keys = output_keys
++            self._response_cb_outcomes = outcomes
++
++        # Register additional input and output keys
++        self.register_input_keys(input_keys)
++        self.register_output_keys(output_keys)
++        self.register_outcomes(outcomes)
++
++        self._response_key = response_key
++        if response_key is not None:
++            self.register_output_keys([response_key])
++
++        self._response_slots = response_slots
++        self.register_output_keys(response_slots)
++
++    def execute(self, ud):
++        """Execute service"""
++        # Check for preemption before executing
++        if self.preempt_requested():
++            rospy.loginfo("Preempting %s before sending request." % self._service_name)
++            self.service_preempt()
++            return 'preempted'
++
++        # Make sure we're connected to the service
++        try:
++            while self._proxy is None:
++                if self.preempt_requested():
++                    rospy.loginfo("Preempting while waiting for service '%s'." % self._service_name)
++                    self.service_preempt()
++                    return 'preempted'
++                if rospy.is_shutdown():
++                    rospy.loginfo("Shutting down while waiting for service '%s'." % self._service_name)
++                    return 'aborted'
++                try:
++                    rospy.wait_for_service(self._service_name,1.0)
++                    self._proxy = rospy.ServiceProxy(self._service_name, self._service_spec)
++                    rospy.logdebug("Connected to service '%s'" % self._service_name)
++                except rospy.ROSException as ex:
++                    rospy.logwarn("Still waiting for service '%s'..." % self._service_name)
++        except:
++            rospy.logwarn("Terminated while waiting for service '%s'." % self._service_name)
++            return 'aborted'
++
++        # Grab request key if set
++        if self._request_key is not None:
++            if self._request_key in ud:
++                self._request = ud[self._request_key]
++            else:
++                rospy.logerr("Requested request key '%s' not in userdata struture. Available keys are: %s" % (self._request_key, str(list(ud.keys()))))
++                return 'aborted'
++
++        # Write request fields from userdata if set
++        for key in self._request_slots:
++            if key in ud:
++                setattr(self._request,key,ud[key])
++            else:
++                rospy.logerr("Requested request slot key '%s' is not in userdata strcture. Available keys are: %s" % (key, str(list(ud.keys()))))
++                return 'aborted'
++
++        # Call user-supplied callback, if set, to get a request
++        if self._request_cb is not None:
++            try:
++                request_update = self._request_cb(
++                        smach.Remapper(
++                                ud,
++                                self._request_cb_input_keys,
++                                self._request_cb_output_keys,
++                                []),
++                        self._request,
++                        *self._request_cb_args,
++                        **self._request_cb_kwargs)
++                if request_update is not None:
++                    self._request = request_update
++            except:
++                rospy.logerr("Could not execute request callback: "+traceback.format_exc())
++                return 'aborted'
++
++        if self._request is None:
++            rospy.logerr("Attempting to call service "+self._service_name+" with no request")
++            return 'aborted'
++
++        # Call service
++        # Abandon hope, all ye who enter here
++        try:
++            rospy.logdebug("Calling service %s with request:\n%s" % (self._service_name, str(self._request)))
++            self._response = self._proxy(self._request)
++        except rospy.ServiceException as ex:
++            rospy.logerr("Exception when calling service '%s': %s" % (self._service_name, str(ex)))
++            return 'aborted'
++
++        # Call response callback if it's set
++        response_cb_outcome = None
++        if self._response_cb is not None:
++            try:
++                response_cb_outcome = self._response_cb(
++                        smach.Remapper(
++                                ud,
++                                self._response_cb_input_keys,
++                                self._response_cb_output_keys,
++                                []),
++                        self._response,
++                        *self._response_cb_args,
++                        **self._response_cb_kwargs)
++                if response_cb_outcome is not None and response_cb_outcome not in self.get_registered_outcomes():
++                    rospy.logerr("Result callback for service "+self._service_name+", "+str(self._response_cb)+" was not registered with the response_cb_outcomes argument. The response callback returned '"+str(response_cb_outcome)+"' but the only registered outcomes are: "+str(self.get_registered_outcomes()))
++                    return 'aborted'
++            except:
++                rospy.logerr("Could not execute response callback: "+traceback.format_exc())
++                return 'aborted'
++
++        if self._response_key is not None:
++            ud[self._response_key] = self._response
++
++        for key in self._response_slots:
++            ud[key] = getattr(self._response,key)
++
++        if response_cb_outcome is not None:
++            return response_cb_outcome
++
++        return 'succeeded'
+--- /dev/null
++++ ros-noetic-smach-ros-2.5.2/src/smach_ros/simple_action_state.py
+@@ -0,0 +1,437 @@
++
++import roslib; roslib.load_manifest('smach_ros')
++import rospy
++
++import threading
++import traceback
++import copy
++
++from actionlib.simple_action_client import SimpleActionClient, GoalStatus
++
++import smach
++from smach.state import *
++
++__all__ = ['SimpleActionState']
++
++class SimpleActionState(State):
++    """Simple action client state.
++    
++    Use this class to represent an actionlib as a state in a state machine.
++    """
++
++    # Meta-states for this action
++    WAITING_FOR_SERVER = 0
++    INACTIVE = 1
++    ACTIVE = 2
++    PREEMPTING = 3
++    COMPLETED = 4
++
++    def __init__(self,
++            # Action info
++            action_name,
++            action_spec, 
++            # Default goal 
++            goal = None,
++            goal_key = None,
++            goal_slots = [],
++            goal_cb = None,
++            goal_cb_args = [],
++            goal_cb_kwargs = {},
++            # Result modes
++            result_key = None,
++            result_slots = [],
++            result_cb = None,
++            result_cb_args = [],
++            result_cb_kwargs = {},
++            # Keys
++            input_keys = [],
++            output_keys = [],
++            outcomes = [],
++            # Timeouts
++            exec_timeout = None,
++            preempt_timeout = rospy.Duration(60.0),
++            server_wait_timeout = rospy.Duration(60.0)
++            ):
++        """Constructor for SimpleActionState action client wrapper.
++        
++        @type action_name: string
++        @param action_name: The name of the action as it will be broadcast over ros.
++
++        @type action_spec: actionlib action msg
++        @param action_spec: The type of action to which this client will connect.
++
++        @type goal: actionlib goal msg
++        @param goal: If the goal for this action does not need to be generated at
++        runtime, it can be passed to this state on construction.
++
++        @type goal_key: string
++        @param goal_key: Pull the goal message from a key in the userdata.
++        This will be done before calling the goal_cb if goal_cb is defined.
++
++        @type goal_slots: list of string
++        @param goal_slots: Pull the goal fields (__slots__) from like-named
++        keys in userdata. This will be done before calling the goal_cb if 
++        goal_cb is defined.
++
++        @type goal_cb: callable
++        @param goal_cb: If the goal for this action needs to be generated at
++        runtime, a callback can be stored which modifies the default goal
++        object. The callback is passed two parameters:
++            - userdata
++            - current stored goal
++        The callback  returns a goal message.
++
++        @type result_key: string
++        @param result_key: Put the result message into the userdata with
++        the given key. This will be done after calling the result_cb
++        if result_cb is defined.
++
++        @type result_slots: list of strings
++        @param result_slots: Put the result message fields (__slots__)
++        into the userdata with keys like the field names. This will be done
++        after calling the result_cb if result_cb is defined.
++
++        @type result_cb: callable
++        @param result_cb: If result information from this action needs to be
++        stored or manipulated on reception of a result from this action, a
++        callback can be stored which is passed this information. The callback
++        is passed three parameters:
++            - userdata (L{UserData<smach.user_data.UserData>})
++            - result status (C{actionlib.GoalStatus})
++            - result (actionlib result msg)
++
++        @type exec_timeout: C{rospy.Duration}
++        @param exec_timeout: This is the timeout used for sending a preempt message
++        to the delegate action. This is C{None} by default, which implies no
++        timeout. 
++
++        @type preempt_timeout: C{rospy.Duration}
++        @param preempt_timeout: This is the timeout used for aborting after a
++        preempt has been sent to the action and no result has been received. This
++        timeout begins counting after a preempt message has been sent.
++
++        @type server_wait_timeout: C{rospy.Duration}
++        @param server_wait_timeout: This is the timeout used for aborting while
++        waiting for an action server to become active.
++        """
++
++        # Initialize base class
++        State.__init__(self, outcomes=['succeeded','aborted','preempted'])
++
++        # Set action properties
++        self._action_name = action_name
++        self._action_spec = action_spec
++
++        # Set timeouts
++        self._goal_status = 0
++        self._goal_result = None
++        self._exec_timeout = exec_timeout
++        self._preempt_timeout = preempt_timeout
++        self._server_wait_timeout = server_wait_timeout
++
++        # Set goal generation policy
++        if goal and hasattr(goal, '__call__'):
++            raise smach.InvalidStateError("Goal object given to SimpleActionState that IS a function object")
++        sl = action_spec().action_goal.goal.__slots__
++        if not all([s in sl for s in goal_slots]):
++            raise smach.InvalidStateError("Goal slots specified are not valid slots. Available slots: %s; specified slots: %s" % (sl, goal_slots))
++        if goal_cb and not hasattr(goal_cb, '__call__'):
++            raise smach.InvalidStateError("Goal callback object given to SimpleActionState that IS NOT a function object")
++
++        # Static goal
++        if goal is None:
++            self._goal = copy.copy(action_spec().action_goal.goal)
++        else:
++            self._goal = goal
++
++        # Goal from userdata key
++        self._goal_key = goal_key
++        if goal_key is not None:
++            self.register_input_keys([goal_key])
++
++        # Goal slots from userdata keys
++        self._goal_slots = goal_slots
++        self.register_input_keys(goal_slots)
++
++        # Goal generation callback
++        self._goal_cb = goal_cb
++        self._goal_cb_args = goal_cb_args
++        self._goal_cb_kwargs = goal_cb_kwargs
++        if smach.has_smach_interface(goal_cb):
++            self._goal_cb_input_keys = goal_cb.get_registered_input_keys()
++            self._goal_cb_output_keys = goal_cb.get_registered_output_keys()
++
++            self.register_input_keys(self._goal_cb_input_keys)
++            self.register_output_keys(self._goal_cb_output_keys)
++        else:
++            self._goal_cb_input_keys = input_keys
++            self._goal_cb_output_keys = output_keys
++
++        # Set result processing policy
++        if result_cb and not hasattr(result_cb, '__call__'):
++            raise smach.InvalidStateError("Result callback object given to SimpleActionState that IS NOT a function object")
++        if not all([s in action_spec().action_result.result.__slots__ for s in result_slots]):
++            raise smach.InvalidStateError("Result slots specified are not valid slots.")
++
++        # Result callback
++        self._result_cb = result_cb
++        self._result_cb_args = result_cb_args
++        self._result_cb_kwargs = result_cb_kwargs
++
++        if smach.has_smach_interface(result_cb):
++            self._result_cb_input_keys = result_cb.get_registered_input_keys()
++            self._result_cb_output_keys = result_cb.get_registered_output_keys()
++            self._result_cb_outcomes = result_cb.get_registered_outcomes()
++
++            self.register_input_keys(self._result_cb_input_keys)
++            self.register_output_keys(self._result_cb_output_keys)
++            self.register_outcomes(self._result_cb_outcomes)
++        else:
++            self._result_cb_input_keys = input_keys
++            self._result_cb_output_keys = output_keys
++            self._result_cb_outcomes = outcomes
++
++        # Result to userdata key
++        self._result_key = result_key
++        if result_key is not None:
++            self.register_output_keys([result_key])
++
++        # Result slots to userdata keys
++        self._result_slots = result_slots
++        self.register_output_keys(result_slots)
++
++        # Register additional input and output keys
++        self.register_input_keys(input_keys)
++        self.register_output_keys(output_keys)
++        self.register_outcomes(outcomes)
++
++        # Declare some status variables
++        self._activate_time = rospy.Time.now()
++        self._preempt_time = rospy.Time.now()
++        self._duration = rospy.Duration(0.0)
++        self._status = SimpleActionState.WAITING_FOR_SERVER
++
++        # Construct action client, and wait for it to come active
++        self._action_client = SimpleActionClient(action_name, action_spec)
++        self._action_wait_thread = threading.Thread(name=self._action_name+'/wait_for_server', target=self._wait_for_server)
++        self._action_wait_thread.start()
++
++        self._execution_timer_thread = None
++
++        # Condition variables for threading synchronization
++        self._done_cond = threading.Condition()
++
++    def _wait_for_server(self):
++        """Internal method for waiting for the action server
++        This is run in a separate thread and allows construction of this state
++        to not block the construction of other states.
++        """        
++        timeout_time = rospy.get_rostime() + self._server_wait_timeout
++        while self._status == SimpleActionState.WAITING_FOR_SERVER and not rospy.is_shutdown() and not rospy.get_rostime() >= timeout_time:
++            try:
++                if self._action_client.wait_for_server(rospy.Duration(1.0)):#self._server_wait_timeout):
++                    self._status = SimpleActionState.INACTIVE
++                if self.preempt_requested():
++                    return
++            except:
++                if not rospy.core._in_shutdown: # This is a hack, wait_for_server should not throw an exception just because shutdown was called
++                    rospy.logerr("Failed to wait for action server '%s'" % (self._action_name))
++
++    def _execution_timer(self):
++        """Internal method for cancelling a timed out goal after a timeout."""
++        while self._status == SimpleActionState.ACTIVE and not rospy.is_shutdown():
++            try:
++                rospy.sleep(0.1)
++            except:
++                if not rospy.is_shutdown():
++                    rospy.logerr("Failed to sleep while running '%s'" % self._action_name)
++            if rospy.Time.now() - self._activate_time > self._exec_timeout:
++                rospy.logwarn("Action %s timed out after %d seconds." % (self._action_name, self._exec_timeout.to_sec()))
++                # Cancel the goal
++                self._action_client.cancel_goal()
++
++    ### smach State API
++    def request_preempt(self):
++        rospy.loginfo("Preempt requested on action '%s'" % (self._action_name))
++        smach.State.request_preempt(self)
++        if self._status == SimpleActionState.ACTIVE:
++            rospy.loginfo("Preempt on action '%s' cancelling goal: \n%s" % (self._action_name, str(self._goal)))
++            # Cancel the goal
++            self._action_client.cancel_goal()
++
++    def execute(self, ud):
++        """Called when executing a state.
++        This calls the goal_cb if it is defined, and then dispatches the
++        goal with a non-blocking call to the action client.
++        """
++
++        # Make sure we're connected to the action server
++        if self._status is SimpleActionState.WAITING_FOR_SERVER:
++            rospy.logwarn("Still waiting for action server '%s' to start... is it running?" % self._action_name)
++            if self._action_wait_thread.is_alive():
++                # Block on joining the server wait thread (This can be preempted)
++                self._action_wait_thread.join()
++            else:
++                # Wait for the server in this thread (This can also be preempted)
++                self._wait_for_server()
++
++            if not self.preempt_requested():
++                # In case of preemption we probably didn't connect
++                rospy.loginfo("Connected to action server '%s'." % self._action_name)
++
++        # Check for preemption before executing
++        if self.preempt_requested():
++            rospy.loginfo("Preempting %s before sending goal." % self._action_name)
++            self.service_preempt()
++            return 'preempted'
++
++        # We should only get here if we have connected to the server
++        if self._status is SimpleActionState.WAITING_FOR_SERVER:
++            rospy.logfatal("Action server for "+self._action_name+" is not running.")
++            return 'aborted'
++        else:
++            self._status = SimpleActionState.INACTIVE
++
++        # Grab goal key, if set
++        if self._goal_key is not None:
++            self._goal = ud[self._goal_key]
++
++        # Write goal fields from userdata if set
++        for key in self._goal_slots:
++            setattr(self._goal, key, ud[key])
++
++        # Call user-supplied callback, if set, to get a goal
++        if self._goal_cb is not None:
++            try:
++                goal_update = self._goal_cb(
++                        smach.Remapper(
++                                ud,
++                                self._goal_cb_input_keys,
++                                self._goal_cb_output_keys,
++                                []),
++                        self._goal,
++                        *self._goal_cb_args,
++                        **self._goal_cb_kwargs)
++                if goal_update is not None:
++                    self._goal = goal_update
++            except:
++                rospy.logerr("Could not execute goal callback: "+traceback.format_exc())
++                return 'aborted'
++            
++        # Make sure the necessary paramters have been set
++        if self._goal is None and self._goal_cb is None:
++            rospy.logerr("Attempting to activate action "+self._action_name+" with no goal or goal callback set. Did you construct the SimpleActionState properly?")
++            return 'aborted'
++
++        # Dispatch goal via non-blocking call to action client
++        self._activate_time = rospy.Time.now()
++        self._status = SimpleActionState.ACTIVE
++
++        # Wait on done condition
++        self._done_cond.acquire()
++        self._action_client.send_goal(self._goal, self._goal_done_cb, self._goal_active_cb, self._goal_feedback_cb)
++
++        # Preempt timeout watch thread
++        if self._exec_timeout:
++            self._execution_timer_thread = threading.Thread(name=self._action_name+'/preempt_watchdog', target=self._execution_timer)
++            self._execution_timer_thread.start()
++
++        # Wait for action to finish
++        self._done_cond.wait()
++
++        # Call user result callback if defined
++        result_cb_outcome = None
++        if self._result_cb is not None:
++            try:
++                result_cb_outcome = self._result_cb(
++                        smach.Remapper(
++                                ud,
++                                self._result_cb_input_keys,
++                                self._result_cb_output_keys,
++                                []),
++                        self._goal_status,
++                        self._goal_result)
++                if result_cb_outcome is not None and result_cb_outcome not in self.get_registered_outcomes():
++                    rospy.logerr("Result callback for action "+self._action_name+", "+str(self._result_cb)+" was not registered with the result_cb_outcomes argument. The result callback returned '"+str(result_cb_outcome)+"' but the only registered outcomes are: "+str(self.get_registered_outcomes()))
++                    return 'aborted'
++            except:
++                rospy.logerr("Could not execute result callback: "+traceback.format_exc())
++                return 'aborted'
++
++        if self._result_key is not None:
++            ud[self._result_key] = self._goal_result
++
++        # Goal might be None, for instance if goal was LOST.
++        if self._goal_result is not None:
++            for key in self._result_slots:
++                ud[key] = getattr(self._goal_result, key)
++
++        # Check status
++        if self._status == SimpleActionState.INACTIVE:
++            # Set the outcome on the result state
++            if self._goal_status == GoalStatus.SUCCEEDED:
++                outcome = 'succeeded'
++            elif self._goal_status == GoalStatus.PREEMPTED and self.preempt_requested():
++                outcome = 'preempted'
++                self.service_preempt()
++            else:
++                # All failures at this level are captured by aborting, even if we timed out
++                # This is an important distinction between local preemption, and preemption
++                # from above.
++                outcome = 'aborted'
++        else:
++            # We terminated without going inactive
++            rospy.logwarn("Action state terminated without going inactive first.")
++            outcome = 'aborted'
++
++        # Check custom result cb outcome
++        if result_cb_outcome is not None:
++            outcome = result_cb_outcome
++
++        # Set status inactive
++        self._status = SimpleActionState.INACTIVE
++        self._done_cond.release()
++
++        return outcome
++
++    ### Action client callbacks
++    def _goal_active_cb(self):
++        """Goal Active Callback
++        This callback starts the timer that watches for the timeout specified for this action.
++        """
++        rospy.logdebug("Action "+self._action_name+" has gone active.")
++
++    def _goal_feedback_cb(self, feedback):
++        """Goal Feedback Callback"""
++        rospy.logdebug("Action "+self._action_name+" sent feedback.")
++
++    def _goal_done_cb(self, result_state, result):
++        """Goal Done Callback
++        This callback resets the active flags and reports the duration of the action.
++        Also, if the user has defined a result_cb, it is called here before the
++        method returns.
++        """
++        def get_result_str(i):
++            strs = ('PENDING','ACTIVE','PREEMPTED','SUCCEEDED','ABORTED','REJECTED','LOST')
++            if i < len(strs):
++                return strs[i]
++            else:
++                return 'UNKNOWN ('+str(i)+')'
++
++        # Calculate duration
++        self._duration = rospy.Time.now() - self._activate_time
++        rospy.logdebug("Action "+self._action_name+" terminated after "\
++                +str(self._duration.to_sec())+" seconds with result "\
++                +get_result_str(self._action_client.get_state())+".")
++
++        # Store goal state
++        self._goal_status = result_state
++        self._goal_result = result
++
++        # Rest status
++        self._status = SimpleActionState.INACTIVE
++
++        # Notify done
++        self._done_cond.acquire()
++        self._done_cond.notify()
++        self._done_cond.release()
+--- /dev/null
++++ ros-noetic-smach-ros-2.5.2/src/smach_ros/util.py
+@@ -0,0 +1,31 @@
++
++import roslib; roslib.load_manifest('smach_ros')
++import rospy
++
++import threading
++import smach
++
++__all__ = ['set_preempt_handler']
++
++# Signal handler
++def set_preempt_handler(sc):
++    """Sets a ROS pre-shutdown handler to preempt a given SMACH container when
++    ROS receives a shutdown request.
++    
++    This can be attached to multiple containers, but only needs to be used on
++    the top-level containers.
++
++    @type sc: L{smach.Container}
++    @param sc: Container to preempt on ROS shutdown.
++    """
++    ### Define handler
++    def handler(sc):
++        sc.request_preempt()
++
++        while sc.is_running():
++            rospy.loginfo("Received shutdown request... sent preempt... waiting for state machine to terminate.")
++            rospy.sleep(1.0)
++
++    ### Add handler
++    rospy.core.add_client_shutdown_hook(lambda: handler(sc))
++
+--- /dev/null
++++ ros-noetic-smach-ros-2.5.2/test/concurrence.py
+@@ -0,0 +1,137 @@
++#!/usr/bin/env python
++
++import roslib; roslib.load_manifest('smach_ros')
++import rospy
++import rostest
++
++import unittest
++
++from actionlib import *
++from actionlib.msg import *
++
++from smach import *
++from smach_ros import *
++
++from smach_msgs.msg import *
++
++# Static goals
++g1 = TestGoal(1) # This goal should succeed
++g2 = TestGoal(2) # This goal should abort
++g3 = TestGoal(3) # This goal should be rejected
++
++### Custom tate classe
++class Setter(State):
++    """State that sets the key 'a' in its userdata"""
++    def __init__(self):
++        State.__init__(self,['done'],[],['a'])
++    def execute(self,ud):
++        ud.a = 'A'
++        rospy.loginfo("Added key 'a'.")
++        return 'done'
++
++class Getter(State):
++    """State that grabs the key 'a' from userdata, and sets 'b'"""
++    def __init__(self):
++        State.__init__(self,['done','preempted'],['a'],['b'])
++    def execute(self,ud):
++        while 'a' not in ud:
++            rospy.loginfo("Waiting for key 'a' to appear. ")
++            rospy.sleep(0.1)
++        ud.b = ud.a
++        rospy.sleep(1.0)
++        if self.preempt_requested():
++            return 'preempted'
++        return 'done'
++
++### Test harness
++class TestStateMachine(unittest.TestCase):
++    def test_concurrence(self):
++        """Test concurrent container."""
++        sm = StateMachine(['done','succeeded'])
++        with sm:
++            cc = Concurrence(['succeeded','done'],
++                    default_outcome = 'done',
++                    outcome_map = {'succeeded':{'SETTER':'done'}})
++            sm.add('CONCURRENT',cc)
++            with cc:
++                Concurrence.add('SETTER', Setter())
++                Concurrence.add('GETTER', Getter())
++
++        outcome = sm.execute()
++
++        assert outcome == 'succeeded'
++        assert 'a' in cc.userdata
++        assert 'b' in cc.userdata
++        assert cc.userdata.a == 'A'
++        assert cc.userdata.b == 'A'
++
++    def test_preempt(self):
++        """Test concurrent container that preempts siblings."""
++        cc = Concurrence(['succeeded','done'],
++                default_outcome = 'done',
++                child_termination_cb = lambda so: True,
++                outcome_map = {'succeeded':{'SETTER':'done', 'GETTER':'preempted'}})
++        with cc:
++            Concurrence.add('SETTER', Setter())
++            Concurrence.add('GETTER', Getter())
++
++        outcome = cc.execute()
++
++        assert outcome == 'succeeded'
++        assert 'a' in cc.userdata
++        assert 'b' in cc.userdata
++        assert cc.userdata.a == 'A'
++        assert cc.userdata.b == 'A'
++
++    def test_no_preempt(self):
++        """Test concurrent container that doesnt preempt siblings."""
++        cc = Concurrence(['succeeded','done'],
++                default_outcome = 'done',
++                child_termination_cb = lambda so: False,
++                outcome_map = {
++                    'succeeded':{
++                        'SETTER':'done',
++                        'GETTER':'done'}})
++        with cc:
++            Concurrence.add('SETTER', Setter())
++            Concurrence.add('GETTER', Getter())
++
++        outcome = cc.execute()
++
++        assert outcome == 'succeeded'
++        assert 'a' in cc.userdata
++        assert 'b' in cc.userdata
++        assert cc.userdata.a == 'A'
++        assert cc.userdata.b == 'A'
++
++    def test_outcome_cb(self):
++        """Test concurrent container that doesnt preempt siblings."""
++        cc = Concurrence(['succeeded','done'],
++                default_outcome = 'done',
++                child_termination_cb = lambda so: False,
++                outcome_cb = lambda so: list(set(so.values()))[0])
++        with cc:
++            Concurrence.add('SETTER', Setter())
++            Concurrence.add('GETTER', Getter())
++
++        outcome = cc.execute()
++
++        assert outcome == 'done'
++        assert 'a' in cc.userdata
++        assert 'b' in cc.userdata
++        assert cc.userdata.a == 'A'
++        assert cc.userdata.b == 'A'
++
++    def test_empty_concurrence(self):
++        """Test behavior of a container with no states"""
++        cc = Concurrence(['done'], default_outcome='done')
++
++        with self.assertRaises(InvalidStateError):
++            cc.execute()
++
++def main():
++    rospy.init_node('concurrence_test',log_level=rospy.DEBUG)
++    rostest.rosrun('smach', 'concurrence_test', TestStateMachine)
++
++if __name__=="__main__":
++    main();
+--- /dev/null
++++ ros-noetic-smach-ros-2.5.2/test/concurrence.test
+@@ -0,0 +1,4 @@
++<launch>
++  <node pkg="smach_ros" type="ref_server.py" name="ref_server" output="screen"/>
++  <test test-name="concurrence" pkg="smach_ros" time-limit="60.0" type="concurrence.py" />
++</launch>
+--- /dev/null
++++ ros-noetic-smach-ros-2.5.2/test/introspection.test
+@@ -0,0 +1,3 @@
++<launch>
++  <test test-name="introspection" pkg="smach_ros" time-limit="60.0" type="introspection_test.py" />
++</launch>
+--- /dev/null
++++ ros-noetic-smach-ros-2.5.2/test/introspection_test.py
+@@ -0,0 +1,92 @@
++#!/usr/bin/env python
++
++import roslib; roslib.load_manifest('smach_ros')
++import rospy
++import rostest
++
++import threading
++
++import unittest
++
++from smach import *
++from smach_ros import *
++
++from smach_msgs.msg import *
++
++### Custom state classe
++class Setter(State):
++    """State that sets the key 'a' in its userdata"""
++    def __init__(self):
++        State.__init__(self,['done'],[],['a'])
++    def execute(self,ud):
++        ud.a = 'A'
++        rospy.loginfo("Added key 'a'.")
++        return 'done'
++
++class Getter(State):
++    """State that grabs the key 'a' from userdata, and sets 'b'"""
++    def __init__(self):
++        State.__init__(self,['done'],['a'],['b'])
++    def execute(self,ud):
++        while 'a' not in ud and not rospy.is_shutdown():
++            #rospy.loginfo("Waiting for key 'a' to appear. ")
++            rospy.sleep(0.1)
++        ud.b = ud.a
++        return 'done'
++
++### Test harness
++class TestIntrospection(unittest.TestCase):
++
++    def test_introspection(self):
++        """Test introspection system."""
++        # Construct state machine
++        sm = StateMachine(['done'])
++        sm2 = StateMachine(['done'])
++        sm3 = StateMachine(['done'])
++
++        with sm:
++            # Note: the following "Getter" state should fail
++            StateMachine.add('GETTER1', Getter(), {})
++            StateMachine.add('SM2', sm2, {'done':'SM3'})
++            with sm2:
++                StateMachine.add("SETTER", Setter(), {})
++            StateMachine.add('SM3', sm3, {'done':'done'})
++            with sm3:
++                StateMachine.add("SETTER", Setter(), {})
++            StateMachine.add('GETTER2', Getter(), {'done':'SM2'})
++
++        sm.set_initial_state(['GETTER1'])
++        sm2.set_initial_state(['SETTER'])
++        sm3.set_initial_state(['SETTER'])
++
++        # Run introspector
++        intro_server = IntrospectionServer('intro_test',sm,'/intro_test')
++        server_thread = threading.Thread(target=intro_server.start)
++        server_thread.start()
++
++        intro_client = IntrospectionClient()
++        servers = intro_client.get_servers()
++        while '/intro_test' not in servers and not rospy.is_shutdown():
++            servers = intro_client.get_servers()
++            rospy.loginfo("Smach servers: "+str())
++            rospy.sleep(0.1)
++
++        assert '/intro_test' in servers
++
++        # Set initial state
++        injected_ud = UserData()
++        injected_ud.a = 'A'
++        init_set = intro_client.set_initial_state('intro_test','/intro_test',['SM2'],injected_ud,timeout = rospy.Duration(10.0))
++        assert init_set
++
++        outcome = sm.execute()
++
++        assert outcome == 'done'
++
++
++def main():
++    rospy.init_node('introspection_test',log_level=rospy.DEBUG)
++    rostest.rosrun('smach', 'introspection_test', TestIntrospection)
++
++if __name__=="__main__":
++    main();
+--- /dev/null
++++ ros-noetic-smach-ros-2.5.2/test/monitor.py
+@@ -0,0 +1,72 @@
++#!/usr/bin/env python
++
++import roslib; roslib.load_manifest('smach_ros')
++import rospy
++import rostest
++
++import unittest
++
++from actionlib import *
++from actionlib.msg import *
++
++from std_msgs.msg import Empty
++
++from smach import *
++from smach_ros import *
++
++from smach_msgs.msg import *
++
++def pinger():
++    pub = rospy.Publisher('/ping', Empty)
++    msg = Empty()
++    r = rospy.Rate(10.0)
++    while not rospy.is_shutdown():
++        print("publish!")
++        pub.publish(msg)
++        r.sleep()
++
++
++def cond_cb(ud, msg):
++    """monitor condition cb that modifies user data"""
++    assert 'b' in ud
++    ud.a = ud.b
++    return False
++
++### Test harness
++class TestStateMachine(unittest.TestCase):
++    def test_userdata(self):
++        """Test serial manipulation of userdata."""
++
++        pinger_thread = threading.Thread(target=pinger)
++        pinger_thread.start()
++
++        init_ud = UserData()
++        init_ud.b = 'A'
++
++        sm = StateMachine(['valid','invalid','preempted'])
++        sm.set_initial_state(['MON'],userdata=init_ud)
++
++        assert 'b' in sm.userdata
++        assert sm.userdata.b == 'A'
++
++        with sm:
++            StateMachine.add(
++                'MON',
++                MonitorState('/ping', Empty, cond_cb, input_keys=['b'], output_keys=['a']))
++
++        outcome = sm.execute()
++
++        assert outcome == 'invalid'
++        assert 'b' in sm.userdata
++        assert sm.userdata.b == 'A'
++        assert 'a' in sm.userdata
++        assert sm.userdata.a == 'A'
++
++
++def main():
++    rospy.init_node('monitor_test',log_level=rospy.DEBUG)
++    rostest.rosrun('smach', 'monitor_test', TestStateMachine)
++
++if __name__=="__main__":
++    main();
++
+--- /dev/null
++++ ros-noetic-smach-ros-2.5.2/test/monitor.test
+@@ -0,0 +1,3 @@
++<launch>
++  <test test-name="monitor" pkg="smach_ros" time-limit="60.0" type="monitor.py" />
++</launch>
+--- /dev/null
++++ ros-noetic-smach-ros-2.5.2/test/ref_server.py
+@@ -0,0 +1,110 @@
++#!/usr/bin/env python
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++# 
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions are met:
++# 
++#     * Redistributions of source code must retain the above copyright
++#       notice, this list of conditions and the following disclaimer.
++#     * Redistributions in binary form must reproduce the above copyright
++#       notice, this list of conditions and the following disclaimer in the
++#       documentation and/or other materials provided with the distribution.
++#     * Neither the name of the Willow Garage, Inc. nor the names of its
++#       contributors may be used to endorse or promote products derived from
++#       this software without specific prior written permission.
++# 
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++# Author: Alexander Sorokin. 
++# Based on code from ref_server.cpp by Vijay Pradeep
++import roslib; roslib.load_manifest('smach_ros')
++import rospy
++
++import sys
++
++from actionlib.action_server import ActionServer
++from actionlib.msg import TestAction, TestFeedback, TestResult
++
++
++class RefServer (ActionServer):
++
++    def __init__(self, name):
++        action_spec = TestAction
++        ActionServer.__init__(self, name, action_spec, self.goalCallback, self.cancelCallback, False)
++        self.start()
++        rospy.loginfo("Creating ActionServer [%s]\n", name)
++
++        self.saved_goals = []
++
++    def goalCallback(self, gh):
++        goal = gh.get_goal()
++
++        rospy.loginfo("Got goal %d", int(goal.goal))
++        if goal.goal == 1:
++            gh.set_accepted()
++            gh.set_succeeded(None, "The ref server has succeeded")
++        elif goal.goal == 2:
++            gh.set_accepted()
++            gh.set_aborted(None, "The ref server has aborted")
++        elif goal.goal == 3:
++            gh.set_rejected(None, "The ref server has rejected")
++        elif goal.goal == 4:
++            self.saved_goals.append(gh)
++            gh.set_accepted()
++
++        elif goal.goal == 5:
++
++            gh.set_accepted()
++            for g in self.saved_goals:
++                g.set_succeeded()
++            self.saved_goals = []
++            gh.set_succeeded()
++
++        elif goal.goal == 6:
++            gh.set_accepted()
++            for g in self.saved_goals:
++                g.set_aborted()
++            self.saved_goals = []
++            gh.set_succeeded()
++
++        elif goal.goal == 7:
++            gh.set_accepted()
++            n = len(self.saved_goals)
++            for i, g in enumerate(self.saved_goals):
++                g.publish_feedback(TestFeedback(n - i))
++
++            gh.set_succeeded()
++
++        elif goal.goal == 8:
++            gh.set_accepted()
++            n = len(self.saved_goals)
++            for i, g in enumerate(self.saved_goals):
++                if i % 2 == 0:
++                    g.set_succeeded(TestResult(n - i), "The ref server has succeeded")
++                else:
++                    g.set_aborted(TestResult(n - i), "The ref server has aborted")
++            self.saved_goals = []
++            gh.set_succeeded()
++
++        else:
++            pass
++
++    def cancelCallback(self, gh):
++        pass
++
++if __name__ == "__main__":
++    rospy.init_node("ref_server")
++    ref_server = RefServer("reference_action")
++
++    rospy.spin()
+--- /dev/null
++++ ros-noetic-smach-ros-2.5.2/test/sequence.py
+@@ -0,0 +1,87 @@
++#!/usr/bin/env python
++
++import roslib; roslib.load_manifest('smach_ros')
++import rospy
++import rostest
++
++import unittest
++
++from actionlib import *
++from actionlib.msg import *
++
++from smach import *
++from smach_ros import *
++
++from smach_msgs.msg import *
++
++# Static goals
++g1 = TestGoal(1) # This goal should succeed
++g2 = TestGoal(2) # This goal should abort
++g3 = TestGoal(3) # This goal should be rejected
++
++### Custom tate classe
++class Setter(State):
++    """State that sets the key 'a' in its userdata"""
++    def __init__(self):
++        State.__init__(self,['done'],[],['a'])
++    def execute(self,ud):
++        ud.a = 'A'
++        rospy.loginfo("Added key 'a'.")
++        return 'done'
++
++class Getter(State):
++    """State that grabs the key 'a' from userdata, and sets 'b'"""
++    def __init__(self):
++        State.__init__(self,['done'],['a'],['b'])
++    def execute(self,ud):
++        while 'a' not in ud:
++            #rospy.loginfo("Waiting for key 'a' to appear. ")
++            rospy.sleep(0.1)
++        ud.b = ud.a
++        return 'done'
++
++### Test harness
++class TestSequence(unittest.TestCase):
++    def test_sequence(self):
++        """Test adding a sequence of states."""
++        sq = Sequence(['succeeded','aborted','preempted','done'],connector_outcome='succeeded')
++        with sq:
++            Sequence.add('FIRST', SimpleActionState('reference_action',TestAction, goal = g1))
++            Sequence.add('SECOND', SimpleActionState('reference_action',TestAction, goal = g1))
++            Sequence.add('THIRD', SimpleActionState('reference_action',TestAction, goal = g1),{'succeeded':'done'})
++        outcome = sq.execute()
++
++        assert outcome == 'done'
++
++    def test_exception(self):
++        class DoneState(State):
++            def __init__(self):
++                State.__init__(self,outcomes=['done'])
++            def execute(self,ud=None):
++                return 'done'
++
++        class ErrorState(State):
++            """State falls with exception"""
++            def __init__(self):
++                State.__init__(self, ['done'])
++            def execute(self, ud):
++                raise Exception('Test exception')
++
++        sq = Sequence(['done'], connector_outcome='done')
++        with sq:
++            Sequence.add('OK', DoneState())
++            Sequence.add('ERROR', ErrorState())
++            Sequence.add('IGNORED', Setter())
++
++        with self.assertRaises(InvalidUserCodeError):
++            sq.execute()
++
++        assert sq.is_running() == False
++        assert 'a' not in sq.userdata  # test IGNORED state wasn't called
++
++def main():
++    rospy.init_node('sequence_test',log_level=rospy.DEBUG)
++    rostest.rosrun('smach', 'sequence_test', TestSequence)
++
++if __name__=="__main__":
++    main();
+--- /dev/null
++++ ros-noetic-smach-ros-2.5.2/test/sequence.test
+@@ -0,0 +1,4 @@
++<launch>
++  <node pkg="smach_ros" type="ref_server.py" name="ref_server" output="screen"/>
++  <test test-name="sequence" pkg="smach_ros" time-limit="60.0" type="sequence.py" />
++</launch>
+--- /dev/null
++++ ros-noetic-smach-ros-2.5.2/test/services.py
+@@ -0,0 +1,52 @@
++#!/usr/bin/env python
++
++import roslib; roslib.load_manifest('smach_ros')
++import rospy
++import rostest
++
++import unittest
++
++import std_srvs.srv as std_srvs
++
++from smach import *
++from smach_ros import *
++
++from smach_msgs.msg import *
++
++def empty_server(req):
++    rospy.loginfo("Service called!")
++    return std_srvs.EmptyResponse()
++
++### Test harness
++class TestServices(unittest.TestCase):
++    def test_service_cb(self):
++        """Test calling a service with a callback."""
++
++        srv = rospy.Service('/empty', std_srvs.Empty, empty_server)
++
++        sm = StateMachine(['succeeded','aborted','preempted','done'])
++        with sm:
++            def foo_response_cb(userdata, response):
++                userdata.foo_var_out = 'foo!'
++                return 'succeeded'
++
++            StateMachine.add('FOO',
++                    ServiceState('/empty',
++                        std_srvs.Empty,
++                        response_cb=foo_response_cb,
++                        output_keys=['foo_var_out']),
++                    remapping={'foo_var_out':'sm_var'},
++                    transitions={'succeeded':'done'})
++
++        outcome = sm.execute()
++
++        rospy.logwarn("OUTCOME: "+outcome)
++
++        assert outcome == 'done'
++
++def main():
++    rospy.init_node('services_test',log_level=rospy.DEBUG)
++    rostest.rosrun('smach', 'services_test', TestServices)
++
++if __name__=="__main__":
++    main();
+--- /dev/null
++++ ros-noetic-smach-ros-2.5.2/test/services.test
+@@ -0,0 +1,3 @@
++<launch>
++  <test test-name="services" pkg="smach_ros" time-limit="60.0" type="services.py" />
++</launch>
+--- /dev/null
++++ ros-noetic-smach-ros-2.5.2/test/smach_actionlib.py
+@@ -0,0 +1,262 @@
++#!/usr/bin/env python
++
++import roslib; roslib.load_manifest('smach_ros')
++import rospy
++import rostest
++
++import unittest
++
++from actionlib import *
++from actionlib.msg import *
++
++from smach import *
++from smach_ros import *
++
++from smach_msgs.msg import *
++
++# Static goals
++g1 = TestGoal(1)  # This goal should succeed
++g2 = TestGoal(2)  # This goal should abort
++g3 = TestGoal(3)  # This goal should be rejected
++
++
++class AssertUDState(State):
++    def __init__(self, keys):
++        State.__init__(self, outcomes=['succeeded', 'aborted'])
++        self._keys = keys
++        self.register_input_keys(keys)
++
++    def execute(self, ud):
++        for key in self._keys:
++            if key not in ud:
++                rospy.logerr("Key '%s' not in userdata. Available keys are: %s" % (key, ud.keys()))
++                return 'aborted'
++        return 'succeeded'
++
++
++# ## Test harness
++class TestActionlib(unittest.TestCase):
++    def test_action_client(self):
++        """Test simple action states"""
++        sq = Sequence(['succeeded', 'aborted', 'preempted', 'foobar'], 'succeeded')
++
++        sq.userdata['g1'] = g1
++        sq.userdata['g2'] = g2
++        sq.userdata['goal'] = 1
++        sq.userdata['goal_alias'] = 1
++
++        with sq:
++            # Test single goal policy
++            Sequence.add('GOAL_STATIC',
++                    SimpleActionState(
++                        "reference_action", TestAction, goal=g1))
++            Sequence.add('GOAL_KEY',
++                    SimpleActionState(
++                        "reference_action", TestAction, goal_key='g1'))
++            Sequence.add('GOAL_SLOTS',
++                    SimpleActionState(
++                        "reference_action", TestAction, goal_slots=['goal']))
++            Sequence.add('GOAL_SLOTS_REMAP',
++                    SimpleActionState(
++                        "reference_action", TestAction, goal_slots=['goal']),
++                    remapping={'goal':'goal_alias'})
++
++            # Test goal callback
++            def goal_cb_0(ud, default_goal):
++                return TestGoal(1)
++            Sequence.add('GOAL_CB',
++                    SimpleActionState(
++                        "reference_action", TestAction,
++                        goal_cb=goal_cb_0))
++            Sequence.add('GOAL_CB_LAMBDA',
++                    SimpleActionState(
++                        "reference_action", TestAction,
++                        goal_cb=lambda ud, goal: TestGoal(1)))
++            Sequence.add('GOAL_CB_UD',
++                    SimpleActionState(
++                        "reference_action", TestAction,
++                        goal_cb=lambda ud, goal: ud.g1,
++                        input_keys=['g1']))
++
++            @cb_interface(input_keys=['g1'])
++            def goal_cb_1(ud, default_goal):
++                return ud.g1
++            Sequence.add('GOAL_CB_UD_DECORATOR',
++                    SimpleActionState(
++                        "reference_action", TestAction,
++                        goal_cb=goal_cb_1))
++            Sequence.add('GOAL_CB_ARGS',
++                    SimpleActionState(
++                        "reference_action", TestAction,
++                        goal_cb=lambda ud, goal, g: TestGoal(g),
++                        goal_cb_args=[1]))
++            Sequence.add('GOAL_CB_KWARGS',
++                    SimpleActionState(
++                        "reference_action", TestAction,
++                        goal_cb=lambda ud, goal, gg: TestGoal(gg),
++                        goal_cb_kwargs={'gg':1}))
++            Sequence.add('GOAL_CB_ARGS_KWARGS',
++                    SimpleActionState(
++                        "reference_action", TestAction,
++                        goal_cb=lambda ud, goal, g, gg: TestGoal(g - gg),
++                        goal_cb_args=[2],
++                        goal_cb_kwargs={'gg':1}))
++
++            # Test overriding goal policies
++            Sequence.add('GOAL_STATIC_SLOTS',
++                    SimpleActionState(
++                        "reference_action", TestAction,
++                        goal=g2,
++                        goal_slots=['goal']))
++            Sequence.add('GOAL_STATIC_CB',
++                    SimpleActionState(
++                        "reference_action", TestAction,
++                        goal=g2,
++                        goal_cb=CBInterface(
++                            lambda ud, goal: setattr(goal, 'goal', 1),
++                            output_keys=['goal'])))
++
++            # Test result policies
++            Sequence.add('RESULT_KEY',
++                    SimpleActionState(
++                        "reference_action", TestAction,
++                        goal=g1,
++                        result_key='res_key'))
++            Sequence.add('RESULT_KEY_CHECK', AssertUDState(['res_key']))
++
++            Sequence.add('RESULT_CB',
++                    SimpleActionState(
++                        "reference_action", TestAction,
++                        goal=g1,
++                        result_cb=CBInterface(
++                            lambda ud, res_stat, res: setattr(ud, 'res_cb', res),
++                            output_keys=['res_cb'])))
++            Sequence.add('RESULT_CB_CHECK', AssertUDState(['res_cb']))
++
++            Sequence.add('RESULT_SLOTS',
++                    SimpleActionState(
++                        "reference_action", TestAction,
++                        goal=g1,
++                        result_slots=['result']))
++            Sequence.add('RESULT_SLOTS_CHECK', AssertUDState(['result']))
++
++            Sequence.add('RESULT_SLOTS_REMAP',
++                    SimpleActionState(
++                        "reference_action", TestAction,
++                        goal=g1,
++                        result_slots=['result']),
++                    remapping={'result': 'res_alias'})
++            Sequence.add('RESULT_SLOTS_MAP_CHECK', AssertUDState(['res_alias']))
++
++            Sequence.add('RESULT_CB_OUTCOME',
++                    SimpleActionState(
++                        "reference_action", TestAction,
++                        goal=g1,
++                        result_cb=CBInterface(
++                            lambda ud, res_stat, res: 'foobar',
++                            outcomes=['foobar'])))
++
++        sq_outcome = sq.execute()
++        assert sq_outcome == 'foobar'
++
++    def test_action_server_wrapper(self):
++        """Test action server wrapper."""
++        sq = Sequence(['succeeded', 'aborted', 'preempted'], 'succeeded')
++        sq.register_input_keys(['goal', 'action_goal', 'action_result'])
++        sq.register_output_keys(['action_result'])
++
++        with sq:
++            Sequence.add('GOAL_KEY',
++                    SimpleActionState(
++                        "reference_action", TestAction, goal_key='action_goal'))
++            Sequence.add('GOAL_SLOTS',
++                    SimpleActionState(
++                        "reference_action", TestAction, goal_slots=['goal']))
++
++            @cb_interface(input_keys=['action_result'], output_keys=['action_result'])
++            def res_cb(ud, status, res):
++                ud.action_result.result = res.result + 1
++
++            Sequence.add('RESULT_CB',
++                    SimpleActionState(
++                        "reference_action", TestAction,
++                        goal=g1,
++                        result_cb=res_cb))
++
++        asw = ActionServerWrapper(
++                'reference_action_sm', TestAction, sq,
++                succeeded_outcomes=['succeeded'],
++                aborted_outcomes=['aborted'],
++                preempted_outcomes=['preempted'],
++                expand_goal_slots=True)
++        asw.run_server()
++
++        ac = SimpleActionClient('reference_action_sm', TestAction)
++        ac.wait_for_server(rospy.Duration(30))
++
++        assert ac.send_goal_and_wait(g1, rospy.Duration(30)) == GoalStatus.SUCCEEDED
++        assert ac.get_result().result == 1
++
++    def test_action_preemption(self):
++        """Test action preemption"""
++        sq = Sequence(['succeeded', 'aborted', 'preempted'], 'succeeded')
++
++        class SlowRunningState(State):
++            def __init__(self):
++                State.__init__(self, outcomes=['succeeded', 'aborted', 'preempted'])
++
++            def execute(self, ud):
++                start_time = rospy.Time.now()
++                while rospy.Time.now() - start_time < rospy.Duration(10):
++                    rospy.sleep(0.05)
++                    if self.preempt_requested():
++                        self.service_preempt()
++                        return 'preempted'
++                return 'succeeded'
++
++        with sq:
++            Sequence.add('PREEMPT_ME', SlowRunningState())
++
++        asw = ActionServerWrapper(
++                'preempt_action_sm', TestAction, sq,
++                succeeded_outcomes=['succeeded'],
++                aborted_outcomes=['aborted'],
++                preempted_outcomes=['preempted'])
++        asw.run_server()
++
++        ac = SimpleActionClient('preempt_action_sm', TestAction)
++        ac.wait_for_server(rospy.Duration(30))
++
++        ac.send_goal(g1)
++        rospy.sleep(5.0)
++        ac.cancel_goal()
++
++        start_time = rospy.Time.now()
++        while ac.get_state() == GoalStatus.ACTIVE and rospy.Time.now() - start_time < rospy.Duration(30):
++            rospy.sleep(0.5)
++        assert ac.get_state() == GoalStatus.PREEMPTED
++
++    def test_action_client_timeout(self):
++        """Test simple action state server timeout"""
++        sq = Sequence(['succeeded', 'aborted', 'preempted'], 'succeeded')
++
++        sq.userdata['g1'] = g1
++
++        with sq:
++            # Test single goal policy
++            Sequence.add(
++                'GOAL_STATIC',
++                SimpleActionState(
++                    "reference_action_not_available", TestAction,
++                    goal=g1,
++                    server_wait_timeout=rospy.Duration(1.0)))
++
++        sq_outcome = sq.execute()
++
++
++def main():
++    rospy.init_node('smach_actionlib', log_level=rospy.DEBUG)
++    rostest.rosrun('smach', 'smach_actionlib', TestActionlib)
++
++if __name__ == "__main__":
++    main();
+--- /dev/null
++++ ros-noetic-smach-ros-2.5.2/test/smach_actionlib.test
+@@ -0,0 +1,4 @@
++<launch>
++  <node pkg="smach_ros" type="ref_server.py" name="ref_server" output="screen"/>
++  <test test-name="smach_actionlib" pkg="smach_ros" time-limit="60.0" type="smach_actionlib.py" />
++</launch>
+--- /dev/null
++++ ros-noetic-smach-ros-2.5.2/test/state_machine.py
+@@ -0,0 +1,186 @@
++#!/usr/bin/env python
++
++import roslib; roslib.load_manifest('smach_ros')
++import rospy
++import rostest
++
++import unittest
++
++from actionlib import *
++from actionlib.msg import *
++
++from smach import *
++from smach_ros import *
++
++from smach_msgs.msg import *
++
++# Static goals
++g1 = TestGoal(1) # This goal should succeed
++g2 = TestGoal(2) # This goal should abort
++g3 = TestGoal(3) # This goal should be rejected
++
++### Custom state classe
++class Setter(State):
++    """State that sets the key 'a' in its userdata"""
++    def __init__(self):
++        State.__init__(self,['done'],[],['a'])
++    def execute(self,ud):
++        ud.a = 'A'
++        rospy.loginfo("Added key 'a'.")
++        return 'done'
++
++class Getter(State):
++    """State that grabs the key 'a' from userdata, and sets 'b'"""
++    def __init__(self):
++        State.__init__(self,['done'],['a'],['b'])
++    def execute(self,ud):
++        while 'a' not in ud:
++            #rospy.loginfo("Waiting for key 'a' to appear. ")
++            rospy.sleep(0.1)
++        ud.b = ud.a
++        return 'done'
++
++### Test harness
++class TestStateMachine(unittest.TestCase):
++    def test_userdata(self):
++        """Test serial manipulation of userdata."""
++        sm = StateMachine(['done'])
++        with sm:
++            StateMachine.add('SETTER', Setter(),{'done':'GETTER'})
++            StateMachine.add('GETTER', Getter(),{})
++
++        outcome = sm.execute()
++
++        assert outcome == 'done'
++        assert 'a' in sm.userdata
++        assert sm.userdata.a == 'A'
++        assert sm.userdata.b == 'A'
++
++    def test_userdata_nesting(self):
++        """Test serial manipulation of userdata."""
++        sm = StateMachine(['done','preempted','aborted'])
++        with sm:
++            StateMachine.add('SETTER', Setter(),{'done':'GETTER'})
++            StateMachine.add('GETTER', Getter(),{'done':'NEST'})
++
++            sm2 = StateMachine(['done','aborted','preempted'])
++            sm2.register_input_keys(['a'])
++            with sm2:
++                StateMachine.add('ASSERTER', ConditionState(
++                    lambda ud: 'a' in ud,
++                    input_keys = ['a']),
++                    {'true':'done','false':'aborted'})
++            StateMachine.add('NEST',sm2)
++
++        outcome = sm.execute()
++
++        assert outcome == 'done'
++        assert 'a' in sm.userdata
++        assert 'b' in sm.userdata
++        assert sm.userdata.a == 'A'
++        assert sm.userdata.b == 'A'
++
++    def test_userdata_nesting2(self):
++        """Test setting of userdata manually on construction."""
++        sm = StateMachine(['done','aborted','preempted'])
++        sm.userdata.foo = 1
++        with sm:
++            StateMachine.add('SETTER', Setter(),{'done':'GETTER'})
++            StateMachine.add('GETTER', Getter(),{'done':'NEST'})
++            
++            sm2 = StateMachine(['done','aborted','preempted'])
++            sm2.register_input_keys(['foo'])
++            with sm2:
++                StateMachine.add('ASSERTER', ConditionState(
++                    lambda ud: 'foo' in ud,
++                    input_keys = ['foo']),
++                    {'true':'done','false':'aborted'})
++            StateMachine.add('NEST',sm2)
++
++        outcome = sm.execute()
++
++        assert outcome == 'done'
++        assert 'foo' in sm.userdata
++
++    def test_userdata_remapping(self):
++        """Test remapping of userdata."""
++        sm = StateMachine(['done','preempted','aborted'])
++        with sm:
++            StateMachine.add('SETTER', Setter(), {'done':'GETTER'}, remapping = {'a':'x'})
++            StateMachine.add('GETTER', Getter(), {'done':'done'}, remapping = {'a':'x','b':'y'})
++
++        outcome = sm.execute()
++
++        assert outcome == 'done'
++        assert 'x' in sm.userdata
++        assert 'y' in sm.userdata
++        assert sm.userdata.x == 'A'
++        assert sm.userdata.y == 'A'
++
++    def test_sequence(self):
++        """Test adding a sequence of states."""
++        sm = StateMachine(['succeeded','aborted','preempted','done'])
++        with sm:
++            StateMachine.add_auto('FIRST', SimpleActionState('reference_action',TestAction, goal = g1),['succeeded'])
++            StateMachine.add_auto('SECOND', SimpleActionState('reference_action',TestAction, goal = g1),['succeeded'])
++            StateMachine.add('THIRD', SimpleActionState('reference_action',TestAction, goal = g1),{'succeeded':'done'})
++        outcome = sm.execute()
++
++        assert outcome == 'done'
++
++    def test_group(self):
++        """Test adding a bunch of states with group args."""
++
++        class DoneState(State):
++            def __init__(self):
++                State.__init__(self,outcomes=['done'])
++            def execute(self,ud=None):
++                return 'done'
++
++        sm = StateMachine(['succeeded','done'])
++        with sm:
++            StateMachine.add('FAILSAUCE',DoneState())
++            transitions = {'aborted':'FAILSAUCE','preempted':'FAILSAUCE'}
++            with sm:
++                StateMachine.add('FIRST', SimpleActionState('reference_action',TestAction, goal = g1), transitions)
++                StateMachine.add('SECOND', SimpleActionState('reference_action',TestAction, goal = g2), transitions)
++                StateMachine.add('THIRD', SimpleActionState('reference_action',TestAction, goal = g1), transitions)
++        outcome = sm.execute()
++
++        assert outcome == 'done'
++
++    def test_alt_api(self):
++        """Test adding with alt apis."""
++
++        sm = StateMachine(['succeeded','aborted','preempted'])
++        with sm.opened():
++            sm.add('FIRST', SimpleActionState('reference_action',TestAction, goal = g1),{})
++            sm.add('SECOND', SimpleActionState('reference_action',TestAction, goal = g2),{})
++            sm.add('THIRD', SimpleActionState('reference_action',TestAction, goal = g1),{})
++        outcome = sm.execute()
++
++        assert outcome == 'succeeded'
++
++    def test_exception(self):
++        class ErrorState(State):
++            """State falls with exception"""
++            def __init__(self):
++                State.__init__(self, ['done'])
++            def execute(self, ud):
++                raise Exception('Test exception')
++
++        sm = StateMachine(['done'])
++        with sm:
++            StateMachine.add('ERROR', ErrorState())
++
++        with self.assertRaises(InvalidUserCodeError):
++            sm.execute()
++
++        assert sm.is_running() == False  # test running flag lowered
++
++def main():
++    rospy.init_node('state_machine_test',log_level=rospy.DEBUG)
++    rostest.rosrun('smach', 'state_machine_test', TestStateMachine)
++
++if __name__=="__main__":
++    main();
+--- /dev/null
++++ ros-noetic-smach-ros-2.5.2/test/state_machine.test
+@@ -0,0 +1,4 @@
++<launch>
++  <node pkg="smach_ros" type="ref_server.py" name="ref_server" output="screen"/>
++  <test test-name="state_machine" pkg="smach_ros" time-limit="60.0" type="state_machine.py" />
++</launch>

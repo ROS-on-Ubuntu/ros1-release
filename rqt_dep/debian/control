@@ -1,0 +1,12 @@
+Source: ros-noetic-rqt-dep
+Section: misc
+Priority: optional
+Maintainer: Ivan Paunovic <ivanpauno@ekumenlabs.com>
+Build-Depends: debhelper (>= 9.0.0), python3-mock, ros-noetic-catkin
+Homepage: http://wiki.ros.org/rqt_dep
+Standards-Version: 3.9.2
+
+Package: ros-noetic-rqt-dep
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, python3-rospkg, ros-noetic-python-qt-binding (>= 0.2.19), ros-noetic-qt-dotgraph, ros-noetic-qt-gui, ros-noetic-qt-gui-py-common, ros-noetic-rqt-graph, ros-noetic-rqt-gui-py
+Description: rqt_dep provides a GUI plugin for visualizing the ROS dependency graph.

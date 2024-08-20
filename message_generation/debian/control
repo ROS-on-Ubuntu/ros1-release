@@ -1,0 +1,12 @@
+Source: ros-noetic-message-generation
+Section: misc
+Priority: optional
+Maintainer: Dirk Thomas <dthomas@osrfoundation.org>
+Build-Depends: debhelper (>= 9.0.0), ros-noetic-catkin
+Homepage: http://ros.org/wiki/message_generation
+Standards-Version: 3.9.2
+
+Package: ros-noetic-message-generation
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-noetic-gencpp, ros-noetic-geneus, ros-noetic-genlisp, ros-noetic-genmsg, ros-noetic-gennodejs, ros-noetic-genpy
+Description: Package modeling the build-time dependencies for generating language bindings of messages.

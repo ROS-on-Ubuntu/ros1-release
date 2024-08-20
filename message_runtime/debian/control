@@ -1,0 +1,12 @@
+Source: ros-noetic-message-runtime
+Section: misc
+Priority: optional
+Maintainer: Dirk Thomas <dthomas@osrfoundation.org>
+Build-Depends: debhelper (>= 9.0.0), ros-noetic-catkin
+Homepage: http://ros.org/wiki/message_runtime
+Standards-Version: 3.9.2
+
+Package: ros-noetic-message-runtime
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-noetic-cpp-common, ros-noetic-genpy, ros-noetic-roscpp-serialization, ros-noetic-roscpp-traits, ros-noetic-rostime
+Description: Package modeling the run-time dependencies for language bindings of messages.

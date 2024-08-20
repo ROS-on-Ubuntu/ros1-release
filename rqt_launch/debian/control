@@ -1,0 +1,13 @@
+Source: ros-noetic-rqt-launch
+Section: misc
+Priority: optional
+Maintainer: Isaac I.Y. Saito <iisaito@kinugarage.com>
+Build-Depends: debhelper (>= 9.0.0), ros-noetic-catkin, ros-noetic-rqt-py-common
+Homepage: http://wiki.ros.org/rqt_launch
+Standards-Version: 3.9.2
+
+Package: ros-noetic-rqt-launch
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-noetic-python-qt-binding (>= 0.2.19), ros-noetic-roslaunch, ros-noetic-rospy, ros-noetic-rqt-console, ros-noetic-rqt-gui, ros-noetic-rqt-gui-py, ros-noetic-rqt-py-common
+Description: This rqt plugin ROS package provides easy view of .launch files.
+ User can also start and end node by node that are defined in those files.

@@ -1,0 +1,251 @@
+ros-noetic-rqt-pose-view (0.5.11-0jammy) jammy; urgency=high
+
+  * fix shebang line for python3 (#7 <https://github.com/ros-visualization/rqt_pose_view/issues/7>)
+  * Contributors: Mikael Arguedas
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Tue, 20 Apr 2021 16:00:00 -0000
+
+ros-noetic-rqt-pose-view (0.5.10-0jammy) jammy; urgency=high
+
+  * auto-subscribe if topic name on param server (#5 <https://github.com/ros-visualization/rqt_pose_view/issues/5>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Tue, 10 Mar 2020 16:00:00 -0000
+
+ros-noetic-rqt-pose-view (0.5.9-0jammy) jammy; urgency=high
+
+  * bump CMake minimum version to avoid CMP0048 warning
+  * add Python 3 conditional dependencies (#6 <https://github.com/ros-visualization/rqt_pose_view/issues/6>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Tue, 10 Mar 2020 16:00:00 -0000
+
+ros-noetic-rqt-pose-view (0.5.8-0jammy) jammy; urgency=high
+
+  * fix direction of rotations (#3 <https://github.com/ros-visualization/rqt_pose_view/issues/3>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 08 Oct 2017 16:00:00 -0000
+
+ros-noetic-rqt-pose-view (0.5.7-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Mon, 24 Apr 2017 16:00:00 -0000
+
+ros-noetic-rqt-pose-view (0.5.6-0jammy) jammy; urgency=high
+
+  * search through message classes for Pose, Quaternion or Point data (#117 <https://github.com/ros-visualization/rqt_robot_plugins/pull/117>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Mon, 23 Jan 2017 16:00:00 -0000
+
+ros-noetic-rqt-pose-view (0.5.5-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Tue, 01 Nov 2016 16:00:00 -0000
+
+ros-noetic-rqt-pose-view (0.5.4-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 18 Sep 2016 16:00:00 -0000
+
+ros-noetic-rqt-pose-view (0.5.3-0jammy) jammy; urgency=high
+
+  * fix mouse wheel delta in Qt 5 (#105 <https://github.com/ros-visualization/rqt_robot_plugins/pull/105>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 15 May 2016 16:00:00 -0000
+
+ros-noetic-rqt-pose-view (0.5.2-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 28 Apr 2016 16:00:00 -0000
+
+ros-noetic-rqt-pose-view (0.5.1-0jammy) jammy; urgency=high
+
+  * use new gl_dependency to allow using the same code base for Qt 4 as well as Qt 5
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Wed, 27 Apr 2016 16:00:00 -0000
+
+ros-noetic-rqt-pose-view (0.5.0-0jammy) jammy; urgency=high
+
+  * Support Qt 5 (in Kinetic and higher) as well as Qt 4 (in Jade and earlier) (#101 <https://github.com/ros-visualization/rqt_robot_plugins/pull/101>)
+  * add support for visualizing Quaternion types (#99 <https://github.com/ros-visualization/rqt_robot_plugins/pull/99>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Tue, 26 Apr 2016 16:00:00 -0000
+
+ros-noetic-rqt-pose-view (0.4.3-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Mon, 07 Mar 2016 16:00:00 -0000
+
+ros-noetic-rqt-pose-view (0.4.2-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 23 Jul 2015 16:00:00 -0000
+
+ros-noetic-rqt-pose-view (0.4.1-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Wed, 29 Apr 2015 16:00:00 -0000
+
+ros-noetic-rqt-pose-view (0.4.0-0jammy) jammy; urgency=high
+
+  * update script to use full plugin name
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Tue, 04 Nov 2014 16:00:00 -0000
+
+ros-noetic-rqt-pose-view (0.3.7-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 17 Aug 2014 16:00:00 -0000
+
+ros-noetic-rqt-pose-view (0.3.6-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 10 Jul 2014 16:00:00 -0000
+
+ros-noetic-rqt-pose-view (0.3.5-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 01 Jun 2014 16:00:00 -0000
+
+ros-noetic-rqt-pose-view (0.3.4-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Tue, 06 May 2014 16:00:00 -0000
+
+ros-noetic-rqt-pose-view (0.3.3-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Mon, 27 Jan 2014 16:00:00 -0000
+
+ros-noetic-rqt-pose-view (0.3.2-0jammy) jammy; urgency=high
+
+  * add groups for rqt plugins (ros-visualization/rqt_common_plugins#167 <https://github.com/ros-visualization/rqt_common_plugins/issues/167>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Tue, 07 Jan 2014 16:00:00 -0000
+
+ros-noetic-rqt-pose-view (0.3.1-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Tue, 08 Oct 2013 16:00:00 -0000
+
+ros-noetic-rqt-pose-view (0.3.0-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Tue, 27 Aug 2013 16:00:00 -0000
+
+ros-noetic-rqt-pose-view (0.2.16-0jammy) jammy; urgency=high
+
+  * First public release for Hydro
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Mon, 08 Jul 2013 16:00:00 -0000
+
+ros-noetic-rqt-pose-view (0.2.15-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Wed, 24 Apr 2013 16:00:00 -0000
+
+ros-noetic-rqt-pose-view (0.2.14-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 11 Apr 2013 16:00:00 -0000
+
+ros-noetic-rqt-pose-view (0.2.13-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Mon, 08 Apr 2013 16:00:00 -0000
+
+ros-noetic-rqt-pose-view (0.2.12-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sat, 06 Apr 2013 10:22:00 -0000
+
+ros-noetic-rqt-pose-view (0.2.11-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sat, 06 Apr 2013 10:00:00 -0000
+
+ros-noetic-rqt-pose-view (0.2.10-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Wed, 03 Apr 2013 16:00:00 -0000
+
+ros-noetic-rqt-pose-view (0.2.9-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Wed, 06 Mar 2013 16:00:00 -0000
+
+ros-noetic-rqt-pose-view (0.2.8-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 10 Jan 2013 16:00:00 -0000
+
+ros-noetic-rqt-pose-view (0.2.7-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 23 Dec 2012 07:58:00 -0000
+
+ros-noetic-rqt-pose-view (0.2.6-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sat, 22 Dec 2012 17:57:00 -0000
+
+ros-noetic-rqt-pose-view (0.2.5-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Fri, 21 Dec 2012 11:11:00 -0000
+
+ros-noetic-rqt-pose-view (0.2.4-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 20 Dec 2012 17:13:00 -0000
+
+ros-noetic-rqt-pose-view (0.2.3-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 20 Dec 2012 16:24:00 -0000
+
+ros-noetic-rqt-pose-view (0.2.2-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 20 Dec 2012 10:29:00 -0000
+
+ros-noetic-rqt-pose-view (0.2.1-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 20 Dec 2012 09:47:00 -0000
+
+ros-noetic-rqt-pose-view (0.2.0-0jammy) jammy; urgency=high
+
+  * catkinizing
+  * First public release for Groovy
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 20 Dec 2012 09:39:00 -0000
+
+

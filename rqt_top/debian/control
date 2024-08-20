@@ -1,0 +1,12 @@
+Source: ros-noetic-rqt-top
+Section: misc
+Priority: optional
+Maintainer: Michael Carroll <michael@openrobotics.org>
+Build-Depends: debhelper (>= 9.0.0), ros-noetic-catkin
+Homepage: http://wiki.ros.org/rqt_top
+Standards-Version: 3.9.2
+
+Package: ros-noetic-rqt-top
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, python3-psutil, ros-noetic-python-qt-binding (>= 0.2.19), ros-noetic-rospy, ros-noetic-rqt-gui, ros-noetic-rqt-gui-py
+Description: RQT plugin for monitoring ROS processes.

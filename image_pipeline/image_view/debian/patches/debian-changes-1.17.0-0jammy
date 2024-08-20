@@ -1,0 +1,2672 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-image-view (1.17.0-0jammy) jammy; urgency=high
+ .
+   * Switch to hpp headers of pluginlib
+   * Switch to new boost/bind/bind.hpp
+   * Add support for floating point fps
+   * Contributors: Jochen Sprickerhof, Júnio Eduardo de Morais Aquino
+Author: Vincent Rabaud <vincent.rabaud@gmail.com>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-image-view-1.17.0/CHANGELOG.rst
+@@ -0,0 +1,270 @@
++1.17.0 (2022-10-17)
++-------------------
++* Switch to hpp headers of pluginlib
++* Switch to new boost/bind/bind.hpp
++* Add support for floating point fps
++* Contributors: Jochen Sprickerhof, Júnio Eduardo de Morais Aquino
++
++1.16.0 (2021-11-12)
++-------------------
++* remove GTK3 dep.
++* remove harfbuzz.
++* Update image_view/CMakeLists.txt
++  Co-authored-by: Joshua Whitley <josh.whitley@autoware.org>
++* Update image_view/CMakeLists.txt
++  Co-authored-by: Joshua Whitley <josh.whitley@autoware.org>
++* Make GTK3 and harfbuzz optional
++* Contributors: Sean Yen, seanyen
++
++1.15.3 (2020-12-11)
++-------------------
++* remove email blasts from steve macenski (`#595 <https://github.com/ros-perception/image_pipeline/issues/595>`_)
++* [image_view] Warn when filename_format is invalid (`#587 <https://github.com/ros-perception/image_pipeline/issues/587>`_)
++* Contributors: Naoya Yamaguchi, Steve Macenski
++
++1.15.2 (2020-05-19)
++-------------------
++
++1.15.1 (2020-05-18)
++-------------------
++* image_view: add missing dependency to gencfg header (`#531 <https://github.com/ros-perception/image_pipeline/issues/531>`_)
++* Contributors: Atsushi Watanabe
++
++1.15.0 (2020-05-14)
++-------------------
++* Python 3 compatibility (`#530 <https://github.com/ros-perception/image_pipeline/issues/530>`_)
++* cmake_minimum_required to 3.0.2
++* Adapted to OpenCV4
++* import setup from setuptools instead of distutils-core
++* Apply `#509 <https://github.com/ros-perception/image_pipeline/issues/509>`_ and `#526 <https://github.com/ros-perception/image_pipeline/issues/526>`_ to Noetic Branch (`#528 <https://github.com/ros-perception/image_pipeline/issues/528>`_)
++* [image_view] Add dynamic reconfigure to image_nodelet.cpp in melodic (`#504 <https://github.com/ros-perception/image_pipeline/issues/504>`_)
++* updated install locations for better portability. (`#500 <https://github.com/ros-perception/image_pipeline/issues/500>`_)
++* Contributors: Joshua Whitley, Naoya Yamaguchi, Sean Yen
++
++1.14.0 (2020-01-12)
++-------------------
++* Merge pull request `#481 <https://github.com/ros-perception/image_pipeline/issues/481>`_ from ros-perception/fix/reliably-close-image-view
++* image_view: Making window close reliably shut down node.
++* Removing image_view node and replacing with image_view that loads nodelet. (`#479 <https://github.com/ros-perception/image_pipeline/issues/479>`_)
++* Fix build issue re: missing hb.h (`#458 <https://github.com/ros-perception/image_pipeline/issues/458>`_)
++* Contributors: Joshua Whitley, Steven Macenski, Tim Übelhör, acxz
++
++1.13.0 (2019-06-12)
++-------------------
++* Implemented extracting raw image data (`#329 <https://github.com/ros-perception/image_pipeline/issues/329>`_)
++  Implementation of the raw image extraction if the file extension is .raw. This file extension is not supported by cv::imwrite so there is be no conflict. The raw files only containing the pixel data without any meta data which allows usage in MATLAB or other tools.
++* Merge pull request `#375 <https://github.com/ros-perception/image_pipeline/issues/375>`_ from fizyr-forks/opencv4
++* Fix OpenCV4 compatibility.
++* Merge pull request `#337 <https://github.com/ros-perception/image_pipeline/issues/337>`_ from yoshito-okada/fix_image_view_nodelet
++  Fix threading issue in image_view nodelet. Closes `#331 <https://github.com/ros-perception/image_pipeline/issues/331>`_.
++* Merge pull request `#394 <https://github.com/ros-perception/image_pipeline/issues/394>`_ from angeltop/indigo
++  image_view: video recorder fix for conversion of fps to ros::Duration
++* Merge pull request `#379 <https://github.com/ros-perception/image_pipeline/issues/379>`_ from fizyr-forks/boost-1.69
++  Fix boost 1.69 compatibility
++* Merge pull request `#395 <https://github.com/ros-perception/image_pipeline/issues/395>`_ from ros-perception/steve_maintain
++* adding stevemacenski as maintainer to get emails
++* adding autonomoustuff mainainer
++* Merge pull request `#343 <https://github.com/ros-perception/image_pipeline/issues/343>`_ from fkie-forks/work_around_opencv_highgui_bug
++  Work around OpenCV highgui bug
++  I had to remove the GTK workaround, since it creates symbol collisions between GTK2 and GTK3.
++* Refresh GUI on image update as well
++* Use WallTimer for backwards compatibility with ROS Indigo
++* Switch to SteadyTimer as suggested in review
++* Remove unused `signals` from find_package(Boost COMPONENTS ...)
++  The signals library was not used at all, and it has been removed from
++  boost 1.69. As a result, the package doesn't build anymore with boost
++  1.69 without this change.
++* While we're at it, work around the mutex assertion failure on exit
++* Work around an OpenCV bug with GTK and threading
++* add ThreadSageImage class to encapsilate mutex operation for image
++* handle window in single thread
++* Contributors: Hans Gaiser, Joshua Whitley, Maarten de Vries, Philipp, Timo Röhling, Yoshito Okada, angeltop, stevemacenski
++
++1.12.23 (2018-05-10)
++--------------------
++
++1.12.22 (2017-12-08)
++--------------------
++
++1.12.21 (2017-11-05)
++--------------------
++* call namedWindow from same thread as imshow, need waitKay, now cvStartWindowThreads is null funciton on window_QT.h (`#279 <https://github.com/ros-perception/image_pipeline/issues/279>`_)
++* Contributors: Kei Okada
++
++1.12.20 (2017-04-30)
++--------------------
++* DisparityViewNodelet: fixed freeze (`#244 <https://github.com/ros-perception/image_pipeline/issues/244>`_)
++* launch image view with a predefined window size (`#257 <https://github.com/ros-perception/image_pipeline/issues/257>`_)
++* Remove python-opencv run_depend for image_view (`#270 <https://github.com/ros-perception/image_pipeline/issues/270>`_)
++  The `python-opencv` dependency pulls in the system OpenCV v2.4 which is
++  not required since the `image_view` package depends on `cv_bridge` which
++  pulls in `opencv3` and `opencv3` provides the python library that
++  `image_view` can use.
++* Fix encoding error message (`#253 <https://github.com/ros-perception/image_pipeline/issues/253>`_)
++  * Fix encoding error message
++  * Update image_saver.cpp
++  Allow compilation on older compilers
++* Including stereo_msgs dep fixes `#248 <https://github.com/ros-perception/image_pipeline/issues/248>`_ (`#249 <https://github.com/ros-perception/image_pipeline/issues/249>`_)
++* Add no gui mode to just visualize & publish with image_view (`#241 <https://github.com/ros-perception/image_pipeline/issues/241>`_)
++* stere_view: fixed empty left, right, disparity windows with opencv3
++* Apply value scaling to depth/float image with min/max image value
++  If min/max image value is specified we just use it, and if not,
++  - 32FC1: we assume depth image with meter metric, and 10[m] as the max range.
++  - 16UC1: we assume depth image with milimeter metric, and 10 * 1000[mm] as the max range.
++* Depends on cv_bridge 1.11.13 for CvtColorForDisplayOptions
++  Close `#238 <https://github.com/ros-perception/image_pipeline/issues/238>`_
++* fix doc jobs
++  This is a proper fix for `#233 <https://github.com/ros-perception/image_pipeline/issues/233>`_
++* address gcc6 build error
++  With gcc6, compiling fails with `stdlib.h: No such file or directory`,
++  as including '-isystem /usr/include' breaks with gcc6, cf.,
++  https://gcc.gnu.org/bugzilla/show_bug.cgi?id=70129.
++  This commit addresses this issue for this package in the same way
++  it was addressed in various other ROS packages. A list of related
++  commits and pull requests is at:
++  https://github.com/ros/rosdistro/issues/12783
++  Signed-off-by: Lukas Bulwahn <lukas.bulwahn@oss.bmw-carit.de>
++* Contributors: Christopher Wecht, Kartik Mohta, Kei Okada, Kentaro Wada, Lukas Bulwahn, Leonard Gerard, Vincent Rabaud, cwecht, mryellow
++
++1.12.19 (2016-07-24)
++--------------------
++* Add colormap option in video_recorder
++* Merge pull request `#203 <https://github.com/ros-perception/image_pipeline/issues/203>`_ from wkentaro/video-recorder-timestamp
++  [image_view] Stamped video output filename for video recorder
++* bump version requirement for cv_bridge dep
++  Closes `#215 <https://github.com/ros-perception/image_pipeline/issues/215>`_
++* Request for saving image with start/end two triggers
++* Stamped video output filename
++  - _filename:=output.avi _stamped_filename:=false -> output.avi
++  - _filename:=_out.avi _stamped_filename:=true -> 1466299931.584632829_out.avi
++  - _filename:=$HOME/.ros/.avi _stamped_filename:=true -> /home/ubuntu/.ros/1466299931.584632829.avi
++* Revert max_depth_range to default value for cvtColorForDisplay
++* Contributors: Kentaro Wada, Vincent Rabaud
++
++1.12.18 (2016-07-12)
++--------------------
++* Use image_transport::Subscriber aside from ros::Subscriber
++* Refactor: Remove subscription of camera_info in video_recorder
++* Add colormap options for displaying image topic
++* Use CvtColorForDisplayOptions for cvtColorForDisplay
++* Contributors: Kentaro Wada, Vincent Rabaud
++
++1.12.17 (2016-07-11)
++--------------------
++* Fix timestamp to get correct fps in video_recorder
++* Get correct fps in video_recorder.cpp
++* Do dynamic scaling for float images
++* Contributors: Kentaro Wada
++
++1.12.16 (2016-03-19)
++--------------------
++* Remove code for roslib on .cfg files
++  Closes `#185 <https://github.com/ros-perception/image_pipeline/issues/185>`_
++* add cv::waitKey for opencv3 installed from source to fix freezing issue
++* when no image is saved, do not save camera info
++  When the images are not recorded because "save_all_image" is false and "save_image_service" is false, the frame count should not be incremented and the camera info should not be written to disk.
++* Add std_srvs to catkin find_package()
++* Contributors: Jeremy Kerfs, Jochen Sprickerhof, Kentaro Wada, Krishneel
++
++1.12.15 (2016-01-17)
++--------------------
++* simplify the OpenCV dependency
++* [image_view] Configure do_dynamic_scaling param with dynamic_reconfigure
++* [image_view] Scale 16UC1 depth image
++* fix compilation
++* Extract images which are synchronized with message_filters
++* [image_view] Show full path when failed to save image
++* [image_view] Enable to specify transport with arg
++* [image_view] feedback: no need threading for callback
++* [image_view/image_view] Make as a node
++* Added sensor_msgs::Image conversion to cv::Mat from rqt_image_view in
++  order to be able to create videos from kinect depth images (cv_bridge
++  currently doesn't support 16UC1 image encoding).
++  Code adapted from:
++  https://github.com/ros-visualization/rqt_common_plugins/blob/groovy-devel/rqt_image_view/src/rqt_image_view/image_view.cpp
++* simplify OpenCV3 conversion
++* use the color conversion for display from cv_bridge
++* Contributors: Carlos Costa, Kentaro Wada, Vincent Rabaud
++
++1.12.14 (2015-07-22)
++--------------------
++* reduce the differences between OpenCV2 and 3
++* do not build GUIs on Android
++  This fixes `#137 <https://github.com/ros-perception/image_pipeline/issues/137>`_
++* Contributors: Vincent Rabaud
++
++1.12.13 (2015-04-06)
++--------------------
++
++1.12.12 (2014-12-31)
++--------------------
++* Convert function to inline to avoid duplicates with image_transport
++* Revert "remove GTK dependency"
++  This reverts commit a6e15e796a40385fbbf8da05966aa47d179dcb46.
++  Conflicts:
++  image_view/CMakeLists.txt
++  image_view/src/nodelets/disparity_nodelet.cpp
++  image_view/src/nodes/stereo_view.cpp
++* Revert "make sure waitKey is called after imshow"
++  This reverts commit d13e3ed6af819459bca221ece779964a74beefac.
++* Revert "brings back window_thread"
++  This reverts commit 41a655e8e99910c13a3e7f1ebfdd083207cef76f.
++* Contributors: Gary Servin, Vincent Rabaud
++
++1.12.11 (2014-10-26)
++--------------------
++* brings back window_thread
++  This fixes `#102 <https://github.com/ros-perception/image_pipeline/issues/102>`_ fully
++* small optimizations
++* add the image_transport parameter
++* Contributors: Vincent Rabaud
++
++1.12.10 (2014-09-28)
++--------------------
++
++1.12.9 (2014-09-21)
++-------------------
++* get code to compile with OpenCV3
++  fixes `#96 <https://github.com/ros-perception/image_pipeline/issues/96>`_
++* Contributors: Vincent Rabaud
++
++1.12.8 (2014-08-19)
++-------------------
++
++1.12.6 (2014-07-27)
++-------------------
++* make sure waitKey is called after imshow
++* remove GTK dependency
++* small speedups
++* Contributors: Vincent Rabaud
++
++1.12.5 (2014-05-11)
++-------------------
++* image_view: Add depend on gtk2
++* Contributors: Scott K Logan
++
++1.12.4 (2014-04-28)
++-------------------
++* fixes `#65 <https://github.com/ros-perception/image_pipeline/issues/65>`_
++* Contributors: Vincent Rabaud
++
++1.12.3 (2014-04-12)
++-------------------
++
++1.12.2 (2014-04-08)
++-------------------
++
++1.12.1 (2014-04-06)
++-------------------
++* get proper opencv dependency
++* Contributors: Vincent Rabaud
++
++1.11.7 (2014-03-28)
++-------------------
++* Added requirement for core.
++* Contributors: Jonathan J Hunt
++
++1.11.3 (2013-10-06 20:21:55 +0100)
++----------------------------------
++- #41: allow image_saver to save image topics
++- #40: use proper download URL
+--- /dev/null
++++ ros-noetic-image-view-1.17.0/CMakeLists.txt
+@@ -0,0 +1,85 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(image_view)
++
++find_package(catkin REQUIRED COMPONENTS camera_calibration_parsers cv_bridge dynamic_reconfigure image_transport message_filters message_generation nodelet rosconsole roscpp std_srvs stereo_msgs)
++generate_dynamic_reconfigure_options(cfg/ImageView.cfg)
++
++catkin_package(CATKIN_DEPENDS dynamic_reconfigure)
++find_package(Boost REQUIRED COMPONENTS thread)
++find_package(OpenCV REQUIRED)
++
++include_directories(${Boost_INCLUDE_DIRS}
++                    ${catkin_INCLUDE_DIRS}
++                    ${OpenCV_INCLUDE_DIRS}
++)
++
++# Extra tools
++add_executable(extract_images src/nodes/extract_images.cpp)
++target_link_libraries(extract_images ${catkin_LIBRARIES}
++                                     ${OpenCV_LIBRARIES}
++)
++
++add_executable(image_saver src/nodes/image_saver.cpp)
++target_link_libraries(image_saver ${catkin_LIBRARIES}
++                                  ${OpenCV_LIBRARIES}
++)
++
++add_executable(video_recorder src/nodes/video_recorder.cpp)
++target_link_libraries(video_recorder ${catkin_LIBRARIES}
++                                     ${OpenCV_LIBRARIES}
++)
++
++install(TARGETS extract_images image_saver video_recorder
++        DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
++)
++
++# Deal with the GUI's
++if(ANDROID)
++  return()
++endif()
++
++# Nodelet library
++add_library(image_view src/nodelets/image_nodelet.cpp src/nodelets/disparity_nodelet.cpp src/nodelets/window_thread.cpp)
++target_link_libraries(image_view ${catkin_LIBRARIES}
++                                 ${OpenCV_LIBRARIES}
++                                 ${Boost_LIBRARIES}
++)
++add_dependencies(image_view ${PROJECT_NAME}_gencfg)
++install(TARGETS image_view
++        ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
++        LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
++        RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
++)
++
++# Image viewers
++add_executable(image_view_exe src/nodes/image_view.cpp)
++add_dependencies(image_view_exe ${PROJECT_NAME}_gencfg)
++SET_TARGET_PROPERTIES(image_view_exe PROPERTIES OUTPUT_NAME image_view)
++target_link_libraries(image_view_exe ${catkin_LIBRARIES}
++                                     ${OpenCV_LIBRARIES}
++                                     ${Boost_LIBRARIES}
++)
++
++add_executable(disparity_view src/nodes/disparity_view.cpp)
++target_link_libraries(disparity_view ${catkin_LIBRARIES}
++                                     ${OpenCV_LIBRARIES}
++)
++
++add_executable(stereo_view src/nodes/stereo_view.cpp)
++target_link_libraries(stereo_view ${Boost_LIBRARIES}
++                                  ${catkin_LIBRARIES}
++                                  ${OpenCV_LIBRARIES}
++)
++
++install(TARGETS disparity_view image_view_exe stereo_view
++        DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
++)
++install(FILES nodelet_plugins.xml
++        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
++)
++
++# Python programs
++catkin_install_python(
++  PROGRAMS scripts/extract_images_sync
++  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
++)
+--- /dev/null
++++ ros-noetic-image-view-1.17.0/cfg/ImageView.cfg
+@@ -0,0 +1,29 @@
++#! /usr/bin/env python
++
++PACKAGE='image_view'
++from dynamic_reconfigure.parameter_generator_catkin import *
++
++gen = ParameterGenerator()
++
++edit_method_colormap = gen.enum([
++    gen.const("NO_COLORMAP", int_t, -1, "NO_COLORMAP"),
++    gen.const("AUTUMN", int_t, 0, "COLORMAP_AUTUMN"),
++    gen.const("BONE", int_t, 1, "COLORMAP_BONE"),
++    gen.const("JET", int_t, 2, "COLORMAP_JET"),
++    gen.const("WINTER", int_t, 3, "COLORMAP_WINTER"),
++    gen.const("RAINBOW", int_t, 4, "COLORMAP_RAINBOW"),
++    gen.const("OCEAN", int_t, 5, "COLORMAP_OCEAN"),
++    gen.const("SUMMER", int_t, 6, "COLORMAP_SUMMER"),
++    gen.const("SPRING", int_t, 7, "COLORMAP_SPRING"),
++    gen.const("COOL", int_t, 8, "COLORMAP_COOL"),
++    gen.const("HSV", int_t, 9, "COLORMAP_HSV"),
++    gen.const("PINK", int_t, 10, "COLORMAP_PINK"),
++    gen.const("HOT", int_t, 11, "COLORMAP_HOT"),
++], "colormap")
++
++gen.add('do_dynamic_scaling', bool_t, 0, 'Do dynamic scaling about pixel values or not', False)
++gen.add('colormap', int_t, 0, "colormap", -1, -1, 11, edit_method=edit_method_colormap);
++gen.add('min_image_value', double_t, 0, "Minimum image value for scaling depth/float image.", default=0, min=0);
++gen.add('max_image_value', double_t, 0, "Maximum image value for scaling depth/float image.", default=0, min=0);
++
++exit(gen.generate(PACKAGE, 'image_view', 'ImageView'))
+--- /dev/null
++++ ros-noetic-image-view-1.17.0/mainpage.dox
+@@ -0,0 +1,11 @@
++/**
++@mainpage image_view
++
++@htmlinclude manifest.html
++
++@b image_view is a simple utility for viewing an image topic. For usage see
++http://www.ros.org/wiki/image_view.
++
++Currently this package has no public code API.
++
++*/
+--- /dev/null
++++ ros-noetic-image-view-1.17.0/nodelet_plugins.xml
+@@ -0,0 +1,11 @@
++<library path="lib/libimage_view">
++
++  <class name="image_view/image" type="image_view::ImageNodelet" base_class_type="nodelet::Nodelet">
++    <description>Nodelet to view a sensor_msgs/Image topic</description>
++  </class>
++
++  <class name="image_view/disparity" type="image_view::DisparityNodelet" base_class_type="nodelet::Nodelet">
++    <description>Nodelet to view a stereo_msgs/DisparityImage topic</description>
++  </class>
++
++</library>
+--- /dev/null
++++ ros-noetic-image-view-1.17.0/package.xml
+@@ -0,0 +1,45 @@
++<package>
++  <name>image_view</name>
++  <version>1.17.0</version>
++  <description>
++  A simple viewer for ROS image topics. Includes a specialized viewer
++  for stereo + disparity images.
++  </description>
++  <author>Patrick Mihelich</author>
++  <maintainer email="vincent.rabaud@gmail.com">Vincent Rabaud</maintainer>
++  <maintainer email="software@autonomoustuff.com">Autonomoustuff team</maintainer>
++  <license>BSD</license>
++  <url>http://www.ros.org/wiki/image_view</url>
++
++  <export>
++    <rosdoc config="rosdoc.yaml" />
++    <nodelet plugin="${prefix}/nodelet_plugins.xml" />
++  </export>
++
++  <buildtool_depend>catkin</buildtool_depend>
++
++  <test_depend>rostest</test_depend>
++
++  <build_depend>camera_calibration_parsers</build_depend>
++  <build_depend version_gte="1.11.13">cv_bridge</build_depend>
++  <build_depend>dynamic_reconfigure</build_depend>
++  <build_depend>image_transport</build_depend>
++  <build_depend>message_filters</build_depend>
++  <build_depend>message_generation</build_depend>
++  <build_depend>nodelet</build_depend>
++  <build_depend>rosconsole</build_depend>
++  <build_depend>roscpp</build_depend>
++  <build_depend>sensor_msgs</build_depend>
++  <build_depend>std_srvs</build_depend>
++  <build_depend>stereo_msgs</build_depend>
++
++  <run_depend>camera_calibration_parsers</run_depend>
++  <run_depend version_gte="1.11.13">cv_bridge</run_depend>
++  <run_depend>dynamic_reconfigure</run_depend>
++  <run_depend>image_transport</run_depend>
++  <run_depend>message_filters</run_depend>
++  <run_depend>nodelet</run_depend>
++  <run_depend>rosconsole</run_depend>
++  <run_depend>roscpp</run_depend>
++  <run_depend>std_srvs</run_depend>
++</package>
+--- /dev/null
++++ ros-noetic-image-view-1.17.0/rosdoc.yaml
+@@ -0,0 +1,4 @@
++ - builder: doxygen
++   name: C++ API
++   output_dir: c++
++   file_patterns: '*.c *.cpp *.h *.cc *.hh *.dox'
+--- /dev/null
++++ ros-noetic-image-view-1.17.0/scripts/extract_images_sync
+@@ -0,0 +1,99 @@
++#!/usr/bin/env python
++# -*- coding: utf-8 -*-
++# Software License Agreement (BSD License)
++#
++#  Copyright (c) 2015, Willow Garage, Inc.
++#  All rights reserved.
++#
++#  Redistribution and use in source and binary forms, with or without
++#  modification, are permitted provided that the following conditions
++#  are met:
++#
++#   * Redistributions of source code must retain the above copyright
++#     notice, this list of conditions and the following disclaimer.
++#   * Redistributions in binary form must reproduce the above
++#     copyright notice, this list of conditions and the following
++#     disclaimer in the documentation and/or other materials provided
++#     with the distribution.
++#   * Neither the name of the Willow Garage nor the names of its
++#     contributors may be used to endorse or promote products derived
++#     from this software without specific prior written permission.
++#
++#  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++#  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++#  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++#  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++#  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++#  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++#  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++#  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++#  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++#  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++#  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++#  POSSIBILITY OF SUCH DAMAGE.
++"""Save images of multiple topics with timestamp synchronization.
++
++Usage: rosrun image_view extract_images_sync _inputs:='[<topic_0>, <topic_1>]'
++"""
++
++import sys
++
++import cv2
++
++import cv_bridge
++import message_filters
++import rospy
++from sensor_msgs.msg import Image
++
++
++class ExtractImagesSync(object):
++
++    def __init__(self):
++        self.seq = 0
++        self.fname_fmt = rospy.get_param(
++            '~filename_format', 'frame%04i_%i.jpg')
++        self.do_dynamic_scaling = rospy.get_param(
++            '~do_dynamic_scaling', False)
++        img_topics = rospy.get_param('~inputs', None)
++        if img_topics is None:
++            rospy.logwarn("""\
++extract_images_sync: rosparam '~inputs' has not been specified! \
++Typical command-line usage:
++\t$ rosrun image_view extract_images_sync _inputs:=<image_topic>
++\t$ rosrun image_view extract_images_sync \
++_inputs:='[<image_topic>, <image_topic>]'""")
++            sys.exit(1)
++        if not isinstance(img_topics, list):
++            img_topics = [img_topics]
++        subs = []
++        for t in img_topics:
++            subs.append(message_filters.Subscriber(t, Image))
++        if rospy.get_param('~approximate_sync', False):
++            sync = message_filters.ApproximateTimeSynchronizer(
++                subs, queue_size=100, slop=.1)
++        else:
++            sync = message_filters.TimeSynchronizer(
++                subs, queue_size=100)
++        sync.registerCallback(self.save)
++
++    def save(self, *imgmsgs):
++        seq = self.seq
++        bridge = cv_bridge.CvBridge()
++        for i, imgmsg in enumerate(imgmsgs):
++            img = bridge.imgmsg_to_cv2(imgmsg)
++            channels = img.shape[2] if img.ndim == 3 else 1
++            encoding_in = bridge.dtype_with_channels_to_cvtype2(
++                img.dtype, channels)
++            img = cv_bridge.cvtColorForDisplay(
++                img, encoding_in=encoding_in, encoding_out='',
++                do_dynamic_scaling=self.do_dynamic_scaling)
++            fname = self.fname_fmt % (seq, i)
++            print('Save image as {0}'.format(fname))
++            cv2.imwrite(fname, img)
++        self.seq = seq + 1
++
++
++if __name__ == '__main__':
++    rospy.init_node('extract_images_sync')
++    extractor = ExtractImagesSync()
++    rospy.spin()
+--- /dev/null
++++ ros-noetic-image-view-1.17.0/src/nodelets/disparity_nodelet.cpp
+@@ -0,0 +1,412 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++* 
++*  Copyright (c) 2008, Willow Garage, Inc.
++*  All rights reserved.
++* 
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++* 
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++* 
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++#include <ros/ros.h>
++#include <nodelet/nodelet.h>
++#include <sensor_msgs/image_encodings.h>
++#include <stereo_msgs/DisparityImage.h>
++#include <opencv2/highgui/highgui.hpp>
++#include "window_thread.h"
++
++
++namespace image_view {
++
++class DisparityNodelet : public nodelet::Nodelet
++{
++  // colormap for disparities, RGB order
++  static unsigned char colormap[];
++
++  std::string window_name_;
++  ros::Subscriber sub_;
++  cv::Mat_<cv::Vec3b> disparity_color_;
++  bool initialized;
++  
++  virtual void onInit();
++  
++  void imageCb(const stereo_msgs::DisparityImageConstPtr& msg);
++
++public:
++  ~DisparityNodelet();
++};
++
++DisparityNodelet::~DisparityNodelet()
++{
++  cv::destroyWindow(window_name_);
++}
++
++void DisparityNodelet::onInit()
++{
++  initialized = false;
++  ros::NodeHandle nh = getNodeHandle();
++  ros::NodeHandle local_nh = getPrivateNodeHandle();
++  const std::vector<std::string>& argv = getMyArgv();
++
++  // Internal option, should be used only by image_view nodes
++  bool shutdown_on_close = std::find(argv.begin(), argv.end(),
++                                     "--shutdown-on-close") != argv.end();
++
++  // Default window name is the resolved topic name
++  std::string topic = nh.resolveName("image");
++  local_nh.param("window_name", window_name_, topic);
++
++  bool autosize;
++  local_nh.param("autosize", autosize, false);
++
++  //cv::namedWindow(window_name_, autosize ? cv::WND_PROP_AUTOSIZE : 0);
++#if CV_MAJOR_VERSION ==2
++  // Start the OpenCV window thread so we don't have to waitKey() somewhere
++  startWindowThread();
++#endif
++
++  sub_ = nh.subscribe<stereo_msgs::DisparityImage>(topic, 1, &DisparityNodelet::imageCb, this);
++}
++
++void DisparityNodelet::imageCb(const stereo_msgs::DisparityImageConstPtr& msg)
++{
++  // Check for common errors in input
++  if (msg->min_disparity == 0.0 && msg->max_disparity == 0.0)
++  {
++    NODELET_ERROR_THROTTLE(30, "Disparity image fields min_disparity and "
++                           "max_disparity are not set");
++    return;
++  }
++  if (msg->image.encoding != sensor_msgs::image_encodings::TYPE_32FC1)
++  {
++    NODELET_ERROR_THROTTLE(30, "Disparity image must be 32-bit floating point "
++                           "(encoding '32FC1'), but has encoding '%s'",
++                           msg->image.encoding.c_str());
++    return;
++  }
++  
++  if(!initialized) {
++    cv::namedWindow(window_name_, false ? cv::WND_PROP_AUTOSIZE : 0);
++    initialized = true;
++  }
++  // Colormap and display the disparity image
++  float min_disparity = msg->min_disparity;
++  float max_disparity = msg->max_disparity;
++  float multiplier = 255.0f / (max_disparity - min_disparity);
++
++  const cv::Mat_<float> dmat(msg->image.height, msg->image.width,
++                             (float*)&msg->image.data[0], msg->image.step);
++  disparity_color_.create(msg->image.height, msg->image.width);
++    
++  for (int row = 0; row < disparity_color_.rows; ++row) {
++    const float* d = dmat[row];
++    cv::Vec3b *disparity_color = disparity_color_[row],
++              *disparity_color_end = disparity_color + disparity_color_.cols;
++    for (; disparity_color < disparity_color_end; ++disparity_color, ++d) {
++      int index = (*d - min_disparity) * multiplier + 0.5;
++      index = std::min(255, std::max(0, index));
++      // Fill as BGR
++      (*disparity_color)[2] = colormap[3*index + 0];
++      (*disparity_color)[1] = colormap[3*index + 1];
++      (*disparity_color)[0] = colormap[3*index + 2];
++    }
++  }
++
++  /// @todo For Electric, consider option to draw outline of valid window
++#if 0
++  sensor_msgs::RegionOfInterest valid = msg->valid_window;
++  cv::Point tl(valid.x_offset, valid.y_offset), br(valid.x_offset + valid.width, valid.y_offset + valid.height);
++  cv::rectangle(disparity_color_, tl, br, CV_RGB(255,0,0), 1);
++#endif
++
++  cv::imshow(window_name_, disparity_color_);
++  cv::waitKey(10);
++}
++
++unsigned char DisparityNodelet::colormap[768] =
++  { 150, 150, 150,
++    107, 0, 12,
++    106, 0, 18,
++    105, 0, 24,
++    103, 0, 30,
++    102, 0, 36,
++    101, 0, 42,
++    99, 0, 48,
++    98, 0, 54,
++    97, 0, 60,
++    96, 0, 66,
++    94, 0, 72,
++    93, 0, 78,
++    92, 0, 84,
++    91, 0, 90,
++    89, 0, 96,
++    88, 0, 102,
++    87, 0, 108,
++    85, 0, 114,
++    84, 0, 120,
++    83, 0, 126,
++    82, 0, 131,
++    80, 0, 137,
++    79, 0, 143,
++    78, 0, 149,
++    77, 0, 155,
++    75, 0, 161,
++    74, 0, 167,
++    73, 0, 173,
++    71, 0, 179,
++    70, 0, 185,
++    69, 0, 191,
++    68, 0, 197,
++    66, 0, 203,
++    65, 0, 209,
++    64, 0, 215,
++    62, 0, 221,
++    61, 0, 227,
++    60, 0, 233,
++    59, 0, 239,
++    57, 0, 245,
++    56, 0, 251,
++    55, 0, 255,
++    54, 0, 255,
++    52, 0, 255,
++    51, 0, 255,
++    50, 0, 255,
++    48, 0, 255,
++    47, 0, 255,
++    46, 0, 255,
++    45, 0, 255,
++    43, 0, 255,
++    42, 0, 255,
++    41, 0, 255,
++    40, 0, 255,
++    38, 0, 255,
++    37, 0, 255,
++    36, 0, 255,
++    34, 0, 255,
++    33, 0, 255,
++    32, 0, 255,
++    31, 0, 255,
++    29, 0, 255,
++    28, 0, 255,
++    27, 0, 255,
++    26, 0, 255,
++    24, 0, 255,
++    23, 0, 255,
++    22, 0, 255,
++    20, 0, 255,
++    19, 0, 255,
++    18, 0, 255,
++    17, 0, 255,
++    15, 0, 255,
++    14, 0, 255,
++    13, 0, 255,
++    11, 0, 255,
++    10, 0, 255,
++    9, 0, 255,
++    8, 0, 255,
++    6, 0, 255,
++    5, 0, 255,
++    4, 0, 255,
++    3, 0, 255,
++    1, 0, 255,
++    0, 4, 255,
++    0, 10, 255,
++    0, 16, 255,
++    0, 22, 255,
++    0, 28, 255,
++    0, 34, 255,
++    0, 40, 255,
++    0, 46, 255,
++    0, 52, 255,
++    0, 58, 255,
++    0, 64, 255,
++    0, 70, 255,
++    0, 76, 255,
++    0, 82, 255,
++    0, 88, 255,
++    0, 94, 255,
++    0, 100, 255,
++    0, 106, 255,
++    0, 112, 255,
++    0, 118, 255,
++    0, 124, 255,
++    0, 129, 255,
++    0, 135, 255,
++    0, 141, 255,
++    0, 147, 255,
++    0, 153, 255,
++    0, 159, 255,
++    0, 165, 255,
++    0, 171, 255,
++    0, 177, 255,
++    0, 183, 255,
++    0, 189, 255,
++    0, 195, 255,
++    0, 201, 255,
++    0, 207, 255,
++    0, 213, 255,
++    0, 219, 255,
++    0, 225, 255,
++    0, 231, 255,
++    0, 237, 255,
++    0, 243, 255,
++    0, 249, 255,
++    0, 255, 255,
++    0, 255, 249,
++    0, 255, 243,
++    0, 255, 237,
++    0, 255, 231,
++    0, 255, 225,
++    0, 255, 219,
++    0, 255, 213,
++    0, 255, 207,
++    0, 255, 201,
++    0, 255, 195,
++    0, 255, 189,
++    0, 255, 183,
++    0, 255, 177,
++    0, 255, 171,
++    0, 255, 165,
++    0, 255, 159,
++    0, 255, 153,
++    0, 255, 147,
++    0, 255, 141,
++    0, 255, 135,
++    0, 255, 129,
++    0, 255, 124,
++    0, 255, 118,
++    0, 255, 112,
++    0, 255, 106,
++    0, 255, 100,
++    0, 255, 94,
++    0, 255, 88,
++    0, 255, 82,
++    0, 255, 76,
++    0, 255, 70,
++    0, 255, 64,
++    0, 255, 58,
++    0, 255, 52,
++    0, 255, 46,
++    0, 255, 40,
++    0, 255, 34,
++    0, 255, 28,
++    0, 255, 22,
++    0, 255, 16,
++    0, 255, 10,
++    0, 255, 4,
++    2, 255, 0,
++    8, 255, 0,
++    14, 255, 0,
++    20, 255, 0,
++    26, 255, 0,
++    32, 255, 0,
++    38, 255, 0,
++    44, 255, 0,
++    50, 255, 0,
++    56, 255, 0,
++    62, 255, 0,
++    68, 255, 0,
++    74, 255, 0,
++    80, 255, 0,
++    86, 255, 0,
++    92, 255, 0,
++    98, 255, 0,
++    104, 255, 0,
++    110, 255, 0,
++    116, 255, 0,
++    122, 255, 0,
++    128, 255, 0,
++    133, 255, 0,
++    139, 255, 0,
++    145, 255, 0,
++    151, 255, 0,
++    157, 255, 0,
++    163, 255, 0,
++    169, 255, 0,
++    175, 255, 0,
++    181, 255, 0,
++    187, 255, 0,
++    193, 255, 0,
++    199, 255, 0,
++    205, 255, 0,
++    211, 255, 0,
++    217, 255, 0,
++    223, 255, 0,
++    229, 255, 0,
++    235, 255, 0,
++    241, 255, 0,
++    247, 255, 0,
++    253, 255, 0,
++    255, 251, 0,
++    255, 245, 0,
++    255, 239, 0,
++    255, 233, 0,
++    255, 227, 0,
++    255, 221, 0,
++    255, 215, 0,
++    255, 209, 0,
++    255, 203, 0,
++    255, 197, 0,
++    255, 191, 0,
++    255, 185, 0,
++    255, 179, 0,
++    255, 173, 0,
++    255, 167, 0,
++    255, 161, 0,
++    255, 155, 0,
++    255, 149, 0,
++    255, 143, 0,
++    255, 137, 0,
++    255, 131, 0,
++    255, 126, 0,
++    255, 120, 0,
++    255, 114, 0,
++    255, 108, 0,
++    255, 102, 0,
++    255, 96, 0,
++    255, 90, 0,
++    255, 84, 0,
++    255, 78, 0,
++    255, 72, 0,
++    255, 66, 0,
++    255, 60, 0,
++    255, 54, 0,
++    255, 48, 0,
++    255, 42, 0,
++    255, 36, 0,
++    255, 30, 0,
++    255, 24, 0,
++    255, 18, 0,
++    255, 12, 0,
++    255,  6, 0,
++    255,  0, 0,
++  };
++
++} // namespace image_view
++
++// Register the nodelet
++#include <pluginlib/class_list_macros.hpp>
++PLUGINLIB_EXPORT_CLASS( image_view::DisparityNodelet, nodelet::Nodelet)
+--- /dev/null
++++ ros-noetic-image-view-1.17.0/src/nodelets/image_nodelet.cpp
+@@ -0,0 +1,323 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++* 
++*  Copyright (c) 2008, Willow Garage, Inc.
++*  All rights reserved.
++* 
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++* 
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++* 
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++#include <image_view/ImageViewConfig.h>
++
++#include <ros/ros.h>
++#include <nodelet/nodelet.h>
++#include <image_transport/image_transport.h>
++#include <dynamic_reconfigure/server.h>
++
++#include <cv_bridge/cv_bridge.h>
++#include <opencv2/highgui/highgui.hpp>
++#include "window_thread.h"
++
++#include <boost/bind/bind.hpp>
++#include <boost/thread.hpp>
++#include <boost/format.hpp>
++
++
++namespace image_view {
++
++class ThreadSafeImage
++{
++  boost::mutex mutex_;
++  boost::condition_variable condition_;
++  cv::Mat image_;
++
++public:
++  void set(const cv::Mat& image);
++
++  cv::Mat get();
++
++  cv::Mat pop();
++};
++
++void ThreadSafeImage::set(const cv::Mat& image)
++{
++  boost::unique_lock<boost::mutex> lock(mutex_);
++  image_ = image;
++  condition_.notify_one();
++}
++
++cv::Mat ThreadSafeImage::get()
++{
++  boost::unique_lock<boost::mutex> lock(mutex_);
++  return image_;
++}
++
++cv::Mat ThreadSafeImage::pop()
++{
++  cv::Mat image;
++  {
++    boost::unique_lock<boost::mutex> lock(mutex_);
++    while (image_.empty())
++    {
++      condition_.wait(lock);
++    }
++    image = image_;
++    image_.release();
++  }
++  return image;
++}
++
++class ImageNodelet : public nodelet::Nodelet
++{
++  image_transport::Subscriber sub_;
++
++  boost::thread window_thread_;
++
++  ThreadSafeImage queued_image_, shown_image_;
++  
++  std::string window_name_;
++  bool autosize_;
++  boost::format filename_format_;
++  int count_;
++
++  ros::Publisher pub_;
++
++  dynamic_reconfigure::Server<image_view::ImageViewConfig> srv_;
++  bool do_dynamic_scaling_;
++  int colormap_;
++  double min_image_value_;
++  double max_image_value_;
++  
++  virtual void onInit();
++  
++  void reconfigureCb(image_view::ImageViewConfig &config, uint32_t level);
++
++  void imageCb(const sensor_msgs::ImageConstPtr& msg);
++
++  static void mouseCb(int event, int x, int y, int flags, void* param);
++
++  void windowThread();  
++
++public:
++  ImageNodelet();
++
++  ~ImageNodelet();
++};
++
++ImageNodelet::ImageNodelet()
++  : filename_format_(""), count_(0)
++{
++}
++
++ImageNodelet::~ImageNodelet()
++{
++  if (window_thread_.joinable())
++  {
++    window_thread_.interrupt();
++    window_thread_.join();
++  }
++}
++
++void ImageNodelet::onInit()
++{
++  ros::NodeHandle nh = getNodeHandle();
++  ros::NodeHandle local_nh = getPrivateNodeHandle();
++
++  // Command line argument parsing
++  const std::vector<std::string>& argv = getMyArgv();
++  // First positional argument is the transport type
++  std::string transport;
++  local_nh.param("image_transport", transport, std::string("raw"));
++  for (int i = 0; i < (int)argv.size(); ++i)
++  {
++    if (argv[i][0] != '-')
++    {
++      transport = argv[i];
++      break;
++    }
++  }
++  NODELET_INFO_STREAM("Using transport \"" << transport << "\"");
++  // Internal option, should be used only by the image_view node
++  bool shutdown_on_close = std::find(argv.begin(), argv.end(),
++                                     "--shutdown-on-close") != argv.end();
++
++  // Default window name is the resolved topic name
++  std::string topic = nh.resolveName("image");
++  local_nh.param("window_name", window_name_, topic);
++
++  local_nh.param("autosize", autosize_, false);
++  
++  std::string format_string;
++  local_nh.param("filename_format", format_string, std::string("frame%04i.jpg"));
++  filename_format_.parse(format_string);
++
++  window_thread_ = boost::thread(&ImageNodelet::windowThread, this);
++
++  image_transport::ImageTransport it(nh);
++  image_transport::TransportHints hints(transport, ros::TransportHints(), getPrivateNodeHandle());
++  sub_ = it.subscribe(topic, 1, &ImageNodelet::imageCb, this, hints);
++  pub_ = local_nh.advertise<sensor_msgs::Image>("output", 1);
++
++  dynamic_reconfigure::Server<image_view::ImageViewConfig>::CallbackType f =
++    boost::bind(&ImageNodelet::reconfigureCb, this, boost::placeholders::_1, boost::placeholders::_2);
++  srv_.setCallback(f);
++}
++
++void ImageNodelet::reconfigureCb(image_view::ImageViewConfig &config, uint32_t level)
++{
++  do_dynamic_scaling_ = config.do_dynamic_scaling;
++  colormap_ = config.colormap;
++  min_image_value_ = config.min_image_value;
++  max_image_value_ = config.max_image_value;
++}
++
++void ImageNodelet::imageCb(const sensor_msgs::ImageConstPtr& msg)
++{
++  // We want to scale floating point images so that they display nicely
++  bool do_dynamic_scaling;
++  if (msg->encoding.find("F") != std::string::npos) {
++    do_dynamic_scaling = true;
++  } else {
++    do_dynamic_scaling = do_dynamic_scaling_;
++  }
++
++  // Convert to OpenCV native BGR color
++  cv_bridge::CvImageConstPtr cv_ptr;
++  try {
++    cv_bridge::CvtColorForDisplayOptions options;
++    options.do_dynamic_scaling = do_dynamic_scaling;
++    options.colormap = colormap_;
++    // Set min/max value for scaling to visualize depth/float image.
++    if (min_image_value_ == max_image_value_) {
++      // Not specified by rosparam, then set default value.
++      // Because of current sensor limitation, we use 10m as default of max range of depth
++      // with consistency to the configuration in rqt_image_view.
++      options.min_image_value = 0;
++      if (msg->encoding == "32FC1") {
++        options.max_image_value = 10;  // 10 [m]
++      } else if (msg->encoding == "16UC1") {
++        options.max_image_value = 10 * 1000;  // 10 * 1000 [mm]
++      }
++    } else {
++      options.min_image_value = min_image_value_;
++      options.max_image_value = max_image_value_;
++    }
++    cv_ptr = cvtColorForDisplay(cv_bridge::toCvShare(msg), "", options);
++    queued_image_.set(cv_ptr->image.clone());
++  }
++  catch (cv_bridge::Exception& e) {
++    NODELET_ERROR_THROTTLE(30, "Unable to convert '%s' image for display: '%s'",
++                             msg->encoding.c_str(), e.what());
++  }
++  if (pub_.getNumSubscribers() > 0) {
++    pub_.publish(cv_ptr);
++  }
++}
++
++void ImageNodelet::mouseCb(int event, int x, int y, int flags, void* param)
++{
++  ImageNodelet *this_ = reinterpret_cast<ImageNodelet*>(param);
++  // Trick to use NODELET_* logging macros in static function
++  boost::function<const std::string&()> getName =
++    boost::bind(&ImageNodelet::getName, this_);
++
++  if (event == cv::EVENT_LBUTTONDOWN)
++  {
++    NODELET_WARN_ONCE("Left-clicking no longer saves images. Right-click instead.");
++    return;
++  }
++  if (event != cv::EVENT_RBUTTONDOWN)
++    return;
++  
++  cv::Mat image(this_->shown_image_.get());
++  if (image.empty())
++  {
++    NODELET_WARN("Couldn't save image, no data!");
++    return;
++  }
++
++  std::string filename;
++  try
++  {
++    filename = (this_->filename_format_ % this_->count_).str();
++  }
++  catch (const boost::io::too_many_args&)
++  {
++    NODELET_WARN_ONCE("Couldn't save image, filename_format is invalid.");
++    return;
++  }
++  if (cv::imwrite(filename, image))
++  {
++    NODELET_INFO("Saved image %s", filename.c_str());
++    this_->count_++;
++  }
++  else
++  {
++    /// @todo Show full path, ask if user has permission to write there
++    NODELET_ERROR("Failed to save image.");
++  }
++}
++
++void ImageNodelet::windowThread()
++{
++  cv::namedWindow(window_name_, autosize_ ? cv::WND_PROP_AUTOSIZE : 0);
++  cv::setMouseCallback(window_name_, &ImageNodelet::mouseCb, this);
++
++  try
++  {
++    while (ros::ok())
++    {
++      cv::Mat image(queued_image_.pop());
++      cv::imshow(window_name_, image);
++      shown_image_.set(image);
++      cv::waitKey(1);
++
++      if (cv::getWindowProperty(window_name_, 1) < 0)
++      {
++        break;
++      }
++    }
++  }
++  catch (const boost::thread_interrupted&)
++  {
++  }
++
++  cv::destroyWindow(window_name_);
++
++  pub_.shutdown();
++
++  if (ros::ok())
++  {
++    ros::shutdown();
++  }
++}
++
++} // namespace image_view
++
++// Register the nodelet
++#include <pluginlib/class_list_macros.hpp>
++PLUGINLIB_EXPORT_CLASS( image_view::ImageNodelet, nodelet::Nodelet)
+--- /dev/null
++++ ros-noetic-image-view-1.17.0/src/nodelets/window_thread.cpp
+@@ -0,0 +1,52 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++* 
++*  Copyright (c) 2008, Willow Garage, Inc.
++*  All rights reserved.
++* 
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++* 
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++* 
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++#include "window_thread.h"
++#include <opencv2/highgui/highgui.hpp>
++#include <boost/thread.hpp>
++
++namespace {
++void startWindowThreadLocal() {
++  cv::startWindowThread();
++}
++}
++
++namespace image_view {
++
++void startWindowThread()
++{
++  static boost::once_flag cv_thread_flag = BOOST_ONCE_INIT;
++  boost::call_once(&startWindowThreadLocal, cv_thread_flag);
++}
++
++} // namespace image_view
+--- /dev/null
++++ ros-noetic-image-view-1.17.0/src/nodelets/window_thread.h
+@@ -0,0 +1,44 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++* 
++*  Copyright (c) 2008, Willow Garage, Inc.
++*  All rights reserved.
++* 
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++* 
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++* 
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++#ifndef IMAGE_VIEW_WINDOW_THREAD_H
++#define IMAGE_VIEW_WINDOW_THREAD_H
++
++namespace image_view {
++
++// Makes absolutely sure we only start the OpenCV window thread once
++void startWindowThread();
++
++} // namespace image_view
++
++#endif
+--- /dev/null
++++ ros-noetic-image-view-1.17.0/src/nodes/disparity_view.cpp
+@@ -0,0 +1,54 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++* 
++*  Copyright (c) 2008, Willow Garage, Inc.
++*  All rights reserved.
++* 
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++* 
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++* 
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++#include <ros/ros.h>
++#include <nodelet/loader.h>
++
++int main(int argc, char **argv)
++{
++  ros::init(argc, argv, "disparity_view", ros::init_options::AnonymousName);
++  if (ros::names::remap("image") == "image") {
++    ROS_WARN("Topic 'image' has not been remapped! Typical command-line usage:\n"
++             "\t$ rosrun image_view disparity_view image:=<disparity image topic>");
++  }
++
++  nodelet::Loader manager(false);
++  nodelet::M_string remappings;
++  nodelet::V_string my_argv(argv + 1, argv + argc);
++  my_argv.push_back("--shutdown-on-close"); // Internal
++
++  manager.load(ros::this_node::getName(), "image_view/disparity", remappings, my_argv);
++
++  ros::spin();
++  return 0;
++}
+--- /dev/null
++++ ros-noetic-image-view-1.17.0/src/nodes/extract_images.cpp
+@@ -0,0 +1,178 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++*
++*  Copyright (c) 2008, Willow Garage, Inc.
++*  All rights reserved.
++*
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++*
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++*
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++
++#include <opencv2/highgui/highgui.hpp>
++
++#include <ros/ros.h>
++#include <sensor_msgs/Image.h>
++#include <cv_bridge/cv_bridge.h>
++#include <image_transport/image_transport.h>
++
++#include <boost/thread.hpp>
++#include <boost/format.hpp>
++
++#include <fstream>
++
++class ExtractImages
++{
++private:
++  image_transport::Subscriber sub_;
++
++  sensor_msgs::ImageConstPtr last_msg_;
++  boost::mutex image_mutex_;
++
++  std::string window_name_;
++  boost::format filename_format_;
++  int count_;
++  double _time;
++  double sec_per_frame_;
++
++#if defined(_VIDEO)
++  CvVideoWriter* video_writer;
++#endif //_VIDEO
++
++public:
++  ExtractImages(const ros::NodeHandle& nh, const std::string& transport)
++    : filename_format_(""), count_(0), _time(ros::Time::now().toSec())
++  {
++    std::string topic = nh.resolveName("image");
++    ros::NodeHandle local_nh("~");
++
++    std::string format_string;
++    local_nh.param("filename_format", format_string, std::string("frame%04i.jpg"));
++    filename_format_.parse(format_string);
++
++    local_nh.param("sec_per_frame", sec_per_frame_, 0.1);
++
++    image_transport::ImageTransport it(nh);
++    sub_ = it.subscribe(topic, 1, &ExtractImages::image_cb, this, transport);
++
++#if defined(_VIDEO)
++    video_writer = 0;
++#endif
++
++    ROS_INFO("Initialized sec per frame to %f", sec_per_frame_);
++  }
++
++  ~ExtractImages()
++  {
++  }
++
++  void image_cb(const sensor_msgs::ImageConstPtr& msg)
++  {
++    boost::lock_guard<boost::mutex> guard(image_mutex_);
++
++    // Hang on to message pointer for sake of mouse_cb
++    last_msg_ = msg;
++
++    // May want to view raw bayer data
++    // NB: This is hacky, but should be OK since we have only one image CB.
++    if (msg->encoding.find("bayer") != std::string::npos)
++      boost::const_pointer_cast<sensor_msgs::Image>(msg)->encoding = "mono8";
++
++    cv::Mat image;
++    try
++    {
++      image = cv_bridge::toCvShare(msg, "bgr8")->image;
++    } catch(cv_bridge::Exception)
++    {
++      ROS_ERROR("Unable to convert %s image to bgr8", msg->encoding.c_str());
++    }
++
++    double delay = ros::Time::now().toSec()-_time;
++    if(delay >= sec_per_frame_)
++    {
++      _time = ros::Time::now().toSec();
++
++      if (!image.empty()) {
++        std::string filename = (filename_format_ % count_).str();
++
++#if !defined(_VIDEO)
++        // Save raw image if the defined file extension is ".raw", otherwise use OpenCV
++        std::string file_extension = filename.substr(filename.length() - 4, 4);
++        if (filename.length() >= 4 && file_extension == ".raw")
++        {
++          std::ofstream raw_file;
++          raw_file.open(filename.c_str());
++          if (raw_file.is_open() == false)
++          {
++            ROS_WARN_STREAM("Failed to open file " << filename);
++          }
++          else
++          {
++            raw_file.write((char*)(msg->data.data()), msg->data.size());
++            raw_file.close();
++          }
++        }
++        else
++        {
++          if (cv::imwrite(filename, image) == false)
++          {
++            ROS_WARN_STREAM("Failed to save image " << filename);
++          }
++        }
++#else
++        if(!video_writer)
++        {
++            video_writer = cvCreateVideoWriter("video.avi", CV_FOURCC('M','J','P','G'),
++                int(1.0/sec_per_frame_), cvSize(image->width, image->height));
++        }
++
++        cvWriteFrame(video_writer, image);
++#endif // _VIDEO
++
++        ROS_INFO("Saved image %s", filename.c_str());
++        count_++;
++      } else {
++        ROS_WARN("Couldn't save image, no data!");
++      }
++    }
++  }
++};
++
++int main(int argc, char **argv)
++{
++  ros::init(argc, argv, "extract_images", ros::init_options::AnonymousName);
++  ros::NodeHandle n;
++  if (n.resolveName("image") == "/image") {
++    ROS_WARN("extract_images: image has not been remapped! Typical command-line usage:\n"
++             "\t$ ./extract_images image:=<image topic> [transport]");
++  }
++
++  ExtractImages view(n, (argc > 1) ? argv[1] : "raw");
++
++  ros::spin();
++
++  return 0;
++}
+--- /dev/null
++++ ros-noetic-image-view-1.17.0/src/nodes/image_saver.cpp
+@@ -0,0 +1,226 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++* 
++*  Copyright (c) 2008, Willow Garage, Inc.
++*  All rights reserved.
++* 
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++* 
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++* 
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++#include <opencv2/highgui/highgui.hpp>
++
++#include <ros/ros.h>
++#include <cv_bridge/cv_bridge.h>
++#include <image_transport/image_transport.h>
++#include <camera_calibration_parsers/parse.h>
++#include <boost/format.hpp>
++
++#include <std_srvs/Empty.h>
++#include <std_srvs/Trigger.h>
++
++boost::format g_format;
++bool save_all_image, save_image_service;
++std::string encoding;
++bool request_start_end;
++
++
++bool service(std_srvs::Empty::Request &req, std_srvs::Empty::Response &res) {
++  save_image_service = true;
++  return true;
++}
++
++/** Class to deal with which callback to call whether we have CameraInfo or not
++ */
++class Callbacks {
++public:
++  Callbacks() : is_first_image_(true), has_camera_info_(false), count_(0) {
++  }
++
++  bool callbackStartSave(std_srvs::Trigger::Request &req,
++                         std_srvs::Trigger::Response &res)
++  {
++    ROS_INFO("Received start saving request");
++    start_time_ = ros::Time::now();
++    end_time_ = ros::Time(0);
++
++    res.success = true;
++    return true;
++  }
++
++  bool callbackEndSave(std_srvs::Trigger::Request &req,
++                       std_srvs::Trigger::Response &res)
++  {
++    ROS_INFO("Received end saving request");
++    end_time_ = ros::Time::now();
++
++    res.success = true;
++    return true;
++  }
++
++  void callbackWithoutCameraInfo(const sensor_msgs::ImageConstPtr& image_msg)
++  {
++    if (is_first_image_) {
++      is_first_image_ = false;
++
++      // Wait a tiny bit to see whether callbackWithCameraInfo is called
++      ros::Duration(0.001).sleep();
++    }
++
++    if (has_camera_info_)
++      return;
++
++    // saving flag priority:
++    //  1. request by service.
++    //  2. request by topic about start and end.
++    //  3. flag 'save_all_image'.
++    if (!save_image_service && request_start_end) {
++      if (start_time_ == ros::Time(0))
++        return;
++      else if (start_time_ > image_msg->header.stamp)
++        return;  // wait for message which comes after start_time
++      else if ((end_time_ != ros::Time(0)) && (end_time_ < image_msg->header.stamp))
++        return;  // skip message which comes after end_time
++    }
++
++    // save the image
++    std::string filename;
++    if (!saveImage(image_msg, filename))
++      return;
++
++    count_++;
++  }
++
++  void callbackWithCameraInfo(const sensor_msgs::ImageConstPtr& image_msg, const sensor_msgs::CameraInfoConstPtr& info)
++  {
++    has_camera_info_ = true;
++
++    if (!save_image_service && request_start_end) {
++      if (start_time_ == ros::Time(0))
++        return;
++      else if (start_time_ > image_msg->header.stamp)
++        return;  // wait for message which comes after start_time
++      else if ((end_time_ != ros::Time(0)) && (end_time_ < image_msg->header.stamp))
++        return;  // skip message which comes after end_time
++    }
++
++    // save the image
++    std::string filename;
++    if (!saveImage(image_msg, filename))
++      return;
++
++    // save the CameraInfo
++    if (info) {
++      filename = filename.replace(filename.rfind("."), filename.length(), ".ini");
++      camera_calibration_parsers::writeCalibration(filename, "camera", *info);
++    }
++
++    count_++;
++  }
++private:
++  bool saveImage(const sensor_msgs::ImageConstPtr& image_msg, std::string &filename) {
++    cv::Mat image;
++    try
++    {
++      image = cv_bridge::toCvShare(image_msg, encoding)->image;
++    } catch(cv_bridge::Exception)
++    {
++      ROS_ERROR("Unable to convert %s image to %s", image_msg->encoding.c_str(), encoding.c_str());
++      return false;
++    }
++
++    if (!image.empty()) {
++      try {
++        filename = (g_format).str();
++      } catch (...) { g_format.clear(); }
++      try {
++        filename = (g_format % count_).str();
++      } catch (...) { g_format.clear(); }
++      try { 
++        filename = (g_format % count_ % "jpg").str();
++      } catch (...) { g_format.clear(); }
++
++      if ( save_all_image || save_image_service ) {
++        cv::imwrite(filename, image);
++        ROS_INFO("Saved image %s", filename.c_str());
++
++        save_image_service = false;
++      } else {
++        return false;
++      }
++    } else {
++      ROS_WARN("Couldn't save image, no data!");
++      return false;
++    }
++    return true;
++  }
++
++private:
++  bool is_first_image_;
++  bool has_camera_info_;
++  size_t count_;
++  ros::Time start_time_;
++  ros::Time end_time_;
++};
++
++int main(int argc, char** argv)
++{
++  ros::init(argc, argv, "image_saver", ros::init_options::AnonymousName);
++  ros::NodeHandle nh;
++  image_transport::ImageTransport it(nh);
++  std::string topic = nh.resolveName("image");
++
++  Callbacks callbacks;
++  // Useful when CameraInfo is being published
++  image_transport::CameraSubscriber sub_image_and_camera = it.subscribeCamera(topic, 1,
++                                                                              &Callbacks::callbackWithCameraInfo,
++                                                                              &callbacks);
++  // Useful when CameraInfo is not being published
++  image_transport::Subscriber sub_image = it.subscribe(
++      topic, 1, boost::bind(&Callbacks::callbackWithoutCameraInfo, &callbacks, boost::placeholders::_1));
++
++  ros::NodeHandle local_nh("~");
++  std::string format_string;
++  local_nh.param("filename_format", format_string, std::string("left%04i.%s"));
++  local_nh.param("encoding", encoding, std::string("bgr8"));
++  local_nh.param("save_all_image", save_all_image, true);
++  local_nh.param("request_start_end", request_start_end, false);
++  g_format.parse(format_string);
++  ros::ServiceServer save = local_nh.advertiseService ("save", service);
++
++  if (request_start_end && !save_all_image)
++    ROS_WARN("'request_start_end' is true, so overwriting 'save_all_image' as true");
++
++  // FIXME(unkown): This does not make services appear
++  // if (request_start_end) {
++    ros::ServiceServer srv_start = local_nh.advertiseService(
++      "start", &Callbacks::callbackStartSave, &callbacks);
++    ros::ServiceServer srv_end = local_nh.advertiseService(
++      "end", &Callbacks::callbackEndSave, &callbacks);
++  // }
++
++  ros::spin();
++}
+--- /dev/null
++++ ros-noetic-image-view-1.17.0/src/nodes/image_view.cpp
+@@ -0,0 +1,52 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++*
++*  Copyright (c) 2008, 2019 Willow Garage, Inc., Joshua Whitley
++*  All rights reserved.
++*
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++*
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++*
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++
++#include <ros/ros.h>
++#include <nodelet/loader.h>
++
++int main(int argc, char** argv)
++{
++  ros::init(argc, argv, "image_view");
++
++  nodelet::Loader nodelet;
++  nodelet::M_string remap(ros::names::getRemappings());
++  nodelet::V_string nargv;
++
++  std::string nodelet_name = ros::this_node::getName();
++  nodelet.load(nodelet_name, "image_view/image", remap, nargv);
++
++  ros::spin();
++
++  return 0;
++}
+--- /dev/null
++++ ros-noetic-image-view-1.17.0/src/nodes/stereo_view.cpp
+@@ -0,0 +1,554 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++* 
++*  Copyright (c) 2008, Willow Garage, Inc.
++*  All rights reserved.
++* 
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++* 
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++* 
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++
++#include <opencv2/highgui/highgui.hpp>
++
++#include <ros/ros.h>
++#include <sensor_msgs/Image.h>
++#include <sensor_msgs/image_encodings.h>
++#include <stereo_msgs/DisparityImage.h>
++#include <cv_bridge/cv_bridge.h>
++
++#include <message_filters/subscriber.h>
++#include <message_filters/synchronizer.h>
++#include <message_filters/sync_policies/exact_time.h>
++#include <message_filters/sync_policies/approximate_time.h>
++#include <image_transport/subscriber_filter.h>
++
++#include <boost/thread.hpp>
++#include <boost/format.hpp>
++
++
++namespace enc = sensor_msgs::image_encodings;
++
++// colormap for disparities, RGB
++static unsigned char colormap[768] = 
++  { 150, 150, 150,
++    107, 0, 12,
++    106, 0, 18,
++    105, 0, 24,
++    103, 0, 30,
++    102, 0, 36,
++    101, 0, 42,
++    99, 0, 48,
++    98, 0, 54,
++    97, 0, 60,
++    96, 0, 66,
++    94, 0, 72,
++    93, 0, 78,
++    92, 0, 84,
++    91, 0, 90,
++    89, 0, 96,
++    88, 0, 102,
++    87, 0, 108,
++    85, 0, 114,
++    84, 0, 120,
++    83, 0, 126,
++    82, 0, 131,
++    80, 0, 137,
++    79, 0, 143,
++    78, 0, 149,
++    77, 0, 155,
++    75, 0, 161,
++    74, 0, 167,
++    73, 0, 173,
++    71, 0, 179,
++    70, 0, 185,
++    69, 0, 191,
++    68, 0, 197,
++    66, 0, 203,
++    65, 0, 209,
++    64, 0, 215,
++    62, 0, 221,
++    61, 0, 227,
++    60, 0, 233,
++    59, 0, 239,
++    57, 0, 245,
++    56, 0, 251,
++    55, 0, 255,
++    54, 0, 255,
++    52, 0, 255,
++    51, 0, 255,
++    50, 0, 255,
++    48, 0, 255,
++    47, 0, 255,
++    46, 0, 255,
++    45, 0, 255,
++    43, 0, 255,
++    42, 0, 255,
++    41, 0, 255,
++    40, 0, 255,
++    38, 0, 255,
++    37, 0, 255,
++    36, 0, 255,
++    34, 0, 255,
++    33, 0, 255,
++    32, 0, 255,
++    31, 0, 255,
++    29, 0, 255,
++    28, 0, 255,
++    27, 0, 255,
++    26, 0, 255,
++    24, 0, 255,
++    23, 0, 255,
++    22, 0, 255,
++    20, 0, 255,
++    19, 0, 255,
++    18, 0, 255,
++    17, 0, 255,
++    15, 0, 255,
++    14, 0, 255,
++    13, 0, 255,
++    11, 0, 255,
++    10, 0, 255,
++    9, 0, 255,
++    8, 0, 255,
++    6, 0, 255,
++    5, 0, 255,
++    4, 0, 255,
++    3, 0, 255,
++    1, 0, 255,
++    0, 4, 255,
++    0, 10, 255,
++    0, 16, 255,
++    0, 22, 255,
++    0, 28, 255,
++    0, 34, 255,
++    0, 40, 255,
++    0, 46, 255,
++    0, 52, 255,
++    0, 58, 255,
++    0, 64, 255,
++    0, 70, 255,
++    0, 76, 255,
++    0, 82, 255,
++    0, 88, 255,
++    0, 94, 255,
++    0, 100, 255,
++    0, 106, 255,
++    0, 112, 255,
++    0, 118, 255,
++    0, 124, 255,
++    0, 129, 255,
++    0, 135, 255,
++    0, 141, 255,
++    0, 147, 255,
++    0, 153, 255,
++    0, 159, 255,
++    0, 165, 255,
++    0, 171, 255,
++    0, 177, 255,
++    0, 183, 255,
++    0, 189, 255,
++    0, 195, 255,
++    0, 201, 255,
++    0, 207, 255,
++    0, 213, 255,
++    0, 219, 255,
++    0, 225, 255,
++    0, 231, 255,
++    0, 237, 255,
++    0, 243, 255,
++    0, 249, 255,
++    0, 255, 255,
++    0, 255, 249,
++    0, 255, 243,
++    0, 255, 237,
++    0, 255, 231,
++    0, 255, 225,
++    0, 255, 219,
++    0, 255, 213,
++    0, 255, 207,
++    0, 255, 201,
++    0, 255, 195,
++    0, 255, 189,
++    0, 255, 183,
++    0, 255, 177,
++    0, 255, 171,
++    0, 255, 165,
++    0, 255, 159,
++    0, 255, 153,
++    0, 255, 147,
++    0, 255, 141,
++    0, 255, 135,
++    0, 255, 129,
++    0, 255, 124,
++    0, 255, 118,
++    0, 255, 112,
++    0, 255, 106,
++    0, 255, 100,
++    0, 255, 94,
++    0, 255, 88,
++    0, 255, 82,
++    0, 255, 76,
++    0, 255, 70,
++    0, 255, 64,
++    0, 255, 58,
++    0, 255, 52,
++    0, 255, 46,
++    0, 255, 40,
++    0, 255, 34,
++    0, 255, 28,
++    0, 255, 22,
++    0, 255, 16,
++    0, 255, 10,
++    0, 255, 4,
++    2, 255, 0,
++    8, 255, 0,
++    14, 255, 0,
++    20, 255, 0,
++    26, 255, 0,
++    32, 255, 0,
++    38, 255, 0,
++    44, 255, 0,
++    50, 255, 0,
++    56, 255, 0,
++    62, 255, 0,
++    68, 255, 0,
++    74, 255, 0,
++    80, 255, 0,
++    86, 255, 0,
++    92, 255, 0,
++    98, 255, 0,
++    104, 255, 0,
++    110, 255, 0,
++    116, 255, 0,
++    122, 255, 0,
++    128, 255, 0,
++    133, 255, 0,
++    139, 255, 0,
++    145, 255, 0,
++    151, 255, 0,
++    157, 255, 0,
++    163, 255, 0,
++    169, 255, 0,
++    175, 255, 0,
++    181, 255, 0,
++    187, 255, 0,
++    193, 255, 0,
++    199, 255, 0,
++    205, 255, 0,
++    211, 255, 0,
++    217, 255, 0,
++    223, 255, 0,
++    229, 255, 0,
++    235, 255, 0,
++    241, 255, 0,
++    247, 255, 0,
++    253, 255, 0,
++    255, 251, 0,
++    255, 245, 0,
++    255, 239, 0,
++    255, 233, 0,
++    255, 227, 0,
++    255, 221, 0,
++    255, 215, 0,
++    255, 209, 0,
++    255, 203, 0,
++    255, 197, 0,
++    255, 191, 0,
++    255, 185, 0,
++    255, 179, 0,
++    255, 173, 0,
++    255, 167, 0,
++    255, 161, 0,
++    255, 155, 0,
++    255, 149, 0,
++    255, 143, 0,
++    255, 137, 0,
++    255, 131, 0,
++    255, 126, 0,
++    255, 120, 0,
++    255, 114, 0,
++    255, 108, 0,
++    255, 102, 0,
++    255, 96, 0,
++    255, 90, 0,
++    255, 84, 0,
++    255, 78, 0,
++    255, 72, 0,
++    255, 66, 0,
++    255, 60, 0,
++    255, 54, 0,
++    255, 48, 0,
++    255, 42, 0,
++    255, 36, 0,
++    255, 30, 0,
++    255, 24, 0,
++    255, 18, 0,
++    255, 12, 0,
++    255,  6, 0,
++    255,  0, 0,
++  };
++
++inline void increment(int* value)
++{
++  ++(*value);
++}
++
++using namespace sensor_msgs;
++using namespace stereo_msgs;
++using namespace message_filters::sync_policies;
++
++// Note: StereoView is NOT nodelet-based, as it synchronizes the three streams.
++class StereoView
++{
++private:
++  image_transport::SubscriberFilter left_sub_, right_sub_;
++  message_filters::Subscriber<DisparityImage> disparity_sub_;
++  typedef ExactTime<Image, Image, DisparityImage> ExactPolicy;
++  typedef ApproximateTime<Image, Image, DisparityImage> ApproximatePolicy;
++  typedef message_filters::Synchronizer<ExactPolicy> ExactSync;
++  typedef message_filters::Synchronizer<ApproximatePolicy> ApproximateSync;
++  boost::shared_ptr<ExactSync> exact_sync_;
++  boost::shared_ptr<ApproximateSync> approximate_sync_;
++  int queue_size_;
++  
++  ImageConstPtr last_left_msg_, last_right_msg_;
++  cv::Mat last_left_image_, last_right_image_;
++  cv::Mat_<cv::Vec3b> disparity_color_;
++  boost::mutex image_mutex_;
++  
++  boost::format filename_format_;
++  int save_count_;
++
++  ros::WallTimer check_synced_timer_;
++  int left_received_, right_received_, disp_received_, all_received_;
++
++public:
++  StereoView(const std::string& transport)
++    : filename_format_(""), save_count_(0),
++      left_received_(0), right_received_(0), disp_received_(0), all_received_(0)
++  {
++    // Read local parameters
++    ros::NodeHandle local_nh("~");
++    bool autosize;
++    local_nh.param("autosize", autosize, true);
++    
++    std::string format_string;
++    local_nh.param("filename_format", format_string, std::string("%s%04i.jpg"));
++    filename_format_.parse(format_string);
++
++    // Do GUI window setup
++    int flags = autosize ? cv::WND_PROP_AUTOSIZE : 0;
++    cv::namedWindow("left", flags);
++    cv::namedWindow("right", flags);
++    cv::namedWindow("disparity", flags);
++    cv::setMouseCallback("left",      &StereoView::mouseCb, this);
++    cv::setMouseCallback("right",     &StereoView::mouseCb, this);
++    cv::setMouseCallback("disparity", &StereoView::mouseCb, this);
++#if CV_MAJOR_VERSION == 2
++    cvStartWindowThread();
++#endif
++
++    // Resolve topic names
++    ros::NodeHandle nh;
++    std::string stereo_ns = nh.resolveName("stereo");
++    std::string left_topic = ros::names::clean(stereo_ns + "/left/" + nh.resolveName("image"));
++    std::string right_topic = ros::names::clean(stereo_ns + "/right/" + nh.resolveName("image"));
++    std::string disparity_topic = ros::names::clean(stereo_ns + "/disparity");
++    ROS_INFO("Subscribing to:\n\t* %s\n\t* %s\n\t* %s", left_topic.c_str(), right_topic.c_str(),
++             disparity_topic.c_str());
++
++    // Subscribe to three input topics.
++    image_transport::ImageTransport it(nh);
++    left_sub_.subscribe(it, left_topic, 1, transport);
++    right_sub_.subscribe(it, right_topic, 1, transport);
++    disparity_sub_.subscribe(nh, disparity_topic, 1);
++
++    // Complain every 30s if the topics appear unsynchronized
++    left_sub_.registerCallback(boost::bind(increment, &left_received_));
++    right_sub_.registerCallback(boost::bind(increment, &right_received_));
++    disparity_sub_.registerCallback(boost::bind(increment, &disp_received_));
++    check_synced_timer_ = nh.createWallTimer(ros::WallDuration(15.0),
++                                             boost::bind(&StereoView::checkInputsSynchronized, this));
++
++    // Synchronize input topics. Optionally do approximate synchronization.
++    local_nh.param("queue_size", queue_size_, 5);
++    bool approx;
++    local_nh.param("approximate_sync", approx, false);
++    if (approx)
++    {
++      approximate_sync_.reset( new ApproximateSync(ApproximatePolicy(queue_size_),
++                                                   left_sub_, right_sub_, disparity_sub_) );
++      approximate_sync_->registerCallback(boost::bind(&StereoView::imageCb, this, boost::placeholders::_1, boost::placeholders::_2, boost::placeholders::_3));
++    }
++    else
++    {
++      exact_sync_.reset( new ExactSync(ExactPolicy(queue_size_),
++                                       left_sub_, right_sub_, disparity_sub_) );
++      exact_sync_->registerCallback(boost::bind(&StereoView::imageCb, this, boost::placeholders::_1, boost::placeholders::_2, boost::placeholders::_3));
++    }
++  }
++
++  ~StereoView()
++  {
++    cv::destroyAllWindows();
++  }
++
++  void imageCb(const ImageConstPtr& left, const ImageConstPtr& right,
++               const DisparityImageConstPtr& disparity_msg)
++  {
++    ++all_received_; // For error checking
++    
++    image_mutex_.lock();
++
++    // May want to view raw bayer data
++    if (left->encoding.find("bayer") != std::string::npos)
++      boost::const_pointer_cast<Image>(left)->encoding = "mono8";
++    if (right->encoding.find("bayer") != std::string::npos)
++      boost::const_pointer_cast<Image>(right)->encoding = "mono8";
++
++    // Hang on to image data for sake of mouseCb
++    last_left_msg_ = left;
++    last_right_msg_ = right;
++    try {
++      last_left_image_ = cv_bridge::toCvShare(left, "bgr8")->image;
++      last_right_image_ = cv_bridge::toCvShare(right, "bgr8")->image;
++    }
++    catch (cv_bridge::Exception& e) {
++      ROS_ERROR("Unable to convert one of '%s' or '%s' to 'bgr8'",
++                left->encoding.c_str(), right->encoding.c_str());
++    }
++
++    // Colormap and display the disparity image
++    float min_disparity = disparity_msg->min_disparity;
++    float max_disparity = disparity_msg->max_disparity;
++    float multiplier = 255.0f / (max_disparity - min_disparity);
++
++    assert(disparity_msg->image.encoding == enc::TYPE_32FC1);
++    const cv::Mat_<float> dmat(disparity_msg->image.height, disparity_msg->image.width,
++                               (float*)&disparity_msg->image.data[0], disparity_msg->image.step);
++    disparity_color_.create(disparity_msg->image.height, disparity_msg->image.width);
++    
++    for (int row = 0; row < disparity_color_.rows; ++row) {
++      const float* d = dmat[row];
++      for (int col = 0; col < disparity_color_.cols; ++col) {
++        int index = (d[col] - min_disparity) * multiplier + 0.5;
++        index = std::min(255, std::max(0, index));
++        // Fill as BGR
++        disparity_color_(row, col)[2] = colormap[3*index + 0];
++        disparity_color_(row, col)[1] = colormap[3*index + 1];
++        disparity_color_(row, col)[0] = colormap[3*index + 2];
++      }
++    }
++
++    // Must release the mutex before calling cv::imshow, or can deadlock against
++    // OpenCV's window mutex.
++    image_mutex_.unlock();
++    if (!last_left_image_.empty()) {
++      cv::imshow("left", last_left_image_);
++      cv::waitKey(1);
++    }
++    if (!last_right_image_.empty()) {
++      cv::imshow("right", last_right_image_);
++      cv::waitKey(1);
++    }
++    cv::imshow("disparity", disparity_color_);
++    cv::waitKey(1);
++  }
++
++  void saveImage(const char* prefix, const cv::Mat& image)
++  {
++    if (!image.empty()) {
++      std::string filename = (filename_format_ % prefix % save_count_).str();
++      cv::imwrite(filename, image);
++      ROS_INFO("Saved image %s", filename.c_str());
++    } else {
++      ROS_WARN("Couldn't save %s image, no data!", prefix);
++    }
++  }
++  
++  static void mouseCb(int event, int x, int y, int flags, void* param)
++  {
++    if (event == cv::EVENT_LBUTTONDOWN)
++    {
++      ROS_WARN_ONCE("Left-clicking no longer saves images. Right-click instead.");
++      return;
++    }
++    if (event != cv::EVENT_RBUTTONDOWN)
++      return;
++    
++    StereoView *sv = (StereoView*)param;
++    boost::lock_guard<boost::mutex> guard(sv->image_mutex_);
++
++    sv->saveImage("left",  sv->last_left_image_);
++    sv->saveImage("right", sv->last_right_image_);
++    sv->saveImage("disp",  sv->disparity_color_);
++    sv->save_count_++;
++  }
++
++  void checkInputsSynchronized()
++  {
++    int threshold = 3 * all_received_;
++    if (left_received_ >= threshold || right_received_ >= threshold || disp_received_ >= threshold) {
++      ROS_WARN("[stereo_view] Low number of synchronized left/right/disparity triplets received.\n"
++               "Left images received:      %d (topic '%s')\n"
++               "Right images received:     %d (topic '%s')\n"
++               "Disparity images received: %d (topic '%s')\n"
++               "Synchronized triplets: %d\n"
++               "Possible issues:\n"
++               "\t* stereo_image_proc is not running.\n"
++               "\t  Does `rosnode info %s` show any connections?\n"
++               "\t* The cameras are not synchronized.\n"
++               "\t  Try restarting stereo_view with parameter _approximate_sync:=True\n"
++               "\t* The network is too slow. One or more images are dropped from each triplet.\n"
++               "\t  Try restarting stereo_view, increasing parameter 'queue_size' (currently %d)",
++               left_received_, left_sub_.getTopic().c_str(),
++               right_received_, right_sub_.getTopic().c_str(),
++               disp_received_, disparity_sub_.getTopic().c_str(),
++               all_received_, ros::this_node::getName().c_str(), queue_size_);
++    }
++  }
++};
++
++int main(int argc, char **argv)
++{
++  ros::init(argc, argv, "stereo_view", ros::init_options::AnonymousName);
++  if (ros::names::remap("stereo") == "stereo") {
++    ROS_WARN("'stereo' has not been remapped! Example command-line usage:\n"
++             "\t$ rosrun image_view stereo_view stereo:=narrow_stereo image:=image_color");
++  }
++  if (ros::names::remap("image") == "/image_raw") {
++    ROS_WARN("There is a delay between when the camera drivers publish the raw images and "
++             "when stereo_image_proc publishes the computed point cloud. stereo_view "
++             "may fail to synchronize these topics without a large queue_size.");
++  }
++
++  std::string transport = argc > 1 ? argv[1] : "raw";
++  StereoView view(transport);
++  
++  ros::spin();
++  return 0;
++}
+--- /dev/null
++++ ros-noetic-image-view-1.17.0/src/nodes/video_recorder.cpp
+@@ -0,0 +1,141 @@
++/****************************************************************************
++* Software License Agreement (Apache License)
++*
++*     Copyright (C) 2012-2013 Open Source Robotics Foundation
++*
++*     Licensed under the Apache License, Version 2.0 (the "License");
++*     you may not use this file except in compliance with the License.
++*     You may obtain a copy of the License at
++*
++*     http://www.apache.org/licenses/LICENSE-2.0
++*
++*     Unless required by applicable law or agreed to in writing, software
++*     distributed under the License is distributed on an "AS IS" BASIS,
++*     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++*     See the License for the specific language governing permissions and
++*     limitations under the License.
++*
++*****************************************************************************/
++
++#include <opencv2/highgui/highgui.hpp>
++#include <ros/ros.h>
++#include <sensor_msgs/image_encodings.h>
++#include <cv_bridge/cv_bridge.h>
++#include <image_transport/image_transport.h>
++#include <camera_calibration_parsers/parse.h>
++#if CV_MAJOR_VERSION == 3
++#include <opencv2/videoio.hpp>
++#endif
++
++cv::VideoWriter outputVideo;
++
++int g_count = 0;
++ros::Time g_last_wrote_time = ros::Time(0);
++std::string encoding;
++std::string codec;
++double fps;
++std::string filename;
++double min_depth_range;
++double max_depth_range;
++bool use_dynamic_range;
++int colormap;
++
++
++void callback(const sensor_msgs::ImageConstPtr& image_msg)
++{
++    if (!outputVideo.isOpened()) {
++
++        cv::Size size(image_msg->width, image_msg->height);
++
++        outputVideo.open(filename, 
++#if CV_MAJOR_VERSION >= 3
++                cv::VideoWriter::fourcc(codec.c_str()[0],
++#else
++                CV_FOURCC(codec.c_str()[0],
++#endif
++                          codec.c_str()[1],
++                          codec.c_str()[2],
++                          codec.c_str()[3]), 
++                fps,
++                size,
++                true);
++
++        if (!outputVideo.isOpened())
++        {
++            ROS_ERROR("Could not create the output video! Check filename and/or support for codec.");
++            exit(-1);
++        }
++
++        ROS_INFO_STREAM("Starting to record " << codec << " video at " << size << "@" << fps << "fps. Press Ctrl+C to stop recording." );
++
++    }
++
++    if ((image_msg->header.stamp - g_last_wrote_time) < ros::Duration(1.0 / fps))
++    {
++      // Skip to get video with correct fps
++      return;
++    }
++
++    try
++    {
++      cv_bridge::CvtColorForDisplayOptions options;
++      options.do_dynamic_scaling = use_dynamic_range;
++      options.min_image_value = min_depth_range;
++      options.max_image_value = max_depth_range;
++      options.colormap = colormap;
++      const cv::Mat image = cv_bridge::cvtColorForDisplay(cv_bridge::toCvShare(image_msg), encoding, options)->image;
++      if (!image.empty()) {
++        outputVideo << image;
++        ROS_INFO_STREAM("Recording frame " << g_count << "\x1b[1F");
++        g_count++;
++        g_last_wrote_time = image_msg->header.stamp;
++      } else {
++          ROS_WARN("Frame skipped, no data!");
++      }
++    } catch(cv_bridge::Exception)
++    {
++        ROS_ERROR("Unable to convert %s image to %s", image_msg->encoding.c_str(), encoding.c_str());
++        return;
++    }
++}
++
++int main(int argc, char** argv)
++{
++    ros::init(argc, argv, "video_recorder", ros::init_options::AnonymousName);
++    ros::NodeHandle nh;
++    ros::NodeHandle local_nh("~");
++    local_nh.param("filename", filename, std::string("output.avi"));
++    bool stamped_filename;
++    local_nh.param("stamped_filename", stamped_filename, false);
++    local_nh.param("fps", fps, 15.0);
++    local_nh.param("codec", codec, std::string("MJPG"));
++    local_nh.param("encoding", encoding, std::string("bgr8"));
++    // cv_bridge::CvtColorForDisplayOptions
++    local_nh.param("min_depth_range", min_depth_range, 0.0);
++    local_nh.param("max_depth_range", max_depth_range, 0.0);
++    local_nh.param("use_dynamic_depth_range", use_dynamic_range, false);
++    local_nh.param("colormap", colormap, -1);
++
++    if (stamped_filename) {
++      std::size_t found = filename.find_last_of("/\\");
++      std::string path = filename.substr(0, found + 1);
++      std::string basename = filename.substr(found + 1);
++      std::stringstream ss;
++      ss << ros::Time::now().toNSec() << basename;
++      filename = path + ss.str();
++      ROS_INFO("Video recording to %s", filename.c_str());
++    }
++
++    if (codec.size() != 4) {
++        ROS_ERROR("The video codec must be a FOURCC identifier (4 chars)");
++        exit(-1);
++    }
++
++    image_transport::ImageTransport it(nh);
++    std::string topic = nh.resolveName("image");
++    image_transport::Subscriber sub_image = it.subscribe(topic, 1, callback);
++
++    ROS_INFO_STREAM("Waiting for topic " << topic << "...");
++    ros::spin();
++    std::cout << "\nVideo saved as " << filename << std::endl;
++}

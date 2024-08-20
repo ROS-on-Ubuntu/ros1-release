@@ -1,0 +1,12 @@
+Source: ros-noetic-xacro-test
+Section: misc
+Priority: optional
+Maintainer: Robert Haschke <rhaschke@techfak.uni-bielefeld.de>
+Build-Depends: debhelper (>= 9.0.0), ros-noetic-catkin (>= 0.5.68)
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-noetic-xacro-test
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, 
+Description: test xacro's cmake extension

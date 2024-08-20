@@ -1,0 +1,101 @@
+ros-noetic-rqt-gui (0.5.3-0jammy) jammy; urgency=high
+
+  * Changed getiter to iter (#1 <https://github.com/ros-visualization/rqt/issues/1>) (#241 <https://github.com/ros-visualization/rqt/issues/241>)
+  * Update maintainers (#233 <https://github.com/ros-visualization/rqt/issues/233>) (#237 <https://github.com/ros-visualization/rqt/issues/237>)
+  * Contributors: Michael Jeronimo, sven-herrmann
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Thu, 24 Mar 2022 16:00:00 -0000
+
+ros-noetic-rqt-gui (0.5.2-0jammy) jammy; urgency=high
+
+  * add missing dependencies: rospkg-modules, python_qt_binding, rospy (#227 <https://github.com/ros-visualization/rqt/issues/227>)
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Thu, 11 Jun 2020 16:00:00 -0000
+
+ros-noetic-rqt-gui (0.5.1-0jammy) jammy; urgency=high
+
+  * bump CMake minimum version to avoid CMP0048 warning (#219 <https://github.com/ros-visualization/rqt/issues/219>)
+  * allow definition of settings file (#216 <https://github.com/ros-visualization/rqt/issues/216>)
+  * use catkin_install_python for Python script (#206 <https://github.com/ros-visualization/rqt/issues/206>)
+  * style changes (#143 <https://github.com/ros-visualization/rqt/issues/143>)
+  * autopep8 (#137 <https://github.com/ros-visualization/rqt/issues/137>)
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Mon, 09 Mar 2020 16:00:00 -0000
+
+ros-noetic-rqt-gui (0.5.0-0jammy) jammy; urgency=high
+
+  * version bump to match version of migrated package rqt_py_common
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Sun, 23 Apr 2017 16:00:00 -0000
+
+ros-noetic-rqt-gui (0.3.2-0jammy) jammy; urgency=high
+
+  * use Python 3 compatible syntax (#113 <https://github.com/ros-visualization/rqt/pull/113>)
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Mon, 23 Jan 2017 16:00:00 -0000
+
+ros-noetic-rqt-gui (0.3.1-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Thu, 31 Mar 2016 16:00:00 -0000
+
+ros-noetic-rqt-gui (0.3.0-0jammy) jammy; urgency=high
+
+  * switch to Qt5 (#106 <https://github.com/ros-visualization/rqt/pull/106>)
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Thu, 31 Mar 2016 16:00:00 -0000
+
+ros-noetic-rqt-gui (0.2.14-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Mon, 03 Mar 2014 16:00:00 -0000
+
+ros-noetic-rqt-gui (0.2.13-0jammy) jammy; urgency=high
+
+  * added hash of ros package path as prefix for plugin manager settings to allow for one cache per package path setting
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Tue, 07 Jan 2014 16:00:00 -0000
+
+ros-noetic-rqt-gui (0.2.12-0jammy) jammy; urgency=high
+
+  * improve startup time (#88 <https://github.com/ros-visualization/rqt/issues/88>)
+  * new icon for rqt
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Tue, 08 Oct 2013 16:00:00 -0000
+
+ros-noetic-rqt-gui (0.2.11-0jammy) jammy; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Thu, 05 Sep 2013 16:00:00 -0000
+
+ros-noetic-rqt-gui (0.2.10-0jammy) jammy; urgency=high
+
+  * add application icon (#82 <https://github.com/ros-visualization/rqt/issues/82>)
+  * improve error message when plugin xml file does not exist
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Tue, 20 Aug 2013 16:00:00 -0000
+
+ros-noetic-rqt-gui (0.2.9-0jammy) jammy; urgency=high
+
+  * make plugin resources relative to plugin.xml (ros-visualization/qt_gui_core#16 <https://github.com/ros-visualization/qt_gui_core/issues/16>)
+  * use standard rospy function to filter remapping arguments (#76 <https://github.com/ros-visualization/rqt/issues/76>)
+  * fix help provider
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Wed, 05 Jun 2013 16:00:00 -0000
+
+ros-noetic-rqt-gui (0.2.8-0jammy) jammy; urgency=high
+
+  * properly ignore ROS remapping arguments when passed in via command line
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Thu, 10 Jan 2013 16:00:00 -0000
+
+ros-noetic-rqt-gui (0.2.7-0jammy) jammy; urgency=high
+
+  * first public release for Groovy
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Sun, 30 Dec 2012 16:00:00 -0000
+
+

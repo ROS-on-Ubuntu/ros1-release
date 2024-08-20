@@ -1,0 +1,12 @@
+Source: ros-noetic-rqt-image-view
+Section: misc
+Priority: optional
+Maintainer: William Woodall <william@openrobotics.org>
+Build-Depends: debhelper (>= 9.0.0), python3-setuptools, qtbase5-dev, ros-noetic-catkin, ros-noetic-cv-bridge, ros-noetic-geometry-msgs, ros-noetic-image-transport, ros-noetic-rqt-gui, ros-noetic-rqt-gui-cpp, ros-noetic-sensor-msgs
+Homepage: http://wiki.ros.org/rqt_image_view
+Standards-Version: 3.9.2
+
+Package: ros-noetic-rqt-image-view
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-noetic-cv-bridge, ros-noetic-geometry-msgs, ros-noetic-image-transport, ros-noetic-rqt-gui, ros-noetic-rqt-gui-cpp, ros-noetic-sensor-msgs
+Description: rqt_image_view provides a GUI plugin for displaying images using image_transport.

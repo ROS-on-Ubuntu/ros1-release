@@ -1,0 +1,3192 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-control-toolbox (1.19.0-0jammy) jammy; urgency=high
+ .
+   * Switch to std::bind
+   * Increased integral gains & windup limits from +-1000 to +-100000
+   * Update README build status badge
+   * Remove Travis CI config
+   * Add GH actions CI workflow
+   * Update include/control_toolbox/pid.h
+   * code review fixes
+   * Allow smoother resets
+     1. Currently after a reset (or init), since p_error_last is_ set to 0, the first computeCommand is calculating
+     a false large derivative error. Proposed fix: only calculate error_dot if p_error_last_ contains a real value.
+     The PR leaves reset() behavior untouched, and provides an additional reset function that allows setting
+     the initial values for d_error and i_error
+     2. Allow setting initial i_error. This allows PID to be used in a smoother manner in systems switching from
+     manual to automatic modes. See: http://brettbeauregard.com/blog/2011/04/improving-the-beginner%E2%80%99s-pid-initialization/
+     3. Improve cases where dt==0 or invalid errors were given (return last cmd_ instead of 0)
+   * Contributors: Jochen Sprickerhof, Koby Aizer, Matt Reynolds, Steve Golton, Bence Magyar
+Author: Bence Magyar <bence.magyar.robotics@gmail.com>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-control-toolbox-1.19.0/.github/workflows/ci.yml
+@@ -0,0 +1,29 @@
++name: Test control_toolbox
++on:
++  pull_request:
++  push:
++    branches:
++      - melodic-devel
++  schedule:
++    # Run every morning to detect flakiness and broken dependencies
++    - cron: '17 8 * * *'
++
++jobs:
++  industrial_ci:
++    runs-on: ubuntu-latest
++    env:
++      # Test downstream package ros_controllers
++      UPSTREAM_WORKSPACE:   'https://raw.github.com/ros-controls/ros_control/$ROS_DISTRO-devel/ros_control.rosinstall -ros_controllers -control_toolbox'
++      DOWNSTREAM_WORKSPACE: 'https://raw.github.com/ros-controls/ros_control/$ROS_DISTRO-devel/ros_control.rosinstall -ros_control -realtime_tools -control_msgs -control_toolbox'
++    strategy:
++      matrix:
++        env:
++          - {ROS_DISTRO: melodic, ROS_REPO: main}
++          - {ROS_DISTRO: melodic, ROS_REPO: testing}
++          - {ROS_DISTRO: noetic, ROS_REPO: main}
++          - {ROS_DISTRO: noetic, ROS_REPO: testing}
++    steps:
++      - run: sudo apt-get update -qq && sudo apt-get upgrade
++      - uses: actions/checkout@v1
++      - uses: ros-industrial/industrial_ci@master
++        env: ${{matrix.env}}
+--- /dev/null
++++ ros-noetic-control-toolbox-1.19.0/CHANGELOG.rst
+@@ -0,0 +1,208 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package control_toolbox
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++1.19.0 (2022-05-10)
++-------------------
++* Switch to std::bind
++* Increased integral gains & windup limits from +-1000 to +-100000
++* Update README build status badge
++* Remove Travis CI config
++* Add GH actions CI workflow
++* Update include/control_toolbox/pid.h
++* code review fixes
++* Allow smoother resets
++  1. Currently after a reset (or init), since p_error_last is\_ set to 0, the first computeCommand is calculating
++  a false large derivative error. Proposed fix: only calculate error_dot if p_error_last\_ contains a real value.
++  The PR leaves reset() behavior untouched, and provides an additional reset function that allows setting
++  the initial values for d_error and i_error
++  2. Allow setting initial i_error. This allows PID to be used in a smoother manner in systems switching from
++  manual to automatic modes. See: http://brettbeauregard.com/blog/2011/04/improving-the-beginner%E2%80%99s-pid-initialization/
++  3. Improve cases where dt==0 or invalid errors were given (return last cmd\_ instead of 0)
++* Contributors: Jochen Sprickerhof, Koby Aizer, Matt Reynolds, Steve Golton, Bence Magyar
++
++1.18.2 (2020-06-04)
++-------------------
++* Python 3 compat part II
++* Contributors: Tobias Fischer
++
++1.18.1 (2020-06-01)
++-------------------
++* Python 3 compat
++* Migrate to new industrial_ci
++* Contributors: Matt Reynolds, Tobias Fischer
++
++1.18.0 (2020-03-27)
++-------------------
++* Bump CMake version to avoid CMP0048 warning
++* add static method to generate non-deterministic seed
++* migrate to STL random library
++* Contributors: James Xu, Shane Loretz, ahcorde
++
++1.17.0 (2019-01-31)
++-------------------
++* update anti windup clamping
++* update negativeIntegrationAntiwindupTest
++* Address catkin_lint issues
++* Add executable flag
++* convert to package xml format 2
++* Remove doc header
++* Contributors: Bence Magyar, Cong, Gennaro Raiola
++
++1.16.0 (2017-11-30)
++-------------------
++* switched to industrial_ci
++* Add control_msgs to CATKIN_DEPENDS.
++* Contributors: Bence Magyar, Mathias Luedtke, Mike Purvis
++
++1.15.0 (2016-06-28)
++-------------------
++* avoid ABI breaks in PID class
++* fix add_dependencies call
++* rollback API changes in PID class
++* cfg: removed rosbuild support related error handling
++* Contributors: Bence Magyar, Igor Napolskikh, ipa-mig
++
++1.14.0 (2016-05-03)
++-------------------
++* Fix negative gains issue and add tests; update gains setting through DynamicReconfig
++* Add antiwindup and tests to PID controller; rename old behaviour 'clamping'
++* Move message to control_toolbox
++* Add optional state publishing to PID controller, for logging/debugging/etc
++* Fix some typos in comments
++* changed the range of dynamic reconfigure to allow negative ones
++* Address -Wunused-parameter warnings
++* Factor out updatePid as negative calls to computeCommand
++* Increasing covergae of PID class test suite.
++* Chain calls of computeCommand and updatePid for code reuse
++* Contributors: Adolfo Rodriguez Tsouroukdissian, Bence Magyar, Carlos Rosales, Guillaume Walck, Paul Bovbel, VahidAminZ
++
++1.13.2 (2015-05-22)
++-------------------
++* CRITICAL BUGFIX: Fix broken PID command computation.
++* Contributors: Adolfo Rodriguez Tsouroukdissian, Paul Bovbel
++
++1.13.1 (2015-04-30)
++-------------------
++* Improvement in integral contribution implementation. Resolve `#32 <https://github.com/ros-controls/control_toolbox/issues/32>`_.
++* Contributors: Adolfo Rodriguez Tsouroukdissian, Carlos Rosales
++
++1.13.0 (2014-10-31)
++-------------------
++* Harmonize pid gain names between rosparam and dynamic_reconfigure
++* Read i_clamp_min and i_clamp_max form parameter server - if available
++* Contributors: Adolfo Rodriguez Tsouroukdissian, Dave Coleman, ipa-fxm
++
++1.12.1 (2014-06-12)
++-------------------
++* Remove broken test code. Hotfix for `#18 <https://github.com/ros-controls/control_toolbox/issues/18>`_.
++* Contributors: Adolfo Rodriguez Tsouroukdissian
++
++1.12.0 (2014-06-12)
++-------------------
++* pid: Adding quiet flag to suppress error message
++* Contributors: Jonathan Bohren
++
++1.11.0 (2014-05-12)
++-------------------
++* Remove rosbuild artifacts
++* Cleaned up CMake and removed unnecessary dependencies
++* Made default value negative to match valid range
++* Fix for i_clamp_min to be negative in dynamic reconfigure
++* Fix abs/fabs problem with Clang and libc++
++* Contributors: Adolfo Rodriguez Tsouroukdissian, Dave Coleman, Marco Esposito
++
++1.10.4 (2014-02-05)
++-------------------
++* Added Travis support
++* Renamed manifest.xml so it doesn't break rosdep
++* Expanded range of PID and windup gains for certain applications.
++* Expanded range of PID and windup gains for certain applications. Lowered default integral and derivative gain
++* check for CATKIN_ENABLE_TESTING
++* Add some comments to Parameters.cfg
++* Add support for dynamic_reconfigure for rosbuild
++* Contributors: Austin Hendrix, Dave Coleman, Lukas Bulwahn, Paul Dinh
++
++1.10.3 (2013-08-02)
++-------------------
++* Fix bug in copy constructor.
++* Contributors: Austin Hendrix
++
++1.10.2 (2013-07-29)
++-------------------
++* Fix copy constructor.
++* Merge pull request `#1 <https://github.com/ros-controls/control_toolbox/issues/1>`_ from davetcoleman/hydro-devel
++  Added dynamic reconfigure for PID gains
++* Removed const getGains function
++* Small fixes
++* Compatibility changes for realtime_tools, tweaked getests
++* Made realtime_buffer copiable
++* Added test for getting/settings gains, copying/assigning pid class
++* Removed const read, added copy constructor and print values function
++* Added new function getGainsConst that allows one to get the PID gains from a const PID class
++* Added realtime_tools as a dependency in package.xml and CMakeLists
++* Added realtime buffer to PID, re-ordered functions to more logical order and to match header file
++* Fixes per Austin review
++* Updated CMakeLists.txt and made fixes per Adolfo
++* Merged hydro-devel
++* Added dynamic reconfigure for PID gains
++* Tests build.
++* Contributors: Austin Hendrix, Dave Coleman
++
++1.10.1 (2013-06-26)
++-------------------
++* Add dependency on tinyxml.
++* Contributors: Austin Hendrix
++
++1.10.0 (2013-06-25)
++-------------------
++* Version 1.10.0
++* comment format consistentcy
++* Fixing comment in pid source code
++* Install tune_pid.py under catkin.
++* adding install targets
++* adding missing manifests
++* merging CMakeLists.txt files from rosbuild and catkin
++* adding hybrid-buildsystem makefiles
++* Merging from master, re-adding manifest.xml files
++* using more standard way of depending on gencpp
++* Add .gitignore file.
++* Fixing library export
++* catkinizing, could still be cleaned up
++* Fixing doc errors in PID
++* Changing @ commands to \ commands
++* Enforcing i_min_ <= 0 and i_max_ >= 0 in integral bound parameters, reducing duplicated code
++* Merge pull request `#14 <https://github.com/ros-controls/control_toolbox/issues/14>`_ from bobholmberg/fix-PID-unbounded-i_error
++  Using zero i_gain_ to turn off integral control did unsavory things.
++* Adding alternative name for new pid command computation API
++* Fixing merge error
++* Merge branch 'fix-pid-backwards-compatibility' into fix-PID-unbounded-i_error
++* Removing lie from documentation
++* Adding Bob's fixes to the backwards-compatibility API
++* Merge branch 'fix-pid-backwards-compatibility' into fix-PID-unbounded-i_error
++* bringing back old updatePid function contents
++* adding documentation warning
++* This makes the internal computations of updatePid() keep the same sign that they did before the API change
++* Merge typo
++* Resolving conflict from new Pid API
++* Merge branch 'master' into test-bad-integral-bounds
++* Merge branch 'test-bad-integral-bounds' into fix-PID-unbounded-i_error
++* Specifying div-by-zero test, adding other integral term tests
++* Merge branch 'test-bad-integral-bounds' into fix-PID-unbounded-i_error
++* Adding test to expose Pid class zero-division vulnerability
++* If the user did not want integral control and set i_gain_ to zero,
++  then dividing by i_gain_ would set i_error_ to NaN.  This is not
++  desired.  Instead, replace the use of division to create i_term
++  with direct integration of i_term_.
++  Replace private member i_error_ with i_term_.
++  In getCurrentPIDErrors() create & return i_error_ with the same old meaning and units.
++  NOTE: i_error_ is not needed internally anywhere else.
++* Cleaning up documentation, making argument names in function declaration match those in the implementation
++* adding doxygen deprecation flags
++* Fixing documentation
++* Merging changes from other branch
++* Adding conventional PID computation
++* Fixing inconsistent formatting, and reducing some duplicated code
++* remove .svn folder
++* move control_toolbox into ros_control
++* Contributors: Adolfo Rodriguez Tsouroukdissian, Austin Hendrix, Bob Holmberg, Jonathan Bohren, Wim Meeussen, wmeeusse
+--- /dev/null
++++ ros-noetic-control-toolbox-1.19.0/CMakeLists.txt
+@@ -0,0 +1,86 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(control_toolbox)
++
++# Load catkin and all dependencies required for this package
++find_package(catkin REQUIRED COMPONENTS
++  cmake_modules
++  control_msgs
++  dynamic_reconfigure
++  message_generation
++  realtime_tools
++  roscpp
++  std_msgs
++  )
++
++find_package(Boost REQUIRED COMPONENTS system thread)
++find_package(TinyXML REQUIRED)
++
++# Dynamics reconfigure
++generate_dynamic_reconfigure_options(
++  cfg/Parameters.cfg
++  )
++
++# Add services and generate them
++add_service_files(
++  FILES
++  SetPidGains.srv
++  )
++
++generate_messages(
++  DEPENDENCIES std_msgs
++)
++
++# Declare catkin package
++catkin_package(
++  DEPENDS TinyXML
++  CATKIN_DEPENDS
++    control_msgs
++    dynamic_reconfigure
++    message_runtime
++    realtime_tools
++    roscpp
++    std_msgs
++  INCLUDE_DIRS include
++  LIBRARIES ${PROJECT_NAME}
++  )
++
++include_directories(
++  include
++  ${catkin_INCLUDE_DIRS}
++  ${Boost_INCLUDE_DIR}
++  ${TinyXML_INCLUDE_DIRS}
++  )
++
++add_library(${PROJECT_NAME}
++  src/dither.cpp
++  src/limited_proxy.cpp
++  src/pid.cpp
++  src/pid_gains_setter.cpp
++  src/sine_sweep.cpp
++  src/sinusoid.cpp
++  )
++add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
++
++target_link_libraries(${PROJECT_NAME} ${TinyXML_LIBRARIES} ${catkin_LIBRARIES} ${Boost_LIBRARIES})
++
++if(CATKIN_ENABLE_TESTING)
++  # Tests
++  catkin_add_gtest(pid_tests test/pid_tests.cpp)
++  target_link_libraries(pid_tests ${catkin_LIBRARIES} ${PROJECT_NAME})
++
++  # add_executable(test_linear test/linear.cpp)
++endif()
++
++# Install
++install(DIRECTORY include/${PROJECT_NAME}/
++  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION})
++
++# Install library
++install(TARGETS ${PROJECT_NAME}
++  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
++  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
++  RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
++  )
++
++install(DIRECTORY scripts/
++  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+--- /dev/null
++++ ros-noetic-control-toolbox-1.19.0/README.md
+@@ -0,0 +1,29 @@
++control_toolbox
++===========
++
++See [ros_control](http://wiki.ros.org/ros_control) and [control_toolbox](http://wiki.ros.org/control_toolbox) documentation on ros.org
++
++
++
++### Build Status (Melodic & Noetic)
++
++[![Build Status](https://github.com/ros-controls/control_toolbox/workflows/Test%20control_toolbox/badge.svg?branch=melodic-devel)](https://github.com/ros-controls/control_toolbox/actions?query=workflow%3A%22Test+control_toolbox%22+branch%3Amelodic-devel)
++
++## Publication
++
++If you find this work useful please give credits to the authors by citing:
++
++* S. Chitta, E. Marder-Eppstein, W. Meeussen, V. Pradeep, A. Rodríguez Tsouroukdissian, J. Bohren, D. Coleman, B. Magyar, G. Raiola, M. Lüdtke and E. Fernandez Perdomo
++**"ros_control: A generic and simple control framework for ROS"**,
++The Journal of Open Source Software, 2017. ([PDF](http://www.theoj.org/joss-papers/joss.00456/10.21105.joss.00456.pdf))
++
++```
++@article{ros_control,
++author = {Chitta, Sachin and Marder-Eppstein, Eitan and Meeussen, Wim and Pradeep, Vijay and Rodr{\'i}guez Tsouroukdissian, Adolfo  and Bohren, Jonathan and Coleman, David and Magyar, Bence and Raiola, Gennaro and L{\"u}dtke, Mathias and Fern{\'a}ndez Perdomo, Enrique},
++title = {ros\_control: A generic and simple control framework for ROS},
++journal = {The Journal of Open Source Software},
++year = {2017},
++doi = {10.21105/joss.00456},
++URL = {http://www.theoj.org/joss-papers/joss.00456/10.21105.joss.00456.pdf}
++}
++```
+--- /dev/null
++++ ros-noetic-control-toolbox-1.19.0/cfg/Parameters.cfg
+@@ -0,0 +1,53 @@
++#! /usr/bin/env python
++#*********************************************************************
++#* Software License Agreement (BSD License)
++#*
++#*  Copyright (c) 2013, Open Source Robotics Foundation
++#*  All rights reserved.
++#*
++#*  Redistribution and use in source and binary forms, with or without
++#*  modification, are permitted provided that the following conditions
++#*  are met:
++#*
++#*   * Redistributions of source code must retain the above copyright
++#*     notice, this list of conditions and the following disclaimer.
++#*   * Redistributions in binary form must reproduce the above
++#*     copyright notice, this list of conditions and the following
++#*     disclaimer in the documentation and/or other materials provided
++#*     with the distribution.
++#*   * Neither the name of the Open Source Robotics Foundation
++#*     nor the names of its contributors may be
++#*     used to endorse or promote products derived
++#*     from this software without specific prior written permission.
++#*
++#*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++#*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++#*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++#*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++#*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++#*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++#*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++#*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++#*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++#*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++#*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++#*  POSSIBILITY OF SUCH DAMAGE.
++#*********************************************************************/
++
++#   Authors: Dave Coleman, Igor Napolskikh
++#   Desc:   Allows PID parameters, etc to be tuned in realtime using dynamic reconfigure
++PACKAGE='control_toolbox'
++
++from dynamic_reconfigure.parameter_generator_catkin import *
++gen = ParameterGenerator()
++
++#        Name            Type      Level  Description                           Default   Min       Max
++gen.add( "p" ,           double_t, 1,     "Proportional gain.",                 10.0,     -100000,  100000)
++gen.add( "i" ,           double_t, 1,     "Integral gain.",                     0.1,      -100000,  100000)
++gen.add( "d" ,           double_t, 1,     "Derivative gain.",                   1.0,      -1000,    1000)
++gen.add( "i_clamp_min" , double_t, 1,     "Min bounds for the integral windup", -10.0,    -100000,  0)
++gen.add( "i_clamp_max" , double_t, 1,     "Max bounds for the integral windup", 10.0,     0,        100000)
++gen.add( "antiwindup" ,  bool_t,   1,     "Antiwindup.",                        False)
++                 # PkgName  #NodeName         #Prefix for generated .h include file, e.g. ParametersConfig.py
++exit(gen.generate(PACKAGE, "control_toolbox", "Parameters"))
++
+--- /dev/null
++++ ros-noetic-control-toolbox-1.19.0/include/control_toolbox/dither.h
+@@ -0,0 +1,117 @@
++/*********************************************************************
++ * Software License Agreement (BSD License)
++ *
++ *  Copyright (c) 2009, Willow Garage, Inc.
++ *  All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted provided that the following conditions
++ *  are met:
++ *
++ *   * Redistributions of source code must retain the above copyright
++ *     notice, this list of conditions and the following disclaimer.
++ *   * Redistributions in binary form must reproduce the above
++ *     copyright notice, this list of conditions and the following
++ *     disclaimer in the documentation and/or other materials provided
++ *     with the distribution.
++ *   * Neither the name of the Willow Garage nor the names of its
++ *     contributors may be used to endorse or promote products derived
++ *     from this software without specific prior written permission.
++ *
++ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++ *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++ *  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++ *  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++ *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++ *  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++ *  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++ *  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++ *  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++ *  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++ *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ *  POSSIBILITY OF SUCH DAMAGE.
++ *********************************************************************/
++
++/**< \author Kevin Watts */
++
++#ifndef CONTROL_TOOLBOX__DITHER_H
++#define CONTROL_TOOLBOX__DITHER_H
++
++#include <cstdlib>
++#include <ctime>
++#include <math.h>
++#include <random>
++#include <ros/ros.h>
++
++namespace control_toolbox {
++
++/***************************************************/
++/*! \class Dither
++ *
++ * \brief Gives white noise at specified amplitude.
++ *
++ * This class gives white noise at the given amplitude when 
++ * update() is called. It can be used to vibrate joints or 
++ * to break static friction.
++ *
++ */
++class Dither
++{
++public:
++
++  Dither();
++
++  /*!
++   * \brief Destructor.
++   */
++  ~Dither();
++
++  /*!
++   * \brief Get next Gaussian white noise point. Called in RT loop.
++   *\return White noise of given amplitude.
++   */
++  double update();
++
++   /*
++   *\brief Dither gets an amplitude, must be >0 to initialize
++   *
++   *\param amplitude Amplitude of white noise output
++   *\param seed Random seed for white noise
++   */
++  bool init(const double &amplitude, const double &seed)
++  {
++    if (amplitude < 0.0)
++    {
++      ROS_ERROR("Dither amplitude not set properly. Amplitude must be >0.");
++      return false;
++    }
++    
++    amplitude_ = amplitude;
++
++    // seed generator for reproducible sequence of random numbers
++    generator_.seed(static_cast<unsigned int>(seed));
++
++    return true;
++  }
++
++   /*
++   *\brief Generate a random number with random_device for non-deterministic random numbers
++   */
++  static double generateRandomSeed()
++  {
++    std::random_device rdev{};
++    return static_cast<double>(rdev());
++  }
++
++
++private:
++  double amplitude_;   /**< Amplitude of the sweep. */
++  double saved_value_;
++  bool has_saved_value_;
++  double s_;
++  double x_;
++  std::mt19937 generator_;   /**< random number generator for white noise. */
++};
++}
++
++#endif
+--- /dev/null
++++ ros-noetic-control-toolbox-1.19.0/include/control_toolbox/filters.h
+@@ -0,0 +1,58 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++* 
++*  Copyright (c) 2008, Willow Garage, Inc.
++*  All rights reserved.
++* 
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++* 
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++* 
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++
++#ifndef CONTROL_TOOLBOX__FILTERS_H
++#define CONTROL_TOOLBOX__FILTERS_H
++
++#include <algorithm>
++
++namespace filters
++{
++    
++    /** Clamp value a between b and c */
++    template<typename T>
++    static inline const T& clamp(const T &a, const T &b, const T &c)
++    {
++        return std::min<T>(std::max<T>(b, a), c);
++    }
++
++    /** Exponential smoothing filter. Alpha is between 0 and 1. Values closer to 0 weight the last smoothed value more heavily */
++    
++    static inline double exponentialSmoothing(double current_raw_value, double last_smoothed_value, double alpha)
++    {
++        return alpha*current_raw_value + (1-alpha)*last_smoothed_value;
++    }
++ }
++
++#endif
+--- /dev/null
++++ ros-noetic-control-toolbox-1.19.0/include/control_toolbox/limited_proxy.h
+@@ -0,0 +1,82 @@
++/*********************************************************************
++ * Software License Agreement (BSD License)
++ *
++ *  Copyright (c) 2008, Willow Garage, Inc.
++ *  All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted provided that the following conditions
++ *  are met:
++ *
++ *   * Redistributions of source code must retain the above copyright
++ *     notice, this list of conditions and the following disclaimer.
++ *   * Redistributions in binary form must reproduce the above
++ *     copyright notice, this list of conditions and the following
++ *     disclaimer in the documentation and/or other materials provided
++ *     with the distribution.
++ *   * Neither the name of the Willow Garage nor the names of its
++ *     contributors may be used to endorse or promote products derived
++ *     from this software without specific prior written permission.
++ *
++ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++ *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++ *  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++ *  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++ *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++ *  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++ *  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++ *  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++ *  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++ *  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++ *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ *  POSSIBILITY OF SUCH DAMAGE.
++ *********************************************************************/
++#ifndef CONTROL_TOOLBOX__LIMITED_PROXY_H
++#define CONTROL_TOOLBOX__LIMITED_PROXY_H
++
++namespace control_toolbox {
++
++class LimitedProxy
++{
++ public:
++  // Controller parameter values
++  double mass_;                 // Estimate of the joint mass
++  double Kd_;                   // Damping gain
++  double Kp_;                   // Position gain
++  double Ki_;                   // Integral gain
++  double Ficl_;                 // Integral force clamp
++  double effort_limit_;         // Limit on output force
++  double vel_limit_;            // Limit on velocity
++  double pos_upper_limit_;      // Upper position bound
++  double pos_lower_limit_;      // Lower position bound
++  double lambda_proxy_;         // Bandwidth of proxy reconvergence
++  double acc_converge_;         // Acceleration of proxy reconvergence
++
++  
++ LimitedProxy()
++   : mass_(0.0), Kd_(0.0), Kp_(0.0), Ki_(0.0), Ficl_(0.0),
++     effort_limit_(0.0), vel_limit_(0.0),
++     pos_upper_limit_(0.0), pos_lower_limit_(0.0),
++     lambda_proxy_(0.0), acc_converge_(0.0)
++  {
++  }
++
++  void reset(double pos_act, double vel_act);
++
++  double update(double pos_des, double vel_des, double acc_des,
++		double pos_act, double vel_act, double dt);
++
++ private:
++  // Controller state values
++  double last_proxy_pos_;       // Proxy position
++  double last_proxy_vel_;       // Proxy velocity
++  double last_proxy_acc_;       // Proxy acceleration
++
++  double last_vel_error_;       // Velocity error
++  double last_pos_error_;       // Position error
++  double last_int_error_;       // Integral error
++};
++  
++} // namespace
++
++#endif
+--- /dev/null
++++ ros-noetic-control-toolbox-1.19.0/include/control_toolbox/pid.h
+@@ -0,0 +1,422 @@
++/*********************************************************************
++ * Software License Agreement (BSD License)
++ *
++ *  Copyright (c) 2008, Willow Garage, Inc.
++ *  All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted provided that the following conditions
++ *  are met:
++ *
++ *   * Redistributions of source code must retain the above copyright
++ *     notice, this list of conditions and the following disclaimer.
++ *   * Redistributions in binary form must reproduce the above
++ *     copyright notice, this list of conditions and the following
++ *     disclaimer in the documentation and/or other materials provided
++ *     with the distribution.
++ *   * Neither the name of the Willow Garage nor the names of its
++ *     contributors may be used to endorse or promote products derived
++ *     from this software without specific prior written permission.
++ *
++ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++ *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++ *  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++ *  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++ *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++ *  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++ *  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++ *  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++ *  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++ *  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++ *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ *  POSSIBILITY OF SUCH DAMAGE.
++ *********************************************************************/
++#ifndef CONTROL_TOOLBOX__PID_H
++#define CONTROL_TOOLBOX__PID_H
++
++
++#include <string>
++#include <ros/ros.h>
++#include <control_msgs/PidState.h>
++
++// Dynamic reconfigure
++#include <dynamic_reconfigure/server.h>
++#include <control_toolbox/ParametersConfig.h>
++#include <boost/thread/mutex.hpp>
++
++// Realtime buffer
++#include <realtime_tools/realtime_buffer.h>
++#include <realtime_tools/realtime_publisher.h>
++
++class TiXmlElement;
++
++namespace control_toolbox {
++
++/***************************************************/
++/*! \class Pid
++  \brief A basic pid class.
++
++  This class implements a generic structure that
++  can be used to create a wide range of pid
++  controllers. It can function independently or
++  be subclassed to provide more specific controls
++  based on a particular control loop.
++
++  In particular, this class implements the standard
++  pid equation:
++
++  \f$command  = -p_{term} - i_{term} - d_{term} \f$
++
++  where: <br>
++  <UL TYPE="none">
++  <LI>  \f$ p_{term}  = p_{gain} * p_{error} \f$
++  <LI>  \f$ i_{term}  = i_{term} + \int{i_{gain} * p_{error} * dt} \f$
++  <LI>  \f$ d_{term}  = d_{gain} * d_{error} \f$
++  <LI>  \f$ d_{error} = (p_{error} - p_{error last}) / dt \f$
++  </UL>
++
++  given:<br>
++  <UL TYPE="none">
++  <LI>  \f$ p_{error}  = p_{state} - p_{target} \f$.
++  </UL>
++
++  \section ROS ROS interface
++
++  \param p Proportional gain
++
++  \param d Derivative gain
++
++  \param i Integral gain
++
++  \param i_clamp Min/max bounds for the integral windup, the clamp is applied to the \f$i_{term}\f$
++
++  \param publish_state Enable publishing internal controller state on the `state` topic. May break real-time guarantees due to clock_gettime system call.
++
++  \section Usage
++
++  To use the Pid class, you should first call some version of init()
++  (in non-realtime) and then call updatePid() at every update step.
++  For example:
++
++  \verbatim
++  control_toolbox::Pid pid;
++  pid.initPid(6.0, 1.0, 2.0, 0.3, -0.3);
++  double position_desi_ = 0.5;
++  ...
++  ros::Time last_time = ros::Time::now();
++  while (true) {
++  ros::Time time = ros::Time::now();
++  double effort = pid.updatePid(currentPosition() - position_desi_, time - last_time);
++  last_time = time;
++  }
++  \endverbatim
++
++*/
++/***************************************************/
++
++class Pid
++{
++public:
++
++  /*!
++   * \brief Store gains in a struct to allow easier realtime buffer usage
++   */
++  struct Gains
++  {
++    // Optional constructor for passing in values without antiwindup
++    Gains(double p, double i, double d, double i_max, double i_min)
++      : p_gain_(p),
++        i_gain_(i),
++        d_gain_(d),
++        i_max_(i_max),
++        i_min_(i_min),
++        antiwindup_(false)
++    {}
++    // Optional constructor for passing in values
++    Gains(double p, double i, double d, double i_max, double i_min, bool antiwindup)
++      : p_gain_(p),
++        i_gain_(i),
++        d_gain_(d),
++        i_max_(i_max),
++        i_min_(i_min),
++        antiwindup_(antiwindup)
++    {}
++    // Default constructor
++    Gains()
++      : p_gain_(0.0),
++        i_gain_(0.0),
++        d_gain_(0.0),
++        i_max_(0.0),
++        i_min_(0.0),
++        antiwindup_(false)
++    {}
++    double p_gain_;   /**< Proportional gain. */
++    double i_gain_;   /**< Integral gain. */
++    double d_gain_;   /**< Derivative gain. */
++    double i_max_;    /**< Maximum allowable integral term. */
++    double i_min_;    /**< Minimum allowable integral term. */
++    bool antiwindup_; /**< Antiwindup. */
++  };
++
++  /*!
++   * \brief Constructor, zeros out Pid values when created and
++   *        initialize Pid-gains and integral term limits.
++   *        Does not initialize dynamic reconfigure for PID gains
++   *
++   * \param p  The proportional gain.
++   * \param i  The integral gain.
++   * \param d  The derivative gain.
++   * \param i_max The max integral windup.
++   * \param i_min The min integral windup.
++   */
++  Pid(double p = 0.0, double i = 0.0, double d = 0.0, double i_max = 0.0, double i_min = -0.0, bool antiwindup = false);
++
++  /**
++   * \brief Copy constructor required for preventing mutexes from being copied
++   * \param source - Pid to copy
++   */
++  Pid(const Pid &source);
++
++  /*!
++   * \brief Destructor of Pid class.
++   */
++  ~Pid();
++
++  /*!
++   * \brief Zeros out Pid values and initialize Pid-gains and integral term limits
++   *        Does not initialize dynamic reconfigure for PID gains
++   *
++   * \param p  The proportional gain.
++   * \param i  The integral gain.
++   * \param d  The derivative gain.
++   * \param i_max The max integral windup.
++   * \param i_min The min integral windup.
++   */
++  void initPid(double p, double i, double d, double i_max, double i_min, bool antiwindup = false);
++
++  /*!
++   * \brief Zeros out Pid values and initialize Pid-gains and integral term limits
++   *        Initializes dynamic reconfigure for PID gains
++   *
++   * \param p  The proportional gain.
++   * \param i  The integral gain.
++   * \param d  The derivative gain.
++   * \param i_max The max integral windup.
++   * \param i_min The min integral windup.
++   */
++  void initPid(double p, double i, double d, double i_max, double i_min, const ros::NodeHandle& /*node*/);
++  void initPid(double p, double i, double d, double i_max, double i_min, bool antiwindup, const ros::NodeHandle& /*node*/);
++
++  /*!
++   * \brief Initialize PID with the parameters in a namespace
++   *        Initializes dynamic reconfigure for PID gains
++   *
++   * \param prefix The namespace prefix.
++   * \param quiet If true, no error messages will be emitted on failure.
++   */
++  bool initParam(const std::string& prefix, const bool quiet=false);
++
++  /*!
++   * \brief Initialize PID with the parameters in a NodeHandle namespace
++   *        Initializes dynamic reconfigure for PID gains
++   *
++   * \param n The NodeHandle which should be used to query parameters.
++   * \param quiet If true, no error messages will be emitted on failure.
++   */
++  bool init(const ros::NodeHandle &n, const bool quiet=false);
++
++  /*!
++   * \brief Initialize PID with the parameters in an XML element
++   *        Initializes dynamic reconfigure for PID gains
++   *
++   * \param config the XML element
++   */
++  bool initXml(TiXmlElement *config);
++
++  /**
++   * @brief Start the dynamic reconfigure node and load the default values
++   * @param node - a node handle where dynamic reconfigure services will be published
++   */
++  void initDynamicReconfig(ros::NodeHandle &node);
++
++  /*!
++   * \brief Reset the state of this PID controller
++   */
++  void reset();
++
++  /*!
++   * \brief Reset the state of this PID controller. Allows setting d_error & i_error initial value to support cases where PID is activated with some initial command.
++   */
++  void reset(double d_error, double i_error);
++
++  /*!
++   * \brief Get PID gains for the controller.
++   * \param p  The proportional gain.
++   * \param i  The integral gain.
++   * \param d  The derivative gain.
++   * \param i_max The max integral windup.
++   * \param i_min The min integral windup.
++   */
++  void getGains(double &p, double &i, double &d, double &i_max, double &i_min);
++  void getGains(double &p, double &i, double &d, double &i_max, double &i_min, bool &antiwindup);
++
++  /*!
++   * \brief Get PID gains for the controller.
++   * \return gains A struct of the PID gain values
++   */
++  Gains getGains();
++
++  /*!
++   * \brief Set PID gains for the controller.
++   * \param p  The proportional gain.
++   * \param i  The integral gain.
++   * \param d  The derivative gain.
++   * \param i_max The max integral windup.
++   * \param i_min The min integral windup.
++   */
++  void setGains(double p, double i, double d, double i_max, double i_min, bool antiwindup = false);
++
++  /*!
++   * \brief Set PID gains for the controller.
++   * \param gains A struct of the PID gain values
++   */
++  void setGains(const Gains &gains);
++
++  /**
++   * @brief Set Dynamic Reconfigure's gains to Pid's values
++   */
++  void updateDynamicReconfig();
++  void updateDynamicReconfig(Gains gains_config);
++  void updateDynamicReconfig(control_toolbox::ParametersConfig config);
++
++  /**
++   * \brief Update the PID parameters from dynamics reconfigure
++   */
++  void dynamicReconfigCallback(control_toolbox::ParametersConfig &config, uint32_t /*level*/);
++
++  /*!
++   * \brief Set the PID error and compute the PID command with nonuniform time
++   * step size. The derivative error is computed from the change in the error
++   * and the timestep \c dt.
++   *
++   * \param error  Error since last call (error = target - state)
++   * \param dt Change in time since last call
++   *
++   * \returns PID command
++   */
++  double computeCommand(double error, ros::Duration dt);
++
++  /*!
++   * \brief Set the PID error and compute the PID command with nonuniform
++   * time step size. This also allows the user to pass in a precomputed
++   * derivative error.
++   *
++   * \param error Error since last call (error = target - state)
++   * \param error_dot d(Error)/dt since last call
++   * \param dt Change in time since last call
++   *
++   * \returns PID command
++   */
++  double computeCommand(double error, double error_dot, ros::Duration dt);
++
++  /*!
++   * \brief Update the Pid loop with nonuniform time step size.
++   *
++   * \deprecated in ROS Hydro. This function assumes <tt> p_error = (state - target) </tt>
++   * which is an unconventional definition of the error. Please use \ref
++   * computeCommand instead, which assumes <tt> error = (target - state) </tt>. Note
++   * that calls to \ref computeCommand should not be mixed with calls to \ref
++   * updatePid.
++   *
++   * \param p_error  Error since last call (p_state-p_target)
++   * \param dt Change in time since last call
++   */
++  ROS_DEPRECATED double updatePid(double p_error, ros::Duration dt);
++
++  /*!
++   * \brief Update the Pid loop with nonuniform time step size. This update
++   * call allows the user to pass in a precomputed derivative error.
++   *
++   * \deprecated in ROS Hydro. This function assumes <tt> p_error = (state - target) </tt>
++   * which is an unconventional definition of the error. Please use \ref
++   * computeCommand instead, which assumes <tt> error = (target - state) </tt>. Note
++   * that calls to \ref computeCommand should not be mixed with calls to \ref
++   * updatePid.
++   *
++   * \param error  Error since last call (p_state-p_target)
++   * \param error_dot d(Error)/dt since last call
++   * \param dt Change in time since last call
++   */
++  ROS_DEPRECATED double updatePid(double error, double error_dot, ros::Duration dt);
++
++  /*!
++   * \brief Set current command for this PID controller
++   */
++  void setCurrentCmd(double cmd);
++
++  /*!
++   * \brief Return current command for this PID controller
++   */
++  double getCurrentCmd();
++
++  /*!
++   * \brief Return PID error terms for the controller.
++   * \param pe  The proportional error.
++   * \param ie  The integral error.
++   * \param de  The derivative error.
++   */
++  void getCurrentPIDErrors(double *pe, double *ie, double *de);
++
++
++  /*!
++   * \brief Print to console the current parameters
++   */
++  void printValues();
++
++  /*!
++   * @brief Custom assignment operator
++   *        Does not initialize dynamic reconfigure for PID gains
++   */
++  Pid &operator =(const Pid& source)
++  {
++    if (this == &source)
++      return *this;
++
++    // Copy the realtime buffer to then new PID class
++    gains_buffer_ = source.gains_buffer_;
++
++    // Reset the state of this PID controller
++    reset();
++
++    return *this;
++  }
++
++private:
++
++  // Store the PID gains in a realtime buffer to allow dynamic reconfigure to update it without
++  // blocking the realtime update loop
++  realtime_tools::RealtimeBuffer<Gains> gains_buffer_;
++
++  boost::shared_ptr<realtime_tools::RealtimePublisher<control_msgs::PidState> > state_publisher_;
++  bool publish_state_;
++
++  bool valid_p_error_last_; /**< Is saved position state valid for derivative state calculation */
++  double p_error_last_; /**< _Save position state for derivative state calculation. */
++  double p_error_; /**< Position error. */
++  double i_error_; /**< Integral of position error. */
++  double d_error_; /**< Derivative of position error. */
++  double cmd_;     /**< Command to send. */
++
++  // Dynamics reconfigure
++  bool dynamic_reconfig_initialized_;
++  typedef dynamic_reconfigure::Server<control_toolbox::ParametersConfig> DynamicReconfigServer;
++  boost::shared_ptr<DynamicReconfigServer> param_reconfig_server_;
++  DynamicReconfigServer::CallbackType param_reconfig_callback_;
++
++  boost::recursive_mutex param_reconfig_mutex_;
++
++};
++
++}
++
++#endif
+--- /dev/null
++++ ros-noetic-control-toolbox-1.19.0/include/control_toolbox/pid_gains_setter.h
+@@ -0,0 +1,108 @@
++/*
++ * Copyright (c) 2009, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++// Exposes a ROS interface for tuning a set of pid controllers.
++//
++// Author: Stuart Glaser
++
++#ifndef CONTROL_TOOLBOX__PID_GAINS_SETTER_H
++#define CONTROL_TOOLBOX__PID_GAINS_SETTER_H
++
++#include <vector>
++#include <string>
++#include "ros/node_handle.h"
++#include "control_toolbox/pid.h"
++#include "control_toolbox/SetPidGains.h"
++
++namespace control_toolbox {
++
++/**
++   \brief Sets up services for quickly changing the gains for a \ref
++   control_toolbox::Pid Pid object.
++
++   The PidGainsSetter class provides services for changing the gains
++   of Pid objects over ROS.  It advertise the "set_gains" service in the NodeHandle's
++   namespace, with a type of control_toolbox/SetPidGains.
++
++   To use the object, add pids to the gains setter and then call
++   advertise().  The PidGainsSetter will then update the gains of all
++   the Pid objects when you call the set_gains service.  (If you wish
++   to have Pids with different gains, then you should use multiple
++   PidGainsSetter objects).
++
++ \verbatim
++ ros::NodeHandle node;
++ control_toolbox::Pid a, b, c;
++ control_toolbox::PidGainsSetter pid_gains_setter;
++
++ pid_gains_setter.add(&a);
++ pid_gains_setter.add(&b).add(&c);
++ pid_gains_setter.advertise(node);
++ \endverbatim
++
++   ROS API
++
++   - \b set_gains [control_toolbox::SetPidGains] - Updates the gains
++     of all the Pid objects that have been added.
++ */
++class PidGainsSetter
++{
++public:
++  PidGainsSetter() {}
++  ~PidGainsSetter();
++
++  /**
++   * \brief Adds a Pid object.
++   *
++   * Adds a Pid object to be modified when new gains are set over the service.
++   */
++  PidGainsSetter& add(Pid *pid);
++
++  /**
++   * \brief Advertises the "set_gains" service, initializing the PidGainsSetter
++   */
++  void advertise(const ros::NodeHandle &n);
++
++  /**
++   * \brief Advertises the "set_gains" service, initializing the PidGainsSetter
++   */
++  void advertise(const std::string &ns) { advertise(ros::NodeHandle(ns)); }
++
++  bool setGains(control_toolbox::SetPidGains::Request &req,
++                control_toolbox::SetPidGains::Response &resp);
++
++private:
++  ros::NodeHandle node_;
++  ros::ServiceServer serve_set_gains_;
++  std::vector<Pid*> pids_;
++};
++
++}
++
++#endif
+--- /dev/null
++++ ros-noetic-control-toolbox-1.19.0/include/control_toolbox/sine_sweep.h
+@@ -0,0 +1,102 @@
++/*********************************************************************
++ * Software License Agreement (BSD License)
++ *
++ *  Copyright (c) 2008, Willow Garage, Inc.
++ *  All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted provided that the following conditions
++ *  are met:
++ *
++ *   * Redistributions of source code must retain the above copyright
++ *     notice, this list of conditions and the following disclaimer.
++ *   * Redistributions in binary form must reproduce the above
++ *     copyright notice, this list of conditions and the following
++ *     disclaimer in the documentation and/or other materials provided
++ *     with the distribution.
++ *   * Neither the name of the Willow Garage nor the names of its
++ *     contributors may be used to endorse or promote products derived
++ *     from this software without specific prior written permission.
++ *
++ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++ *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++ *  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++ *  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++ *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++ *  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++ *  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++ *  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++ *  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++ *  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++ *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ *  POSSIBILITY OF SUCH DAMAGE.
++ *********************************************************************/
++
++
++#ifndef CONTROL_TOOLBOX__SINESWEEP_H
++#define CONTROL_TOOLBOX__SINESWEEP_H
++
++#include <ros/ros.h>
++
++namespace control_toolbox {
++/***************************************************/
++/*! \class SineSweep
++    \brief Generates a sine sweep for frequency analysis of a joint
++
++    This class basically calculates the output for
++    a sine sweep. Where the signal is a sine wave, 
++    whose frequency is exponentially increased from 
++    \f$\omega_1\f$ to \f$\omega_2\f$ over \f$T\f$ seconds.<br> 
++    
++    \f$s(n) = A \sin [ K(e^{\delta t/L} - 1) ]\f$	<br>
++
++    where:<br>
++    \f$K = \frac{\omega_1T}{\ln \frac{\omega_2}{\omega_1} }\f$<br> 
++    \f$L = \frac{T}{\ln \frac{\omega_2}{\omega_1} }\f$.<br>
++
++*/
++/***************************************************/
++
++class SineSweep
++{
++public:
++
++  /*!
++   * \brief Constructor
++   */
++  SineSweep();
++
++  /*!
++   * \brief Destructor.
++   */
++  ~SineSweep();
++
++  /*!
++   * \brief Update the SineSweep loop with nonuniform time step size.
++   *
++   * \param dt Change in time since last call
++   */
++  double update(ros::Duration dt);
++
++  /*!
++   * \brief Intializes everything and calculates the constants for the sweep.
++   *
++   * \param start_freq  Start frequency of the sweep, \f$\omega_1\f$ .
++   * \param end_freq  End frequency of the sweep, \f$\omega_2\f$.
++   * \param duration  The duration of the sweep, \f$T\f$.
++   * \param amplitude The amplitude of the sweep, \f$A\f$.
++   */
++  bool init(double start_freq, double end_freq, double duration, double amplitude);
++
++private:
++  double amplitude_;                        /**< Amplitude of the sweep. */
++  ros::Duration duration_;                  /**< Duration of the sweep. */
++  double start_angular_freq_;               /**< Start angular frequency of the sweep. */
++  double end_angular_freq_;                 /**< End angular frequency of the sweep. */
++  double K_;                                /**< Constant \f$K\f$. */
++  double L_;                                /**< Constant \f$L\f$.*/
++  double cmd_;                              /**< Command to send. */
++};
++}
++
++#endif
+--- /dev/null
++++ ros-noetic-control-toolbox-1.19.0/include/control_toolbox/sinusoid.h
+@@ -0,0 +1,108 @@
++/*********************************************************************
++ * Software License Agreement (BSD License)
++ *
++ *  Copyright (c) 2009, Willow Garage, Inc.
++ *  All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted provided that the following conditions
++ *  are met:
++ *
++ *   * Redistributions of source code must retain the above copyright
++ *     notice, this list of conditions and the following disclaimer.
++ *   * Redistributions in binary form must reproduce the above
++ *     copyright notice, this list of conditions and the following
++ *     disclaimer in the documentation and/or other materials provided
++ *     with the distribution.
++ *   * Neither the name of the Willow Garage nor the names of its
++ *     contributors may be used to endorse or promote products derived
++ *     from this software without specific prior written permission.
++ *
++ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++ *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++ *  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++ *  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++ *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++ *  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++ *  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++ *  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++ *  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++ *  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++ *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ *  POSSIBILITY OF SUCH DAMAGE.
++ *********************************************************************/
++
++/** \author Mrinal Kalakrishnan */
++
++#ifndef CONTROL_TOOLBOX__SINUSOID_H_
++#define CONTROL_TOOLBOX__SINUSOID_H_
++
++#include <tinyxml.h>
++
++namespace control_toolbox
++{
++
++/**
++ * \class Sinusoid
++ * \brief A basic sine class
++ *
++ * This class calculates the output for a sine wave and its derivatives, given the amplitude,
++ * phase, frequency and offset.<br>
++ *
++ */
++class Sinusoid
++{
++public:
++  /**
++   * \brief Constructor
++   */
++  Sinusoid();
++
++  /**
++   * \brief Constructor which intializes values
++   *
++   * \param offset A DC offset to be added to the sine wave
++   * \param amplitude Amplitude of the sine wave
++   * \param frequency Frequency of the sine wave
++   * \param phase Phase (in radians) of the sine wave at t=0
++   */
++  Sinusoid(double offset, double amplitude, double frequency, double phase);
++
++  /**
++   * Destructor
++   */
++  virtual ~Sinusoid();
++
++  /**
++   * \brief Initializes the parameters of the sine wave from the given xml element
++   *
++   * \param ti_xml_element This XML element needs to contain the following attributes: offset, amplitude, frequency, phase
++   * \return true if successful, false if not
++   */
++  bool initXml(TiXmlElement *ti_xml_element);
++
++  /**
++   * Prints the parameters of the sine wave to stdout (for debugging)
++   */
++  void debug();
++
++  /**
++   * \brief Gets the value and derivatives of the sinusoid at a given time
++   *
++   * \param time Time at which to sample the sine wave
++   * \param qd (output) The derivative of the sine wave
++   * \param qdd (output) Second derivative of the sine wave
++   * \return The sampled value of the sine wave
++   */
++  double update(double time, double& qd, double& qdd);
++
++private:
++  double offset_;               /**< DC offset of the sine wave. */
++  double amplitude_;            /**< Amplitude of the sine wave. */
++  double frequency_;            /**< Frequency of the sine wave. */
++  double phase_;                /**< Phase of the sine wave at t=0. */
++};
++
++}
++
++#endif /* SINUSOID_H_ */
+--- /dev/null
++++ ros-noetic-control-toolbox-1.19.0/package.xml
+@@ -0,0 +1,30 @@
++<package format="2">
++  <name>control_toolbox</name>
++  <version>1.19.0</version>
++  <description>The control toolbox contains modules that are useful across all controllers.</description>
++  <maintainer email="bence.magyar.robotics@gmail.com">Bence Magyar</maintainer>
++
++  <license>BSD</license>
++
++  <url type="website">http://ros.org/wiki/control_toolbox</url>
++  <url type="bugtracker">https://github.com/ros-controls/control_toolbox/issues</url>
++  <url type="repository">https://github.com/ros-controls/control_toolbox/</url>
++
++  <author>Melonee Wise</author>
++  <author>Sachin Chitta</author>
++  <author>John Hsu</author>
++
++  <buildtool_depend version_gte="0.5.68">catkin</buildtool_depend>
++
++  <build_depend>cmake_modules</build_depend>
++  <build_depend>message_generation</build_depend>
++  <exec_depend>message_runtime</exec_depend>
++  <depend>control_msgs</depend>
++  <depend>std_msgs</depend>
++  <depend>roscpp</depend>
++  <depend>dynamic_reconfigure</depend>
++  <depend>tinyxml</depend>
++  <depend>realtime_tools</depend>
++  <test_depend>rosunit</test_depend>
++
++</package>
+--- /dev/null
++++ ros-noetic-control-toolbox-1.19.0/scripts/tune_pid.py
+@@ -0,0 +1,55 @@
++#! /usr/bin/env python
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions are met:
++#
++#     * Redistributions of source code must retain the above copyright
++#       notice, this list of conditions and the following disclaimer.
++#     * Redistributions in binary form must reproduce the above copyright
++#       notice, this list of conditions and the following disclaimer in the
++#       documentation and/or other materials provided with the distribution.
++#     * Neither the name of the Willow Garage, Inc. nor the names of its
++#       contributors may be used to endorse or promote products derived from
++#       this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++# Author: Stuart Glaser
++
++from __future__ import print_function
++
++import sys, time
++
++import rospy
++import control_toolbox.srv
++
++def print_usage(exit_code = 0):
++    print("Usage:  tune_pid.py <service> [<p> <i> <d> <i_clamp>]")
++    sys.exit(exit_code)
++
++def main():
++    if not (len(sys.argv) in [2, 6]):
++        print_usage()
++
++    if len(sys.argv) == 2:
++        print("Not implemented yet")
++    elif len(sys.argv) == 6:
++        service_name = sys.argv[1]
++        if not service_name.endswith('/set_gains'):
++            service_name = service_name + '/set_gains'
++        set_gains = rospy.ServiceProxy(service_name, control_toolbox.srv.SetPidGains)
++        set_gains(*map(float, sys.argv[2:6]))
++
++if __name__ == '__main__': main()
+--- /dev/null
++++ ros-noetic-control-toolbox-1.19.0/src/dither.cpp
+@@ -0,0 +1,83 @@
++/*********************************************************************
++ * Software License Agreement (BSD License)
++ *
++ *  Copyright (c) 2009, Willow Garage, Inc.
++ *  All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted provided that the following conditions
++ *  are met:
++ *
++ *   * Redistributions of source code must retain the above copyright
++ *     notice, this list of conditions and the following disclaimer.
++ *   * Redistributions in binary form must reproduce the above
++ *     copyright notice, this list of conditions and the following
++ *     disclaimer in the documentation and/or other materials provided
++ *     with the distribution.
++ *   * Neither the name of the Willow Garage nor the names of its
++ *     contributors may be used to endorse or promote products derived
++ *     from this software without specific prior written permission.
++ *
++ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++ *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++ *  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++ *  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++ *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++ *  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++ *  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++ *  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++ *  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++ *  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++ *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ *  POSSIBILITY OF SUCH DAMAGE.
++ *********************************************************************/
++
++// Original version: Kevin Watts <watts@willowgarage.com>
++
++#include <control_toolbox/dither.h>
++
++#include <random>
++
++namespace control_toolbox {
++
++Dither::Dither() : amplitude_(0), has_saved_value_(false)
++{
++
++}
++
++Dither::~Dither()
++{
++}
++
++double Dither::update()
++{
++  if (has_saved_value_)
++  {
++    has_saved_value_ = false;
++    return saved_value_;
++  }
++
++  // Generates gaussian random noise using the polar method.
++  double v1, v2, r;
++  // uniform distribution on the interval [-1.0, 1.0]
++  std::uniform_real_distribution<double> distribution(-1.0, std::nextafter(1.0, std::numeric_limits<double>::max()));
++  for (int i = 0; i < 100; ++i)
++  {
++    v1 = distribution(generator_);
++    v2 = distribution(generator_);
++    r = v1*v1 + v2*v2;
++    if (r <= 1.0)
++      break;
++  }
++  if (r > 1.0)
++    r = 1.0;
++
++  double f = sqrt(-2.0 * log(r) / r);
++  double current = amplitude_ * f * v1;
++  saved_value_ = amplitude_ * f * v2;
++  has_saved_value_ = true;
++
++  return current;
++}
++
++}
+--- /dev/null
++++ ros-noetic-control-toolbox-1.19.0/src/limited_proxy.cpp
+@@ -0,0 +1,439 @@
++/*********************************************************************
++ * Software License Agreement (BSD License)
++ *
++ *  Copyright (c) 2008, Willow Garage, Inc.
++ *  All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted provided that the following conditions
++ *  are met:
++ *
++ *   * Redistributions of source code must retain the above copyright
++ *     notice, this list of conditions and the following disclaimer.
++ *   * Redistributions in binary form must reproduce the above
++ *     copyright notice, this list of conditions and the following
++ *     disclaimer in the documentation and/or other materials provided
++ *     with the distribution.
++ *   * Neither the name of the Willow Garage nor the names of its
++ *     contributors may be used to endorse or promote products derived
++ *     from this software without specific prior written permission.
++ *
++ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++ *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++ *  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++ *  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++ *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++ *  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++ *  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++ *  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++ *  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++ *  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++ *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ *  POSSIBILITY OF SUCH DAMAGE.
++ *********************************************************************/
++
++#include <control_toolbox/limited_proxy.h>
++#include <algorithm>
++#include <cmath>
++#include <cstdlib>
++
++namespace control_toolbox {
++
++
++// CONTINUOUS SECOND ORDER PROXY DYNAMICS
++//
++// Calculate the 2nd order dynamics with which the proxy will
++// converge.  In particular, this calculates the acceleration a as a
++// function of position p and velocity v:
++//
++//   a = a(p,v)
++//
++// It also calculates the partial dervatives da/dp and dq/dv.  The
++// parameters are
++//
++//   lam	Bandwidth of convergence
++//   acon	Acceleration available for convergence
++//
++// The dynamics are split into a local region (small positions) with
++// classic linear dynamics and a global region (large positions) with
++// nonlinear dynamics.  The regions and nonlinear dynamics are
++// designed to allow convergence without overshoot with a limited
++// acceleration of acon: the system will converge asymptotically along
++// the critical line
++//
++//   v^2 = 2*acon * ( abs(p) - acon/lam^2 )
++//
++// which uses a constant acceleration of
++//
++//   a = - acon * sign(p)
++
++static void calcDynamics2ndorder(double &a, double &dadp, double &dadv,
++				 double p, double v, double lam, double acon)
++{
++  double lam2 = lam*lam;	// Lambda squared
++
++  // Separate 3 regions: large positive, small, and large negative positions
++  if (lam2*p > 3*acon)
++  {
++    // Large position position: Nonlinear dynamics
++    a    = - 2.0*lam*v - sqrt(8.0*acon*(+lam2*p-acon)) + acon;
++    dadv = - 2.0*lam;
++    dadp =             - lam2 * sqrt(2.0*acon/(+lam2*p-acon));
++  }
++  else if (lam2*p > -3*acon)
++  {
++    // Small position: Use linear dynamics
++    a    = - 2.0*lam*v - lam2*p;
++    dadv = - 2.0*lam;
++    dadp =             - lam2;
++  }
++  else
++  {
++    // Large negative position: Nonlinear dynamics
++    a    = - 2.0*lam*v + sqrt(8.0*acon*(-lam2*p-acon)) - acon;
++    dadv = - 2.0*lam;
++    dadp =             - lam2 * sqrt(2.0*acon/(-lam2*p-acon));
++  }
++
++  // Note we don't explicitly limit the acceleration to acon.  First
++  // such limits are more effectively imposed by force saturations.
++  // Second, if the proxy starts with very large velocities, higher
++  // accelerations may be helpful.  The dynamics are simply designed
++  // not to need more than acon to avoid overshoot.
++  return;
++}
++
++
++
++// CONTINUOUS FIRST ORDER PROXY DYNAMICS
++//
++// Calculate the 1st order dynamics with which the proxy will
++// converge.  In particular, this calculates the acceleration a as a
++// function of velocity v (no position dependence).
++//
++//   a = a(v)
++//
++// It also calculates the partial dervative dq/dv.  The parameters are
++//
++//   lam	Bandwidth of convergence
++//   acon	Acceleration available for convergence
++//
++// This uses basic linear dynamics, ignoring acon, as no overshoot can
++// occur in a first order system.
++
++static void calcDynamics1storder(double &a, double &dadv,
++				 double v, double lam, double /*acon*/)
++{
++  a    = - lam*v;
++  dadv = - lam;
++
++  return;
++}
++
++
++// CONTROLLER RESET
++//
++// Reset the state of the controller.
++
++void LimitedProxy::reset(double pos_act, double vel_act)
++{
++  // Place the proxy at the actual position, which sets the error to zero.
++  last_proxy_pos_ = pos_act;
++  last_proxy_vel_ = vel_act;
++  last_proxy_acc_ = 0.0;
++
++  last_vel_error_ = 0.0;
++  last_pos_error_ = 0.0;
++  last_int_error_ = 0.0;
++}
++
++
++// CONTROLLER UPDATE
++//
++// Adjust the proxy and compute the controller force.  We use a
++// trapezoidal integration scheme for maximal stability and best
++// accuracy.
++
++double LimitedProxy::update(double pos_des, double vel_des, double acc_des,
++			    double pos_act, double vel_act, double dt)
++{
++  // Get the parameters.  This ensures that they can not change during
++  // the calculations and are non-negative!
++  double mass = abs(mass_);		// Estimate of the joint mass
++  double Kd   = abs(Kd_);		// Damping gain
++  double Kp   = abs(Kp_);		// Position gain
++  double Ki   = abs(Ki_);		// Integral gain
++  double Ficl = abs(Ficl_);		// Integral force clamp
++  double Flim = abs(effort_limit_);	// Limit on output force
++  double vlim = abs(vel_limit_);	// Limit on velocity
++  //double pmax = pos_upper_limit_;	// Upper position bound. NOTE: Unused
++  //double pmin = pos_lower_limit_;	// Lower position bound. NOTE: Unused
++  double lam  = abs(lambda_proxy_);	// Bandwidth of proxy reconvergence
++  double acon = abs(acc_converge_);	// Acceleration of proxy reconvergence
++
++  // For numerical stability, upper bound the bandwidth by 2/dt.
++  // Note this is safe for dt==0.
++  if (lam * dt > 2.0)
++    lam = 2.0/dt;
++
++  // Other useful terms.
++  double dt2 = dt * dt;			// Time step squared
++  double dt3 = dt * dt * dt;		// Time step cubed
++
++  // State values: current and last cycle.
++  double pos_pxy;			// Current proxy position
++  double vel_pxy;			// Current proxy velocity
++  double acc_pxy;			// Current proxy acceleration
++  double vel_err;			// Current velocity error
++  double pos_err;			// Current position error
++  double int_err;			// Current integral error
++
++  double last_pos_pxy = last_proxy_pos_;
++  double last_vel_pxy = last_proxy_vel_;
++  double last_acc_pxy = last_proxy_acc_;
++  //double last_vel_err = last_vel_error_;. NOTE: Unused
++  double last_pos_err = last_pos_error_;
++  double last_int_err = last_int_error_;
++
++  // Output value
++  double force;				// Controller output force
++
++
++  // Step 1: Have the proxy track (and reconverge to) the desired
++  // motion.  We use the bandwidth lambda as a general enable switch:
++  // Only implement the full proxy behavior if lambda is positive.
++  // (Would not make sense if the bandwidth is zero..)
++  if (lam > 0.0)
++  {
++    double pnom;		// Nominal position (for lineariztion)
++    double vnom;		// Nominal velocity (for lineariztion)
++    double anom;		// Nominal/linearized acceleration value
++    double dadp;		// Partial derivative w.r.t. position
++    double dadv;		// Partial derivative w.r.t. velocity
++
++    double acc_hi;		// Upper acceleration boundary value
++    double acc_lo;		// Lower acceleration boundary value
++
++    // Using trapezoidal integration for the proxy, we need to solve
++    // the implicit equation for the acceleration.  To do so, we
++    // have to linearize the equation around zero acceleration.  And
++    // for this, we need to determine a new (nominal) proxy position
++    // and velocity assuming zero acceleration.
++    vnom = last_vel_pxy + dt/2 * (last_acc_pxy + 0.0 );
++    pnom = last_pos_pxy + dt/2 * (last_vel_pxy + vnom);
++
++    // Calculate the proxy acceleration to track the desired
++    // trajectory = desired position/velocity/acceleration.
++    // Appropriate to trapezoidal integration, first compute the
++    // linearized dynamics at the nominal position/velocity, then
++    // solve the solve the implicit equation.  Note the partial
++    // derivatives are negative, so the denominator is guaranteed to
++    // be positive.
++    calcDynamics2ndorder(anom, dadp, dadv, pnom-pos_des, vnom-vel_des, lam, acon);
++    acc_pxy = (acc_des + anom) / (1.0 - dadv*dt/2 - dadp*dt2/4);
++
++    // Limit the new proxy position (if a non-zero position range is
++    // given).  Calculate the acceleration that would be needed to
++    // stop at the upper and lower position limits.  To stop in
++    // time, we should never apply more acceleration than the first
++    // or less than the second.  Hence saturate the proxy
++    // acceleration accordingly.
++#if 0
++    // Comment out preferred by Stu to avoid parameters pmin/pmax.
++    if (pmax - pmin > 0.0)
++    {
++      // Upper limit.
++      calcDynamics2ndorder(anom, dadp, dadv, pnom-pmax, vnom, lam, acon);
++      acc_hi = anom / (1.0 - dadv*dt/2 - dadp*dt2/4);
++
++      // Lower limit.
++      calcDynamics2ndorder(anom, dadp, dadv, pnom-pmin, vnom, lam, acon);
++      acc_lo = anom / (1.0 - dadv*dt/2 - dadp*dt2/4);
++
++      // Saturate between the lower and upper values.
++      acc_pxy = std::min(std::max(acc_pxy, acc_lo), acc_hi);
++    }
++#endif
++
++    // Limit the new proxy velocity (if a velocity limit is given).
++    // Calculate the acceleration that would be needed to converge
++    // to the upper and lower velocity limit.  To avoid the limits,
++    // we should never apply more than the first or less than the
++    // second, hence saturate the proxy accordingly.
++    if (vlim > 0.0)
++    {
++      // Upper limit.
++      calcDynamics1storder(anom, dadv, vnom-vlim, lam, acon);
++      acc_hi = anom / (1.0 - dadv*dt/2);
++
++      // Lower limit.
++      calcDynamics1storder(anom, dadv, vnom+vlim, lam, acon);
++      acc_lo = anom / (1.0 - dadv*dt/2);
++
++      // Saturate between the lower and upper values.
++      acc_pxy = std::min(std::max(acc_pxy, acc_lo), acc_hi);
++    }
++
++    // Do not limit the new proxy acceleration to any constant max
++    // acceleration value.  If the acceleration is high, it may
++    // cause force saturations which Step 3 detects and corrects.
++    // As a result, accelerations can be higher for joint
++    // configurations with low inertia and vice versa.
++
++    // Finally integrate the proxy over the time step using the
++    // (nonzero) computed proxy acceleration.
++    vel_pxy = last_vel_pxy + dt/2 * (last_acc_pxy + acc_pxy);
++    pos_pxy = last_pos_pxy + dt/2 * (last_vel_pxy + vel_pxy);
++  }
++  else
++  {
++    // The proxy dynamics are turned off, so just set it to track
++    // the desired exactly.
++    acc_pxy = acc_des;
++    vel_pxy = vel_des;
++    pos_pxy = pos_des;
++  }
++
++
++  // Step 2: Calculate the controller based on the proxy motion.
++  // First compute the velocity, position, and integral errors.  Note
++  // we do NOT limit the integration or integral error until after the
++  // below adjustments!
++  vel_err = vel_act - vel_pxy;
++  pos_err = pos_act - pos_pxy;
++  int_err = last_int_err + dt/2 * (last_pos_err + pos_err);
++
++  // Calculate the controller force.  This includes an acceleration
++  // feedforward term (so the actual robot will track the proxy as
++  // best possible), a regular PD, and an integral term which is
++  // clamped to a maximum value.
++  force = mass*acc_pxy - Kd*vel_err - Kp*pos_err - std::min(std::max(Ki*int_err, -Ficl), Ficl);
++
++
++  // Step 3: If the controller force were to exceed the force limits,
++  // adjust the proxy to reduce the required force.  This effectively
++  // drags the proxy with the actual when the controller can not
++  // create the forces required for tracking.  We use the force
++  // limit as an enable switch: only adjust if the limit is positive.
++  // (A force limit of zero would make no sense.)
++  if (Flim > 0.0)
++  {
++    double Fpd;		// PD force from the un-adjusted errors
++    double Fi;		// Unclamped and un-adjusted integral force
++
++    // Saturate the force to the known force limits.
++    force = std::min(std::max(force, -Flim), Flim);
++
++    // Calculate the PD force and the unclamped (unsaturated)
++    // integral force which the un-adjusted proxy would provide.
++    Fpd = mass*acc_pxy - Kd*vel_err - Kp*pos_err;
++    Fi  = - Ki*int_err;
++
++    // If the mass is non-zero, calculate an acceleration-based
++    // proxy adjustment.
++    if (mass > 0.0)
++    {
++      double da;		// Acceleration delta (change)
++
++      // Compute the acceleration delta assuming the integral term
++      // does not saturate.
++      da = (force - Fpd - Fi) / (mass + Kd*dt/2 + Kp*dt2/4 + Ki*dt3/8);
++
++      // Check for clamping/saturation on the adjusted integral
++      // force and re-compute the delta appropriately.  There is
++      // no need to re-check for clamping after recomputation, as
++      // the new delta will only increase and can not undo the
++      // saturation.
++      if      (Fi+da*Ki*dt3/8 >  Ficl)  da=(force-Fpd-Ficl)/(mass+Kd*dt/2+Kp*dt2/4);
++      else if (Fi+da*Ki*dt3/8 < -Ficl)  da=(force-Fpd+Ficl)/(mass+Kd*dt/2+Kp*dt2/4);
++
++      // Adjust the acceleration, velocity, position, and integral
++      // states.
++      acc_pxy += da;
++      vel_pxy += da * dt/2;
++      pos_pxy += da * dt2/4;
++
++      vel_err -= da * dt/2;
++      pos_err -= da * dt2/4;
++      int_err -= da * dt3/8;
++    }
++
++    // If the mass is zero and the damping gain is nonzero, we have
++    // to adjust the force by shifting the proxy velocity.
++    else if (Kd > 0.0)
++    {
++      double dv;		// Velocity delta (change)
++
++      // Compute the velocity delta assuming the integral term
++      // does not saturate.
++      dv = (force - Fpd - Fi) / (Kd + Kp*dt/2 + Ki*dt2/4);
++
++      // Check for clamping/saturation on the adjusted integral
++      // force and re-compute the delta appropriately.  There is
++      // no need to re-check for clamping after recomputation, as
++      // the new delta will only increase and can not undo the
++      // saturation.
++      if      (Fi+dv*Ki*dt2/4 >  Ficl)  dv=(force-Fpd-Ficl)/(Kd+Kp*dt/2);
++      else if (Fi+dv*Ki*dt2/4 < -Ficl)  dv=(force-Fpd+Ficl)/(Kd+Kp*dt/2);
++
++      // Adjust the velocity, position, and integral states.  Do
++      // not alter the acceleration.
++      vel_pxy += dv;
++      pos_pxy += dv * dt/2;
++
++      vel_err -= dv;
++      pos_err -= dv * dt/2;
++      int_err -= dv * dt2/4;
++    }
++
++    // If the mass and damping gain are both zero and the position
++    // gain is nonzero, we have to adjust the force by shifting the
++    // proxy position.
++    else if (Kp > 0.0)
++    {
++      double dp;		// Position delta (change)
++
++      // Compute the velocity delta assuming the integral term
++      // does not saturate.
++      dp = (force - Fpd - Fi) / (Kp + Ki*dt/2);
++
++      // Check for clamping/saturation on the adjusted integral
++      // force and re-compute the delta appropriately.  There is
++      // no need to re-check for clamping after recomputation, as
++      // the new delta will only increase and can not undo the
++      // saturation.
++      if      (Fi+dp*Ki*dt/2 >  Ficl)  dp=(force-Fpd-Ficl)/(Kp);
++      else if (Fi+dp*Ki*dt/2 < -Ficl)  dp=(force-Fpd+Ficl)/(Kp);
++
++      // Adjust the position and integral states.  Do not alter
++      // the acceleration or velocity.
++      pos_pxy += dp;
++
++      pos_err -= dp;
++      int_err -= dp * dt/2;
++    }
++
++    // If the mass, damping, and position gain are all zero, there
++    // isn't much we can do...
++  }
++
++
++  // Step 4: Clean up
++  // (a) Stop the position error integration (limit the integral error) if
++  //     the integrator clamp is in effect.  Note this is safe for Ki==0.
++  if      (Ki * int_err >  Ficl)   int_err =  Ficl / Ki;
++  else if (Ki * int_err < -Ficl)   int_err = -Ficl / Ki;
++
++  // (b) Remember the state.
++  last_proxy_pos_ = pos_pxy;
++  last_proxy_vel_ = vel_pxy;
++  last_proxy_acc_ = acc_pxy;
++  last_vel_error_ = vel_err;
++  last_pos_error_ = pos_err;
++  last_int_error_ = int_err;
++
++  // (c) Return the controller force.
++  return(force);
++}
++
++} // namespace
+--- /dev/null
++++ ros-noetic-control-toolbox-1.19.0/src/pid.cpp
+@@ -0,0 +1,441 @@
++/*********************************************************************
++ * Software License Agreement (BSD License)
++ *
++ *  Copyright (c) 2008, Willow Garage, Inc.
++ *  All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted provided that the following conditions
++ *  are met:
++ *
++ *   * Redistributions of source code must retain the above copyright
++ *     notice, this list of conditions and the following disclaimer.
++ *   * Redistributions in binary form must reproduce the above
++ *     copyright notice, this list of conditions and the following
++ *     disclaimer in the documentation and/or other materials provided
++ *     with the distribution.
++ *   * Neither the name of the Willow Garage nor the names of its
++ *     contributors may be used to endorse or promote products derived
++ *     from this software without specific prior written permission.
++ *
++ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++ *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++ *  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++ *  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++ *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++ *  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++ *  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++ *  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++ *  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++ *  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++ *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ *  POSSIBILITY OF SUCH DAMAGE.
++ *********************************************************************/
++
++/*
++  Author: Melonee Wise
++  Contributors: Dave Coleman, Jonathan Bohren, Bob Holmberg, Wim Meeussen
++  Desc: Implements a standard proportional-integral-derivative controller
++*/
++
++#include <control_toolbox/pid.h>
++#include <tinyxml.h>
++
++#include <boost/algorithm/clamp.hpp>
++#include <boost/algorithm/minmax.hpp>
++
++namespace control_toolbox {
++
++static const std::string DEFAULT_NAMESPACE = "pid"; // \todo better default prefix?
++
++Pid::Pid(double p, double i, double d, double i_max, double i_min, bool antiwindup)
++  : dynamic_reconfig_initialized_(false)
++{
++  setGains(p,i,d,i_max,i_min,antiwindup);
++
++  reset();
++}
++
++Pid::Pid(const Pid &source)
++   : dynamic_reconfig_initialized_(false)
++{
++  // Copy the realtime buffer to then new PID class
++  gains_buffer_ = source.gains_buffer_;
++
++  // Reset the state of this PID controller
++  reset();
++}
++
++Pid::~Pid()
++{
++}
++
++void Pid::initPid(double p, double i, double d, double i_max, double i_min,
++  const ros::NodeHandle& /*node*/)
++{
++  initPid(p, i, d, i_max, i_min);
++
++  // Create node handle for dynamic reconfigure
++  ros::NodeHandle nh(DEFAULT_NAMESPACE);
++  initDynamicReconfig(nh);
++}
++
++void Pid::initPid(double p, double i, double d, double i_max, double i_min, bool antiwindup,
++  const ros::NodeHandle& /*node*/)
++{
++  initPid(p, i, d, i_max, i_min, antiwindup);
++
++  // Create node handle for dynamic reconfigure
++  ros::NodeHandle nh(DEFAULT_NAMESPACE);
++  initDynamicReconfig(nh);
++}
++
++void Pid::initPid(double p, double i, double d, double i_max, double i_min, bool antiwindup)
++{
++  setGains(p,i,d,i_max,i_min, antiwindup);
++
++  reset();
++}
++
++bool Pid::initParam(const std::string& prefix, const bool quiet)
++{
++  ros::NodeHandle nh(prefix);
++  return init(nh, quiet);
++}
++
++bool Pid::init(const ros::NodeHandle &node, const bool quiet)
++{
++  ros::NodeHandle nh(node);
++
++  Gains gains;
++
++  // Load PID gains from parameter server
++  if (!nh.getParam("p", gains.p_gain_))
++  {
++    if (!quiet) {
++      ROS_ERROR("No p gain specified for pid.  Namespace: %s", nh.getNamespace().c_str());
++    }
++    return false;
++  }
++  // Only the P gain is required, the I and D gains are optional and default to 0:
++  nh.param("i", gains.i_gain_, 0.0);
++  nh.param("d", gains.d_gain_, 0.0);
++
++  // Load integral clamp from param server or default to 0
++  double i_clamp;
++  nh.param("i_clamp", i_clamp, 0.0);
++  gains.i_max_ = std::abs(i_clamp);
++  gains.i_min_ = -std::abs(i_clamp);
++  if(nh.hasParam("i_clamp_min"))
++  {
++    nh.param("i_clamp_min", gains.i_min_, gains.i_min_); // use i_clamp_min parameter, otherwise keep -i_clamp
++    gains.i_min_ = -std::abs(gains.i_min_); // make sure the value is <= 0
++  }
++  if(nh.hasParam("i_clamp_max"))
++  {
++    nh.param("i_clamp_max", gains.i_max_, gains.i_max_); // use i_clamp_max parameter, otherwise keep i_clamp
++    gains.i_max_ = std::abs(gains.i_max_); // make sure the value is >= 0
++  }
++  nh.param("antiwindup", gains.antiwindup_, false);
++
++  nh.param("publish_state", publish_state_, false);
++
++  if(publish_state_)
++  {
++    state_publisher_.reset(new realtime_tools::RealtimePublisher<control_msgs::PidState>());
++    state_publisher_->init(nh, "state", 1);
++  }
++
++  setGains(gains);
++
++  reset();
++  initDynamicReconfig(nh);
++
++  return true;
++}
++
++bool Pid::initXml(TiXmlElement *config)
++{
++  // Create node handle for dynamic reconfigure
++  ros::NodeHandle nh(DEFAULT_NAMESPACE);
++
++  double i_clamp;
++  i_clamp = config->Attribute("iClamp") ? atof(config->Attribute("iClamp")) : 0.0;
++
++  setGains(
++    config->Attribute("p") ? atof(config->Attribute("p")) : 0.0,
++    config->Attribute("i") ? atof(config->Attribute("i")) : 0.0,
++    config->Attribute("d") ? atof(config->Attribute("d")) : 0.0,
++    std::abs(i_clamp),
++    -std::abs(i_clamp),
++    config->Attribute("antiwindup") ? atof(config->Attribute("antiwindup")) : false
++  );
++
++  reset();
++  initDynamicReconfig(nh);
++
++  return true;
++}
++
++void Pid::initDynamicReconfig(ros::NodeHandle &node)
++{
++  ROS_DEBUG_STREAM_NAMED("pid","Initializing dynamic reconfigure in namespace "
++    << node.getNamespace());
++
++  // Start dynamic reconfigure server
++  param_reconfig_server_.reset(new DynamicReconfigServer(param_reconfig_mutex_, node));
++  dynamic_reconfig_initialized_ = true;
++
++  // Set Dynamic Reconfigure's gains to Pid's values
++  updateDynamicReconfig();
++
++  // Set callback
++  param_reconfig_callback_ = std::bind(&Pid::dynamicReconfigCallback, this, std::placeholders::_1, std::placeholders::_2);
++  param_reconfig_server_->setCallback(param_reconfig_callback_);
++}
++
++void Pid::reset()
++{
++  reset(0.0, 0.0);
++  valid_p_error_last_ = true;
++}
++
++void Pid::reset(double d_error, double i_error)
++{
++  p_error_last_ = 0.0;
++  p_error_ = 0.0;
++  i_error_ = i_error;
++  d_error_ = d_error;
++  cmd_ = 0.0;
++  valid_p_error_last_ = false;
++}
++
++void Pid::getGains(double &p, double &i, double &d, double &i_max, double &i_min)
++{
++  bool antiwindup;
++  getGains(p, i, d, i_max, i_min, antiwindup);
++}
++
++void Pid::getGains(double &p, double &i, double &d, double &i_max, double &i_min, bool &antiwindup)
++{
++  Gains gains = *gains_buffer_.readFromRT();
++
++  p     = gains.p_gain_;
++  i     = gains.i_gain_;
++  d     = gains.d_gain_;
++  i_max = gains.i_max_;
++  i_min = gains.i_min_;
++  antiwindup = gains.antiwindup_;
++}
++
++Pid::Gains Pid::getGains()
++{
++  return *gains_buffer_.readFromRT();
++}
++
++void Pid::setGains(double p, double i, double d, double i_max, double i_min, bool antiwindup)
++{
++  Gains gains(p,i,d,i_max,i_min, antiwindup);
++
++  setGains(gains);
++}
++
++void Pid::setGains(const Gains &gains)
++{
++  gains_buffer_.writeFromNonRT(gains);
++
++  // Update dynamic reconfigure with the new gains
++  updateDynamicReconfig(gains);
++}
++
++void Pid::updateDynamicReconfig()
++{
++  // Make sure dynamic reconfigure is initialized
++  if(!dynamic_reconfig_initialized_)
++    return;
++
++  // Get starting values
++  control_toolbox::ParametersConfig config;
++
++  // Get starting values
++  getGains(config.p, config.i, config.d, config.i_clamp_max, config.i_clamp_min, config.antiwindup);
++
++  updateDynamicReconfig(config);
++}
++
++void Pid::updateDynamicReconfig(Gains gains_config)
++{
++  // Make sure dynamic reconfigure is initialized
++  if(!dynamic_reconfig_initialized_)
++    return;
++
++  control_toolbox::ParametersConfig config;
++
++  // Convert to dynamic reconfigure format
++  config.p = gains_config.p_gain_;
++  config.i = gains_config.i_gain_;
++  config.d = gains_config.d_gain_;
++  config.i_clamp_max = gains_config.i_max_;
++  config.i_clamp_min = gains_config.i_min_;
++  config.antiwindup = gains_config.antiwindup_;
++
++  updateDynamicReconfig(config);
++}
++
++void Pid::updateDynamicReconfig(control_toolbox::ParametersConfig config)
++{
++  // Make sure dynamic reconfigure is initialized
++  if(!dynamic_reconfig_initialized_)
++    return;
++
++  // Set starting values, using a shared mutex with dynamic reconfig
++  param_reconfig_mutex_.lock();
++  param_reconfig_server_->updateConfig(config);
++  param_reconfig_mutex_.unlock();
++}
++
++void Pid::dynamicReconfigCallback(control_toolbox::ParametersConfig &config, uint32_t /*level*/)
++{
++  ROS_DEBUG_STREAM_NAMED("pid","Dynamics reconfigure callback recieved.");
++
++  // Set the gains
++  setGains(config.p, config.i, config.d, config.i_clamp_max, config.i_clamp_min, config.antiwindup);
++}
++
++double Pid::computeCommand(double error, ros::Duration dt)
++{
++
++  if (dt == ros::Duration(0.0) || std::isnan(error) || std::isinf(error))
++    return 0.0;
++
++  double error_dot = d_error_;
++
++  // Calculate the derivative error
++  if (dt.toSec() > 0.0)
++  {
++    if (valid_p_error_last_) {
++      error_dot = (error - p_error_last_) / dt.toSec();
++    }
++    p_error_last_ = error;
++    valid_p_error_last_ = true;
++  }
++
++  return computeCommand(error, error_dot, dt);
++}
++
++double Pid::updatePid(double error, ros::Duration dt)
++{
++  return -computeCommand(error, dt);
++}
++
++double Pid::computeCommand(double error, double error_dot, ros::Duration dt)
++{
++  // Get the gain parameters from the realtime buffer
++  Gains gains = *gains_buffer_.readFromRT();
++
++  double p_term, d_term, i_term;
++  p_error_ = error; // this is error = target - state
++  d_error_ = error_dot;
++
++  if (dt == ros::Duration(0.0) || std::isnan(error) || std::isinf(error) || std::isnan(error_dot) || std::isinf(error_dot))
++    return 0.0;
++
++  // Calculate proportional contribution to command
++  p_term = gains.p_gain_ * p_error_;
++
++  // Calculate the integral of the position error
++  i_error_ += dt.toSec() * p_error_;
++
++  if(gains.antiwindup_ && gains.i_gain_!=0)
++  {
++    // Prevent i_error_ from climbing higher than permitted by i_max_/i_min_
++    boost::tuple<double, double> bounds = boost::minmax<double>(gains.i_min_ / gains.i_gain_, gains.i_max_ / gains.i_gain_);
++    i_error_ = boost::algorithm::clamp(i_error_, bounds.get<0>(), bounds.get<1>());
++  }
++
++  // Calculate integral contribution to command
++  i_term = gains.i_gain_ * i_error_;
++
++  if(!gains.antiwindup_)
++  {
++    // Limit i_term so that the limit is meaningful in the output
++    i_term = boost::algorithm::clamp(i_term, gains.i_min_, gains.i_max_);
++  }
++
++  // Calculate derivative contribution to command
++  d_term = gains.d_gain_ * d_error_;
++
++  // Compute the command
++  cmd_ = p_term + i_term + d_term;
++
++  // Publish controller state if configured
++  if (publish_state_ && state_publisher_)
++  {
++    if (state_publisher_->trylock())
++    {
++      state_publisher_->msg_.header.stamp = ros::Time::now();
++      state_publisher_->msg_.timestep = dt;
++      state_publisher_->msg_.error = error;
++      state_publisher_->msg_.error_dot = error_dot;
++      state_publisher_->msg_.p_error = p_error_;
++      state_publisher_->msg_.i_error = i_error_;
++      state_publisher_->msg_.d_error = d_error_;
++      state_publisher_->msg_.p_term = p_term;
++      state_publisher_->msg_.i_term = i_term;
++      state_publisher_->msg_.d_term = d_term;
++      state_publisher_->msg_.i_max = gains.i_max_;
++      state_publisher_->msg_.i_min = gains.i_min_;
++      state_publisher_->msg_.output = cmd_;
++      state_publisher_->unlockAndPublish();
++    }
++  }
++
++  return cmd_;
++}
++
++double Pid::updatePid(double error, double error_dot, ros::Duration dt)
++{
++  return -computeCommand(error, error_dot, dt);
++}
++
++void Pid::setCurrentCmd(double cmd)
++{
++  cmd_ = cmd;
++}
++
++double Pid::getCurrentCmd()
++{
++  return cmd_;
++}
++
++void Pid::getCurrentPIDErrors(double *pe, double *ie, double *de)
++{
++  // Get the gain parameters from the realtime buffer
++  Gains gains = *gains_buffer_.readFromRT();
++
++  *pe = p_error_;
++  *ie = i_error_;
++  *de = d_error_;
++}
++
++void Pid::printValues()
++{
++  Gains gains = getGains();
++
++  ROS_INFO_STREAM_NAMED("pid","Current Values of PID Class:\n"
++    << "  P Gain: " << gains.p_gain_ << "\n"
++    << "  I Gain: " << gains.i_gain_ << "\n"
++    << "  D Gain: " << gains.d_gain_ << "\n"
++    << "  I_Max:  " << gains.i_max_  << "\n"
++    << "  I_Min:  " << gains.i_min_  << "\n"
++    << "  Antiwindup:  " << gains.antiwindup_  << "\n"
++    << "  P_Error_Last: " << p_error_last_  << "\n"
++    << "  P_Error:      " << p_error_  << "\n"
++    << "  I_Error:       " << i_error_  << "\n"
++    << "  D_Error:      " << d_error_  << "\n"
++    << "  Command:      " << cmd_
++  );
++
++}
++
++} // namespace
+--- /dev/null
++++ ros-noetic-control-toolbox-1.19.0/src/pid_gains_setter.cpp
+@@ -0,0 +1,65 @@
++/*
++ * Copyright (c) 2009, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#include "control_toolbox/pid_gains_setter.h"
++
++namespace control_toolbox {
++
++PidGainsSetter::~PidGainsSetter()
++{
++  serve_set_gains_.shutdown();
++}
++
++PidGainsSetter& PidGainsSetter::add(Pid *pid)
++{
++  assert(pid);
++  pids_.push_back(pid);
++  return *this;
++}
++
++void PidGainsSetter::advertise(const ros::NodeHandle &n)
++{
++  node_ = n;
++  serve_set_gains_ = node_.advertiseService("set_gains", &PidGainsSetter::setGains, this);
++}
++
++bool PidGainsSetter::setGains(control_toolbox::SetPidGains::Request &req,
++                              control_toolbox::SetPidGains::Response &resp)
++{
++  for (size_t i = 0; i < pids_.size(); ++i)
++    pids_[i]->setGains(req.p, req.i, req.d, req.i_clamp, -req.i_clamp, req.antiwindup);
++  node_.setParam("p", req.p);
++  node_.setParam("i", req.i);
++  node_.setParam("d", req.d);
++  node_.setParam("i_clamp", req.i_clamp);
++  node_.setParam("antiwindup", req.antiwindup);
++  return true;
++}
++
++}
+--- /dev/null
++++ ros-noetic-control-toolbox-1.19.0/src/sine_sweep.cpp
+@@ -0,0 +1,92 @@
++/*********************************************************************
++ * Software License Agreement (BSD License)
++ *
++ *  Copyright (c) 2008, Willow Garage, Inc.
++ *  All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted provided that the following conditions
++ *  are met:
++ *
++ *   * Redistributions of source code must retain the above copyright
++ *     notice, this list of conditions and the following disclaimer.
++ *   * Redistributions in binary form must reproduce the above
++ *     copyright notice, this list of conditions and the following
++ *     disclaimer in the documentation and/or other materials provided
++ *     with the distribution.
++ *   * Neither the name of the Willow Garage nor the names of its
++ *     contributors may be used to endorse or promote products derived
++ *     from this software without specific prior written permission.
++ *
++ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++ *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++ *  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++ *  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++ *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++ *  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++ *  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++ *  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++ *  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++ *  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++ *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ *  POSSIBILITY OF SUCH DAMAGE.
++ *********************************************************************/
++
++// Original version: Melonee Wise <mwise@willowgarage.com>
++
++#include <math.h>
++#include <control_toolbox/sine_sweep.h>
++
++namespace control_toolbox {
++
++SineSweep::SineSweep()
++{
++  K_=0.0;
++  L_=0.0;
++  amplitude_=0.0;
++  duration_ = ros::Duration(0.0);
++  cmd_ = 0.0;
++}
++
++SineSweep::~SineSweep()
++{
++}
++
++bool SineSweep::init(double start_freq, double end_freq, double duration, double amplitude)
++{
++  if (start_freq > end_freq)
++    return false;
++  if (duration < 0 || amplitude < 0)
++    return false;
++  
++  amplitude_ = amplitude;
++  duration_ = ros::Duration(duration);
++  //calculate the angular fequencies
++  start_angular_freq_ =2*M_PI*start_freq;
++  end_angular_freq_ =2*M_PI*end_freq;
++  
++  //calculate the constants
++  K_ = (start_angular_freq_*duration)/log(end_angular_freq_/start_angular_freq_);
++  L_ = (duration)/log(end_angular_freq_/start_angular_freq_);
++  
++  //zero out the command
++  cmd_ = 0.0;
++
++  return true;
++}
++
++double SineSweep::update( ros::Duration dt)
++{
++  if(dt<=duration_)
++  {
++    cmd_= amplitude_*sin(K_*(exp((dt.toSec())/(L_))-1));
++  }
++  else
++  {
++    cmd_=0.0;
++  }
++
++  return cmd_;
++}
++}
++
+--- /dev/null
++++ ros-noetic-control-toolbox-1.19.0/src/sinusoid.cpp
+@@ -0,0 +1,93 @@
++/*********************************************************************
++ * Software License Agreement (BSD License)
++ *
++ *  Copyright (c) 2009, Willow Garage, Inc.
++ *  All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted provided that the following conditions
++ *  are met:
++ *
++ *   * Redistributions of source code must retain the above copyright
++ *     notice, this list of conditions and the following disclaimer.
++ *   * Redistributions in binary form must reproduce the above
++ *     copyright notice, this list of conditions and the following
++ *     disclaimer in the documentation and/or other materials provided
++ *     with the distribution.
++ *   * Neither the name of the Willow Garage nor the names of its
++ *     contributors may be used to endorse or promote products derived
++ *     from this software without specific prior written permission.
++ *
++ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++ *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++ *  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++ *  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++ *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++ *  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++ *  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++ *  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++ *  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++ *  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++ *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ *  POSSIBILITY OF SUCH DAMAGE.
++ *********************************************************************/
++
++/** \author Mrinal Kalakrishnan */
++
++#include "control_toolbox/sinusoid.h"
++#include <cmath>
++#include <iostream>
++
++using namespace std;
++
++namespace control_toolbox
++{
++
++Sinusoid::Sinusoid(double offset, double amplitude, double frequency, double phase):
++  offset_(offset),
++  amplitude_(amplitude),
++  frequency_(frequency),
++  phase_(phase)
++{
++}
++
++bool Sinusoid::initXml(TiXmlElement *ti_xml_element)
++{
++  const char* attr;
++  attr = ti_xml_element->Attribute("offset");
++  offset_ = attr ? atof(attr) : 0.0;
++  attr = ti_xml_element->Attribute("amplitude");
++  amplitude_ = attr ? atof(attr) : 0.0;
++  attr = ti_xml_element->Attribute("frequency");
++  frequency_ = attr ? atof(attr) : 0.0;
++  attr = ti_xml_element->Attribute("phase");
++  phase_ = attr ? atof(attr) : 0.0;
++  return true; // does not fail for now, we assume a default of 0 for all params
++}
++
++Sinusoid::~Sinusoid()
++{
++}
++
++Sinusoid::Sinusoid()
++{
++}
++
++double Sinusoid::update(double time, double& qd, double& qdd)
++{
++  double angular_frequency = 2.0*M_PI*frequency_;
++  double p = phase_ + angular_frequency*time;
++  double sin_p = sin(p);
++  double cos_p = cos(p);
++  double q = offset_ + amplitude_*sin_p;
++  qd = angular_frequency*amplitude_*cos_p;
++  qdd = -angular_frequency*angular_frequency*amplitude_*sin_p;
++  return q;
++}
++
++void Sinusoid::debug()
++{
++  cout << "offset=" << offset_ << " amplitude=" << amplitude_ << " phase=" << phase_ << " frequency=" << frequency_ << endl;
++}
++
++} // namespace control_toolbox
+--- /dev/null
++++ ros-noetic-control-toolbox-1.19.0/srv/SetPidGains.srv
+@@ -0,0 +1,6 @@
++float64 p
++float64 i
++float64 d
++float64 i_clamp
++bool antiwindup
++---
+--- /dev/null
++++ ros-noetic-control-toolbox-1.19.0/test/pid_tests.cpp
+@@ -0,0 +1,380 @@
++
++#include <ros/ros.h>
++
++#include <gtest/gtest.h>
++
++#include <control_toolbox/pid.h>
++
++#include <boost/math/special_functions/fpclassify.hpp>
++
++using namespace control_toolbox;
++
++TEST(ParameterTest, ITermBadIBoundsTest)
++{
++  RecordProperty("description","This test checks that the integral contribution is robust to bad i_bounds specification (i.e. i_min > i_max).");
++
++  // Check that the output is not a non-sense if i-bounds are bad, i.e. i_min > i_max
++  Pid pid(1.0, 1.0, 1.0, -1.0, 1.0);
++  double cmd = 0.0;
++  double pe,ie,de;
++
++  cmd = pid.computeCommand(-1.0, ros::Duration(1.0));
++  pid.getCurrentPIDErrors(&pe,&ie,&de);
++  EXPECT_FALSE(boost::math::isinf(ie));
++  EXPECT_FALSE(boost::math::isnan(cmd));
++
++  cmd = pid.computeCommand(-1.0, ros::Duration(1.0));
++  pid.getCurrentPIDErrors(&pe,&ie,&de);
++  EXPECT_FALSE(boost::math::isinf(ie));
++  EXPECT_FALSE(boost::math::isnan(cmd));
++}
++
++TEST(ParameterTest, integrationClampTest)
++{
++  RecordProperty("description","This test succeeds if the integral contribution is clamped when the integral gain is non-zero.");
++
++  Pid pid(0.0, 1.0, 0.0, 1.0, -1.0);
++
++  double cmd = 0.0;
++
++  // Test lower limit
++  cmd = pid.computeCommand(-10.03, ros::Duration(1.0));
++  EXPECT_EQ(-1.0, cmd);
++
++  // Test upper limit
++  cmd = pid.computeCommand(30.0, ros::Duration(1.0));
++  EXPECT_EQ(1.0, cmd);
++
++}
++
++TEST(ParameterTest, integrationClampZeroGainTest)
++{
++  RecordProperty("description","This test succeeds if the integral contribution is clamped when the integral gain is zero. If the integral contribution is not clamped while it is disabled, it can cause sudden jumps to the minimum or maximum bound in control command when re-enabled.");
++
++  double i_gain = 0.0;
++  double i_min = -1.0;
++  double i_max = 1.0;
++  Pid pid(0.0, i_gain, 0.0, i_max, i_min);
++
++  double cmd = 0.0;
++  double pe,ie,de;
++
++  cmd = pid.computeCommand(-1.0, ros::Duration(1.0));
++  pid.getCurrentPIDErrors(&pe,&ie,&de);
++  EXPECT_LE(i_min, cmd);
++  EXPECT_LE(cmd, i_max);
++  EXPECT_EQ(0.0, cmd);
++
++  cmd = pid.computeCommand(-1.0, ros::Duration(1.0));
++  EXPECT_LE(i_min, cmd);
++  EXPECT_LE(cmd, i_max);
++  EXPECT_EQ(0.0, cmd);
++}
++
++TEST(ParameterTest, integrationAntiwindupTest)
++{
++  RecordProperty("description","This test succeeds if the integral error is prevented from winding up when i_gain > 0");
++
++  double i_gain = 2.0;
++  double i_min = -1.0;
++  double i_max = 1.0;
++  Pid pid(0.0, i_gain, 0.0, i_max, i_min, true);
++
++  double cmd = 0.0;
++  double pe,ie,de;
++
++  cmd = pid.computeCommand(-1.0, ros::Duration(1.0));
++  EXPECT_EQ(-1.0, cmd);
++
++  cmd = pid.computeCommand(-1.0, ros::Duration(1.0));
++  EXPECT_EQ(-1.0, cmd);
++
++  cmd = pid.computeCommand(0.5, ros::Duration(1.0));
++  EXPECT_EQ(0.0, cmd);
++
++  cmd = pid.computeCommand(-1.0, ros::Duration(1.0));
++  EXPECT_EQ(-1.0, cmd);
++}
++
++TEST(ParameterTest, negativeIntegrationAntiwindupTest)
++{
++  RecordProperty("description","This test succeeds if the integral error is prevented from winding up when i_gain < 0");
++
++  double i_gain = -2.5;
++  double i_min = -0.2;
++  double i_max = 0.5;
++  Pid pid(0.0, i_gain, 0.0, i_max, i_min, true);
++
++  double cmd = 0.0;
++  double pe,ie,de;
++
++  cmd = pid.computeCommand(0.1, ros::Duration(1.0));
++  EXPECT_EQ(-0.2, cmd);
++
++  cmd = pid.computeCommand(0.1, ros::Duration(1.0));
++  EXPECT_EQ(-0.2, cmd);
++
++  cmd = pid.computeCommand(-0.05, ros::Duration(1.0));
++  EXPECT_EQ(-0.075, cmd);
++
++  cmd = pid.computeCommand(0.1, ros::Duration(1.0));
++  EXPECT_EQ(-0.2, cmd);
++}
++
++TEST(ParameterTest, gainSettingCopyPIDTest)
++{
++  RecordProperty("description","This test succeeds if a PID object has its gain set at different points in time then the values are get-ed and still remain the same, as well as when PID is copied.");
++
++  // Test values
++  double p_gain = rand() % 100;
++  double i_gain = rand() % 100;
++  double d_gain = rand() % 100;
++  double i_max = rand() % 100;
++  double i_min = -1 * rand() % 100;
++  bool antiwindup = false;
++
++  // Initialize the default way
++  Pid pid1(p_gain, i_gain, d_gain, i_max, i_min, antiwindup);
++
++  // Test return values  -------------------------------------------------
++  double p_gain_return, i_gain_return, d_gain_return, i_max_return, i_min_return;
++  bool antiwindup_return;
++  pid1.getGains(p_gain_return, i_gain_return, d_gain_return, i_max_return, i_min_return, antiwindup_return);
++
++  EXPECT_EQ(p_gain, p_gain_return);
++  EXPECT_EQ(i_gain, i_gain_return);
++  EXPECT_EQ(d_gain, d_gain_return);
++  EXPECT_EQ(i_max, i_max_return);
++  EXPECT_EQ(i_min, i_min_return);
++  EXPECT_EQ(antiwindup, antiwindup_return);
++
++  // Test return values using struct -------------------------------------------------
++
++  // New values
++  p_gain = rand() % 100;
++  i_gain = rand() % 100;
++  d_gain = rand() % 100;
++  i_max = rand() % 100;
++  i_min = -1 * rand() % 100;
++  pid1.setGains(p_gain, i_gain, d_gain, i_max, i_min, antiwindup);
++
++  Pid::Gains g1 = pid1.getGains();
++  EXPECT_EQ(p_gain, g1.p_gain_);
++  EXPECT_EQ(i_gain, g1.i_gain_);
++  EXPECT_EQ(d_gain, g1.d_gain_);
++  EXPECT_EQ(i_max, g1.i_max_);
++  EXPECT_EQ(i_min, g1.i_min_);
++  EXPECT_EQ(antiwindup, g1.antiwindup_);
++
++  // \todo test initParam() -------------------------------------------------
++
++
++  // \todo test bool init(const ros::NodeHandle &n); -----------------------------------
++
++
++  // Send update command to populate errors -------------------------------------------------
++  pid1.setCurrentCmd(10);
++  pid1.computeCommand(20, ros::Duration(1.0));
++
++  // Test copy constructor -------------------------------------------------
++  Pid pid2(pid1);
++
++  pid2.getGains(p_gain_return, i_gain_return, d_gain_return, i_max_return, i_min_return, antiwindup_return);
++
++  EXPECT_EQ(p_gain, p_gain_return);
++  EXPECT_EQ(i_gain, i_gain_return);
++  EXPECT_EQ(d_gain, d_gain_return);
++  EXPECT_EQ(i_max, i_max_return);
++  EXPECT_EQ(i_min, i_min_return);
++  EXPECT_EQ(antiwindup, antiwindup_return);
++
++  // Test that errors are zero
++  double pe2, ie2, de2;
++  pid2.getCurrentPIDErrors(&pe2, &ie2, &de2);
++  EXPECT_EQ(0.0, pe2);
++  EXPECT_EQ(0.0, ie2);
++  EXPECT_EQ(0.0, de2);
++
++  // Test assignment constructor -------------------------------------------------
++  Pid pid3;
++  pid3 = pid1;
++
++  pid3.getGains(p_gain_return, i_gain_return, d_gain_return, i_max_return, i_min_return, antiwindup_return);
++
++  EXPECT_EQ(p_gain, p_gain_return);
++  EXPECT_EQ(i_gain, i_gain_return);
++  EXPECT_EQ(d_gain, d_gain_return);
++  EXPECT_EQ(i_max, i_max_return);
++  EXPECT_EQ(i_min, i_min_return);
++  EXPECT_EQ(antiwindup, antiwindup_return);
++
++  // Test that errors are zero
++  double pe3, ie3, de3;
++  pid3.getCurrentPIDErrors(&pe3, &ie3, &de3);
++  EXPECT_EQ(0.0, pe3);
++  EXPECT_EQ(0.0, ie3);
++  EXPECT_EQ(0.0, de3);
++
++  // Test the reset() function, it should clear errors and command
++  pid1.reset();
++
++  double pe1, ie1, de1;
++  pid1.getCurrentPIDErrors(&pe1, &ie1, &de1);
++  EXPECT_EQ(0.0, pe1);
++  EXPECT_EQ(0.0, ie1);
++  EXPECT_EQ(0.0, de1);
++
++  double cmd1 = pid1.getCurrentCmd();
++  EXPECT_EQ(0.0, cmd1);
++}
++
++TEST(CommandTest, proportionalOnlyTest)
++{
++  RecordProperty("description","This test checks that a command is computed correctly using the proportional contribution only.");
++
++  // Set only proportional gain
++  Pid pid(1.0, 0.0, 0.0, 0.0, 0.0);
++  double cmd = 0.0;
++
++  // If initial error = 0, p-gain = 1, dt = 1
++  cmd = pid.computeCommand(-0.5, ros::Duration(1.0));
++  // Then expect command = error
++  EXPECT_EQ(-0.5, cmd);
++
++  // If call again
++  cmd = pid.computeCommand(-0.5, ros::Duration(1.0));
++  // Then expect the same as before
++  EXPECT_EQ(-0.5, cmd);
++
++  // If call again doubling the error
++  cmd = pid.computeCommand(-1.0, ros::Duration(1.0));
++  // Then expect the command doubled
++  EXPECT_EQ(-1.0, cmd);
++
++  // If call with positive error
++  cmd = pid.computeCommand(0.5, ros::Duration(1.0));
++  // Then expect always command = error
++  EXPECT_EQ(0.5, cmd);
++}
++
++TEST(CommandTest, resetWithInitialValuesTest)
++{
++  RecordProperty("description","This test checks that resetting PID with initial i_error & d_error values work.");
++
++  Pid pid(1.0, 1.0, 1.0, 5.0, -5.0);
++  double cmd = 0.0;
++
++  // If initial d_error = 0, all gains = 1, dt = 1
++  pid.reset(0, 0); // set initial d-error=0 & i-error=0
++  cmd = pid.computeCommand(-0.5, ros::Duration(1.0));
++  EXPECT_EQ(-1, cmd);
++
++  // If initial d_error = 1, all gains = 1, dt = 1
++  pid.reset(1, 0); // set initial d-error=1 & i-error=0
++  cmd = pid.computeCommand(-0.5, ros::Duration(1.0));
++  EXPECT_EQ(0, cmd);
++  cmd = pid.computeCommand(-0.5, ros::Duration(1.0));
++  EXPECT_EQ(-1.5, cmd); // p_term=0.5, i_term=-1, d_term=0
++
++  // If initial i_error = 1, all gains = 1, dt = 1
++  pid.reset(0, -1); // set initial d-error=0 & i-error=1
++  cmd = pid.computeCommand(-0.5, ros::Duration(1.0));
++  EXPECT_EQ(-2, cmd);
++}
++
++
++TEST(CommandTest, integralOnlyTest)
++{
++  RecordProperty("description","This test checks that a command is computed correctly using the integral contribution only (ATTENTION: this test depends on the integration scheme).");
++
++  // Set only integral gains with enough limits to test behavior
++  Pid pid(0.0, 1.0, 0.0, 5.0, -5.0);
++  double cmd = 0.0;
++
++  // If initial error = 0, i-gain = 1, dt = 1
++  cmd = pid.computeCommand(-0.5, ros::Duration(1.0));
++  // Then expect command = error
++  EXPECT_EQ(-0.5, cmd);
++
++  // If call again with same arguments
++  cmd = pid.computeCommand(-0.5, ros::Duration(1.0));
++  // Then expect the integral part to double the command
++  EXPECT_EQ(-1.0, cmd);
++
++  // Call again with no error
++  cmd = pid.computeCommand(0.0, ros::Duration(1.0));
++  // Expect the integral part to keep the previous command because it ensures error = 0
++  EXPECT_EQ(-1.0, cmd);
++
++  // Double check that the integral contribution keep the previous command
++  cmd = pid.computeCommand(0.0, ros::Duration(1.0));
++  EXPECT_EQ(-1.0, cmd);
++
++  // Finally call again with positive error to see if the command changes in the opposite direction
++  cmd = pid.computeCommand(1.0, ros::Duration(1.0));
++  // Expect that the command is cleared since error = -1 * previous command, i-gain = 1, dt = 1
++  EXPECT_EQ(0.0, cmd);
++}
++
++TEST(CommandTest, derivativeOnlyTest)
++{
++  RecordProperty("description","This test checks that a command is computed correctly using the derivative contribution only with own differentiation (ATTENTION: this test depends on the differentiation scheme).");
++
++  // Set only derivative gain
++  Pid pid(0.0, 0.0, 1.0, 0.0, 0.0);
++  double cmd = 0.0;
++
++  // If initial error = 0, d-gain = 1, dt = 1
++  cmd = pid.computeCommand(-0.5, ros::Duration(1.0));
++  // Then expect command = error
++  EXPECT_EQ(-0.5, cmd);
++
++  // If call again with same error
++  cmd = pid.computeCommand(-0.5, ros::Duration(1.0));
++  // Then expect command = 0 due to no variation on error
++  EXPECT_EQ(0.0, cmd);
++
++  // If call again with same error and smaller control period
++  cmd = pid.computeCommand(-0.5, ros::Duration(0.1));
++  // Then expect command = 0 again
++  EXPECT_EQ(0.0, cmd);
++
++  // If the error increases,  with dt = 1
++  cmd = pid.computeCommand(-1.0, ros::Duration(1.0));
++  // Then expect the command = change in dt
++  EXPECT_EQ(-0.5, cmd);
++
++  // If error decreases, with dt = 1
++  cmd = pid.computeCommand(-0.5, ros::Duration(1.0));
++  // Then expect always the command = change in dt (note the sign flip)
++  EXPECT_EQ(0.5, cmd);
++}
++
++TEST(CommandTest, completePIDTest)
++{
++  RecordProperty("description","This test checks that  a command is computed correctly using a complete PID controller (ATTENTION: this test depends on the integral and differentiation schemes).");
++
++  Pid pid(1.0, 1.0, 1.0, 5.0, -5.0);
++  double cmd = 0.0;
++
++  // All contributions are tested, here few tests check that they sum up correctly
++  // If initial error = 0, all gains = 1, dt = 1
++  cmd = pid.computeCommand(-0.5, ros::Duration(1.0));
++  // Then expect command = 3x error
++  EXPECT_EQ(-1.5, cmd);
++
++  // If call again with same arguments, no error change, but integration do its part
++  cmd = pid.computeCommand(-0.5, ros::Duration(1.0));
++  // Then expect command = 3x error again
++  EXPECT_EQ(-1.5, cmd);
++
++  // If call again increasing the error
++  cmd = pid.computeCommand(-1.0, ros::Duration(1.0));
++  // Then expect command equals to p = -1, i = -2.0 (i.e. - 0.5 - 0.5 - 1.0), d = -0.5
++  EXPECT_EQ(-3.5, cmd);
++}
++
++int main(int argc, char** argv) {
++  testing::InitGoogleTest(&argc, argv);
++  return RUN_ALL_TESTS();
++}

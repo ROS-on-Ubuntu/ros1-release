@@ -1,0 +1,10 @@
+icons/classes/Imu.png
+icons/classes/PlantFlag.png
+icons/classes/Teleop.png
+
+src/doc/flags.png
+src/doc/imu_arrows.png
+src/doc/imu_plugin.png
+src/doc/real_imu.png
+src/doc/teleop_in_rviz.png 
+src/doc/teleop_plugin.png

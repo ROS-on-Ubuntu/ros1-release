@@ -1,0 +1,237 @@
+ros-noetic-rqt-rviz (0.7.0-0jammy) jammy; urgency=high
+
+  * Fixup catkin_lint issues
+  * Update maintainers
+  * Correctly update window title with context serial no
+  * Notice changes of display config file
+  * Find quit action by name
+  * Suppress rviz splash screen
+  * fix shebang line for python3 (#14 <https://github.com/ros-visualization/rqt_rviz/issues/14>)
+  * Contributors: Mikael Arguedas, Robert Haschke
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Mon, 21 Jun 2021 16:00:00 -0000
+
+ros-noetic-rqt-rviz (0.6.1-0jammy) jammy; urgency=high
+
+  * Noetic release (#11 <https://github.com/ros-visualization/rqt_rviz/issues/11>)
+    * Bump CMake version to avoid CMP0048 warning
+    * Use setuptools instead of distutils
+  * Use std::vector for variable length arrays. (#10 <https://github.com/ros-visualization/rqt_rviz/issues/10>)
+    * Use std::vector for variable length arrays. (#3 <https://github.com/ros-visualization/rqt_rviz/issues/3>)
+    Some compiler doesn't support variable length arrays feature like G++. Rework the code to use std::vector instead for between cross-compiling.
+    * Fix build break in CI.
+  * Contributors: Alejandro Hernández Cordero, Sean Yen [MSFT]
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Mon, 11 May 2020 16:00:00 -0000
+
+ros-noetic-rqt-rviz (0.6.0-0jammy) jammy; urgency=high
+
+  * Indigo -> Lunar
+  * Contributors: chapulina
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Tue, 26 Jun 2018 16:00:00 -0000
+
+ros-noetic-rqt-rviz (0.5.10-0jammy) jammy; urgency=high
+
+  * Config file for the plugin and hide_menu saving
+  * Contributors: Sammy Pfeiffer, chapulina
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Tue, 26 Jun 2018 16:00:00 -0000
+
+ros-noetic-rqt-rviz (0.5.9-0jammy) jammy; urgency=high
+
+
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Wed, 02 May 2018 16:00:00 -0000
+
+ros-noetic-rqt-rviz (0.5.8-0jammy) jammy; urgency=high
+
+  * Qt5 widgets bugfix (#4 <https://github.com/ros-visualization/rqt_rviz/issues/4>)
+    * add qtbase to dependency list
+    * find widgets as components rather than package
+  * Contributors: Mikael Arguedas
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Mon, 01 May 2017 16:00:00 -0000
+
+ros-noetic-rqt-rviz (0.5.7-0jammy) jammy; urgency=high
+
+
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Wed, 26 Apr 2017 16:00:00 -0000
+
+ros-noetic-rqt-rviz (0.5.6-0jammy) jammy; urgency=high
+
+
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Mon, 23 Jan 2017 16:00:00 -0000
+
+ros-noetic-rqt-rviz (0.5.5-0jammy) jammy; urgency=high
+
+
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Tue, 01 Nov 2016 16:00:00 -0000
+
+ros-noetic-rqt-rviz (0.5.4-0jammy) jammy; urgency=high
+
+  * mark rviz plugin as experimental since it has severe issues for while
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Sun, 18 Sep 2016 16:00:00 -0000
+
+ros-noetic-rqt-rviz (0.5.3-0jammy) jammy; urgency=high
+
+
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Sun, 15 May 2016 16:00:00 -0000
+
+ros-noetic-rqt-rviz (0.5.2-0jammy) jammy; urgency=high
+
+  * fix using Qt 5 when rqt uses it
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Thu, 28 Apr 2016 16:00:00 -0000
+
+ros-noetic-rqt-rviz (0.5.1-0jammy) jammy; urgency=high
+
+
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Wed, 27 Apr 2016 16:00:00 -0000
+
+ros-noetic-rqt-rviz (0.5.0-0jammy) jammy; urgency=high
+
+
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Tue, 26 Apr 2016 16:00:00 -0000
+
+ros-noetic-rqt-rviz (0.4.3-0jammy) jammy; urgency=high
+
+  * disable ogre-log by default, add command line option to enable it (fix #95 <https://github.com/ros-visualization/rqt_robot_plugins/issues/95>)
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Mon, 07 Mar 2016 16:00:00 -0000
+
+ros-noetic-rqt-rviz (0.4.2-0jammy) jammy; urgency=high
+
+
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Thu, 23 Jul 2015 16:00:00 -0000
+
+ros-noetic-rqt-rviz (0.4.1-0jammy) jammy; urgency=high
+
+
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Wed, 29 Apr 2015 16:00:00 -0000
+
+ros-noetic-rqt-rviz (0.4.0-0jammy) jammy; urgency=high
+
+  * update script to use full plugin name
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Tue, 04 Nov 2014 16:00:00 -0000
+
+ros-noetic-rqt-rviz (0.3.7-0jammy) jammy; urgency=high
+
+  * fix argument parsing (#68 <https://github.com/ros-visualization/rqt_robot_plugins/issues/68>) (regression of 0.3.5)
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Sun, 17 Aug 2014 16:00:00 -0000
+
+ros-noetic-rqt-rviz (0.3.6-0jammy) jammy; urgency=high
+
+
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Thu, 10 Jul 2014 16:00:00 -0000
+
+ros-noetic-rqt-rviz (0.3.5-0jammy) jammy; urgency=high
+
+  * fix compilation on OS X (#64 <https://github.com/ros-visualization/rqt_robot_plugins/issues/64>)
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Sun, 01 Jun 2014 16:00:00 -0000
+
+ros-noetic-rqt-rviz (0.3.4-0jammy) jammy; urgency=high
+
+  * add menu hiding and config as command-line args (#62 <https://github.com/ros-visualization/rqt_robot_plugins/pull/62>)
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Tue, 06 May 2014 16:00:00 -0000
+
+ros-noetic-rqt-rviz (0.3.3-0jammy) jammy; urgency=high
+
+
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Mon, 27 Jan 2014 16:00:00 -0000
+
+ros-noetic-rqt-rviz (0.3.2-0jammy) jammy; urgency=high
+
+  * add groups for rqt plugins (ros-visualization/rqt_common_plugins#167 <https://github.com/ros-visualization/rqt_common_plugins/issues/167>)
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Tue, 07 Jan 2014 16:00:00 -0000
+
+ros-noetic-rqt-rviz (0.3.1-0jammy) jammy; urgency=high
+
+
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Tue, 08 Oct 2013 16:00:00 -0000
+
+ros-noetic-rqt-rviz (0.3.0-0jammy) jammy; urgency=high
+
+
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Tue, 27 Aug 2013 16:00:00 -0000
+
+ros-noetic-rqt-rviz (0.2.16-0jammy) jammy; urgency=high
+
+  * First public release into Hydro
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Mon, 08 Jul 2013 16:00:00 -0000
+
+ros-noetic-rqt-rviz (0.2.15-0jammy) jammy; urgency=high
+
+
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Wed, 24 Apr 2013 16:00:00 -0000
+
+ros-noetic-rqt-rviz (0.2.14-0jammy) jammy; urgency=high
+
+
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Thu, 11 Apr 2013 16:00:00 -0000
+
+ros-noetic-rqt-rviz (0.2.13-0jammy) jammy; urgency=high
+
+
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Mon, 08 Apr 2013 16:00:00 -0000
+
+ros-noetic-rqt-rviz (0.2.12-0jammy) jammy; urgency=high
+
+
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Sat, 06 Apr 2013 10:22:00 -0000
+
+ros-noetic-rqt-rviz (0.2.11-0jammy) jammy; urgency=high
+
+
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Sat, 06 Apr 2013 10:00:00 -0000
+
+ros-noetic-rqt-rviz (0.2.10-0jammy) jammy; urgency=high
+
+
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Wed, 03 Apr 2013 16:00:00 -0000
+
+ros-noetic-rqt-rviz (0.2.9-0jammy) jammy; urgency=high
+
+
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Wed, 06 Mar 2013 16:00:00 -0000
+
+ros-noetic-rqt-rviz (0.2.8-0jammy) jammy; urgency=high
+
+
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Thu, 10 Jan 2013 16:00:00 -0000
+
+ros-noetic-rqt-rviz (0.2.7-0jammy) jammy; urgency=high
+
+  * restore rviz plugin and add it to metapackage (that was done in 0.2.6)
+  * first public release for Groovy
+
+ -- Robert Haschke <rhaschke@techfak.uni-bielefeld.de>  Sun, 23 Dec 2012 07:58:00 -0000
+
+

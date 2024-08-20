@@ -1,0 +1,169 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-image-pipeline (1.17.0-0jammy) jammy; urgency=high
+Author: Vincent Rabaud <vincent.rabaud@gmail.com>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-image-pipeline-1.17.0/CHANGELOG.rst
+@@ -0,0 +1,103 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package image_pipeline
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++1.17.0 (2022-10-17)
++-------------------
++
++1.16.0 (2021-11-12)
++-------------------
++
++1.15.3 (2020-12-11)
++-------------------
++* remove email blasts from steve macenski (`#595 <https://github.com/ros-perception/image_pipeline/issues/595>`_)
++* Contributors: Steve Macenski
++
++1.15.2 (2020-05-19)
++-------------------
++
++1.15.1 (2020-05-18)
++-------------------
++
++1.15.0 (2020-05-14)
++-------------------
++* Python 3 compatibility (`#530 <https://github.com/ros-perception/image_pipeline/issues/530>`_)
++* cmake_minimum_required to 3.0.2
++* Adapted to OpenCV4
++* import setup from setuptools instead of distutils-core
++* Contributors: Joshua Whitley
++
++1.14.0 (2020-01-12)
++-------------------
++
++1.13.0 (2019-06-12)
++-------------------
++* Merge pull request `#395 <https://github.com/ros-perception/image_pipeline/issues/395>`_ from ros-perception/steve_maintain
++* adding autonomoustuff mainainer
++* adding stevemacenski as maintainer to get emails
++* Contributors: Joshua Whitley, Yoshito Okada, stevemacenski
++
++1.12.23 (2018-05-10)
++--------------------
++
++1.12.22 (2017-12-08)
++--------------------
++
++1.12.21 (2017-11-05)
++--------------------
++
++1.12.20 (2017-04-30)
++--------------------
++* Update package.xml (`#263 <https://github.com/ros-perception/image_pipeline/issues/263>`_)
++* Contributors: Kei Okada
++
++1.12.19 (2016-07-24)
++--------------------
++
++1.12.18 (2016-07-12)
++--------------------
++
++1.12.17 (2016-07-11)
++--------------------
++
++1.12.16 (2016-03-19)
++--------------------
++
++1.12.15 (2016-01-17)
++--------------------
++
++1.12.14 (2015-07-22)
++--------------------
++
++1.12.13 (2015-04-06)
++--------------------
++
++1.12.12 (2014-12-31)
++--------------------
++
++1.12.11 (2014-10-26)
++--------------------
++
++1.12.10 (2014-09-28)
++--------------------
++
++1.12.9 (2014-09-21)
++-------------------
++
++1.12.8 (2014-08-19)
++-------------------
++
++1.12.6 (2014-07-27)
++-------------------
++
++1.12.4 (2014-04-28)
++-------------------
++
++1.12.3 (2014-04-12)
++-------------------
++
++1.12.2 (2014-04-08)
++-------------------
++
++1.11.7 (2014-03-28)
++-------------------
+--- /dev/null
++++ ros-noetic-image-pipeline-1.17.0/CMakeLists.txt
+@@ -0,0 +1,4 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(image_pipeline)
++find_package(catkin REQUIRED)
++catkin_metapackage()
+--- /dev/null
++++ ros-noetic-image-pipeline-1.17.0/package.xml
+@@ -0,0 +1,30 @@
++<package>
++  <name>image_pipeline</name>
++  <version>1.17.0</version>
++  <description>image_pipeline fills the gap between getting raw images from a camera driver and higher-level vision processing.</description>
++  <author>Patrick Mihelich</author>
++  <author>James Bowman</author>
++  <maintainer email="vincent.rabaud@gmail.com">Vincent Rabaud</maintainer>
++  <maintainer email="software@autonomoustuff.com">Autonomoustuff team</maintainer>
++  <license>BSD</license>
++  
++  <url type="website">http://www.ros.org/wiki/image_pipeline</url>
++  <url type="bugtracker">https://github.com/ros-perception/image_pipeline/issues</url>
++  <url type="repository">https://github.com/ros-perception/image_pipeline</url>
++
++  <buildtool_depend>catkin</buildtool_depend>
++
++  <!-- Old stack contents -->
++  <run_depend>camera_calibration</run_depend>
++  <run_depend>depth_image_proc</run_depend>
++  <run_depend>image_proc</run_depend>
++  <run_depend>image_publisher</run_depend>
++  <run_depend>image_rotate</run_depend>
++  <run_depend>image_view</run_depend>
++  <run_depend>stereo_image_proc</run_depend>
++
++  <export>
++    <metapackage/>
++  </export>
++
++</package>

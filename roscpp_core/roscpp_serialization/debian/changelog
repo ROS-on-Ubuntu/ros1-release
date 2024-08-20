@@ -1,0 +1,224 @@
+ros-noetic-roscpp-serialization (0.7.3-0jammy) jammy; urgency=high
+
+  * Documented the API misuse in serializeServiceResponse
+  * Fixed wrong serialization of messages on ARM with GCC 9.3 and -O3 optimizations
+  * Changed maintainer to Martin Pecka
+  * Fix usage of deprecated std::allocator::rebind (#124 <https://github.com/ros/roscpp_core/issues/124>)
+  * Contributors: Martin Pecka, poggenhans
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 14 Jun 2023 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.7.2-0jammy) jammy; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 27 May 2020 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.7.1-0jammy) jammy; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Fri, 24 Jan 2020 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.7.0-0jammy) jammy; urgency=high
+
+  * various code cleanup (#116 <https://github.com/ros/roscpp_core/issues/116>)
+  * Bump CMake version to avoid CMP0048 warning (#115 <https://github.com/ros/roscpp_core/issues/115>)
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Thu, 23 Jan 2020 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.6.13-0jammy) jammy; urgency=high
+
+  * added cast to uint32_t in roscpp_serialization to fix -Wconversion warning (#113 <https://github.com/ros/roscpp_core/issues/113>)
+  * roscpp_serialization: replace c-style-casts with static/reinterpret casts (#107 <https://github.com/ros/roscpp_core/issues/107>)
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 02 Oct 2019 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.6.12-0jammy) jammy; urgency=high
+
+  * fix GCC8 class-memaccess in VectorSerializer (#102 <https://github.com/ros/roscpp_core/issues/102>)
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Sun, 03 Mar 2019 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.6.11-0jammy) jammy; urgency=high
+
+  * replace reinterpret_cast with memcpy to avoid undefined behaviour/alignment issues (#83 <https://github.com/ros/roscpp_core/issues/83>)
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Tue, 05 Jun 2018 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.6.10-0jammy) jammy; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Mon, 30 Apr 2018 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.6.9-0jammy) jammy; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Thu, 01 Feb 2018 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.6.8-0jammy) jammy; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Thu, 25 Jan 2018 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.6.7-0jammy) jammy; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Thu, 02 Nov 2017 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.6.6-0jammy) jammy; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Tue, 24 Oct 2017 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.6.5-0jammy) jammy; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 26 Jul 2017 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.6.4-0jammy) jammy; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Mon, 05 Jun 2017 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.6.3-0jammy) jammy; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Sun, 14 May 2017 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.6.2-0jammy) jammy; urgency=high
+
+  * fix warning when compiling with -Wpedantic (#53 <https://github.com/ros/roscpp_core/issues/53>)
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Mon, 13 Feb 2017 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.6.1-0jammy) jammy; urgency=high
+
+  * fix warning about unused parameter (#51 <https://github.com/ros/roscpp_core/pull/51>)
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Thu, 01 Sep 2016 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.6.0-0jammy) jammy; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 16 Mar 2016 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.5.7-0jammy) jammy; urgency=high
+
+  * fix serializer bool on ARM (#44 <https://github.com/ros/roscpp_core/pull/44>)
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Tue, 08 Mar 2016 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.5.6-0jammy) jammy; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Tue, 19 May 2015 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.5.5-0jammy) jammy; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Sun, 21 Dec 2014 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.5.4-0jammy) jammy; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Tue, 22 Jul 2014 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.5.3-0jammy) jammy; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Fri, 27 Jun 2014 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.5.2-0jammy) jammy; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Thu, 26 Jun 2014 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.5.1-0jammy) jammy; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Mon, 23 Jun 2014 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.5.0-0jammy) jammy; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Tue, 18 Feb 2014 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.4.2-0jammy) jammy; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Mon, 10 Feb 2014 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.4.1-0jammy) jammy; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Mon, 10 Feb 2014 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.4.0-0jammy) jammy; urgency=high
+
+  * remove assignSubscriptionConnectionHeader (#19 <https://github.com/ros/roscpp_core/issues/19>)
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Tue, 28 Jan 2014 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.3.17-0jammy) jammy; urgency=high
+
+  * move several client library independent parts from ros_comm into roscpp_core (#12 <https://github.com/ros/roscpp_core/issues/12>)
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Mon, 06 Jan 2014 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.3.16-0jammy) jammy; urgency=high
+
+  * fix alignment in serialization on ARM (#14 <https://github.com/ros/roscpp_core/issues/14>)
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Sat, 13 Jul 2013 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.3.15-0jammy) jammy; urgency=high
+
+  * fix compiler warning about unused variable (#11 <https://github.com/ros/roscpp_core/issues/11>)
+  * fix install destination for dll's under Windows
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 05 Jun 2013 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.3.14-0jammy) jammy; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Wed, 20 Mar 2013 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.3.13-0jammy) jammy; urgency=high
+
+  * fix serialization on ARM
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Thu, 07 Mar 2013 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.3.12-0jammy) jammy; urgency=high
+
+
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Sat, 12 Jan 2013 16:00:00 -0000
+
+ros-noetic-roscpp-serialization (0.3.11-0jammy) jammy; urgency=high
+
+  * first public release for Groovy
+
+ -- Martin Pecka <peckama2@fel.cvut.cz>  Thu, 20 Dec 2012 16:00:00 -0000
+
+

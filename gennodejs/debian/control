@@ -1,0 +1,12 @@
+Source: ros-noetic-gennodejs
+Section: misc
+Priority: optional
+Maintainer: Chris Smith <csmith@rethinkrobotics.com>
+Build-Depends: debhelper (>= 9.0.0), python3-setuptools, ros-noetic-catkin, ros-noetic-genmsg
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-noetic-gennodejs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-noetic-genmsg
+Description: Javascript ROS message and service generators.

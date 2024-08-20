@@ -1,0 +1,168 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-bond-core (1.8.6-0jammy) jammy; urgency=high
+Author: Michael Carroll <michael@openrobotics.org>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-bond-core-1.8.6/CHANGELOG.rst
+@@ -0,0 +1,102 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package bond_core
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++1.8.6 (2020-08-28)
++------------------
++
++1.8.5 (2020-05-14)
++------------------
++* Bump CMake minimum version to use CMP0048 (`#58 <https://github.com/ros/bond_core/issues/58>`_)
++* Contributors: Michael Carroll
++
++1.8.4 (2020-02-24)
++------------------
++* Make Michael Carroll the maintainer (`#40 <https://github.com/ros/bond_core/issues/40>`_)
++* Contributors: Mikael Arguedas
++
++1.8.3 (2018-08-17)
++------------------
++
++1.8.2 (2018-04-27)
++------------------
++
++1.8.1 (2017-10-27)
++------------------
++
++1.8.0 (2017-07-27)
++------------------
++* switch to package format 2 (`#27 <https://github.com/ros/bond_core/issues/27>`_)
++* Contributors: Mikael Arguedas
++
++1.7.19 (2017-03-27)
++-------------------
++
++1.7.18 (2016-10-24)
++-------------------
++
++1.7.17 (2016-03-15)
++-------------------
++* update maintainer
++* Contributors: Mikael Arguedas
++
++1.7.16 (2014-10-30)
++-------------------
++
++1.7.15 (2014-10-28)
++-------------------
++
++1.7.14 (2014-05-08)
++-------------------
++* Update maintainer field
++* Contributors: Esteve Fernandez
++
++1.7.13 (2013-08-21)
++-------------------
++
++1.7.12 (2013-06-06)
++-------------------
++
++1.7.11 (2013-03-13)
++-------------------
++* add CMakeLists.txt for metapackage
++* Contributors: Dirk Thomas
++
++1.7.10 (2013-01-13)
++-------------------
++
++1.7.9 (2012-12-27)
++------------------
++* modified dep type of catkin
++* Contributors: Dirk Thomas
++
++1.7.8 (2012-12-13)
++------------------
++
++1.7.7 (2012-12-06)
++------------------
++
++1.7.6 (2012-10-30)
++------------------
++
++1.7.5 (2012-10-27)
++------------------
++* clean up package.xml files
++* Contributors: Dirk Thomas
++
++1.7.4 (2012-10-06)
++------------------
++* adding bond_core metapackage to replace former stack
++* Contributors: Tully Foote
++
++1.7.3 (2012-10-02 00:19)
++------------------------
++
++1.7.2 (2012-10-02 00:06)
++------------------------
++
++1.7.1 (2012-10-01 19:00)
++------------------------
++
++1.7.0 (2012-10-01 16:51)
++------------------------
+--- /dev/null
++++ ros-noetic-bond-core-1.8.6/CMakeLists.txt
+@@ -0,0 +1,4 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(bond_core)
++find_package(catkin REQUIRED)
++catkin_metapackage()
+--- /dev/null
++++ ros-noetic-bond-core-1.8.6/package.xml
+@@ -0,0 +1,30 @@
++<?xml version="1.0"?>
++<?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
++<package format="2">
++  <name>bond_core</name>
++  <version>1.8.6</version>
++  <description>
++    A bond allows two processes, A and B, to know when the other has
++    terminated, either cleanly or by crashing. The bond remains
++    connected until it is either broken explicitly or until a
++    heartbeat times out.
++  </description>
++  <maintainer email="michael@openrobotics.org">Michael Carroll</maintainer>
++  <license>BSD</license>
++
++  <url type="website">http://www.ros.org/wiki/bond_core</url>
++  <url type="bugtracker">https://github.com/ros/bond_core/issues</url>
++  <url type="repository">https://github.com/ros/bond_core</url>
++  <author>Stu Glaser</author>
++
++  <buildtool_depend>catkin</buildtool_depend>
++
++  <exec_depend>bond</exec_depend>
++  <exec_depend>bondcpp</exec_depend>
++  <exec_depend>bondpy</exec_depend>
++  <exec_depend>smclib</exec_depend>
++
++  <export>
++    <metapackage/>
++  </export>
++</package>

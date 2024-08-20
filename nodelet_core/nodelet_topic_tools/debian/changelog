@@ -1,0 +1,275 @@
+ros-noetic-nodelet-topic-tools (1.11.0-0jammy) jammy; urgency=high
+
+  * Update package maintainers (#114 <https://github.com/ros/nodelet_core/issues/114>)
+  * Reduce boost dependency scope (#118 <https://github.com/ros/nodelet_core/issues/118>)
+  * Switch to new boost/bind/bind.hpp (#117 <https://github.com/ros/nodelet_core/issues/117>)
+  * Contributors: Geoffrey Biggs, Jochen Sprickerhof, Stephan
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Mon, 08 Jan 2024 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.10.2-0jammy) jammy; urgency=high
+
+
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Wed, 06 Oct 2021 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.10.1-0jammy) jammy; urgency=high
+
+
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Sun, 24 Jan 2021 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.10.0-0jammy) jammy; urgency=high
+
+  * Update maintainer to Michael Carroll (#104 <https://github.com/ros/nodelet_core/issues/104>)
+  * Bump CMake version to avoid CMP0048 warning (#102 <https://github.com/ros/nodelet_core/issues/102>)
+  * Fix for #78 <https://github.com/ros/nodelet_core/issues/78> (#80 <https://github.com/ros/nodelet_core/issues/80>)
+  * Contributors: Lucas Walter, Michael Carroll, Shane Loretz
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Sun, 08 Mar 2020 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.9.16-0jammy) jammy; urgency=high
+
+
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Thu, 26 Apr 2018 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.9.15-0jammy) jammy; urgency=high
+
+  * use new pluginlib headers (#73 <https://github.com/ros/nodelet_core/issues/73>)
+  * Contributors: Mikael Arguedas
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Thu, 15 Mar 2018 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.9.14-0jammy) jammy; urgency=high
+
+
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Tue, 14 Nov 2017 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.9.13-0jammy) jammy; urgency=high
+
+
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Thu, 26 Oct 2017 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.9.12-0jammy) jammy; urgency=high
+
+  * fix exec_depend that are actually build_export_depends (#65 <https://github.com/ros/nodelet_core/issues/65>)
+  * Contributors: Mikael Arguedas
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Thu, 03 Aug 2017 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.9.11-0jammy) jammy; urgency=high
+
+  * remove trailing whitespaces (#62 <https://github.com/ros/nodelet_core/issues/62>)
+  * switch to package format 2 (#63 <https://github.com/ros/nodelet_core/issues/63>)
+  * Contributors: Mikael Arguedas
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Wed, 26 Jul 2017 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.9.10-0jammy) jammy; urgency=high
+
+
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Sun, 26 Mar 2017 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.9.9-0jammy) jammy; urgency=high
+
+
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Thu, 16 Feb 2017 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.9.8-0jammy) jammy; urgency=high
+
+
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Mon, 14 Nov 2016 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.9.7-0jammy) jammy; urgency=high
+
+
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Sun, 23 Oct 2016 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.9.6-0jammy) jammy; urgency=high
+
+  * Add NodeletLazy abstract class for lazy transport (#45 <https://github.com/ros/nodelet_core/issues/45>)
+    * Add NodeletLazy abstract class for lazy transport
+    * Add test for NodeletLazy with checking its lazy-ness
+    * Fix ROS logging format supporting ros/ros_comm#875 <https://github.com/ros/ros_comm/issues/875>
+    * Fix ever_subscribed_ flag setting location
+    * Clearfy the comment describing advertise method
+    * Parameterize the duration to warn the no connection
+    User can disable this feature by setting -1 to the param.
+  * Contributors: Kentaro Wada
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Mon, 19 Sep 2016 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.9.5-0jammy) jammy; urgency=high
+
+
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Tue, 21 Jun 2016 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.9.4-0jammy) jammy; urgency=high
+
+  * update maintainer
+  * Contributors: Mikael Arguedas
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Mon, 14 Mar 2016 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.9.3-0jammy) jammy; urgency=high
+
+
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Tue, 04 Aug 2015 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.9.2-0jammy) jammy; urgency=high
+
+
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Wed, 29 Oct 2014 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.9.1-0jammy) jammy; urgency=high
+
+
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Tue, 28 Oct 2014 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.9.0-0jammy) jammy; urgency=high
+
+
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Sun, 15 Jun 2014 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.8.3-0jammy) jammy; urgency=high
+
+  * update changelogs
+  * Update maintainer field
+  * fix missing boost dependency
+  * Contributors: Dirk Thomas, Esteve Fernandez
+  * fix missing boost dependency
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Wed, 07 May 2014 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.8.2-0jammy) jammy; urgency=high
+
+
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Mon, 06 Jan 2014 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.8.0-0jammy) jammy; urgency=high
+
+  * update email in package.xml
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Wed, 10 Jul 2013 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.7.15-0jammy) jammy; urgency=high
+
+
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Mon, 11 Mar 2013 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.7.14-0jammy) jammy; urgency=high
+
+
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Sat, 12 Jan 2013 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.7.13-0jammy) jammy; urgency=high
+
+  * move nodelet_topic_tools to separate package, fix unit tests
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Wed, 26 Dec 2012 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.7.12-0jammy) jammy; urgency=high
+
+  * remove obsolete imports
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Tue, 18 Dec 2012 17:34:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.7.11-0jammy) jammy; urgency=high
+
+  * reordering dynamic_reconfigure in CMakeLists.txt
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Tue, 18 Dec 2012 16:58:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.7.10-0jammy) jammy; urgency=high
+
+  * add missing dep to catkin
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Thu, 13 Dec 2012 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.7.9-0jammy) jammy; urgency=high
+
+
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Wed, 12 Dec 2012 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.7.8-0jammy) jammy; urgency=high
+
+  * updated catkin_package(DEPENDS)
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Wed, 05 Dec 2012 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.7.7-0jammy) jammy; urgency=high
+
+  * no need to export the plugin as it is for testing only
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Wed, 31 Oct 2012 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.7.6-0jammy) jammy; urgency=high
+
+  * clean up package.xml files
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Mon, 29 Oct 2012 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.7.5-0jammy) jammy; urgency=high
+
+  * comply to the new dynamic_reconfigure API
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Mon, 22 Oct 2012 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.7.4-0jammy) jammy; urgency=high
+
+  * fixed cmake to find dependencies correctly
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Sun, 07 Oct 2012 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.7.3-0jammy) jammy; urgency=high
+
+  * fix typo
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Wed, 03 Oct 2012 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.7.2-0jammy) jammy; urgency=high
+
+  * add rostest as a dependency
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Tue, 02 Oct 2012 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.7.1-0jammy) jammy; urgency=high
+
+  * adding nodelet_core metapackage and reving to 1.7.1
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Mon, 01 Oct 2012 16:00:00 -0000
+
+ros-noetic-nodelet-topic-tools (1.7.0-0jammy) jammy; urgency=high
+
+  * make it compile locally
+  * first pass at catkinizing the stack
+  * Adding nodelet throttle, #5295 <https://github.com/ros/nodelet_core/issues/5295>
+  * fixed a grave bug where nullfilters were not working correctly
+  * added missing dependency
+  * MUX simplified by using a 8-connected null filters
+    DeMUX has a specialization for message type (uses ros::Subscriber internally by default)
+    Added rosdep for nodelet (uuid)
+  * Added Ubuntu platform tags to manifest
+  * fixed the tools (broken, did not compile)
+  * removed the transport for now
+  * moving topic tools out of nodelet proper, removing rospy and message_filters dependencies from nodelet
+
+ -- Geoffrey Biggs <geoff@openrobotics.org>  Sun, 30 Sep 2012 16:00:00 -0000
+
+

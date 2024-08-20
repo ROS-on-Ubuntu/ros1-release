@@ -1,0 +1,4630 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-class-loader (0.5.0-0jammy) jammy; urgency=high
+ .
+   * Declare specific boost dependencies. (#136 <https://github.com/ros/class_loader/issues/136>)
+   * Contributors: Mikael Arguedas
+Author: Steven! Ragnarök <stevenragnarok@osrfoundation.org>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-class-loader-0.5.0/CHANGELOG.rst
+@@ -0,0 +1,200 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package class_loader
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++0.5.0 (2020-02-07)
++------------------
++* Declare specific boost dependencies. (`#136 <https://github.com/ros/class_loader/issues/136>`_)
++* Contributors: Mikael Arguedas
++
++0.4.2 (2020-02-07)
++------------------
++* Add Python 3 support to header update scripts. (`#122 <https://github.com/ros/class_loader/issues/122>`_)
++* Set test dll runtime output to CATKIN_PACKAGE_BIN_DESTINATION on Windows. (`#113 <https://github.com/ros/class_loader/issues/113>`_)
++* Improve warning message formatting and detail. (`#108 <https://github.com/ros/class_loader/issues/108>`_)
++* Add export to variable in order to allow builds on Windows. (`#102 <https://github.com/ros/class_loader/issues/102>`_)
++* Ignore warnings about import/exports when deriving from std classes on MSVC. (`#116 <https://github.com/ros/class_loader/issues/116>`_)
++* Use #pragma message() to print out warnings in MSVC. (`#114 <https://github.com/ros/class_loader/issues/114>`_)
++* Avoid including Poco headers globally. (`#115 <https://github.com/ros/class_loader/issues/115>`_)
++* Make Steven! Ragnarok the maintainer (`#107 <https://github.com/ros/class_loader/issues/107>`_)
++* Fix non-defined CMake variable (forward-port to Melodic). (`#97 <https://github.com/ros/class_loader/issues/97>`_)
++* Contributors: James Xu, Johnson Shih, Markus Grimm, Mikael Arguedas, Robert Haschke
++
++0.4.1 (2018-04-27)
++------------------
++* Provide std::shared_ptr interface (`#95 <https://github.com/ros/class_loader/issues/95>`_)
++* Windows compat and style fixups (`#90 <https://github.com/ros/class_loader/issues/90>`_)
++  * add visibility macros to public functions
++  * rename private namespace 'class_loader_private' to 'impl' to match ros2 branch
++* use new headers to build library (`#93 <https://github.com/ros/class_loader/issues/93>`_)
++* Contributors: Mikael Arguedas
++
++0.4.0 (2018-02-15)
++------------------
++* Stop checking for c++11 support (`#87 <https://github.com/ros/class_loader/pull/87>`_)
++  all Melodic targeted platforms use gnu++14 so checking and forcing -std=c++11 doesn't make sense anymore
++* [ABI breaking] use std::string references for exceptions (`#86 <https://github.com/ros/class_loader/issues/86>`_)
++* deprecate .h headers in favor of .hpp headers (`#81 <https://github.com/ros/class_loader/pull/81>`_)
++* provide a script with exhaustive rules for header replacement
++* comply with package format2 xsd (`#83 <https://github.com/ros/class_loader/issues/83>`_)
++* [ABI breaking] Exceptions fixups (`#82 <https://github.com/ros/class_loader/issues/82>`_)
++  * inline exceptions
++  * use throw statement rather than function
++* [linter] add nolint for global std::string used for testing (`#79 <https://github.com/ros/class_loader/issues/79>`_)
++* use auto for all for loops iterating on vectors/maps (`#78 <https://github.com/ros/class_loader/issues/78>`_)
++* Add systemLibraryFormat and systemLibraryPrefix functions (`#77 <https://github.com/ros/class_loader/issues/77>`_)
++* [ABI breaking] Bring melodic-devel closer to ros2 branch (`#76 <https://github.com/ros/class_loader/issues/76>`_)
++  * comply with extra and pedantic compiler flags
++  * use c++11 nullptr instead of NULL
++  * make ABI breaking change for explicit constructors
++  * make linters happy
++  * no need to support console_bridge < 0.3.0 anymore
++  * remove obsolete todo
++  * add virtual destructor in test
++  * vector size() returns size_t
++  * simplify branching
++* [fix warnings] c++11 requires at least one argument for ... (`#71 <https://github.com/ros/class_loader/issues/71>`_)
++* [linter] Use std::string::empty instead comparing with an empty string (`#69 <https://github.com/ros/class_loader/issues/69>`_)
++* [linter] wrap console bridge invocation lines (`#68 <https://github.com/ros/class_loader/issues/68>`_)
++* OSRF and not willow in licence header (`#67 <https://github.com/ros/class_loader/issues/67>`_)
++* Contributors: David Wagner, Mikael Arguedas
++
++0.3.8 (2017-11-16)
++------------------
++* Fix console_bridge marcos definition (`#66 <https://github.com/ros/class_loader/issues/66>`_)
++* Style overhaul (`#64 <https://github.com/ros/class_loader/issues/64>`_) (`#62 <https://github.com/ros/class_loader/issues/62>`_)
++* Add copyright notice to unique_ptr_test.cpp (`#65 <https://github.com/ros/class_loader/issues/65>`_)
++* Contributors: Maarten de Vries, Mikael Arguedas
++
++0.3.7 (2017-07-27)
++------------------
++* switch to package format 2 (`#56 <https://github.com/ros/class_loader/issues/56>`_)
++* remove trailing whitespaces (`#55 <https://github.com/ros/class_loader/issues/55>`_)
++* use CONSOLE_BRIDGE_X logging macros (`#52 <https://github.com/ros/class_loader/issues/52>`_)
++* Contributors: Mikael Arguedas, jmachowinski
++
++0.3.6 (2016-10-24)
++------------------
++* Made changes to two locking mechanisms inside class loader core's loadLibrary() function: 1) I added a lock to the 'addClassLoaderOwnerFor...' function to protect it against a race condition with the unloadLibrary() function. 2) I also raised the loader lock to cover the whole function. Previously the check to see if a library is already loaded and the actual loading of the library was not atomic. Multiple threads could create shared library objects, for example.
++* Contributors: Jonathan Meyer
++
++0.3.5 (2016-09-20)
++------------------
++* Add ClassLoader::createUniqueInstance (`#38 <https://github.com/ros/class_loader/issues/38>`_)
++  * Wrap comments on createInstance and friend.
++  * Delegate createInstance and createUnmanagedInstance to private impl.
++  * Add ClassLoader::createUniqueInstance.
++  * MultiLibraryClassLoader: Factor out getClassLoaderForClass.
++  * MultiLibraryClassLoader: Add unique_ptr API.
++  * Add tests for unique_ptr API.
++* Contributors: Maarten de Vries
++
++0.3.4 (2016-06-22)
++------------------
++* cleanup: don't use active_class_loaders\_[library_path] for existence test (`#35 <https://github.com/ros/class_loader/issues/35>`_)
++  * cleanup: don't use active_class_loaders\_[library_path] for existence test
++  - this accumulates map entries with NULL pointer
++  - fixing it, allows some cleanup
++  * list headers in CodeBlocks / QtCreator
++  * explicitly list all headers
++* Merge pull request `#34 <https://github.com/ros/class_loader/issues/34>`_ from rhaschke/fix-on-demand-unloading
++  fix on demand unloading
++* Merge pull request `#32 <https://github.com/ros/class_loader/issues/32>`_ from saarnold/fixed_unset_variable_evaluation
++  fixed evaluation of undefined variable
++* fixed evaluation of undefined variable
++* not unloading the ClassLoaders (to avoid the SEVERE WARNING) doesn't work either
++* bugfix: enable on-demand loading/unloading with MultiClassLoader
++  - enforce loading of library in loadLibrary(), otherwise we cannot know
++  - don't unload libraries in destructor when on-demand-unloading is enabled
++* extra utest: MultiClassLoaderTest.lazyLoad succeeds two times in a row?
++* added MultiLibraryClassLoader unittest
++* Contributors: Mikael Arguedas, Robert Haschke, Sascha Arnold
++
++0.3.3 (2016-03-10)
++------------------
++* update maintainer
++* Merge pull request `#26 <https://github.com/ros/class_loader/issues/26>`_ from goldhoorn/indigo-devel
++  Added option to disable the catkin build
++* Added option to disable the catkin build
++* Contributors: Esteve Fernandez, Matthias Goldhoorn, Mikael Arguedas
++
++0.3.2 (2015-04-22)
++------------------
++* Fixed wrong handling of false statement (pkg-config was not installed)
++* Make catkin optional again
++* Contributors: Esteve Fernandez, Janosch Machowinski, Matthias Goldhoorn
++
++0.3.1 (2014-12-23)
++------------------
++* Depend on boost
++* Use FindPoco.cmake from ros/cmake_modules
++*  Honor BUILD_SHARED_LIBS and do not force building shared libraries.
++* Contributors: Esteve Fernandez, Gary Servin, Scott K Logan
++
++0.3.0 (2014-06-25)
++------------------
++* Use system-provided console-bridge
++* Contributors: Esteve Fernandez
++
++0.2.5 (2014-03-04)
++------------------
++* Changed format of debug messages so that rosconsole_bridge can correctly parse the prefix
++* Improved debug output
++
++0.2.4 (2014-02-12)
++------------------
++* fix race condition with multi threaded library loading (`#16 <https://github.com/ros/class_loader/issues/16>`_)
++
++0.2.3 (2013-08-21)
++------------------
++* fix missing class name in logWarn output
++
++0.2.2 (2013-07-14)
++------------------
++* check for CATKIN_ENABLE_TESTING (`#10 <https://github.com/ros/class_loader/issues/10>`_)
++* fix find Poco to return full lib path (`#8 <https://github.com/ros/class_loader/issues/8>`_)
++* add missing runtime destination for library under Windows
++* add Boosst component system
++
++0.2.1 (2013-06-06)
++------------------
++* improve check for Poco foundation and headers (`#7 <https://github.com/ros/class_loader/issues/7>`_)
++
++0.2.0 (2013-03-13)
++------------------
++* use find_package for Poco/dl instead to make it work on other platforms
++* update Poco cmake file to include libdl on non-windows systems
++* No longer CATKIN_DEPEND on console_bridge
++
++0.1.27 (2013-01-25)
++-------------------
++* change warning message for managed/unmanaged instance mixture in lazy loading mode
++
++0.1.26 (2013-01-17)
++-------------------
++* fix all instances marked as unmanaged
++
++0.1.25 (2013-01-16)
++-------------------
++* fix redundant destructor definition being pulled into plugin library for metaobjects instead of being contained with libclass_loader.so
++
++0.1.24 (2013-01-14 15:27)
++-------------------------
++* fix syntax error for logInform
++
++0.1.23 (2013-01-14 15:23)
++-------------------------
++* downgrade some warning messages to be info/debug
++
++0.1.22 (2013-01-14 15:01)
++-------------------------
++* add safety checks for mixing of managed/unmanaged mixing as well as pointer equivalency check between graveyard and newly created metaobjects
++
++0.1.21 (2013-01-13)
++-------------------
++* fix compile issue on OSX in dependent packages (`#3 <https://github.com/ros/class_loader/issues/3>`_)
++* add more debug information
++
++0.1.20 (2012-12-21 16:04)
++-------------------------
++* first public release for Groovy
+--- /dev/null
++++ ros-noetic-class-loader-0.5.0/CMakeLists.txt
+@@ -0,0 +1,100 @@
++cmake_minimum_required(VERSION 3.5)
++project(class_loader CXX)
++
++# Default to C++14
++if(NOT CMAKE_CXX_STANDARD)
++  set(CMAKE_CXX_STANDARD 14)
++endif()
++if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
++  add_compile_options(-Wall -Wextra -Wpedantic)
++endif()
++
++find_package(Boost REQUIRED COMPONENTS thread system)
++
++set(CATKIN_DISABLED false CACHE BOOL "Disable the catkin build, useful if catkin is present but a build outside of ros is done")
++if(NOT CATKIN_DISABLED)
++  find_package(catkin QUIET)
++endif()
++
++find_package(console_bridge REQUIRED)
++
++if(${catkin_FOUND})
++  find_package(catkin REQUIRED COMPONENTS cmake_modules)
++  find_package(Poco REQUIRED COMPONENTS Foundation)
++  catkin_package(
++    INCLUDE_DIRS include
++    LIBRARIES ${PROJECT_NAME} ${Poco_LIBRARIES}
++    DEPENDS Boost Poco console_bridge
++    CFG_EXTRAS class_loader-extras.cmake
++  )
++else()
++  message("-- catkin not found")
++  set(Poco_DIR cmake)
++  find_package(Poco REQUIRED COMPONENTS Foundation)
++  set(CATKIN_GLOBAL_BIN_DESTINATION bin)
++  set(CATKIN_GLOBAL_LIB_DESTINATION lib)
++  set(CATKIN_GLOBAL_LIBEXEC_DESTINATION lib)
++  set(CATKIN_GLOBAL_INCLUDE_DESTINATION include)
++  set(CATKIN_PACKAGE_LIB_DESTINATION ${CATKIN_GLOBAL_LIB_DESTINATION})
++  set(CATKIN_PACKAGE_BIN_DESTINATION ${CATKIN_GLOBAL_LIBEXEC_DESTINATION}/${PROJECT_NAME})
++  set(CATKIN_PACKAGE_INCLUDE_DESTINATION ${CATKIN_GLOBAL_INCLUDE_DESTINATION}/${PROJECT_NAME})
++endif()
++
++include_directories(include ${console_bridge_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS} ${Poco_INCLUDE_DIRS})
++
++set(${PROJECT_NAME}_SRCS
++  src/class_loader.cpp
++  src/class_loader_core.cpp
++  src/meta_object.cpp
++  src/multi_library_class_loader.cpp
++)
++set(${PROJECT_NAME}_HDRS
++  include/class_loader/class_loader.hpp
++  include/class_loader/class_loader_core.hpp
++  include/class_loader/exceptions.hpp
++  include/class_loader/meta_object.hpp
++  include/class_loader/multi_library_class_loader.hpp
++  include/class_loader/register_macro.hpp
++)
++if(WIN32)
++  add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_SRCS} ${${PROJECT_NAME}_HDRS})
++else()
++  add_library(${PROJECT_NAME} ${${PROJECT_NAME}_SRCS} ${${PROJECT_NAME}_HDRS})
++endif()
++
++target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES} ${console_bridge_LIBRARIES} ${Poco_LIBRARIES})
++if(WIN32)
++  # Causes the visibility macros to use dllexport rather than dllimport
++  # which is appropriate when building the dll but not consuming it.
++  target_compile_definitions(${PROJECT_NAME} PRIVATE "CLASS_LOADER_BUILDING_DLL")
++endif()
++
++install(TARGETS ${PROJECT_NAME}
++  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
++  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
++  RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION})
++install(DIRECTORY include/class_loader/
++  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION})
++
++install(PROGRAMS scripts/class_loader_headers_update.py
++  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
++
++if(CATKIN_ENABLE_TESTING)
++  add_subdirectory(test)
++endif()
++
++if(NOT catkin_FOUND)
++  set(TARGET_NAME ${PROJECT_NAME})
++  set(PKGCONFIG_LIBS
++    ${Boost_LIBRARIES}
++    ${console_bridge_LIBRARIES}
++    ${Poco_LIBRARIES}
++  )
++
++  # Prepare and install necessary files to support finding of the library
++  # using pkg-config
++  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/${TARGET_NAME}.pc.in
++    ${CMAKE_CURRENT_BINARY_DIR}/${TARGET_NAME}.pc @ONLY)
++
++  install(FILES ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.pc DESTINATION lib/pkgconfig)
++endif()
+--- /dev/null
++++ ros-noetic-class-loader-0.5.0/cmake/PocoConfig.cmake
+@@ -0,0 +1,204 @@
++# - Find the Poco includes and libraries.
++# The following variables are set if Poco is found.  If Poco is not
++# found, Poco_FOUND is set to false.
++#  Poco_FOUND        - True when the Poco include directory is found.
++#  Poco_INCLUDE_DIRS - the path to where the poco include files are.
++#  Poco_LIBRARY_DIR - The path to where the poco library files are.
++#  Poco_BINARY_DIRS - The path to where the poco dlls are.
++#  Poco_LIBRARIES - list of all libs from requested components.
++
++# ----------------------------------------------------------------------------
++# If you have installed Poco in a non-standard location.
++# Then you have three options.
++# In the following comments, it is assumed that <Your Path>
++# points to the root directory of the include directory of Poco. e.g
++# If you have put poco in C:\development\Poco then <Your Path> is
++# "C:/development/Poco" and in this directory there will be two
++# directories called "include" and "lib".
++# 1) After CMake runs, set Poco_INCLUDE_DIR to <Your Path>/poco<-version>
++# 2) Use CMAKE_INCLUDE_PATH to set a path to <Your Path>/poco<-version>. This will allow FIND_PATH()
++#    to locate Poco_INCLUDE_DIR by utilizing the PATH_SUFFIXES option. e.g.
++#    SET(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "<Your Path>/include")
++# 3) Set an environment variable called ${POCO_ROOT} that points to the root of where you have
++#    installed Poco, e.g. <Your Path>. It is assumed that there is at least a subdirectory called
++#    Foundation/include/Poco in this path.
++#
++# Note:
++#  1) If you are just using the poco headers, then you do not need to use
++#     Poco_LIBRARY_DIR in your CMakeLists.txt file.
++#  2) If Poco has not been installed, then when setting Poco_LIBRARY_DIR
++#     the script will look for /lib first and, if this fails, then for /stage/lib.
++#
++# Usage:
++# In your CMakeLists.txt file do something like this:
++# ...
++# # Poco
++# FIND_PACKAGE(Poco COMPONENTS XML Net Data...)
++# ...
++# INCLUDE_DIRECTORIES(${Poco_INCLUDE_DIRS})
++# LINK_DIRECTORIES(${Poco_LIBRARY_DIR})
++#
++# In Windows, we make the assumption that, if the Poco files are installed, the default directory
++# will be C:\poco or C:\Program Files\Poco or C:\Programme\Poco.
++
++MESSAGE(STATUS "Searching for Poco library...")
++
++SET(POCO_INCLUDE_PATH_DESCRIPTION "top-level directory containing the poco include directories. E.g /usr/local/include/ or c:\\poco\\include\\poco-1.3.2")
++SET(POCO_INCLUDE_DIR_MESSAGE "Set the Poco_INCLUDE_DIR cmake cache entry to the ${POCO_INCLUDE_PATH_DESCRIPTION}")
++SET(POCO_LIBRARY_PATH_DESCRIPTION "top-level directory containing the poco libraries.")
++SET(POCO_LIBRARY_DIR_MESSAGE "Set the Poco_LIBRARY_DIR cmake cache entry to the ${POCO_LIBRARY_PATH_DESCRIPTION}")
++
++
++SET(POCO_DIR_SEARCH $ENV{POCO_ROOT})
++IF(POCO_DIR_SEARCH)
++  FILE(TO_CMAKE_PATH ${POCO_DIR_SEARCH} POCO_DIR_SEARCH)
++ENDIF(POCO_DIR_SEARCH)
++
++
++IF(WIN32)
++  SET(POCO_DIR_SEARCH
++    ${POCO_DIR_SEARCH}
++    C:/poco
++    D:/poco
++    "C:/Program Files/poco"
++    "C:/Programme/poco"
++    "D:/Program Files/poco"
++    "D:/Programme/poco"
++  )
++ENDIF(WIN32)
++
++# Add in some path suffixes. These will have to be updated whenever a new Poco version comes out.
++SET(SUFFIX_FOR_INCLUDE_PATH
++ poco-1.3.2
++ poco-1.3.3
++ poco-1.3.4
++ poco-1.3.5
++ poco-1.3.6
++)
++
++SET(SUFFIX_FOR_LIBRARY_PATH
++ poco-1.3.2/lib
++ poco-1.3.2/lib/Linux/i686
++ poco-1.3.2/lib/Linux/x86_64
++ poco-1.3.3/lib
++ poco-1.3.3/lib/Linux/i686
++ poco-1.3.3/lib/Linux/x86_64
++ poco-1.3.4/lib
++ poco-1.3.4/lib/Linux/i686
++ poco-1.3.4/lib/Linux/x86_64
++ poco-1.3.5/lib
++ poco-1.3.5/lib/Linux/i686
++ poco-1.3.5/lib/Linux/x86_64
++ poco-1.3.6/lib
++ poco-1.3.6/lib/Linux/i686
++ poco-1.3.6/lib/Linux/x86_64
++ lib
++ lib/Linux/i686
++ lib/Linux/x86_64
++)
++
++#
++# Look for an installation.
++#
++FIND_PATH(Poco_INCLUDE_DIR NAMES Foundation/include/Poco/SharedLibrary.h PATH_SUFFIXES ${SUFFIX_FOR_INCLUDE_PATH} PATHS
++
++# Look in other places.
++  ${POCO_DIR_SEARCH}
++
++# Help the user find it if we cannot.
++  DOC "The ${POCO_INCLUDE_PATH_DESCRIPTION}"
++)
++
++IF(NOT Poco_INCLUDE_DIR)
++
++# Look for standard unix include paths
++  FIND_PATH(Poco_INCLUDE_DIR Poco/Poco.h DOC "The ${POCO_INCLUDE_PATH_DESCRIPTION}")
++
++ENDIF(NOT Poco_INCLUDE_DIR)
++
++# Assume we didn't find it.
++SET(Poco_FOUND 0)
++
++# Now try to get the include and library path.
++IF(Poco_INCLUDE_DIR)
++  IF(EXISTS "${Poco_INCLUDE_DIR}/Foundation/include/Poco/SharedLibrary.h")
++    SET(Poco_INCLUDE_DIRS
++      ${Poco_INCLUDE_DIR}/CppUnit/include
++      ${Poco_INCLUDE_DIR}/Foundation/include
++      ${Poco_INCLUDE_DIR}/Net/include
++      ${Poco_INCLUDE_DIR}/Util/include
++      ${Poco_INCLUDE_DIR}/XML/include
++    )
++    SET(Poco_FOUND 1)
++  ELSEIF(EXISTS "${Poco_INCLUDE_DIR}/Poco/Poco.h")
++    SET(Poco_INCLUDE_DIRS
++      ${Poco_INCLUDE_DIR}
++    )
++    SET(Poco_FOUND 1)
++  ENDIF()
++
++  IF(NOT Poco_LIBRARY_DIR)
++
++    FIND_LIBRARY(Poco_FOUNDATION_LIB NAMES PocoFoundation PocoFoundationd  PATH_SUFFIXES ${SUFFIX_FOR_LIBRARY_PATH} PATHS
++
++# Look in other places.
++      ${Poco_INCLUDE_DIR}
++      ${POCO_DIR_SEARCH}
++
++# Help the user find it if we cannot.
++      DOC "The ${POCO_LIBRARY_PATH_DESCRIPTION}"
++    )
++    SET(Poco_LIBRARY_DIR "" CACHE PATH POCO_LIBARARY_PATH_DESCRIPTION)
++    GET_FILENAME_COMPONENT(Poco_LIBRARY_DIR ${Poco_FOUNDATION_LIB} PATH)
++    SET(Poco_LIBRARIES "")
++    SET(Comp_List "")
++    IF(Poco_LIBRARY_DIR AND Poco_FOUNDATION_LIB)
++# Look for the poco binary path.
++      SET(Poco_BINARY_DIR ${Poco_INCLUDE_DIR})
++      IF(Poco_BINARY_DIR AND EXISTS "${Poco_BINARY_DIR}/bin")
++        SET(Poco_BINARY_DIRS ${Poco_BINARY_DIR}/bin)
++      ENDIF(Poco_BINARY_DIR AND EXISTS "${Poco_BINARY_DIR}/bin")
++    ENDIF(Poco_LIBRARY_DIR AND Poco_FOUNDATION_LIB)
++    IF(Poco_FOUNDATION_LIB)
++      IF ("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
++	SET(DBG "d")
++      ELSE ("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
++	SET(DBG "")
++      ENDIF ("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
++      SET(Comp_List "Foundation${DBG}")
++      FOREACH(COMPONENT ${Poco_FIND_COMPONENTS})
++	FIND_LIBRARY(LIB${COMPONENT} "Poco${COMPONENT}${DBG}" Poco_LIBRARY_DIR)
++	IF (LIB${COMPONENT})
++	  LIST(APPEND Poco_LIBRARIES "${LIB${COMPONENT}}")
++	  LIST(APPEND Comp_List "${COMPONENT}${DBG}")
++	ENDIF(LIB${COMPONENT})
++      ENDFOREACH(COMPONENT)
++      LIST(REMOVE_DUPLICATES Comp_List)
++    ENDIF(Poco_FOUNDATION_LIB)
++    ENDIF(NOT Poco_LIBRARY_DIR)
++ENDIF(Poco_INCLUDE_DIR)
++
++IF(NOT Poco_FOUND)
++  IF(Poco_FIND_QUIETLY)
++    MESSAGE(STATUS "Poco was not found. ${POCO_INCLUDE_DIR_MESSAGE}")
++  ELSE(Poco_FIND_QUIETLY)
++    IF(Poco_FIND_REQUIRED)
++      MESSAGE(FATAL_ERROR "Poco was not found. ${POCO_INCLUDE_DIR_MESSAGE}")
++    ENDIF(Poco_FIND_REQUIRED)
++  ENDIF(Poco_FIND_QUIETLY)
++ELSE(NOT Poco_FOUND)
++  MESSAGE(STATUS "  Found Poco!")
++  SET(COMPONENT_STR "components found:")
++  FOREACH(comp ${Comp_List})
++   SET(COMPONENT_STR "${COMPONENT_STR}, ${comp}")
++
++  ENDFOREACH(comp ${Comp_List})
++  STRING(REPLACE ":," ":" COMPONENT_LSTR ${COMPONENT_STR})
++  MESSAGE(STATUS "${COMPONENT_LSTR}.")
++ENDIF(NOT Poco_FOUND)
++
++#I added this in to add "libdl" on non-Windows systems. Technically dl is only neded if the "Foundation" component is used,
++#but i doesn't hurt to add it in anyway - mas
++if(Poco_FOUND AND NOT WIN32)
++  LIST(APPEND Poco_LIBRARIES "dl")
++endif(Poco_FOUND AND NOT WIN32)
+--- /dev/null
++++ ros-noetic-class-loader-0.5.0/cmake/class_loader-extras.cmake
+@@ -0,0 +1,16 @@
++# hides all symbols of a library
++function(class_loader_hide_library_symbols target)
++  set(version_script "${CMAKE_CURRENT_BINARY_DIR}/class_loader_hide_library_symbols__${target}.script")
++  file(WRITE "${version_script}"
++    "    {
++      local:
++        *;
++    };"
++  )
++  # checks if the linker supports version script
++  include(TestCXXAcceptsFlag)
++  check_cxx_accepts_flag("-Wl,--version-script,\"${version_script}\"" LD_ACCEPTS_VERSION_SCRIPT)
++  if(LD_ACCEPTS_VERSION_SCRIPT)
++    set_target_properties(${target} PROPERTIES LINK_FLAGS "-Wl,-version-script=\"${version_script}\"")
++  endif()
++endfunction()
+--- /dev/null
++++ ros-noetic-class-loader-0.5.0/include/class_loader/class_loader.h
+@@ -0,0 +1,46 @@
++/*
++ * Software License Agreement (BSD License)
++ *
++ * Copyright (c) 2018, Open Source Robotics Foundation, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the copyright holders nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#ifndef CLASS_LOADER__CLASS_LOADER_H_
++#define CLASS_LOADER__CLASS_LOADER_H_
++
++#ifdef _MSC_VER
++#pragma message("Including header <class_loader/class_loader.h> is deprecated,")
++#pragma message("include <class_loader/class_loader.hpp> instead.")
++#else
++// *INDENT-OFF* (prevent uncrustify from adding indention below)
++#warning Including header <class_loader/class_loader.h> is deprecated, \
++include <class_loader/class_loader.hpp> instead.
++#endif
++
++#include "./class_loader.hpp"
++
++#endif  // CLASS_LOADER__CLASS_LOADER_H_
+--- /dev/null
++++ ros-noetic-class-loader-0.5.0/include/class_loader/class_loader.hpp
+@@ -0,0 +1,341 @@
++/*
++ * Software License Agreement (BSD License)
++ *
++ * Copyright (c) 2012, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the copyright holders nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#ifndef CLASS_LOADER__CLASS_LOADER_HPP_
++#define CLASS_LOADER__CLASS_LOADER_HPP_
++
++#include <boost/bind.hpp>
++#include <boost/shared_ptr.hpp>
++#include <boost/thread/recursive_mutex.hpp>
++#include <cstddef>
++#include <functional>
++#include <memory>
++#include <string>
++#include <vector>
++
++#include "console_bridge/console.h"
++
++#include "class_loader/class_loader_core.hpp"
++#include "class_loader/register_macro.hpp"
++#include "class_loader/visibility_control.hpp"
++
++namespace class_loader
++{
++
++/**
++ * @brief Returns the default library prefix for the native os
++ */
++CLASS_LOADER_PUBLIC
++std::string systemLibraryPrefix();
++
++/**
++* @brief Returns runtime library extension for native os
++*/
++CLASS_LOADER_PUBLIC
++std::string systemLibrarySuffix();
++
++/**
++ * @brief Returns a platform specific version of a basic library name
++ *
++ * On *nix platforms the library name is prefixed with `lib`.
++ * On all platforms the output of class_loader::systemLibrarySuffix() is appended.
++ */
++CLASS_LOADER_PUBLIC
++std::string systemLibraryFormat(const std::string & library_name);
++
++/**
++ * @class ClassLoader
++ * @brief This class allows loading and unloading of dynamically linked libraries which contain class definitions from which objects can be created/destroyed during runtime (i.e. class_loader). Libraries loaded by a ClassLoader are only accessible within scope of that ClassLoader object.
++ */
++class ClassLoader
++{
++public:
++  template<typename Base>
++  using DeleterType = std::function<void(Base *)>;
++
++  template<typename Base>
++  using UniquePtr = std::unique_ptr<Base, DeleterType<Base>>;
++
++  /**
++   * @brief  Constructor for ClassLoader
++   * @param library_path - The path of the runtime library to load
++   * @param ondemand_load_unload - Indicates if on-demand (lazy) unloading/loading of libraries occurs as plugins are created/destroyed
++   */
++  CLASS_LOADER_PUBLIC
++  explicit ClassLoader(const std::string & library_path, bool ondemand_load_unload = false);
++
++  /**
++   * @brief  Destructor for ClassLoader. All libraries opened by this ClassLoader are unloaded automatically.
++   */
++  CLASS_LOADER_PUBLIC
++  virtual ~ClassLoader();
++
++  /**
++   * @brief  Indicates which classes (i.e. class_loader) that can be loaded by this object
++   * @return vector of strings indicating names of instantiable classes derived from <Base>
++   */
++  template<class Base>
++  std::vector<std::string> getAvailableClasses()
++  {
++    return class_loader::impl::getAvailableClasses<Base>(this);
++  }
++
++  /**
++   * @brief Gets the full-qualified path and name of the library associated with this class loader
++   */
++  CLASS_LOADER_PUBLIC
++  std::string getLibraryPath() {return library_path_;}
++
++  /**
++   * @brief  Generates an instance of loadable classes (i.e. class_loader).
++   *
++   * It is not necessary for the user to call loadLibrary() as it will be invoked automatically
++   * if the library is not yet loaded (which typically happens when in "On Demand Load/Unload" mode).
++   *
++   * @param  derived_class_name The name of the class we want to create (@see getAvailableClasses())
++   * @return A std::shared_ptr<Base> to newly created plugin object
++   */
++  template<class Base>
++  std::shared_ptr<Base> createSharedInstance(const std::string & derived_class_name)
++  {
++    return std::shared_ptr<Base>(
++      createRawInstance<Base>(derived_class_name, true),
++      boost::bind(&ClassLoader::onPluginDeletion<Base>, this, _1));
++  }
++
++  /**
++   * @brief  Generates an instance of loadable classes (i.e. class_loader).
++   *
++   * Same as createSharedInstance() except it returns a boost::shared_ptr.
++   */
++  template<class Base>
++  boost::shared_ptr<Base> createInstance(const std::string & derived_class_name)
++  {
++    return boost::shared_ptr<Base>(
++      createRawInstance<Base>(derived_class_name, true),
++      boost::bind(&ClassLoader::onPluginDeletion<Base>, this, _1));
++  }
++
++  /**
++   * @brief  Generates an instance of loadable classes (i.e. class_loader).
++   *
++   * It is not necessary for the user to call loadLibrary() as it will be invoked automatically
++   * if the library is not yet loaded (which typically happens when in "On Demand Load/Unload" mode).
++   *
++   * If you release the wrapped pointer you must manually call the original
++   * deleter when you want to destroy the released pointer.
++   *
++   * @param  derived_class_name The name of the class we want to create (@see getAvailableClasses())
++   * @return A std::unique_ptr<Base> to newly created plugin object
++   */
++  template<class Base>
++  UniquePtr<Base> createUniqueInstance(const std::string & derived_class_name)
++  {
++    Base * raw = createRawInstance<Base>(derived_class_name, true);
++    return std::unique_ptr<Base, DeleterType<Base>>(
++      raw,
++      boost::bind(&ClassLoader::onPluginDeletion<Base>, this, _1));
++  }
++
++  /**
++   * @brief  Generates an instance of loadable classes (i.e. class_loader).
++   *
++   * It is not necessary for the user to call loadLibrary() as it will be invoked automatically
++   * if the library is not yet loaded (which typically happens when in "On Demand Load/Unload" mode).
++   *
++   * Creating an unmanaged instance disables dynamically unloading libraries when
++   * managed pointers go out of scope for all class loaders in this process.
++   *
++   * @param derived_class_name The name of the class we want to create (@see getAvailableClasses())
++   * @return An unmanaged (i.e. not a shared_ptr) Base* to newly created plugin object.
++   */
++  template<class Base>
++  Base * createUnmanagedInstance(const std::string & derived_class_name)
++  {
++    return createRawInstance<Base>(derived_class_name, false);
++  }
++
++  /**
++   * @brief Indicates if a plugin class is available
++   * @param Base - polymorphic type indicating base class
++   * @param class_name - the name of the plugin class
++   * @return true if yes it is available, false otherwise
++   */
++  template<class Base>
++  bool isClassAvailable(const std::string & class_name)
++  {
++    std::vector<std::string> available_classes = getAvailableClasses<Base>();
++    return std::find(
++      available_classes.begin(), available_classes.end(), class_name) != available_classes.end();
++  }
++
++  /**
++   * @brief  Indicates if a library is loaded within the scope of this ClassLoader. Note that the library may already be loaded internally through another ClassLoader, but until loadLibrary() method is called, the ClassLoader cannot create objects from said library. If we want to see if the library has been opened by somebody else, @see isLibraryLoadedByAnyClassloader()
++   * @param  library_path The path to the library to load
++   * @return true if library is loaded within this ClassLoader object's scope, otherwise false
++   */
++  CLASS_LOADER_PUBLIC
++  bool isLibraryLoaded();
++
++  /**
++   * @brief  Indicates if a library is loaded by some entity in the plugin system (another ClassLoader), but not necessarily loaded by this ClassLoader
++   * @return true if library is loaded within the scope of the plugin system, otherwise false
++   */
++  CLASS_LOADER_PUBLIC
++  bool isLibraryLoadedByAnyClassloader();
++
++  /**
++   * @brief Indicates if the library is to be loaded/unloaded on demand...meaning that only to load a lib when the first plugin is created and automatically shut it down when last active plugin is destroyed.
++   */
++  CLASS_LOADER_PUBLIC
++  bool isOnDemandLoadUnloadEnabled() {return ondemand_load_unload_;}
++
++  /**
++   * @brief  Attempts to load a library on behalf of the ClassLoader. If the library is already opened, this method has no effect. If the library has been already opened by some other entity (i.e. another ClassLoader or global interface), this object is given permissions to access any plugin classes loaded by that other entity. This is
++   * @param  library_path The path to the library to load
++   */
++  CLASS_LOADER_PUBLIC
++  void loadLibrary();
++
++  /**
++   * @brief  Attempts to unload a library loaded within scope of the ClassLoader. If the library is not opened, this method has no effect. If the library is opened by other another ClassLoader, the library will NOT be unloaded internally -- however this ClassLoader will no longer be able to instantiate class_loader bound to that library. If there are plugin objects that exist in memory created by this classloader, a warning message will appear and the library will not be unloaded. If loadLibrary() was called multiple times (e.g. in the case of multiple threads or purposefully in a single thread), the user is responsible for calling unloadLibrary() the same number of times. The library will not be unloaded within the context of this classloader until the number of unload calls matches the number of loads.
++   * @return The number of times more unloadLibrary() has to be called for it to be unbound from this ClassLoader
++   */
++  CLASS_LOADER_PUBLIC
++  int unloadLibrary();
++
++private:
++  /**
++   * @brief Callback method when a plugin created by this class loader is destroyed
++   * @param obj - A pointer to the deleted object
++   */
++  template<class Base>
++  void onPluginDeletion(Base * obj)
++  {
++    CONSOLE_BRIDGE_logDebug(
++      "class_loader::ClassLoader: Calling onPluginDeletion() for obj ptr = %p.\n",
++      reinterpret_cast<void *>(obj));
++    if (nullptr == obj) {
++      return;
++    }
++    boost::recursive_mutex::scoped_lock lock(plugin_ref_count_mutex_);
++    delete (obj);
++    plugin_ref_count_ = plugin_ref_count_ - 1;
++    assert(plugin_ref_count_ >= 0);
++    if (0 == plugin_ref_count_ && isOnDemandLoadUnloadEnabled()) {
++      if (!ClassLoader::hasUnmanagedInstanceBeenCreated()) {
++        unloadLibraryInternal(false);
++      } else {
++        CONSOLE_BRIDGE_logWarn(
++          "class_loader::ClassLoader: "
++          "Cannot unload library %s even though last shared pointer went out of scope. "
++          "This is because createUnmanagedInstance was used within the scope of this process,"
++          " perhaps by a different ClassLoader. Library will NOT be closed.",
++          getLibraryPath().c_str());
++      }
++    }
++  }
++
++  /**
++   * @brief  Generates an instance of loadable classes (i.e. class_loader).
++   *
++   * It is not necessary for the user to call loadLibrary() as it will be invoked automatically
++   * if the library is not yet loaded (which typically happens when in "On Demand Load/Unload" mode).
++   *
++   * @param  derived_class_name The name of the class we want to create (@see getAvailableClasses())
++   * @param  managed If true, the returned pointer is assumed to be wrapped in a smart pointer by the caller.
++   * @return A Base* to newly created plugin object
++   */
++  template<class Base>
++  Base * createRawInstance(const std::string & derived_class_name, bool managed)
++  {
++    if (!managed) {
++      has_unmananged_instance_been_created_ = true;
++    }
++
++    if (
++      managed &&
++      ClassLoader::hasUnmanagedInstanceBeenCreated() &&
++      isOnDemandLoadUnloadEnabled())
++    {
++      CONSOLE_BRIDGE_logInform("%s",
++        "class_loader::ClassLoader: "
++        "An attempt is being made to create a managed plugin instance (i.e. boost::shared_ptr), "
++        "however an unmanaged instance was created within this process address space. "
++        "This means libraries for the managed instances will not be shutdown automatically on "
++        "final plugin destruction if on demand (lazy) loading/unloading mode is used."
++      );
++    }
++    if (!isLibraryLoaded()) {
++      loadLibrary();
++    }
++
++    Base * obj = class_loader::impl::createInstance<Base>(derived_class_name, this);
++    assert(obj != nullptr);  // Unreachable assertion if createInstance() throws on failure
++
++    if (managed) {
++      boost::recursive_mutex::scoped_lock lock(plugin_ref_count_mutex_);
++      ++plugin_ref_count_;
++    }
++
++    return obj;
++  }
++
++  /**
++  * @brief Getter for if an unmanaged (i.e. unsafe) instance has been created flag
++  */
++  CLASS_LOADER_PUBLIC
++  static bool hasUnmanagedInstanceBeenCreated();
++
++  /**
++   * @brief As the library may be unloaded in "on-demand load/unload" mode, unload maybe called from createInstance(). The problem is that createInstance() locks the plugin_ref_count as does unloadLibrary(). This method is the implementation of unloadLibrary but with a parameter to decide if plugin_ref_mutex_ should be locked
++   * @param lock_plugin_ref_count - Set to true if plugin_ref_count_mutex_ should be locked, else false
++   * @return The number of times unloadLibraryInternal has to be called again for it to be unbound from this ClassLoader
++   */
++  CLASS_LOADER_PUBLIC
++  int unloadLibraryInternal(bool lock_plugin_ref_count);
++
++private:
++  bool ondemand_load_unload_;
++  std::string library_path_;
++  int load_ref_count_;
++  boost::recursive_mutex load_ref_count_mutex_;
++  int plugin_ref_count_;
++  boost::recursive_mutex plugin_ref_count_mutex_;
++
++  CLASS_LOADER_PUBLIC
++  static bool has_unmananged_instance_been_created_;
++};
++
++}  // namespace class_loader
++
++
++#endif  // CLASS_LOADER__CLASS_LOADER_HPP_
+--- /dev/null
++++ ros-noetic-class-loader-0.5.0/include/class_loader/class_loader_core.h
+@@ -0,0 +1,46 @@
++/*
++ * Software License Agreement (BSD License)
++ *
++ * Copyright (c) 2018, Open Source Robotics Foundation, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the copyright holders nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#ifndef CLASS_LOADER__CLASS_LOADER_CORE_H_
++#define CLASS_LOADER__CLASS_LOADER_CORE_H_
++
++#ifdef _MSC_VER
++#pragma message("Including header <class_loader/class_loader_core.h> is deprecated,")
++#pragma message("include <class_loader/class_loader_core.h> instead.")
++#else
++// *INDENT-OFF* (prevent uncrustify from adding indention below)
++#warning Including header <class_loader/class_loader_core.h> is deprecated, \
++include <class_loader/class_loader_core.hpp> instead.
++#endif
++
++#include "./class_loader_core.hpp"
++
++#endif  // CLASS_LOADER__CLASS_LOADER_CORE_H_
+--- /dev/null
++++ ros-noetic-class-loader-0.5.0/include/class_loader/class_loader_core.hpp
+@@ -0,0 +1,363 @@
++/*
++ * Software License Agreement (BSD License)
++ *
++ * Copyright (c) 2012, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the copyright holders nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#ifndef CLASS_LOADER__CLASS_LOADER_CORE_HPP_
++#define CLASS_LOADER__CLASS_LOADER_CORE_HPP_
++
++#include <boost/thread/recursive_mutex.hpp>
++#include <cstddef>
++#include <cstdio>
++#include <map>
++#include <string>
++#include <typeinfo>
++#include <utility>
++#include <vector>
++
++#include "class_loader/exceptions.hpp"
++#include "class_loader/meta_object.hpp"
++#include "class_loader/visibility_control.hpp"
++
++// forward declaration
++namespace Poco
++{
++  class SharedLibrary;
++}  // namespace Poco
++
++/**
++ * @note This header file is the internal implementation of the plugin system which is exposed via the ClassLoader class
++ */
++
++namespace class_loader
++{
++
++class ClassLoader;  // Forward declaration
++
++namespace impl
++{
++
++// Typedefs
++typedef std::string LibraryPath;
++typedef std::string ClassName;
++typedef std::string BaseClassName;
++typedef std::map<ClassName, impl::AbstractMetaObjectBase *> FactoryMap;
++typedef std::map<BaseClassName, FactoryMap> BaseToFactoryMapMap;
++typedef std::pair<LibraryPath, Poco::SharedLibrary *> LibraryPair;
++typedef std::vector<LibraryPair> LibraryVector;
++typedef std::vector<AbstractMetaObjectBase *> MetaObjectVector;
++
++// Debug
++CLASS_LOADER_PUBLIC
++void printDebugInfoToScreen();
++
++// Global storage
++
++/**
++ * @brief Gets a handle to a global data structure that holds a map of base class names (Base class describes plugin interface) to a FactoryMap which holds the factories for the various different concrete classes that can be instantiated. Note that the Base class is NOT THE LITERAL CLASSNAME, but rather the result of typeid(Base).name() which sometimes is the literal class name (as on Windows) but is often in mangled form (as on Linux).
++ * @return A reference to the global base to factory map
++ */
++CLASS_LOADER_PUBLIC
++BaseToFactoryMapMap & getGlobalPluginBaseToFactoryMapMap();
++
++/**
++ * @brief Gets a handle to a list of open libraries in the form of LibraryPairs which encode the library path+name and the handle to the underlying Poco::SharedLibrary
++ * @return A reference to the global vector that tracks loaded libraries
++ */
++CLASS_LOADER_PUBLIC
++LibraryVector & getLoadedLibraryVector();
++
++/**
++ * @brief When a library is being loaded, in order for factories to know which library they are being associated with, they use this function to query which library is being loaded.
++ * @return The currently set loading library name as a string
++ */
++CLASS_LOADER_PUBLIC
++std::string getCurrentlyLoadingLibraryName();
++
++/**
++ * @brief When a library is being loaded, in order for factories to know which library they are being associated with, this function is called to set the name of the library currently being loaded.
++ * @param library_name - The name of library that is being loaded currently
++ */
++CLASS_LOADER_PUBLIC
++void setCurrentlyLoadingLibraryName(const std::string & library_name);
++
++
++/**
++ * @brief Gets the ClassLoader currently in scope which used when a library is being loaded.
++ * @return A pointer to the currently active ClassLoader.
++ */
++CLASS_LOADER_PUBLIC
++ClassLoader * getCurrentlyActiveClassLoader();
++
++/**
++ * @brief Sets the ClassLoader currently in scope which used when a library is being loaded.
++ * @param loader - pointer to the currently active ClassLoader.
++ */
++CLASS_LOADER_PUBLIC
++void setCurrentlyActiveClassLoader(ClassLoader * loader);
++
++
++/**
++ * @brief This function extracts a reference to the FactoryMap for appropriate base class out of the global plugin base to factory map. This function should be used by functions in this namespace that need to access the various factories so as to make sure the right key is generated to index into the global map.
++ * @return A reference to the FactoryMap contained within the global Base-to-FactoryMap map.
++ */
++CLASS_LOADER_PUBLIC
++FactoryMap & getFactoryMapForBaseClass(const std::string & typeid_base_class_name);
++
++/**
++ * @brief Same as above but uses a type parameter instead of string for more safety if info is available.
++ * @return A reference to the FactoryMap contained within the global Base-to-FactoryMap map.
++ */
++template<typename Base>
++FactoryMap & getFactoryMapForBaseClass()
++{
++  return getFactoryMapForBaseClass(typeid(Base).name());
++}
++
++/**
++ * @brief To provide thread safety, all exposed plugin functions can only be run serially by multiple threads. This is implemented by using critical sections enforced by a single mutex which is locked and released with the following two functions
++ * @return A reference to the global mutex
++ */
++CLASS_LOADER_PUBLIC
++boost::recursive_mutex & getLoadedLibraryVectorMutex();
++CLASS_LOADER_PUBLIC
++boost::recursive_mutex & getPluginBaseToFactoryMapMapMutex();
++
++/**
++ * @brief Indicates if a library containing more than just plugins has been opened by the running process
++ * @return True if a non-pure plugin library has been opened, otherwise false
++ */
++CLASS_LOADER_PUBLIC
++bool hasANonPurePluginLibraryBeenOpened();
++
++/**
++ * @brief Sets a flag indicating if a library containing more than just plugins has been opened by the running process
++ * @param hasIt - The flag
++ */
++CLASS_LOADER_PUBLIC
++void hasANonPurePluginLibraryBeenOpened(bool hasIt);
++
++// Plugin Functions
++
++/**
++ * @brief This function is called by the CLASS_LOADER_REGISTER_CLASS macro in plugin_register_macro.h to register factories.
++ * Classes that use that macro will cause this function to be invoked when the library is loaded. The function will create a MetaObject (i.e. factory) for the corresponding Derived class and insert it into the appropriate FactoryMap in the global Base-to-FactoryMap map. Note that the passed class_name is the literal class name and not the mangled version.
++ * @param Derived - parameteric type indicating concrete type of plugin
++ * @param Base - parameteric type indicating base type of plugin
++ * @param class_name - the literal name of the class being registered (NOT MANGLED)
++ */
++template<typename Derived, typename Base>
++void registerPlugin(const std::string & class_name, const std::string & base_class_name)
++{
++  // Note: This function will be automatically invoked when a dlopen() call
++  // opens a library. Normally it will happen within the scope of loadLibrary(),
++  // but that may not be guaranteed.
++  CONSOLE_BRIDGE_logDebug(
++    "class_loader.impl: "
++    "Registering plugin factory for class = %s, ClassLoader* = %p and library name %s.",
++    class_name.c_str(), getCurrentlyActiveClassLoader(),
++    getCurrentlyLoadingLibraryName().c_str());
++
++  if (nullptr == getCurrentlyActiveClassLoader()) {
++    CONSOLE_BRIDGE_logDebug("%s",
++      "class_loader.impl: ALERT!!! "
++      "A library containing plugins has been opened through a means other than through the "
++      "class_loader or pluginlib package. "
++      "This can happen if you build plugin libraries that contain more than just plugins "
++      "(i.e. normal code your app links against). "
++      "This inherently will trigger a dlopen() prior to main() and cause problems as class_loader "
++      "is not aware of plugin factories that autoregister under the hood. "
++      "The class_loader package can compensate, but you may run into namespace collision problems "
++      "(e.g. if you have the same plugin class in two different libraries and you load them both "
++      "at the same time). "
++      "The biggest problem is that library can now no longer be safely unloaded as the "
++      "ClassLoader does not know when non-plugin code is still in use. "
++      "In fact, no ClassLoader instance in your application will be unable to unload any library "
++      "once a non-pure one has been opened. "
++      "Please refactor your code to isolate plugins into their own libraries.");
++    hasANonPurePluginLibraryBeenOpened(true);
++  }
++
++  // Create factory
++  impl::AbstractMetaObject<Base> * new_factory =
++    new impl::MetaObject<Derived, Base>(class_name, base_class_name);
++  new_factory->addOwningClassLoader(getCurrentlyActiveClassLoader());
++  new_factory->setAssociatedLibraryPath(getCurrentlyLoadingLibraryName());
++
++
++  // Add it to global factory map map
++  getPluginBaseToFactoryMapMapMutex().lock();
++  FactoryMap & factoryMap = getFactoryMapForBaseClass<Base>();
++  if (factoryMap.find(class_name) != factoryMap.end()) {
++    CONSOLE_BRIDGE_logWarn(
++      "class_loader.impl: SEVERE WARNING!!! "
++      "A namespace collision has occured with plugin factory for class %s. "
++      "New factory will OVERWRITE existing one. "
++      "This situation occurs when libraries containing plugins are directly linked against an "
++      "executable (the one running right now generating this message). "
++      "Please separate plugins out into their own library or just don't link against the library "
++      "and use either class_loader::ClassLoader/MultiLibraryClassLoader to open.",
++      class_name.c_str());
++  }
++  factoryMap[class_name] = new_factory;
++  getPluginBaseToFactoryMapMapMutex().unlock();
++
++  CONSOLE_BRIDGE_logDebug(
++    "class_loader.impl: "
++    "Registration of %s complete (Metaobject Address = %p)",
++    class_name.c_str(), reinterpret_cast<void *>(new_factory));
++}
++
++/**
++ * @brief This function creates an instance of a plugin class given the derived name of the class and returns a pointer of the Base class type.
++ * @param derived_class_name - The name of the derived class (unmangled)
++ * @param loader - The ClassLoader whose scope we are within
++ * @return A pointer to newly created plugin, note caller is responsible for object destruction
++ */
++template<typename Base>
++Base * createInstance(const std::string & derived_class_name, ClassLoader * loader)
++{
++  AbstractMetaObject<Base> * factory = nullptr;
++
++  getPluginBaseToFactoryMapMapMutex().lock();
++  FactoryMap & factoryMap = getFactoryMapForBaseClass<Base>();
++  if (factoryMap.find(derived_class_name) != factoryMap.end()) {
++    factory = dynamic_cast<impl::AbstractMetaObject<Base> *>(factoryMap[derived_class_name]);
++  } else {
++    CONSOLE_BRIDGE_logError(
++      "class_loader.impl: No metaobject exists for class type %s.", derived_class_name.c_str());
++  }
++  getPluginBaseToFactoryMapMapMutex().unlock();
++
++  Base * obj = nullptr;
++  if (factory != nullptr && factory->isOwnedBy(loader)) {
++    obj = factory->create();
++  }
++
++  if (nullptr == obj) {  // Was never created
++    if (factory && factory->isOwnedBy(nullptr)) {
++      CONSOLE_BRIDGE_logDebug("%s",
++        "class_loader.impl: ALERT!!! "
++        "A metaobject (i.e. factory) exists for desired class, but has no owner. "
++        "This implies that the library containing the class was dlopen()ed by means other than "
++        "through the class_loader interface. "
++        "This can happen if you build plugin libraries that contain more than just plugins "
++        "(i.e. normal code your app links against) -- that intrinsically will trigger a dlopen() "
++        "prior to main(). "
++        "You should isolate your plugins into their own library, otherwise it will not be "
++        "possible to shutdown the library!");
++
++      obj = factory->create();
++    } else {
++      throw class_loader::CreateClassException(
++              "Could not create instance of type " + derived_class_name);
++    }
++  }
++
++  CONSOLE_BRIDGE_logDebug(
++    "class_loader.impl: Created instance of type %s and object pointer = %p",
++    (typeid(obj).name()), reinterpret_cast<void *>(obj));
++
++  return obj;
++}
++
++/**
++ * @brief This function returns all the available class_loader in the plugin system that are derived from Base and within scope of the passed ClassLoader.
++ * @param loader - The pointer to the ClassLoader whose scope we are within,
++ * @return A vector of strings where each string is a plugin we can create
++ */
++template<typename Base>
++std::vector<std::string> getAvailableClasses(ClassLoader * loader)
++{
++  boost::recursive_mutex::scoped_lock lock(getPluginBaseToFactoryMapMapMutex());
++
++  FactoryMap & factory_map = getFactoryMapForBaseClass<Base>();
++  std::vector<std::string> classes;
++  std::vector<std::string> classes_with_no_owner;
++
++  for (auto & it : factory_map) {
++    AbstractMetaObjectBase * factory = it.second;
++    if (factory->isOwnedBy(loader)) {
++      classes.push_back(it.first);
++    } else if (factory->isOwnedBy(nullptr)) {
++      classes_with_no_owner.push_back(it.first);
++    }
++  }
++
++  // Added classes not associated with a class loader (Which can happen through
++  // an unexpected dlopen() to the library)
++  classes.insert(classes.end(), classes_with_no_owner.begin(), classes_with_no_owner.end());
++  return classes;
++}
++
++/**
++ * @brief This function returns the names of all libraries in use by a given class loader.
++ * @param loader - The ClassLoader whose scope we are within
++ * @return A vector of strings where each string is the path+name of each library that are within a ClassLoader's visible scope
++ */
++CLASS_LOADER_PUBLIC
++std::vector<std::string> getAllLibrariesUsedByClassLoader(const ClassLoader * loader);
++
++/**
++ * @brief Indicates if passed library loaded within scope of a ClassLoader. The library maybe loaded in memory, but to the class loader it may not be.
++ * @param library_path - The name of the library we wish to check is open
++ * @param loader - The pointer to the ClassLoader whose scope we are within
++ * @return true if the library is loaded within loader's scope, else false
++ */
++CLASS_LOADER_PUBLIC
++bool isLibraryLoaded(const std::string & library_path, ClassLoader * loader);
++
++/**
++ * @brief Indicates if passed library has been loaded by ANY ClassLoader
++ * @param library_path - The name of the library we wish to check is open
++ * @return true if the library is loaded in memory, otherwise false
++ */
++CLASS_LOADER_PUBLIC
++bool isLibraryLoadedByAnybody(const std::string & library_path);
++
++/**
++ * @brief Loads a library into memory if it has not already been done so. Attempting to load an already loaded library has no effect.
++ * @param library_path - The name of the library to open
++ * @param loader - The pointer to the ClassLoader whose scope we are within
++ */
++CLASS_LOADER_PUBLIC
++void loadLibrary(const std::string & library_path, ClassLoader * loader);
++
++/**
++ * @brief Unloads a library if it loaded in memory and cleans up its corresponding class factories. If it is not loaded, the function has no effect
++ * @param library_path - The name of the library to open
++ * @param loader - The pointer to the ClassLoader whose scope we are within
++ */
++CLASS_LOADER_PUBLIC
++void unloadLibrary(const std::string & library_path, ClassLoader * loader);
++
++}  // namespace impl
++}  // namespace class_loader
++
++#endif  // CLASS_LOADER__CLASS_LOADER_CORE_HPP_
+--- /dev/null
++++ ros-noetic-class-loader-0.5.0/include/class_loader/class_loader_exceptions.h
+@@ -0,0 +1,46 @@
++/*
++ * Software License Agreement (BSD License)
++ *
++ * Copyright (c) 2018, Open Source Robotics Foundation, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the copyright holders nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#ifndef CLASS_LOADER__CLASS_LOADER_EXCEPTIONS_H_
++#define CLASS_LOADER__CLASS_LOADER_EXCEPTIONS_H_
++
++#ifdef _MSC_VER
++#pragma message("Including header <class_loader/class_loader_exceptions.h> is deprecated,")
++#pragma message("include <class_loader/class_loader_exceptions.h> instead.")
++#else
++// *INDENT-OFF* (prevent uncrustify from adding indention below)
++#warning Including header <class_loader/class_loader_exceptions.h> is deprecated, \
++include <class_loader/exceptions.hpp> instead.
++#endif
++
++#include "./exceptions.hpp"
++
++#endif  // CLASS_LOADER__CLASS_LOADER_EXCEPTIONS_H_
+--- /dev/null
++++ ros-noetic-class-loader-0.5.0/include/class_loader/class_loader_register_macro.h
+@@ -0,0 +1,46 @@
++/*
++ * Software License Agreement (BSD License)
++ *
++ * Copyright (c) 2018, Open Source Robotics Foundation, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the copyright holders nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#ifndef CLASS_LOADER__CLASS_LOADER_REGISTER_MACRO_H_
++#define CLASS_LOADER__CLASS_LOADER_REGISTER_MACRO_H_
++
++#ifdef _MSC_VER
++#pragma message("Including header <class_loader/class_loader_register_macro.h> is deprecated,")
++#pragma message("include <class_loader/class_loader_register_macro.h> instead.")
++#else
++// *INDENT-OFF* (prevent uncrustify from adding indention below)
++#warning Including header <class_loader/class_loader_register_macro.h> is deprecated, \
++include <class_loader/register_macro.hpp> instead.
++#endif
++
++#include "./register_macro.hpp"
++
++#endif  // CLASS_LOADER__CLASS_LOADER_REGISTER_MACRO_H_
+--- /dev/null
++++ ros-noetic-class-loader-0.5.0/include/class_loader/exceptions.hpp
+@@ -0,0 +1,102 @@
++/*
++ * Software License Agreement (BSD License)
++ *
++ * Copyright (c) 2012, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the copyright holders nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#ifndef CLASS_LOADER__EXCEPTIONS_HPP_
++#define CLASS_LOADER__EXCEPTIONS_HPP_
++
++#include <stdexcept>
++#include <string>
++
++namespace class_loader
++{
++
++/**
++ * @class ClassLoader sException
++ * @brief A base class for all class_loader exceptions that inherits from std::runtime_exception
++ */
++class ClassLoaderException : public std::runtime_error
++{
++public:
++  explicit inline ClassLoaderException(const std::string & error_desc)
++  : std::runtime_error(error_desc)
++  {}
++};
++
++/**
++ * @class LibraryLoadException
++ * @brief An exception class thrown when class_loader is unable to load a runtime library
++ */
++class LibraryLoadException : public ClassLoaderException
++{
++public:
++  explicit inline LibraryLoadException(const std::string & error_desc)
++  : ClassLoaderException(error_desc)
++  {}
++};
++
++/**
++ * @class LibraryUnloadException
++ * @brief An exception class thrown when class_loader is unable to unload a runtime library
++ */
++class LibraryUnloadException : public ClassLoaderException
++{
++public:
++  explicit inline LibraryUnloadException(const std::string & error_desc)
++  : ClassLoaderException(error_desc)
++  {}
++};
++
++/**
++ * @class CreateClassException
++ * @brief An exception class thrown when class_loader is unable to create a plugin
++ */
++class CreateClassException : public ClassLoaderException
++{
++public:
++  explicit inline CreateClassException(const std::string & error_desc)
++  : ClassLoaderException(error_desc)
++  {}
++};
++
++/**
++ * @class NoClassLoaderExistsException
++ * @brief An exception class thrown when a multilibrary class loader does not have a ClassLoader bound to it
++ */
++class NoClassLoaderExistsException : public ClassLoaderException
++{
++public:
++  explicit inline NoClassLoaderExistsException(const std::string & error_desc)
++  : ClassLoaderException(error_desc)
++  {}
++};
++
++}  // namespace class_loader
++#endif  // CLASS_LOADER__EXCEPTIONS_HPP_
+--- /dev/null
++++ ros-noetic-class-loader-0.5.0/include/class_loader/meta_object.h
+@@ -0,0 +1,46 @@
++/*
++ * Software License Agreement (BSD License)
++ *
++ * Copyright (c) 2018, Open Source Robotics Foundation, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the copyright holders nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#ifndef CLASS_LOADER__META_OBJECT_H_
++#define CLASS_LOADER__META_OBJECT_H_
++
++#ifdef _MSC_VER
++#pragma message("Including header <class_loader/meta_object.h> is deprecated,")
++#pragma message("include <class_loader/meta_object.h> instead.")
++#else
++// *INDENT-OFF* (prevent uncrustify from adding indention below)
++#warning Including header <class_loader/meta_object.h> is deprecated, \
++include <class_loader/meta_object.hpp> instead.
++#endif
++
++#include "./meta_object.hpp"
++
++#endif  // CLASS_LOADER__META_OBJECT_H_
+--- /dev/null
++++ ros-noetic-class-loader-0.5.0/include/class_loader/meta_object.hpp
+@@ -0,0 +1,205 @@
++/*
++ * Software License Agreement (BSD License)
++ *
++ * Copyright (c) 2012, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the copyright holders nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++// Note: This header defines a simplication of Poco::MetaObject
++// that allows us to tag MetaObjects with an associated library name.
++
++#ifndef CLASS_LOADER__META_OBJECT_HPP_
++#define CLASS_LOADER__META_OBJECT_HPP_
++
++#include <console_bridge/console.h>
++#include "class_loader/visibility_control.hpp"
++
++#include <typeinfo>
++#include <string>
++#include <vector>
++
++namespace class_loader
++{
++
++class ClassLoader;  // Forward declaration
++
++namespace impl
++{
++
++typedef std::vector<class_loader::ClassLoader *> ClassLoaderVector;
++
++/**
++ * @class AbstractMetaObjectBase
++ * @brief A base class for MetaObjects that excludes a polymorphic type parameter. Subclasses are class templates though.
++ */
++class CLASS_LOADER_PUBLIC AbstractMetaObjectBase
++{
++public:
++  /**
++   * @brief Constructor for the class
++   */
++  AbstractMetaObjectBase(const std::string & class_name, const std::string & base_class_name);
++  /**
++   * @brief Destructor for the class. THIS MUST NOT BE VIRTUAL AND OVERRIDDEN BY
++   * TEMPLATE SUBCLASSES, OTHERWISE THEY WILL PULL IN A REDUNDANT METAOBJECT
++   * DESTRUCTOR OUTSIDE OF libclass_loader WITHIN THE PLUGIN LIBRARY! T
++   */
++  ~AbstractMetaObjectBase();
++
++  /**
++   * @brief Gets the literal name of the class.
++   * @return The literal name of the class as a C-string.
++   */
++  std::string className() const;
++
++  /**
++   * @brief gets the base class for the class this factory represents
++   */
++  std::string baseClassName() const;
++  /**
++   * @brief Gets the name of the class as typeid(BASE_CLASS).name() would return it
++   */
++  std::string typeidBaseClassName() const;
++
++  /**
++   * @brief Gets the path to the library associated with this factory
++   * @return Library path as a std::string
++   */
++  std::string getAssociatedLibraryPath();
++
++  /**
++   * @brief Sets the path to the library associated with this factory
++   */
++  void setAssociatedLibraryPath(std::string library_path);
++
++  /**
++   * @brief Associates a ClassLoader owner with this factory,
++   * @param loader Handle to the owning ClassLoader.
++   */
++  void addOwningClassLoader(ClassLoader * loader);
++
++  /**
++   * @brief Removes a ClassLoader that is an owner of this factory
++   * @param loader Handle to the owning ClassLoader.
++   */
++  void removeOwningClassLoader(const ClassLoader * loader);
++
++  /**
++   * @brief Indicates if the factory is within the usable scope of a ClassLoader
++   * @param loader Handle to the owning ClassLoader.
++   */
++  bool isOwnedBy(const ClassLoader * loader);
++
++  /**
++   * @brief Indicates if the factory is within the usable scope of any ClassLoader
++   */
++  bool isOwnedByAnybody();
++
++  /**
++   * A vector of class loaders that own this metaobject
++   */
++  ClassLoaderVector getAssociatedClassLoaders();
++
++protected:
++  /**
++   * This is needed to make base class polymorphic (i.e. have a vtable)
++   */
++  virtual void dummyMethod() {}
++
++protected:
++  ClassLoaderVector associated_class_loaders_;
++  std::string associated_library_path_;
++  std::string base_class_name_;
++  std::string class_name_;
++  std::string typeid_base_class_name_;
++};
++
++/**
++ * @class AbstractMetaObject
++ * @brief Abstract base class for factories where polymorphic type variable indicates base class for plugin interface.
++ * @parm B The base class interface for the plugin
++ */
++template<class B>
++class AbstractMetaObject : public AbstractMetaObjectBase
++{
++public:
++  /**
++   * @brief A constructor for this class
++   * @param name The literal name of the class.
++   */
++  AbstractMetaObject(const std::string & class_name, const std::string & base_class_name)
++  : AbstractMetaObjectBase(class_name, base_class_name)
++  {
++    AbstractMetaObjectBase::typeid_base_class_name_ = std::string(typeid(B).name());
++  }
++
++  /**
++   * @brief Defines the factory interface that the MetaObject must implement.
++   * @return A pointer of parametric type B to a newly created object.
++   */
++  virtual B * create() const = 0;
++  /// Create a new instance of a class.
++  /// Cannot be used for singletons.
++
++private:
++  AbstractMetaObject();
++  AbstractMetaObject(const AbstractMetaObject &);
++  AbstractMetaObject & operator=(const AbstractMetaObject &);
++};
++
++/**
++ * @class MetaObject
++ * @brief The actual factory.
++ * @parm C The derived class (the actual plugin)
++ * @parm B The base class interface for the plugin
++ */
++template<class C, class B>
++class MetaObject : public AbstractMetaObject<B>
++{
++public:
++  /**
++   * @brief Constructor for the class
++   */
++  MetaObject(const std::string & class_name, const std::string & base_class_name)
++  : AbstractMetaObject<B>(class_name, base_class_name)
++  {
++  }
++
++  /**
++   * @brief The factory interface to generate an object. The object has type C in reality, though a pointer of the base class type is returned.
++   * @return A pointer to a newly created plugin with the base class type (type parameter B)
++   */
++  B * create() const
++  {
++    return new C;
++  }
++};
++
++}  // namespace impl
++}  // namespace class_loader
++
++#endif  // CLASS_LOADER__META_OBJECT_HPP_
+--- /dev/null
++++ ros-noetic-class-loader-0.5.0/include/class_loader/multi_library_class_loader.h
+@@ -0,0 +1,46 @@
++/*
++ * Software License Agreement (BSD License)
++ *
++ * Copyright (c) 2018, Open Source Robotics Foundation, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the copyright holders nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#ifndef CLASS_LOADER__MULTI_LIBRARY_CLASS_LOADER_H_
++#define CLASS_LOADER__MULTI_LIBRARY_CLASS_LOADER_H_
++
++#ifdef _MSC_VER
++#pragma message("Including header <class_loader/multi_library_class_loader.h> is deprecated,")
++#pragma message("include <class_loader/multi_library_class_loader.h> instead.")
++#else
++// *INDENT-OFF* (prevent uncrustify from adding indention below)
++#warning Including header <class_loader/multi_library_class_loader.h> is deprecated, \
++include <class_loader/multi_library_class_loader.hpp> instead.
++#endif
++
++#include "./multi_library_class_loader.hpp"
++
++#endif  // CLASS_LOADER__MULTI_LIBRARY_CLASS_LOADER_H_
+--- /dev/null
++++ ros-noetic-class-loader-0.5.0/include/class_loader/multi_library_class_loader.hpp
+@@ -0,0 +1,363 @@
++/*
++ * Software License Agreement (BSD License)
++ *
++ * Copyright (c) 2012, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the copyright holders nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#ifndef CLASS_LOADER__MULTI_LIBRARY_CLASS_LOADER_HPP_
++#define CLASS_LOADER__MULTI_LIBRARY_CLASS_LOADER_HPP_
++
++#include <boost/thread.hpp>
++#include <cstddef>
++#include <map>
++#include <string>
++#include <vector>
++
++#include "console_bridge/console.h"
++#include "class_loader/class_loader.hpp"
++#include "class_loader/visibility_control.hpp"
++
++namespace class_loader
++{
++
++typedef std::string LibraryPath;
++typedef std::map<LibraryPath, class_loader::ClassLoader *> LibraryToClassLoaderMap;
++typedef std::vector<ClassLoader *> ClassLoaderVector;
++
++/**
++* @class MultiLibraryClassLoader
++* @brief A ClassLoader that can bind more than one runtime library
++*/
++class CLASS_LOADER_PUBLIC MultiLibraryClassLoader
++{
++public:
++  /**
++   * @brief Constructor for the class
++   * @param enable_ondemand_loadunload - Flag indicates if classes are to be loaded/unloaded automatically as class_loader are created and destroyed
++   */
++  explicit MultiLibraryClassLoader(bool enable_ondemand_loadunload);
++
++  /**
++  * @brief Virtual destructor for class
++  */
++  virtual ~MultiLibraryClassLoader();
++
++  /**
++   * @brief Creates an instance of an object of given class name with ancestor class Base
++   * This version does not look in a specific library for the factory, but rather the first open library that defines the classs
++   * @param Base - polymorphic type indicating base class
++   * @param class_name - the name of the concrete plugin class we want to instantiate
++   * @return A std::shared_ptr<Base> to newly created plugin
++   */
++  template<class Base>
++  std::shared_ptr<Base> createSharedInstance(const std::string & class_name)
++  {
++    CONSOLE_BRIDGE_logDebug(
++      "class_loader::MultiLibraryClassLoader: "
++      "Attempting to create instance of class type %s.",
++      class_name.c_str());
++    ClassLoader * loader = getClassLoaderForClass<Base>(class_name);
++    if (nullptr == loader) {
++      throw class_loader::CreateClassException(
++              "MultiLibraryClassLoader: Could not create object of class type " +
++              class_name +
++              " as no factory exists for it. Make sure that the library exists and "
++              "was explicitly loaded through MultiLibraryClassLoader::loadLibrary()");
++    }
++
++    return loader->createSharedInstance<Base>(class_name);
++  }
++
++  /**
++   * @brief Creates an instance of an object of given class name with ancestor class Base
++   * This version takes a specific library to make explicit the factory being used
++   * @param Base - polymorphic type indicating base class
++   * @param class_name - the name of the concrete plugin class we want to instantiate
++   * @param library_path - the library from which we want to create the plugin
++   * @return A std::shared_ptr<Base> to newly created plugin
++   */
++  template<class Base>
++  std::shared_ptr<Base>
++  createSharedInstance(const std::string & class_name, const std::string & library_path)
++  {
++    ClassLoader * loader = getClassLoaderForLibrary(library_path);
++    if (nullptr == loader) {
++      throw class_loader::NoClassLoaderExistsException(
++              "Could not create instance as there is no ClassLoader in "
++              "MultiLibraryClassLoader bound to library " + library_path +
++              " Ensure you called MultiLibraryClassLoader::loadLibrary()");
++    }
++    return loader->createSharedInstance<Base>(class_name);
++  }
++
++  /**
++   * @brief Creates an instance of an object of given class name with ancestor class Base
++   * Same as createSharedInstance() except it returns a boost::shared_ptr.
++   */
++  template<class Base>
++  boost::shared_ptr<Base> createInstance(const std::string & class_name)
++  {
++    CONSOLE_BRIDGE_logDebug(
++      "class_loader::MultiLibraryClassLoader: "
++      "Attempting to create instance of class type %s.",
++      class_name.c_str());
++    ClassLoader * loader = getClassLoaderForClass<Base>(class_name);
++    if (nullptr == loader) {
++      throw class_loader::CreateClassException(
++              "MultiLibraryClassLoader: Could not create object of class type " +
++              class_name +
++              " as no factory exists for it. Make sure that the library exists and "
++              "was explicitly loaded through MultiLibraryClassLoader::loadLibrary()");
++    }
++
++    return loader->createInstance<Base>(class_name);
++  }
++
++  /**
++   * @brief Creates an instance of an object of given class name with ancestor class Base
++   * Same as createSharedInstance() except it returns a boost::shared_ptr.
++   */
++  template<class Base>
++  boost::shared_ptr<Base>
++  createInstance(const std::string & class_name, const std::string & library_path)
++  {
++    ClassLoader * loader = getClassLoaderForLibrary(library_path);
++    if (nullptr == loader) {
++      throw class_loader::NoClassLoaderExistsException(
++              "Could not create instance as there is no ClassLoader in "
++              "MultiLibraryClassLoader bound to library " + library_path +
++              " Ensure you called MultiLibraryClassLoader::loadLibrary()");
++    }
++    return loader->createInstance<Base>(class_name);
++  }
++
++  /**
++   * @brief Creates an instance of an object of given class name with ancestor class Base
++   * Same as createSharedInstance() except it returns a std::unique_ptr.
++   */
++  template<class Base>
++  ClassLoader::UniquePtr<Base> createUniqueInstance(const std::string & class_name)
++  {
++    CONSOLE_BRIDGE_logDebug(
++      "class_loader::MultiLibraryClassLoader: Attempting to create instance of class type %s.",
++      class_name.c_str());
++    ClassLoader * loader = getClassLoaderForClass<Base>(class_name);
++    if (nullptr == loader) {
++      throw class_loader::CreateClassException(
++              "MultiLibraryClassLoader: Could not create object of class type " + class_name +
++              " as no factory exists for it. "
++              "Make sure that the library exists and was explicitly loaded through "
++              "MultiLibraryClassLoader::loadLibrary()");
++    }
++    return loader->createUniqueInstance<Base>(class_name);
++  }
++
++  /**
++   * @brief Creates an instance of an object of given class name with ancestor class Base
++   * Same as createSharedInstance() except it returns a std::unique_ptr.
++   */
++  template<class Base>
++  ClassLoader::UniquePtr<Base>
++  createUniqueInstance(const std::string & class_name, const std::string & library_path)
++  {
++    ClassLoader * loader = getClassLoaderForLibrary(library_path);
++    if (nullptr == loader) {
++      throw class_loader::NoClassLoaderExistsException(
++              "Could not create instance as there is no ClassLoader in "
++              "MultiLibraryClassLoader bound to library " + library_path +
++              " Ensure you called MultiLibraryClassLoader::loadLibrary()");
++    }
++    return loader->createUniqueInstance<Base>(class_name);
++  }
++
++  /**
++   * @brief Creates an instance of an object of given class name with ancestor class Base
++   * This version does not look in a specific library for the factory, but rather the first open library that defines the classs
++   * This version should not be used as the plugin system cannot do automated safe loading/unloadings
++   * @param Base - polymorphic type indicating base class
++   * @param class_name - the name of the concrete plugin class we want to instantiate
++   * @return An unmanaged Base* to newly created plugin
++   */
++  template<class Base>
++  Base * createUnmanagedInstance(const std::string & class_name)
++  {
++    ClassLoader * loader = getClassLoaderForClass<Base>(class_name);
++    if (nullptr == loader) {
++      throw class_loader::CreateClassException(
++              "MultiLibraryClassLoader: Could not create class of type " + class_name);
++    }
++    return loader->createUnmanagedInstance<Base>(class_name);
++  }
++
++  /**
++   * @brief Creates an instance of an object of given class name with ancestor class Base
++   * This version takes a specific library to make explicit the factory being used
++   * This version should not be used as the plugin system cannot do automated safe loading/unloadings
++   * @param Base - polymorphic type indicating Base class
++   * @param class_name - name of class for which we want to create instance
++   * @param library_path - the fully qualified path to the runtime library
++   */
++  template<class Base>
++  Base * createUnmanagedInstance(const std::string & class_name, const std::string & library_path)
++  {
++    ClassLoader * loader = getClassLoaderForLibrary(library_path);
++    if (nullptr == loader) {
++      throw class_loader::NoClassLoaderExistsException(
++              "Could not create instance as there is no ClassLoader in MultiLibraryClassLoader "
++              "bound to library " + library_path +
++              " Ensure you called MultiLibraryClassLoader::loadLibrary()");
++    }
++    return loader->createUnmanagedInstance<Base>(class_name);
++  }
++
++  /**
++   * @brief Indicates if a class has been loaded and can be instantiated
++   * @param Base - polymorphic type indicating Base class
++   * @param class_name - name of class that is be inquired about
++   * @return true if loaded, false otherwise
++   */
++  template<class Base>
++  bool isClassAvailable(const std::string & class_name)
++  {
++    std::vector<std::string> available_classes = getAvailableClasses<Base>();
++    return available_classes.end() != std::find(
++      available_classes.begin(), available_classes.end(), class_name);
++  }
++
++  /**
++   * @brief Indicates if a library has been loaded into memory
++   * @param library_path - The full qualified path to the runtime library
++   * @return true if library is loaded, false otherwise
++   */
++  bool isLibraryAvailable(const std::string & library_path);
++
++  /**
++   * @brief Gets a list of all classes that are loaded by the class loader
++   * @param Base - polymorphic type indicating Base class
++   * @return A vector<string> of the available classes
++   */
++  template<class Base>
++  std::vector<std::string> getAvailableClasses()
++  {
++    std::vector<std::string> available_classes;
++    for (auto & loader : getAllAvailableClassLoaders()) {
++      std::vector<std::string> loader_classes = loader->getAvailableClasses<Base>();
++      available_classes.insert(
++        available_classes.end(), loader_classes.begin(), loader_classes.end());
++    }
++    return available_classes;
++  }
++
++  /**
++   * @brief Gets a list of all classes loaded for a particular library
++   * @param Base - polymorphic type indicating Base class
++   * @return A vector<string> of the available classes in the passed library
++   */
++  template<class Base>
++  std::vector<std::string> getAvailableClassesForLibrary(const std::string & library_path)
++  {
++    ClassLoader * loader = getClassLoaderForLibrary(library_path);
++    if (nullptr == loader) {
++      throw class_loader::NoClassLoaderExistsException(
++              "There is no ClassLoader in MultiLibraryClassLoader bound to library " +
++              library_path +
++              " Ensure you called MultiLibraryClassLoader::loadLibrary()");
++    }
++    return loader->getAvailableClasses<Base>();
++  }
++
++  /**
++   * @brief Gets a list of all libraries opened by this class loader
++   @ @return A list of libraries opened by this class loader
++   */
++  std::vector<std::string> getRegisteredLibraries();
++
++  /**
++   * @brief Loads a library into memory for this class loader
++   * @param library_path - the fully qualified path to the runtime library
++   */
++  void loadLibrary(const std::string & library_path);
++
++  /**
++   * @brief Unloads a library for this class loader
++   * @param library_path - the fully qualified path to the runtime library
++   */
++  int unloadLibrary(const std::string & library_path);
++
++private:
++  /**
++   * @brief Indicates if on-demand (lazy) load/unload is enabled so libraries are loaded/unloaded automatically as needed
++   */
++  bool isOnDemandLoadUnloadEnabled() {return enable_ondemand_loadunload_;}
++
++  /**
++   * @brief Gets a handle to the class loader corresponding to a specific runtime library
++   * @param library_path - the library from which we want to create the plugin
++   * @return A pointer to the ClassLoader*, == nullptr if not found
++   */
++  ClassLoader * getClassLoaderForLibrary(const std::string & library_path);
++
++  /**
++   * @brief Gets a handle to the class loader corresponding to a specific class
++   * @param class_name - name of class for which we want to create instance
++   * @return A pointer to the ClassLoader*, == nullptr if not found
++   */
++  template<typename Base>
++  ClassLoader * getClassLoaderForClass(const std::string & class_name)
++  {
++    ClassLoaderVector loaders = getAllAvailableClassLoaders();
++    for (ClassLoaderVector::iterator i = loaders.begin(); i != loaders.end(); ++i) {
++      if (!(*i)->isLibraryLoaded()) {
++        (*i)->loadLibrary();
++      }
++      if ((*i)->isClassAvailable<Base>(class_name)) {
++        return *i;
++      }
++    }
++    return nullptr;
++  }
++
++  /**
++   * @brief Gets all class loaders loaded within scope
++   */
++  ClassLoaderVector getAllAvailableClassLoaders();
++
++  /**
++   * @brief Destroys all ClassLoaders
++   */
++  void shutdownAllClassLoaders();
++
++private:
++  bool enable_ondemand_loadunload_;
++  LibraryToClassLoaderMap active_class_loaders_;
++  boost::mutex loader_mutex_;
++};
++
++
++}  // namespace class_loader
++#endif  // CLASS_LOADER__MULTI_LIBRARY_CLASS_LOADER_HPP_
+--- /dev/null
++++ ros-noetic-class-loader-0.5.0/include/class_loader/register_macro.hpp
+@@ -0,0 +1,72 @@
++/*
++ * Copyright (c) 2012, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the copyright holders nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#ifndef CLASS_LOADER__REGISTER_MACRO_HPP_
++#define CLASS_LOADER__REGISTER_MACRO_HPP_
++
++#include <string>
++
++#include "class_loader/class_loader_core.hpp"
++#include "console_bridge/console.h"
++
++#define CLASS_LOADER_REGISTER_CLASS_INTERNAL_WITH_MESSAGE(Derived, Base, UniqueID, Message) \
++  namespace \
++  { \
++  struct ProxyExec ## UniqueID \
++  { \
++    typedef  Derived _derived; \
++    typedef  Base _base; \
++    ProxyExec ## UniqueID() \
++    { \
++      if (!std::string(Message).empty()) { \
++        CONSOLE_BRIDGE_logInform("%s", Message);} \
++      class_loader::impl::registerPlugin<_derived, _base>(#Derived, #Base); \
++    } \
++  }; \
++  static ProxyExec ## UniqueID g_register_plugin_ ## UniqueID; \
++  }  // namespace
++
++#define CLASS_LOADER_REGISTER_CLASS_INTERNAL_HOP1_WITH_MESSAGE(Derived, Base, UniqueID, Message) \
++  CLASS_LOADER_REGISTER_CLASS_INTERNAL_WITH_MESSAGE(Derived, Base, UniqueID, Message)
++
++/**
++* @macro This macro is same as CLASS_LOADER_REGISTER_CLASS, but will spit out a message when the plugin is registered
++* at library load time
++*/
++#define CLASS_LOADER_REGISTER_CLASS_WITH_MESSAGE(Derived, Base, Message) \
++  CLASS_LOADER_REGISTER_CLASS_INTERNAL_HOP1_WITH_MESSAGE(Derived, Base, __COUNTER__, Message)
++
++/**
++* @macro This is the macro which must be declared within the source (.cpp) file for each class that is to be exported as plugin.
++* The macro utilizes a trick where a new struct is generated along with a declaration of static global variable of same type after it. The struct's constructor invokes a registration function with the plugin system. When the plugin system loads a library with registered classes in it, the initialization of static variables forces the invocation of the struct constructors, and all exported classes are automatically registerd.
++*/
++#define CLASS_LOADER_REGISTER_CLASS(Derived, Base) \
++  CLASS_LOADER_REGISTER_CLASS_WITH_MESSAGE(Derived, Base, "")
++
++#endif  // CLASS_LOADER__REGISTER_MACRO_HPP_
+--- /dev/null
++++ ros-noetic-class-loader-0.5.0/include/class_loader/visibility_control.hpp
+@@ -0,0 +1,73 @@
++/*
++ * Copyright (c) 2015, Open Source Robotics Foundation, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Open Source Robotics Foundation, Inc. nor the
++ *       names of its contributors may be used to endorse or promote products
++ *       derived from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#ifndef CLASS_LOADER__VISIBILITY_CONTROL_HPP_
++#define CLASS_LOADER__VISIBILITY_CONTROL_HPP_
++
++// This logic was borrowed (then namespaced) from the examples on the gcc wiki:
++//     https://gcc.gnu.org/wiki/Visibility
++
++#if defined _WIN32 || defined __CYGWIN__
++  #ifdef __GNUC__
++    #define CLASS_LOADER_EXPORT __attribute__ ((dllexport))
++    #define CLASS_LOADER_IMPORT __attribute__ ((dllimport))
++  #else
++    #define CLASS_LOADER_EXPORT __declspec(dllexport)
++    #define CLASS_LOADER_IMPORT __declspec(dllimport)
++  #endif
++  #ifdef CLASS_LOADER_BUILDING_DLL
++    #define CLASS_LOADER_PUBLIC CLASS_LOADER_EXPORT
++  #else
++    #define CLASS_LOADER_PUBLIC CLASS_LOADER_IMPORT
++  #endif
++  #define CLASS_LOADER_PUBLIC_TYPE CLASS_LOADER_PUBLIC
++  #define CLASS_LOADER_LOCAL
++#else
++  #define CLASS_LOADER_EXPORT __attribute__ ((visibility("default")))
++  #define CLASS_LOADER_IMPORT
++  #if __GNUC__ >= 4
++    #define CLASS_LOADER_PUBLIC __attribute__ ((visibility("default")))
++    #define CLASS_LOADER_LOCAL  __attribute__ ((visibility("hidden")))
++  #else
++    #define CLASS_LOADER_PUBLIC
++    #define CLASS_LOADER_LOCAL
++  #endif
++  #define CLASS_LOADER_PUBLIC_TYPE
++#endif
++
++// based on wiki.ros.org: http://wiki.ros.org/win_ros/Contributing/Dll%20Exports
++// Ignore warnings about import/exports when deriving from std classes.
++// https://docs.microsoft.com/en-us/cpp/error-messages/compiler-warnings/compiler-warning-level-1-c4251
++// https://docs.microsoft.com/en-us/cpp/error-messages/compiler-warnings/compiler-warning-level-2-c4275
++#ifdef _MSC_VER
++  #pragma warning(disable: 4251)
++  #pragma warning(disable: 4275)
++#endif
++
++#endif  // CLASS_LOADER__VISIBILITY_CONTROL_HPP_
+--- /dev/null
++++ ros-noetic-class-loader-0.5.0/package.xml
+@@ -0,0 +1,26 @@
++<?xml version="1.0"?>
++<?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
++<package format="2">
++  <name>class_loader</name>
++  <version>0.5.0</version>
++  <description>
++    The class_loader package is a ROS-independent package for loading plugins during runtime and the foundation of the higher level ROS "pluginlib" library. class_loader utilizes the host operating system's runtime loader to open runtime libraries (e.g. .so/.dll files), introspect the library for exported plugin classes, and allows users to instantiate objects of said exported classes without the explicit declaration (i.e. header file) for those classes.
++  </description>
++  <maintainer email="stevenragnarok@osrfoundation.org">Steven! Ragnarök</maintainer>
++  <license>BSD</license>
++
++  <url type="website">http://ros.org/wiki/class_loader</url>
++  <url type="bugtracker">https://github.com/ros/class_loader/issues</url>
++  <url type="repository">https://github.com/ros/class_loader</url>
++
++  <author>Mirza Shah</author>
++
++  <buildtool_depend version_gte="0.5.68">catkin</buildtool_depend>
++
++  <build_depend version_gte="0.3.3">cmake_modules</build_depend>
++
++  <depend>libboost-thread-dev</depend>
++  <depend>libboost-system-dev</depend>
++  <depend>libconsole-bridge-dev</depend>
++  <depend>libpoco-dev</depend>
++</package>
+--- /dev/null
++++ ros-noetic-class-loader-0.5.0/scripts/class_loader_headers_update.py
+@@ -0,0 +1,75 @@
++#!/usr/bin/env python
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2018, Open Source Robotics Foundation, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of the copyright holders nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++# Run this script to update legacy pluginlib macros to utilize new
++# simplified PLUGINLIB_EXPORT_CLASS macro.
++
++
++import subprocess
++
++cmd = "find . -type f ! -name '*.svn-base' -a ! -name '*.hg' -a ! -name '*.git' -a " \
++      "\( -name '*.c*' -o -name '*.h*' \)"
++
++header_mappings = {
++    'class_loader/class_loader.h': 'class_loader/class_loader.hpp',
++    'class_loader/class_loader_core.h': 'class_loader/class_loader_core.hpp',
++    'class_loader/class_loader_exceptions.h': 'class_loader/exceptions.hpp',
++    'class_loader/class_loader_register_macro.h': 'class_loader/register_macro.hpp',
++    'class_loader/meta_object.h': 'class_loader/meta_object.hpp',
++    'class_loader/multi_library_class_loader.h': 'class_loader/multi_library_class_loader.hpp',
++    'class_loader/console_bridge_compatibility.h': 'class_loader/console_bridge_compatibility.hpp',
++}
++include_tokens = {
++    '"': '"',
++    '<': '>',
++}
++include_prefix = '#include '
++sed_cmd_prefix = ' -exec sed -i \' s'
++sed_cmd_suffix = ' {} \; '
++sed_separator = '@'
++full_cmd = cmd
++for old_header, new_header in header_mappings.items():
++    for leading_token, ending_token in include_tokens.items():
++        full_cmd += \
++            sed_cmd_prefix + sed_separator + \
++            include_prefix + leading_token + old_header + ending_token + sed_separator + \
++            include_prefix + leading_token + new_header + ending_token + sed_separator + \
++            "g'" + sed_cmd_suffix
++    print("Looking for '%s' to replace with '%s'" % (old_header, new_header))
++
++print('Running %s' % full_cmd)
++ret_code = subprocess.call(full_cmd, shell=True)
++if ret_code == 0:
++    print('success')
++else:
++    print('failure')
+--- /dev/null
++++ ros-noetic-class-loader-0.5.0/src/class_loader.cpp
+@@ -0,0 +1,135 @@
++/*
++ * Copyright (c) 2012, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#include "class_loader/class_loader.hpp"
++
++#include <string>
++
++#include "Poco/SharedLibrary.h"
++
++namespace class_loader
++{
++
++bool ClassLoader::has_unmananged_instance_been_created_ = false;
++
++bool ClassLoader::hasUnmanagedInstanceBeenCreated()
++{
++  return ClassLoader::has_unmananged_instance_been_created_;
++}
++
++std::string systemLibraryPrefix()
++{
++#ifndef _WIN32
++  return "lib";
++#endif
++  return "";
++}
++
++std::string systemLibrarySuffix()
++{
++  return Poco::SharedLibrary::suffix();
++}
++
++
++std::string systemLibraryFormat(const std::string & library_name)
++{
++  return systemLibraryPrefix() + library_name + systemLibrarySuffix();
++}
++
++ClassLoader::ClassLoader(const std::string & library_path, bool ondemand_load_unload)
++: ondemand_load_unload_(ondemand_load_unload),
++  library_path_(library_path),
++  load_ref_count_(0),
++  plugin_ref_count_(0)
++{
++  CONSOLE_BRIDGE_logDebug(
++    "class_loader.ClassLoader: "
++    "Constructing new ClassLoader (%p) bound to library %s.",
++    this, library_path.c_str());
++  if (!isOnDemandLoadUnloadEnabled()) {
++    loadLibrary();
++  }
++}
++
++ClassLoader::~ClassLoader()
++{
++  CONSOLE_BRIDGE_logDebug("%s",
++    "class_loader.ClassLoader: "
++    "Destroying class loader, unloading associated library...\n");
++  unloadLibrary();  // TODO(mikaelarguedas): while(unloadLibrary() > 0){} ??
++}
++
++bool ClassLoader::isLibraryLoaded()
++{
++  return class_loader::impl::isLibraryLoaded(getLibraryPath(), this);
++}
++
++bool ClassLoader::isLibraryLoadedByAnyClassloader()
++{
++  return class_loader::impl::isLibraryLoadedByAnybody(getLibraryPath());
++}
++
++void ClassLoader::loadLibrary()
++{
++  boost::recursive_mutex::scoped_lock lock(load_ref_count_mutex_);
++  load_ref_count_ = load_ref_count_ + 1;
++  class_loader::impl::loadLibrary(getLibraryPath(), this);
++}
++
++int ClassLoader::unloadLibrary()
++{
++  return unloadLibraryInternal(true);
++}
++
++int ClassLoader::unloadLibraryInternal(bool lock_plugin_ref_count)
++{
++  boost::recursive_mutex::scoped_lock load_ref_lock(load_ref_count_mutex_);
++  boost::recursive_mutex::scoped_lock plugin_ref_lock;
++  if (lock_plugin_ref_count) {
++    plugin_ref_lock = boost::recursive_mutex::scoped_lock(plugin_ref_count_mutex_);
++  }
++
++  if (plugin_ref_count_ > 0) {
++    CONSOLE_BRIDGE_logWarn("class_loader.ClassLoader: SEVERE WARNING!!!\n"
++                           "Attempting to unload %s\n"
++                           "while objects created by this library still exist in the heap!\n"
++                           "You should delete your objects before destroying the ClassLoader. "
++                           "The library will NOT be unloaded.", library_path_.c_str());
++  } else {
++    load_ref_count_ = load_ref_count_ - 1;
++    if (0 == load_ref_count_) {
++      class_loader::impl::unloadLibrary(getLibraryPath(), this);
++    } else if (load_ref_count_ < 0) {
++      load_ref_count_ = 0;
++    }
++  }
++  return load_ref_count_;
++}
++
++}  // namespace class_loader
+--- /dev/null
++++ ros-noetic-class-loader-0.5.0/src/class_loader.pc.in
+@@ -0,0 +1,12 @@
++prefix=@CMAKE_INSTALL_PREFIX@
++exec_prefix=@CMAKE_INSTALL_PREFIX@
++libdir=${prefix}/lib
++includedir=${prefix}/include
++
++Name: @TARGET_NAME@
++Description: @PROJECT_DESCRIPTION@
++Version: @PROJECT_VERSION@
++Requires: @PKGCONFIG_REQUIRES@
++Libs: -L${libdir} -l@TARGET_NAME@ @PKGCONFIG_LIBS@
++Cflags: -I${includedir} @PKGCONFIG_CFLAGS@
++
+--- /dev/null
++++ ros-noetic-class-loader-0.5.0/src/class_loader_core.cpp
+@@ -0,0 +1,607 @@
++/*
++ * Copyright (c) 2012, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#include "class_loader/class_loader_core.hpp"
++#include "class_loader/class_loader.hpp"
++
++#include <Poco/SharedLibrary.h>
++
++#include <cassert>
++#include <cstddef>
++#include <string>
++#include <vector>
++
++namespace class_loader
++{
++namespace impl
++{
++
++
++// Global data
++
++boost::recursive_mutex & getLoadedLibraryVectorMutex()
++{
++  static boost::recursive_mutex m;
++  return m;
++}
++
++boost::recursive_mutex & getPluginBaseToFactoryMapMapMutex()
++{
++  static boost::recursive_mutex m;
++  return m;
++}
++
++BaseToFactoryMapMap & getGlobalPluginBaseToFactoryMapMap()
++{
++  static BaseToFactoryMapMap instance;
++  return instance;
++}
++
++FactoryMap & getFactoryMapForBaseClass(const std::string & typeid_base_class_name)
++{
++  BaseToFactoryMapMap & factoryMapMap = getGlobalPluginBaseToFactoryMapMap();
++  std::string base_class_name = typeid_base_class_name;
++  if (factoryMapMap.find(base_class_name) == factoryMapMap.end()) {
++    factoryMapMap[base_class_name] = FactoryMap();
++  }
++
++  return factoryMapMap[base_class_name];
++}
++
++MetaObjectVector & getMetaObjectGraveyard()
++{
++  static MetaObjectVector instance;
++  return instance;
++}
++
++LibraryVector & getLoadedLibraryVector()
++{
++  static LibraryVector instance;
++  return instance;
++}
++
++std::string & getCurrentlyLoadingLibraryNameReference()
++{
++  static std::string library_name;
++  return library_name;
++}
++
++std::string getCurrentlyLoadingLibraryName()
++{
++  return getCurrentlyLoadingLibraryNameReference();
++}
++
++void setCurrentlyLoadingLibraryName(const std::string & library_name)
++{
++  std::string & library_name_ref = getCurrentlyLoadingLibraryNameReference();
++  library_name_ref = library_name;
++}
++
++ClassLoader * & getCurrentlyActiveClassLoaderReference()
++{
++  static ClassLoader * loader = nullptr;
++  return loader;
++}
++
++ClassLoader * getCurrentlyActiveClassLoader()
++{
++  return getCurrentlyActiveClassLoaderReference();
++}
++
++void setCurrentlyActiveClassLoader(ClassLoader * loader)
++{
++  ClassLoader * & loader_ref = getCurrentlyActiveClassLoaderReference();
++  loader_ref = loader;
++}
++
++bool & hasANonPurePluginLibraryBeenOpenedReference()
++{
++  static bool hasANonPurePluginLibraryBeenOpenedReference = false;
++  return hasANonPurePluginLibraryBeenOpenedReference;
++}
++
++bool hasANonPurePluginLibraryBeenOpened()
++{
++  return hasANonPurePluginLibraryBeenOpenedReference();
++}
++
++void hasANonPurePluginLibraryBeenOpened(bool hasIt)
++{
++  hasANonPurePluginLibraryBeenOpenedReference() = hasIt;
++}
++
++
++// MetaObject search/insert/removal/query
++
++MetaObjectVector allMetaObjects(const FactoryMap & factories)
++{
++  MetaObjectVector all_meta_objs;
++  for (auto & it : factories) {
++    all_meta_objs.push_back(it.second);
++  }
++  return all_meta_objs;
++}
++
++MetaObjectVector allMetaObjects()
++{
++  boost::recursive_mutex::scoped_lock lock(getPluginBaseToFactoryMapMapMutex());
++
++  MetaObjectVector all_meta_objs;
++  BaseToFactoryMapMap & factory_map_map = getGlobalPluginBaseToFactoryMapMap();
++  BaseToFactoryMapMap::iterator itr;
++
++  for (auto & it : factory_map_map) {
++    MetaObjectVector objs = allMetaObjects(it.second);
++    all_meta_objs.insert(all_meta_objs.end(), objs.begin(), objs.end());
++  }
++  return all_meta_objs;
++}
++
++MetaObjectVector
++filterAllMetaObjectsOwnedBy(const MetaObjectVector & to_filter, const ClassLoader * owner)
++{
++  MetaObjectVector filtered_objs;
++  for (auto & f : to_filter) {
++    if (f->isOwnedBy(owner)) {
++      filtered_objs.push_back(f);
++    }
++  }
++  return filtered_objs;
++}
++
++MetaObjectVector
++filterAllMetaObjectsAssociatedWithLibrary(
++  const MetaObjectVector & to_filter, const std::string & library_path)
++{
++  MetaObjectVector filtered_objs;
++  for (auto & f : to_filter) {
++    if (f->getAssociatedLibraryPath() == library_path) {
++      filtered_objs.push_back(f);
++    }
++  }
++  return filtered_objs;
++}
++
++MetaObjectVector
++allMetaObjectsForClassLoader(const ClassLoader * owner)
++{
++  return filterAllMetaObjectsOwnedBy(allMetaObjects(), owner);
++}
++
++MetaObjectVector
++allMetaObjectsForLibrary(const std::string & library_path)
++{
++  return filterAllMetaObjectsAssociatedWithLibrary(allMetaObjects(), library_path);
++}
++
++MetaObjectVector
++allMetaObjectsForLibraryOwnedBy(const std::string & library_path, const ClassLoader * owner)
++{
++  return filterAllMetaObjectsOwnedBy(allMetaObjectsForLibrary(library_path), owner);
++}
++
++void insertMetaObjectIntoGraveyard(AbstractMetaObjectBase * meta_obj)
++{
++  CONSOLE_BRIDGE_logDebug(
++    "class_loader.impl: "
++    "Inserting MetaObject (class = %s, base_class = %s, ptr = %p) into graveyard",
++    meta_obj->className().c_str(), meta_obj->baseClassName().c_str(),
++    reinterpret_cast<void *>(meta_obj));
++  getMetaObjectGraveyard().push_back(meta_obj);
++}
++
++void destroyMetaObjectsForLibrary(
++  const std::string & library_path, FactoryMap & factories, const ClassLoader * loader)
++{
++  FactoryMap::iterator factory_itr = factories.begin();
++  while (factory_itr != factories.end()) {
++    AbstractMetaObjectBase * meta_obj = factory_itr->second;
++    if (meta_obj->getAssociatedLibraryPath() == library_path && meta_obj->isOwnedBy(loader)) {
++      meta_obj->removeOwningClassLoader(loader);
++      if (!meta_obj->isOwnedByAnybody()) {
++        FactoryMap::iterator factory_itr_copy = factory_itr;
++        factory_itr++;
++        // TODO(mikaelarguedas) fix this when branching out for melodic
++        // Note: map::erase does not return iterator like vector::erase does.
++        // Hence the ugliness of this code and a need for copy. Should be fixed in next C++ revision
++        factories.erase(factory_itr_copy);
++
++        // Insert into graveyard
++        // We remove the metaobject from its factory map, but we don't destroy it...instead it
++        // saved to a "graveyard" to the side.
++        // This is due to our static global variable initialization problem that causes factories
++        // to not be registered when a library is closed and then reopened.
++        // This is because it's truly not closed due to the use of global symbol binding i.e.
++        // calling dlopen with RTLD_GLOBAL instead of RTLD_LOCAL.
++        // We require using the former as the which is required to support RTTI
++        insertMetaObjectIntoGraveyard(meta_obj);
++      } else {
++        ++factory_itr;
++      }
++    } else {
++      ++factory_itr;
++    }
++  }
++}
++
++void destroyMetaObjectsForLibrary(const std::string & library_path, const ClassLoader * loader)
++{
++  boost::recursive_mutex::scoped_lock lock(getPluginBaseToFactoryMapMapMutex());
++
++  CONSOLE_BRIDGE_logDebug(
++    "class_loader.impl: "
++    "Removing MetaObjects associated with library %s and class loader %p from global "
++    "plugin-to-factorymap map.\n",
++    library_path.c_str(), reinterpret_cast<const void *>(loader));
++
++  // We have to walk through all FactoryMaps to be sure
++  BaseToFactoryMapMap & factory_map_map = getGlobalPluginBaseToFactoryMapMap();
++  for (auto & it : factory_map_map) {
++    destroyMetaObjectsForLibrary(library_path, it.second, loader);
++  }
++
++  CONSOLE_BRIDGE_logDebug("%s", "class_loader.impl: Metaobjects removed.");
++}
++
++bool areThereAnyExistingMetaObjectsForLibrary(const std::string & library_path)
++{
++  return allMetaObjectsForLibrary(library_path).size() > 0;
++}
++
++// Loaded Library Vector manipulation
++LibraryVector::iterator findLoadedLibrary(const std::string & library_path)
++{
++  LibraryVector & open_libraries = getLoadedLibraryVector();
++  for (auto it = open_libraries.begin(); it != open_libraries.end(); ++it) {
++    if (it->first == library_path) {
++      return it;
++    }
++  }
++  return open_libraries.end();
++}
++
++bool isLibraryLoadedByAnybody(const std::string & library_path)
++{
++  boost::recursive_mutex::scoped_lock lock(getLoadedLibraryVectorMutex());
++
++  LibraryVector & open_libraries = getLoadedLibraryVector();
++  LibraryVector::iterator itr = findLoadedLibrary(library_path);
++
++  if (itr != open_libraries.end()) {
++    assert(itr->second->isLoaded() == true);  // Ensure Poco actually thinks the library is loaded
++    return true;
++  } else {
++    return false;
++  }
++}
++
++bool isLibraryLoaded(const std::string & library_path, ClassLoader * loader)
++{
++  bool is_lib_loaded_by_anyone = isLibraryLoadedByAnybody(library_path);
++  size_t num_meta_objs_for_lib = allMetaObjectsForLibrary(library_path).size();
++  size_t num_meta_objs_for_lib_bound_to_loader =
++    allMetaObjectsForLibraryOwnedBy(library_path, loader).size();
++  bool are_meta_objs_bound_to_loader =
++    (0 == num_meta_objs_for_lib) ? true : (
++    num_meta_objs_for_lib_bound_to_loader <= num_meta_objs_for_lib);
++
++  return is_lib_loaded_by_anyone && are_meta_objs_bound_to_loader;
++}
++
++std::vector<std::string> getAllLibrariesUsedByClassLoader(const ClassLoader * loader)
++{
++  MetaObjectVector all_loader_meta_objs = allMetaObjectsForClassLoader(loader);
++  std::vector<std::string> all_libs;
++  for (auto & meta_obj : all_loader_meta_objs) {
++    std::string lib_path = meta_obj->getAssociatedLibraryPath();
++    if (std::find(all_libs.begin(), all_libs.end(), lib_path) == all_libs.end()) {
++      all_libs.push_back(lib_path);
++    }
++  }
++  return all_libs;
++}
++
++
++// Implementation of Remaining Core plugin impl Functions
++
++void addClassLoaderOwnerForAllExistingMetaObjectsForLibrary(
++  const std::string & library_path, ClassLoader * loader)
++{
++  MetaObjectVector all_meta_objs = allMetaObjectsForLibrary(library_path);
++  for (auto & meta_obj : all_meta_objs) {
++    CONSOLE_BRIDGE_logDebug(
++      "class_loader.impl: "
++      "Tagging existing MetaObject %p (base = %s, derived = %s) with "
++      "class loader %p (library path = %s).",
++      reinterpret_cast<void *>(meta_obj), meta_obj->baseClassName().c_str(),
++      meta_obj->className().c_str(),
++      reinterpret_cast<void *>(loader),
++      nullptr == loader ? loader->getLibraryPath().c_str() : "NULL");
++    meta_obj->addOwningClassLoader(loader);
++  }
++}
++
++void revivePreviouslyCreateMetaobjectsFromGraveyard(
++  const std::string & library_path, ClassLoader * loader)
++{
++  boost::recursive_mutex::scoped_lock b2fmm_lock(getPluginBaseToFactoryMapMapMutex());
++  MetaObjectVector & graveyard = getMetaObjectGraveyard();
++
++  for (auto & obj : graveyard) {
++    if (obj->getAssociatedLibraryPath() == library_path) {
++      CONSOLE_BRIDGE_logDebug(
++        "class_loader.impl: "
++        "Resurrected factory metaobject from graveyard, class = %s, base_class = %s ptr = %p..."
++        "bound to ClassLoader %p (library path = %s)",
++        obj->className().c_str(), obj->baseClassName().c_str(), reinterpret_cast<void *>(obj),
++        reinterpret_cast<void *>(loader),
++        nullptr == loader ? loader->getLibraryPath().c_str() : "NULL");
++
++      obj->addOwningClassLoader(loader);
++      assert(obj->typeidBaseClassName() != "UNSET");
++      FactoryMap & factory = getFactoryMapForBaseClass(obj->typeidBaseClassName());
++      factory[obj->className()] = obj;
++    }
++  }
++}
++
++void purgeGraveyardOfMetaobjects(
++  const std::string & library_path, ClassLoader * loader, bool delete_objs)
++{
++  MetaObjectVector all_meta_objs = allMetaObjects();
++  // Note: Lock must happen after call to allMetaObjects as that will lock
++  boost::recursive_mutex::scoped_lock b2fmm_lock(getPluginBaseToFactoryMapMapMutex());
++
++  MetaObjectVector & graveyard = getMetaObjectGraveyard();
++  MetaObjectVector::iterator itr = graveyard.begin();
++
++  while (itr != graveyard.end()) {
++    AbstractMetaObjectBase * obj = *itr;
++    if (obj->getAssociatedLibraryPath() == library_path) {
++      CONSOLE_BRIDGE_logDebug(
++        "class_loader.impl: "
++        "Purging factory metaobject from graveyard, class = %s, base_class = %s ptr = %p.."
++        ".bound to ClassLoader %p (library path = %s)",
++        obj->className().c_str(), obj->baseClassName().c_str(), reinterpret_cast<void *>(obj),
++        reinterpret_cast<void *>(loader),
++        nullptr == loader ? loader->getLibraryPath().c_str() : "NULL");
++
++      bool is_address_in_graveyard_same_as_global_factory_map =
++        std::find(all_meta_objs.begin(), all_meta_objs.end(), *itr) != all_meta_objs.end();
++      itr = graveyard.erase(itr);
++      if (delete_objs) {
++        if (is_address_in_graveyard_same_as_global_factory_map) {
++          CONSOLE_BRIDGE_logDebug("%s",
++            "class_loader.impl: "
++            "Newly created metaobject factory in global factory map map has same address as "
++            "one in graveyard -- metaobject has been purged from graveyard but not deleted.");
++        } else {
++          assert(hasANonPurePluginLibraryBeenOpened() == false);
++          CONSOLE_BRIDGE_logDebug(
++            "class_loader.impl: "
++            "Also destroying metaobject %p (class = %s, base_class = %s, library_path = %s) "
++            "in addition to purging it from graveyard.",
++            reinterpret_cast<void *>(obj), obj->className().c_str(), obj->baseClassName().c_str(),
++            obj->getAssociatedLibraryPath().c_str());
++#ifndef _WIN32
++#pragma GCC diagnostic push
++#pragma GCC diagnostic ignored "-Wdelete-non-virtual-dtor"
++#endif
++          delete (obj);  // Note: This is the only place where metaobjects can be destroyed
++#ifndef _WIN32
++#pragma GCC diagnostic pop
++#endif
++        }
++      }
++    } else {
++      itr++;
++    }
++  }
++}
++
++void loadLibrary(const std::string & library_path, ClassLoader * loader)
++{
++  static boost::recursive_mutex loader_mutex;
++  CONSOLE_BRIDGE_logDebug(
++    "class_loader.impl: "
++    "Attempting to load library %s on behalf of ClassLoader handle %p...\n",
++    library_path.c_str(), reinterpret_cast<void *>(loader));
++  boost::recursive_mutex::scoped_lock loader_lock(loader_mutex);
++
++  // If it's already open, just update existing metaobjects to have an additional owner.
++  if (isLibraryLoadedByAnybody(library_path)) {
++    boost::recursive_mutex::scoped_lock lock(getPluginBaseToFactoryMapMapMutex());
++    CONSOLE_BRIDGE_logDebug("%s",
++      "class_loader.impl: "
++      "Library already in memory, but binding existing MetaObjects to loader if necesesary.\n");
++    addClassLoaderOwnerForAllExistingMetaObjectsForLibrary(library_path, loader);
++    return;
++  }
++
++  Poco::SharedLibrary * library_handle = nullptr;
++
++  {
++    try {
++      setCurrentlyActiveClassLoader(loader);
++      setCurrentlyLoadingLibraryName(library_path);
++      library_handle = new Poco::SharedLibrary(library_path);
++    } catch (const Poco::LibraryLoadException & e) {
++      setCurrentlyLoadingLibraryName("");
++      setCurrentlyActiveClassLoader(nullptr);
++      throw class_loader::LibraryLoadException(
++              "Could not load library (Poco exception = " + std::string(e.message()) + ")");
++    } catch (const Poco::LibraryAlreadyLoadedException & e) {
++      setCurrentlyLoadingLibraryName("");
++      setCurrentlyActiveClassLoader(nullptr);
++      throw class_loader::LibraryLoadException(
++              "Library already loaded (Poco exception = " + std::string(e.message()) + ")");
++    } catch (const Poco::NotFoundException & e) {
++      setCurrentlyLoadingLibraryName("");
++      setCurrentlyActiveClassLoader(nullptr);
++      throw class_loader::LibraryLoadException(
++              "Library not found (Poco exception = " + std::string(e.message()) + ")");
++    }
++
++    setCurrentlyLoadingLibraryName("");
++    setCurrentlyActiveClassLoader(nullptr);
++  }
++
++  assert(library_handle != nullptr);
++  CONSOLE_BRIDGE_logDebug(
++    "class_loader.impl: "
++    "Successfully loaded library %s into memory (Poco::SharedLibrary handle = %p).",
++    library_path.c_str(), reinterpret_cast<void *>(library_handle));
++
++  // Graveyard scenario
++  size_t num_lib_objs = allMetaObjectsForLibrary(library_path).size();
++  if (0 == num_lib_objs) {
++    CONSOLE_BRIDGE_logDebug(
++      "class_loader.impl: "
++      "Though the library %s was just loaded, it seems no factory metaobjects were registered. "
++      "Checking factory graveyard for previously loaded metaobjects...",
++      library_path.c_str());
++    revivePreviouslyCreateMetaobjectsFromGraveyard(library_path, loader);
++    // Note: The 'false' indicates we don't want to invoke delete on the metaobject
++    purgeGraveyardOfMetaobjects(library_path, loader, false);
++  } else {
++    CONSOLE_BRIDGE_logDebug(
++      "class_loader.impl: "
++      "Library %s generated new factory metaobjects on load. "
++      "Destroying graveyarded objects from previous loads...",
++      library_path.c_str());
++    purgeGraveyardOfMetaobjects(library_path, loader, true);
++  }
++
++  // Insert library into global loaded library vector
++  boost::recursive_mutex::scoped_lock llv_lock(getLoadedLibraryVectorMutex());
++  LibraryVector & open_libraries = getLoadedLibraryVector();
++  // Note: Poco::SharedLibrary automatically calls load() when library passed to constructor
++  open_libraries.push_back(LibraryPair(library_path, library_handle));
++}
++
++void unloadLibrary(const std::string & library_path, ClassLoader * loader)
++{
++  if (hasANonPurePluginLibraryBeenOpened()) {
++    CONSOLE_BRIDGE_logDebug(
++      "class_loader.impl: "
++      "Cannot unload %s or ANY other library as a non-pure plugin library was opened. "
++      "As class_loader has no idea which libraries class factories were exported from, "
++      "it can safely close any library without potentially unlinking symbols that are still "
++      "actively being used. "
++      "You must refactor your plugin libraries to be made exclusively of plugins "
++      "in order for this error to stop happening.",
++      library_path.c_str());
++  } else {
++    CONSOLE_BRIDGE_logDebug(
++      "class_loader.impl: "
++      "Unloading library %s on behalf of ClassLoader %p...",
++      library_path.c_str(), reinterpret_cast<void *>(loader));
++    boost::recursive_mutex::scoped_lock lock(getLoadedLibraryVectorMutex());
++    LibraryVector & open_libraries = getLoadedLibraryVector();
++    LibraryVector::iterator itr = findLoadedLibrary(library_path);
++    if (itr != open_libraries.end()) {
++      Poco::SharedLibrary * library = itr->second;
++      std::string library_path = itr->first;
++      try {
++        destroyMetaObjectsForLibrary(library_path, loader);
++
++        // Remove from loaded library list as well if no more factories associated with said library
++        if (!areThereAnyExistingMetaObjectsForLibrary(library_path)) {
++          CONSOLE_BRIDGE_logDebug(
++            "class_loader.impl: "
++            "There are no more MetaObjects left for %s so unloading library and "
++            "removing from loaded library vector.\n",
++            library_path.c_str());
++          library->unload();
++          assert(library->isLoaded() == false);
++          delete (library);
++          itr = open_libraries.erase(itr);
++        } else {
++          CONSOLE_BRIDGE_logDebug(
++            "class_loader.impl: "
++            "MetaObjects still remain in memory meaning other ClassLoaders are still using library"
++            ", keeping library %s open.",
++            library_path.c_str());
++        }
++        return;
++      } catch (const Poco::RuntimeException & e) {
++        delete (library);
++        throw class_loader::LibraryUnloadException(
++                "Could not unload library (Poco exception = " + std::string(e.message()) + ")");
++      }
++    }
++    throw class_loader::LibraryUnloadException(
++            "Attempt to unload library that class_loader is unaware of.");
++  }
++}
++
++
++// Other
++
++void printDebugInfoToScreen()
++{
++  printf("*******************************************************************************\n");
++  printf("*****                 class_loader impl DEBUG INFORMATION                 *****\n");
++  printf("*******************************************************************************\n");
++
++  printf("OPEN LIBRARIES IN MEMORY:\n");
++  printf("--------------------------------------------------------------------------------\n");
++  boost::recursive_mutex::scoped_lock lock(getLoadedLibraryVectorMutex());
++  LibraryVector libs = getLoadedLibraryVector();
++  for (size_t c = 0; c < libs.size(); c++) {
++    printf(
++      "Open library %zu = %s (Poco SharedLibrary handle = %p)\n",
++      c, (libs.at(c)).first.c_str(), reinterpret_cast<void *>((libs.at(c)).second));
++  }
++
++  printf("METAOBJECTS (i.e. FACTORIES) IN MEMORY:\n");
++  printf("--------------------------------------------------------------------------------\n");
++  MetaObjectVector meta_objs = allMetaObjects();
++  for (size_t c = 0; c < meta_objs.size(); c++) {
++    AbstractMetaObjectBase * obj = meta_objs.at(c);
++    printf("Metaobject %zu (ptr = %p):\n TypeId = %s\n Associated Library = %s\n",
++      c,
++      reinterpret_cast<void *>(obj),
++      (typeid(*obj).name()),
++      obj->getAssociatedLibraryPath().c_str());
++
++    ClassLoaderVector loaders = obj->getAssociatedClassLoaders();
++    for (size_t i = 0; i < loaders.size(); i++) {
++      printf(" Associated Loader %zu = %p\n", i, reinterpret_cast<void *>(loaders.at(i)));
++    }
++    printf("--------------------------------------------------------------------------------\n");
++  }
++
++  printf("********************************** END DEBUG **********************************\n");
++  printf("*******************************************************************************\n\n");
++}
++
++
++}  // namespace impl
++}  // namespace class_loader
+--- /dev/null
++++ ros-noetic-class-loader-0.5.0/src/meta_object.cpp
+@@ -0,0 +1,121 @@
++/*
++ * Copyright (c) 2012, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#include <string>
++
++#include "class_loader/meta_object.hpp"
++#include "class_loader/class_loader.hpp"
++
++namespace class_loader
++{
++namespace impl
++{
++
++AbstractMetaObjectBase::AbstractMetaObjectBase(
++  const std::string & class_name, const std::string & base_class_name)
++: associated_library_path_("Unknown"),
++  base_class_name_(base_class_name),
++  class_name_(class_name),
++  typeid_base_class_name_("UNSET")
++{
++  CONSOLE_BRIDGE_logDebug(
++    "class_loader.impl.AbstractMetaObjectBase: "
++    "Creating MetaObject %p (base = %s, derived = %s, library path = %s)",
++    this, baseClassName().c_str(), className().c_str(), getAssociatedLibraryPath().c_str());
++}
++
++AbstractMetaObjectBase::~AbstractMetaObjectBase()
++{
++  CONSOLE_BRIDGE_logDebug(
++    "class_loader.impl.AbstractMetaObjectBase: "
++    "Destroying MetaObject %p (base = %s, derived = %s, library path = %s)",
++    this, baseClassName().c_str(), className().c_str(), getAssociatedLibraryPath().c_str());
++}
++
++std::string AbstractMetaObjectBase::className() const
++{
++  return class_name_;
++}
++
++std::string AbstractMetaObjectBase::baseClassName() const
++{
++  return base_class_name_;
++}
++
++std::string AbstractMetaObjectBase::typeidBaseClassName() const
++{
++  return typeid_base_class_name_;
++}
++
++std::string AbstractMetaObjectBase::getAssociatedLibraryPath()
++{
++  return associated_library_path_;
++}
++
++void AbstractMetaObjectBase::setAssociatedLibraryPath(std::string library_path)
++{
++  associated_library_path_ = library_path;
++}
++
++void AbstractMetaObjectBase::addOwningClassLoader(ClassLoader * loader)
++{
++  ClassLoaderVector & v = associated_class_loaders_;
++  if (std::find(v.begin(), v.end(), loader) == v.end()) {
++    v.push_back(loader);
++  }
++}
++
++void AbstractMetaObjectBase::removeOwningClassLoader(const ClassLoader * loader)
++{
++  ClassLoaderVector & v = associated_class_loaders_;
++  ClassLoaderVector::iterator itr = std::find(v.begin(), v.end(), loader);
++  if (itr != v.end()) {
++    v.erase(itr);
++  }
++}
++
++bool AbstractMetaObjectBase::isOwnedBy(const ClassLoader * loader)
++{
++  ClassLoaderVector & v = associated_class_loaders_;
++  ClassLoaderVector::iterator itr = std::find(v.begin(), v.end(), loader);
++  return itr != v.end();
++}
++
++bool AbstractMetaObjectBase::isOwnedByAnybody()
++{
++  return associated_class_loaders_.size() > 0;
++}
++
++ClassLoaderVector AbstractMetaObjectBase::getAssociatedClassLoaders()
++{
++  return associated_class_loaders_;
++}
++
++}  // namespace impl
++}  // namespace class_loader
+--- /dev/null
++++ ros-noetic-class-loader-0.5.0/src/multi_library_class_loader.cpp
+@@ -0,0 +1,113 @@
++/*
++ * Copyright (c) 2012, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#include "class_loader/multi_library_class_loader.hpp"
++
++#include <cstddef>
++#include <string>
++#include <vector>
++
++namespace class_loader
++{
++
++MultiLibraryClassLoader::MultiLibraryClassLoader(bool enable_ondemand_loadunload)
++: enable_ondemand_loadunload_(enable_ondemand_loadunload)
++{
++}
++
++MultiLibraryClassLoader::~MultiLibraryClassLoader()
++{
++  shutdownAllClassLoaders();
++}
++
++std::vector<std::string> MultiLibraryClassLoader::getRegisteredLibraries()
++{
++  std::vector<std::string> libraries;
++  for (auto & it : active_class_loaders_) {
++    if (it.second != nullptr) {
++      libraries.push_back(it.first);
++    }
++  }
++  return libraries;
++}
++
++ClassLoader * MultiLibraryClassLoader::getClassLoaderForLibrary(const std::string & library_path)
++{
++  LibraryToClassLoaderMap::iterator itr = active_class_loaders_.find(library_path);
++  if (itr != active_class_loaders_.end()) {
++    return itr->second;
++  } else {return nullptr;}
++}
++
++ClassLoaderVector MultiLibraryClassLoader::getAllAvailableClassLoaders()
++{
++  ClassLoaderVector loaders;
++  for (auto & it : active_class_loaders_) {
++    loaders.push_back(it.second);
++  }
++  return loaders;
++}
++
++bool MultiLibraryClassLoader::isLibraryAvailable(const std::string & library_name)
++{
++  return getClassLoaderForLibrary(library_name) != nullptr;
++}
++
++void MultiLibraryClassLoader::loadLibrary(const std::string & library_path)
++{
++  if (!isLibraryAvailable(library_path)) {
++    active_class_loaders_[library_path] =
++      new class_loader::ClassLoader(library_path, isOnDemandLoadUnloadEnabled());
++  }
++}
++
++void MultiLibraryClassLoader::shutdownAllClassLoaders()
++{
++  std::vector<std::string> available_libraries = getRegisteredLibraries();
++
++  for (auto & library_path : getRegisteredLibraries()) {
++    unloadLibrary(library_path);
++  }
++}
++
++int MultiLibraryClassLoader::unloadLibrary(const std::string & library_path)
++{
++  int remaining_unloads = 0;
++  LibraryToClassLoaderMap::iterator itr = active_class_loaders_.find(library_path);
++  if (itr != active_class_loaders_.end()) {
++    ClassLoader * loader = itr->second;
++    if (0 == (remaining_unloads = loader->unloadLibrary())) {
++      delete (loader);
++      active_class_loaders_.erase(itr);
++    }
++  }
++  return remaining_unloads;
++}
++
++}  // namespace class_loader
+--- /dev/null
++++ ros-noetic-class-loader-0.5.0/test/CMakeLists.txt
+@@ -0,0 +1,43 @@
++cmake_minimum_required(VERSION 3.5)
++
++find_package(Boost REQUIRED COMPONENTS thread)
++find_package(catkin REQUIRED COMPONENTS class_loader)
++
++include_directories(${catkin_INCLUDE_DIRS})
++
++add_library(${PROJECT_NAME}_TestPlugins1 EXCLUDE_FROM_ALL plugins1.cpp)
++target_link_libraries(${PROJECT_NAME}_TestPlugins1 ${PROJECT_NAME})
++if(WIN32)
++  # On Windows, default library runtime output set to CATKIN_GLOBAL_BIN_DESTINATION,
++  # change it back to CATKIN_PACKAGE_BIN_DESTINATION so the test can run correctly
++  set_target_properties(${PROJECT_NAME}_TestPlugins1 PROPERTIES 
++    RUNTIME_OUTPUT_DIRECTORY ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_BIN_DESTINATION})
++endif()
++class_loader_hide_library_symbols(${PROJECT_NAME}_TestPlugins1)
++add_library(${PROJECT_NAME}_TestPlugins2 EXCLUDE_FROM_ALL plugins2.cpp)
++target_link_libraries(${PROJECT_NAME}_TestPlugins2 ${PROJECT_NAME})
++if(WIN32)
++  # On Windows, default library runtime output set to CATKIN_GLOBAL_BIN_DESTINATION,
++  # change it back to CATKIN_PACKAGE_BIN_DESTINATION so the test can run correctly
++  set_target_properties(${PROJECT_NAME}_TestPlugins2 PROPERTIES 
++    RUNTIME_OUTPUT_DIRECTORY ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_BIN_DESTINATION})
++endif()
++class_loader_hide_library_symbols(${PROJECT_NAME}_TestPlugins2)
++
++catkin_add_gtest(${PROJECT_NAME}_utest utest.cpp)
++if(TARGET ${PROJECT_NAME}_utest)
++  target_link_libraries(${PROJECT_NAME}_utest ${Boost_LIBRARIES} ${class_loader_LIBRARIES})
++  add_dependencies(${PROJECT_NAME}_utest ${PROJECT_NAME}_TestPlugins1 ${PROJECT_NAME}_TestPlugins2)
++endif()
++
++catkin_add_gtest(${PROJECT_NAME}_shared_ptr_test shared_ptr_test.cpp)
++if(TARGET ${PROJECT_NAME}_shared_ptr_test)
++  target_link_libraries(${PROJECT_NAME}_shared_ptr_test ${Boost_LIBRARIES} ${class_loader_LIBRARIES})
++  add_dependencies(${PROJECT_NAME}_shared_ptr_test ${PROJECT_NAME}_TestPlugins1 ${PROJECT_NAME}_TestPlugins2)
++endif()
++
++catkin_add_gtest(${PROJECT_NAME}_unique_ptr_test unique_ptr_test.cpp)
++if(TARGET ${PROJECT_NAME}_unique_ptr_test)
++  target_link_libraries(${PROJECT_NAME}_unique_ptr_test ${Boost_LIBRARIES} ${class_loader_LIBRARIES})
++  add_dependencies(${PROJECT_NAME}_unique_ptr_test ${PROJECT_NAME}_TestPlugins1 ${PROJECT_NAME}_TestPlugins2)
++endif()
+--- /dev/null
++++ ros-noetic-class-loader-0.5.0/test/base.hpp
+@@ -0,0 +1,40 @@
++/*
++ * Copyright (c) 2012, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#ifndef BASE_HPP_
++#define BASE_HPP_
++
++class Base
++{
++public:
++  virtual ~Base() {}
++  virtual void saySomething() = 0;
++};
++
++#endif  // BASE_HPP_
+--- /dev/null
++++ ros-noetic-class-loader-0.5.0/test/plugins1.cpp
+@@ -0,0 +1,70 @@
++/*
++ * Copyright (c) 2012, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#include <iostream>
++
++#include "class_loader/class_loader.hpp"
++
++#include "./base.hpp"
++
++class Dog : public Base
++{
++public:
++  virtual void saySomething() {std::cout << "Bark" << std::endl;}
++};
++
++class Cat : public Base
++{
++public:
++  virtual void saySomething() {std::cout << "Meow" << std::endl;}
++};
++
++class Duck : public Base
++{
++public:
++  virtual void saySomething() {std::cout << "Quack" << std::endl;}
++};
++
++class Cow : public Base
++{
++public:
++  virtual void saySomething() {std::cout << "Moooo" << std::endl;}
++};
++
++class Sheep : public Base
++{
++public:
++  virtual void saySomething() {std::cout << "Baaah" << std::endl;}
++};
++
++CLASS_LOADER_REGISTER_CLASS(Dog, Base)
++CLASS_LOADER_REGISTER_CLASS(Cat, Base)
++CLASS_LOADER_REGISTER_CLASS(Duck, Base)
++CLASS_LOADER_REGISTER_CLASS(Cow, Base)
++CLASS_LOADER_REGISTER_CLASS(Sheep, Base)
+--- /dev/null
++++ ros-noetic-class-loader-0.5.0/test/plugins2.cpp
+@@ -0,0 +1,64 @@
++/*
++ * Copyright (c) 2012, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#include <iostream>
++
++#include "class_loader/class_loader.hpp"
++
++#include "./base.hpp"
++
++class Robot : public Base
++{
++public:
++  virtual void saySomething() {std::cout << "Beep boop" << std::endl;}
++};
++
++class Alien : public Base
++{
++public:
++  virtual void saySomething() {std::cout << "Znornoff!!!" << std::endl;}
++};
++
++class Monster : public Base
++{
++public:
++  virtual void saySomething() {std::cout << "BEAAAHHHH" << std::endl;}
++};
++
++class Zombie : public Base
++{
++public:
++  virtual void saySomething() {std::cout << "Brains!!!" << std::endl;}
++};
++
++
++CLASS_LOADER_REGISTER_CLASS(Robot, Base)
++CLASS_LOADER_REGISTER_CLASS(Alien, Base)
++CLASS_LOADER_REGISTER_CLASS(Monster, Base)
++CLASS_LOADER_REGISTER_CLASS(Zombie, Base)
+--- /dev/null
++++ ros-noetic-class-loader-0.5.0/test/shared_ptr_test.cpp
+@@ -0,0 +1,326 @@
++/*
++ * Copyright (c) 2012, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#include <chrono>
++#include <cstddef>
++#include <functional>
++#include <iostream>
++#include <string>
++#include <thread>
++#include <vector>
++
++#include "class_loader/class_loader.hpp"
++#include "class_loader/multi_library_class_loader.hpp"
++
++#include "gtest/gtest.h"
++
++#include "./base.hpp"
++
++const std::string LIBRARY_1 = class_loader::systemLibraryFormat("class_loader_TestPlugins1");  // NOLINT
++const std::string LIBRARY_2 = class_loader::systemLibraryFormat("class_loader_TestPlugins2");  // NOLINT
++
++TEST(ClassLoaderSharedPtrTest, basicLoad) {
++  try {
++    class_loader::ClassLoader loader1(LIBRARY_1, false);
++    loader1.createSharedInstance<Base>("Cat")->saySomething();  // See if lazy load works
++  } catch (class_loader::ClassLoaderException & e) {
++    FAIL() << "ClassLoaderException: " << e.what() << "\n";
++  }
++
++  SUCCEED();
++}
++
++TEST(ClassLoaderSharedPtrTest, correctNonLazyLoadUnload) {
++  try {
++    ASSERT_FALSE(class_loader::impl::isLibraryLoadedByAnybody(LIBRARY_1));
++    class_loader::ClassLoader loader1(LIBRARY_1, false);
++    ASSERT_TRUE(class_loader::impl::isLibraryLoadedByAnybody(LIBRARY_1));
++    ASSERT_TRUE(loader1.isLibraryLoaded());
++    loader1.unloadLibrary();
++    ASSERT_FALSE(class_loader::impl::isLibraryLoadedByAnybody(LIBRARY_1));
++    ASSERT_FALSE(loader1.isLibraryLoaded());
++    return;
++  } catch (class_loader::ClassLoaderException & e) {
++    FAIL() << "ClassLoaderException: " << e.what() << "\n";
++  } catch (...) {
++    FAIL() << "Unhandled exception";
++  }
++}
++
++TEST(ClassLoaderSharedPtrTest, correctLazyLoadUnload) {
++  try {
++    ASSERT_FALSE(class_loader::impl::isLibraryLoadedByAnybody(LIBRARY_1));
++    class_loader::ClassLoader loader1(LIBRARY_1, true);
++    ASSERT_FALSE(class_loader::impl::isLibraryLoadedByAnybody(LIBRARY_1));
++    ASSERT_FALSE(loader1.isLibraryLoaded());
++
++    {
++      std::shared_ptr<Base> obj = loader1.createSharedInstance<Base>("Cat");
++      ASSERT_TRUE(class_loader::impl::isLibraryLoadedByAnybody(LIBRARY_1));
++      ASSERT_TRUE(loader1.isLibraryLoaded());
++    }
++
++    // The library will unload automatically when the only plugin object left is destroyed
++    ASSERT_FALSE(class_loader::impl::isLibraryLoadedByAnybody(LIBRARY_1));
++    return;
++  } catch (class_loader::ClassLoaderException & e) {
++    FAIL() << "ClassLoaderException: " << e.what() << "\n";
++  } catch (...) {
++    FAIL() << "Unhandled exception";
++  }
++}
++
++TEST(ClassLoaderSharedPtrTest, nonExistentPlugin) {
++  class_loader::ClassLoader loader1(LIBRARY_1, false);
++
++  try {
++    std::shared_ptr<Base> obj = loader1.createSharedInstance<Base>("Bear");
++    if (nullptr == obj) {
++      FAIL() << "Null object being returned instead of exception thrown.";
++    }
++
++    obj->saySomething();
++  } catch (const class_loader::CreateClassException &) {
++    SUCCEED();
++    return;
++  } catch (...) {
++    FAIL() << "Unknown exception caught.\n";
++  }
++
++  FAIL() << "Did not throw exception as expected.\n";
++}
++
++TEST(ClassLoaderSharedPtrTest, nonExistentLibrary) {
++  try {
++    class_loader::ClassLoader loader1("libDoesNotExist.so", false);
++  } catch (const class_loader::LibraryLoadException &) {
++    SUCCEED();
++    return;
++  } catch (...) {
++    FAIL() << "Unknown exception caught.\n";
++  }
++
++  FAIL() << "Did not throw exception as expected.\n";
++}
++
++class InvalidBase
++{
++};
++
++TEST(ClassLoaderSharedPtrTest, invalidBase) {
++  try {
++    class_loader::ClassLoader loader1(LIBRARY_1, false);
++    if (loader1.isClassAvailable<InvalidBase>("Cat")) {
++      FAIL() << "Cat should not be available for InvalidBase";
++    } else if (loader1.isClassAvailable<Base>("Cat")) {
++      SUCCEED();
++      return;
++    } else {
++      FAIL() << "Class not available for correct base class.";
++    }
++  } catch (const class_loader::LibraryLoadException &) {
++    FAIL() << "Unexpected exception";
++  } catch (...) {
++    FAIL() << "Unexpected and unknown exception caught.\n";
++  }
++}
++
++void wait(int seconds)
++{
++  std::this_thread::sleep_for(std::chrono::seconds(seconds));
++}
++
++void run(class_loader::ClassLoader * loader)
++{
++  std::vector<std::string> classes = loader->getAvailableClasses<Base>();
++  for (auto & class_ : classes) {
++    loader->createSharedInstance<Base>(class_)->saySomething();
++  }
++}
++
++TEST(ClassLoaderSharedPtrTest, threadSafety) {
++  class_loader::ClassLoader loader1(LIBRARY_1);
++  ASSERT_TRUE(loader1.isLibraryLoaded());
++
++  // Note: Hard to test thread safety to make sure memory isn't corrupted.
++  // The hope is this test is hard enough that once in a while it'll segfault
++  // or something if there's some implementation error.
++  try {
++    std::vector<std::thread *> client_threads;
++
++    for (size_t c = 0; c < 1000; c++) {
++      client_threads.push_back(new std::thread(std::bind(&run, &loader1)));
++    }
++
++    for (auto & client_thread : client_threads) {
++      client_thread->join();
++    }
++
++    for (auto & client_thread : client_threads) {
++      delete (client_thread);
++    }
++
++    loader1.unloadLibrary();
++    ASSERT_FALSE(loader1.isLibraryLoaded());
++  } catch (const class_loader::ClassLoaderException &) {
++    FAIL() << "Unexpected ClassLoaderException.";
++  } catch (...) {
++    FAIL() << "Unknown exception.";
++  }
++}
++
++TEST(ClassLoaderSharedPtrTest, loadRefCountingNonLazy) {
++  try {
++    class_loader::ClassLoader loader1(LIBRARY_1, false);
++    ASSERT_TRUE(loader1.isLibraryLoaded());
++
++    loader1.loadLibrary();
++    loader1.loadLibrary();
++    ASSERT_TRUE(loader1.isLibraryLoaded());
++
++    loader1.unloadLibrary();
++    ASSERT_TRUE(loader1.isLibraryLoaded());
++
++    loader1.unloadLibrary();
++    ASSERT_TRUE(loader1.isLibraryLoaded());
++
++    loader1.unloadLibrary();
++    ASSERT_FALSE(loader1.isLibraryLoaded());
++
++    loader1.unloadLibrary();
++    ASSERT_FALSE(loader1.isLibraryLoaded());
++
++    loader1.loadLibrary();
++    ASSERT_TRUE(loader1.isLibraryLoaded());
++
++    return;
++  } catch (const class_loader::ClassLoaderException &) {
++    FAIL() << "Unexpected exception.\n";
++  } catch (...) {
++    FAIL() << "Unknown exception caught.\n";
++  }
++
++  FAIL() << "Did not throw exception as expected.\n";
++}
++
++TEST(ClassLoaderSharedPtrTest, loadRefCountingLazy) {
++  try {
++    class_loader::ClassLoader loader1(LIBRARY_1, true);
++    ASSERT_FALSE(loader1.isLibraryLoaded());
++
++    {
++      std::shared_ptr<Base> obj = loader1.createSharedInstance<Base>("Dog");
++      ASSERT_TRUE(loader1.isLibraryLoaded());
++    }
++
++    ASSERT_FALSE(loader1.isLibraryLoaded());
++
++    loader1.loadLibrary();
++    ASSERT_TRUE(loader1.isLibraryLoaded());
++
++    loader1.loadLibrary();
++    ASSERT_TRUE(loader1.isLibraryLoaded());
++
++    loader1.unloadLibrary();
++    ASSERT_TRUE(loader1.isLibraryLoaded());
++
++    loader1.unloadLibrary();
++    ASSERT_FALSE(loader1.isLibraryLoaded());
++
++    loader1.unloadLibrary();
++    ASSERT_FALSE(loader1.isLibraryLoaded());
++
++    loader1.loadLibrary();
++    ASSERT_TRUE(loader1.isLibraryLoaded());
++
++    return;
++  } catch (const class_loader::ClassLoaderException &) {
++    FAIL() << "Unexpected exception.\n";
++  } catch (...) {
++    FAIL() << "Unknown exception caught.\n";
++  }
++
++  FAIL() << "Did not throw exception as expected.\n";
++}
++
++void testMultiClassLoader(bool lazy)
++{
++  try {
++    class_loader::MultiLibraryClassLoader loader(lazy);
++    loader.loadLibrary(LIBRARY_1);
++    loader.loadLibrary(LIBRARY_2);
++    for (int i = 0; i < 2; ++i) {
++      loader.createSharedInstance<Base>("Cat")->saySomething();
++      loader.createSharedInstance<Base>("Dog")->saySomething();
++      loader.createSharedInstance<Base>("Robot")->saySomething();
++    }
++  } catch (class_loader::ClassLoaderException & e) {
++    FAIL() << "ClassLoaderException: " << e.what() << "\n";
++  }
++
++  SUCCEED();
++}
++
++TEST(MultiClassLoaderTest, lazyLoad) {
++  testMultiClassLoader(true);
++}
++TEST(MultiClassLoaderTest, lazyLoadSecondTime) {
++  testMultiClassLoader(true);
++}
++TEST(MultiClassLoaderTest, nonLazyLoad) {
++  testMultiClassLoader(false);
++}
++TEST(MultiClassLoaderTest, noWarningOnLazyLoad) {
++  try {
++    std::shared_ptr<Base> cat, dog, rob;
++    {
++      class_loader::MultiLibraryClassLoader loader(true);
++      loader.loadLibrary(LIBRARY_1);
++      loader.loadLibrary(LIBRARY_2);
++
++      cat = loader.createSharedInstance<Base>("Cat");
++      dog = loader.createSharedInstance<Base>("Dog");
++      rob = loader.createSharedInstance<Base>("Robot");
++    }
++    cat->saySomething();
++    dog->saySomething();
++    rob->saySomething();
++  } catch (class_loader::ClassLoaderException & e) {
++    FAIL() << "ClassLoaderException: " << e.what() << "\n";
++  }
++
++  SUCCEED();
++}
++
++// Run all the tests that were declared with TEST()
++int main(int argc, char ** argv)
++{
++  testing::InitGoogleTest(&argc, argv);
++  return RUN_ALL_TESTS();
++}
+--- /dev/null
++++ ros-noetic-class-loader-0.5.0/test/unique_ptr_test.cpp
+@@ -0,0 +1,238 @@
++/*
++ * Copyright (c) 2012, Willow Garage, Inc.
++ * Copyright (c) 2016, Delft Robotics B.V.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#include <class_loader/class_loader.hpp>
++#include <class_loader/multi_library_class_loader.hpp>
++
++#include <gtest/gtest.h>
++
++#include <chrono>
++#include <cstddef>
++#include <functional>
++#include <iostream>
++#include <string>
++#include <thread>
++#include <vector>
++
++#include "./base.hpp"
++
++const std::string LIBRARY_1 = class_loader::systemLibraryFormat("class_loader_TestPlugins1");  // NOLINT
++const std::string LIBRARY_2 = class_loader::systemLibraryFormat("class_loader_TestPlugins2");  // NOLINT
++
++using class_loader::ClassLoader;
++
++TEST(ClassLoaderUniquePtrTest, basicLoad) {
++  try {
++    ClassLoader loader1(LIBRARY_1, false);
++    loader1.createUniqueInstance<Base>("Cat")->saySomething();  // See if lazy load works
++    SUCCEED();
++  } catch (class_loader::ClassLoaderException & e) {
++    FAIL() << "ClassLoaderException: " << e.what() << "\n";
++  }
++}
++
++TEST(ClassLoaderUniquePtrTest, correctLazyLoadUnload) {
++  try {
++    ASSERT_FALSE(class_loader::impl::isLibraryLoadedByAnybody(LIBRARY_1));
++    ClassLoader loader1(LIBRARY_1, true);
++    ASSERT_FALSE(class_loader::impl::isLibraryLoadedByAnybody(LIBRARY_1));
++    ASSERT_FALSE(loader1.isLibraryLoaded());
++
++    {
++      ClassLoader::UniquePtr<Base> obj = loader1.createUniqueInstance<Base>("Cat");
++      ASSERT_TRUE(class_loader::impl::isLibraryLoadedByAnybody(LIBRARY_1));
++      ASSERT_TRUE(loader1.isLibraryLoaded());
++    }
++
++    // The library will unload automatically when the only plugin object left is destroyed
++    ASSERT_FALSE(class_loader::impl::isLibraryLoadedByAnybody(LIBRARY_1));
++    return;
++  } catch (class_loader::ClassLoaderException & e) {
++    FAIL() << "ClassLoaderException: " << e.what() << "\n";
++  } catch (...) {
++    FAIL() << "Unhandled exception";
++  }
++}
++
++TEST(ClassLoaderUniquePtrTest, nonExistentPlugin) {
++  ClassLoader loader1(LIBRARY_1, false);
++
++  try {
++    ClassLoader::UniquePtr<Base> obj = loader1.createUniqueInstance<Base>("Bear");
++    if (nullptr == obj) {
++      FAIL() << "Null object being returned instead of exception thrown.";
++    }
++
++    obj->saySomething();
++  } catch (const class_loader::CreateClassException &) {
++    SUCCEED();
++    return;
++  } catch (...) {
++    FAIL() << "Unknown exception caught.\n";
++  }
++
++  FAIL() << "Did not throw exception as expected.\n";
++}
++
++void wait(int seconds)
++{
++  std::this_thread::sleep_for(std::chrono::seconds(seconds));
++}
++
++void run(ClassLoader * loader)
++{
++  std::vector<std::string> classes = loader->getAvailableClasses<Base>();
++  for (auto & class_ : classes) {
++    loader->createUniqueInstance<Base>(class_)->saySomething();
++  }
++}
++
++TEST(ClassLoaderUniquePtrTest, threadSafety) {
++  ClassLoader loader1(LIBRARY_1);
++  ASSERT_TRUE(loader1.isLibraryLoaded());
++
++  // Note: Hard to test thread safety to make sure memory isn't corrupted.
++  // The hope is this test is hard enough that once in a while it'll segfault
++  // or something if there's some implementation error.
++  try {
++    std::vector<std::thread> client_threads;
++
++    for (size_t c = 0; c < 1000; c++) {
++      client_threads.emplace_back(std::bind(&run, &loader1));
++    }
++
++    for (auto & client_thread : client_threads) {
++      client_thread.join();
++    }
++
++    loader1.unloadLibrary();
++    ASSERT_FALSE(loader1.isLibraryLoaded());
++  } catch (const class_loader::ClassLoaderException &) {
++    FAIL() << "Unexpected ClassLoaderException.";
++  } catch (...) {
++    FAIL() << "Unknown exception.";
++  }
++}
++
++TEST(ClassLoaderUniquePtrTest, loadRefCountingLazy) {
++  try {
++    ClassLoader loader1(LIBRARY_1, true);
++    ASSERT_FALSE(loader1.isLibraryLoaded());
++
++    {
++      ClassLoader::UniquePtr<Base> obj = loader1.createUniqueInstance<Base>("Dog");
++      ASSERT_TRUE(loader1.isLibraryLoaded());
++    }
++
++    ASSERT_FALSE(loader1.isLibraryLoaded());
++
++    loader1.loadLibrary();
++    ASSERT_TRUE(loader1.isLibraryLoaded());
++
++    loader1.loadLibrary();
++    ASSERT_TRUE(loader1.isLibraryLoaded());
++
++    loader1.unloadLibrary();
++    ASSERT_TRUE(loader1.isLibraryLoaded());
++
++    loader1.unloadLibrary();
++    ASSERT_FALSE(loader1.isLibraryLoaded());
++
++    loader1.unloadLibrary();
++    ASSERT_FALSE(loader1.isLibraryLoaded());
++
++    loader1.loadLibrary();
++    ASSERT_TRUE(loader1.isLibraryLoaded());
++
++    return;
++  } catch (const class_loader::ClassLoaderException &) {
++    FAIL() << "Unexpected exception.\n";
++  } catch (...) {
++    FAIL() << "Unknown exception caught.\n";
++  }
++
++  FAIL() << "Did not throw exception as expected.\n";
++}
++
++void testMultiClassLoader(bool lazy)
++{
++  try {
++    class_loader::MultiLibraryClassLoader loader(lazy);
++    loader.loadLibrary(LIBRARY_1);
++    loader.loadLibrary(LIBRARY_2);
++    for (int i = 0; i < 2; ++i) {
++      loader.createUniqueInstance<Base>("Cat")->saySomething();
++      loader.createUniqueInstance<Base>("Dog")->saySomething();
++      loader.createUniqueInstance<Base>("Robot")->saySomething();
++    }
++  } catch (class_loader::ClassLoaderException & e) {
++    FAIL() << "ClassLoaderException: " << e.what() << "\n";
++  }
++
++  SUCCEED();
++}
++
++TEST(MultiClassLoaderUniquePtrTest, lazyLoad) {
++  testMultiClassLoader(true);
++}
++TEST(MultiClassLoaderUniquePtrTest, lazyLoadSecondTime) {
++  testMultiClassLoader(true);
++}
++TEST(MultiClassLoaderUniquePtrTest, nonLazyLoad) {
++  testMultiClassLoader(false);
++}
++TEST(MultiClassLoaderUniquePtrTest, noWarningOnLazyLoad) {
++  try {
++    ClassLoader::UniquePtr<Base> cat = nullptr, dog = nullptr, rob = nullptr;
++    {
++      class_loader::MultiLibraryClassLoader loader(true);
++      loader.loadLibrary(LIBRARY_1);
++      loader.loadLibrary(LIBRARY_2);
++
++      cat = loader.createUniqueInstance<Base>("Cat");
++      dog = loader.createUniqueInstance<Base>("Dog");
++      rob = loader.createUniqueInstance<Base>("Robot");
++    }
++    cat->saySomething();
++    dog->saySomething();
++    rob->saySomething();
++  } catch (class_loader::ClassLoaderException & e) {
++    FAIL() << "ClassLoaderException: " << e.what() << "\n";
++  }
++
++  SUCCEED();
++}
++
++// Run all the tests that were declared with TEST()
++int main(int argc, char ** argv)
++{
++  testing::InitGoogleTest(&argc, argv);
++  return RUN_ALL_TESTS();
++}
+--- /dev/null
++++ ros-noetic-class-loader-0.5.0/test/utest.cpp
+@@ -0,0 +1,326 @@
++/*
++ * Copyright (c) 2012, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++#include <chrono>
++#include <cstddef>
++#include <functional>
++#include <iostream>
++#include <string>
++#include <thread>
++#include <vector>
++
++#include "class_loader/class_loader.hpp"
++#include "class_loader/multi_library_class_loader.hpp"
++
++#include "gtest/gtest.h"
++
++#include "./base.hpp"
++
++const std::string LIBRARY_1 = class_loader::systemLibraryFormat("class_loader_TestPlugins1");  // NOLINT
++const std::string LIBRARY_2 = class_loader::systemLibraryFormat("class_loader_TestPlugins2");  // NOLINT
++
++TEST(ClassLoaderTest, basicLoad) {
++  try {
++    class_loader::ClassLoader loader1(LIBRARY_1, false);
++    loader1.createInstance<Base>("Cat")->saySomething();  // See if lazy load works
++  } catch (class_loader::ClassLoaderException & e) {
++    FAIL() << "ClassLoaderException: " << e.what() << "\n";
++  }
++
++  SUCCEED();
++}
++
++TEST(ClassLoaderTest, correctNonLazyLoadUnload) {
++  try {
++    ASSERT_FALSE(class_loader::impl::isLibraryLoadedByAnybody(LIBRARY_1));
++    class_loader::ClassLoader loader1(LIBRARY_1, false);
++    ASSERT_TRUE(class_loader::impl::isLibraryLoadedByAnybody(LIBRARY_1));
++    ASSERT_TRUE(loader1.isLibraryLoaded());
++    loader1.unloadLibrary();
++    ASSERT_FALSE(class_loader::impl::isLibraryLoadedByAnybody(LIBRARY_1));
++    ASSERT_FALSE(loader1.isLibraryLoaded());
++    return;
++  } catch (class_loader::ClassLoaderException & e) {
++    FAIL() << "ClassLoaderException: " << e.what() << "\n";
++  } catch (...) {
++    FAIL() << "Unhandled exception";
++  }
++}
++
++TEST(ClassLoaderTest, correctLazyLoadUnload) {
++  try {
++    ASSERT_FALSE(class_loader::impl::isLibraryLoadedByAnybody(LIBRARY_1));
++    class_loader::ClassLoader loader1(LIBRARY_1, true);
++    ASSERT_FALSE(class_loader::impl::isLibraryLoadedByAnybody(LIBRARY_1));
++    ASSERT_FALSE(loader1.isLibraryLoaded());
++
++    {
++      boost::shared_ptr<Base> obj = loader1.createInstance<Base>("Cat");
++      ASSERT_TRUE(class_loader::impl::isLibraryLoadedByAnybody(LIBRARY_1));
++      ASSERT_TRUE(loader1.isLibraryLoaded());
++    }
++
++    // The library will unload automatically when the only plugin object left is destroyed
++    ASSERT_FALSE(class_loader::impl::isLibraryLoadedByAnybody(LIBRARY_1));
++    return;
++  } catch (class_loader::ClassLoaderException & e) {
++    FAIL() << "ClassLoaderException: " << e.what() << "\n";
++  } catch (...) {
++    FAIL() << "Unhandled exception";
++  }
++}
++
++TEST(ClassLoaderTest, nonExistentPlugin) {
++  class_loader::ClassLoader loader1(LIBRARY_1, false);
++
++  try {
++    boost::shared_ptr<Base> obj = loader1.createInstance<Base>("Bear");
++    if (nullptr == obj) {
++      FAIL() << "Null object being returned instead of exception thrown.";
++    }
++
++    obj->saySomething();
++  } catch (const class_loader::CreateClassException &) {
++    SUCCEED();
++    return;
++  } catch (...) {
++    FAIL() << "Unknown exception caught.\n";
++  }
++
++  FAIL() << "Did not throw exception as expected.\n";
++}
++
++TEST(ClassLoaderTest, nonExistentLibrary) {
++  try {
++    class_loader::ClassLoader loader1("libDoesNotExist.so", false);
++  } catch (const class_loader::LibraryLoadException &) {
++    SUCCEED();
++    return;
++  } catch (...) {
++    FAIL() << "Unknown exception caught.\n";
++  }
++
++  FAIL() << "Did not throw exception as expected.\n";
++}
++
++class InvalidBase
++{
++};
++
++TEST(ClassLoaderTest, invalidBase) {
++  try {
++    class_loader::ClassLoader loader1(LIBRARY_1, false);
++    if (loader1.isClassAvailable<InvalidBase>("Cat")) {
++      FAIL() << "Cat should not be available for InvalidBase";
++    } else if (loader1.isClassAvailable<Base>("Cat")) {
++      SUCCEED();
++      return;
++    } else {
++      FAIL() << "Class not available for correct base class.";
++    }
++  } catch (const class_loader::LibraryLoadException &) {
++    FAIL() << "Unexpected exception";
++  } catch (...) {
++    FAIL() << "Unexpected and unknown exception caught.\n";
++  }
++}
++
++void wait(int seconds)
++{
++  std::this_thread::sleep_for(std::chrono::seconds(seconds));
++}
++
++void run(class_loader::ClassLoader * loader)
++{
++  std::vector<std::string> classes = loader->getAvailableClasses<Base>();
++  for (auto & class_ : classes) {
++    loader->createInstance<Base>(class_)->saySomething();
++  }
++}
++
++TEST(ClassLoaderTest, threadSafety) {
++  class_loader::ClassLoader loader1(LIBRARY_1);
++  ASSERT_TRUE(loader1.isLibraryLoaded());
++
++  // Note: Hard to test thread safety to make sure memory isn't corrupted.
++  // The hope is this test is hard enough that once in a while it'll segfault
++  // or something if there's some implementation error.
++  try {
++    std::vector<std::thread *> client_threads;
++
++    for (size_t c = 0; c < 1000; c++) {
++      client_threads.push_back(new std::thread(std::bind(&run, &loader1)));
++    }
++
++    for (auto & client_thread : client_threads) {
++      client_thread->join();
++    }
++
++    for (auto & client_thread : client_threads) {
++      delete (client_thread);
++    }
++
++    loader1.unloadLibrary();
++    ASSERT_FALSE(loader1.isLibraryLoaded());
++  } catch (const class_loader::ClassLoaderException &) {
++    FAIL() << "Unexpected ClassLoaderException.";
++  } catch (...) {
++    FAIL() << "Unknown exception.";
++  }
++}
++
++TEST(ClassLoaderTest, loadRefCountingNonLazy) {
++  try {
++    class_loader::ClassLoader loader1(LIBRARY_1, false);
++    ASSERT_TRUE(loader1.isLibraryLoaded());
++
++    loader1.loadLibrary();
++    loader1.loadLibrary();
++    ASSERT_TRUE(loader1.isLibraryLoaded());
++
++    loader1.unloadLibrary();
++    ASSERT_TRUE(loader1.isLibraryLoaded());
++
++    loader1.unloadLibrary();
++    ASSERT_TRUE(loader1.isLibraryLoaded());
++
++    loader1.unloadLibrary();
++    ASSERT_FALSE(loader1.isLibraryLoaded());
++
++    loader1.unloadLibrary();
++    ASSERT_FALSE(loader1.isLibraryLoaded());
++
++    loader1.loadLibrary();
++    ASSERT_TRUE(loader1.isLibraryLoaded());
++
++    return;
++  } catch (const class_loader::ClassLoaderException &) {
++    FAIL() << "Unexpected exception.\n";
++  } catch (...) {
++    FAIL() << "Unknown exception caught.\n";
++  }
++
++  FAIL() << "Did not throw exception as expected.\n";
++}
++
++TEST(ClassLoaderTest, loadRefCountingLazy) {
++  try {
++    class_loader::ClassLoader loader1(LIBRARY_1, true);
++    ASSERT_FALSE(loader1.isLibraryLoaded());
++
++    {
++      boost::shared_ptr<Base> obj = loader1.createInstance<Base>("Dog");
++      ASSERT_TRUE(loader1.isLibraryLoaded());
++    }
++
++    ASSERT_FALSE(loader1.isLibraryLoaded());
++
++    loader1.loadLibrary();
++    ASSERT_TRUE(loader1.isLibraryLoaded());
++
++    loader1.loadLibrary();
++    ASSERT_TRUE(loader1.isLibraryLoaded());
++
++    loader1.unloadLibrary();
++    ASSERT_TRUE(loader1.isLibraryLoaded());
++
++    loader1.unloadLibrary();
++    ASSERT_FALSE(loader1.isLibraryLoaded());
++
++    loader1.unloadLibrary();
++    ASSERT_FALSE(loader1.isLibraryLoaded());
++
++    loader1.loadLibrary();
++    ASSERT_TRUE(loader1.isLibraryLoaded());
++
++    return;
++  } catch (const class_loader::ClassLoaderException &) {
++    FAIL() << "Unexpected exception.\n";
++  } catch (...) {
++    FAIL() << "Unknown exception caught.\n";
++  }
++
++  FAIL() << "Did not throw exception as expected.\n";
++}
++
++void testMultiClassLoader(bool lazy)
++{
++  try {
++    class_loader::MultiLibraryClassLoader loader(lazy);
++    loader.loadLibrary(LIBRARY_1);
++    loader.loadLibrary(LIBRARY_2);
++    for (int i = 0; i < 2; ++i) {
++      loader.createInstance<Base>("Cat")->saySomething();
++      loader.createInstance<Base>("Dog")->saySomething();
++      loader.createInstance<Base>("Robot")->saySomething();
++    }
++  } catch (class_loader::ClassLoaderException & e) {
++    FAIL() << "ClassLoaderException: " << e.what() << "\n";
++  }
++
++  SUCCEED();
++}
++
++TEST(MultiClassLoaderTest, lazyLoad) {
++  testMultiClassLoader(true);
++}
++TEST(MultiClassLoaderTest, lazyLoadSecondTime) {
++  testMultiClassLoader(true);
++}
++TEST(MultiClassLoaderTest, nonLazyLoad) {
++  testMultiClassLoader(false);
++}
++TEST(MultiClassLoaderTest, noWarningOnLazyLoad) {
++  try {
++    boost::shared_ptr<Base> cat, dog, rob;
++    {
++      class_loader::MultiLibraryClassLoader loader(true);
++      loader.loadLibrary(LIBRARY_1);
++      loader.loadLibrary(LIBRARY_2);
++
++      cat = loader.createInstance<Base>("Cat");
++      dog = loader.createInstance<Base>("Dog");
++      rob = loader.createInstance<Base>("Robot");
++    }
++    cat->saySomething();
++    dog->saySomething();
++    rob->saySomething();
++  } catch (class_loader::ClassLoaderException & e) {
++    FAIL() << "ClassLoaderException: " << e.what() << "\n";
++  }
++
++  SUCCEED();
++}
++
++// Run all the tests that were declared with TEST()
++int main(int argc, char ** argv)
++{
++  testing::InitGoogleTest(&argc, argv);
++  return RUN_ALL_TESTS();
++}

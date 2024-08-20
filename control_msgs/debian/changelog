@@ -1,0 +1,109 @@
+ros-noetic-control-msgs (1.5.2-0jammy) jammy; urgency=high
+
+  * Bump CMake version to avoid CMP0048 (#40 <https://github.com/ros-controls/control_msgs/issues/40>)
+  * Contributors: Shane Loretz
+
+ -- Bence Magyar <bence.magyar.robotics@gmail.com>  Tue, 10 Mar 2020 16:00:00 -0000
+
+ros-noetic-control-msgs (1.5.1-0jammy) jammy; urgency=high
+
+  * add description of JointControllerState.msg (#30 <https://github.com/ros-controls/control_msgs/issues/30>)
+  * Contributors: Shuang Li
+
+ -- Bence Magyar <bence.magyar.robotics@gmail.com>  Tue, 26 Nov 2019 16:00:00 -0000
+
+ros-noetic-control-msgs (1.5.0-0jammy) jammy; urgency=high
+
+  * Adding a JointJog msg
+  * Replace Adolfo with Bence as maintainer
+  * Contributors: AndyZe, Bence Magyar
+
+ -- Bence Magyar <bence.magyar.robotics@gmail.com>  Mon, 18 Feb 2019 16:00:00 -0000
+
+ros-noetic-control-msgs (1.4.0-0jammy) jammy; urgency=high
+
+  * Add antiwindup to JointControllerState message definition
+  * Add PidState message
+  * Contributors: Paul Bovbel
+
+ -- Bence Magyar <bence.magyar.robotics@gmail.com>  Thu, 14 Apr 2016 16:00:00 -0000
+
+ros-noetic-control-msgs (1.3.1-0jammy) jammy; urgency=high
+
+  * Export architecture_independent flag in package.xml
+  * Change package maintainer.
+  * Contributors: Adolfo Rodriguez Tsouroukdissian, Scott K Logan
+
+ -- Bence Magyar <bence.magyar.robotics@gmail.com>  Wed, 04 Mar 2015 16:00:00 -0000
+
+ros-noetic-control-msgs (1.3.0-0jammy) jammy; urgency=high
+
+  * Add error_string to action result.
+  * Contributors: Adolfo Rodriguez Tsouroukdissian
+
+ -- Bence Magyar <bence.magyar.robotics@gmail.com>  Wed, 26 Feb 2014 16:00:00 -0000
+
+ros-noetic-control-msgs (1.2.0-0jammy) jammy; urgency=high
+
+
+
+ -- Bence Magyar <bence.magyar.robotics@gmail.com>  Wed, 24 Apr 2013 16:00:00 -0000
+
+ros-noetic-control-msgs (1.1.6-0jammy) jammy; urgency=high
+
+  * adds missing feedback field to PointHeadAction
+  * Contributors: Adam Leeper
+
+ -- Bence Magyar <bence.magyar.robotics@gmail.com>  Sun, 10 Feb 2013 16:00:00 -0000
+
+ros-noetic-control-msgs (1.1.5-0jammy) jammy; urgency=high
+
+  * changes PointHeadAction.action to PointHead.action
+  * Contributors: Adam Leeper
+
+ -- Bence Magyar <bence.magyar.robotics@gmail.com>  Tue, 22 Jan 2013 16:00:00 -0000
+
+ros-noetic-control-msgs (1.1.4-0jammy) jammy; urgency=high
+
+  * this now contains all messages, services and actions that used to be in ros_controllers and/or pr2_controllers_msgs
+  * copy JointControllerState and JointTrajectoryControllerState  from pr2_controllers_msgs
+  * copy GripperCommand from pr2_controllers_msgs
+  * modified dep type of catkin
+  * Contributors: Dirk Thomas, Ioan Sucan
+
+ -- Bence Magyar <bence.magyar.robotics@gmail.com>  Mon, 21 Jan 2013 16:00:00 -0000
+
+ros-noetic-control-msgs (1.1.3-0jammy) jammy; urgency=high
+
+  * fix dep
+  * add missing downstream depend
+  * switched from langs to message_* packages
+  * Contributors: Dirk Thomas
+
+ -- Bence Magyar <bence.magyar.robotics@gmail.com>  Wed, 12 Dec 2012 16:00:00 -0000
+
+ros-noetic-control-msgs (1.1.2-0jammy) jammy; urgency=high
+
+
+
+ -- Bence Magyar <bence.magyar.robotics@gmail.com>  Sun, 02 Dec 2012 16:00:00 -0000
+
+ros-noetic-control-msgs (1.1.1-0jammy) jammy; urgency=high
+
+  * added metapackage for backward compatibility
+  * Contributors: Ioan Sucan
+
+ -- Bence Magyar <bence.magyar.robotics@gmail.com>  Mon, 19 Nov 2012 07:52:00 -0000
+
+ros-noetic-control-msgs (1.1.0-0jammy) jammy; urgency=high
+
+  * port to catkin
+  * add bogus dependency on rospy, to get ros_comm
+  * Added documentation for the FollowJointTrajectory action and the JointTolerance message.
+  * Added PointHeadAction to control_msgs
+  * First cut at a FollowJointTrajectory action
+  * Contributors: Brian Gerkey, Ioan Sucan, Stuart Glaser
+
+ -- Bence Magyar <bence.magyar.robotics@gmail.com>  Mon, 19 Nov 2012 06:54:00 -0000
+
+

@@ -1,0 +1,849 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-diagnostic-analysis (1.11.0-0jammy) jammy; urgency=high
+ .
+   * Fix type comparison for python3 (#194 <https://github.com/ros/diagnostics/issues/194>)
+   * Contributors: Mikael Arguedas
+Author: Guglielmo Gemignani <guglielmo.gemignani@gmail.com>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-diagnostic-analysis-1.11.0/CHANGELOG.rst
+@@ -0,0 +1,143 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package diagnostic_analysis
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++1.11.0 (2021-12-31)
++-------------------
++* Fix type comparison for python3 (`#194 <https://github.com/ros/diagnostics/issues/194>`_)
++* Contributors: Mikael Arguedas
++
++1.10.4 (2021-03-14)
++-------------------
++
++1.10.3 (2020-12-05)
++-------------------
++* Update maintainer info
++* Contributors: gemignani
++
++1.10.2 (2020-09-03)
++-------------------
++
++1.10.1 (2020-08-20)
++-------------------
++
++1.10.0 (2020-08-11)
++-------------------
++* Make Guglielmo Gemignani ROS1 maintainer (`#155 <https://github.com/ros/diagnostics/issues/155>`_)
++* Contributors: Guglielmo Gemignani
++
++1.9.4 (2020-04-01)
++------------------
++* noetic release (`#136 <https://github.com/ros/diagnostics/issues/136>`_)
++* Contributors: Alejandro Hernández Cordero
++
++1.9.3 (2018-05-02)
++------------------
++
++1.9.2 (2017-07-15)
++------------------
++
++1.9.1 (2017-07-15)
++------------------
++
++1.9.0 (2017-04-25)
++------------------
++* Install diagnostic_analysis nodes
++  Fixes `#51 <https://github.com/ros/diagnostics/issues/51>`_
++* make rostest in CMakeLists optional (`ros/rosdistro#3010 <https://github.com/ros/rosdistro/issues/3010>`_)
++* Contributors: Lukas Bulwahn, trainman419
++
++1.8.10 (2016-06-14)
++-------------------
++
++1.8.9 (2016-03-02)
++------------------
++
++1.8.8 (2015-08-06)
++------------------
++
++1.8.7 (2015-01-09)
++------------------
++
++1.8.6 (2014-12-10)
++------------------
++
++1.8.5 (2014-07-29)
++------------------
++
++1.8.4 (2014-07-24 20:51)
++------------------------
++
++1.8.3 (2014-04-23)
++------------------
++
++1.8.2 (2014-04-08)
++------------------
++* Most tests pass
++* Contributors: Austin Hendrix
++
++1.8.1 (2014-04-07)
++------------------
++* Add myself as maintainer
++* check for CATKIN_ENABLE_TESTING
++* Contributors: Austin Hendrix, Lukas Bulwahn
++
++1.8.0 (2013-04-03)
++------------------
++
++1.7.11 (2014-07-24 20:24)
++-------------------------
++* Fix python setup in diagnostic_analysis
++* Contributors: trainman419
++
++1.7.10 (2013-02-22)
++-------------------
++* removed rostest from test_depend in diagnostic_analysis
++* Changed package.xml version number before releasing
++* Removed duplicated test dependancies
++  test_depend tags should not duplicate run/build depends tags.
++* Contributors: Aaron Blasdel, Brice Rebsamen
++
++1.7.9 (2012-12-14)
++------------------
++* add missing dep to catkin
++* Contributors: Dirk Thomas
++
++1.7.8 (2012-12-06)
++------------------
++
++1.7.7 (2012-11-10)
++------------------
++
++1.7.6 (2012-11-07 23:32)
++------------------------
++
++1.7.5 (2012-11-07 21:53)
++------------------------
++
++1.7.4 (2012-11-07 20:18)
++------------------------
++
++1.7.3 (2012-11-04)
++------------------
++
++1.7.2 (2012-10-30 22:31)
++------------------------
++
++1.7.1 (2012-10-30 15:30)
++------------------------
++* fix a few things after the first release
++* Contributors: Vincent Rabaud
++
++1.7.0 (2012-10-29)
++------------------
++* catkinize the stack
++* `#5364 <https://github.com/ros/diagnostics/issues/5364>`_ `#5396 <https://github.com/ros/diagnostics/issues/5396>`_ remove useless rosrecord import
++* diagnostic_analysis updated to use rosbag API. `#4163 <https://github.com/ros/diagnostics/issues/4163>`_
++* Added Ubuntu platform tags to manifest
++* diagnostic_aggregator/diagnostic_analysis doc reviewed
++* small bug fixes
++* Added hardware_id field to CSV output for export_csv.py
++* Removing deprecated line in CMakesList.txt for diagnostics 0.3.0
++* Renamed diagnostics_analysis to diagnostic_analysis, `#2700 <https://github.com/ros/diagnostics/issues/2700>`_
++* Contributors: Vincent Rabaud, gerkey, kwc, watts
+--- /dev/null
++++ ros-noetic-diagnostic-analysis-1.11.0/CMakeLists.txt
+@@ -0,0 +1,17 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(diagnostic_analysis)
++
++# Load catkin and all dependencies required for this package
++find_package(catkin REQUIRED diagnostic_msgs rosbag roslib)
++
++catkin_package(DEPENDS diagnostic_msgs rosbag roslib)
++
++if(CATKIN_ENABLE_TESTING)
++  find_package(rostest REQUIRED)
++  catkin_add_nosetests(test/bag_csv_test.py)
++endif()
++
++catkin_python_setup()
++
++catkin_install_python(PROGRAMS scripts/export_csv.py scripts/sparse_csv.py
++                        DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+--- /dev/null
++++ ros-noetic-diagnostic-analysis-1.11.0/mainpage.dox
+@@ -0,0 +1,34 @@
++/**
++\mainpage
++\htmlinclude manifest.html
++
++\b diagnostics_analysis This is a set of tools for analyzing and processing diagnostic bagfiles. This is primarily used in analyzing bag files from automatic PR-2 logs. The main tool is export_csv.py, which converts bag files into a series of CSV files.
++
++\section codeapi Code API
++
++The main tool in this package is export_csv.py, which generates CSV files from diagnostics bagfiles. This can generate fairly large CSV files, since one row will be written for every status message. It may help to use "sparse" bag files created by sparse_csv.py. 
++
++\subsection export_csv.py export_csv.py
++
++export_csv.py processes diagnostic bagfiles in to a series of CSV files. Every diagnostic status name is moved to a different CSV file. Output CSV's are put in the output/ directory.
++
++\verbatim
++$ ./export_csv.py my_bagfile_2009_07_24-topic.bag
++\endverbatim
++
++\par Example
++
++The above code will export my_bagfile... into the directory output/my_bagfile_2009_07_24-topic_csv/. There will be separate bag files for each status name. 
++
++\subsection sparse_csv.py sparse_csv.py
++
++If your CSV file is too big, it may not be readable by common spreadsheet editor, such as Open Office. To solve this problem, you can make a "sparse" CSV by removing every nth line from the file.
++
++\verbatim
++$ rosrun diagnostics_analysi sparse_csv.py output/my_bagfile_2009_07_24-topic_csv/status_name.csv -m
++\endverbatim
++
++This makes the file output/my_bagfile_2009_07_24-topic_csv/status_name_sprs_len.csv, and makes sure it is no longer than 65000 lines.
++
++
++*/
+\ No newline at end of file
+--- /dev/null
++++ ros-noetic-diagnostic-analysis-1.11.0/package.xml
+@@ -0,0 +1,34 @@
++<package>
++  <name>diagnostic_analysis</name>
++  <version>1.11.0</version>
++  <description>The diagnostic_analysis package can convert a log of diagnostics data
++    into a series of CSV files. Robot logs are recorded with rosbag, and
++    can be processed offline using the scripts in this package.</description>
++  <author>Kevin Watts</author>
++  <author email="brice.rebsamen@gmail.com">Brice Rebsamen</author>
++  <maintainer email="guglielmo.gemignani@gmail.com">Guglielmo Gemignani</maintainer>
++  <maintainer email="namniart@gmail.com">Austin Hendrix</maintainer>
++
++  <license>BSD</license>
++
++  <url type="website">http://www.ros.org/wiki/diagnostics_analysis</url>
++<!-- <url type="bugtracker"></url> -->
++
++  <author>Eric Berger</author>
++  <author>Kevin Watts</author>
++
++  <buildtool_depend version_gte="0.5.68">catkin</buildtool_depend>
++
++  <build_depend>diagnostic_msgs</build_depend>
++  <build_depend>rosbag</build_depend>
++  <build_depend>roslib</build_depend>
++  <build_depend>rostest</build_depend>
++
++  <run_depend>diagnostic_msgs</run_depend>
++  <run_depend>rosbag</run_depend>
++  <run_depend>roslib</run_depend>
++
++  <export>
++    <architecture_independent/>
++  </export>
++</package>
+--- /dev/null
++++ ros-noetic-diagnostic-analysis-1.11.0/scripts/export_csv.py
+@@ -0,0 +1,77 @@
++#!/usr/bin/python
++#
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of the Willow Garage nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++##\author Eric Berger, Kevin Watts
++
++##\brief Converts diagnostics log files into CSV's for analysis
++
++PKG = 'diagnostic_analysis'
++import roslib; roslib.load_manifest(PKG)
++import diagnostic_msgs.msg
++import time, sys, os
++import operator, tempfile, subprocess
++
++from optparse import OptionParser
++
++from diagnostic_analysis.exporter import LogExporter
++
++if __name__ == '__main__':
++    # Allow user to set output directory
++    parser = OptionParser()
++    parser.add_option("-d", "--directory", dest="directory",
++                      help="Write output to DIR/output. Default: %s" % PKG, metavar="DIR",
++                      default=roslib.packages.get_pkg_dir(PKG), action="store")
++    options, args = parser.parse_args()
++
++    exporters = []
++
++    print('Output directory: %s/output' % options.directory)
++
++    try:
++        for i, f in enumerate(args):
++            filepath = 'output/%s_csv' % os.path.basename(f)[0:os.path.basename(f).find('.')]
++            
++            output_dir = os.path.join(options.directory,  filepath)
++            print("Processing file %s. File %d of %d." % (os.path.basename(f), i + 1, len(args)))
++
++            exp = LogExporter(output_dir, f)
++            exp.process_log()
++            exp.finish_logfile()
++            exporters.append(exp)
++
++        print('Finished processing files.')
++    except:
++        import traceback
++        print("Caught exception processing log file")
++        traceback.print_exc()
+--- /dev/null
++++ ros-noetic-diagnostic-analysis-1.11.0/scripts/sparse_csv.py
+@@ -0,0 +1,83 @@
++#!/usr/bin/python
++# 
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of the Willow Garage nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++# Author: Kevin Watts
++
++
++# Make any csv into sparse csv
++
++
++PKG = 'diagnostic_analysis'
++import roslib
++roslib.load_manifest(PKG)
++
++import csv, os, sys
++from optparse import OptionParser
++
++from diagnostic_analysis.sparse import make_sparse_skip, make_sparse_length
++
++if __name__=='__main__':
++    # Allow user to set output directory
++    parser = OptionParser()
++    parser.add_option("-l", "--length", dest="length",
++                      help="Set length of output CSV", metavar="LEN",
++                      default=None, action="store")
++    parser.add_option("-s", "--skip", dest="skip",
++                      help="Skip every nth row. If length set, will ignore this value.", 
++                      metavar="SKIP", default=10, action="store")
++    parser.add_option("-m", "--max", dest="max", 
++                      help="Make largest possible file for Open Office (65k lines). If selected, other options ignored.",
++                      metavar="MAX", default=False, action="store_true")
++
++    options, args = parser.parse_args()
++
++    # Get CSV file
++    if len(args) < 1:
++        print('No CSV file given.')
++        sys.exit(0)
++
++    csv_file = args[0]
++
++    if not csv_file.endswith('.csv'):
++        print('File %s is not a CSV file. Aborting.' % csv_file)
++        sys.exit(0)
++
++    if options.max:
++        output_file = make_sparse_length(csv_file, 65000)
++    elif options.length is None:
++        output_file = make_sparse_skip(csv_file, options.skip)
++    else:
++        output_file = make_sparse_length(csv_file, int(options.length))
++
++    print('Created sparse CSV %s' % output_file)
+--- /dev/null
++++ ros-noetic-diagnostic-analysis-1.11.0/setup.py
+@@ -0,0 +1,11 @@
++## ! DO NOT MANUALLY INVOKE THIS setup.py, USE CATKIN INSTEAD
++
++from setuptools import setup
++from catkin_pkg.python_setup import generate_distutils_setup
++
++# fetch values from package.xml
++setup_args = generate_distutils_setup(
++    packages=['diagnostic_analysis'],
++    package_dir={'': 'src'})
++
++setup(**setup_args)
+--- /dev/null
++++ ros-noetic-diagnostic-analysis-1.11.0/src/diagnostic_analysis/exporter.py
+@@ -0,0 +1,159 @@
++#!/usr/bin/python
++#
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of the Willow Garage nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++##\author Kevin Watts
++##\brief LogExporter class does diagnostics logfile conversion to CSV
++
++import roslib
++import rosbag
++import diagnostic_msgs.msg
++import time, sys, os
++import operator, tempfile, subprocess
++
++##\brief Converts and processes diagnostics logs to CSV format
++##
++## Used by scripts/export_csv.py to convert diagnostics log files to CSV format
++class LogExporter:
++    ##\param output_dir str : Complete path of output dir. If None, uses temp dir
++    ##\param logfile str : path of logfile
++    def __init__(self, output_dir, logfile):
++        self._temp = False
++        self._stats = {}
++        self.logfile = logfile
++
++        self.output_dir = output_dir
++        if self.output_dir is None:
++            self.output_dir = tempfile.mkdtemp()
++            self._temp = True
++        
++        if not os.path.isdir(self.output_dir):
++            os.makedirs(self.output_dir)
++
++    ##\brief Removes all output files. Removes directory if temp
++    def remove_files(self):
++        for name in self._stats:
++            file = self._stats[name]['file_name']
++            os.remove(file)
++        if self._temp:
++            os.rmdir(self.output_dir)
++        
++    ##\brief Return filename of output
++    ##\param name str : DiagnosticStatus name ex: 'Mechanism Control'
++    def get_filename(self, name):
++        if not name in self._stats:
++            return None # self.output_dir + '/%s.csv' % name.replace(' ', '_')
++        return self._stats[name]['file_name']
++
++    ##\brief Use rosrecord to play back bagfile
++    def process_log(self):
++        bag = rosbag.Bag(self.logfile)
++        for (topic, msg, t) in bag.read_messages():
++            self._update(topic, msg)
++
++    ##\brief Creates and updates data files with new messages
++    def _update(self, topic, msg):
++        if (not (topic == '/diagnostics')):
++            print("Discarding message on topic: %s" % topic)
++            return
++        
++        t = time.localtime(float(str(msg.header.stamp)) / 1000000000.0)
++        
++        for status in msg.status:
++            name = status.name
++
++            if (not name in self._stats):
++                self._stats[name] = {}
++                
++                fields = {}
++                for index, s in enumerate(status.values):
++                    fields[s.key] = index
++                    
++                self._stats[name]['fields'] = fields
++                
++                self._stats[name]['level'] = status.level
++                self._stats[name]['message'] = status.message
++                self._stats[name]['hardware_id'] = status.hardware_id
++
++                # Use named temp file, will cat this to header on close
++                datafile, tmp_name = tempfile.mkstemp()
++                self._stats[name]['data_file'] = os.fdopen(datafile, 'w')
++                self._stats[name]['data_name'] = tmp_name
++                
++
++            # Check to see if fields have changed. Add new fields to map
++            if not [s.key for s in status.values] == list(self._stats[name]['fields'].keys()):
++                for s in status.values:
++                    if not s.key in self._stats[name]['fields']:
++                        self._stats[name]['fields'][s.key] = len(self._stats[name]['fields'])
++
++            # Add values in correct place for header index
++            # Key/Value pairs can move around, this makes sure values are
++            # added to correct keys
++            vals = []
++            for key, val in self._stats[name]['fields'].items():
++                vals.append('')
++            for s in status.values:
++                vals[self._stats[name]['fields'][s.key]] = s.value.replace('\n','  ').replace(',',' ')
++        
++            msg = status.message.replace(',',' ').strip()
++            hw_id = status.hardware_id.replace(',', ' ')
++        
++            self._stats[name]['data_file'].write(','.join([time.strftime("%Y/%m/%d %H:%M:%S", t)] +
++                                            [str(status.level), msg, hw_id] + vals) + '\n')
++
++    ##\brief Close logfile, append data to header
++    def finish_logfile(self):
++        for name in self._stats:
++            # Sort fields by correct index, add to header
++            field_dict = sorted(self._stats[name]['fields'].items(), key=operator.itemgetter(1))
++            fields = map(operator.itemgetter(0), field_dict)
++            
++            header_line = ','.join(['Timestamp'] + ['Level', 'Message', 'Hardware ID'] +
++                                    [f.replace(',','').replace('\n', ' ') for f in fields]) + '\n'
++            
++            file_name = os.path.join(self.output_dir, name.replace(' ', '_').replace('(', '').replace(')', '').replace('/', '__').replace('.', '').replace('#', '') + '.csv')
++            
++            output_file = open(file_name, 'w')
++            output_file.write(header_line)
++            output_file.close()
++
++
++            self._stats[name]['data_file'].close() # Close data
++
++            # Append the tmp data file to the header
++            subprocess.call("cat %s >> %s" % (self._stats[name]['data_name'], file_name), shell=True)
++            # Remove tmp file
++            os.remove(self._stats[name]['data_name'])
++            # Store filename
++            self._stats[name]['file_name'] = file_name
+--- /dev/null
++++ ros-noetic-diagnostic-analysis-1.11.0/src/diagnostic_analysis/sparse.py
+@@ -0,0 +1,90 @@
++#!/usr/bin/python
++#
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of the Willow Garage nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++##\author Kevin Watts
++##\brief Make CSV files smaller for use in spreadsheet software
++
++PKG = 'diagnostic_analysis'
++import roslib
++roslib.load_manifest(PKG)
++
++import csv, os, sys
++
++##\brief Makes sparse CSV by skipping every nth value
++##\param csv_file str : CSV filename
++##\param skip int : Write every nth row to sparse CSV
++##\return Path of output file
++def make_sparse_skip(csv_file, skip):
++    output_file = csv_file[:-4] + '_sparse.csv'
++
++    input_reader = csv.reader(open(csv_file, newline=''), delimiter=',')
++
++    f = open(output_file, 'w')
++    output_writer = csv.writer(f)
++
++    skip_count = skip
++    for row in input_reader:
++        if skip_count == skip:
++            output_writer.writerow(row)
++            skip_count = 0
++            
++        skip_count = skip_count + 1
++
++    return output_file
++
++##\brief Makes sparse CSV with the given number of rows
++##\param csv_file str : CSV filename
++##\param length int : Desired number of rows in CSV
++##\return Path of output file
++def make_sparse_length(csv_file, length):
++    output_file = csv_file[:-4] + '_sprs_len.csv'
++
++    input_reader = csv.reader(open(csv_file, newline=''), delimiter=',')
++
++    f = open(output_file, 'w')
++    output_writer = csv.writer(f)
++
++    # Calculate skip count for file
++    orig_len = len(open(csv_file, 'r').read().split('\n'))
++    skip = max(int(orig_len / length), 1)
++
++    skip_count = skip
++    for row in input_reader:
++        if skip_count >= skip:
++            output_writer.writerow(row)
++            skip_count = 0
++            
++        skip_count = skip_count + 1
++
++    return output_file
+--- /dev/null
++++ ros-noetic-diagnostic-analysis-1.11.0/test/bag_csv_test.py
+@@ -0,0 +1,144 @@
++#!/usr/bin/python
++#
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2008, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of the Willow Garage nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++# Author: Kevin Watts
++
++PKG = 'diagnostic_analysis'
++
++import roslib; roslib.load_manifest(PKG)
++import rostest
++import unittest
++
++import rosbag
++from diagnostic_msgs.msg import DiagnosticArray, DiagnosticStatus, KeyValue
++
++import random
++import tempfile
++import time, os
++import csv
++
++from diagnostic_analysis.exporter import LogExporter
++from diagnostic_analysis.sparse import *
++
++row_count = 100
++
++##\brief Make DiagnosticArray message for testing
++def make_status_msg(count):
++    array = DiagnosticArray()
++    stat = DiagnosticStatus()
++    stat.level = 0
++    stat.message = 'OK'
++    stat.name = 'Unit Test'
++    stat.hardware_id = 'HW ID'
++    stat.values = [
++        KeyValue('Value A', str(count)),
++        KeyValue('Value B', str(count)),
++        KeyValue('Value C', str(count))]
++    array.status = [ stat ]
++    return array
++
++##\brief Tests convert logfile to CSV and making sparse
++class TestBagToCSV(unittest.TestCase):
++    def setUp(self):
++        # Make logfile with bogus messages
++        self.bag = tempfile.NamedTemporaryFile()
++
++        rebagger = rosbag.Bag(self.bag.name, 'w')
++        for i in range(0, row_count):
++            rebagger.write("/diagnostics", make_status_msg(i))
++        rebagger.close()
++
++        # Make CSV
++        self.exp = LogExporter(None, self.bag.name)
++        self.exp.process_log()
++        self.exp.finish_logfile()
++        self.filename = self.exp.get_filename('Unit Test')
++
++        ## Make sparse CSV's
++        self.skip_10 = make_sparse_skip(self.filename, 10)
++        self.length_10 = make_sparse_length(self.filename, 10)
++
++    ##\brief Tests that exported file exists and is not None
++    def test_file_exists(self):
++        self.assert_(self.filename is not None, "CSV file is None")
++        self.assert_(os.path.isfile(self.filename), "CSV file doesn't exist")
++
++    ##\brief Test that CSV file has correct data, number of lines
++    def test_export(self):
++        # Read CSV, count rows
++        input_reader = csv.reader(open(self.filename, newline=''), delimiter=',')
++        count = -1
++        for row in input_reader:
++            if count == -1:
++                self.assert_(row[2].strip() == 'Message')
++                self.assert_(row[3].strip() == 'Hardware ID')
++                self.assert_(row[4].strip() == 'Value A')
++                count += 1
++                continue
++
++            self.assert_(row[2].strip() == 'OK')
++            self.assert_(row[3].strip() == 'HW ID')
++            self.assert_(row[4].strip() == str(count))
++            count += 1
++      
++        self.assert_(count == row_count, "Row count doesn't match")
++
++    ##\brief Tests that sparse CSV made with 'skip' option has correct number of lines
++    def test_sparse_skip(self):
++        self.assert_(len(open(self.skip_10).read().split('\n')) <= int(row_count / 10) + 2, "Length of sparse CSV (skipped) incorrect")
++
++    ##\brief Tests that sparse CSV made with 'length' option has correct number of lines
++    def test_sparse_length(self):
++        self.assert_(len(open(self.length_10).read().split('\n')) == 12, "Length of sparse CSV incorrect")
++
++    def tearDown(self):
++        self.bag.close()
++        os.remove(self.skip_10)
++        os.remove(self.length_10)
++
++        self.exp.remove_files()
++
++        
++if __name__ == '__main__':
++    if True: # Use rostest for accurate results
++        rostest.unitrun(PKG, 'bag_csv_test', TestBagToCSV)
++    else:
++        # Manual test suite
++        suite = unittest.TestSuite()
++        suite.addTest(TestBagToCSV('test_file_exists'))
++        suite.addTest(TestBagToCSV('test_export'))
++        suite.addTest(TestBagToCSV('test_sparse_skip'))
++        suite.addTest(TestBagToCSV('test_sparse_length'))
++        
++        unittest.TextTestRunner(verbosity = 2).run(suite)

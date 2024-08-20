@@ -1,0 +1,1481 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-camera-calibration-parsers (1.12.0-0jammy) jammy; urgency=high
+ .
+   * Noetic release image_common (#155 <https://github.com/ros-perception/image_common/issues/155>)
+     * noetic - Porting Python to Python3
+     Signed-off-by: ahcorde <mailto:ahcorde@gmail.com>
+     * Updated cmake_minimum_required to 3.0.2
+     Signed-off-by: ahcorde <mailto:ahcorde@gmail.com>
+     * changed diskutils.core for setuptools
+     Signed-off-by: ahcorde <mailto:ahcorde@gmail.com>
+     * ported to noetic image_transport tutorial
+     Signed-off-by: ahcorde <mailto:ahcorde@gmail.com>
+   * Contributors: Alejandro Hernández Cordero
+Author: Jack O'Quin <jack.oquin@gmail.com>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-camera-calibration-parsers-1.12.0/CHANGELOG.rst
+@@ -0,0 +1,106 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package camera_calibration_parsers
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++1.12.0 (2020-04-03)
++-------------------
++* Noetic release image_common (`#155 <https://github.com/ros-perception/image_common/issues/155>`_)
++  * noetic - Porting Python to Python3
++  Signed-off-by: ahcorde <ahcorde@gmail.com>
++  * Updated cmake_minimum_required to 3.0.2
++  Signed-off-by: ahcorde <ahcorde@gmail.com>
++  * changed diskutils.core for setuptools
++  Signed-off-by: ahcorde <ahcorde@gmail.com>
++  * ported to noetic image_transport tutorial
++  Signed-off-by: ahcorde <ahcorde@gmail.com>
++* Contributors: Alejandro Hernández Cordero
++
++1.11.14 (2020-04-03)
++--------------------
++
++1.11.13 (2017-11-05)
++--------------------
++* Use Boost_LIBRARIES instead of Boost_PYTHON_LIBRARY
++  This was causing issues when building with python3 since then
++  `Boost_PYTHON_LIBRARY` is not set, instead cmake sets
++  `Boost_PYTHON3_LIBRARY`. So instead of adding each library separately,
++  using `Boost_LIBRARIES` seems to be better. For reference, from the
++  cmake docs:
++  ```
++  Boost_LIBRARIES        - Boost component libraries to be linked
++  Boost\_<C>_LIBRARY      - Libraries to link for component <C>
++  ```
++* Contributors: Kartik Mohta, Vincent Rabaud
++
++1.11.12 (2017-01-29)
++--------------------
++* Properly detect Boost Python 2 or 3
++  This fixes `#59 <https://github.com/ros-perception/image_common/issues/59>`_
++* 1.11.11
++* update changelogs
++* Contributors: Vincent Rabaud
++
++1.11.11 (2016-09-24)
++--------------------
++
++1.11.10 (2016-01-19)
++--------------------
++* Add install target for python wrapper library
++* Only link against needed Boost libraries
++  9829b02 introduced a python dependency into find_package(Boost..) which
++  results in ${Boost_LIBRARIES} containing boost_python and such a
++  dependency to libpython at link time. With this patch we only link
++  against the needed libraries.
++* Contributors: Jochen Sprickerhof, Vincent Rabaud
++
++1.11.9 (2016-01-17)
++-------------------
++* Add python wrapper for readCalibration.
++  Reads .ini or .yaml calibration file and returns camera name and sensor_msgs/cameraInfo.
++* Use $catkin_EXPORTED_TARGETS
++* Contributors: Jochen Sprickerhof, Markus Roth
++
++1.11.8 (2015-11-29)
++-------------------
++* Remove no-longer-neccessary flags to allow OS X to use 0.3 and 0.5 of yaml-cpp.
++* remove buggy CMake message
++* Contributors: Helen Oleynikova, Vincent Rabaud
++
++1.11.7 (2015-07-28)
++-------------------
++* fix `#39 <https://github.com/ros-perception/image_common/issues/39>`_
++* make sure test does not fail
++* Contributors: Vincent Rabaud
++
++1.11.6 (2015-07-16)
++-------------------
++* [camera_calibration_parsers] Better error message when calib file can't be written
++* add rosbash as a test dependency
++* add a test dependency now that we have tests
++* parse distortion of arbitraty length in INI
++  This fixes `#33 <https://github.com/ros-perception/image_common/issues/33>`_
++* add a test to parse INI calibration files with 5 or 8 D param
++* Add yaml-cpp case for building on Android
++* Contributors: Gary Servin, Isaac IY Saito, Vincent Rabaud
++
++1.11.5 (2015-05-14)
++-------------------
++* Fix catkin_make failure (due to yaml-cpp deps) for mac os
++* Contributors: Yifei Zhang
++
++1.11.4 (2014-09-21)
++-------------------
++* fix bad yaml-cpp usage in certain conditions
++  fixes `#24 <https://github.com/ros-perception/image_common/issues/24>`_
++* Contributors: Vincent Rabaud
++
++1.11.3 (2014-05-19)
++-------------------
++
++1.11.2 (2014-02-13  08:32:06 +0100)
++-----------------------------------
++* add a dependency on pkg-config to have it work on Indigo
++
++1.11.1 (2014-01-26  02:32:06 +0100)
++-----------------------------------
++* fix YAML CPP 0.5.x compatibility
+--- /dev/null
++++ ros-noetic-camera-calibration-parsers-1.12.0/CMakeLists.txt
+@@ -0,0 +1,79 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(camera_calibration_parsers)
++
++find_package(catkin REQUIRED sensor_msgs rosconsole roscpp roscpp_serialization)
++
++find_package(PythonLibs REQUIRED)
++find_package(Boost REQUIRED COMPONENTS filesystem python)
++include_directories(include ${catkin_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS} ${PYTHON_INCLUDE_DIRS})
++
++catkin_python_setup()
++
++catkin_package(
++  INCLUDE_DIRS include
++  LIBRARIES ${PROJECT_NAME}
++  CATKIN_DEPENDS sensor_msgs
++)
++
++find_package(PkgConfig)
++
++
++if (ANDROID)
++    find_package(yaml-cpp)
++    add_definitions(-DHAVE_NEW_YAMLCPP)
++else()
++  pkg_check_modules(YAML_CPP yaml-cpp)
++  if(${YAML_CPP_VERSION} VERSION_GREATER 0.5)
++    add_definitions(-DHAVE_NEW_YAMLCPP)
++  endif()
++  link_directories(${YAML_CPP_LIBRARY_DIRS})
++endif()
++include_directories(${YAML_CPP_INCLUDE_DIRS})
++
++# define the library
++add_library(${PROJECT_NAME}
++  src/parse.cpp
++  src/parse_ini.cpp
++  src/parse_yml.cpp
++)
++
++add_library(${PROJECT_NAME}_wrapper
++  src/parse_wrapper.cpp)
++
++target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${YAML_CPP_LIBRARIES} ${Boost_FILESYSTEM_LIBRARY})
++target_link_libraries(${PROJECT_NAME}_wrapper ${PROJECT_NAME} ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${PYTHON_LIBRARIES})
++
++# Don't prepend wrapper library name with lib and add to Python libs.
++set_target_properties(${PROJECT_NAME}_wrapper PROPERTIES
++        PREFIX ""
++        LIBRARY_OUTPUT_DIRECTORY ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_PYTHON_DESTINATION}
++        )
++
++add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS})
++
++install(
++  TARGETS ${PROJECT_NAME}
++  DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
++  COMPONENT main
++)
++install(
++  DIRECTORY include/${PROJECT_NAME}/
++  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
++)
++
++# define the exe to convert
++add_executable(convert src/convert.cpp)
++target_link_libraries(convert ${PROJECT_NAME} ${rosconsole_LIBRARIES})
++
++install(
++  TARGETS convert
++  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
++)
++
++install(TARGETS ${PROJECT_NAME}_wrapper
++  DESTINATION ${CATKIN_PACKAGE_PYTHON_DESTINATION}
++)
++
++if(CATKIN_ENABLE_TESTING)
++  add_subdirectory(test)
++endif()
+--- /dev/null
++++ ros-noetic-camera-calibration-parsers-1.12.0/include/camera_calibration_parsers/parse.h
+@@ -0,0 +1,81 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++* 
++*  Copyright (c) 2009, Willow Garage, Inc.
++*  All rights reserved.
++* 
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++* 
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++* 
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++
++#ifndef CAMERA_CALIBRATION_PARSERS_PARSE_H
++#define CAMERA_CALIBRATION_PARSERS_PARSE_H
++
++#include <string>
++#include <sensor_msgs/CameraInfo.h>
++
++/// @todo: use stream-based API, so no read/parse distinction
++namespace camera_calibration_parsers {
++
++/**
++ * \brief Write calibration parameters to a file.
++ *
++ * The file name extension (.yml, .yaml, or .ini) determines the output format.
++ *
++ * \param file_name File to write
++ * \param camera_name Name of the camera
++ * \param cam_info Camera parameters
++ */
++bool writeCalibration(const std::string& file_name, const std::string& camera_name,
++                      const sensor_msgs::CameraInfo& cam_info);
++
++/**
++ * \brief Read calibration parameters from a file.
++ *
++ * The file may be YAML or INI format.
++ *
++ * \param file_name File to read
++ * \param[out] camera_name Name of the camera
++ * \param[out] cam_info Camera parameters
++ */
++bool readCalibration(const std::string& file_name, std::string& camera_name,
++                     sensor_msgs::CameraInfo& cam_info);
++
++/**
++ * \brief Parse calibration parameters from a string in memory.
++ *
++ * \param buffer Calibration string
++ * \param format Format of calibration string, "yml" or "ini"
++ * \param[out] camera_name Name of the camera
++ * \param[out] cam_info Camera parameters
++ */
++bool parseCalibration(const std::string& buffer, const std::string& format,
++                      std::string& camera_name, sensor_msgs::CameraInfo& cam_info);
++
++} //namespace camera_calibration_parsers
++
++#endif
+--- /dev/null
++++ ros-noetic-camera-calibration-parsers-1.12.0/include/camera_calibration_parsers/parse_ini.h
+@@ -0,0 +1,96 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++* 
++*  Copyright (c) 2009, Willow Garage, Inc.
++*  All rights reserved.
++* 
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++* 
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++* 
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++
++#ifndef CAMERA_CALIBRATION_PARSERS_PARSE_INI_H
++#define CAMERA_CALIBRATION_PARSERS_PARSE_INI_H
++
++#include <string>
++#include <sensor_msgs/CameraInfo.h>
++
++namespace camera_calibration_parsers {
++
++/**
++ * \brief Write calibration parameters to a file in INI format.
++ *
++ * \param out Output stream to write to
++ * \param camera_name Name of the camera
++ * \param cam_info Camera parameters
++ */
++bool writeCalibrationIni(std::ostream& out, const std::string& camera_name,
++                         const sensor_msgs::CameraInfo& cam_info);
++
++/**
++ * \brief Read calibration parameters from an INI file.
++ *
++ * \param in Input stream to read from
++ * \param[out] camera_name Name of the camera
++ * \param[out] cam_info Camera parameters
++ */
++bool readCalibrationIni(std::istream& in, std::string& camera_name, sensor_msgs::CameraInfo& cam_info);
++
++/**
++ * \brief Write calibration parameters to a file in INI format.
++ *
++ * \param file_name File to write
++ * \param camera_name Name of the camera
++ * \param cam_info Camera parameters
++ */
++bool writeCalibrationIni(const std::string& file_name, const std::string& camera_name,
++                         const sensor_msgs::CameraInfo& cam_info);
++
++/**
++ * \brief Read calibration parameters from an INI file.
++ *
++ * \param file_name File to read
++ * \param[out] camera_name Name of the camera
++ * \param[out] cam_info Camera parameters
++ */
++bool readCalibrationIni(const std::string& file_name, std::string& camera_name,
++                        sensor_msgs::CameraInfo& cam_info);
++
++/**
++ * \brief Parse calibration parameters from a string in memory of INI format.
++ *
++ * \param buffer Calibration string
++ * \param[out] camera_name Name of the camera
++ * \param[out] cam_info Camera parameters
++ */
++bool parseCalibrationIni(const std::string& buffer, std::string& camera_name,
++                         sensor_msgs::CameraInfo& cam_info);
++
++//bool readCalibrationIni
++
++} //namespace camera_calibration_parsers
++
++#endif
+--- /dev/null
++++ ros-noetic-camera-calibration-parsers-1.12.0/include/camera_calibration_parsers/parse_wrapper.h
+@@ -0,0 +1,44 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++* 
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++* 
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++* 
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++
++#ifndef CAMERA_CALIBRATION_PARSERS_PARSE_WRAPPER_H
++#define CAMERA_CALIBRATION_PARSERS_PARSE_WRAPPER_H
++
++#include <string>
++#include <boost/python.hpp>
++
++namespace camera_calibration_parsers {
++
++boost::python::tuple readCalibrationWrapper(const std::string& file_name);
++
++} //namespace camera_calibration_parsers
++
++#endif
+--- /dev/null
++++ ros-noetic-camera-calibration-parsers-1.12.0/include/camera_calibration_parsers/parse_yml.h
+@@ -0,0 +1,86 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++* 
++*  Copyright (c) 2009, Willow Garage, Inc.
++*  All rights reserved.
++* 
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++* 
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++* 
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++
++#ifndef CAMERA_CALIBRATION_PARSERS_PARSE_YML_H
++#define CAMERA_CALIBRATION_PARSERS_PARSE_YML_H
++
++#include <string>
++#include <istream>
++#include <ostream>
++#include <sensor_msgs/CameraInfo.h>
++
++namespace camera_calibration_parsers {
++
++/**
++ * \brief Write calibration parameters to a file in YAML format.
++ *
++ * \param out Output stream to write to
++ * \param camera_name Name of the camera
++ * \param cam_info Camera parameters
++ */
++bool writeCalibrationYml(std::ostream& out, const std::string& camera_name,
++                         const sensor_msgs::CameraInfo& cam_info);
++
++/**
++ * \brief Read calibration parameters from a YAML file.
++ *
++ * \param in Input stream to read from
++ * \param[out] camera_name Name of the camera
++ * \param[out] cam_info Camera parameters
++ */
++bool readCalibrationYml(std::istream& in, std::string& camera_name, sensor_msgs::CameraInfo& cam_info);
++
++/**
++ * \brief Write calibration parameters to a file in YAML format.
++ *
++ * \param file_name File to write
++ * \param camera_name Name of the camera
++ * \param cam_info Camera parameters
++ */
++bool writeCalibrationYml(const std::string& file_name, const std::string& camera_name,
++                         const sensor_msgs::CameraInfo& cam_info);
++
++/**
++ * \brief Read calibration parameters from a YAML file.
++ *
++ * \param file_name File to read
++ * \param[out] camera_name Name of the camera
++ * \param[out] cam_info Camera parameters
++ */
++bool readCalibrationYml(const std::string& file_name, std::string& camera_name,
++                        sensor_msgs::CameraInfo& cam_info);
++
++} //namespace camera_calibration_parsers
++
++#endif
+--- /dev/null
++++ ros-noetic-camera-calibration-parsers-1.12.0/mainpage.dox
+@@ -0,0 +1,15 @@
++/**
++\mainpage
++\htmlinclude manifest.html
++
++\b camera_calibration_parsers contains routines for reading and writing
++camera calibration parameters. Two human-readable file formats are
++supported: YAML and the Videre INI format.
++
++\section codeapi Code API
++
++- camera_calibration_parsers::writeCalibration - Write parameters to a file
++- camera_calibration_parsers::readCalibration - Read parameters from a file
++- camera_calibration_parsers::parseCalibration - Read parameters from an in-memory buffer
++
++*/
+--- /dev/null
++++ ros-noetic-camera-calibration-parsers-1.12.0/package.xml
+@@ -0,0 +1,34 @@
++<package>
++  <name>camera_calibration_parsers</name>
++  <version>1.12.0</version>
++  <description>
++     camera_calibration_parsers contains routines for reading and writing camera calibration parameters.
++  </description>
++  <author>Patrick Mihelich</author>
++  <maintainer email="jack.oquin@gmail.com">Jack O'Quin</maintainer>
++  <maintainer email="vincent.rabaud@gmail.com">Vincent Rabaud</maintainer>
++  <license>BSD</license>
++
++  <url type="website">http://ros.org/wiki/camera_calibration_parsers</url>
++  <url type="bugtracker">https://github.com/ros-perception/image_common/issues</url>
++  <url type="repository">https://github.com/ros-perception/image_common</url>
++
++  <buildtool_depend>catkin</buildtool_depend>
++  
++  <build_depend>boost</build_depend>
++  <build_depend>pkg-config</build_depend>
++  <build_depend>rosconsole</build_depend>
++  <build_depend>sensor_msgs</build_depend>
++  <build_depend>yaml-cpp</build_depend>
++  <build_depend>roscpp</build_depend>
++  <build_depend>roscpp_serialization</build_depend>
++
++  <run_depend>boost</run_depend>
++  <run_depend>sensor_msgs</run_depend>
++  <run_depend>yaml-cpp</run_depend>
++  <run_depend>roscpp</run_depend>
++  <run_depend>roscpp_serialization</run_depend>
++
++  <test_depend>rosbash</test_depend>
++  <test_depend>rosunit</test_depend>
++</package>
+--- /dev/null
++++ ros-noetic-camera-calibration-parsers-1.12.0/setup.py
+@@ -0,0 +1,12 @@
++# ! DO NOT MANUALLY INVOKE THIS setup.py, USE CATKIN INSTEAD
++
++from catkin_pkg.python_setup import generate_distutils_setup
++
++from setuptools import setup
++
++# fetch values from package.xml
++setup_args = generate_distutils_setup(
++    packages=['camera_calibration_parsers'],
++    package_dir={'': 'src'})
++
++setup(**setup_args)
+--- /dev/null
++++ ros-noetic-camera-calibration-parsers-1.12.0/src/camera_calibration_parsers/__init__.py
+@@ -0,0 +1,17 @@
++from camera_calibration_parsers.camera_calibration_parsers_wrapper import __readCalibrationWrapper
++from sensor_msgs.msg import CameraInfo
++
++def readCalibration(file_name):
++    """Read .ini or .yaml calibration file and return (camera name and cameraInfo message).
++    
++    @param file_name: camera calibration file name
++    @type file_name: str
++    @return: (camera name, cameraInfo message) or None on Error
++    @rtype: tuple(str, sensor_msgs.msg.CameraInfo | None
++    """
++    ret, cn, ci = __readCalibrationWrapper(file_name)
++    if not ret:
++        return None
++    c = CameraInfo()
++    c.deserialize(ci)
++    return cn, c
+--- /dev/null
++++ ros-noetic-camera-calibration-parsers-1.12.0/src/convert.cpp
+@@ -0,0 +1,62 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++* 
++*  Copyright (c) 2009, Willow Garage, Inc.
++*  All rights reserved.
++* 
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++* 
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++* 
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++
++#include "camera_calibration_parsers/parse.h"
++#include <ros/console.h>
++#include <cstdio>
++
++using namespace camera_calibration_parsers;
++
++int main(int argc, char** argv)
++{
++  if (argc < 3) {
++    printf("Usage: %s input.yml output.ini\n"
++           "       %s input.ini output.yml\n", argv[0], argv[0]);
++    return 0;
++  }
++
++  std::string name;
++  sensor_msgs::CameraInfo cam_info;
++  if (!readCalibration(argv[1], name, cam_info)) {
++    ROS_ERROR("Failed to load camera model from file %s", argv[1]);
++    return -1;
++  }
++  if (!writeCalibration(argv[2], name, cam_info)) {
++    ROS_ERROR("Failed to save camera model to file %s", argv[2]);
++    return -1;
++  }
++  
++  ROS_INFO("Saved %s", argv[2]);
++  return 0;
++}
+--- /dev/null
++++ ros-noetic-camera-calibration-parsers-1.12.0/src/parse.cpp
+@@ -0,0 +1,74 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++* 
++*  Copyright (c) 2009, Willow Garage, Inc.
++*  All rights reserved.
++* 
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++* 
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++* 
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++
++#include "camera_calibration_parsers/parse.h"
++#include "camera_calibration_parsers/parse_ini.h"
++#include "camera_calibration_parsers/parse_yml.h"
++
++#include <boost/algorithm/string/predicate.hpp>
++
++namespace camera_calibration_parsers {
++
++bool writeCalibration(const std::string& file_name, const std::string& camera_name,
++                      const sensor_msgs::CameraInfo& cam_info)
++{
++  if (boost::iends_with(file_name, ".ini"))
++    return writeCalibrationIni(file_name, camera_name, cam_info);
++  if (boost::iends_with(file_name, ".yml") || boost::iends_with(file_name, ".yaml"))
++    return writeCalibrationYml(file_name, camera_name, cam_info);
++
++  return false;
++}
++
++bool readCalibration(const std::string& file_name, std::string& camera_name,
++                     sensor_msgs::CameraInfo& cam_info)
++{
++  if (boost::iends_with(file_name, ".ini"))
++    return readCalibrationIni(file_name, camera_name, cam_info);
++  if (boost::iends_with(file_name, ".yml") || boost::iends_with(file_name, ".yaml"))
++    return readCalibrationYml(file_name, camera_name, cam_info);
++
++  return false;
++}
++
++bool parseCalibration(const std::string& buffer, const std::string& format,
++                      std::string& camera_name, sensor_msgs::CameraInfo& cam_info)
++{
++  if (format != "ini")
++    return false;
++
++  return parseCalibrationIni(buffer, camera_name, cam_info);
++}
++
++} //namespace camera_calibration_parsers
+--- /dev/null
++++ ros-noetic-camera-calibration-parsers-1.12.0/src/parse_ini.cpp
+@@ -0,0 +1,248 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++* 
++*  Copyright (c) 2009, Willow Garage, Inc.
++*  All rights reserved.
++* 
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++* 
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++* 
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++
++#include "camera_calibration_parsers/parse_ini.h"
++#include <sensor_msgs/distortion_models.h>
++#include <ros/console.h>
++
++#include <boost/spirit/include/phoenix_stl.hpp>
++#include <boost/spirit/include/qi.hpp>
++#include <boost/spirit/include/classic_core.hpp>
++#include <boost/spirit/include/classic_file_iterator.hpp>
++#include <boost/spirit/include/classic_confix.hpp>
++#include <boost/spirit/include/classic_loops.hpp>
++#include <boost/typeof/typeof.hpp>
++#include <boost/filesystem.hpp>
++#include <iterator>
++#include <fstream>
++
++namespace camera_calibration_parsers {
++
++/// @todo Move to new spirit
++using namespace BOOST_SPIRIT_CLASSIC_NS;
++
++/// \cond
++
++struct SimpleMatrix
++{
++  int rows;
++  int cols;
++  const double* data;
++
++  SimpleMatrix(int rows, int cols, const double* data)
++    : rows(rows), cols(cols), data(data)
++  {}
++};
++
++std::ostream& operator << (std::ostream& out, const SimpleMatrix& m)
++{
++  for (int i = 0; i < m.rows; ++i) {
++    for (int j = 0; j < m.cols; ++j) {
++      out << m.data[m.cols*i+j] << " ";
++    }
++    out << std::endl;
++  }
++  return out;
++}
++
++/// \endcond
++
++bool writeCalibrationIni(std::ostream& out, const std::string& camera_name,
++                         const sensor_msgs::CameraInfo& cam_info)
++{
++  // Videre INI format is legacy, only supports plumb bob distortion model.
++  if (cam_info.distortion_model != sensor_msgs::distortion_models::PLUMB_BOB ||
++      cam_info.D.size() != 5) {
++    ROS_ERROR("Videre INI format can only save calibrations using the plumb bob distortion model. "
++              "Use the YAML format instead.\n"
++              "\tdistortion_model = '%s', expected '%s'\n"
++              "\tD.size() = %d, expected 5", cam_info.distortion_model.c_str(),
++              sensor_msgs::distortion_models::PLUMB_BOB.c_str(), (int)cam_info.D.size());
++    return false;
++  }
++  
++  out.precision(5);
++  out << std::fixed;
++  
++  out << "# Camera intrinsics\n\n";
++  /// @todo time?
++  out << "[image]\n\n";
++  out << "width\n" << cam_info.width << "\n\n";
++  out << "height\n" << cam_info.height << "\n\n";
++  out << "[" << camera_name << "]\n\n";
++
++  out << "camera matrix\n"     << SimpleMatrix(3, 3, &cam_info.K[0]);
++  out << "\ndistortion\n"      << SimpleMatrix(1, 5, &cam_info.D[0]);
++  out << "\n\nrectification\n" << SimpleMatrix(3, 3, &cam_info.R[0]);
++  out << "\nprojection\n"      << SimpleMatrix(3, 4, &cam_info.P[0]);
++
++  return true;
++}
++
++bool writeCalibrationIni(const std::string& file_name, const std::string& camera_name,
++                         const sensor_msgs::CameraInfo& cam_info)
++{
++  boost::filesystem::path dir(boost::filesystem::path(file_name).parent_path());
++  if (!dir.empty() && !boost::filesystem::exists(dir) &&
++     !boost::filesystem::create_directories(dir)){
++    ROS_ERROR("Unable to create directory for camera calibration file [%s]", dir.c_str());
++  }
++  std::ofstream out(file_name.c_str());
++  if (!out.is_open())
++  {
++    ROS_ERROR("Unable to open camera calibration file [%s] for writing", file_name.c_str());
++    return false;
++  }
++  return writeCalibrationIni(out, camera_name, cam_info);
++}
++
++/// \cond
++// Semantic action to store a sequence of values in an array
++template <typename T>
++struct ArrayAssignActor
++{
++  ArrayAssignActor(T* start)
++    : ptr_(start)
++  {}
++
++  void operator()(T val) const
++  {
++    *ptr_++ = val;
++  }
++
++  mutable T* ptr_;
++};
++
++// Semantic action generator
++template <typename T>
++ArrayAssignActor<T> array_assign_a(T* start)
++{
++  return ArrayAssignActor<T>(start);
++}
++
++template <typename Iterator>
++bool parseCalibrationIniRange(Iterator first, Iterator last,
++                              std::string& camera_name, sensor_msgs::CameraInfo& cam_info)
++{
++  cam_info.D.clear();
++
++  // We don't actually use the [externals] info, but it's part of the format
++  bool have_externals = false;
++  double trans[3], rot[3];
++
++  /// @todo separate grammar out into separate function
++  
++  // Image section (width, height)
++  BOOST_AUTO(image,
++      str_p("[image]")
++      >> "width"
++      >> uint_p[assign_a(cam_info.width)]
++      >> "height"
++      >> uint_p[assign_a(cam_info.height)]
++     );
++
++  // Optional externals section
++  BOOST_AUTO(externals,
++      str_p("[externals]")
++      >> "translation"
++      >> repeat_p(3)[real_p[array_assign_a(trans)]]
++      >> "rotation"
++      >> repeat_p(3)[real_p[array_assign_a(rot)]]
++     );
++
++  // Parser to save name of camera section
++  BOOST_AUTO(name, confix_p('[', (*anychar_p)[assign_a(camera_name)], ']'));
++
++  // Camera section (intrinsics)
++  BOOST_AUTO(camera,
++      name
++      >> "camera matrix"
++      >> repeat_p(9)[real_p[array_assign_a(&cam_info.K[0])]]
++      >> "distortion"
++      >> *(real_p[push_back_a(cam_info.D)])
++      >> "rectification"
++      >> repeat_p(9)[real_p[array_assign_a(&cam_info.R[0])]]
++      >> "projection"
++      >> repeat_p(12)[real_p[array_assign_a(&cam_info.P[0])]]
++     );
++
++  // Full grammar
++  BOOST_AUTO(ini_grammar,
++      image
++      >> !externals[assign_a(have_externals, true)]
++      >>  camera);
++
++  // Skip whitespace and line comments
++  BOOST_AUTO(skip, space_p | comment_p('#'));
++
++  parse_info<Iterator> info = parse(first, last, ini_grammar, skip);
++
++  // Figure out the distortion model
++  if (cam_info.D.size() == 5)
++    cam_info.distortion_model = sensor_msgs::distortion_models::PLUMB_BOB;
++  else if (cam_info.D.size() == 8)
++    cam_info.distortion_model = sensor_msgs::distortion_models::RATIONAL_POLYNOMIAL;
++
++  return info.hit;
++}
++/// \endcond
++
++bool readCalibrationIni(std::istream& in, std::string& camera_name, sensor_msgs::CameraInfo& cam_info)
++{
++  std::istream_iterator<char> first(in), last;
++  return parseCalibrationIniRange(first, last, camera_name, cam_info);
++}
++
++bool readCalibrationIni(const std::string& file_name, std::string& camera_name,
++                        sensor_msgs::CameraInfo& cam_info)
++{
++  typedef file_iterator<char> Iterator;
++
++  Iterator first(file_name);
++  if (!first) {
++    ROS_INFO("Unable to open camera calibration file [%s]", file_name.c_str());
++    return false;
++  }
++  Iterator last = first.make_end();
++
++  return parseCalibrationIniRange(first, last, camera_name, cam_info);
++}
++
++bool parseCalibrationIni(const std::string& buffer, std::string& camera_name,
++                         sensor_msgs::CameraInfo& cam_info)
++{
++  return parseCalibrationIniRange(buffer.begin(), buffer.end(), camera_name, cam_info);
++}
++
++} //namespace camera_calibration_parsers
+--- /dev/null
++++ ros-noetic-camera-calibration-parsers-1.12.0/src/parse_wrapper.cpp
+@@ -0,0 +1,78 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++* 
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++* 
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++* 
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++
++#include "camera_calibration_parsers/parse.h"
++#include "camera_calibration_parsers/parse_wrapper.h"
++
++#include <boost/python.hpp>
++#include <ros/serialization.h>
++
++namespace camera_calibration_parsers {
++
++/* Write a ROS message into a serialized string.
++ * @from https://github.com/galou/python_bindings_tutorial/blob/master/src/add_two_ints_wrapper.cpp#L27
++*/
++template <typename M>
++std::string to_python(const M& msg)
++{
++  size_t serial_size = ros::serialization::serializationLength(msg);
++  boost::shared_array<uint8_t> buffer(new uint8_t[serial_size]);
++  ros::serialization::OStream stream(buffer.get(), serial_size);
++  ros::serialization::serialize(stream, msg);
++  std::string str_msg;
++  str_msg.reserve(serial_size);
++  for (size_t i = 0; i < serial_size; ++i)
++  {
++    str_msg.push_back(buffer[i]);
++  }
++  return str_msg;
++}
++
++// Wrapper for readCalibration()
++boost::python::tuple readCalibrationWrapper(const std::string& file_name)
++{
++  std::string camera_name;
++  sensor_msgs::CameraInfo camera_info;
++  bool result = readCalibration(file_name, camera_name, camera_info);
++  std::string cam_info = to_python(camera_info);
++  PyObject * cam_info_py = PyBytes_FromStringAndSize(cam_info.c_str(), cam_info.size());
++  return boost::python::make_tuple(
++    result,
++    camera_name,
++    boost::python::object(boost::python::handle<>(cam_info_py)));
++}
++
++BOOST_PYTHON_MODULE(camera_calibration_parsers_wrapper)
++{
++    boost::python::def("__readCalibrationWrapper", readCalibrationWrapper, boost::python::args("file_name"), "");
++}
++
++} //namespace camera_calibration_parsers
+--- /dev/null
++++ ros-noetic-camera-calibration-parsers-1.12.0/src/parse_yml.cpp
+@@ -0,0 +1,240 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++* 
++*  Copyright (c) 2009, Willow Garage, Inc.
++*  All rights reserved.
++* 
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++* 
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++* 
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++
++#include "camera_calibration_parsers/parse_yml.h"
++#include <sensor_msgs/distortion_models.h>
++#include <boost/filesystem.hpp>
++#include <yaml-cpp/yaml.h>
++#include <fstream>
++#include <ctime>
++#include <cassert>
++#include <cstring>
++#include <ros/console.h>
++
++namespace camera_calibration_parsers {
++
++/// \cond
++
++static const char CAM_YML_NAME[]    = "camera_name";
++static const char WIDTH_YML_NAME[]  = "image_width";
++static const char HEIGHT_YML_NAME[] = "image_height";
++static const char K_YML_NAME[]      = "camera_matrix";
++static const char D_YML_NAME[]      = "distortion_coefficients";
++static const char R_YML_NAME[]      = "rectification_matrix";
++static const char P_YML_NAME[]      = "projection_matrix";
++static const char DMODEL_YML_NAME[] = "distortion_model";
++
++struct SimpleMatrix
++{
++  int rows;
++  int cols;
++  double* data;
++
++  SimpleMatrix(int rows, int cols, double* data)
++    : rows(rows), cols(cols), data(data)
++  {}
++};
++
++YAML::Emitter& operator << (YAML::Emitter& out, const SimpleMatrix& m)
++{
++  out << YAML::BeginMap;
++  out << YAML::Key << "rows" << YAML::Value << m.rows;
++  out << YAML::Key << "cols" << YAML::Value << m.cols;
++  //out << YAML::Key << "dt"   << YAML::Value << "d"; // OpenCV data type specifier
++  out << YAML::Key << "data" << YAML::Value;
++  out << YAML::Flow;
++  out << YAML::BeginSeq;
++  for (int i = 0; i < m.rows*m.cols; ++i)
++    out << m.data[i];
++  out << YAML::EndSeq;
++  out << YAML::EndMap;
++  return out;
++}
++
++#ifdef HAVE_NEW_YAMLCPP
++template<typename T>
++void operator >> (const YAML::Node& node, T& i)
++{
++  i = node.as<T>();
++}
++#endif
++
++void operator >> (const YAML::Node& node, SimpleMatrix& m)
++{
++  int rows, cols;
++  node["rows"] >> rows;
++  assert(rows == m.rows);
++  node["cols"] >> cols;
++  assert(cols == m.cols);
++  const YAML::Node& data = node["data"];
++  for (int i = 0; i < rows*cols; ++i)
++    data[i] >> m.data[i];
++}
++
++/// \endcond
++
++bool writeCalibrationYml(std::ostream& out, const std::string& camera_name,
++                         const sensor_msgs::CameraInfo& cam_info)
++{
++  YAML::Emitter emitter;
++  emitter << YAML::BeginMap;
++
++#if 0
++  // Calibration time
++  /// @todo Emitting the time breaks yaml-cpp on reading for some reason
++  time_t raw_time;
++  time( &raw_time );
++  emitter << YAML::Key << "calibration_time";
++  emitter << YAML::Value << asctime(localtime(&raw_time));
++#endif
++
++  // Image dimensions
++  emitter << YAML::Key << WIDTH_YML_NAME << YAML::Value << (int)cam_info.width;
++  emitter << YAML::Key << HEIGHT_YML_NAME << YAML::Value << (int)cam_info.height;
++  
++  // Camera name and intrinsics
++  emitter << YAML::Key << CAM_YML_NAME << YAML::Value << camera_name;
++  emitter << YAML::Key << K_YML_NAME << YAML::Value << SimpleMatrix(3, 3, const_cast<double*>(&cam_info.K[0]));
++  emitter << YAML::Key << DMODEL_YML_NAME << YAML::Value << cam_info.distortion_model;
++  emitter << YAML::Key << D_YML_NAME << YAML::Value << SimpleMatrix(1, cam_info.D.size(),
++                                                                    const_cast<double*>(&cam_info.D[0]));
++  emitter << YAML::Key << R_YML_NAME << YAML::Value << SimpleMatrix(3, 3, const_cast<double*>(&cam_info.R[0]));
++  emitter << YAML::Key << P_YML_NAME << YAML::Value << SimpleMatrix(3, 4, const_cast<double*>(&cam_info.P[0]));
++
++  emitter << YAML::EndMap;
++
++  out << emitter.c_str();
++  return true;
++}
++
++bool writeCalibrationYml(const std::string& file_name, const std::string& camera_name,
++                         const sensor_msgs::CameraInfo& cam_info)
++{
++  boost::filesystem::path dir(boost::filesystem::path(file_name).parent_path());
++  if (!dir.empty() && !boost::filesystem::exists(dir) &&
++     !boost::filesystem::create_directories(dir)){
++    ROS_ERROR("Unable to create directory for camera calibration file [%s]", dir.c_str());
++  }
++  std::ofstream out(file_name.c_str());
++  if (!out.is_open())
++  {
++    ROS_ERROR("Unable to open camera calibration file [%s] for writing", file_name.c_str());
++    return false;
++  }
++  return writeCalibrationYml(out, camera_name, cam_info);
++}
++
++bool readCalibrationYml(std::istream& in, std::string& camera_name, sensor_msgs::CameraInfo& cam_info)
++{
++  try {
++#ifdef HAVE_NEW_YAMLCPP
++    YAML::Node doc = YAML::Load(in);
++
++    if (doc[CAM_YML_NAME])
++      doc[CAM_YML_NAME] >> camera_name;
++    else
++      camera_name = "unknown";
++#else
++    YAML::Parser parser(in);
++    if (!parser) {
++      ROS_ERROR("Unable to create YAML parser for camera calibration");
++      return false;
++    }
++    YAML::Node doc;
++    parser.GetNextDocument(doc);
++
++    if (const YAML::Node* name_node = doc.FindValue(CAM_YML_NAME))
++      *name_node >> camera_name;
++    else
++      camera_name = "unknown";
++#endif
++
++    doc[WIDTH_YML_NAME] >> cam_info.width;
++    doc[HEIGHT_YML_NAME] >> cam_info.height;
++
++    // Read in fixed-size matrices
++    SimpleMatrix K_(3, 3, &cam_info.K[0]);
++    doc[K_YML_NAME] >> K_;
++    SimpleMatrix R_(3, 3, &cam_info.R[0]);
++    doc[R_YML_NAME] >> R_;
++    SimpleMatrix P_(3, 4, &cam_info.P[0]);
++    doc[P_YML_NAME] >> P_;
++
++    // Different distortion models may have different numbers of parameters
++#ifdef HAVE_NEW_YAMLCPP
++    if (doc[DMODEL_YML_NAME]) {
++      doc[DMODEL_YML_NAME] >> cam_info.distortion_model;
++    }
++#else
++    if (const YAML::Node* model_node = doc.FindValue(DMODEL_YML_NAME)) {
++      *model_node >> cam_info.distortion_model;
++    }
++#endif
++    else {
++      // Assume plumb bob for backwards compatibility
++      cam_info.distortion_model = sensor_msgs::distortion_models::PLUMB_BOB;
++      ROS_WARN("Camera calibration file did not specify distortion model, assuming plumb bob");
++    }
++    const YAML::Node& D_node = doc[D_YML_NAME];
++    int D_rows, D_cols;
++    D_node["rows"] >> D_rows;
++    D_node["cols"] >> D_cols;
++    const YAML::Node& D_data = D_node["data"];
++    cam_info.D.resize(D_rows*D_cols);
++    for (int i = 0; i < D_rows*D_cols; ++i)
++      D_data[i] >> cam_info.D[i];
++  
++    return true;
++  }
++  catch (YAML::Exception& e) {
++    ROS_ERROR("Exception parsing YAML camera calibration:\n%s", e.what());
++    return false;
++  }
++}
++
++bool readCalibrationYml(const std::string& file_name, std::string& camera_name,
++                        sensor_msgs::CameraInfo& cam_info)
++{
++  std::ifstream fin(file_name.c_str());
++  if (!fin.good()) {
++    ROS_INFO("Unable to open camera calibration file [%s]", file_name.c_str());
++    return false;
++  }
++  bool success = readCalibrationYml(fin, camera_name, cam_info);
++  if (!success)
++    ROS_ERROR("Failed to parse camera calibration from file [%s]", file_name.c_str());
++  return success;
++}
++
++} //namespace camera_calibration_parsers
+--- /dev/null
++++ ros-noetic-camera-calibration-parsers-1.12.0/test/CMakeLists.txt
+@@ -0,0 +1,3 @@
++file(COPY calib5.ini calib8.ini DESTINATION ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_SHARE_DESTINATION}/test)
++
++catkin_add_nosetests(parser.py)
+--- /dev/null
++++ ros-noetic-camera-calibration-parsers-1.12.0/test/calib5.ini
+@@ -0,0 +1,27 @@
++[image]
++
++width
++640
++
++height
++480
++
++[mono_left]
++
++camera matrix
++369.344588 0.000000 320.739078
++0.000000 367.154330 203.592450
++0.000000 0.000000 1.000000
++
++distortion
++0.189544 -0.018229 -0.000630 0.000054 -0.000212
++
++rectification
++1.000000 0.000000 0.000000
++0.000000 1.000000 0.000000
++0.000000 0.000000 1.000000
++
++projection
++262.927429 0.000000 320.984481 0.000000
++0.000000 302.056213 188.592437 0.000000
++0.000000 0.000000 1.000000 0.000000
+--- /dev/null
++++ ros-noetic-camera-calibration-parsers-1.12.0/test/calib8.ini
+@@ -0,0 +1,27 @@
++[image]
++
++width
++640
++
++height
++480
++
++[mono_left]
++
++camera matrix
++369.344588 0.000000 320.739078
++0.000000 367.154330 203.592450
++0.000000 0.000000 1.000000
++
++distortion
++0.189544 -0.018229 -0.000630 0.000054 -0.000212 0.543582 -0.027892 0.000000
++
++rectification
++1.000000 0.000000 0.000000
++0.000000 1.000000 0.000000
++0.000000 0.000000 1.000000
++
++projection
++262.927429 0.000000 320.984481 0.000000
++0.000000 302.056213 188.592437 0.000000
++0.000000 0.000000 1.000000 0.000000
+--- /dev/null
++++ ros-noetic-camera-calibration-parsers-1.12.0/test/parser.py
+@@ -0,0 +1,61 @@
++#!/usr/bin/env python
++#
++# Software License Agreement (BSD License)
++#
++# Copyright (c) 2009, Willow Garage, Inc.
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++#  * Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++#  * Redistributions in binary form must reproduce the above
++#    copyright notice, this list of conditions and the following
++#    disclaimer in the documentation and/or other materials provided
++#    with the distribution.
++#  * Neither the name of the Willow Garage nor the names of its
++#    contributors may be used to endorse or promote products derived
++#    from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++
++import rosunit
++import subprocess
++import unittest
++import os
++from camera_calibration_parsers import readCalibration
++
++class TestParser(unittest.TestCase):
++    def test_ini(self):
++        for files in [('calib5.ini', 'calib5.yaml'), ('calib8.ini', 'calib8.yaml')]:
++            for dir in [ '', './']:
++                p = subprocess.Popen('rosrun camera_calibration_parsers convert $(rospack find camera_calibration_parsers)/test/%s %s%s' % (files[0], dir, files[1]), shell=True, stderr=subprocess.PIPE)
++                out, err = p.communicate()
++                self.assertEqual(err, b'')
++
++    def test_readCalibration(self):
++        script_dir = os.path.dirname(os.path.realpath(__file__))
++        camera_name, camera_info = readCalibration(os.path.join(script_dir, 'calib5.ini'))
++        self.assertEqual(camera_name, 'mono_left')
++        self.assertEqual(camera_info.height, 480)
++        self.assertEqual(camera_info.width, 640)
++        self.assertEqual(camera_info.P[0], 262.927429)
++        
++        camera_name, camera_info = readCalibration(os.path.join(script_dir, 'calib8.ini'))
++        self.assertEqual(camera_info.distortion_model, 'rational_polynomial')
++
++if __name__ == '__main__':
++    rosunit.unitrun('camera_calibration_parsers', 'parser', TestParser)

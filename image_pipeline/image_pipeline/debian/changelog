@@ -1,0 +1,184 @@
+ros-noetic-image-pipeline (1.17.0-0jammy) jammy; urgency=high
+
+
+
+ -- Vincent Rabaud <vincent.rabaud@gmail.com>  Sun, 16 Oct 2022 16:00:00 -0000
+
+ros-noetic-image-pipeline (1.16.0-0jammy) jammy; urgency=high
+
+
+
+ -- Vincent Rabaud <vincent.rabaud@gmail.com>  Thu, 11 Nov 2021 16:00:00 -0000
+
+ros-noetic-image-pipeline (1.15.3-0jammy) jammy; urgency=high
+
+  * remove email blasts from steve macenski (#595 <https://github.com/ros-perception/image_pipeline/issues/595>)
+  * Contributors: Steve Macenski
+
+ -- Vincent Rabaud <vincent.rabaud@gmail.com>  Thu, 10 Dec 2020 16:00:00 -0000
+
+ros-noetic-image-pipeline (1.15.2-0jammy) jammy; urgency=high
+
+
+
+ -- Vincent Rabaud <vincent.rabaud@gmail.com>  Mon, 18 May 2020 16:00:00 -0000
+
+ros-noetic-image-pipeline (1.15.1-0jammy) jammy; urgency=high
+
+
+
+ -- Vincent Rabaud <vincent.rabaud@gmail.com>  Sun, 17 May 2020 16:00:00 -0000
+
+ros-noetic-image-pipeline (1.15.0-0jammy) jammy; urgency=high
+
+  * Python 3 compatibility (#530 <https://github.com/ros-perception/image_pipeline/issues/530>)
+  * cmake_minimum_required to 3.0.2
+  * Adapted to OpenCV4
+  * import setup from setuptools instead of distutils-core
+  * Contributors: Joshua Whitley
+
+ -- Vincent Rabaud <vincent.rabaud@gmail.com>  Wed, 13 May 2020 16:00:00 -0000
+
+ros-noetic-image-pipeline (1.14.0-0jammy) jammy; urgency=high
+
+
+
+ -- Vincent Rabaud <vincent.rabaud@gmail.com>  Sat, 11 Jan 2020 16:00:00 -0000
+
+ros-noetic-image-pipeline (1.13.0-0jammy) jammy; urgency=high
+
+  * Merge pull request #395 <https://github.com/ros-perception/image_pipeline/issues/395> from ros-perception/steve_maintain
+  * adding autonomoustuff mainainer
+  * adding stevemacenski as maintainer to get emails
+  * Contributors: Joshua Whitley, Yoshito Okada, stevemacenski
+
+ -- Vincent Rabaud <vincent.rabaud@gmail.com>  Tue, 11 Jun 2019 16:00:00 -0000
+
+ros-noetic-image-pipeline (1.12.23-0jammy) jammy; urgency=high
+
+
+
+ -- Vincent Rabaud <vincent.rabaud@gmail.com>  Wed, 09 May 2018 16:00:00 -0000
+
+ros-noetic-image-pipeline (1.12.22-0jammy) jammy; urgency=high
+
+
+
+ -- Vincent Rabaud <vincent.rabaud@gmail.com>  Thu, 07 Dec 2017 16:00:00 -0000
+
+ros-noetic-image-pipeline (1.12.21-0jammy) jammy; urgency=high
+
+
+
+ -- Vincent Rabaud <vincent.rabaud@gmail.com>  Sat, 04 Nov 2017 16:00:00 -0000
+
+ros-noetic-image-pipeline (1.12.20-0jammy) jammy; urgency=high
+
+  * Update package.xml (#263 <https://github.com/ros-perception/image_pipeline/issues/263>)
+  * Contributors: Kei Okada
+
+ -- Vincent Rabaud <vincent.rabaud@gmail.com>  Sat, 29 Apr 2017 16:00:00 -0000
+
+ros-noetic-image-pipeline (1.12.19-0jammy) jammy; urgency=high
+
+
+
+ -- Vincent Rabaud <vincent.rabaud@gmail.com>  Sat, 23 Jul 2016 16:00:00 -0000
+
+ros-noetic-image-pipeline (1.12.18-0jammy) jammy; urgency=high
+
+
+
+ -- Vincent Rabaud <vincent.rabaud@gmail.com>  Mon, 11 Jul 2016 16:00:00 -0000
+
+ros-noetic-image-pipeline (1.12.17-0jammy) jammy; urgency=high
+
+
+
+ -- Vincent Rabaud <vincent.rabaud@gmail.com>  Sun, 10 Jul 2016 16:00:00 -0000
+
+ros-noetic-image-pipeline (1.12.16-0jammy) jammy; urgency=high
+
+
+
+ -- Vincent Rabaud <vincent.rabaud@gmail.com>  Fri, 18 Mar 2016 16:00:00 -0000
+
+ros-noetic-image-pipeline (1.12.15-0jammy) jammy; urgency=high
+
+
+
+ -- Vincent Rabaud <vincent.rabaud@gmail.com>  Sat, 16 Jan 2016 16:00:00 -0000
+
+ros-noetic-image-pipeline (1.12.14-0jammy) jammy; urgency=high
+
+
+
+ -- Vincent Rabaud <vincent.rabaud@gmail.com>  Tue, 21 Jul 2015 16:00:00 -0000
+
+ros-noetic-image-pipeline (1.12.13-0jammy) jammy; urgency=high
+
+
+
+ -- Vincent Rabaud <vincent.rabaud@gmail.com>  Sun, 05 Apr 2015 16:00:00 -0000
+
+ros-noetic-image-pipeline (1.12.12-0jammy) jammy; urgency=high
+
+
+
+ -- Vincent Rabaud <vincent.rabaud@gmail.com>  Tue, 30 Dec 2014 16:00:00 -0000
+
+ros-noetic-image-pipeline (1.12.11-0jammy) jammy; urgency=high
+
+
+
+ -- Vincent Rabaud <vincent.rabaud@gmail.com>  Sat, 25 Oct 2014 16:00:00 -0000
+
+ros-noetic-image-pipeline (1.12.10-0jammy) jammy; urgency=high
+
+
+
+ -- Vincent Rabaud <vincent.rabaud@gmail.com>  Sat, 27 Sep 2014 16:00:00 -0000
+
+ros-noetic-image-pipeline (1.12.9-0jammy) jammy; urgency=high
+
+
+
+ -- Vincent Rabaud <vincent.rabaud@gmail.com>  Sat, 20 Sep 2014 16:00:00 -0000
+
+ros-noetic-image-pipeline (1.12.8-0jammy) jammy; urgency=high
+
+
+
+ -- Vincent Rabaud <vincent.rabaud@gmail.com>  Mon, 18 Aug 2014 16:00:00 -0000
+
+ros-noetic-image-pipeline (1.12.6-0jammy) jammy; urgency=high
+
+
+
+ -- Vincent Rabaud <vincent.rabaud@gmail.com>  Sat, 26 Jul 2014 16:00:00 -0000
+
+ros-noetic-image-pipeline (1.12.4-0jammy) jammy; urgency=high
+
+
+
+ -- Vincent Rabaud <vincent.rabaud@gmail.com>  Sun, 27 Apr 2014 16:00:00 -0000
+
+ros-noetic-image-pipeline (1.12.3-0jammy) jammy; urgency=high
+
+
+
+ -- Vincent Rabaud <vincent.rabaud@gmail.com>  Fri, 11 Apr 2014 16:00:00 -0000
+
+ros-noetic-image-pipeline (1.12.2-0jammy) jammy; urgency=high
+
+
+
+ -- Vincent Rabaud <vincent.rabaud@gmail.com>  Mon, 07 Apr 2014 16:00:00 -0000
+
+ros-noetic-image-pipeline (1.11.7-0jammy) jammy; urgency=high
+
+
+
+ -- Vincent Rabaud <vincent.rabaud@gmail.com>  Thu, 27 Mar 2014 16:00:00 -0000
+
+

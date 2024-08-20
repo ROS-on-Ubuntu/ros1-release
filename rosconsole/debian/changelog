@@ -1,0 +1,399 @@
+ros-noetic-rosconsole (1.14.3-0jammy) jammy; urgency=high
+
+  * support NO_COLOR environment variable (#46 <https://github.com/ros/rosconsole/issues/46>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Tue, 13 Oct 2020 16:00:00 -0000
+
+ros-noetic-rosconsole (1.14.2-0jammy) jammy; urgency=high
+
+  * check MSVC predefined macro (#45 <https://github.com/ros/rosconsole/issues/45>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Wed, 05 Aug 2020 16:00:00 -0000
+
+ros-noetic-rosconsole (1.14.1-0jammy) jammy; urgency=high
+
+  * fix message in filter parameters (#43 <https://github.com/ros/rosconsole/issues/43>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 19 Jul 2020 16:00:00 -0000
+
+ros-noetic-rosconsole (1.14.0-0jammy) jammy; urgency=high
+
+  * add timestamp formatting for rosconsole (#22 <https://github.com/ros/rosconsole/issues/22>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 05 Apr 2020 16:00:00 -0000
+
+ros-noetic-rosconsole (1.13.15-0jammy) jammy; urgency=high
+
+  * export boost-regex-dev for now (#38 <https://github.com/ros/rosconsole/issues/38>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Tue, 11 Feb 2020 16:00:00 -0000
+
+ros-noetic-rosconsole (1.13.14-0jammy) jammy; urgency=high
+
+  * add missing run dep for boost regex (#37 <https://github.com/ros/rosconsole/issues/37>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Tue, 11 Feb 2020 16:00:00 -0000
+
+ros-noetic-rosconsole (1.13.13-0jammy) jammy; urgency=high
+
+  * bump minimum CMake version to avoid CMP0048 warning (#36 <https://github.com/ros/rosconsole/issues/36>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Mon, 10 Feb 2020 16:00:00 -0000
+
+ros-noetic-rosconsole (1.13.12-0jammy) jammy; urgency=high
+
+  * declare specific boost dependencies (#35 <https://github.com/ros/rosconsole/issues/35>)
+  * fix console printer to also print unknown levels (#34 <https://github.com/ros/rosconsole/issues/34>)
+  * fix level comparison for compatibility with upstream log4cxx (#33 <https://github.com/ros/rosconsole/issues/33>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Mon, 10 Feb 2020 16:00:00 -0000
+
+ros-noetic-rosconsole (1.13.11-0jammy) jammy; urgency=high
+
+  * direct WARN level messages to stderr (#29 <https://github.com/ros/rosconsole/issues/29>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Wed, 02 Oct 2019 16:00:00 -0000
+
+ros-noetic-rosconsole (1.13.10-0jammy) jammy; urgency=high
+
+  * add missing declaration of deregister_appender in impl namespace (#28 <https://github.com/ros/rosconsole/issues/28>)
+  * add deregistry declaration and base impl (#23 <https://github.com/ros/rosconsole/issues/23>)
+  * dll import/export visibility macro update (#26 <https://github.com/ros/rosconsole/issues/26>)
+  * fix long message causing program exit at exception (#25 <https://github.com/ros/rosconsole/issues/25>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 03 Mar 2019 16:00:00 -0000
+
+ros-noetic-rosconsole (1.13.9-0jammy) jammy; urgency=high
+
+  * don't overlay variables in logging macro (#21 <https://github.com/ros/rosconsole/issues/21>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 11 Nov 2018 16:00:00 -0000
+
+ros-noetic-rosconsole (1.13.8-0jammy) jammy; urgency=high
+
+  * fix double index increment in rosconsole_glog (#15 <https://github.com/ros/rosconsole/issues/15>)
+  * trigger LOG_THROTTLE when time goes backwards (#12 <https://github.com/ros/rosconsole/issues/12>)
+  * add deregistry function for LogAppender. (#17 <https://github.com/ros/rosconsole/issues/17>)
+  * replaced zero for NULL for null pointer constants (#14 <https://github.com/ros/rosconsole/issues/14>)
+  * fix rosconsole build issue when built on Windows (#13 <https://github.com/ros/rosconsole/issues/13>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 08 Nov 2018 16:00:00 -0000
+
+ros-noetic-rosconsole (1.13.7-0jammy) jammy; urgency=high
+
+  * moved rosconsole into a separate repository (see rosdistro#17919 <https://github.com/ros/rosdistro/issues/17919>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 20 May 2018 16:00:00 -0000
+
+ros-noetic-rosconsole (1.13.6-0jammy) jammy; urgency=high
+
+  * rename log macro argument from rate to period (#1318 <https://github.com/ros/ros_comm/issues/1318>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 04 Feb 2018 16:00:00 -0000
+
+ros-noetic-rosconsole (1.13.5-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Wed, 08 Nov 2017 16:00:00 -0000
+
+ros-noetic-rosconsole (1.13.4-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Wed, 01 Nov 2017 16:00:00 -0000
+
+ros-noetic-rosconsole (1.13.3-0jammy) jammy; urgency=high
+
+  * replace 'while(0)' with 'while(false)' to avoid warnings (#1179 <https://github.com/ros/ros_comm/issues/1179>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Tue, 24 Oct 2017 16:00:00 -0000
+
+ros-noetic-rosconsole (1.13.2-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Mon, 14 Aug 2017 16:00:00 -0000
+
+ros-noetic-rosconsole (1.13.1-0jammy) jammy; urgency=high
+
+  * remove extra semicolon in definition of macro ROSCONSOLE_PRINTF_ATTRIBUTE(a, b) (#1056 <https://github.com/ros/ros_comm/pull/1056>)
+  * add ROSCONSOLE_STDOUT_LINE_BUFFERED env var to force flushing stdout in Formatter::print (#1012 <https://github.com/ros/ros_comm/issues/1012>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Wed, 26 Jul 2017 16:00:00 -0000
+
+ros-noetic-rosconsole (1.13.0-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Tue, 21 Feb 2017 16:00:00 -0000
+
+ros-noetic-rosconsole (1.12.7-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 16 Feb 2017 16:00:00 -0000
+
+ros-noetic-rosconsole (1.12.6-0jammy) jammy; urgency=high
+
+  * add missing walltime to roscpp logging (#879 <https://github.com/ros/ros_comm/pull/879>)
+  * fix building on GCC-6 (#911 <https://github.com/ros/ros_comm/pull/911>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Tue, 25 Oct 2016 16:00:00 -0000
+
+ros-noetic-rosconsole (1.12.5-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 29 Sep 2016 16:00:00 -0000
+
+ros-noetic-rosconsole (1.12.4-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 18 Sep 2016 16:00:00 -0000
+
+ros-noetic-rosconsole (1.12.3-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Fri, 16 Sep 2016 16:00:00 -0000
+
+ros-noetic-rosconsole (1.12.2-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 02 Jun 2016 16:00:00 -0000
+
+ros-noetic-rosconsole (1.12.1-0jammy) jammy; urgency=high
+
+  * use directory specific compiler flags (#785 <https://github.com/ros/ros_comm/pull/785>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 17 Apr 2016 16:00:00 -0000
+
+ros-noetic-rosconsole (1.12.0-0jammy) jammy; urgency=high
+
+  * make LogAppender and Token destructor virtual (#729 <https://github.com/ros/ros_comm/issues/729>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 17 Mar 2016 16:00:00 -0000
+
+ros-noetic-rosconsole (1.11.18-0jammy) jammy; urgency=high
+
+  * fix compiler warnings
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Wed, 16 Mar 2016 16:00:00 -0000
+
+ros-noetic-rosconsole (1.11.17-0jammy) jammy; urgency=high
+
+  * use boost::make_shared instead of new for constructing boost::shared_ptr (#740 <https://github.com/ros/ros_comm/issues/740>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 10 Mar 2016 16:00:00 -0000
+
+ros-noetic-rosconsole (1.11.16-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 08 Nov 2015 16:00:00 -0000
+
+ros-noetic-rosconsole (1.11.15-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Mon, 12 Oct 2015 16:00:00 -0000
+
+ros-noetic-rosconsole (1.11.14-0jammy) jammy; urgency=high
+
+  * avoid redefining ROS_ASSERT_ENABLED (#628 <https://github.com/ros/ros_comm/pull/628>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Fri, 18 Sep 2015 16:00:00 -0000
+
+ros-noetic-rosconsole (1.11.13-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Mon, 27 Apr 2015 16:00:00 -0000
+
+ros-noetic-rosconsole (1.11.12-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 26 Apr 2015 16:00:00 -0000
+
+ros-noetic-rosconsole (1.11.11-0jammy) jammy; urgency=high
+
+  * add DELAYED_THROTTLE versions of log macros (#571 <https://github.com/ros/ros_comm/issues/571>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Wed, 15 Apr 2015 16:00:00 -0000
+
+ros-noetic-rosconsole (1.11.10-0jammy) jammy; urgency=high
+
+  * fix various defects reported by coverity
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 21 Dec 2014 16:00:00 -0000
+
+ros-noetic-rosconsole (1.11.9-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 17 Aug 2014 16:00:00 -0000
+
+ros-noetic-rosconsole (1.11.8-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 03 Aug 2014 16:00:00 -0000
+
+ros-noetic-rosconsole (1.11.7-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 17 Jul 2014 16:00:00 -0000
+
+ros-noetic-rosconsole (1.11.6-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Wed, 09 Jul 2014 16:00:00 -0000
+
+ros-noetic-rosconsole (1.11.5-0jammy) jammy; urgency=high
+
+  * rename variables within rosconsole macros (#442 <https://github.com/ros/ros_comm/issues/442>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Mon, 23 Jun 2014 16:00:00 -0000
+
+ros-noetic-rosconsole (1.11.4-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 15 Jun 2014 16:00:00 -0000
+
+ros-noetic-rosconsole (1.11.3-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Tue, 20 May 2014 16:00:00 -0000
+
+ros-noetic-rosconsole (1.11.2-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Wed, 07 May 2014 16:00:00 -0000
+
+ros-noetic-rosconsole (1.11.1-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Tue, 06 May 2014 16:00:00 -0000
+
+ros-noetic-rosconsole (1.11.0-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Mon, 03 Mar 2014 16:00:00 -0000
+
+ros-noetic-rosconsole (1.10.0-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Mon, 10 Feb 2014 16:00:00 -0000
+
+ros-noetic-rosconsole (1.9.54-0jammy) jammy; urgency=high
+
+  * fix rosconsole segfault when using ROSCONSOLE_FORMAT with  (#342 <https://github.com/ros/ros_comm/issues/342>)
+  * add missing run/test dependencies on rosbuild to get ROS_ROOT environment variable
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 26 Jan 2014 16:00:00 -0000
+
+ros-noetic-rosconsole (1.9.53-0jammy) jammy; urgency=high
+
+  * readd g_level_lockup symbol for backward compatibility when log4cxx is being used
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Mon, 13 Jan 2014 16:00:00 -0000
+
+ros-noetic-rosconsole (1.9.52-0jammy) jammy; urgency=high
+
+  * fix missing export of rosconsole backend interface library
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Tue, 07 Jan 2014 16:00:00 -0000
+
+ros-noetic-rosconsole (1.9.51-0jammy) jammy; urgency=high
+
+  * refactor rosconsole to not expose log4cxx, implement empty and log4cxx backends
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Mon, 06 Jan 2014 16:00:00 -0000
+
+ros-noetic-rosconsole (1.9.50-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 03 Oct 2013 16:00:00 -0000
+
+ros-noetic-rosconsole (1.9.49-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 15 Sep 2013 16:00:00 -0000
+
+ros-noetic-rosconsole (1.9.48-0jammy) jammy; urgency=high
+
+  * wrap condition in ROS_ASSERT_CMD in parenthesis (#271 <https://github.com/ros/ros_comm/issues/271>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Tue, 20 Aug 2013 16:00:00 -0000
+
+ros-noetic-rosconsole (1.9.47-0jammy) jammy; urgency=high
+
+  * force CMake policy before setting preprocessor definition to ensure correct escaping (#245 <https://github.com/ros/ros_comm/issues/245>)
+  * check for CATKIN_ENABLE_TESTING to enable configure without tests
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Tue, 02 Jul 2013 16:00:00 -0000
+
+ros-noetic-rosconsole (1.9.46-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Mon, 17 Jun 2013 16:00:00 -0000
+
+ros-noetic-rosconsole (1.9.45-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Wed, 05 Jun 2013 16:00:00 -0000
+
+ros-noetic-rosconsole (1.9.44-0jammy) jammy; urgency=high
+
+  * fix install destination for dll's under Windows
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Wed, 20 Mar 2013 16:00:00 -0000
+
+ros-noetic-rosconsole (1.9.43-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Tue, 12 Mar 2013 16:00:00 -0000
+
+ros-noetic-rosconsole (1.9.42-0jammy) jammy; urgency=high
+
+  * fix handling spaces in folder names (ros/catkin#375 <https://github.com/ros/catkin/issues/375>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 07 Mar 2013 16:00:00 -0000
+
+ros-noetic-rosconsole (1.9.41-0jammy) jammy; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Wed, 23 Jan 2013 16:00:00 -0000
+
+ros-noetic-rosconsole (1.9.40-0jammy) jammy; urgency=high
+
+  * fix dependent packages by pass LOG4CXX include dirs and libraries along
+  * fix usage of variable arguments in vFormatToBuffer() function
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sat, 12 Jan 2013 16:00:00 -0000
+
+ros-noetic-rosconsole (1.9.39-0jammy) jammy; urgency=high
+
+  * first public release for Groovy
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Fri, 28 Dec 2012 16:00:00 -0000
+
+

@@ -1,0 +1,2288 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-smach (2.5.2-0jammy) jammy; urgency=high
+ .
+   * Fix outcome_map disambiguation for Concurrence #80 <https://github.com/ros/executive_smach/issues/80>
+   * Fix is_running behaviour in case of exception in the state #50 <https://github.com/ros/executive_smach/issues/50>
+   * Executing an empty Concurrence container hangs forever #51 <https://github.com/ros/executive_smach/issues/51>
+Author: Isaac I. Y. Saito <gm130s@gmail.com>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-smach-2.5.2/CHANGELOG.rst
+@@ -0,0 +1,56 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package smach
++^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++2.5.2 (2023-06-13)
++------------------
++* Fix outcome_map disambiguation for Concurrence `#80 <https://github.com/ros/executive_smach/issues/80>`_
++* Fix is_running behaviour in case of exception in the state `#50 <https://github.com/ros/executive_smach/issues/50>`_ 
++* Executing an empty Concurrence container hangs forever `#51 <https://github.com/ros/executive_smach/issues/51>`_
++
++2.5.1 (2023-02-15)
++------------------
++* Fix: state machines cannot be pickled `#86 <https://github.com/ros/executive_smach/issues/86>`  
++* Fix: Python 3.9 compatibility  `#82 <https://github.com/ros/executive_smach/issues/82>`
++* Typo
++
++2.5.0 (2020-05-14)
++------------------
++* Python 3 compatibility `#71 <https://github.com/ros/executive_smach/issues/71>`_
++* Use setuptools instead of distutils
++* Bump CMake version to avoid CMP0048 warning
++* Update state.py Docstrings' @type descriptions `#59 <https://github.com/ros/executive_smach/issues/59>`_
++* Typo set_shutdown_cb() --> set_shutdown_check() `#56 <https://github.com/ros/executive_smach/issues/56>`_
++* Contributors: Isaac I.Y. Saito, Joseph Coombe, Shane Loretz, ahcorde, cclauss
++
++2.0.1 (2017-06-08)
++------------------
++* [maintenance] Update maintainer. switching to package.xml format 2
++* Contributors: Isaac I.Y. Saito
++
++2.0.0 (2014-04-17)
++------------------
++* Merging changes, resolving conflicts, from strands-project (@cburbridge)
++* cleaning up and removing rosbuild support
++* merging groovy and hydro
++* Fix get_internal_edges returning list of tuples, not list of lists
++* Remove old methods set_userdata
++* Remove superfluous parent class declaration 'UserData' from 'Remapper'
++* Add local error base class 'SmachError', extending Exception
++* Fix syntax errors, doc typos and indentations glitches
++* Fixed invalid exception type in concurrence.py
++* Checking threads have fully terminated before cleanup of outcomes dict
++  This commit uses thread.isAlive() on each concurrent state runner to check for termination of all the threads before continuing. This is necessary as only checking that the outcome has been filled in does not mean the thread has completed; if the thread has not completed it may not yet have called the termination callback. If this loop exits before the termination callback of the last thread is called, then the callback will occasionally be sent an empty dictionary (when the main thread has got to line 305).
++* cope with missed state termination notifications
++  Concurrent states could terminate and notify _ready_event without the concurrence container realising, as it could be busy checking the outcome values. This makes the concurrency container get stuck on line 250. This commit adds a timeout to the wait to safely cope with missing notifications.
++* Adding event for thread synchronization in concurrence and using event not condition in monitor state
++* Contributors: Felix Kolbe, Jonathan Bohren, Piotr Orzechowski, cburbridge
++
++1.3.1 (2013-07-22)
++------------------
++* adding changelogs
++* added missing catkin_package() calls in CMakeLists.txt files of packages smach and smach_ros
++* Updating maintainer name
++
++* added missing catkin_package() calls in CMakeLists.txt files of packages smach and smach_ros
++* Updating maintainer name
+--- /dev/null
++++ ros-noetic-smach-2.5.2/CMakeLists.txt
+@@ -0,0 +1,9 @@
++cmake_minimum_required(VERSION 3.0.2)
++
++project(smach)
++
++find_package(catkin REQUIRED COMPONENTS)
++
++catkin_python_setup()
++
++catkin_package()
+--- /dev/null
++++ ros-noetic-smach-2.5.2/epydoc.cfg
+@@ -0,0 +1,17 @@
++[epydoc]
++url: http://ros.org/wiki/smach
++
++css: white 
++frames: no
++
++imports: yes
++inheritance: grouped
++private: no
++
++parse: yes
++introspect: no
++
++verbosity: 10
++#debug: 1
++
++graph: all
+--- /dev/null
++++ ros-noetic-smach-2.5.2/package.xml
+@@ -0,0 +1,23 @@
++<?xml version="1.0"?>
++<package>
++  <name>smach</name>
++  <version>2.5.2</version>
++  <description>
++    SMACH is a task-level architecture for rapidly creating complex robot
++    behavior. At its core, SMACH is a ROS-independent Python library to build
++    hierarchical state machines. SMACH is a new library that takes advantage of
++    very old concepts in order to quickly create robust robot behavior with
++    maintainable and modular code.
++  </description>
++
++  <maintainer email="gm130s@gmail.com">Isaac I. Y. Saito</maintainer>
++  <license>BSD</license>
++
++  <author>Jonathan Bohren</author>
++
++  <buildtool_depend>catkin</buildtool_depend>
++
++  <export>
++    <rosdoc config="rosdoc.yaml"/>    
++  </export>
++</package>
+--- /dev/null
++++ ros-noetic-smach-2.5.2/rosdoc.yaml
+@@ -0,0 +1,3 @@
++- builder: epydoc
++  output_dir: python
++  config: epydoc.cfg
+--- /dev/null
++++ ros-noetic-smach-2.5.2/setup.py
+@@ -0,0 +1,11 @@
++#!/usr/bin/env python
++
++from setuptools import setup
++from catkin_pkg.python_setup import generate_distutils_setup
++
++d = generate_distutils_setup(
++   packages=['smach'],
++   package_dir={'': 'src'}
++)
++
++setup(**d)
+--- /dev/null
++++ ros-noetic-smach-2.5.2/src/smach/__init__.py
+@@ -0,0 +1,57 @@
++# Copyright (c) 2010, Willow Garage, Inc.
++# All rights reserved.
++# 
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions are met:
++# 
++#     * Redistributions of source code must retain the above copyright
++#       notice, this list of conditions and the following disclaimer.
++#     * Redistributions in binary form must reproduce the above copyright
++#       notice, this list of conditions and the following disclaimer in the
++#       documentation and/or other materials provided with the distribution.
++#     * Neither the name of the Willow Garage, Inc. nor the names of its
++#       contributors may be used to endorse or promote products derived from
++#       this software without specific prior written permission.
++# 
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++
++# Define default logging macros
++
++### Utilities
++from smach.log import\
++        set_loggers,\
++        loginfo,\
++        logwarn,\
++        logerr,\
++        logdebug
++
++from smach.exceptions import\
++        InvalidTransitionError,\
++        InvalidStateError,\
++        InvalidConstructionError,\
++        InvalidUserCodeError
++
++### Core classes
++from smach.state import State, CBState
++from smach.user_data import UserData, Remapper
++from smach.container import Container
++
++from smach.util import\
++        is_shutdown, set_shutdown_check,\
++        has_smach_interface, cb_interface, CBInterface
++
++### Containers
++from smach.state_machine import StateMachine
++from smach.sequence import Sequence
++from smach.concurrence import Concurrence
++from smach.iterator import Iterator
++
+--- /dev/null
++++ ros-noetic-smach-2.5.2/src/smach/concurrence.py
+@@ -0,0 +1,416 @@
++import threading
++import traceback
++import copy
++from contextlib import contextmanager
++
++import smach
++
++__all__ = ['Concurrence']
++
++class Concurrence(smach.container.Container):
++    """Concurrence Container
++
++    This state allows for simple split-join concurrency. The user adds a set of
++    states which are all executed simultaneously. The concurrent split state
++    can only transition once all conatained states are ready to transition.
++    
++    This container can be configured to return a given outcome as a function of
++    the outcomes of the contained states. This is specified in the constructor
++    of the class, or after construction with L{Concurrence.add_outcome_map}.
++
++    While a concurrence will not terminate until all if its children terminate,
++    it is possible for it to preempt a subset of states 
++     - All child states terminate
++     - At least one child state terminates
++     - A user-defined callback signals termination
++
++    Given these causes of termination, the outcome can be determined in four ways:
++     - A user-defined callback returns an outcome
++     - A child-outcome map which requires ALL states to terminate is satisfied
++     - A child-outcome map which requires ONE state to terminate is satisfied
++     - No  maps are satisfied, so the default outcome is returned
++
++    The specification of the outcome maps and the outcome callback are
++    described in the constructor documentation below. More than one policy can
++    be supplied, and each policy has the potential to not be satisfied. In the
++    situation in which multiple policies are provided, and a given policy is
++    not satisfied, the outcome choice precedence is as follows:
++     - Outcome callback
++     - First-triggered outcome map
++     - last-triggered outcome map
++     - Default outcome
++
++    In practive it is best to try to accomplish your task with just ONE outcome
++    policy.
++
++    """
++    def __init__(self,
++            outcomes,
++            default_outcome,
++            input_keys = [],
++            output_keys = [],
++            outcome_map = {},
++            outcome_cb = None,
++            child_termination_cb = None
++            ):
++        """Constructor for smach Concurrent Split.
++
++        @type outcomes: list of strings
++        @param outcomes: The potential outcomes of this state machine.
++
++        @type default_outcome: string
++        @param default_outcome: The outcome of this state if no elements in the 
++        outcome map are satisfied by the outcomes of the contained states.
++
++
++        @type outcome_map: list
++        @param outcome_map: This is an outcome map for determining the
++        outcome of this container. Each outcome of the container is mapped
++        to a dictionary mapping child labels onto outcomes. If none of the
++        child-outcome maps is satisfied, the concurrence will terminate
++        with thhe default outcome.
++        
++        For example, if the and_outcome_map is:
++            {'succeeded' : {'FOO':'succeeded', 'BAR':'done'},
++             'aborted' : {'FOO':'aborted'}}
++        Then the concurrence will terimate with outcome 'succeeded' only if
++        BOTH states 'FOO' and 'BAR' have terminated
++        with outcomes 'succeeded' and 'done', respectively. The outcome
++        'aborted' will be returned by the concurrence if the state 'FOO'
++        returns the outcome 'aborted'. 
++
++        If the outcome of a state is not specified, it will be treated as
++        irrelevant to the outcome of the concurrence
++
++        If the criteria for one outcome is the subset of another outcome,
++        the container will choose the outcome which has more child outcome
++        criteria satisfied. If both container outcomes have the same
++        number of satisfied criteria, the behavior is undefined.
++
++        If a more complex outcome policy is required, see the user can
++        provide an outcome callback. See outcome_cb, below.
++
++        @type child_termination_cb: callale
++        @param child_termination_cb: This callback gives the user the ability
++        to force the concurrence to preempt running states given the
++        termination of some other set of states. This is useful when using
++        a concurrence as a monitor container. 
++
++        This callback is called each time a child state terminates. It is
++        passed a single argument, a dictionary mapping child state labels
++        onto their outcomes. If a state has not yet terminated, it's dict
++        value will be None.
++
++        This function can return three things:
++         - False: continue blocking on the termination of all other states
++         - True: Preempt all other states
++         - list of state labels: Preempt only the specified states
++
++        I{If you just want the first termination to cause the other children
++        to terminate, the callback (lamda so: True) will always return True.}
++
++        @type outcome_cb: callable
++        @param outcome_cb: If the outcome policy needs to be more complicated
++        than just a conjunction of state outcomes, the user can supply
++        a callback for specifying the outcome of the container.
++
++        This callback is called only once all child states have terminated,
++        and it is passed the dictionary mapping state labels onto their
++        respective outcomes.
++
++        If the callback returns a string, it will treated as the outcome of
++        the container.
++
++        If the callback returns None, the concurrence will first check the
++        outcome_map, and if no outcome in the outcome_map is satisfied, it
++        will return the default outcome.
++
++        B{NOTE: This callback should be a function ONLY of the outcomes of
++        the child states. It should not access any other resources.} 
++
++        """
++        smach.container.Container.__init__(self, outcomes, input_keys, output_keys)
++
++        # List of concurrent states
++        self._states = {}
++        self._threads = {}
++        self._remappings = {}
++
++        if not (default_outcome or outcome_map or outcome_cb):
++            raise smach.InvalidStateError("Concurrence requires an outcome policy")
++
++        # Initialize error string
++        errors = ""
++
++        # Check if default outcome is necessary
++        if default_outcome != str(default_outcome):
++            errors += "\n\tDefault outcome '%s' does not appear to be a string." % str(default_outcome)
++        if default_outcome not in outcomes:
++            errors += "\n\tDefault outcome '%s' is unregistered." % str(default_outcome)
++
++        # Check if outcome maps only contain outcomes that are registered
++        for o in outcome_map:
++            if o not in outcomes:
++                errors += "\n\tUnregistered outcome '%s' in and_outcome_map." % str(o)
++
++        # Check if outcome cb is callable
++        if outcome_cb and not hasattr(outcome_cb,'__call__'):
++            errors += "\n\tOutcome callback '%s' is not callable." % str(outcome_cb)
++
++        # Check if child termination cb is callable
++        if child_termination_cb and not hasattr(child_termination_cb,'__call__'):
++            errors += "\n\tChild termination callback '%s' is not callable." % str(child_termination_cb)
++
++        # Report errors
++        if len(errors) > 0:
++            raise smach.InvalidStateError("Errors specifying outcome policy of concurrence: %s" % errors)
++
++        # Store outcome policies
++        self._default_outcome = default_outcome
++        self._outcome_map = outcome_map
++        self._outcome_cb = outcome_cb
++        self._child_termination_cb = child_termination_cb
++        self._child_outcomes = {}
++
++        # Condition variables for threading synchronization
++        self._user_code_exception = False
++        self._done_cond = threading.Condition()
++        self._ready_event =  threading.Event()
++
++    ### Construction methods
++    @staticmethod
++    def add(label, state, remapping={}):
++        """Add state to the opened concurrence.
++        This state will need to terminate before the concurrence terminates.
++        """
++        # Get currently opened container
++        self = Concurrence._currently_opened_container()
++
++        # Store state
++        self._states[label] = state
++        self._remappings[label] = remapping
++
++        return state
++
++    ### State interface
++    def execute(self, parent_ud = smach.UserData()):
++        """Overridden execute method.
++        This starts all the threads.
++        """
++        # Check if any states added
++        if len(self._states) == 0:
++            raise smach.InvalidStateError("No states was added to concurrence")
++
++        # Clear the ready event
++        self._ready_event.clear()
++        
++        # Reset child outcomes
++        self._child_outcomes = {}
++
++        # Copy input keys
++        self._copy_input_keys(parent_ud, self.userdata)
++
++        # Spew some info
++        smach.loginfo("Concurrence starting with userdata: \n\t%s" %
++                (str(list(self.userdata.keys()))))
++
++        # Call start callbacks
++        self.call_start_cbs()
++
++        # Create all the threads
++        for (label, state) in ((k,self._states[k]) for k in self._states):
++            # Initialize child outcomes
++            self._child_outcomes[label] = None
++            self._threads[label] = threading.Thread(
++                    name='concurrent_split:'+label,
++                    target=self._state_runner,
++                    args=(label,))
++
++        # Launch threads
++        for thread in self._threads.values():
++            thread.start()
++        
++        # Wait for done notification
++        self._done_cond.acquire()
++        
++        # Notify all threads ready to go
++        self._ready_event.set()
++        
++        # Wait for a done notification from a thread
++        self._done_cond.wait()
++        self._done_cond.release()
++
++        # Preempt any running states
++        smach.logdebug("SMACH Concurrence preempting running states.")
++        for label in self._states:
++            if self._child_outcomes[label] == None:
++                self._states[label].request_preempt()
++
++        # Wait for all states to terminate
++        while not smach.is_shutdown():
++            if all([not t.is_alive() for t in self._threads.values()]):
++                break
++            self._done_cond.acquire()
++            self._done_cond.wait(0.1)
++            self._done_cond.release()
++
++        # Check for user code exception
++        if self._user_code_exception:
++            self._user_code_exception = False
++            raise smach.InvalidStateError("A concurrent state raised an exception during execution.")
++
++        # Check for preempt
++        if self.preempt_requested():
++            # initialized serviced flag
++            children_preempts_serviced = True
++
++            # Service this preempt if 
++            for (label,state) in ((k,self._states[k]) for k in self._states):
++                if state.preempt_requested():
++                    # Reset the flag
++                    children_preempts_serviced = False
++                    # Complain
++                    smach.logwarn("State '%s' in concurrence did not service preempt." % label) 
++                    # Recall the preempt if it hasn't been serviced
++                    state.recall_preempt()
++            if children_preempts_serviced:
++                smach.loginfo("Concurrence serviced preempt.")
++                self.service_preempt()
++
++        # Spew some debyg info
++        smach.loginfo("Concurrent Outcomes: "+str(self._child_outcomes))
++
++        # Initialize the outcome
++        outcome = self._default_outcome
++
++        # Determine the outcome from the outcome map
++        smach.logdebug("SMACH Concurrence determining contained state outcomes.")
++        max_child_outcomes_satisfied = 0
++        for (container_outcome, outcomes) in ((k,self._outcome_map[k]) for k in self._outcome_map):
++            child_outcomes_satisfied = len(outcomes)
++            if all([self._child_outcomes[label] == outcomes[label] for label in outcomes]):
++                if child_outcomes_satisfied > max_child_outcomes_satisfied:
++                    smach.logdebug("Terminating concurrent split with mapped outcome.")
++                    outcome = container_outcome
++                    max_child_outcomes_satisfied = child_outcomes_satisfied
++                else:
++                    smach.logdebug("Skipping mapped outcome '%s' with fewer constraints." % container_outcome)
++
++        # Check outcome callback
++        if self._outcome_cb:
++            try:
++                cb_outcome = self._outcome_cb(copy.copy(self._child_outcomes))
++                if cb_outcome:
++                    if cb_outcome == str(cb_outcome):
++                        outcome = cb_outcome
++                    else:
++                        smach.logerr("Outcome callback returned a non-string '%s', using default outcome '%s'" % (str(cb_outcome), self._default_outcome))
++                else:
++                    smach.logwarn("Outcome callback returned None, using outcome '%s'" % outcome)
++            except:
++                raise smach.InvalidUserCodeError(("Could not execute outcome callback '%s': " % self._outcome_cb)+traceback.format_exc())
++
++        # Cleanup
++        self._threads = {}
++        self._child_outcomes = {}
++
++        # Call termination callbacks
++        self.call_termination_cbs(list(self._states.keys()), outcome)
++
++        # Copy output keys
++        self._copy_output_keys(self.userdata, parent_ud)
++
++        return outcome
++
++    def request_preempt(self):
++        """Preempt all contained states."""
++        # Set preempt flag
++        smach.State.request_preempt(self)
++
++        # Notify concurrence that it should preempt running states and terminate
++        with self._done_cond:
++            self._done_cond.notify_all()
++
++
++    def _state_runner(self,label):
++        """Runs the states in parallel threads."""
++
++        # Wait until all threads are ready to start before beginnging
++        self._ready_event.wait()
++        
++        self.call_transition_cbs()
++
++        # Execute child state
++        try:
++            self._child_outcomes[label] = self._states[label].execute(smach.Remapper(
++                self.userdata,
++                self._states[label].get_registered_input_keys(),
++                self._states[label].get_registered_output_keys(),
++                self._remappings[label]))
++        except:
++            self._user_code_exception = True
++            with self._done_cond:
++                self._done_cond.notify_all()
++            raise smach.InvalidStateError(("Could not execute child state '%s': " % label)+traceback.format_exc())
++
++        # Make sure the child returned an outcome
++        if self._child_outcomes[label] is None:
++            raise smach.InvalidStateError("Concurrent state '%s' returned no outcome on termination." % label)
++        else:
++            smach.loginfo("Concurrent state '%s' returned outcome '%s' on termination." % (label, self._child_outcomes[label]))
++
++        # Check if all of the states have completed
++        with self._done_cond:
++            # initialize preemption flag
++            preempt_others = False
++            # Call transition cb's
++            self.call_transition_cbs()
++            # Call child termination cb if it's defined
++            if self._child_termination_cb:
++                try:
++                    preempt_others = self._child_termination_cb(self._child_outcomes)
++                except:
++                    raise smach.InvalidUserCodeError("Could not execute child termination callback: "+traceback.format_exc())
++
++            # Notify the container to terminate (and preempt other states if neceesary)
++            if preempt_others or all([o is not None for o in self._child_outcomes.values()]):
++                self._done_cond.notify_all()
++
++    ### Container interface
++    def get_children(self):
++        return self._states
++
++    def __getitem__(self,key):
++        return self._states[key]
++
++    def get_initial_states(self):
++        return list(self._states.keys())
++
++    def set_initial_state(self, initial_states, userdata):
++        if initial_states > 0:
++            if initial_states < len(self._states):
++                smach.logwarn("Attempting to set initial states in Concurrence"
++                              " container, but Concurrence children are always"
++                              " all executed initially, ignoring call.")
++
++        # Set local userdata
++        self.userdata.update(userdata)
++
++    def get_active_states(self):
++        return [label for (label,outcome) in ((k,self._child_outcomes[k]) for k in self._child_outcomes) if outcome is None]
++
++    def get_internal_edges(self):
++        int_edges = []
++        for (container_outcome, outcomes) in ((k,self._outcome_map[k]) for k in self._outcome_map):
++            for state_key in outcomes:
++                int_edges.append((outcomes[state_key], state_key, container_outcome))
++        return int_edges
++
++    def check_consistency(self):
++        for (co,cso) in ((k,self._outcome_map[k]) for k in self._outcome_map):
++            for state_label,outcome in ((k,cso[k]) for k in cso):
++                if outcome not in self._states[state_label].get_registered_outcomes():
++                    raise smach.InvalidTransitionError(
++                            'Outcome map in SMACH Concurrence references a state outcome that does not exist. Requested state outcome: \'%s\', but state \'%s\' only has outcomes %s' %
++                            (outcome, state_label, str(self._states[state_label].get_registered_outcomes())))
++
+--- /dev/null
++++ ros-noetic-smach-2.5.2/src/smach/container.py
+@@ -0,0 +1,273 @@
++
++import traceback
++import threading
++from contextlib import contextmanager
++
++import smach
++
++__all__ = ['Container']
++
++class Container(smach.state.State):
++    """Smach container interface.
++
++    This provides an interface for hooking into smach containers. This includes
++    methods to get and set state, as well as provide start / transition /
++    termination callback storage and registration utilities.
++
++    Note that it is up to the implementation of the containers both when the 
++    callbacks are called as well as what arguments are given to them.
++
++    Callback semantics:
++     - Start: Called when a container is entered
++     - Transition: Called when a container's state changes
++     - Termination: Called when a container is left
++    """
++
++    ### Class members
++    _construction_stack = []
++    _construction_lock = threading.RLock()
++    _context_kwargs = []
++
++    def __init__(self,
++            outcomes=[],
++            input_keys=[],
++            output_keys=[]):
++        """Initializes callback lists as empty lists."""
++        smach.state.State.__init__(self, outcomes, input_keys, output_keys)
++
++        self.userdata = smach.UserData()
++        """Userdata to be passed to child states."""
++
++        # Callback lists
++        self._start_cbs = []
++        self._transition_cbs = []
++        self._termination_cbs = []
++
++    def __getitem__(self, key):
++        """Access child state by key.
++        @rtype: L{smach.State}
++        @returns: Child state with label equal to key
++        """
++        raise NotImplementedError()
++
++    def get_children(self):
++        """Get the children of this container.
++        This is empty for leaf states.
++
++        @rtype: dict of string: State
++        @return: The sub-states of this container.
++        """
++        raise NotImplementedError()
++    
++    def set_initial_state(self, initial_states, userdata):
++        """Set initial active states of a container.
++        
++        @type initial_states: list of string
++        @param initial_states: A description of the initial active state of this
++        container.
++        
++        @type userdata: L{UserData}
++        @param userdata: Initial userdata for this container.
++        """
++        raise NotImplementedError()
++
++    def get_initial_states(self):
++        """Get the initial states description.
++        
++        @rtype: list of string
++        """
++        raise NotImplementedError()
++
++    def get_active_states(self):
++        """Get a description of the current states.
++        Note that this is specific to container implementation.
++
++        @rtype: list of string
++        """
++        raise NotImplementedError()
++
++    def get_internal_edges(self):
++        """Get the internal outcome edges of this container.
++        Get a list of 3-tuples (OUTCOME, LABEL_FROM, LABEL_TO) which correspond
++        to transitions inside this container.
++
++        @rtype: list of 3-tuple
++        """
++        raise NotImplementedError()
++
++    def check_consistency(self):
++        """Check consistency of this container."""
++        raise NotImplementedError()
++
++    ### Automatic Data passing
++    def _copy_input_keys(self, parent_ud, ud):
++        if parent_ud is not None:
++            input_keys = self.get_registered_input_keys()
++            for ik in input_keys:
++                try:
++                    ud[ik] = parent_ud[ik]
++                except KeyError:
++                    smach.logwarn("Attempting to copy input key '%s', but this key does not exist." % ik)
++
++    def _copy_output_keys(self, ud, parent_ud):
++        if parent_ud is not None:
++            output_keys = self.get_registered_output_keys()
++            for ok in output_keys:
++                try:
++                    parent_ud[ok] = ud[ok]
++                except KeyError:
++                    smach.logwarn("Attempting to copy output key '%s', but this key does not exist." % ok)
++
++    ### Callback registreation methods
++    def register_start_cb(self, start_cb, cb_args=[]):
++        """Adds a start callback to this container.
++        Start callbacks receive arguments:
++         - userdata 
++         - local_userdata
++         - initial_states
++         - *cb_args
++        """
++        self._start_cbs.append((start_cb,cb_args))
++
++    def register_transition_cb(self, transition_cb, cb_args=[]):
++        """Adds a transition callback to this container.
++        Transition callbacks receive arguments:
++         - userdata 
++         - local_userdata
++         - active_states
++         - *cb_args
++        """
++        self._transition_cbs.append((transition_cb,cb_args))
++
++    def register_termination_cb(self, termination_cb, cb_args=[]):
++        """Adds a termination callback to this state machine.
++        Termination callbacks receive arguments:
++         - userdata 
++         - local_userdata
++         - terminal_states
++         - container_outcome
++         - *cb_args
++        """
++        self._termination_cbs.append((termination_cb, cb_args)) 
++
++    def call_start_cbs(self):
++        """Calls the registered start callbacks.
++        Callback functions are called with two arguments in addition to any
++        user-supplied arguments:
++         - userdata
++         - a list of initial states
++         """
++        try:
++            for (cb,args) in self._start_cbs:
++                cb(self.userdata, self.get_initial_states(), *args)
++        except:
++            smach.logerr("Could not execute start callback: "+traceback.format_exc())
++
++    def call_transition_cbs(self):
++        """Calls the registered transition callbacks.
++        Callback functions are called with two arguments in addition to any
++        user-supplied arguments:
++         - userdata
++         - a list of active states
++         """
++        try:
++            for (cb,args) in self._transition_cbs:
++                cb(self.userdata, self.get_active_states(), *args)
++        except:
++            smach.logerr("Could not execute transition callback: "+traceback.format_exc())
++
++    def call_termination_cbs(self, terminal_states, outcome):
++        """Calls the registered termination callbacks.
++        Callback functions are called with three arguments in addition to any
++        user-supplied arguments:
++         - userdata
++         - a list of terminal states
++         - the outcome of this container
++        """
++        try:
++            for (cb,args) in self._termination_cbs:
++                cb(self.userdata, terminal_states, outcome, *args)
++        except:
++            smach.logerr("Could not execute termination callback: "+traceback.format_exc())
++
++
++    # Context manager methods
++    def __enter__(self):
++        return self.open()
++
++    def __exit__(self, exc_type, exc_val, exc_tb):
++        if exc_type is None:
++            return self.close()
++        else:
++            if exc_type != smach.InvalidStateError and exc_type != smach.InvalidTransitionError:
++                smach.logerr("Error raised during SMACH container construction: \n" + "\n".join(traceback.format_exception(exc_type, exc_val, exc_tb)))
++
++    @contextmanager
++    def opened(self, **kwargs):
++        """Context manager method for opening a smach container."""
++        self.open()
++        prev_kwargs = Container._context_kwargs
++        Container._context_kwargs = kwargs
++        try:
++            yield self
++        finally:
++            Container._context_kwargs = prev_kwargs 
++            self.close()
++
++    def open(self):
++        """Opens this container for modification.
++
++        This appends the container to the construction stack and locks the
++        reentrant lock if it is a valid container to open."""
++
++        # Push this container onto the construction stack
++        Container._construction_stack.append(self)
++        Container._construction_lock.acquire()
++
++    def close(self):
++        """Close the container."""
++        # Make sure this container is the currently open container
++        if len(Container._construction_stack) > 0:
++            if self != Container._construction_stack[-1]:
++                raise smach.InvalidStateError('Attempting to close a container that is not currently open.')
++
++        # Pop this container off the construction stack
++        Container._construction_stack.pop()
++        Container._construction_lock.release()
++
++        # Check consistency of container, post-construction
++        try:
++            self.check_consistency()
++        except (smach.InvalidStateError, smach.InvalidTransitionError):
++            smach.logerr("Container consistency check failed.")
++
++    def is_opened(self):
++        """Returns True if this container is currently opened for construction.
++        @rtype: bool
++        """
++        return len(Container._construction_stack) > 0 and self == Container._construction_stack[-1]
++
++    def assert_opened(self,msg=''):
++        if not self.is_opened():
++            raise smach.InvalidConstructionError(msg)
++
++    @staticmethod
++    def _any_containers_opened():
++        """Returns True if any containers are opened."""
++        if len(Container._construction_stack) > 0:
++            return True
++        return False
++
++    @classmethod
++    def _currently_opened_container(cls):
++        """Get the currently opened container.
++        
++        This also asserts that the open container is of type cls.
++        """
++        if Container._any_containers_opened():
++            opened_container = Container._construction_stack[-1]
++            if not isinstance(opened_container, cls):
++                raise smach.InvalidStateError('Attempting to call a %s construction method without having opened a %s.' % (cls, cls))
++            return opened_container
++        else:
++            raise smach.InvalidStateError('Attempting to access the currently opened container, but no container is opened.')
+--- /dev/null
++++ ros-noetic-smach-2.5.2/src/smach/exceptions.py
+@@ -0,0 +1,32 @@
++
++import smach
++
++__all__ = ['SmachError',
++           'InvalidTransitionError',
++           'InvalidStateError',
++           'InvalidConstructionError',
++           'InvalidUserCodeError']
++
++
++class SmachError(Exception):
++    """Exception printing to console on instantiation"""
++    def __init__(self, message):
++        smach.logerr(self.__class__.__name__ + ": " + message)
++        Exception.__init__(self, message)
++
++
++class InvalidTransitionError(SmachError):
++    def __init__(self, message):
++        SmachError.__init__(self, message)
++
++class InvalidStateError(SmachError):
++    def __init__(self, message):
++        SmachError.__init__(self, message)
++
++class InvalidUserCodeError(SmachError):
++    def __init__(self, message):
++        SmachError.__init__(self, message)
++
++class InvalidConstructionError(SmachError):
++    def __init__(self, message):
++        SmachError.__init__(self, message)
+--- /dev/null
++++ ros-noetic-smach-2.5.2/src/smach/iterator.py
+@@ -0,0 +1,248 @@
++
++import threading
++import traceback
++from contextlib import contextmanager
++
++import smach
++
++__all__ = ['Iterator']
++
++class Iterator(smach.container.Container):
++    """Sequence Container
++
++    This container inherits functionality from L{smach.StateMachine} and adds
++    some auto-generated transitions that create a sequence of states from the
++    order in which said states are added to the container.
++    """
++    def __init__(self,
++            outcomes,
++            input_keys,
++            output_keys,
++            it = [],
++            it_label = 'it_data',
++            exhausted_outcome = 'exhausted'):
++        """Constructor.
++
++        @type outcomes: list of string
++        @param outcomes: The potential outcomes of this container.
++
++        @type it: iterable
++        @param iteritems: Items to iterate over on each cycle
++
++        @type it_label: string
++        @param iteritems_label: The label that the item in the current
++        iteration will be given when it is put into the container's local
++        userdata.
++        """
++        if exhausted_outcome not in outcomes:
++            outcomes.append(exhausted_outcome)
++        smach.container.Container.__init__(self, outcomes, input_keys, output_keys)
++
++        self._items = it
++        self._items_label = it_label
++
++        self._is_running = False
++
++        self._state_label = ''
++        self._state = None
++        self._loop_outcomes = []
++        self._break_outcomes = []
++        self._final_outcome_map = {}
++        self._exhausted_outcome = exhausted_outcome
++
++
++    ### Construction Methods
++    @staticmethod
++    def set_iteritems(it, it_label='it_data'):
++        """Set the list or generator for the iterator to iterate over.
++        
++        @type it: iterable
++        @param iteritems: Items to iterate over on each cycle
++
++        @type it_label: string
++        @param iteritems_label: The label that the item in the current
++        iteration will be given when it is put into the container's local
++        userdata.
++
++        @type exhausted_outcome: string
++        @param exhausted_outcome: If the iterable is exhausted without a break
++        condition this outcome is emitted by the container.
++        """
++        # Get currently opened container
++        self = Iterator._currently_opened_container()
++        self._items = it
++        self._items_label = it_label
++
++    @staticmethod
++    def set_contained_state(
++            label,
++            state,
++            loop_outcomes = [],
++            break_outcomes = [],
++            final_outcome_map = {}):
++        """Set the contained state
++        
++        @type label: string
++        @param label: The label of the state being added.
++        
++        @type state: L{smach.State}
++        @param state: An instance of a class implementing the L{smach.State} interface.
++
++        @param loop_outcomes: List of contained state outcomes that should cause
++        the iterator to continue. If this is empty, all outcomes that are not
++        in the break_outcomes list will cause the iterator to continue to
++        iterate. NOTE: loop_outcomes will be overriden by break_outcomes if both
++        parameters are used.
++
++        @param break_outcomes: List of contained state outcomes that should
++        cause the iterator to break. When the contained state emits an outcome
++        in this list, the container will terminate and return either that
++        outcome or the outcome it is mapped to in final_outcome_map. NOTE:
++        loop_outcomes will be overriden by break_outcomes if both
++        parameters are used.
++
++        @param final_outcome_map: A map from contained state outcomes to container
++        outcomes. On termination of the iterator (either from finishing or from
++        a break) this map will be used to translate contained state outcomes to
++        container outcomes.
++        Unspecified contained state outcomes will fall through as
++        container outcomes.
++        """
++        # Get currently opened container
++        self = Iterator._currently_opened_container()
++
++        self._state_label = label
++        self._state = state
++
++        # Get potential state outcomes
++        state_outcomes = state.get_registered_outcomes()
++
++        # Check for loop and break outcomes
++        if loop_outcomes and break_outcomes:
++            smach.logwarn('Both loop_outcomes and break_outcomes were specified when constructing SMACH iterator container.')
++
++        if break_outcomes:
++            self._break_outcomes = break_outcomes
++            for outcome in state_outcomes:
++                if outcome not in break_outcomes:
++                    self._loop_outcomes.append(outcome)
++        else:
++            self._loop_outcomes = loop_outcomes
++            for outcome in state_outcomes:
++                if outcome not in loop_outcomes:
++                    self._break_outcomes.append(outcome)
++
++        self._final_outcome_map = final_outcome_map
++
++    ### State interface
++    def execute(self, parent_ud):
++        self._is_running = True
++
++        # Copy input keys
++        self._copy_input_keys(parent_ud, self.userdata)
++
++        self.call_start_cbs()
++
++        # Iterate over items
++        outcome = self._exhausted_outcome
++
++        if hasattr(self._items,'__call__'):
++            it = self._items().__iter__()
++        else:
++            it = self._items.__iter__()
++
++        while not smach.is_shutdown():
++            try:
++                item = next(it)
++            except:
++                outcome = self._exhausted_outcome
++                break
++            smach.loginfo("Iterating %s of %s" % (str(item), str(self._items)))
++            self.userdata[self._items_label] = item
++            # Enter the contained state
++            try:
++                outcome = self._state.execute(self.userdata)
++            except smach.InvalidUserCodeError as ex:
++                smach.logerr("Could not execute Iterator state '%s'" % self._state_label)
++                raise ex
++            except:
++                raise smach.InvalidUserCodeError("Could not execute iterator state '%s' of type '%s': " % ( self._state_label, self._state) + traceback.format_exc())
++                
++
++
++            # Check if we should stop preemptively
++            if self._preempt_requested\
++                    or outcome in self._break_outcomes\
++                    or (len(self._loop_outcomes) > 0 and outcome not in self._loop_outcomes):
++                self._preempt_requested = False
++                break
++            self.call_transition_cbs()
++
++        # Remap the outcome if necessary
++        if outcome in self._final_outcome_map:
++            outcome = self._final_outcome_map[outcome]
++
++        # Copy output keys
++        self._copy_output_keys(self.userdata, parent_ud)
++
++        self._is_running = False
++
++        self.call_termination_cbs(self._state_label,outcome)
++
++        return outcome
++
++    def request_preempt(self):
++        self._preempt_requested = True
++        if self._is_running:
++            self._state.request_preempt()
++    
++    ### Container interface
++    def get_children(self):
++        return {self._state_label: self._state}
++
++    def __getitem__(self,key):
++        if key != self._state_label:
++            smach.logerr("Attempting to get state '%s' from Iterator container. The only available state is '%s'." % (key, self._state_label))
++            raise KeyError()
++        return self._state
++
++    def get_initial_states(self):
++        return [self._state_label]
++
++    def set_initial_state(self, initial_states, userdata):
++        # Check initial state
++        if len(initial_states) > 1:
++            smach.logwarn("Attempting to set initial state to include more than one state, but Iterator container can only have one initial state." % (self._state_label))
++
++        if len(initial_states) > 0:
++            if initial_states[0] != self._state_label:
++                smach.logwarn("Attempting to set state '%s' as initial state in Iterator container. The only available state is '%s'." % (initial_states[0], self._state_label))
++                raise KeyError()
++
++        # Set local userdata
++        self.userdata.update(userdata)
++
++    def get_active_states(self):
++        if self._is_running:
++            return [self._state_label]
++        return []
++
++    def get_internal_edges(self):
++        int_edges = []
++        
++        for outcome in self._loop_outcomes:
++            int_edges.append([outcome, self._state_label, self._state_label])
++
++        for outcome in self._break_outcomes:
++            container_outcome = outcome
++            if outcome in self._final_outcome_map:
++                container_outcome = self._final_outcome_map[outcome]
++            if outcome == container_outcome:
++                int_edges.append((outcome, self._state_label, None))
++            else:
++                int_edges.append((outcome, self._state_label, container_outcome))
++
++        return int_edges
++
++    def check_consistency(self):
++        pass
+--- /dev/null
++++ ros-noetic-smach-2.5.2/src/smach/log.py
+@@ -0,0 +1,24 @@
++
++import smach
++
++__all__ = ['set_loggers','loginfo','logwarn','logerr','logdebug']
++
++def loginfo(msg):
++    print("[  INFO ] : "+str(msg))
++
++def logwarn(msg):
++    print("[  WARN ] : "+str(msg))
++
++def logdebug(msg):
++    print("[ DEBUG ] : "+str(msg))
++
++def logerr(msg):
++    print("[ ERROR ] : "+str(msg))
++
++def set_loggers(info,warn,debug,error):
++    """Override the SMACH logging functions."""
++    smach.loginfo = info
++    smach.logwarn = warn
++    smach.logdebug = debug
++    smach.logerr = error
++
+--- /dev/null
++++ ros-noetic-smach-2.5.2/src/smach/sequence.py
+@@ -0,0 +1,80 @@
++
++import threading
++from contextlib import contextmanager
++
++import smach
++
++__all__ = ['Sequence']
++
++class Sequence(smach.state_machine.StateMachine):
++    """Sequence Container
++
++    This container inherits functionality from L{smach.StateMachine} and adds
++    some auto-generated transitions that create a sequence of states from the
++    order in which said states are added to the container.
++    """
++    def __init__(self,
++            outcomes,
++            connector_outcome,
++            input_keys=[],
++            output_keys=[]):
++        """Constructor.
++
++        @type outcomes: list of string
++        @param outcomes: The potential outcomes of this container.
++
++        @type connector_outcome: string
++        @param connector_outcome: The outcome used to connect states in the
++        sequence.
++        """
++        smach.state_machine.StateMachine.__init__(self, outcomes, input_keys, output_keys)
++
++        self._last_added_seq_label = None
++        self._connector_outcome = connector_outcome
++
++    ### Construction Methods
++    @staticmethod
++    def add(label, state, transitions = None, remapping = None):
++        """Add a state to the sequence.
++        Each state added will receive an additional transition from it to the
++        state which is added after it. The transition will follow the outcome
++        specified at construction of this container.
++        
++        @type label: string
++        @param label: The label of the state being added.
++        
++        @param state: An instance of a class implementing the L{State} interface.
++        
++        @param transitions: A dictionary mapping state outcomes to other state
++        labels. If one of these transitions follows the connector outcome
++        specified in the constructor, the provided transition will override
++        the automatically generated connector transition.
++        """
++        # Get currently opened container
++        self = Sequence._currently_opened_container()
++
++        if transitions is None:
++            transitions = {}
++
++        # Perform sequence linking
++        if self._last_added_seq_label is not None:
++            #print self._transitions[self._last_added_seq_label]
++
++            last_label = self._last_added_seq_label
++            # Check if the connector outcome has been overriden
++            if self._connector_outcome not in self._transitions[last_label]\
++                    or self._transitions[last_label][self._connector_outcome] is None:
++                self._transitions[last_label][self._connector_outcome] = label
++            try:
++                self.check_state_spec(last_label, self._states[last_label], self._transitions[last_label])
++            except:
++                smach.logerr("Attempting to construct smach state sequence failed.")
++
++            #print self._transitions[self._last_added_seq_label]
++
++        # Store the last added state label
++        self._last_added_seq_label = label
++
++        return smach.StateMachine.add(label, state, transitions, remapping)
++
++
+--- /dev/null
++++ ros-noetic-smach-2.5.2/src/smach/state.py
+@@ -0,0 +1,153 @@
++
++import threading
++import traceback
++
++import smach
++
++__all__ = ['State','CBState']
++
++class State(object):
++    """Base class for SMACH states.
++
++    A SMACH state interacts with SMACH containers in two ways. The first is its
++    outcome identifier, and the second is the set of userdata variables which
++    it reads from and writes to at runtime. Both of these interactions are
++    declared before the state goes active (when its C{execute()} method is
++    called) and are checked during construction.
++    """
++    def __init__(self, outcomes=[], input_keys=[], output_keys=[], io_keys=[]):
++        """State constructor
++        @type outcomes: list of str
++        @param outcomes: Custom outcomes for this state.
++
++        @type input_keys: list of str
++        @param input_keys: The userdata keys from which this state might read
++        at runtime. 
++
++        @type output_keys: list of str
++        @param output_keys: The userdata keys to which this state might write
++        at runtime.
++
++        @type io_keys: list of str
++        @param io_keys: The userdata keys to which this state might write or
++        from which it might read at runtime.
++        """
++        # Store outcomes
++        self._outcomes = set(outcomes)
++
++        # Store userdata interface description
++        self._input_keys = set(input_keys + io_keys)
++        self._output_keys = set(output_keys + io_keys)
++
++        # Declare preempt flag
++        self._preempt_requested = False
++
++    ### Meat
++    def execute(self, ud):
++        """Called when executing a state.
++        In the base class this raises a NotImplementedError.
++
++        @type ud: L{UserData} structure
++        @param ud: Userdata for the scope in which this state is executing
++        """
++        raise NotImplementedError()
++    
++    ### SMACH Interface API
++    def register_outcomes(self, new_outcomes):
++        """Add outcomes to the outcome set."""
++        self._outcomes = self._outcomes.union(new_outcomes)
++
++    def get_registered_outcomes(self):
++        """Get a list of registered outcomes.
++        @rtype: tuple of str
++        @return: Tuple of registered outcome strings.
++        """
++        return tuple(self._outcomes)
++
++    ### Userdata API
++    def register_io_keys(self, keys):
++        """Add keys to the set of keys from which this state may read and write.
++        @type keys: list of str
++        @param keys: List of keys which may be read from and written to when this
++        state is active.
++        """
++        self._input_keys = self._input_keys.union(keys)
++        self._output_keys = self._output_keys.union(keys)
++
++    def register_input_keys(self, keys):
++        """Add keys to the set of keys from which this state may read.
++        @type keys: list of str
++        @param keys: List of keys which may be read from when this state is
++        active.
++        """
++        self._input_keys = self._input_keys.union(keys)
++
++    def get_registered_input_keys(self):
++        """Get a tuple of registered input keys."""
++        return tuple(self._input_keys)
++
++    def register_output_keys(self, keys):
++        """Add keys to the set of keys to which this state may write.
++        @type keys: list of str
++        @param keys: List of keys which may be written to when this state is
++        active.
++        """
++        self._output_keys = self._output_keys.union(keys)
++
++    def get_registered_output_keys(self):
++        """Get a tuple of registered output keys."""
++        return tuple(self._output_keys)
++
++    ### Preemption interface
++    def request_preempt(self):
++        """Sets preempt_requested to True"""
++        self._preempt_requested = True
++
++    def service_preempt(self):
++        """Sets preempt_requested to False"""
++        self._preempt_requested = False
++
++    def recall_preempt(self):
++        """Sets preempt_requested to False"""
++        self._preempt_requested = False
++
++    def preempt_requested(self):
++        """True if a preempt has been requested."""
++        return self._preempt_requested
++
++class CBState(State):
++    def __init__(self, cb, cb_args=[], cb_kwargs={}, outcomes=[], input_keys=[], output_keys=[], io_keys=[]):
++        """Create s state from a single function.
++
++        @type outcomes: list of str
++        @param outcomes: Custom outcomes for this state.
++
++        @type input_keys: list of str
++        @param input_keys: The userdata keys from which this state might read
++        at runtime. 
++
++        @type output_keys: list of str
++        @param output_keys: The userdata keys to which this state might write
++        at runtime.
++
++        @type io_keys: list of str
++        @param io_keys: The userdata keys to which this state might write or
++        from which it might read at runtime.
++        """
++        State.__init__(self, outcomes, input_keys, output_keys, io_keys)
++        self._cb = cb
++        self._cb_args = cb_args
++        self._cb_kwargs = cb_kwargs
++
++        if smach.util.has_smach_interface(cb):
++            self._cb_input_keys = cb.get_registered_input_keys()
++            self._cb_output_keys = cb.get_registered_output_keys()
++            self._cb_outcomes = cb.get_registered_outcomes()
++
++            self.register_input_keys(self._cb_input_keys)
++            self.register_output_keys(self._cb_output_keys)
++            self.register_outcomes(self._cb_outcomes)
++
++    def execute(self, ud):
++        return self._cb(ud, *self._cb_args, **self._cb_kwargs)
++
+--- /dev/null
++++ ros-noetic-smach-2.5.2/src/smach/state_machine.py
+@@ -0,0 +1,519 @@
++
++import threading
++import traceback
++from contextlib import contextmanager
++
++import smach
++
++__all__ = ['StateMachine']
++
++### State Machine class
++class StateMachine(smach.container.Container):
++    """StateMachine
++    
++    This is a finite state machine smach container. Note that though this is
++    a state machine, it also implements the L{smach.State}
++    interface, so these can be composed hierarchically, if such a pattern is
++    desired.
++
++    States are added to the state machine as 3-tuple specifications:
++     - label
++     - state instance
++     - transitions
++
++    The label is a string, the state instance is any class that implements the
++    L{smach.State} interface, and transitions is a dictionary mapping strings onto
++    strings which represent the transitions out of this new state. Transitions
++    can take one of three forms:
++     - OUTCOME -> STATE_LABEL
++     - OUTCOME -> None (or unspecified)
++     - OUTCOME -> SM_OUTCOME
++    """
++    def __init__(self, outcomes, input_keys=[], output_keys=[]):
++        """Constructor for smach StateMachine Container.
++
++        @type outcomes: list of strings
++        @param outcomes: The potential outcomes of this state machine.
++        """
++
++        # Call super's constructor
++        smach.container.Container.__init__(self, outcomes, input_keys, output_keys)
++        
++        # Properties
++        self._state_transitioning_lock = threading.Lock()
++
++        # Current state of the state machine
++        self._is_running = False # True when a goal has been dispatched to and accepted by the state machine
++
++        self._initial_state_label = None
++
++        self._current_label = None
++        self._current_state = None
++        self._current_transitions = None
++        self._current_outcome = None
++
++        # The label of the last preempted state
++        self._preempted_label = None
++        self._preempted_state = None
++
++        # State machine storage
++        # These are dictionaries of State objects and transition dictionaries
++        # keyed on unique labels
++        self._states = {}
++        self._transitions = {}
++        self._remappings = {}
++
++        # Construction vars
++        self._last_added_label = None
++        self._connector_outcomes = []
++
++        # Thread for execution of state switching
++        self._execute_thread = None
++        self.userdata = smach.UserData()
++
++    ### Getter and Setter to allow pickling and unpickling state machines
++    def __getstate__(self):
++        return {k:v for (k, v) in self.__dict__.items() if k is not "_state_transitioning_lock"}
++
++    def __setstate__(self, d):
++        self.__dict__ = d
++        self._state_transitioning_lock = threading.Lock()
++
++    ### Construction methods
++    @staticmethod
++    def add(label, state, transitions=None, remapping=None):
++        """Add a state to the opened state machine.
++        
++        @type label: string
++        @param label: The label of the state being added.
++        
++        @param state: An instance of a class implementing the L{State} interface.
++        
++        @param transitions: A dictionary mapping state outcomes to other state
++        labels or container outcomes.
++
++        @param remapping: A dictrionary mapping local userdata keys to userdata
++        keys in the container.
++        """
++        # Get currently opened container
++        self = StateMachine._currently_opened_container()
++
++        smach.logdebug('Adding state (%s, %s, %s)' % (label, str(state), str(transitions)))
++
++        # Set initial state if it is still unset
++        if self._initial_state_label is None:
++            self._initial_state_label = label
++
++        if transitions is None:
++            transitions = {}
++
++        if remapping is None:
++            remapping = {}
++
++        # Add group transitions to this new state, if they exist
++        """
++        if 'transitions' in smach.Container._context_kwargs:
++            for outcome, target in smach.Container._context_kwargs['transitions'].iteritems():
++                if outcome not in transitions:
++                    transitions[outcome] = target
++        """
++
++        # Check the state specification
++        self.check_state_spec(label, state, transitions)
++
++        # Check if th label already exists
++        if label in self._states:
++            raise smach.InvalidStateError(
++            'Attempting to add state with label "'+label+'" to state machine, but this label is already being used.')
++
++        # Debug info
++        smach.logdebug("Adding state '"+str(label)+"' to the state machine.")
++
++        # Create implicit terminal transitions, and combine them with the explicit transitions
++        registered_outcomes = state.get_registered_outcomes()
++
++        # Get a list of the unbound transitions
++        missing_transitions = {o: None for o in registered_outcomes if o not in transitions}
++        transitions.update(missing_transitions)
++        smach.logdebug("State '%s' is missing transitions: %s" % (label, str(missing_transitions)))
++
++        # Add state and transitions to the dictionary
++        self._states[label] = state
++        self._transitions[label] = transitions
++        self._remappings[label] = remapping
++        smach.logdebug("TRANSITIONS FOR %s: %s" % (label, str(self._transitions[label])))
++
++        # Add transition to this state if connected outcome is defined
++        if len(self._connector_outcomes) > 0 and self._last_added_label is not None:
++            for connector_outcome in self._connector_outcomes:
++                self._transitions[self._last_added_label][connector_outcome] = label
++            # Reset connector outcomes and last added label
++            self._connector_outcomes = []
++            self._last_added_label = None
++
++        return state
++
++    @staticmethod
++    def add_auto(label, state, connector_outcomes, transitions=None, remapping=None):
++        """Add a state to the state machine such that it automatically
++        transitions to the next added state.
++
++        Each state added will receive an additional transition from it
++        to the state which is added after it for every outcome given
++        via connector_outcomes.
++
++        @type label: string
++        @param label: The label of the state being added.
++
++        @param state: An instance of a class implementing the L{State} interface.
++
++        @type connector_outcomes: list of string
++        @param connector_outcomes: For which of the added state's outcomes a
++        transition to the next added state should be generated.
++
++        @param transitions: A dictionary mapping state outcomes to other state
++        labels. If one of these transitions follows the connector outcome
++        specified in the constructor, the provided transition will override
++        the automatically generated connector transition.
++        """
++        # Get currently opened container
++        self = StateMachine._currently_opened_container()
++
++        # First add this state
++        add_ret = smach.StateMachine.add(label, state, transitions, remapping)
++
++        # Make sure the connector outcomes are valid for this state
++        registered_outcomes = state.get_registered_outcomes()
++        if not all(co in registered_outcomes for co in connector_outcomes):
++            raise smach.InvalidStateError("Attempting to auto-connect states with outcomes %s, but state '%s' only has registerd outcomes: %s" % (str(connector_outcomes), str(label), str(registered_outcomes)))
++
++        # Store this state as the last state and store the connector outcomes
++        self._last_added_label = label
++        self._connector_outcomes = connector_outcomes
++
++        return add_ret
++
++    ### Internals
++    def _set_current_state(self, state_label):
++        if state_label is not None:
++            # Store the current label and states 
++            self._current_label = state_label
++            self._current_state = self._states[state_label]
++            self._current_transitions = self._transitions[state_label]
++            self._current_outcome = None
++        else:
++            # Store the current label and states 
++            self._current_label = None
++            self._current_state = None
++            self._current_transitions = None
++            self._current_outcome = None
++
++    def _update_once(self):
++        """Method that updates the state machine once.
++        This checks if the current state is ready to transition, if so, it
++        requests the outcome of the current state, and then extracts the next state
++        label from the current state's transition dictionary, and then transitions
++        to the next state.
++        """
++        outcome = None
++        transition_target = None
++        last_state_label = self._current_label
++
++        # Make sure the state exists
++        if self._current_label not in self._states:
++            raise smach.InvalidStateError("State '%s' does not exist. Available states are: %s" %
++                    (self._current_label, list(self._states.keys())))
++
++        # Check if a preempt was requested before or while the last state was running
++        if self.preempt_requested():
++            smach.loginfo("Preempt requested on state machine before executing the next state.")
++            # We were preempted
++            if self._preempted_state is not None:
++                # We were preempted while the last state was running
++                if self._preempted_state.preempt_requested():
++                    smach.loginfo("Last state '%s' did not service preempt. Preempting next state '%s' before executing..." % (self._preempted_label, self._current_label))
++                    # The flag was not reset, so we need to keep preempting 
++                    # (this will reset the current preempt)
++                    self._preempt_current_state()
++                else:
++                    # The flag was reset, so the container can reset
++                    self._preempt_requested = False
++                    self._preempted_state = None
++            else:
++                # We were preempted after the last state was running
++                # So we should preempt this state before we execute it
++                self._preempt_current_state()
++
++        # Execute the state
++        try:
++            self._state_transitioning_lock.release()
++            outcome = self._current_state.execute(
++                    smach.Remapper(
++                        self.userdata,
++                        self._current_state.get_registered_input_keys(),
++                        self._current_state.get_registered_output_keys(),
++                        self._remappings[self._current_label]))
++        except smach.InvalidUserCodeError as ex:
++            smach.logerr("State '%s' failed to execute." % self._current_label)
++            raise ex
++        except:
++            raise smach.InvalidUserCodeError("Could not execute state '%s' of type '%s': " %
++                                             (self._current_label, self._current_state)
++                                             + traceback.format_exc())
++        finally:
++            self._state_transitioning_lock.acquire()
++
++        # Check if outcome was a potential outcome for this type of state
++        if outcome not in self._current_state.get_registered_outcomes():
++            raise smach.InvalidTransitionError(
++                    "Attempted to return outcome '%s' from state '%s' of"
++                    " type '%s' which only has registered outcomes: %s" %
++                    (outcome,
++                     self._current_label,
++                     self._current_state,
++                     self._current_state.get_registered_outcomes()))
++
++        # Check if this outcome is actually mapped to any target
++        if outcome not in self._current_transitions:
++            raise smach.InvalidTransitionError("Outcome '%s' of state '%s' is not bound to any transition target. Bound transitions include: %s" %
++                    (str(outcome), str(self._current_label), str(self._current_transitions)))
++        
++        # Set the transition target
++        transition_target = self._current_transitions[outcome]
++
++        # Check if the transition target is a state in this state machine, or an outcome of this state machine
++        if transition_target in self._states:
++            # Set the new state 
++            self._set_current_state(transition_target)
++
++            # Spew some info
++            smach.loginfo("State machine transitioning '%s':'%s'-->'%s'" %
++                          (last_state_label, outcome, transition_target))
++
++            # Call transition callbacks
++            self.call_transition_cbs()
++        else:
++            # This is a terminal state
++            
++            if self._preempt_requested and self._preempted_state is not None:
++                if not self._current_state.preempt_requested():
++                    self.service_preempt()
++
++            if transition_target not in self.get_registered_outcomes():
++                # This is a container outcome that will fall through
++                transition_target = outcome
++
++            if transition_target in self.get_registered_outcomes():
++                # The transition target is an outcome of the state machine
++                self._set_current_state(None)
++
++                # Spew some info
++                smach.loginfo("State machine terminating '%s':'%s':'%s'" %
++                              (last_state_label, outcome, transition_target))
++
++                # Call termination callbacks
++                self.call_termination_cbs([last_state_label],transition_target)
++
++                return transition_target
++            else:
++                raise smach.InvalidTransitionError("Outcome '%s' of state '%s' with transition target '%s' is neither a registered state nor a registered container outcome." %
++                        (outcome, self._current_label, transition_target))
++        return None
++
++    ### State Interface
++    def execute(self, parent_ud = smach.UserData()):
++        """Run the state machine on entry to this state.
++        This will set the "closed" flag and spin up the execute thread. Once
++        this flag has been set, it will prevent more states from being added to
++        the state machine. 
++        """
++
++        # This will prevent preempts from getting propagated to non-existent children
++        with self._state_transitioning_lock:
++            # Check state consistency
++            try:
++                self.check_consistency()
++            except (smach.InvalidStateError, smach.InvalidTransitionError):
++                smach.logerr("Container consistency check failed.")
++                return None
++
++            # Set running flag
++            self._is_running = True
++
++            # Initialize preempt state
++            self._preempted_label = None
++            self._preempted_state = None
++
++            # Set initial state 
++            self._set_current_state(self._initial_state_label)
++
++            # Copy input keys
++            self._copy_input_keys(parent_ud, self.userdata)
++
++            # Spew some info
++            smach.loginfo("State machine starting in initial state '%s' with userdata: \n\t%s" %
++                    (self._current_label, list(self.userdata.keys())))
++
++
++            # Call start callbacks
++            self.call_start_cbs()
++
++            # Initialize container outcome
++            container_outcome = None
++
++            try:
++                # Step through state machine
++                while container_outcome is None and self._is_running and not smach.is_shutdown():
++                    # Update the state machine
++                    container_outcome = self._update_once()
++
++                # Copy output keys
++                self._copy_output_keys(self.userdata, parent_ud)
++
++            finally:
++                # We're no longer running
++                self._is_running = False
++
++        return container_outcome
++
++    ## Preemption management
++    def request_preempt(self):
++        """Propagate preempt to currently active state.
++        
++        This will attempt to preempt the currently active state.
++        """
++        with self._state_transitioning_lock:
++            # Aleways Set this container's preempted flag
++            self._preempt_requested = True
++            # Only propagate preempt if the current state is defined
++            if self._current_state is not None:
++                self._preempt_current_state()
++
++    def _preempt_current_state(self):
++        """Preempt the current state (might not be executing yet).
++        This also resets the preempt flag on a state that had previously received the preempt, but not serviced it."""
++        if self._preempted_state != self._current_state:
++            if self._preempted_state is not None:
++                # Reset the previously preempted state (that has now terminated)
++                self._preempted_state.recall_preempt()
++
++            # Store the label of the currently active state
++            self._preempted_state = self._current_state
++            self._preempted_label = self._current_label
++
++            # Request the currently active state to preempt
++            try:
++                self._preempted_state.request_preempt()
++            except:
++                smach.logerr("Failed to preempt contained state '%s': %s" % (self._preempted_label, traceback.format_exc()))
++
++    ### Container interface
++    def get_children(self):
++        return self._states
++
++    def __getitem__(self,key):
++        if key not in self._states:
++            smach.logerr("Attempting to get state '%s' from StateMachine container. The only available states are: %s" % (key, str(list(self._states.keys()))))
++            raise KeyError()
++        return self._states[key]
++
++    def set_initial_state(self, initial_states, userdata=smach.UserData()):
++        smach.logdebug("Setting initial states to " + str(initial_states))
++
++        if len(initial_states) > 1:
++            smach.logwarn("Attempting to set initial state to include more than"
++                          " one state, but the StateMachine container can only"
++                          " have one initial state. Taking the first one.")
++
++        # Set the initial state label
++        if len(initial_states) > 0:
++            self._initial_state_label = initial_states[0]
++        # Set local userdata
++        self.userdata.update(userdata)
++
++    def get_active_states(self):
++        return [str(self._current_label)]
++
++    def get_initial_states(self):
++        return [str(self._initial_state_label)]
++
++    def get_internal_edges(self):
++        int_edges = []
++        for (from_label,transitions) in ((k,self._transitions[k]) for k in self._transitions):
++            for (outcome,to_label) in ((k,transitions[k]) for k in transitions):
++                int_edges.append((outcome, from_label, to_label))
++        return int_edges
++
++    ### Validation methods
++    def check_state_spec(self, label, state, transitions):
++        """Validate full state specification (label, state, and transitions).
++        This checks to make sure the required variables are in the state spec,
++        as well as verifies that all outcomes referenced in the transitions
++        are registered as valid outcomes in the state object. If a state
++        specification fails validation, a L{smach.InvalidStateError} is
++        thrown.
++        """
++        # Make sure all transitions are from registered outcomes of this state
++        registered_outcomes = state.get_registered_outcomes()
++        for outcome in transitions:
++            if outcome not in registered_outcomes:
++                raise smach.InvalidTransitionError("Specified outcome '"+outcome+"' on state '"+label+"', which only has available registered outcomes: "+str(registered_outcomes))
++
++    def check_consistency(self):
++        """Check the entire state machine for consistency.
++        This asserts that all transition targets are states that are in the
++        state machine. If this fails, it raises an L{InvalidTransitionError}
++        with relevant information.
++        """
++        # Construct a set of available states
++        available_states = set(list(self._states.keys())+list(self.get_registered_outcomes()))
++
++        # Grab the registered outcomes for the state machine
++        registered_sm_outcomes = self.get_registered_outcomes()
++
++        # Hopefully this string stays empty
++        errors = ""
++
++        # Check initial_state_label
++        if self._initial_state_label is None:
++            errors = errors + "\n\tNo initial state set."
++        elif self._initial_state_label not in self._states:
++            errors = errors + "\n\tInitial state label: '"+str(self._initial_state_label)+"' is not in the state machine."
++
++        # Generate state specifications
++        state_specs = [(label, self._states[label], self._transitions[label])
++                       for label in self._states]
++        # Iterate over all states
++        for label,state,transitions in state_specs:
++            # Check that all potential outcomes are registered in this state
++            transition_states = set([s for s in transitions.values()
++                                     if s is not None and s != ''])
++            # Generate a list of missing states
++            missing_states = transition_states.difference(available_states)
++
++            # Check number of missing states
++            if len(missing_states) > 0:
++                errors = (errors
++                          + "\n\tState '" + str(label)
++                          + "' references unknown states: " + str(list(missing_states)))
++
++            # Check terminal outcomes for this state
++            terminal_outcomes = set([o for (o, s) in ((k, transitions[k])
++                                                      for k in transitions)
++                                     if s is None or s == ''])
++            # Terminal outcomes should be in the registered outcomes of this state machine
++            missing_outcomes = terminal_outcomes.difference(registered_sm_outcomes)
++            # Check number of missing outcomes
++            if len(missing_outcomes) > 0:
++                errors = (errors
++                          + "\n\tState '" + str(label)
++                          + "' references unregistered outcomes: " + str(list(missing_outcomes)))
++
++        # Check errors
++        if len(errors) > 0:
++            raise smach.InvalidTransitionError("State machine failed consistency check: "+errors+"\n\n\tAvailable states: "+str(list(available_states)))
++
++    ### Introspection methods
++    def is_running(self):
++        """Returns true if the state machine is running."""
++        return self._is_running
+--- /dev/null
++++ ros-noetic-smach-2.5.2/src/smach/user_data.py
+@@ -0,0 +1,178 @@
++
++import threading
++import copy
++
++import smach
++
++__all__ = ['UserData','Remapper']
++
++class UserData(object):
++    """SMACH user data structure."""
++    def __init__(self):
++        self._data = {}
++        self._locks = {}
++        self.__initialized = True
++
++    def update(self, other_userdata):
++        """Combine this userdata struct with another.
++        This overwrites duplicate keys with values from C{other_userdata}.
++        """
++        # Merge data
++        self._data.update(other_userdata._data)
++
++    def extract(self, keys, remapping):
++        ud = UserData()
++        reverse_remapping = {remapping[k]: k for k in remapping}
++        if len(reverse_remapping) != len(remapping):
++            smach.logerr("SMACH userdata remapping is not one-to-one: " + str(remapping))
++        for k in keys:
++            rmk = k
++            if k in reverse_remapping:
++                rmk = reverse_remapping[k]
++            ud[rmk] = copy.copy(self[k])
++        return ud
++
++    def merge(self, ud, keys, remapping):
++        for k in keys:
++            rmk = k
++            if k in remapping:
++                rmk = remapping[k]
++            self[rmk] = copy.copy(ud[k])
++
++    def __getitem__(self, key):
++        return self.__getattr__(key)
++
++    def __setitem__(self, key, item):
++        self._data[key] = item
++
++    def keys(self):
++        return list(self._data.keys())
++
++    def __contains__(self,key):
++        return key in self._data
++
++    def __getattr__(self, name):
++        """Override getattr to be thread safe."""
++        if name[0] == '_':
++            return object.__getattr__(self, name)
++        if not name in self._locks.keys():
++            self._locks[name] = threading.Lock()
++
++        try:
++            with self._locks[name]:
++                temp = self._data[name]
++        except:
++            smach.logerr("Userdata key '%s' not available. Available keys are: %s" % (name, str(list(self._data.keys()))))
++            raise KeyError()
++
++        return temp
++
++    def __setattr__(self, name, value):
++        """Override setattr to be thread safe."""
++        # If we're still in __init__ don't do anything special
++        if name[0] == '_' or '_UserData__initialized' not in self.__dict__:
++            return object.__setattr__(self, name, value)
++
++        if not name in self._locks.keys():
++            self._locks[name] = threading.Lock()
++
++        self._locks[name].acquire()
++        self._data[name] = value
++        self._locks[name].release()
++
++# Const wrapper
++def get_const(obj):
++    """Get a const reference to an object if it has "user-defined" attributes."""
++    if hasattr(obj,'__dict__'):
++        smach.logdebug("Making const '%s'" % str(obj))
++        return Const(obj)
++    else:
++        return obj
++
++class Const(object):
++    """Wrapper that treats "user-defined" fields as immutable.
++    
++    This wrapper class is used when user data keys are specified as input keys,
++    but not as output keys.
++    """
++    def __init__(self, obj):
++        smach.logdebug("Making const '%s'" % str(obj))
++        self._obj = obj
++        self.__initialized = True
++
++    def __getattr__(self, name):
++        smach.logdebug("Getting '%s' from const wrapper." % name)
++        attr = getattr(self._obj,name)
++        return get_const(attr)
++
++    def __getitem__(self, name):
++        smach.logdebug("Getting '%s' from const wrapper." % name)
++        attr = self._obj[name]
++        return get_const(attr)
++
++    def __setattr__(self, name, value):
++        if '_const__initialized' not in self.__dict__: 
++            return object.__setattr__(self, name, value)
++        smach.logerr("Attempting to set '%s' but this member is read-only." % name)
++        raise TypeError()
++
++    def __delattr__(self, name):
++        smach.logerr("Attempting to delete '%s' but this member is read-only." % name)
++        raise TypeError()
++
++class Remapper(object):
++    """Key-remapping proxy to a SMACH userdata structure."""
++    def __init__(self, ud, input_keys=[], output_keys=[], remapping={}):
++        self._ud = ud
++        self._input = input_keys
++        self._output = output_keys
++        self._map =  remapping
++        self.__initialized = True
++
++    def _remap(self, key):
++        """Return either the key or it's remapped value."""
++        if key in self._map:
++            return self._map[key]
++        return key
++
++    def update(self, other_userdata):
++        self._ud.update(other_userdata)
++
++    def __getitem__(self, key):
++        if key not in self._input:
++            raise smach.InvalidUserCodeError("Reading from SMACH userdata key '%s' but the only keys that were declared as input to this state were: %s. This key needs to be declared as input to this state. " % (key, self._input))
++        if key not in self._output:
++            return get_const(self._ud.__getitem__(self._remap(key)))
++        return self._ud.__getitem__(self._remap(key))
++
++    def __setitem__(self, key, item):
++        if key not in self._output:
++            smach.logerr("Writing to SMACH userdata key '%s' but the only keys that were declared as output from this state were: %s." % (key, self._output))
++            return
++        self._ud.__setitem__(self._remap(key),item)
++
++    def keys(self):
++        return [self._remap(key) for key in self._ud.keys() if key in self._input]
++
++    def __contains__(self,key):
++        if key in self._input:
++            return self._remap(key) in self._ud
++        else:
++            return False
++
++    def __getattr__(self, name):
++        if name[0] == '_':
++            return object.__getattr__(self, name)
++        if name not in self._input:
++            raise smach.InvalidUserCodeError("Reading from SMACH userdata key '%s' but the only keys that were declared as input to this state were: %s. This key needs to be declared as input to this state. " % (name, self._input))
++        if name not in self._output:
++            return get_const(getattr(self._ud, self._remap(name)))
++        return getattr(self._ud, self._remap(name))
++
++    def __setattr__(self, name, value):
++        if name[0] == '_' or '_Remapper__initialized' not in self.__dict__:
++            return object.__setattr__(self, name, value)
++        if name not in self._output:
++            smach.logerr("Writing to SMACH userdata key '%s' but the only keys that were declared as output from this state were: %s." % (name, self._output))
++            return None
++        setattr(self._ud, self._remap(name), value)
+--- /dev/null
++++ ros-noetic-smach-2.5.2/src/smach/util.py
+@@ -0,0 +1,111 @@
++import smach
++
++__all__ = ['is_shutdown', 'set_shutdown_check',
++           'cb_interface', 'has_smach_interface', 'CBInterface']
++
++
++def is_shutdown():
++    return False
++
++
++def set_shutdown_check(cb):
++    smach.is_shutdown = cb
++
++
++def has_smach_interface(obj):
++    """Returns True if the object has SMACH interface accessors."""
++    return (hasattr(obj, 'get_registered_input_keys') and
++            hasattr(obj, 'get_registered_output_keys') and
++            hasattr(obj, 'get_registered_outcomes'))
++
++
++# Callback decorator for describing userdata
++class cb_interface(object):
++    def __init__(self, outcomes=None, input_keys=None, output_keys=None):
++        self._outcomes = outcomes or []
++        self._input_keys = input_keys or []
++        self._output_keys = output_keys or []
++
++    def __call__(self, cb):
++        return CBInterface(cb, self._outcomes, self._input_keys, self._output_keys)
++
++
++class CBInterface(object):
++    """Decorator to describe the extension of a state's SMACH userdata and outcome interface.
++
++    Some SMACH states can be extended with the use of user callbacks. Since
++    the SMACH interface and SMACH userdata are strictly controlled, the ways in
++    which these callbacks interact with SMACH must be delcared. This decorator
++    allows this information to be attached to a given callback function.
++
++    If a callback adds a potential outcome to a state, suppose 'critical_failure',
++    then one could write this when defining the callback:
++
++    >>> import smach
++    >>> @smach.cb_interface(outcomes=['critical_failure'])
++    >>> def my_cb(x,y,z):
++    >>>     # User code
++    >>>     return 'critical_failure'
++
++    Suppose a state retrieves data that it passes into a callback. If the user
++    wants to take that data and put some of all of it into userdata, this
++    interface must be declared. In this case, the user could write:
++
++    >>> import smach
++    >>> @smach.cb_interface(output_keys=['processed_res'])
++    >>> def my_cb(ud, data):
++    >>>     ud.processed_res = data
++
++    """
++    def __init__(self, cb, outcomes=None, input_keys=None, output_keys=None,
++                 io_keys=None):
++        outcomes = outcomes or []
++        input_keys = input_keys or []
++        output_keys = output_keys or []
++        io_keys = io_keys or []
++        """Describe callback SMACH interface.
++
++        @type outcomes: array of strings
++        @param outcomes: Custom outcomes for this state.
++
++        @type input_keys: array of strings
++        @param input_keys: The userdata keys from which this state might read
++        at runtime.
++
++        @type output_keys: array of strings
++        @param output_keys: The userdata keys to which this state might write
++        at runtime.
++
++        @type io_keys: array of strings
++        @param io_keys: The userdata keys to which this state might write or
++        from which it might read at runtime.
++        """
++
++        self._input_keys = set(input_keys)
++        self._input_keys.union(io_keys)
++
++        self._output_keys = set(output_keys)
++        self._output_keys.union(io_keys)
++
++        self._outcomes = outcomes
++
++        self._cb = cb
++
++    def __call__(self, *args, **kwargs):
++        return self._cb(*args, **kwargs)
++
++    # SMACH Interface API
++    def get_registered_input_keys(self):
++        """Get a tuple of registered input keys."""
++        return tuple(self._input_keys)
++
++    def get_registered_output_keys(self):
++        """Get a tuple of registered output keys."""
++        return tuple(self._output_keys)
++
++    def get_registered_outcomes(self):
++        """Get a list of registered outcomes.
++        @rtype: tuple of string
++        @return: Tuple of registered outcome strings.
++        """
++        return tuple(self._outcomes)

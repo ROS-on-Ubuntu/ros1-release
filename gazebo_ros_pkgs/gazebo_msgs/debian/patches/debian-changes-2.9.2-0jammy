@@ -1,0 +1,764 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-gazebo-msgs (2.9.2-0jammy) jammy; urgency=high
+ .
+   * [Noetic] Bridge to republish PerformanceMetrics in ROS (#1145 <https://github.com/ros-simulation/gazebo_ros_pkgs/issues/1145>)
+     Co-authored-by: Ian Chen <mailto:ichen@osrfoundation.org>
+   * Contributors: Alejandro Hernández Cordero
+Author: Jose Luis Rivero <jrivero@osrfoundation.org>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/CHANGELOG.rst
+@@ -0,0 +1,202 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package gazebo_msgs
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++2.9.2 (2021-04-21)
++------------------
++* [Noetic] Bridge to republish PerformanceMetrics in ROS (`#1145 <https://github.com/ros-simulation/gazebo_ros_pkgs/issues/1145>`_)
++  Co-authored-by: Ian Chen <ichen@osrfoundation.org>
++* Contributors: Alejandro Hernández Cordero
++
++2.9.1 (2020-05-20)
++------------------
++
++2.9.0 (2020-05-19)
++------------------
++* Bump CMake version to avoid CMP0048 warning (`#1066 <https://github.com/ros-simulation/gazebo_ros_pkgs/issues/1066>`_)
++* add additional light options to 'set_light_properties' service (`#874 <https://github.com/ros-simulation/gazebo_ros_pkgs/issues/874>`_)
++  The optional 'Light' properties 'cast_shadows', 'specular', 'direction',
++  and 'pose' are not optional any more. These properties are now set via the
++  corresponding fields in the ROS message. By default, this will be 0.
++  https://github.com/ros-simulation/gazebo_ros_pkgs/pull/874
++* Contributors: Alejandro Hernández Cordero, Christian Rauch
++
++2.8.5 (2019-06-04)
++------------------
++
++2.8.4 (2018-07-06)
++------------------
++* Correct documentation on SetModelConfiguration.srv
++* Contributors: Kevin Allen
++
++2.8.3 (2018-06-04)
++------------------
++
++2.8.2 (2018-05-09)
++------------------
++
++2.8.1 (2018-05-05)
++------------------
++
++2.7.4 (2018-02-12)
++------------------
++
++2.7.3 (2017-12-11)
++------------------
++
++2.7.2 (2017-05-21)
++------------------
++
++2.7.1 (2017-04-28)
++------------------
++* Add catkin package(s) to provide the default version of Gazebo - take II (kinetic-devel) (`#571 <https://github.com/ros-simulation/gazebo_ros_pkgs/issues/571>`_)
++* Contributors: Jose Luis Rivero
++
++2.5.12 (2017-04-25)
++-------------------
++
++2.5.11 (2017-04-18)
++-------------------
++* Changed the spawn model methods to spawn also lights. (`#511 <https://github.com/ros-simulation/gazebo_ros_pkgs/issues/511>`_)
++* Contributors: Alessandro Ambrosano
++
++2.5.10 (2017-03-03)
++-------------------
++
++2.5.9 (2017-02-20)
++------------------
++* Removed all trailing whitespace
++* Contributors: Dave Coleman
++
++2.5.8 (2016-12-06)
++------------------
++
++2.5.7 (2016-06-10)
++------------------
++
++2.5.6 (2016-04-28)
++------------------
++
++2.5.5 (2016-04-27)
++------------------
++* merge indigo, jade to kinetic-devel
++* Update maintainer for Kinetic release
++* Contributors: Jose Luis Rivero, Steven Peters
++
++2.5.3 (2016-04-11)
++------------------
++
++2.5.2 (2016-02-25)
++------------------
++* merging from indigo-devel
++* 2.4.9
++* Generate changelog
++* GetModelState modification for jade
++* Contributors: John Hsu, Jose Luis Rivero, Markus Bader
++
++2.5.1 (2015-08-16)
++------------------
++
++2.5.0 (2015-04-30)
++------------------
++
++2.4.10 (2016-02-25)
++-------------------
++
++2.4.9 (2015-08-16)
++------------------
++
++2.4.8 (2015-03-17)
++------------------
++
++2.4.7 (2014-12-15)
++------------------
++* Update Gazebo/ROS tutorial URL
++* Contributors: Jose Luis Rivero
++
++2.4.6 (2014-09-01)
++------------------
++
++2.4.5 (2014-08-18)
++------------------
++
++2.4.4 (2014-07-18)
++------------------
++* Fix repo names in package.xml's
++* Contributors: Jon Binney
++
++2.4.3 (2014-05-12)
++------------------
++
++2.4.2 (2014-03-27)
++------------------
++* merging from hydro-devel
++* bump patch version for indigo-devel to 2.4.1
++* merging from indigo-devel after 2.3.4 release
++* "2.4.0"
++* catkin_generate_changelog
++* Contributors: John Hsu
++
++2.4.1 (2013-11-13)
++------------------
++* rerelease because sdformat became libsdformat, but we also based change on 2.3.4 in hydro-devel.
++
++2.4.0 (2013-10-14)
++------------------
++
++2.3.5 (2014-03-26)
++------------------
++
++2.3.4 (2013-11-13)
++------------------
++
++2.3.3 (2013-10-10)
++------------------
++
++2.3.2 (2013-09-19)
++------------------
++
++2.3.1 (2013-08-27)
++------------------
++
++2.3.0 (2013-08-12)
++------------------
++
++2.2.1 (2013-07-29)
++------------------
++
++2.2.0 (2013-07-29)
++------------------
++
++2.1.5 (2013-07-18)
++------------------
++
++2.1.4 (2013-07-14)
++------------------
++
++2.1.3 (2013-07-13)
++------------------
++
++2.1.2 (2013-07-12)
++------------------
++* Cleaned up CMakeLists.txt for all gazebo_ros_pkgs
++* 2.1.1
++
++2.1.1 (2013-07-10 19:11)
++------------------------
++
++2.1.0 (2013-06-27)
++------------------
++
++2.0.2 (2013-06-20)
++------------------
++
++2.0.1 (2013-06-19)
++------------------
++* Incremented version to 2.0.1
++
++2.0.0 (2013-06-18)
++------------------
++* Changed version to 2.0.0 based on gazebo_simulator being 1.0.0
++* Updated package.xml files for ros.org documentation purposes
++* Imported from bitbucket.org
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/CMakeLists.txt
+@@ -0,0 +1,70 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(gazebo_msgs)
++
++find_package(catkin REQUIRED COMPONENTS
++  std_msgs
++  trajectory_msgs
++  geometry_msgs
++  sensor_msgs
++  std_srvs
++  message_generation
++  )
++
++add_message_files(
++  DIRECTORY msg
++  FILES
++  ContactsState.msg
++  ContactState.msg
++  LinkState.msg
++  LinkStates.msg
++  ModelState.msg
++  ModelStates.msg
++  ODEJointProperties.msg
++  ODEPhysics.msg
++  PerformanceMetrics.msg
++  SensorPerformanceMetric.msg
++  WorldState.msg
++  )
++
++add_service_files(DIRECTORY srv FILES
++  ApplyBodyWrench.srv
++  DeleteModel.srv
++  DeleteLight.srv
++  GetLinkState.srv
++  GetPhysicsProperties.srv
++  SetJointProperties.srv
++  SetModelConfiguration.srv
++  SpawnModel.srv
++  ApplyJointEffort.srv
++  GetJointProperties.srv
++  GetModelProperties.srv
++  GetWorldProperties.srv
++  SetLinkProperties.srv
++  SetModelState.srv
++  BodyRequest.srv
++  GetLinkProperties.srv
++  GetModelState.srv
++  JointRequest.srv
++  SetLinkState.srv
++  SetPhysicsProperties.srv
++  SetJointTrajectory.srv
++  GetLightProperties.srv
++  SetLightProperties.srv
++  )
++
++generate_messages(DEPENDENCIES
++  std_msgs
++  geometry_msgs
++  sensor_msgs
++  trajectory_msgs
++  )
++
++catkin_package(
++  CATKIN_DEPENDS
++  message_runtime
++  std_msgs
++  trajectory_msgs
++  geometry_msgs
++  sensor_msgs
++  std_srvs
++  )
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/msg/ContactState.msg
+@@ -0,0 +1,8 @@
++string info                                   # text info on this contact
++string collision1_name                        # name of contact collision1
++string collision2_name                        # name of contact collision2
++geometry_msgs/Wrench[] wrenches               # list of forces/torques
++geometry_msgs/Wrench total_wrench             # sum of forces/torques in every DOF
++geometry_msgs/Vector3[] contact_positions     # list of contact position
++geometry_msgs/Vector3[] contact_normals       # list of contact normals
++float64[] depths                              # list of penetration depths
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/msg/ContactsState.msg
+@@ -0,0 +1,2 @@
++Header header                                   # stamp
++gazebo_msgs/ContactState[] states            # array of geom pairs in contact
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/msg/LinkState.msg
+@@ -0,0 +1,6 @@
++# @todo: FIXME: sets pose and twist of a link.  All children link poses/twists of the URDF tree are not updated accordingly, but should be.
++string link_name            # link name, link_names are in gazebo scoped name notation, [model_name::body_name]
++geometry_msgs/Pose pose     # desired pose in reference frame
++geometry_msgs/Twist twist   # desired twist in reference frame
++string reference_frame      # set pose/twist relative to the frame of this link/body
++                            # leave empty or "world" or "map" defaults to world-frame
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/msg/LinkStates.msg
+@@ -0,0 +1,4 @@
++# broadcast all link states in world frame
++string[] name                 # link names
++geometry_msgs/Pose[] pose     # desired pose in world frame
++geometry_msgs/Twist[] twist   # desired twist in world frame
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/msg/ModelState.msg
+@@ -0,0 +1,7 @@
++# Set Gazebo Model pose and twist
++string model_name           # model to set state (pose and twist)
++geometry_msgs/Pose pose     # desired pose in reference frame
++geometry_msgs/Twist twist   # desired twist in reference frame
++string reference_frame      # set pose/twist relative to the frame of this entity (Body/Model)
++                            # leave empty or "world" or "map" defaults to world-frame
++
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/msg/ModelStates.msg
+@@ -0,0 +1,4 @@
++# broadcast all model states in world frame
++string[] name                 # model names
++geometry_msgs/Pose[] pose     # desired pose in world frame
++geometry_msgs/Twist[] twist   # desired twist in world frame
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/msg/ODEJointProperties.msg
+@@ -0,0 +1,11 @@
++# access to low level joint properties, change these at your own risk
++float64[] damping             # joint damping
++float64[] hiStop              # joint limit
++float64[] loStop              # joint limit
++float64[] erp                 # set joint erp
++float64[] cfm                 # set joint cfm
++float64[] stop_erp            # set joint erp for joint limit "contact" joint
++float64[] stop_cfm            # set joint cfm for joint limit "contact" joint
++float64[] fudge_factor        # joint fudge_factor applied at limits, see ODE manual for info.
++float64[] fmax                # ode joint param fmax
++float64[] vel                 # ode joint param vel
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/msg/ODEPhysics.msg
+@@ -0,0 +1,10 @@
++bool auto_disable_bodies           # enable auto disabling of bodies, default false
++uint32 sor_pgs_precon_iters        # preconditioning inner iterations when uisng projected Gauss Seidel
++uint32 sor_pgs_iters               # inner iterations when uisng projected Gauss Seidel
++float64 sor_pgs_w                  # relaxation parameter when using projected Gauss Seidel, 1 = no relaxation
++float64 sor_pgs_rms_error_tol      # rms error tolerance before stopping inner iterations
++float64 contact_surface_layer      # contact "dead-band" width
++float64 contact_max_correcting_vel # contact maximum correction velocity
++float64 cfm                        # global constraint force mixing
++float64 erp                        # global error reduction parameter
++uint32 max_contacts                # maximum contact joints between two geoms
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/msg/PerformanceMetrics.msg
+@@ -0,0 +1,4 @@
++Header header
++
++float64 real_time_factor
++gazebo_msgs/SensorPerformanceMetric[] sensors
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/msg/SensorPerformanceMetric.msg
+@@ -0,0 +1,4 @@
++string name
++float64 sim_update_rate
++float64 real_update_rate
++float64 fps
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/msg/WorldState.msg
+@@ -0,0 +1,42 @@
++# This is a message that holds data necessary to reconstruct a snapshot of the world
++#
++# = Approach to Message Passing =
++# The state of the world is defined by either
++#   1. Inertial Model pose, twist
++#      * kinematic data - connectivity graph from Model to each Link
++#      * joint angles
++#      * joint velocities
++#      * Applied forces - Body wrench
++#        * relative transform from Body to each collision Geom
++# Or
++#   2. Inertial (absolute) Body pose, twist, wrench
++#      * relative transform from Body to each collision Geom - constant, so not sent over wire
++#      * back compute from canonical body info to get Model pose and twist.
++#
++# Chooing (2.) because it matches most physics engines out there
++#   and is simpler.
++#
++# = Future =
++# Consider impacts on using reduced coordinates / graph (parent/child links) approach
++#   constraint and physics solvers.
++#
++# = Application =
++# This message is used to do the following:
++#   * reconstruct the world and objects for sensor generation
++#   * stop / start simulation - need pose, twist, wrench of each body
++#   * collision detection - need pose of each collision geometry.  velocity/acceleration if
++#
++# = Assumptions =
++# Assuming that each (physics) processor node locally already has
++#   * collision information - Trimesh for Geoms, etc
++#   * relative transforms from Body to Geom - this is assumed to be fixed, do not send oved wire
++#   * inertial information - does not vary in time
++#   * visual information - does not vary in time
++#
++
++Header header
++
++string[] name
++geometry_msgs/Pose[] pose
++geometry_msgs/Twist[] twist
++geometry_msgs/Wrench[] wrench
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/package.xml
+@@ -0,0 +1,36 @@
++<?xml version="1.0"?>
++<package format="2">
++  <name>gazebo_msgs</name>
++  <version>2.9.2</version>
++  <description>
++    Message and service data structures for interacting with Gazebo from ROS.
++  </description>
++
++  <maintainer email="jrivero@osrfoundation.org">Jose Luis Rivero</maintainer>
++
++  <license>BSD</license>
++
++  <url type="website">http://gazebosim.org/tutorials?cat=connect_ros</url>
++  <url type="bugtracker">https://github.com/ros-simulation/gazebo_ros_pkgs/issues</url>
++  <url type="repository">https://github.com/ros-simulation/gazebo_ros_pkgs</url>
++
++  <author>John Hsu</author>
++
++  <buildtool_depend>catkin</buildtool_depend>
++
++  <build_depend>geometry_msgs</build_depend>
++  <build_depend>sensor_msgs</build_depend>
++  <build_depend>trajectory_msgs</build_depend>
++  <build_depend>std_msgs</build_depend>
++  <build_depend>std_srvs</build_depend>
++  <build_depend>message_generation</build_depend>
++
++  <exec_depend>geometry_msgs</exec_depend>
++  <exec_depend>sensor_msgs</exec_depend>
++  <exec_depend>trajectory_msgs</exec_depend>
++  <exec_depend>std_msgs</exec_depend>
++  <exec_depend>message_runtime</exec_depend>
++  <exec_depend>std_srvs</exec_depend>
++</package>
++
++
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/srv/ApplyBodyWrench.srv
+@@ -0,0 +1,22 @@
++# Apply Wrench to Gazebo Body.
++# via the callback mechanism
++# all Gazebo operations are made in world frame
++string body_name                          # Gazebo body to apply wrench (linear force and torque)
++                                          # wrench is applied in the gazebo world by default
++                                          # body names are prefixed by model name, e.g. pr2::base_link
++string reference_frame                    # wrench is defined in the reference frame of this entity
++                                          # use inertial frame if left empty
++                                          # frame names are bodies prefixed by model name, e.g. pr2::base_link
++geometry_msgs/Point  reference_point      # wrench is defined at this location in the reference frame
++geometry_msgs/Wrench wrench               # wrench applied to the origin of the body
++time start_time                           # (optional) wrench application start time (seconds)
++                                          # if start_time is not specified, or
++                                          # start_time < current time, start as soon as possible
++duration duration                         # optional duration of wrench application time (seconds)
++                                          # if duration < 0, apply wrench continuously without end
++                                          # if duration = 0, do nothing
++                                          # if duration < step size, apply wrench
++                                          # for one step size
++---
++bool success                              # return true if set wrench successful
++string status_message                     # comments if available
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/srv/ApplyJointEffort.srv
+@@ -0,0 +1,13 @@
++# set urdf joint effort
++string joint_name           # joint to apply wrench (linear force and torque)
++float64 effort              # effort to apply
++time start_time             # optional wrench application start time (seconds)
++                            # if start_time < current time, start as soon as possible
++duration duration           # optional duration of wrench application time (seconds)
++                            # if duration < 0, apply wrench continuously without end
++                            # if duration = 0, do nothing
++                            # if duration < step size, assume step size and
++                            #               display warning in status_message
++---
++bool success                # return true if effort application is successful
++string status_message       # comments if available
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/srv/BodyRequest.srv
+@@ -0,0 +1,2 @@
++string body_name   # name of the body requested. body names are prefixed by model name, e.g. pr2::base_link
++---
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/srv/DeleteLight.srv
+@@ -0,0 +1,4 @@
++string light_name                 # name of the light to be deleted
++---
++bool success                      # return true if deletion is successful
++string status_message             # comments if available
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/srv/DeleteModel.srv
+@@ -0,0 +1,4 @@
++string model_name                 # name of the Gazebo Model to be deleted
++---
++bool success                      # return true if deletion is successful
++string status_message             # comments if available
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/srv/GetJointProperties.srv
+@@ -0,0 +1,18 @@
++string joint_name                    # name of joint
++---
++# joint type
++uint8 type
++uint8 REVOLUTE    = 0                # single DOF
++uint8 CONTINUOUS  = 1                # single DOF (revolute w/o joints)
++uint8 PRISMATIC   = 2                # single DOF
++uint8 FIXED       = 3                # 0 DOF
++uint8 BALL        = 4                # 3 DOF
++uint8 UNIVERSAL   = 5                # 2 DOF
++# dynamics properties
++float64[] damping
++# joint state
++float64[] position
++float64[] rate
++# service return status
++bool success                         # return true if get successful
++string status_message                # comments if available
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/srv/GetLightProperties.srv
+@@ -0,0 +1,8 @@
++string light_name                    # name of Gazebo Light
++---
++std_msgs/ColorRGBA diffuse           # diffuse color as red, green, blue, alpha
++float64 attenuation_constant
++float64 attenuation_linear
++float64 attenuation_quadratic
++bool success                         # return true if get successful
++string status_message                # comments if available
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/srv/GetLinkProperties.srv
+@@ -0,0 +1,16 @@
++string link_name          # name of link
++                          # link names are prefixed by model name, e.g. pr2::base_link
++---
++geometry_msgs/Pose com    # center of mass location in link frame
++                          # and orientation of the moment of inertias
++                          # relative to the link frame
++bool gravity_mode         # set gravity mode on/off
++float64 mass              # linear mass of link
++float64 ixx               # moment of inertia
++float64 ixy               # moment of inertia
++float64 ixz               # moment of inertia
++float64 iyy               # moment of inertia
++float64 iyz               # moment of inertia
++float64 izz               # moment of inertia
++bool success              # return true if get info is successful
++string status_message     # comments if available
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/srv/GetLinkState.srv
+@@ -0,0 +1,9 @@
++string link_name          # name of link
++                          # link names are prefixed by model name, e.g. pr2::base_link
++string reference_frame    # reference frame of returned information, must be a valid link
++                          # if empty, use inertial (gazebo world) frame
++                          # reference_frame names are prefixed by model name, e.g. pr2::base_link
++---
++gazebo_msgs/LinkState link_state
++bool success              # return true if get info is successful
++string status_message     # comments if available
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/srv/GetModelProperties.srv
+@@ -0,0 +1,11 @@
++string model_name                    # name of Gazebo Model
++---
++string parent_model_name             # parent model
++string canonical_body_name           # name of canonical body, body names are prefixed by model name, e.g. pr2::base_link
++string[] body_names                  # list of bodies, body names are prefixed by model name, e.g. pr2::base_link
++string[] geom_names                  # list of geoms
++string[] joint_names                 # list of joints attached to the model
++string[] child_model_names           # list of child models
++bool is_static                       # returns true if model is static
++bool success                         # return true if get successful
++string status_message                # comments if available
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/srv/GetModelState.srv
+@@ -0,0 +1,14 @@
++string model_name                    # name of Gazebo Model
++string relative_entity_name          # return pose and twist relative to this entity
++                                     # an entity can be a model, body, or geom
++                                     # be sure to use gazebo scoped naming notation (e.g. [model_name::body_name])
++                                     # leave empty or "world" will use inertial world frame
++---
++Header header                        # Standard metadata for higher-level stamped data types.
++                                     # * header.seq holds the number of requests since the plugin started
++                                     # * header.stamp timestamp related to the pose
++                                     # * header.frame_id not used but currently filled with the relative_entity_name
++geometry_msgs/Pose pose              # pose of model in relative entity frame
++geometry_msgs/Twist twist            # twist of model in relative entity frame
++bool success                         # return true if get successful
++string status_message                # comments if available
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/srv/GetPhysicsProperties.srv
+@@ -0,0 +1,9 @@
++---
++# sets pose and twist of a link.  All children link poses/twists of the URDF tree will be updated accordingly
++float64 time_step                  # dt in seconds
++bool pause                         # true if physics engine is paused
++float64 max_update_rate            # throttle maximum physics update rate
++geometry_msgs/Vector3 gravity      # gravity vector (e.g. earth ~[0,0,-9.81])
++gazebo_msgs/ODEPhysics ode_config  # contains physics configurations pertaining to ODE
++bool success                       # return true if set wrench successful
++string status_message              # comments if available
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/srv/GetWorldProperties.srv
+@@ -0,0 +1,6 @@
++---
++float64 sim_time                     # current sim time
++string[] model_names                 # list of models in the world
++bool rendering_enabled               # if X is used
++bool success                         # return true if get successful
++string status_message                # comments if available
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/srv/JointRequest.srv
+@@ -0,0 +1,3 @@
++string joint_name   # name of the joint requested
++---
++
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/srv/SetJointProperties.srv
+@@ -0,0 +1,5 @@
++string joint_name                               # name of joint
++gazebo_msgs/ODEJointProperties ode_joint_config # access to ODE joint dynamics properties
++---
++bool success                                    # return true if get successful
++string status_message                           # comments if available
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/srv/SetJointTrajectory.srv
+@@ -0,0 +1,8 @@
++string model_name
++trajectory_msgs/JointTrajectory joint_trajectory
++geometry_msgs/Pose model_pose
++bool set_model_pose
++bool disable_physics_updates # defaults to false
++---
++bool success                # return true if set wrench successful
++string status_message       # comments if available
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/srv/SetLightProperties.srv
+@@ -0,0 +1,12 @@
++string light_name                    # name of Gazebo Light
++bool cast_shadows
++std_msgs/ColorRGBA diffuse           # diffuse color as red, green, blue, alpha
++std_msgs/ColorRGBA specular          # specular color as red, green, blue, alpha
++float64 attenuation_constant
++float64 attenuation_linear
++float64 attenuation_quadratic
++geometry_msgs/Vector3 direction
++geometry_msgs/Pose pose              # pose in world frame
++---
++bool success                         # return true if get successful
++string status_message                # comments if available
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/srv/SetLinkProperties.srv
+@@ -0,0 +1,16 @@
++string link_name          # name of link
++                          # link names are prefixed by model name, e.g. pr2::base_link
++geometry_msgs/Pose com    # center of mass location in link frame
++                          # and orientation of the moment of inertias
++                          # relative to the link frame
++bool gravity_mode         # set gravity mode on/off
++float64 mass              # linear mass of link
++float64 ixx               # moment of inertia
++float64 ixy               # moment of inertia
++float64 ixz               # moment of inertia
++float64 iyy               # moment of inertia
++float64 iyz               # moment of inertia
++float64 izz               # moment of inertia
++---
++bool success              # return true if get info is successful
++string status_message     # comments if available
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/srv/SetLinkState.srv
+@@ -0,0 +1,4 @@
++gazebo_msgs/LinkState link_state
++---
++bool success                # return true if set wrench successful
++string status_message       # comments if available
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/srv/SetModelConfiguration.srv
+@@ -0,0 +1,9 @@
++# Set joint positions for a model
++string model_name           # model to set state
++string urdf_param_name      # UNUSED
++
++string[] joint_names        # list of joints to set positions.  if joint is not listed here, preserve current position.
++float64[] joint_positions   # set to this position.
++---
++bool success                # return true if setting state successful
++string status_message       # comments if available
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/srv/SetModelState.srv
+@@ -0,0 +1,4 @@
++gazebo_msgs/ModelState model_state
++---
++bool success                  # return true if setting state successful
++string status_message         # comments if available
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/srv/SetPhysicsProperties.srv
+@@ -0,0 +1,8 @@
++# sets pose and twist of a link.  All children link poses/twists of the URDF tree will be updated accordingly
++float64 time_step                  # dt in seconds
++float64 max_update_rate            # throttle maximum physics update rate
++geometry_msgs/Vector3 gravity      # gravity vector (e.g. earth ~[0,0,-9.81])
++gazebo_msgs/ODEPhysics ode_config  # configurations for ODE
++---
++bool success                       # return true if set wrench successful
++string status_message              # comments if available
+--- /dev/null
++++ ros-noetic-gazebo-msgs-2.9.2/srv/SpawnModel.srv
+@@ -0,0 +1,11 @@
++string model_name                 # name of the model to be spawn
++string model_xml                  # this should be an urdf or gazebo xml
++string robot_namespace            # spawn robot and all ROS interfaces under this namespace
++geometry_msgs/Pose initial_pose   # only applied to canonical body
++string reference_frame            # initial_pose is defined relative to the frame of this model/body
++                                  # if left empty or "world", then gazebo world frame is used
++                                  # if non-existent model/body is specified, an error is returned
++                                  #   and the model is not spawned
++---
++bool success                      # return true if spawn successful
++string status_message             # comments if available

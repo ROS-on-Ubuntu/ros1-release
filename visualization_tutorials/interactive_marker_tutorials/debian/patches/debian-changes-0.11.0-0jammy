@@ -1,0 +1,3108 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-interactive-marker-tutorials (0.11.0-0jammy) jammy; urgency=high
+Author: William Woodall <william@osrfoundation.org>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-interactive-marker-tutorials-0.11.0/CHANGELOG.rst
+@@ -0,0 +1,45 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package interactive_marker_tutorials
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++0.11.0 (2020-05-13)
++-------------------
++
++0.10.4 (2020-05-13)
++-------------------
++* Updated to use ``catkin_install_python()`` (`#59 <https://github.com/ros-visualization/visualization_tutorials/issues/59>`_)
++* Updated required CMake version to avoid CMP0048 warning (`#57 <https://github.com/ros-visualization/visualization_tutorials/issues/57>`_)
++* Removed unused ``saveMarker()`` (`#47 <https://github.com/ros-visualization/visualization_tutorials/issues/47>`_)
++* Contributors: Alejandro Hernández Cordero, Bence Magyar, Shane Loretz
++
++0.10.3 (2018-05-09)
++-------------------
++
++0.10.2 (2018-01-05)
++-------------------
++* Normalized quaternions. (`#40 <https://github.com/ros-visualization/visualization_tutorials//issues/40>`_)
++* Contributors: dhood
++
++0.10.1 (2016-04-21)
++-------------------
++
++0.10.0 (2016-04-21)
++-------------------
++* Added support Qt5 in Kinetic.
++* Contributors: William Woodall
++
++0.9.2 (2015-09-21)
++------------------
++* Removed deprecated imports.
++* Fix Python InteractiveMarkers tutorials to use the correct frame names.
++* Updated ``simple_marker.cpp`` by including the time stamp.
++  Without the time stamp the cube does not show up in rviz and reports an error.
++* Contributors: Javier V. Gomez, Robert Haschke, agoudar
++
++0.9.1 (2015-01-26)
++------------------
++
++0.9.0 (2014-03-24)
++------------------
++* set myself (william) as maintainer
++* Contributors: William Woodall
+--- /dev/null
++++ ros-noetic-interactive-marker-tutorials-0.11.0/CMakeLists.txt
+@@ -0,0 +1,84 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(interactive_marker_tutorials)
++
++find_package(catkin REQUIRED COMPONENTS interactive_markers roscpp visualization_msgs tf)
++
++###################################
++## catkin specific configuration ##
++###################################
++## The catkin_package macro generates cmake config files for your package
++## Declare things to be passed to dependent projects
++## LIBRARIES: libraries you create in this project that dependent projects also need
++## CATKIN_DEPENDS: catkin_packages dependent projects also need
++## DEPENDS: system dependencies of this project that dependent projects also need
++catkin_package(
++  CATKIN_DEPENDS interactive_markers roscpp visualization_msgs tf
++)
++
++###########
++## Build ##
++###########
++
++include_directories(include
++  ${catkin_INCLUDE_DIRS}
++)
++
++add_executable(simple_marker src/simple_marker.cpp)
++target_link_libraries(simple_marker
++   ${catkin_LIBRARIES}
++)
++
++add_executable(basic_controls src/basic_controls.cpp)
++target_link_libraries(basic_controls
++   ${catkin_LIBRARIES}
++)
++
++add_executable(selection src/selection.cpp)
++target_link_libraries(selection
++   ${catkin_LIBRARIES}
++)
++
++add_executable(pong src/pong.cpp)
++target_link_libraries(pong
++   ${catkin_LIBRARIES}
++)
++
++add_executable(cube src/cube.cpp)
++target_link_libraries(cube
++   ${catkin_LIBRARIES}
++)
++
++add_executable(menu src/menu.cpp)
++target_link_libraries(menu
++   ${catkin_LIBRARIES}
++)
++
++add_executable(point_cloud src/point_cloud.cpp)
++target_link_libraries(point_cloud
++   ${catkin_LIBRARIES}
++)
++#############
++## Install ##
++#############
++
++catkin_install_python(PROGRAMS
++  scripts/basic_controls.py
++  scripts/cube.py
++  scripts/menu.py
++  scripts/simple_marker.py
++  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
++)
++
++## Mark executables and/or libraries for installation
++install(TARGETS
++  simple_marker
++  basic_controls
++  selection
++  pong
++  cube
++  menu
++  point_cloud
++  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
++  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
++  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
++)
+--- /dev/null
++++ ros-noetic-interactive-marker-tutorials-0.11.0/package.xml
+@@ -0,0 +1,26 @@
++<?xml version="1.0"?>
++<package>
++  <name>interactive_marker_tutorials</name>
++  <version>0.11.0</version>
++  <description>The interactive_marker_tutorials package</description>
++
++  <maintainer email="william@osrfoundation.org">William Woodall</maintainer>
++
++  <license>BSD</license>
++  <url type="website">http://ros.org/wiki/interactive_marker_tutorials</url>
++
++  <author >David Gossow</author>
++
++  <buildtool_depend>catkin</buildtool_depend>
++
++  <build_depend>roscpp</build_depend>
++  <build_depend>interactive_markers</build_depend>
++  <build_depend>visualization_msgs</build_depend>
++  <build_depend>tf</build_depend>
++
++  <run_depend>roscpp</run_depend>
++  <run_depend>interactive_markers</run_depend>
++  <run_depend>visualization_msgs</run_depend>
++  <run_depend>tf</run_depend>
++
++</package>
+\ No newline at end of file
+--- /dev/null
++++ ros-noetic-interactive-marker-tutorials-0.11.0/scripts/basic_controls.py
+@@ -0,0 +1,484 @@
++#!/usr/bin/env python
++
++"""
++Copyright (c) 2011, Willow Garage, Inc.
++All rights reserved.
++
++Redistribution and use in source and binary forms, with or without
++modification, are permitted provided that the following conditions are met:
++
++    * Redistributions of source code must retain the above copyright
++      notice, this list of conditions and the following disclaimer.
++    * Redistributions in binary form must reproduce the above copyright
++      notice, this list of conditions and the following disclaimer in the
++      documentation and/or other materials provided with the distribution.
++    * Neither the name of the Willow Garage, Inc. nor the names of its
++      contributors may be used to endorse or promote products derived from
++      this software without specific prior written permission.
++
++THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++SUBSTITUTE GOODS OR SERVICES LOSS OF USE, DATA, OR PROFITS OR BUSINESS
++INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++POSSIBILITY OF SUCH DAMAGE.
++"""
++
++import rospy
++import copy
++
++from interactive_markers.interactive_marker_server import *
++from interactive_markers.menu_handler import *
++from visualization_msgs.msg import *
++from geometry_msgs.msg import Point
++from tf.broadcaster import TransformBroadcaster
++
++from random import random
++from math import sin
++
++server = None
++menu_handler = MenuHandler()
++br = None
++counter = 0
++
++def frameCallback( msg ):
++    global counter, br
++    time = rospy.Time.now()
++    br.sendTransform( (0, 0, sin(counter/140.0)*2.0), (0, 0, 0, 1.0), time, "base_link", "moving_frame" )
++    counter += 1
++
++def processFeedback( feedback ):
++    s = "Feedback from marker '" + feedback.marker_name
++    s += "' / control '" + feedback.control_name + "'"
++
++    mp = ""
++    if feedback.mouse_point_valid:
++        mp = " at " + str(feedback.mouse_point.x)
++        mp += ", " + str(feedback.mouse_point.y)
++        mp += ", " + str(feedback.mouse_point.z)
++        mp += " in frame " + feedback.header.frame_id
++
++    if feedback.event_type == InteractiveMarkerFeedback.BUTTON_CLICK:
++        rospy.loginfo( s + ": button click" + mp + "." )
++    elif feedback.event_type == InteractiveMarkerFeedback.MENU_SELECT:
++        rospy.loginfo( s + ": menu item " + str(feedback.menu_entry_id) + " clicked" + mp + "." )
++    elif feedback.event_type == InteractiveMarkerFeedback.POSE_UPDATE:
++        rospy.loginfo( s + ": pose changed")
++# TODO
++#          << "\nposition = "
++#          << feedback.pose.position.x
++#          << ", " << feedback.pose.position.y
++#          << ", " << feedback.pose.position.z
++#          << "\norientation = "
++#          << feedback.pose.orientation.w
++#          << ", " << feedback.pose.orientation.x
++#          << ", " << feedback.pose.orientation.y
++#          << ", " << feedback.pose.orientation.z
++#          << "\nframe: " << feedback.header.frame_id
++#          << " time: " << feedback.header.stamp.sec << "sec, "
++#          << feedback.header.stamp.nsec << " nsec" )
++    elif feedback.event_type == InteractiveMarkerFeedback.MOUSE_DOWN:
++        rospy.loginfo( s + ": mouse down" + mp + "." )
++    elif feedback.event_type == InteractiveMarkerFeedback.MOUSE_UP:
++        rospy.loginfo( s + ": mouse up" + mp + "." )
++    server.applyChanges()
++
++def alignMarker( feedback ):
++    pose = feedback.pose
++
++    pose.position.x = round(pose.position.x-0.5)+0.5
++    pose.position.y = round(pose.position.y-0.5)+0.5
++
++    rospy.loginfo( feedback.marker_name + ": aligning position = " + str(feedback.pose.position.x) + "," + str(feedback.pose.position.y) + "," + str(feedback.pose.position.z) + " to " +
++                                                                     str(pose.position.x) + "," + str(pose.position.y) + "," + str(pose.position.z) )
++
++    server.setPose( feedback.marker_name, pose )
++    server.applyChanges()
++
++def rand( min_, max_ ):
++    return min_ + random()*(max_-min_)
++
++def makeBox( msg ):
++    marker = Marker()
++
++    marker.type = Marker.CUBE
++    marker.scale.x = msg.scale * 0.45
++    marker.scale.y = msg.scale * 0.45
++    marker.scale.z = msg.scale * 0.45
++    marker.color.r = 0.5
++    marker.color.g = 0.5
++    marker.color.b = 0.5
++    marker.color.a = 1.0
++
++    return marker
++
++def makeBoxControl( msg ):
++    control =  InteractiveMarkerControl()
++    control.always_visible = True
++    control.markers.append( makeBox(msg) )
++    msg.controls.append( control )
++    return control
++
++def saveMarker( int_marker ):
++  server.insert(int_marker, processFeedback)
++
++
++#####################################################################
++# Marker Creation
++
++def normalizeQuaternion( quaternion_msg ):
++    norm = quaternion_msg.x**2 + quaternion_msg.y**2 + quaternion_msg.z**2 + quaternion_msg.w**2
++    s = norm**(-0.5)
++    quaternion_msg.x *= s
++    quaternion_msg.y *= s
++    quaternion_msg.z *= s
++    quaternion_msg.w *= s
++
++def make6DofMarker( fixed, interaction_mode, position, show_6dof = False):
++    int_marker = InteractiveMarker()
++    int_marker.header.frame_id = "base_link"
++    int_marker.pose.position = position
++    int_marker.scale = 1
++
++    int_marker.name = "simple_6dof"
++    int_marker.description = "Simple 6-DOF Control"
++
++    # insert a box
++    makeBoxControl(int_marker)
++    int_marker.controls[0].interaction_mode = interaction_mode
++
++    if fixed:
++        int_marker.name += "_fixed"
++        int_marker.description += "\n(fixed orientation)"
++
++    if interaction_mode != InteractiveMarkerControl.NONE:
++        control_modes_dict = { 
++                          InteractiveMarkerControl.MOVE_3D : "MOVE_3D",
++                          InteractiveMarkerControl.ROTATE_3D : "ROTATE_3D",
++                          InteractiveMarkerControl.MOVE_ROTATE_3D : "MOVE_ROTATE_3D" }
++        int_marker.name += "_" + control_modes_dict[interaction_mode]
++        int_marker.description = "3D Control"
++        if show_6dof: 
++          int_marker.description += " + 6-DOF controls"
++        int_marker.description += "\n" + control_modes_dict[interaction_mode]
++    
++    if show_6dof: 
++        control = InteractiveMarkerControl()
++        control.orientation.w = 1
++        control.orientation.x = 1
++        control.orientation.y = 0
++        control.orientation.z = 0
++        normalizeQuaternion(control.orientation)
++        control.name = "rotate_x"
++        control.interaction_mode = InteractiveMarkerControl.ROTATE_AXIS
++        if fixed:
++            control.orientation_mode = InteractiveMarkerControl.FIXED
++        int_marker.controls.append(control)
++
++        control = InteractiveMarkerControl()
++        control.orientation.w = 1
++        control.orientation.x = 1
++        control.orientation.y = 0
++        control.orientation.z = 0
++        normalizeQuaternion(control.orientation)
++        control.name = "move_x"
++        control.interaction_mode = InteractiveMarkerControl.MOVE_AXIS
++        if fixed:
++            control.orientation_mode = InteractiveMarkerControl.FIXED
++        int_marker.controls.append(control)
++
++        control = InteractiveMarkerControl()
++        control.orientation.w = 1
++        control.orientation.x = 0
++        control.orientation.y = 1
++        control.orientation.z = 0
++        normalizeQuaternion(control.orientation)
++        control.name = "rotate_z"
++        control.interaction_mode = InteractiveMarkerControl.ROTATE_AXIS
++        if fixed:
++            control.orientation_mode = InteractiveMarkerControl.FIXED
++        int_marker.controls.append(control)
++
++        control = InteractiveMarkerControl()
++        control.orientation.w = 1
++        control.orientation.x = 0
++        control.orientation.y = 1
++        control.orientation.z = 0
++        normalizeQuaternion(control.orientation)
++        control.name = "move_z"
++        control.interaction_mode = InteractiveMarkerControl.MOVE_AXIS
++        if fixed:
++            control.orientation_mode = InteractiveMarkerControl.FIXED
++        int_marker.controls.append(control)
++
++        control = InteractiveMarkerControl()
++        control.orientation.w = 1
++        control.orientation.x = 0
++        control.orientation.y = 0
++        control.orientation.z = 1
++        normalizeQuaternion(control.orientation)
++        control.name = "rotate_y"
++        control.interaction_mode = InteractiveMarkerControl.ROTATE_AXIS
++        if fixed:
++            control.orientation_mode = InteractiveMarkerControl.FIXED
++        int_marker.controls.append(control)
++
++        control = InteractiveMarkerControl()
++        control.orientation.w = 1
++        control.orientation.x = 0
++        control.orientation.y = 0
++        control.orientation.z = 1
++        normalizeQuaternion(control.orientation)
++        control.name = "move_y"
++        control.interaction_mode = InteractiveMarkerControl.MOVE_AXIS
++        if fixed:
++            control.orientation_mode = InteractiveMarkerControl.FIXED
++        int_marker.controls.append(control)
++
++    server.insert(int_marker, processFeedback)
++    menu_handler.apply( server, int_marker.name )
++
++def makeRandomDofMarker( position ):
++    int_marker = InteractiveMarker()
++    int_marker.header.frame_id = "base_link"
++    int_marker.pose.position = position
++    int_marker.scale = 1
++
++    int_marker.name = "6dof_random_axes"
++    int_marker.description = "6-DOF\n(Arbitrary Axes)"
++
++    makeBoxControl(int_marker)
++
++    control = InteractiveMarkerControl()
++
++    for i in range(3):
++        control.orientation.w = rand(-1,1)
++        control.orientation.x = rand(-1,1)
++        control.orientation.y = rand(-1,1)
++        control.orientation.z = rand(-1,1)
++        normalizeQuaternion(control.orientation)
++        control.interaction_mode = InteractiveMarkerControl.ROTATE_AXIS
++        int_marker.controls.append(copy.deepcopy(control))
++        control.interaction_mode = InteractiveMarkerControl.MOVE_AXIS
++        int_marker.controls.append(copy.deepcopy(control))
++
++    server.insert(int_marker, processFeedback)
++
++def makeViewFacingMarker(position):
++    int_marker = InteractiveMarker()
++    int_marker.header.frame_id = "base_link"
++    int_marker.pose.position = position
++    int_marker.scale = 1
++
++    int_marker.name = "view_facing"
++    int_marker.description = "View Facing 6-DOF"
++
++    # make a control that rotates around the view axis
++    control = InteractiveMarkerControl()
++    control.orientation_mode = InteractiveMarkerControl.VIEW_FACING
++    control.interaction_mode = InteractiveMarkerControl.ROTATE_AXIS
++    control.orientation.w = 1
++    control.name = "rotate"
++    int_marker.controls.append(control)
++
++    # create a box in the center which should not be view facing,
++    # but move in the camera plane.
++    control = InteractiveMarkerControl()
++    control.orientation_mode = InteractiveMarkerControl.VIEW_FACING
++    control.interaction_mode = InteractiveMarkerControl.MOVE_PLANE
++    control.independent_marker_orientation = True
++    control.name = "move"
++    control.markers.append( makeBox(int_marker) )
++    control.always_visible = True
++    int_marker.controls.append(control)
++
++    server.insert(int_marker, processFeedback)
++
++def makeQuadrocopterMarker(position):
++    int_marker = InteractiveMarker()
++    int_marker.header.frame_id = "base_link"
++    int_marker.pose.position = position
++    int_marker.scale = 1
++
++    int_marker.name = "quadrocopter"
++    int_marker.description = "Quadrocopter"
++
++    makeBoxControl(int_marker)
++
++    control = InteractiveMarkerControl()
++    control.orientation.w = 1
++    control.orientation.x = 0
++    control.orientation.y = 1
++    control.orientation.z = 0
++    normalizeQuaternion(control.orientation)
++    control.interaction_mode = InteractiveMarkerControl.MOVE_ROTATE
++    int_marker.controls.append(copy.deepcopy(control))
++    control.interaction_mode = InteractiveMarkerControl.MOVE_AXIS
++    int_marker.controls.append(control)
++
++    server.insert(int_marker, processFeedback)
++
++def makeChessPieceMarker(position):
++    int_marker = InteractiveMarker()
++    int_marker.header.frame_id = "base_link"
++    int_marker.pose.position = position
++    int_marker.scale = 1
++
++    int_marker.name = "chess_piece"
++    int_marker.description = "Chess Piece\n(2D Move + Alignment)"
++
++    control = InteractiveMarkerControl()
++    control.orientation.w = 1
++    control.orientation.x = 0
++    control.orientation.y = 1
++    control.orientation.z = 0
++    normalizeQuaternion(control.orientation)
++    control.interaction_mode = InteractiveMarkerControl.MOVE_PLANE
++    int_marker.controls.append(copy.deepcopy(control))
++
++    # make a box which also moves in the plane
++    control.markers.append( makeBox(int_marker) )
++    control.always_visible = True
++    int_marker.controls.append(control)
++
++    # we want to use our special callback function
++    server.insert(int_marker, processFeedback)
++
++    # set different callback for POSE_UPDATE feedback
++    server.setCallback(int_marker.name, alignMarker, InteractiveMarkerFeedback.POSE_UPDATE )
++
++def makePanTiltMarker(position):
++    int_marker = InteractiveMarker()
++    int_marker.header.frame_id = "base_link"
++    int_marker.pose.position = position
++    int_marker.scale = 1
++
++    int_marker.name = "pan_tilt"
++    int_marker.description = "Pan / Tilt"
++
++    makeBoxControl(int_marker)
++
++    control = InteractiveMarkerControl()
++    control.orientation.w = 1
++    control.orientation.x = 0
++    control.orientation.y = 1
++    control.orientation.z = 0
++    normalizeQuaternion(control.orientation)
++    control.interaction_mode = InteractiveMarkerControl.ROTATE_AXIS
++    control.orientation_mode = InteractiveMarkerControl.FIXED
++    int_marker.controls.append(control)
++
++    control = InteractiveMarkerControl()
++    control.orientation.w = 1
++    control.orientation.x = 0
++    control.orientation.y = 0
++    control.orientation.z = 1
++    normalizeQuaternion(control.orientation)
++    control.interaction_mode = InteractiveMarkerControl.ROTATE_AXIS
++    control.orientation_mode = InteractiveMarkerControl.INHERIT
++    int_marker.controls.append(control)
++
++    server.insert(int_marker, processFeedback)
++
++def makeMenuMarker(position):
++    int_marker = InteractiveMarker()
++    int_marker.header.frame_id = "base_link"
++    int_marker.pose.position = position
++    int_marker.scale = 1
++
++    int_marker.name = "context_menu"
++    int_marker.description = "Context Menu\n(Right Click)"
++
++    # make one control using default visuals
++    control = InteractiveMarkerControl()
++    control.interaction_mode = InteractiveMarkerControl.MENU
++    control.description="Options"
++    control.name = "menu_only_control"
++    int_marker.controls.append(copy.deepcopy(control))
++
++    # make one control showing a box
++    marker = makeBox( int_marker )
++    control.markers.append( marker )
++    control.always_visible = True
++    int_marker.controls.append(control)
++
++    server.insert(int_marker, processFeedback)
++    menu_handler.apply( server, int_marker.name )
++
++def makeMovingMarker(position):
++    int_marker = InteractiveMarker()
++    int_marker.header.frame_id = "moving_frame"
++    int_marker.pose.position = position
++    int_marker.scale = 1
++
++    int_marker.name = "moving"
++    int_marker.description = "Marker Attached to a\nMoving Frame"
++
++    control = InteractiveMarkerControl()
++    control.orientation.w = 1
++    control.orientation.x = 1
++    control.orientation.y = 0
++    control.orientation.z = 0
++    normalizeQuaternion(control.orientation)
++    control.interaction_mode = InteractiveMarkerControl.ROTATE_AXIS
++    int_marker.controls.append(copy.deepcopy(control))
++
++    control.interaction_mode = InteractiveMarkerControl.MOVE_PLANE
++    control.always_visible = True
++    control.markers.append( makeBox(int_marker) )
++    int_marker.controls.append(control)
++
++    server.insert(int_marker, processFeedback)
++
++
++if __name__=="__main__":
++    rospy.init_node("basic_controls")
++    br = TransformBroadcaster()
++    
++    # create a timer to update the published transforms
++    rospy.Timer(rospy.Duration(0.01), frameCallback)
++
++    server = InteractiveMarkerServer("basic_controls")
++
++    menu_handler.insert( "First Entry", callback=processFeedback )
++    menu_handler.insert( "Second Entry", callback=processFeedback )
++    sub_menu_handle = menu_handler.insert( "Submenu" )
++    menu_handler.insert( "First Entry", parent=sub_menu_handle, callback=processFeedback )
++    menu_handler.insert( "Second Entry", parent=sub_menu_handle, callback=processFeedback )
++  
++    
++    position = Point(-3, 3, 0)
++    make6DofMarker( False, InteractiveMarkerControl.NONE, position, True)
++    position = Point( 0, 3, 0)
++    make6DofMarker( True, InteractiveMarkerControl.NONE, position, True)
++    position = Point( 3, 3, 0)
++    makeRandomDofMarker( position )
++    position = Point(-3, 0, 0)
++    make6DofMarker( False, InteractiveMarkerControl.ROTATE_3D, position, False)
++    position = Point( 0, 0, 0)
++    make6DofMarker( False, InteractiveMarkerControl.MOVE_ROTATE_3D, position, True )
++    position = Point( 3, 0, 0)
++    make6DofMarker( False, InteractiveMarkerControl.MOVE_3D, position, False)
++    position = Point(-3, -3, 0)
++    makeViewFacingMarker( position )
++    position = Point( 0, -3, 0)
++    makeQuadrocopterMarker( position )
++    position = Point( 3, -3, 0)
++    makeChessPieceMarker( position )
++    position = Point(-3, -6, 0)
++    makePanTiltMarker( position )
++    position = Point( 0, -6, 0)
++    makeMovingMarker( position )
++    position = Point( 3, -6, 0)
++    makeMenuMarker( position )
++    
++
++    server.applyChanges()
++
++    rospy.spin()
++
+--- /dev/null
++++ ros-noetic-interactive-marker-tutorials-0.11.0/scripts/cube.py
+@@ -0,0 +1,139 @@
++#!/usr/bin/env python
++
++"""
++Copyright (c) 2011, Willow Garage, Inc.
++All rights reserved.
++
++Redistribution and use in source and binary forms, with or without
++modification, are permitted provided that the following conditions are met:
++
++    * Redistributions of source code must retain the above copyright
++      notice, this list of conditions and the following disclaimer.
++    * Redistributions in binary form must reproduce the above copyright
++      notice, this list of conditions and the following disclaimer in the
++      documentation and/or other materials provided with the distribution.
++    * Neither the name of the Willow Garage, Inc. nor the names of its
++      contributors may be used to endorse or promote products derived from
++      this software without specific prior written permission.
++
++THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++POSSIBILITY OF SUCH DAMAGE.
++"""
++
++import rospy
++
++from interactive_markers.interactive_marker_server import *
++from visualization_msgs.msg import *
++from math import sqrt
++
++positions = list()
++
++def processFeedback( feedback ):
++    if feedback.event_type == InteractiveMarkerFeedback.POSE_UPDATE:
++        #compute difference vector for this cube
++        x = feedback.pose.position.x
++        y = feedback.pose.position.y
++        z = feedback.pose.position.z
++        index = int(feedback.marker_name)
++
++        if index > len(positions):
++            return
++    
++        dx = x - positions[index][0]
++        dy = y - positions[index][1]
++        dz = z - positions[index][2]
++
++        # move all markers in that direction
++        for i in range(len(positions)):
++            (mx, my, mz) = positions[i]
++            d = sqrt(sqrt((x - mx)**2 + (y - my)**2)**2 + (z-mz)**2)
++            t = 1 / (d*5.0+1.0) - 0.2
++            if t < 0.0: 
++                t=0.0
++            positions[i][0] += t*dx
++            positions[i][1] += t*dy
++            positions[i][2] += t*dz
++
++            if i == index:
++              rospy.loginfo( d )
++              positions[i][0] = x
++              positions[i][1] = y
++              positions[i][2] = z
++
++            pose = geometry_msgs.msg.Pose()
++            pose.position.x = positions[i][0]
++            pose.position.y = positions[i][1]
++            pose.position.z = positions[i][2]
++
++            server.setPose( str(i), pose )
++        server.applyChanges()
++
++def makeBoxControl( msg ):
++    control = InteractiveMarkerControl()
++    control.always_visible = True
++    control.orientation_mode = InteractiveMarkerControl.VIEW_FACING
++    control.interaction_mode = InteractiveMarkerControl.MOVE_PLANE
++    control.independent_marker_orientation = True
++
++    marker = Marker()
++
++    marker.type = Marker.CUBE
++    marker.scale.x = msg.scale
++    marker.scale.y = msg.scale
++    marker.scale.z = msg.scale
++    marker.color.r = 0.65+0.7*msg.pose.position.x
++    marker.color.g = 0.65+0.7*msg.pose.position.y
++    marker.color.b = 0.65+0.7*msg.pose.position.z
++    marker.color.a = 1.0
++
++    control.markers.append( marker )
++    msg.controls.append( control )
++    return control
++
++def makeCube():
++    side_length = 10
++    step = 1.0/ side_length
++    count = 0
++
++    for i in range(side_length):
++        x = -0.5 + step * i
++        for j in range(side_length):
++            y = -0.5 + step * j
++            for k in range(side_length):
++                z = step * k
++                marker = InteractiveMarker()
++                marker.header.frame_id = "base_link"
++                marker.scale = step
++
++                marker.pose.position.x = x
++                marker.pose.position.y = y
++                marker.pose.position.z = z
++
++                positions.append( [x,y,z] )
++
++                marker.name = str(count)
++                makeBoxControl(marker)
++
++                server.insert( marker, processFeedback )
++                count += 1
++
++if __name__=="__main__":
++    rospy.init_node("cube")
++    
++    server = InteractiveMarkerServer("cube")
++    
++    rospy.loginfo("initializing..")
++    makeCube()
++    server.applyChanges()
++
++    rospy.spin()
++
+--- /dev/null
++++ ros-noetic-interactive-marker-tutorials-0.11.0/scripts/menu.py
+@@ -0,0 +1,153 @@
++#!/usr/bin/env python
++
++"""
++Copyright (c) 2011, Willow Garage, Inc.
++All rights reserved.
++
++Redistribution and use in source and binary forms, with or without
++modification, are permitted provided that the following conditions are met:
++
++    * Redistributions of source code must retain the above copyright
++      notice, this list of conditions and the following disclaimer.
++    * Redistributions in binary form must reproduce the above copyright
++      notice, this list of conditions and the following disclaimer in the
++      documentation and/or other materials provided with the distribution.
++    * Neither the name of the Willow Garage, Inc. nor the names of its
++      contributors may be used to endorse or promote products derived from
++      this software without specific prior written permission.
++
++THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++POSSIBILITY OF SUCH DAMAGE.
++"""
++
++import rospy
++
++from interactive_markers.interactive_marker_server import *
++from interactive_markers.menu_handler import *
++from visualization_msgs.msg import *
++
++server = None
++marker_pos = 0
++
++menu_handler = MenuHandler()
++
++h_first_entry = 0
++h_mode_last = 0
++
++def enableCb( feedback ):
++    handle = feedback.menu_entry_id
++    state = menu_handler.getCheckState( handle )
++
++    if state == MenuHandler.CHECKED:
++        menu_handler.setCheckState( handle, MenuHandler.UNCHECKED )
++        rospy.loginfo("Hiding first menu entry")
++        menu_handler.setVisible( h_first_entry, False )
++    else:
++        menu_handler.setCheckState( handle, MenuHandler.CHECKED )
++        rospy.loginfo("Showing first menu entry")
++        menu_handler.setVisible( h_first_entry, True )
++
++    menu_handler.reApply( server )
++    rospy.loginfo("update")
++    server.applyChanges()
++
++def modeCb(feedback):
++    global h_mode_last
++    menu_handler.setCheckState( h_mode_last, MenuHandler.UNCHECKED )
++    h_mode_last = feedback.menu_entry_id
++    menu_handler.setCheckState( h_mode_last, MenuHandler.CHECKED )
++
++    rospy.loginfo("Switching to menu entry #" + str(h_mode_last))
++    menu_handler.reApply( server )
++    print "DONE"
++    server.applyChanges()
++
++def makeBox( msg ):
++    marker = Marker()
++
++    marker.type = Marker.CUBE
++    marker.scale.x = msg.scale * 0.45
++    marker.scale.y = msg.scale * 0.45
++    marker.scale.z = msg.scale * 0.45
++    marker.color.r = 0.5
++    marker.color.g = 0.5
++    marker.color.b = 0.5
++    marker.color.a = 1.0
++
++    return marker
++
++def makeBoxControl( msg ):
++    control = InteractiveMarkerControl()
++    control.always_visible = True
++    control.markers.append( makeBox(msg) )
++    msg.controls.append( control )
++    return control
++
++def makeEmptyMarker( dummyBox=True ):
++    global marker_pos
++    int_marker = InteractiveMarker()
++    int_marker.header.frame_id = "base_link"
++    int_marker.pose.position.y = -3.0 * marker_pos
++    marker_pos += 1
++    int_marker.scale = 1
++    return int_marker
++
++def makeMenuMarker( name ):
++    int_marker = makeEmptyMarker()
++    int_marker.name = name
++
++    control = InteractiveMarkerControl()
++
++    control.interaction_mode = InteractiveMarkerControl.BUTTON
++    control.always_visible = True
++
++    control.markers.append( makeBox( int_marker ) )
++    int_marker.controls.append(control)
++
++    server.insert( int_marker )
++
++def deepCb( feedback ):
++    rospy.loginfo("The deep sub-menu has been found.")
++
++def initMenu():
++    global h_first_entry, h_mode_last
++    h_first_entry = menu_handler.insert( "First Entry" )
++    entry = menu_handler.insert( "deep", parent=h_first_entry)
++    entry = menu_handler.insert( "sub", parent=entry );
++    entry = menu_handler.insert( "menu", parent=entry, callback=deepCb );
++
++    menu_handler.setCheckState( menu_handler.insert( "Show First Entry", callback=enableCb ), MenuHandler.CHECKED )
++
++    sub_menu_handle = menu_handler.insert( "Switch" )
++    for i in range(5):
++        s = "Mode " + str(i)
++        h_mode_last = menu_handler.insert( s, parent=sub_menu_handle, callback=modeCb )
++        menu_handler.setCheckState( h_mode_last, MenuHandler.UNCHECKED)
++    # check the very last entry
++    menu_handler.setCheckState( h_mode_last, MenuHandler.CHECKED )
++
++if __name__=="__main__":
++    rospy.init_node("menu")
++    
++    server = InteractiveMarkerServer("menu")
++
++    initMenu()
++    
++    makeMenuMarker( "marker1" )
++    makeMenuMarker( "marker2" )
++
++    menu_handler.apply( server, "marker1" )
++    menu_handler.apply( server, "marker2" )
++    server.applyChanges()
++
++    rospy.spin()
++
+--- /dev/null
++++ ros-noetic-interactive-marker-tutorials-0.11.0/scripts/simple_marker.py
+@@ -0,0 +1,90 @@
++#!/usr/bin/env python
++
++"""
++Copyright (c) 2011, Willow Garage, Inc.
++All rights reserved.
++
++Redistribution and use in source and binary forms, with or without
++modification, are permitted provided that the following conditions are met:
++
++    * Redistributions of source code must retain the above copyright
++      notice, this list of conditions and the following disclaimer.
++    * Redistributions in binary form must reproduce the above copyright
++      notice, this list of conditions and the following disclaimer in the
++      documentation and/or other materials provided with the distribution.
++    * Neither the name of the Willow Garage, Inc. nor the names of its
++      contributors may be used to endorse or promote products derived from
++      this software without specific prior written permission.
++
++THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++POSSIBILITY OF SUCH DAMAGE.
++"""
++
++import rospy
++
++from interactive_markers.interactive_marker_server import *
++from visualization_msgs.msg import *
++
++def processFeedback(feedback):
++    p = feedback.pose.position
++    print feedback.marker_name + " is now at " + str(p.x) + ", " + str(p.y) + ", " + str(p.z)
++
++if __name__=="__main__":
++    rospy.init_node("simple_marker")
++    
++    # create an interactive marker server on the topic namespace simple_marker
++    server = InteractiveMarkerServer("simple_marker")
++    
++    # create an interactive marker for our server
++    int_marker = InteractiveMarker()
++    int_marker.header.frame_id = "base_link"
++    int_marker.name = "my_marker"
++    int_marker.description = "Simple 1-DOF Control"
++
++    # create a grey box marker
++    box_marker = Marker()
++    box_marker.type = Marker.CUBE
++    box_marker.scale.x = 0.45
++    box_marker.scale.y = 0.45
++    box_marker.scale.z = 0.45
++    box_marker.color.r = 0.0
++    box_marker.color.g = 0.5
++    box_marker.color.b = 0.5
++    box_marker.color.a = 1.0
++
++    # create a non-interactive control which contains the box
++    box_control = InteractiveMarkerControl()
++    box_control.always_visible = True
++    box_control.markers.append( box_marker )
++
++    # add the control to the interactive marker
++    int_marker.controls.append( box_control )
++
++    # create a control which will move the box
++    # this control does not contain any markers,
++    # which will cause RViz to insert two arrows
++    rotate_control = InteractiveMarkerControl()
++    rotate_control.name = "move_x"
++    rotate_control.interaction_mode = InteractiveMarkerControl.MOVE_AXIS
++
++    # add the control to the interactive marker
++    int_marker.controls.append(rotate_control);
++
++    # add the interactive marker to our collection &
++    # tell the server to call processFeedback() when feedback arrives for it
++    server.insert(int_marker, processFeedback)
++
++    # 'commit' changes and send to all clients
++    server.applyChanges()
++
++    rospy.spin()
++
+--- /dev/null
++++ ros-noetic-interactive-marker-tutorials-0.11.0/src/basic_controls.cpp
+@@ -0,0 +1,562 @@
++/*
++ * Copyright (c) 2011, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++
++#include <ros/ros.h>
++
++#include <interactive_markers/interactive_marker_server.h>
++#include <interactive_markers/menu_handler.h>
++
++#include <tf/transform_broadcaster.h>
++#include <tf/tf.h>
++
++#include <math.h>
++
++using namespace visualization_msgs;
++
++
++// %Tag(vars)%
++boost::shared_ptr<interactive_markers::InteractiveMarkerServer> server;
++interactive_markers::MenuHandler menu_handler;
++// %EndTag(vars)%
++
++
++// %Tag(Box)%
++Marker makeBox( InteractiveMarker &msg )
++{
++  Marker marker;
++
++  marker.type = Marker::CUBE;
++  marker.scale.x = msg.scale * 0.45;
++  marker.scale.y = msg.scale * 0.45;
++  marker.scale.z = msg.scale * 0.45;
++  marker.color.r = 0.5;
++  marker.color.g = 0.5;
++  marker.color.b = 0.5;
++  marker.color.a = 1.0;
++
++  return marker;
++}
++
++InteractiveMarkerControl& makeBoxControl( InteractiveMarker &msg )
++{
++  InteractiveMarkerControl control;
++  control.always_visible = true;
++  control.markers.push_back( makeBox(msg) );
++  msg.controls.push_back( control );
++
++  return msg.controls.back();
++}
++// %EndTag(Box)%
++
++// %Tag(frameCallback)%
++void frameCallback(const ros::TimerEvent&)
++{
++  static uint32_t counter = 0;
++
++  static tf::TransformBroadcaster br;
++
++  tf::Transform t;
++
++  ros::Time time = ros::Time::now();
++
++  t.setOrigin(tf::Vector3(0.0, 0.0, sin(float(counter)/140.0) * 2.0));
++  t.setRotation(tf::Quaternion(0.0, 0.0, 0.0, 1.0));
++  br.sendTransform(tf::StampedTransform(t, time, "base_link", "moving_frame"));
++
++  t.setOrigin(tf::Vector3(0.0, 0.0, 0.0));
++  t.setRotation(tf::createQuaternionFromRPY(0.0, float(counter)/140.0, 0.0));
++  br.sendTransform(tf::StampedTransform(t, time, "base_link", "rotating_frame"));
++
++  counter++;
++}
++// %EndTag(frameCallback)%
++
++// %Tag(processFeedback)%
++void processFeedback( const visualization_msgs::InteractiveMarkerFeedbackConstPtr &feedback )
++{
++  std::ostringstream s;
++  s << "Feedback from marker '" << feedback->marker_name << "' "
++      << " / control '" << feedback->control_name << "'";
++
++  std::ostringstream mouse_point_ss;
++  if( feedback->mouse_point_valid )
++  {
++    mouse_point_ss << " at " << feedback->mouse_point.x
++                   << ", " << feedback->mouse_point.y
++                   << ", " << feedback->mouse_point.z
++                   << " in frame " << feedback->header.frame_id;
++  }
++
++  switch ( feedback->event_type )
++  {
++    case visualization_msgs::InteractiveMarkerFeedback::BUTTON_CLICK:
++      ROS_INFO_STREAM( s.str() << ": button click" << mouse_point_ss.str() << "." );
++      break;
++
++    case visualization_msgs::InteractiveMarkerFeedback::MENU_SELECT:
++      ROS_INFO_STREAM( s.str() << ": menu item " << feedback->menu_entry_id << " clicked" << mouse_point_ss.str() << "." );
++      break;
++
++    case visualization_msgs::InteractiveMarkerFeedback::POSE_UPDATE:
++      ROS_INFO_STREAM( s.str() << ": pose changed"
++          << "\nposition = "
++          << feedback->pose.position.x
++          << ", " << feedback->pose.position.y
++          << ", " << feedback->pose.position.z
++          << "\norientation = "
++          << feedback->pose.orientation.w
++          << ", " << feedback->pose.orientation.x
++          << ", " << feedback->pose.orientation.y
++          << ", " << feedback->pose.orientation.z
++          << "\nframe: " << feedback->header.frame_id
++          << " time: " << feedback->header.stamp.sec << "sec, "
++          << feedback->header.stamp.nsec << " nsec" );
++      break;
++
++    case visualization_msgs::InteractiveMarkerFeedback::MOUSE_DOWN:
++      ROS_INFO_STREAM( s.str() << ": mouse down" << mouse_point_ss.str() << "." );
++      break;
++
++    case visualization_msgs::InteractiveMarkerFeedback::MOUSE_UP:
++      ROS_INFO_STREAM( s.str() << ": mouse up" << mouse_point_ss.str() << "." );
++      break;
++  }
++
++  server->applyChanges();
++}
++// %EndTag(processFeedback)%
++
++// %Tag(alignMarker)%
++void alignMarker( const visualization_msgs::InteractiveMarkerFeedbackConstPtr &feedback )
++{
++  geometry_msgs::Pose pose = feedback->pose;
++
++  pose.position.x = round(pose.position.x-0.5)+0.5;
++  pose.position.y = round(pose.position.y-0.5)+0.5;
++
++  ROS_INFO_STREAM( feedback->marker_name << ":"
++      << " aligning position = "
++      << feedback->pose.position.x
++      << ", " << feedback->pose.position.y
++      << ", " << feedback->pose.position.z
++      << " to "
++      << pose.position.x
++      << ", " << pose.position.y
++      << ", " << pose.position.z );
++
++  server->setPose( feedback->marker_name, pose );
++  server->applyChanges();
++}
++// %EndTag(alignMarker)%
++
++double rand( double min, double max )
++{
++  double t = (double)rand() / (double)RAND_MAX;
++  return min + t*(max-min);
++}
++
++////////////////////////////////////////////////////////////////////////////////////
++
++// %Tag(6DOF)%
++void make6DofMarker( bool fixed, unsigned int interaction_mode, const tf::Vector3& position, bool show_6dof )
++{
++  InteractiveMarker int_marker;
++  int_marker.header.frame_id = "base_link";
++  tf::pointTFToMsg(position, int_marker.pose.position);
++  int_marker.scale = 1;
++
++  int_marker.name = "simple_6dof";
++  int_marker.description = "Simple 6-DOF Control";
++
++  // insert a box
++  makeBoxControl(int_marker);
++  int_marker.controls[0].interaction_mode = interaction_mode;
++
++  InteractiveMarkerControl control;
++
++  if ( fixed )
++  {
++    int_marker.name += "_fixed";
++    int_marker.description += "\n(fixed orientation)";
++    control.orientation_mode = InteractiveMarkerControl::FIXED;
++  }
++
++  if (interaction_mode != visualization_msgs::InteractiveMarkerControl::NONE)
++  {
++      std::string mode_text;
++      if( interaction_mode == visualization_msgs::InteractiveMarkerControl::MOVE_3D )         mode_text = "MOVE_3D";
++      if( interaction_mode == visualization_msgs::InteractiveMarkerControl::ROTATE_3D )       mode_text = "ROTATE_3D";
++      if( interaction_mode == visualization_msgs::InteractiveMarkerControl::MOVE_ROTATE_3D )  mode_text = "MOVE_ROTATE_3D";
++      int_marker.name += "_" + mode_text;
++      int_marker.description = std::string("3D Control") + (show_6dof ? " + 6-DOF controls" : "") + "\n" + mode_text;
++  }
++
++  if(show_6dof)
++  {
++    tf::Quaternion orien(1.0, 0.0, 0.0, 1.0);
++    orien.normalize();
++    tf::quaternionTFToMsg(orien, control.orientation);
++    control.name = "rotate_x";
++    control.interaction_mode = InteractiveMarkerControl::ROTATE_AXIS;
++    int_marker.controls.push_back(control);
++    control.name = "move_x";
++    control.interaction_mode = InteractiveMarkerControl::MOVE_AXIS;
++    int_marker.controls.push_back(control);
++
++    orien = tf::Quaternion(0.0, 1.0, 0.0, 1.0);
++    orien.normalize();
++    tf::quaternionTFToMsg(orien, control.orientation);
++    control.name = "rotate_z";
++    control.interaction_mode = InteractiveMarkerControl::ROTATE_AXIS;
++    int_marker.controls.push_back(control);
++    control.name = "move_z";
++    control.interaction_mode = InteractiveMarkerControl::MOVE_AXIS;
++    int_marker.controls.push_back(control);
++
++    orien = tf::Quaternion(0.0, 0.0, 1.0, 1.0);
++    orien.normalize();
++    tf::quaternionTFToMsg(orien, control.orientation);
++    control.name = "rotate_y";
++    control.interaction_mode = InteractiveMarkerControl::ROTATE_AXIS;
++    int_marker.controls.push_back(control);
++    control.name = "move_y";
++    control.interaction_mode = InteractiveMarkerControl::MOVE_AXIS;
++    int_marker.controls.push_back(control);
++  }
++
++  server->insert(int_marker);
++  server->setCallback(int_marker.name, &processFeedback);
++  if (interaction_mode != visualization_msgs::InteractiveMarkerControl::NONE)
++    menu_handler.apply( *server, int_marker.name );
++}
++// %EndTag(6DOF)%
++
++// %Tag(RandomDof)%
++void makeRandomDofMarker( const tf::Vector3& position )
++{
++  InteractiveMarker int_marker;
++  int_marker.header.frame_id = "base_link";
++  tf::pointTFToMsg(position, int_marker.pose.position);
++  int_marker.scale = 1;
++
++  int_marker.name = "6dof_random_axes";
++  int_marker.description = "6-DOF\n(Arbitrary Axes)";
++
++  makeBoxControl(int_marker);
++
++  InteractiveMarkerControl control;
++
++  for ( int i=0; i<3; i++ )
++  {
++    tf::Quaternion orien(rand(-1,1), rand(-1,1), rand(-1,1), rand(-1,1));
++    orien.normalize();
++    tf::quaternionTFToMsg(orien, control.orientation);
++    control.interaction_mode = InteractiveMarkerControl::ROTATE_AXIS;
++    int_marker.controls.push_back(control);
++    control.interaction_mode = InteractiveMarkerControl::MOVE_AXIS;
++    int_marker.controls.push_back(control);
++  }
++
++  server->insert(int_marker);
++  server->setCallback(int_marker.name, &processFeedback);
++}
++// %EndTag(RandomDof)%
++
++
++// %Tag(ViewFacing)%
++void makeViewFacingMarker( const tf::Vector3& position )
++{
++  InteractiveMarker int_marker;
++  int_marker.header.frame_id = "base_link";
++  tf::pointTFToMsg(position, int_marker.pose.position);
++  int_marker.scale = 1;
++
++  int_marker.name = "view_facing";
++  int_marker.description = "View Facing 6-DOF";
++
++  InteractiveMarkerControl control;
++
++  // make a control that rotates around the view axis
++  control.orientation_mode = InteractiveMarkerControl::VIEW_FACING;
++  control.interaction_mode = InteractiveMarkerControl::ROTATE_AXIS;
++  control.orientation.w = 1;
++  control.name = "rotate";
++
++  int_marker.controls.push_back(control);
++
++  // create a box in the center which should not be view facing,
++  // but move in the camera plane.
++  control.orientation_mode = InteractiveMarkerControl::VIEW_FACING;
++  control.interaction_mode = InteractiveMarkerControl::MOVE_PLANE;
++  control.independent_marker_orientation = true;
++  control.name = "move";
++
++  control.markers.push_back( makeBox(int_marker) );
++  control.always_visible = true;
++
++  int_marker.controls.push_back(control);
++
++  server->insert(int_marker);
++  server->setCallback(int_marker.name, &processFeedback);
++}
++// %EndTag(ViewFacing)%
++
++
++// %Tag(Quadrocopter)%
++void makeQuadrocopterMarker( const tf::Vector3& position )
++{
++  InteractiveMarker int_marker;
++  int_marker.header.frame_id = "base_link";
++  tf::pointTFToMsg(position, int_marker.pose.position);
++  int_marker.scale = 1;
++
++  int_marker.name = "quadrocopter";
++  int_marker.description = "Quadrocopter";
++
++  makeBoxControl(int_marker);
++
++  InteractiveMarkerControl control;
++
++  tf::Quaternion orien(0.0, 1.0, 0.0, 1.0);
++  orien.normalize();
++  tf::quaternionTFToMsg(orien, control.orientation);
++  control.interaction_mode = InteractiveMarkerControl::MOVE_ROTATE;
++  int_marker.controls.push_back(control);
++  control.interaction_mode = InteractiveMarkerControl::MOVE_AXIS;
++  int_marker.controls.push_back(control);
++
++  server->insert(int_marker);
++  server->setCallback(int_marker.name, &processFeedback);
++}
++// %EndTag(Quadrocopter)%
++
++// %Tag(ChessPiece)%
++void makeChessPieceMarker( const tf::Vector3& position )
++{
++  InteractiveMarker int_marker;
++  int_marker.header.frame_id = "base_link";
++  tf::pointTFToMsg(position, int_marker.pose.position);
++  int_marker.scale = 1;
++
++  int_marker.name = "chess_piece";
++  int_marker.description = "Chess Piece\n(2D Move + Alignment)";
++
++  InteractiveMarkerControl control;
++
++  tf::Quaternion orien(0.0, 1.0, 0.0, 1.0);
++  orien.normalize();
++  tf::quaternionTFToMsg(orien, control.orientation);
++  control.interaction_mode = InteractiveMarkerControl::MOVE_PLANE;
++  int_marker.controls.push_back(control);
++
++  // make a box which also moves in the plane
++  control.markers.push_back( makeBox(int_marker) );
++  control.always_visible = true;
++  int_marker.controls.push_back(control);
++
++  // we want to use our special callback function
++  server->insert(int_marker);
++  server->setCallback(int_marker.name, &processFeedback);
++
++  // set different callback for POSE_UPDATE feedback
++  server->setCallback(int_marker.name, &alignMarker, visualization_msgs::InteractiveMarkerFeedback::POSE_UPDATE );
++}
++// %EndTag(ChessPiece)%
++
++// %Tag(PanTilt)%
++void makePanTiltMarker( const tf::Vector3& position )
++{
++  InteractiveMarker int_marker;
++  int_marker.header.frame_id = "base_link";
++  tf::pointTFToMsg(position, int_marker.pose.position);
++  int_marker.scale = 1;
++
++  int_marker.name = "pan_tilt";
++  int_marker.description = "Pan / Tilt";
++
++  makeBoxControl(int_marker);
++
++  InteractiveMarkerControl control;
++
++  tf::Quaternion orien(0.0, 1.0, 0.0, 1.0);
++  orien.normalize();
++  tf::quaternionTFToMsg(orien, control.orientation);
++  control.interaction_mode = InteractiveMarkerControl::ROTATE_AXIS;
++  control.orientation_mode = InteractiveMarkerControl::FIXED;
++  int_marker.controls.push_back(control);
++
++  orien = tf::Quaternion(0.0, 0.0, 1.0, 1.0);
++  orien.normalize();
++  tf::quaternionTFToMsg(orien, control.orientation);
++  control.interaction_mode = InteractiveMarkerControl::ROTATE_AXIS;
++  control.orientation_mode = InteractiveMarkerControl::INHERIT;
++  int_marker.controls.push_back(control);
++
++  server->insert(int_marker);
++  server->setCallback(int_marker.name, &processFeedback);
++}
++// %EndTag(PanTilt)%
++
++// %Tag(Menu)%
++void makeMenuMarker( const tf::Vector3& position )
++{
++  InteractiveMarker int_marker;
++  int_marker.header.frame_id = "base_link";
++  tf::pointTFToMsg(position, int_marker.pose.position);
++  int_marker.scale = 1;
++
++  int_marker.name = "context_menu";
++  int_marker.description = "Context Menu\n(Right Click)";
++
++  InteractiveMarkerControl control;
++
++  control.interaction_mode = InteractiveMarkerControl::MENU;
++  control.name = "menu_only_control";
++
++  Marker marker = makeBox( int_marker );
++  control.markers.push_back( marker );
++  control.always_visible = true;
++  int_marker.controls.push_back(control);
++
++  server->insert(int_marker);
++  server->setCallback(int_marker.name, &processFeedback);
++  menu_handler.apply( *server, int_marker.name );
++}
++// %EndTag(Menu)%
++
++// %Tag(Button)%
++void makeButtonMarker( const tf::Vector3& position )
++{
++  InteractiveMarker int_marker;
++  int_marker.header.frame_id = "base_link";
++  tf::pointTFToMsg(position, int_marker.pose.position);
++  int_marker.scale = 1;
++
++  int_marker.name = "button";
++  int_marker.description = "Button\n(Left Click)";
++
++  InteractiveMarkerControl control;
++
++  control.interaction_mode = InteractiveMarkerControl::BUTTON;
++  control.name = "button_control";
++
++  Marker marker = makeBox( int_marker );
++  control.markers.push_back( marker );
++  control.always_visible = true;
++  int_marker.controls.push_back(control);
++
++  server->insert(int_marker);
++  server->setCallback(int_marker.name, &processFeedback);
++}
++// %EndTag(Button)%
++
++// %Tag(Moving)%
++void makeMovingMarker( const tf::Vector3& position )
++{
++  InteractiveMarker int_marker;
++  int_marker.header.frame_id = "moving_frame";
++  tf::pointTFToMsg(position, int_marker.pose.position);
++  int_marker.scale = 1;
++
++  int_marker.name = "moving";
++  int_marker.description = "Marker Attached to a\nMoving Frame";
++
++  InteractiveMarkerControl control;
++
++  tf::Quaternion orien(1.0, 0.0, 0.0, 1.0);
++  orien.normalize();
++  tf::quaternionTFToMsg(orien, control.orientation);
++  control.interaction_mode = InteractiveMarkerControl::ROTATE_AXIS;
++  int_marker.controls.push_back(control);
++
++  control.interaction_mode = InteractiveMarkerControl::MOVE_PLANE;
++  control.always_visible = true;
++  control.markers.push_back( makeBox(int_marker) );
++  int_marker.controls.push_back(control);
++
++  server->insert(int_marker);
++  server->setCallback(int_marker.name, &processFeedback);
++}
++// %EndTag(Moving)%
++
++// %Tag(main)%
++int main(int argc, char** argv)
++{
++  ros::init(argc, argv, "basic_controls");
++  ros::NodeHandle n;
++
++  // create a timer to update the published transforms
++  ros::Timer frame_timer = n.createTimer(ros::Duration(0.01), frameCallback);
++
++  server.reset( new interactive_markers::InteractiveMarkerServer("basic_controls","",false) );
++
++  ros::Duration(0.1).sleep();
++
++  menu_handler.insert( "First Entry", &processFeedback );
++  menu_handler.insert( "Second Entry", &processFeedback );
++  interactive_markers::MenuHandler::EntryHandle sub_menu_handle = menu_handler.insert( "Submenu" );
++  menu_handler.insert( sub_menu_handle, "First Entry", &processFeedback );
++  menu_handler.insert( sub_menu_handle, "Second Entry", &processFeedback );
++
++  tf::Vector3 position;
++  position = tf::Vector3(-3, 3, 0);
++  make6DofMarker( false, visualization_msgs::InteractiveMarkerControl::NONE, position, true );
++  position = tf::Vector3( 0, 3, 0);
++  make6DofMarker( true, visualization_msgs::InteractiveMarkerControl::NONE, position, true );
++  position = tf::Vector3( 3, 3, 0);
++  makeRandomDofMarker( position );
++  position = tf::Vector3(-3, 0, 0);
++  make6DofMarker( false, visualization_msgs::InteractiveMarkerControl::ROTATE_3D, position, false );
++  position = tf::Vector3( 0, 0, 0);
++  make6DofMarker( false, visualization_msgs::InteractiveMarkerControl::MOVE_ROTATE_3D, position, true );
++  position = tf::Vector3( 3, 0, 0);
++  make6DofMarker( false, visualization_msgs::InteractiveMarkerControl::MOVE_3D, position, false );
++  position = tf::Vector3(-3,-3, 0);
++  makeViewFacingMarker( position );
++  position = tf::Vector3( 0,-3, 0);
++  makeQuadrocopterMarker( position );
++  position = tf::Vector3( 3,-3, 0);
++  makeChessPieceMarker( position );
++  position = tf::Vector3(-3,-6, 0);
++  makePanTiltMarker( position );
++  position = tf::Vector3( 0,-6, 0);
++  makeMovingMarker( position );
++  position = tf::Vector3( 3,-6, 0);
++  makeMenuMarker( position );
++  position = tf::Vector3( 0,-9, 0);
++  makeButtonMarker( position );
++
++  server->applyChanges();
++
++  ros::spin();
++
++  server.reset();
++}
++// %EndTag(main)%
+--- /dev/null
++++ ros-noetic-interactive-marker-tutorials-0.11.0/src/cube.cpp
+@@ -0,0 +1,175 @@
++/*
++ * Copyright (c) 2011, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++
++#include <ros/ros.h>
++
++#include <interactive_markers/interactive_marker_server.h>
++
++#include <math.h>
++
++#include <tf/LinearMath/Vector3.h>
++
++
++using namespace visualization_msgs;
++
++boost::shared_ptr<interactive_markers::InteractiveMarkerServer> server;
++
++std::vector< tf::Vector3 > positions;
++
++void processFeedback( const visualization_msgs::InteractiveMarkerFeedbackConstPtr &feedback )
++{
++  switch ( feedback->event_type )
++  {
++    case visualization_msgs::InteractiveMarkerFeedback::POSE_UPDATE:
++    {
++      //compute difference vector for this cube
++
++      tf::Vector3 fb_pos(feedback->pose.position.x, feedback->pose.position.y, feedback->pose.position.z);
++      unsigned index = atoi( feedback->marker_name.c_str() );
++
++      if ( index > positions.size() )
++      {
++        return;
++      }
++      tf::Vector3 fb_delta = fb_pos - positions[index];
++
++      // move all markers in that direction
++      for ( unsigned i=0; i<positions.size(); i++ )
++      {
++        float d = fb_pos.distance( positions[i] );
++        float t = 1 / (d*5.0+1.0) - 0.2;
++        if ( t < 0.0 ) t=0.0;
++
++        positions[i] += t * fb_delta;
++
++        if ( i == index ) {
++          ROS_INFO_STREAM( d );
++          positions[i] = fb_pos;
++        }
++
++        geometry_msgs::Pose pose;
++        pose.position.x = positions[i].x();
++        pose.position.y = positions[i].y();
++        pose.position.z = positions[i].z();
++
++        std::stringstream s;
++        s << i;
++        server->setPose( s.str(), pose );
++      }
++
++
++      break;
++    }
++  }
++  server->applyChanges();
++}
++
++InteractiveMarkerControl& makeBoxControl( InteractiveMarker &msg )
++{
++  InteractiveMarkerControl control;
++  control.always_visible = true;
++  control.orientation_mode = InteractiveMarkerControl::VIEW_FACING;
++  control.interaction_mode = InteractiveMarkerControl::MOVE_PLANE;
++  control.independent_marker_orientation = true;
++
++  Marker marker;
++
++  marker.type = Marker::CUBE;
++  marker.scale.x = msg.scale;
++  marker.scale.y = msg.scale;
++  marker.scale.z = msg.scale;
++  marker.color.r = 0.65+0.7*msg.pose.position.x;
++  marker.color.g = 0.65+0.7*msg.pose.position.y;
++  marker.color.b = 0.65+0.7*msg.pose.position.z;
++  marker.color.a = 1.0;
++
++  control.markers.push_back( marker );
++  msg.controls.push_back( control );
++
++  return msg.controls.back();
++}
++
++
++void makeCube( )
++{
++  int side_length = 10;
++  float step = 1.0/ (float)side_length;
++  int count = 0;
++
++  positions.reserve( side_length*side_length*side_length );
++
++  for ( double x=-0.5; x<0.5; x+=step )
++  {
++    for ( double y=-0.5; y<0.5; y+=step )
++    {
++      for ( double z=0.0; z<1.0; z+=step )
++      {
++        InteractiveMarker int_marker;
++        int_marker.header.frame_id = "base_link";
++        int_marker.scale = step;
++
++        int_marker.pose.position.x = x;
++        int_marker.pose.position.y = y;
++        int_marker.pose.position.z = z;
++
++        positions.push_back( tf::Vector3(x,y,z) );
++
++        std::stringstream s;
++        s << count;
++        int_marker.name = s.str();
++
++        makeBoxControl(int_marker);
++
++        server->insert( int_marker );
++        server->setCallback( int_marker.name, &processFeedback );
++
++        count++;
++      }
++    }
++  }
++}
++
++int main(int argc, char** argv)
++{
++  ros::init(argc, argv, "cube");
++
++  server.reset( new interactive_markers::InteractiveMarkerServer("cube") );
++
++  ros::Duration(0.1).sleep();
++
++  ROS_INFO("initializing..");
++  makeCube();
++  server->applyChanges();
++  ROS_INFO("ready.");
++
++  ros::spin();
++
++  server.reset();
++}
+--- /dev/null
++++ ros-noetic-interactive-marker-tutorials-0.11.0/src/menu.cpp
+@@ -0,0 +1,188 @@
++/*
++ * Copyright (c) 2011, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++
++#include <ros/ros.h>
++
++#include <interactive_markers/interactive_marker_server.h>
++#include <interactive_markers/menu_handler.h>
++
++#include <tf/transform_broadcaster.h>
++#include <tf/tf.h>
++
++#include <math.h>
++
++using namespace visualization_msgs;
++using namespace interactive_markers;
++
++boost::shared_ptr<InteractiveMarkerServer> server;
++float marker_pos = 0;
++
++MenuHandler menu_handler;
++
++MenuHandler::EntryHandle h_first_entry;
++MenuHandler::EntryHandle h_mode_last;
++
++
++void enableCb( const visualization_msgs::InteractiveMarkerFeedbackConstPtr &feedback )
++{
++  MenuHandler::EntryHandle handle = feedback->menu_entry_id;
++  MenuHandler::CheckState state;
++  menu_handler.getCheckState( handle, state );
++
++  if ( state == MenuHandler::CHECKED )
++  {
++    menu_handler.setCheckState( handle, MenuHandler::UNCHECKED );
++    ROS_INFO("Hiding first menu entry");
++    menu_handler.setVisible( h_first_entry, false );
++  }
++  else
++  {
++    menu_handler.setCheckState( handle, MenuHandler::CHECKED );
++    ROS_INFO("Showing first menu entry");
++    menu_handler.setVisible( h_first_entry, true );
++  }
++  menu_handler.reApply( *server );
++  ros::Duration(2.0).sleep();
++  ROS_INFO("update");
++  server->applyChanges();
++}
++
++void modeCb( const visualization_msgs::InteractiveMarkerFeedbackConstPtr &feedback )
++{
++  menu_handler.setCheckState( h_mode_last, MenuHandler::UNCHECKED );
++  h_mode_last = feedback->menu_entry_id;
++  menu_handler.setCheckState( h_mode_last, MenuHandler::CHECKED );
++
++  ROS_INFO("Switching to menu entry #%d", h_mode_last);
++
++  menu_handler.reApply( *server );
++  server->applyChanges();
++}
++
++
++
++Marker makeBox( InteractiveMarker &msg )
++{
++  Marker marker;
++
++  marker.type = Marker::CUBE;
++  marker.scale.x = msg.scale * 0.45;
++  marker.scale.y = msg.scale * 0.45;
++  marker.scale.z = msg.scale * 0.45;
++  marker.color.r = 0.5;
++  marker.color.g = 0.5;
++  marker.color.b = 0.5;
++  marker.color.a = 1.0;
++
++  return marker;
++}
++
++InteractiveMarkerControl& makeBoxControl( InteractiveMarker &msg )
++{
++  InteractiveMarkerControl control;
++  control.always_visible = true;
++  control.markers.push_back( makeBox(msg) );
++  msg.controls.push_back( control );
++
++  return msg.controls.back();
++}
++
++InteractiveMarker makeEmptyMarker( bool dummyBox=true )
++{
++  InteractiveMarker int_marker;
++  int_marker.header.frame_id = "base_link";
++  int_marker.pose.position.y = -3.0 * marker_pos++;;
++  int_marker.scale = 1;
++
++  return int_marker;
++}
++
++void makeMenuMarker( std::string name )
++{
++  InteractiveMarker int_marker = makeEmptyMarker();
++  int_marker.name = name;
++
++  InteractiveMarkerControl control;
++
++  control.interaction_mode = InteractiveMarkerControl::BUTTON;
++  control.always_visible = true;
++
++  control.markers.push_back( makeBox( int_marker ) );
++  int_marker.controls.push_back(control);
++
++  server->insert( int_marker );
++}
++
++void deepCb( const visualization_msgs::InteractiveMarkerFeedbackConstPtr &feedback )
++{
++  ROS_INFO("The deep sub-menu has been found.");
++}
++
++void initMenu()
++{
++  h_first_entry = menu_handler.insert( "First Entry" );
++  MenuHandler::EntryHandle entry = menu_handler.insert( h_first_entry, "deep" );
++  entry = menu_handler.insert( entry, "sub" );
++  entry = menu_handler.insert( entry, "menu", &deepCb );
++  
++  menu_handler.setCheckState( menu_handler.insert( "Show First Entry", &enableCb ), MenuHandler::CHECKED );
++
++  MenuHandler::EntryHandle sub_menu_handle = menu_handler.insert( "Switch" );
++
++  for ( int i=0; i<5; i++ )
++  {
++    std::ostringstream s;
++    s << "Mode " << i;
++    h_mode_last = menu_handler.insert( sub_menu_handle, s.str(), &modeCb );
++    menu_handler.setCheckState( h_mode_last, MenuHandler::UNCHECKED );
++  }
++  //check the very last entry
++  menu_handler.setCheckState( h_mode_last, MenuHandler::CHECKED );
++}
++
++int main(int argc, char** argv)
++{
++  ros::init(argc, argv, "menu");
++
++  server.reset( new InteractiveMarkerServer("menu","",false) );
++
++  initMenu();
++
++  makeMenuMarker( "marker1" );
++  makeMenuMarker( "marker2" );
++
++  menu_handler.apply( *server, "marker1" );
++  menu_handler.apply( *server, "marker2" );
++  server->applyChanges();
++
++  ros::spin();
++
++  server.reset();
++}
+--- /dev/null
++++ ros-noetic-interactive-marker-tutorials-0.11.0/src/point_cloud.cpp
+@@ -0,0 +1,151 @@
++/*
++ * Copyright (c) 2011, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++
++// %Tag(fullSource)%
++#include <math.h>
++
++#include <ros/ros.h>
++
++#include <interactive_markers/interactive_marker_server.h>
++
++namespace vm = visualization_msgs;
++
++void processFeedback( const vm::InteractiveMarkerFeedbackConstPtr &feedback )
++{
++  uint8_t type = feedback->event_type;
++
++  if( type == vm::InteractiveMarkerFeedback::BUTTON_CLICK ||
++      type == vm::InteractiveMarkerFeedback::MOUSE_DOWN ||
++      type == vm::InteractiveMarkerFeedback::MOUSE_UP )
++  {
++    const char* type_str = (type == vm::InteractiveMarkerFeedback::BUTTON_CLICK ? "button click" :
++                            (type == vm::InteractiveMarkerFeedback::MOUSE_DOWN ? "mouse down" : "mouse up"));
++
++    if( feedback->mouse_point_valid )
++    {
++      ROS_INFO( "%s at %f, %f, %f in frame %s",
++                type_str,
++                feedback->mouse_point.x, feedback->mouse_point.y, feedback->mouse_point.z,
++                feedback->header.frame_id.c_str() );
++    }
++    else
++    {
++      ROS_INFO( "%s", type_str );
++    }
++  }
++  else if( type == vm::InteractiveMarkerFeedback::POSE_UPDATE )
++  {
++    ROS_INFO_STREAM( feedback->marker_name << " is now at "
++                     << feedback->pose.position.x << ", " << feedback->pose.position.y
++                     << ", " << feedback->pose.position.z );
++  }
++}
++
++void makePoints( std::vector<geometry_msgs::Point>& points_out, int num_points )
++{
++  double radius = 3;
++  points_out.resize(num_points);
++  for( int i = 0; i < num_points; i++ )
++  {
++    double angle = (i / (double) num_points * 50 * M_PI);
++    double height = (i / (double) num_points * 10);
++    points_out[i].x = radius * cos( angle );
++    points_out[i].y = radius * sin( angle );
++    points_out[i].z = height;
++  }
++}
++
++vm::InteractiveMarker makeMarker( std::string name, std::string description, int32_t type, float x, int num_points = 10000, float scale = 0.1f )
++{
++  // create an interactive marker for our server
++  vm::InteractiveMarker int_marker;
++  int_marker.header.frame_id = "base_link";
++  int_marker.name = name;
++  int_marker.description = description;
++
++  // create a point cloud marker
++  vm::Marker points_marker;
++  points_marker.type = type;
++  points_marker.scale.x = scale;
++  points_marker.scale.y = scale;
++  points_marker.scale.z = scale;
++  points_marker.color.r = 0.5;
++  points_marker.color.g = 0.5;
++  points_marker.color.b = 0.5;
++  points_marker.color.a = 1.0;
++  makePoints( points_marker.points, num_points );
++
++  // create a control which contains the point cloud which acts like a button.
++  vm::InteractiveMarkerControl points_control;
++  points_control.always_visible = true;
++  points_control.interaction_mode = vm::InteractiveMarkerControl::BUTTON;
++  points_control.markers.push_back( points_marker );
++
++  // add the control to the interactive marker
++  int_marker.controls.push_back( points_control );
++
++  // create a control which will move the box
++  // this control does not contain any markers,
++  // which will cause RViz to insert two arrows
++  vm::InteractiveMarkerControl rotate_control;
++  rotate_control.name = "move_x";
++  rotate_control.interaction_mode =
++      vm::InteractiveMarkerControl::MOVE_AXIS;
++
++  // add the control to the interactive marker
++  int_marker.controls.push_back(rotate_control);
++
++  int_marker.pose.position.x = x;
++
++  return int_marker;
++}
++
++int main(int argc, char** argv)
++{
++  ros::init(argc, argv, "point_cloud");
++
++  // create an interactive marker server on the topic namespace simple_marker
++  interactive_markers::InteractiveMarkerServer server("point_cloud");
++
++  server.insert(makeMarker("points", "Points marker", vm::Marker::POINTS, 0), &processFeedback);
++  // LINE_STRIP and LINE_LIST are not actually selectable, and they won't highlight or detect mouse clicks like the others (yet).
++  server.insert(makeMarker("line_strip", "Line Strip marker", vm::Marker::LINE_STRIP, 10, 1000), &processFeedback);
++  server.insert(makeMarker("line_list", "Line List marker", vm::Marker::LINE_LIST, 20), &processFeedback);
++  server.insert(makeMarker("cube_list", "Cube List marker", vm::Marker::CUBE_LIST, 30), &processFeedback);
++  server.insert(makeMarker("sphere_list", "Sphere List marker", vm::Marker::SPHERE_LIST, 40), &processFeedback);
++  server.insert(makeMarker("triangle_list", "Triangle List marker", vm::Marker::TRIANGLE_LIST, 50, 201, 1.0f), &processFeedback);
++
++  // 'commit' changes and send to all clients
++  server.applyChanges();
++
++  // start the ROS main loop
++  ros::spin();
++}
++// %Tag(fullSource)%
+--- /dev/null
++++ ros-noetic-interactive-marker-tutorials-0.11.0/src/pong.cpp
+@@ -0,0 +1,504 @@
++/*
++ * Copyright (c) 2011, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++
++#include <interactive_markers/interactive_marker_server.h>
++
++#include <ros/ros.h>
++#include <math.h>
++#include <boost/thread/mutex.hpp>
++
++#include <tf/tf.h>
++
++using namespace visualization_msgs;
++
++static const float FIELD_WIDTH = 12.0;
++static const float FIELD_HEIGHT = 8.0;
++static const float BORDER_SIZE = 0.5;
++static const float PADDLE_SIZE = 2.0;
++static const float UPDATE_RATE = 1.0 / 30.0;
++static const float PLAYER_X = FIELD_WIDTH * 0.5 + BORDER_SIZE;
++static const float AI_SPEED_LIMIT = 0.25;
++
++
++class PongGame
++{
++public:
++
++  PongGame() :
++  server_("pong", "", false),
++  last_ball_pos_x_(0),
++  last_ball_pos_y_(0)
++  {
++    player_contexts_.resize(2);
++
++    makeFieldMarker();
++    makePaddleMarkers();
++    makeBallMarker();
++
++    reset();
++    updateScore();
++
++    ros::NodeHandle nh;
++    game_loop_timer_ =  nh.createTimer(ros::Duration(UPDATE_RATE), boost::bind( &PongGame::spinOnce, this ) );
++  }
++
++private:
++
++  // main control loop
++  void spinOnce()
++  {
++    if ( player_contexts_[0].active || player_contexts_[1].active )
++    {
++      float ball_dx = speed_ * ball_dir_x_;
++      float ball_dy = speed_ * ball_dir_y_;
++
++      ball_pos_x_ += ball_dx;
++      ball_pos_y_ += ball_dy;
++
++      // bounce off top / bottom
++      float t = 0;
++      if ( reflect ( ball_pos_y_, last_ball_pos_y_, FIELD_HEIGHT * 0.5, t ) )
++      {
++        ball_pos_x_ -= t * ball_dx;
++        ball_pos_y_ -= t * ball_dy;
++
++        ball_dir_y_ *= -1.0;
++
++        ball_dx = speed_ * ball_dir_x_;
++        ball_dy = speed_ * ball_dir_y_;
++        ball_pos_x_ += t * ball_dx;
++        ball_pos_y_ += t * ball_dy;
++      }
++
++      int player = ball_pos_x_ > 0 ? 1 : 0;
++
++      // reflect on paddles
++      if ( fabs(last_ball_pos_x_) < FIELD_WIDTH * 0.5 &&
++           fabs(ball_pos_x_) >= FIELD_WIDTH * 0.5 )
++      {
++        // check if the paddle is roughly at the right position
++        if ( ball_pos_y_ > player_contexts_[player].pos - PADDLE_SIZE * 0.5 - 0.5*BORDER_SIZE &&
++             ball_pos_y_ < player_contexts_[player].pos + PADDLE_SIZE * 0.5 + 0.5*BORDER_SIZE )
++        {
++          reflect ( ball_pos_x_, last_ball_pos_x_, FIELD_WIDTH * 0.5, t );
++          ball_pos_x_ -= t * ball_dx;
++          ball_pos_y_ -= t * ball_dy;
++
++          // change direction based on distance to paddle center
++          float offset = (ball_pos_y_ - player_contexts_[player].pos) / PADDLE_SIZE;
++
++          ball_dir_x_ *= -1.0;
++          ball_dir_y_ += offset*2.0;
++
++          normalizeVel();
++
++          // limit angle to 45 deg
++          if ( fabs(ball_dir_y_) > 0.707106781 )
++          {
++            ball_dir_x_ = ball_dir_x_ > 0.0 ? 1.0 : -1.0;
++            ball_dir_y_ = ball_dir_y_ > 0.0 ? 1.0 : -1.0;
++            normalizeVel();
++          }
++
++          ball_dx = speed_ * ball_dir_x_;
++          ball_dy = speed_ * ball_dir_y_;
++          ball_pos_x_ += t * ball_dx;
++          ball_pos_y_ += t * ball_dy;
++        }
++      }
++
++      // ball hits the left/right border of the playing field
++      if ( fabs(ball_pos_x_) >= FIELD_WIDTH * 0.5 + 1.5*BORDER_SIZE )
++      {
++        reflect ( ball_pos_x_, last_ball_pos_x_, FIELD_WIDTH * 0.5 + 1.5*BORDER_SIZE, t );
++        ball_pos_x_ -= t * ball_dx;
++        ball_pos_y_ -= t * ball_dy;
++        updateBall();
++
++        player_contexts_[1-player].score++;
++        updateScore();
++
++        server_.applyChanges();
++        reset();
++        ros::Duration(1.0).sleep();
++      }
++      else
++      {
++        updateBall();
++      }
++
++      last_ball_pos_x_ = ball_pos_x_;
++      last_ball_pos_y_ = ball_pos_y_;
++
++      // control computer player
++      if ( !player_contexts_[0].active || !player_contexts_[1].active )
++      {
++        int player = player_contexts_[0].active ? 1 : 0;
++        float delta = ball_pos_y_ - player_contexts_[player].pos;
++        // limit movement speed
++        if ( delta > AI_SPEED_LIMIT ) delta = AI_SPEED_LIMIT;
++        if ( delta < -AI_SPEED_LIMIT ) delta = -AI_SPEED_LIMIT;
++        setPaddlePos( player, player_contexts_[player].pos + delta );
++      }
++
++      speed_ += 0.0003;
++    }
++
++    server_.applyChanges();
++  }
++
++  void setPaddlePos( unsigned player, float pos )
++  {
++    if ( player > 1 )
++    {
++      return;
++    }
++
++    // clamp
++    if ( pos > (FIELD_HEIGHT - PADDLE_SIZE) * 0.5 )
++    {
++      pos = (FIELD_HEIGHT - PADDLE_SIZE) * 0.5;
++    }
++    if ( pos < (FIELD_HEIGHT - PADDLE_SIZE) * -0.5 )
++    {
++      pos = (FIELD_HEIGHT - PADDLE_SIZE) * -0.5;
++    }
++
++    player_contexts_[player].pos = pos;
++
++    geometry_msgs::Pose pose;
++    pose.position.x = (player == 0) ? -PLAYER_X : PLAYER_X;
++    pose.position.y = pos;
++
++    std::string marker_name = (player == 0) ? "paddle0" : "paddle1";
++    server_.setPose( marker_name, pose );
++    server_.setPose( marker_name+"_display", pose );
++  }
++
++  void processPaddleFeedback( unsigned player, const visualization_msgs::InteractiveMarkerFeedbackConstPtr &feedback )
++  {
++    if ( player > 1 )
++    {
++      return;
++    }
++
++    std::string control_marker_name = feedback->marker_name;
++    geometry_msgs::Pose pose = feedback->pose;
++
++    setPaddlePos( player, pose.position.y );
++
++    if ( feedback->event_type == visualization_msgs::InteractiveMarkerFeedback::MOUSE_DOWN )
++    {
++      player_contexts_[player].active = true;
++    }
++    if ( feedback->event_type == visualization_msgs::InteractiveMarkerFeedback::MOUSE_UP )
++    {
++      player_contexts_[player].active = false;
++    }
++  }
++
++  // restart round
++  void reset()
++  {
++    speed_ = 6.0 * UPDATE_RATE;
++    ball_pos_x_ = 0.0;
++    ball_pos_y_ = 0.0;
++    ball_dir_x_ = ball_dir_x_ > 0.0 ? 1.0 : -1.0;
++    ball_dir_y_ = rand() % 2 ? 1.0 : -1.0;
++    normalizeVel();
++  }
++
++  // set length of velocity vector to 1
++  void normalizeVel()
++  {
++    float l = sqrt( ball_dir_x_*ball_dir_x_ + ball_dir_y_*ball_dir_y_ );
++    ball_dir_x_ /= l;
++    ball_dir_y_ /= l;
++  }
++
++  // compute reflection
++  // returns true if the given limit has been surpassed
++  // t [0...1] says how much the limit has been surpassed, relative to the distance
++  // between last_pos and pos
++  bool reflect( float &pos, float last_pos, float limit, float &t )
++  {
++    if ( pos > limit )
++    {
++      t = (pos - limit) / (pos - last_pos);
++      return true;
++    }
++    if ( -pos > limit )
++    {
++      t = (-pos - limit) / (last_pos - pos);
++      return true;
++    }
++    return false;
++  }
++
++  // update ball marker
++  void updateBall()
++  {
++    geometry_msgs::Pose pose;
++    pose.position.x = ball_pos_x_;
++    pose.position.y = ball_pos_y_;
++    server_.setPose( "ball", pose );
++  }
++
++  // update score marker
++  void updateScore()
++  {
++    InteractiveMarker int_marker;
++    int_marker.header.frame_id = "base_link";
++    int_marker.name = "score";
++
++    InteractiveMarkerControl control;
++    control.always_visible = true;
++
++    Marker marker;
++    marker.type = Marker::TEXT_VIEW_FACING;
++    marker.color.r = 1.0;
++    marker.color.g = 1.0;
++    marker.color.b = 1.0;
++    marker.color.a = 1.0;
++    marker.scale.x = 1.5;
++    marker.scale.y = 1.5;
++    marker.scale.z = 1.5;
++
++    std::ostringstream s;
++    s << player_contexts_[0].score;
++    marker.text = s.str();
++    marker.pose.position.y = FIELD_HEIGHT*0.5 + 4.0*BORDER_SIZE;
++    marker.pose.position.x = -1.0 * ( FIELD_WIDTH * 0.5 + BORDER_SIZE );
++    control.markers.push_back( marker );
++
++    s.str("");
++    s << player_contexts_[1].score;
++    marker.text = s.str();
++    marker.pose.position.x *= -1;
++    control.markers.push_back( marker );
++
++    int_marker.controls.push_back( control );
++
++    server_.insert( int_marker );
++  }
++
++  void makeFieldMarker()
++  {
++    InteractiveMarker int_marker;
++    int_marker.header.frame_id = "base_link";
++    int_marker.name = "field";
++
++    InteractiveMarkerControl control;
++    control.always_visible = true;
++
++    Marker marker;
++    marker.type = Marker::CUBE;
++    marker.color.r = 1.0;
++    marker.color.g = 1.0;
++    marker.color.b = 1.0;
++    marker.color.a = 1.0;
++
++    // Top Border
++    marker.scale.x = FIELD_WIDTH + 6.0 * BORDER_SIZE;
++    marker.scale.y = BORDER_SIZE;
++    marker.scale.z = BORDER_SIZE;
++    marker.pose.position.x = 0;
++    marker.pose.position.y = FIELD_HEIGHT*0.5 + BORDER_SIZE;
++    control.markers.push_back( marker );
++
++    // Bottom Border
++    marker.pose.position.y *= -1;
++    control.markers.push_back( marker );
++
++    // Left Border
++    marker.scale.x = BORDER_SIZE;
++    marker.scale.y = FIELD_HEIGHT + 3.0*BORDER_SIZE;
++    marker.scale.z = BORDER_SIZE;
++    marker.pose.position.x = FIELD_WIDTH*0.5 + 2.5*BORDER_SIZE;
++    marker.pose.position.y = 0;
++    control.markers.push_back( marker );
++
++    // Right Border
++    marker.pose.position.x *= -1;
++    control.markers.push_back( marker );
++
++    // store
++    int_marker.controls.push_back( control );
++    server_.insert( int_marker );
++  }
++
++  void makePaddleMarkers()
++  {
++    InteractiveMarker int_marker;
++    int_marker.header.frame_id = "base_link";
++
++    // Add a control for moving the paddle
++    InteractiveMarkerControl control;
++    control.always_visible = false;
++    control.interaction_mode = InteractiveMarkerControl::MOVE_AXIS;
++    tf::Quaternion orien(0.0, 0.0, 1.0, 1.0);
++    orien.normalize();
++    tf::quaternionTFToMsg(orien, control.orientation);
++
++    // Add a visualization marker
++    Marker marker;
++    marker.type = Marker::CUBE;
++    marker.color.r = 1.0;
++    marker.color.g = 1.0;
++    marker.color.b = 1.0;
++    marker.color.a = 0.0;
++    marker.scale.x = BORDER_SIZE + 0.1;
++    marker.scale.y = PADDLE_SIZE + 0.1;
++    marker.scale.z = BORDER_SIZE + 0.1;
++    marker.pose.position.z = 0;
++    marker.pose.position.y = 0;
++
++    control.markers.push_back( marker );
++
++    int_marker.controls.push_back( control );
++
++    // Control for player 1
++    int_marker.name = "paddle0";
++    int_marker.pose.position.x = -PLAYER_X;
++    server_.insert( int_marker );
++    server_.setCallback( int_marker.name, boost::bind( &PongGame::processPaddleFeedback, this, 0, _1 ) );
++
++    // Control for player 2
++    int_marker.name = "paddle1";
++    int_marker.pose.position.x = PLAYER_X;
++    server_.insert( int_marker );
++    server_.setCallback( int_marker.name, boost::bind( &PongGame::processPaddleFeedback, this, 1, _1 ) );
++
++    // Make display markers
++    marker.scale.x = BORDER_SIZE;
++    marker.scale.y = PADDLE_SIZE;
++    marker.scale.z = BORDER_SIZE;
++    marker.color.r = 0.5;
++    marker.color.a = 1.0;
++
++    control.interaction_mode = InteractiveMarkerControl::NONE;
++    control.always_visible = true;
++
++    // Display for player 1
++    int_marker.name = "paddle0_display";
++    int_marker.pose.position.x = -PLAYER_X;
++
++    marker.color.g = 1.0;
++    marker.color.b = 0.5;
++
++    int_marker.controls.clear();
++    control.markers.clear();
++    control.markers.push_back( marker );
++    int_marker.controls.push_back( control );
++    server_.insert( int_marker );
++
++    // Display for player 2
++    int_marker.name = "paddle1_display";
++    int_marker.pose.position.x = PLAYER_X;
++
++    marker.color.g = 0.5;
++    marker.color.b = 1.0;
++
++    int_marker.controls.clear();
++    control.markers.clear();
++    control.markers.push_back( marker );
++    int_marker.controls.push_back( control );
++    server_.insert( int_marker );
++  }
++
++  void makeBallMarker()
++  {
++    InteractiveMarker int_marker;
++    int_marker.header.frame_id = "base_link";
++
++    InteractiveMarkerControl control;
++    control.always_visible = true;
++
++    // Ball
++    int_marker.name = "ball";
++
++    control.interaction_mode = InteractiveMarkerControl::NONE;
++    tf::Quaternion orien(0.0, 1.0, 0.0, 1.0);
++    orien.normalize();
++    tf::quaternionTFToMsg(orien, control.orientation);
++
++    Marker marker;
++    marker.color.r = 1.0;
++    marker.color.g = 1.0;
++    marker.color.b = 1.0;
++    marker.color.a = 1.0;
++    marker.type = Marker::CYLINDER;
++    marker.scale.x = BORDER_SIZE;
++    marker.scale.y = BORDER_SIZE;
++    marker.scale.z = BORDER_SIZE;
++    control.markers.push_back( marker );
++
++    int_marker.controls.push_back( control );
++
++    server_.insert( int_marker );
++  }
++
++  interactive_markers::InteractiveMarkerServer server_;
++
++  ros::Timer game_loop_timer_;
++
++  InteractiveMarker field_marker_;
++
++  struct PlayerContext
++  {
++    PlayerContext(): pos(0),active(false),score(0) {}
++    float pos;
++    bool active;
++    int score;
++  };
++
++  std::vector<PlayerContext> player_contexts_;
++
++  float last_ball_pos_x_;
++  float last_ball_pos_y_;
++
++  float ball_pos_x_;
++  float ball_pos_y_;
++
++  float ball_dir_x_;
++  float ball_dir_y_;
++  float speed_;
++};
++
++
++
++int main(int argc, char** argv)
++{
++  ros::init(argc, argv, "pong");
++
++  PongGame pong_game;
++  ros::spin();
++  ROS_INFO("Exiting..");
++}
+--- /dev/null
++++ ros-noetic-interactive-marker-tutorials-0.11.0/src/selection.cpp
+@@ -0,0 +1,343 @@
++/*
++ * Copyright (c) 2011, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++
++// %Tag(fullSource)%
++#include <ros/ros.h>
++#include <stdlib.h>
++
++#include <interactive_markers/interactive_marker_server.h>
++#include <interactive_markers/tools.h>
++
++#include <tf/LinearMath/Vector3.h>
++#include <tf/tf.h>
++
++bool testPointAgainstAabb2(const tf::Vector3 &aabbMin1, const tf::Vector3 &aabbMax1,
++                           const tf::Vector3 &point)
++{
++	bool overlap = true;
++	overlap = (aabbMin1.getX() > point.getX() || aabbMax1.getX() < point.getX()) ? false : overlap;
++	overlap = (aabbMin1.getZ() > point.getZ() || aabbMax1.getZ() < point.getZ()) ? false : overlap;
++	overlap = (aabbMin1.getY() > point.getY() || aabbMax1.getY() < point.getY()) ? false : overlap;
++	return overlap;
++}
++
++namespace vm = visualization_msgs;
++
++class PointCouldSelector
++{
++public:
++	PointCouldSelector( boost::shared_ptr<interactive_markers::InteractiveMarkerServer> server,
++	    std::vector<tf::Vector3>& points ) :
++	      server_( server ),
++        min_sel_( -1, -1, -1 ),
++        max_sel_( 1, 1, 1 ),
++        points_( points )
++	{
++	  updateBox( );
++	  updatePointClouds();
++
++	  makeSizeHandles();
++	}
++
++	void processAxisFeedback(
++	    const visualization_msgs::InteractiveMarkerFeedbackConstPtr &feedback )
++	{
++	  ROS_INFO_STREAM( feedback->marker_name << " is now at "
++	      << feedback->pose.position.x << ", " << feedback->pose.position.y
++	      << ", " << feedback->pose.position.z );
++
++    if ( feedback->marker_name == "min_x" ) min_sel_.setX( feedback->pose.position.x );
++    if ( feedback->marker_name == "max_x" ) max_sel_.setX( feedback->pose.position.x );
++    if ( feedback->marker_name == "min_y" ) min_sel_.setY( feedback->pose.position.y );
++    if ( feedback->marker_name == "max_y" ) max_sel_.setY( feedback->pose.position.y );
++    if ( feedback->marker_name == "min_z" ) min_sel_.setZ( feedback->pose.position.z );
++    if ( feedback->marker_name == "max_z" ) max_sel_.setZ( feedback->pose.position.z );
++
++    updateBox( );
++    updateSizeHandles();
++
++    if ( feedback->event_type == visualization_msgs::InteractiveMarkerFeedback::MOUSE_UP )
++    {
++      updatePointClouds();
++    }
++
++    server_->applyChanges();
++	}
++
++	vm::Marker makeBox( vm::InteractiveMarker &msg,
++	    tf::Vector3 min_bound, tf::Vector3 max_bound )
++	{
++	  vm::Marker marker;
++
++	  marker.type = vm::Marker::CUBE;
++	  marker.scale.x = max_bound.x() - min_bound.x();
++	  marker.scale.y = max_bound.y() - min_bound.y();
++	  marker.scale.z = max_bound.z() - min_bound.z();
++    marker.pose.position.x = 0.5 * ( max_bound.x() + min_bound.x() );
++    marker.pose.position.y = 0.5 * ( max_bound.y() + min_bound.y() );
++    marker.pose.position.z = 0.5 * ( max_bound.z() + min_bound.z() );
++	  marker.color.r = 0.5;
++	  marker.color.g = 0.5;
++	  marker.color.b = 0.5;
++	  marker.color.a = 0.5;
++
++	  return marker;
++	}
++
++	void updateBox( )
++	{
++	  vm::InteractiveMarker msg;
++	  msg.header.frame_id = "base_link";
++
++	  vm::InteractiveMarkerControl control;
++	  control.always_visible = false;
++	  control.markers.push_back( makeBox(msg, min_sel_, max_sel_) );
++	  msg.controls.push_back( control );
++
++	  server_->insert( msg );
++	}
++
++	void updatePointCloud( std::string name, std_msgs::ColorRGBA color, std::vector<tf::Vector3> &points )
++	{
++	  // create an interactive marker for our server
++	  vm::InteractiveMarker int_marker;
++	  int_marker.header.frame_id = "base_link";
++	  int_marker.name = name;
++
++	  // create a point cloud marker
++	  vm::Marker points_marker;
++	  points_marker.type = vm::Marker::SPHERE_LIST;
++	  points_marker.scale.x = 0.05;
++	  points_marker.scale.y = 0.05;
++	  points_marker.scale.z = 0.05;
++	  points_marker.color = color;
++
++	  for ( unsigned i=0; i<points.size(); i++ )
++	  {
++	    geometry_msgs::Point p;
++      p.x = points[i].x();
++      p.y = points[i].y();
++      p.z = points[i].z();
++	    points_marker.points.push_back( p );
++	  }
++
++	  // create container control
++	  vm::InteractiveMarkerControl points_control;
++	  points_control.always_visible = true;
++	  points_control.interaction_mode = vm::InteractiveMarkerControl::NONE;
++	  points_control.markers.push_back( points_marker );
++
++	  // add the control to the interactive marker
++	  int_marker.controls.push_back( points_control );
++
++	  server_->insert( int_marker );
++	}
++
++	void updatePointClouds()
++	{
++	  std::vector<tf::Vector3> points_in, points_out;
++    points_in.reserve( points_.size() );
++    points_out.reserve( points_.size() );
++
++    // determine which points are selected (i.e. inside the selection box)
++	  for ( unsigned i=0; i<points_.size(); i++ )
++	  {
++	    if ( testPointAgainstAabb2( min_sel_, max_sel_, points_[i] ) )
++	    {
++	      points_in.push_back( points_[i] );
++	    }
++	    else
++	    {
++        points_out.push_back( points_[i] );
++	    }
++	  }
++
++    std_msgs::ColorRGBA in_color;
++    in_color.r = 1.0;
++    in_color.g = 0.8;
++    in_color.b = 0.0;
++    in_color.a = 1.0;
++
++    std_msgs::ColorRGBA out_color;
++    out_color.r = 0.5;
++    out_color.g = 0.5;
++    out_color.b = 0.5;
++    out_color.a = 1.0;
++
++    updatePointCloud( "selected_points", in_color, points_in );
++    updatePointCloud( "unselected_points", out_color, points_out );
++	}
++
++  void makeSizeHandles( )
++  {
++    for ( int axis=0; axis<3; axis++ )
++    {
++      for ( int sign=-1; sign<=1; sign+=2 )
++      {
++        vm::InteractiveMarker int_marker;
++        int_marker.header.frame_id = "base_link";
++        int_marker.scale = 1.0;
++
++        vm::InteractiveMarkerControl control;
++        control.interaction_mode = vm::InteractiveMarkerControl::MOVE_AXIS;
++        control.orientation_mode = vm::InteractiveMarkerControl::INHERIT;
++        control.always_visible = false;
++
++        tf::Quaternion orien;
++
++        switch ( axis )
++        {
++        case 0:
++          int_marker.name = sign>0 ? "max_x" : "min_x";
++          int_marker.pose.position.x = sign>0 ? max_sel_.x() : min_sel_.x();
++          int_marker.pose.position.y = 0.5 * ( max_sel_.y() + min_sel_.y() );
++          int_marker.pose.position.z = 0.5 * ( max_sel_.z() + min_sel_.z() );
++          orien = tf::Quaternion(1.0, 0.0, 0.0, 1.0);
++          orien.normalize();
++          tf::quaternionTFToMsg(orien, control.orientation);
++          break;
++        case 1:
++          int_marker.name = sign>0 ? "max_y" : "min_y";
++          int_marker.pose.position.x = 0.5 * ( max_sel_.x() + min_sel_.x() );
++          int_marker.pose.position.y = sign>0 ? max_sel_.y() : min_sel_.y();
++          int_marker.pose.position.z = 0.5 * ( max_sel_.z() + min_sel_.z() );
++          orien = tf::Quaternion(0.0, 0.0, 1.0, 1.0);
++          orien.normalize();
++          tf::quaternionTFToMsg(orien, control.orientation);
++          break;
++        default:
++          int_marker.name = sign>0 ? "max_z" : "min_z";
++          int_marker.pose.position.x = 0.5 * ( max_sel_.x() + min_sel_.x() );
++          int_marker.pose.position.y = 0.5 * ( max_sel_.y() + min_sel_.y() );
++          int_marker.pose.position.z = sign>0 ? max_sel_.z() : min_sel_.z();
++          orien = tf::Quaternion(0.0, -1.0, 0.0, 1.0);
++          orien.normalize();
++          tf::quaternionTFToMsg(orien, control.orientation);
++          break;
++        }
++
++        interactive_markers::makeArrow( int_marker, control, 0.5 * sign );
++
++        int_marker.controls.push_back( control );
++        server_->insert( int_marker, boost::bind( &PointCouldSelector::processAxisFeedback, this, _1 ) );
++      }
++    }
++  }
++
++  void updateSizeHandles( )
++  {
++    for ( int axis=0; axis<3; axis++ )
++    {
++      for ( int sign=-1; sign<=1; sign+=2 )
++      {
++        std::string name;
++        geometry_msgs::Pose pose;
++
++        switch ( axis )
++        {
++        case 0:
++          name = sign>0 ? "max_x" : "min_x";
++          pose.position.x = sign>0 ? max_sel_.x() : min_sel_.x();
++          pose.position.y = 0.5 * ( max_sel_.y() + min_sel_.y() );
++          pose.position.z = 0.5 * ( max_sel_.z() + min_sel_.z() );
++          break;
++        case 1:
++          name = sign>0 ? "max_y" : "min_y";
++          pose.position.x = 0.5 * ( max_sel_.x() + min_sel_.x() );
++          pose.position.y = sign>0 ? max_sel_.y() : min_sel_.y();
++          pose.position.z = 0.5 * ( max_sel_.z() + min_sel_.z() );
++          break;
++        default:
++          name = sign>0 ? "max_z" : "min_z";
++          pose.position.x = 0.5 * ( max_sel_.x() + min_sel_.x() );
++          pose.position.y = 0.5 * ( max_sel_.y() + min_sel_.y() );
++          pose.position.z = sign>0 ? max_sel_.z() : min_sel_.z();
++          break;
++        }
++
++        server_->setPose( name, pose );
++      }
++    }
++  }
++
++private:
++	boost::shared_ptr<interactive_markers::InteractiveMarkerServer> server_;
++
++	tf::Vector3 min_sel_, max_sel_;
++	std::vector<tf::Vector3> points_;
++
++	vm::InteractiveMarker sel_points_marker_;
++	vm::InteractiveMarker unsel_points_marker_;
++};
++
++
++
++
++double rand( double min, double max )
++{
++  double t = (double)rand() / (double)RAND_MAX;
++  return min + t*(max-min);
++}
++
++
++void makePoints( std::vector<tf::Vector3>& points_out, int num_points )
++{
++  double radius = 3;
++  double scale = 0.2;
++  points_out.resize(num_points);
++  for( int i = 0; i < num_points; i++ )
++  {
++    points_out[i].setX( scale * rand( -radius, radius ) );
++	  points_out[i].setY( scale * rand( -radius, radius ) );
++    points_out[i].setZ( scale * radius * 0.2 * ( sin( 10.0 / radius * points_out[i].x() ) + cos( 10.0 / radius * points_out[i].y() ) ) );
++  }
++}
++
++
++int main(int argc, char** argv)
++{
++  ros::init(argc, argv, "selection");
++
++  // create an interactive marker server on the topic namespace simple_marker
++  boost::shared_ptr<interactive_markers::InteractiveMarkerServer> server(
++      new interactive_markers::InteractiveMarkerServer("selection") );
++
++  std::vector<tf::Vector3> points;
++  makePoints( points, 10000 );
++
++  PointCouldSelector selector( server, points );
++
++  // 'commit' changes and send to all clients
++  server->applyChanges();
++
++  // start the ROS main loop
++  ros::spin();
++}
++// %Tag(fullSource)%
+--- /dev/null
++++ ros-noetic-interactive-marker-tutorials-0.11.0/src/simple_marker.cpp
+@@ -0,0 +1,98 @@
++/*
++ * Copyright (c) 2011, Willow Garage, Inc.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above copyright
++ *       notice, this list of conditions and the following disclaimer in the
++ *       documentation and/or other materials provided with the distribution.
++ *     * Neither the name of the Willow Garage, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived from
++ *       this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
++ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
++ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++ * POSSIBILITY OF SUCH DAMAGE.
++ */
++
++
++// %Tag(fullSource)%
++#include <ros/ros.h>
++
++#include <interactive_markers/interactive_marker_server.h>
++
++void processFeedback(
++    const visualization_msgs::InteractiveMarkerFeedbackConstPtr &feedback )
++{
++  ROS_INFO_STREAM( feedback->marker_name << " is now at "
++      << feedback->pose.position.x << ", " << feedback->pose.position.y
++      << ", " << feedback->pose.position.z );
++}
++
++int main(int argc, char** argv)
++{
++  ros::init(argc, argv, "simple_marker");
++
++  // create an interactive marker server on the topic namespace simple_marker
++  interactive_markers::InteractiveMarkerServer server("simple_marker");
++
++  // create an interactive marker for our server
++  visualization_msgs::InteractiveMarker int_marker;
++  int_marker.header.frame_id = "base_link";
++  int_marker.header.stamp=ros::Time::now();
++  int_marker.name = "my_marker";
++  int_marker.description = "Simple 1-DOF Control";
++
++  // create a grey box marker
++  visualization_msgs::Marker box_marker;
++  box_marker.type = visualization_msgs::Marker::CUBE;
++  box_marker.scale.x = 0.45;
++  box_marker.scale.y = 0.45;
++  box_marker.scale.z = 0.45;
++  box_marker.color.r = 0.5;
++  box_marker.color.g = 0.5;
++  box_marker.color.b = 0.5;
++  box_marker.color.a = 1.0;
++
++  // create a non-interactive control which contains the box
++  visualization_msgs::InteractiveMarkerControl box_control;
++  box_control.always_visible = true;
++  box_control.markers.push_back( box_marker );
++
++  // add the control to the interactive marker
++  int_marker.controls.push_back( box_control );
++
++  // create a control which will move the box
++  // this control does not contain any markers,
++  // which will cause RViz to insert two arrows
++  visualization_msgs::InteractiveMarkerControl rotate_control;
++  rotate_control.name = "move_x";
++  rotate_control.interaction_mode =
++      visualization_msgs::InteractiveMarkerControl::MOVE_AXIS;
++
++  // add the control to the interactive marker
++  int_marker.controls.push_back(rotate_control);
++
++  // add the interactive marker to our collection &
++  // tell the server to call processFeedback() when feedback arrives for it
++  server.insert(int_marker, &processFeedback);
++
++  // 'commit' changes and send to all clients
++  server.applyChanges();
++
++  // start the ROS main loop
++  ros::spin();
++}
++// %Tag(fullSource)%

@@ -1,0 +1,12 @@
+Source: ros-noetic-rqt-publisher
+Section: misc
+Priority: optional
+Maintainer: Michael Carroll <michael@openrobotics.org>
+Build-Depends: debhelper (>= 9.0.0), ros-noetic-catkin
+Homepage: http://wiki.ros.org/rqt_publisher
+Standards-Version: 3.9.2
+
+Package: ros-noetic-rqt-publisher
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, python3-rospkg, ros-noetic-python-qt-binding (>= 0.2.19), ros-noetic-qt-gui-py-common, ros-noetic-roslib, ros-noetic-rosmsg (>= 1.9.49), ros-noetic-rqt-gui, ros-noetic-rqt-gui-py, ros-noetic-rqt-py-common
+Description: rqt_publisher provides a GUI plugin for publishing arbitrary messages with fixed or computed field values.

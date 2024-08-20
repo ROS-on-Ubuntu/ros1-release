@@ -1,0 +1,1361 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ ros-noetic-compressed-depth-image-transport (1.15.0-0jammy) jammy; urgency=high
+ .
+   * Update maintainer in ros1 branches (#132 <https://github.com/ros-perception/image_transport_plugins/issues/132>)
+   * Fix number of elements in vector parameter to call cv::imencode for OpenCV 4.7 (#130 <https://github.com/ros-perception/image_transport_plugins/issues/130>)
+   * Fix uninitialized memory usage (#125 <https://github.com/ros-perception/image_transport_plugins/issues/125>)
+   * Make the default compressed depth png_level 1 instead of 9 to save cpu (#85 <https://github.com/ros-perception/image_transport_plugins/issues/85>)
+     The default 9 is so cpu intensive to be frequently unusable and results in many dropped frames, and there is still plenty of bandwidth savings from the compression at level 1.
+   * Fix copyright year 20012 -> 2012 (#80 <https://github.com/ros-perception/image_transport_plugins/issues/80>)
+   * Fix regression in compressed_depth_image_transport with old bags (#64 <https://github.com/ros-perception/image_transport_plugins/issues/64>)
+   * Contributors: Johannes Meyer, Kenji Brameld, Lucas Walter, Martin Pecka, Michael Carroll, Timm Linder, ijnek, v4hn
+Author: Kenji Brameld <kenjibrameld@gmail.com>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2024-08-18
+
+--- /dev/null
++++ ros-noetic-compressed-depth-image-transport-1.15.0/CHANGELOG.rst
+@@ -0,0 +1,157 @@
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++Changelog for package compressed_depth_image_transport
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++1.15.0 (2023-01-30)
++-------------------
++* Update maintainer in ros1 branches (`#132 <https://github.com/ros-perception/image_transport_plugins/issues/132>`_)
++* Fix number of elements in vector parameter to call cv::imencode for OpenCV 4.7 (`#130 <https://github.com/ros-perception/image_transport_plugins/issues/130>`_)
++* Fix uninitialized memory usage (`#125 <https://github.com/ros-perception/image_transport_plugins/issues/125>`_)
++* Make the default compressed depth png_level 1 instead of 9 to save cpu (`#85 <https://github.com/ros-perception/image_transport_plugins/issues/85>`_)
++  The default 9 is so cpu intensive to be frequently unusable and results in many dropped frames, and there is still plenty of bandwidth savings from the compression at level 1.
++* Fix copyright year 20012 -> 2012 (`#80 <https://github.com/ros-perception/image_transport_plugins/issues/80>`_)
++* Fix regression in compressed_depth_image_transport with old bags (`#64 <https://github.com/ros-perception/image_transport_plugins/issues/64>`_)
++* Contributors: Johannes Meyer, Kenji Brameld, Lucas Walter, Martin Pecka, Michael Carroll, Timm Linder, ijnek, v4hn
++
++1.14.0 (2020-05-14)
++-------------------
++* Bump CMake version to avoid CMP0048 warning (`#53 <https://github.com/ros-perception/image_transport_plugins/issues/53>`_)
++* Add depth compression by RVL `#42 <https://github.com/ros-perception/image_transport_plugins/issues/42>`_
++* Fix binary install locations for Windows build `#34 <https://github.com/ros-perception/image_transport_plugins/issues/34>`_
++* Add legacy constants when using opencv4 `#32 <https://github.com/ros-perception/image_transport_plugins/issues/32>`_
++* Contributors: Alejandro Hernández Cordero, David Gossow, Hans Gaiser, Sean Yen, Shuntaro Yamazaki
++
++1.9.5 (2016-10-03)
++------------------
++* disable -Werr
++* Contributors: Vincent Rabaud
++
++1.9.4 (2016-10-02)
++------------------
++* address gcc6 build error and tune
++  With gcc6, compiling fails with 'stdlib.h: No such file or directory',
++  as including '-isystem /usr/include' breaks with gcc6, cf.,
++  https://gcc.gnu.org/bugzilla/show_bug.cgi?id=70129.
++  This commit addresses this issue for this package in the same way
++  it was addressed in various other ROS packages. A list of related
++  commits and pull requests is at:
++  https://github.com/ros/rosdistro/issues/12783
++  Signed-off-by: Lukas Bulwahn <lukas.bulwahn@oss.bmw-carit.de>
++* Fix a missing return statement and add -Wall -Werror.
++* Contributors: Lukas Bulwahn, Mac Mason
++
++1.9.3 (2016-01-17)
++------------------
++* Refactor the codec into its own .h and .cpp.
++* remove useless tf dependencies
++* Contributors: Mac Mason, Vincent Rabaud
++
++1.9.2 (2015-04-25)
++------------------
++* use compression parameters for both depths
++  fixes `#12 <https://github.com/ros-perception/image_transport_plugins/issues/12>`_
++* get code to compile with OpenCV3
++* Contributors: Vincent Rabaud
++
++1.9.1 (2014-07-18)
++------------------
++
++1.9.0 (2014-05-16)
++------------------
++
++1.8.21 (2013-06-27)
++-------------------
++* maintainer: david gossow
++* Contributors: David Gossow
++
++1.8.20 (2013-03-18)
++-------------------
++* 1.8.19 -> 1.8.20
++* Contributors: Julius Kammerl
++
++1.8.19 (2013-02-24)
++-------------------
++* 1.8.18 -> 1.8.19
++* Contributors: Julius Kammerl
++
++1.8.18 (2013-02-07 17:59)
++-------------------------
++* 1.8.17 -> 1.8.18
++* fixing input format checks (enabling rgba, bgra) + minor fixes
++* Contributors: Julius Kammerl
++
++1.8.17 (2013-01-18)
++-------------------
++* 1.8.16 -> 1.8.17
++* Contributors: Julius Kammerl
++
++1.8.16 (2013-01-17)
++-------------------
++* 1.8.15 -> 1.8.16
++* use the pluginlib script to remove some runtime warnings
++* Contributors: Julius Kammerl, Vincent Rabaud
++
++1.8.15 (2012-12-28 20:11)
++-------------------------
++
++1.8.14 (2012-12-28 20:02)
++-------------------------
++
++1.8.13 (2012-12-28 19:06)
++-------------------------
++* fix the bad exports
++* make sure the plugins are visible by image_transport
++* added license headers to various cpp and h files
++* Contributors: Aaron Blasdel, Vincent Rabaud
++
++1.8.12 (2012-12-19 19:30)
++-------------------------
++* fix downstream stuff in cmake
++* Contributors: Dirk Thomas
++
++1.8.11 (2012-12-19 17:17)
++-------------------------
++* fix cmake order
++* Contributors: Dirk Thomas
++
++1.8.10 (2012-12-19 17:03)
++-------------------------
++* fix dyn reconf
++* Contributors: Dirk Thomas
++
++1.8.9 (2012-12-19 00:26)
++------------------------
++* switching to verion 1.8.9
++* Contributors: Julius Kammerl
++
++1.8.8 (2012-12-17)
++------------------
++* adding build_deb on message_generation & mrun_deb on message_runtime
++* Updated package.xml for new buildtool_depend tag for catkin requirement
++* Contributors: Julius Kammerl, mirzashah
++
++1.8.7 (2012-12-10 15:29)
++------------------------
++* adding missing tf build dependency
++* Contributors: Julius Kammerl
++
++1.8.6 (2012-12-10 15:08)
++------------------------
++* switching to version 1.8.6
++* Contributors: Julius Kammerl
++
++1.8.5 (2012-12-09)
++------------------
++* adding missing build debs
++* added class_loader_hide_library_symbols macros to CMakeList
++* switching to 1.8.5
++* Contributors: Julius Kammerl
++
++1.8.4 (2012-11-30)
++------------------
++* switching to version 1.8.4
++* adding plugin.xml exports for pluginlib
++* catkinizing theora_image_transport
++* catkinizing compressed_depth_image_transport
++* github migration from code.ros.org (r40053)
++* Contributors: Julius Kammerl
+--- /dev/null
++++ ros-noetic-compressed-depth-image-transport-1.15.0/CMakeLists.txt
+@@ -0,0 +1,52 @@
++cmake_minimum_required(VERSION 3.0.2)
++project(compressed_depth_image_transport)
++
++if (CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
++#  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror")
++endif()
++
++find_package(OpenCV REQUIRED)
++find_package(catkin REQUIRED cv_bridge dynamic_reconfigure image_transport)
++
++# generate the dynamic_reconfigure config file
++generate_dynamic_reconfigure_options(cfg/CompressedDepthPublisher.cfg)
++
++catkin_package(
++  INCLUDE_DIRS include
++  LIBRARIES ${PROJECT_NAME}
++  CATKIN_DEPENDS cv_bridge dynamic_reconfigure image_transport
++  DEPENDS OpenCV
++)
++
++include_directories(include ${catkin_INCLUDE_DIRS} ${OpenCV_INCLUDE_DIRS})
++
++set(SOURCE_FILES src/compressed_depth_publisher.cpp src/compressed_depth_subscriber.cpp src/manifest.cpp src/codec.cpp src/rvl_codec.cpp)
++add_library(${PROJECT_NAME} ${SOURCE_FILES})
++add_dependencies(${PROJECT_NAME} ${PROJECT_NAME}_gencfg)
++target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
++
++class_loader_hide_library_symbols(${PROJECT_NAME})
++
++install(TARGETS ${PROJECT_NAME}
++  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
++  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
++  RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
++)
++install(DIRECTORY include/${PROJECT_NAME}/
++  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
++)
++
++# add xml file
++install(FILES compressed_depth_plugins.xml
++        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
++)
++
++if(CATKIN_ENABLE_TESTING)
++  # Build ${PROJECT_NAME}_test library with symbols exported.
++  add_library(${PROJECT_NAME}_test ${SOURCE_FILES})
++  add_dependencies(${PROJECT_NAME}_test ${PROJECT_NAME}_gencfg)
++  target_link_libraries(${PROJECT_NAME}_test ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
++
++  catkin_add_gtest(rvl_codec_test test/rvl_codec_test.cpp)
++  target_link_libraries(rvl_codec_test ${PROJECT_NAME}_test)
++endif()
+--- /dev/null
++++ ros-noetic-compressed-depth-image-transport-1.15.0/cfg/CompressedDepthPublisher.cfg
+@@ -0,0 +1,19 @@
++#! /usr/bin/env python
++
++PACKAGE='compressed_depth_image_transport'
++
++from dynamic_reconfigure.parameter_generator_catkin import *
++
++gen = ParameterGenerator()
++  
++format_enum = gen.enum( [gen.const("png", str_t, "png", "PNG lossless compression"),
++                         gen.const("rvl", str_t, "rvl", "RVL lossless compression")],
++                        "Enum to set the compression format" )
++
++gen.add("format", str_t, 0, "Compression format", "png", edit_method = format_enum)
++gen.add("depth_max", double_t, 0, "Maximum depth value (meter) ", 10 , 1, 100)
++gen.add("depth_quantization", double_t, 0, "Depth value at which the sensor accuracy is 1 m (Kinect: >75)", 100, 1, 150)
++gen.add("png_level", int_t, 0, "PNG compression level", 1, 1, 9)
++
++ 
++exit(gen.generate(PACKAGE, "CompressedDepthPublisher", "CompressedDepthPublisher"))
+--- /dev/null
++++ ros-noetic-compressed-depth-image-transport-1.15.0/compressed_depth_plugins.xml
+@@ -0,0 +1,13 @@
++<library path="lib/libcompressed_depth_image_transport">
++  <class name="image_transport/compressedDepth_pub" type="compressed_depth_image_transport::CompressedDepthPublisher" base_class_type="image_transport::PublisherPlugin">
++    <description>
++      This plugin publishes a compressed depth images using PNG compression.
++    </description>
++  </class>
++
++  <class name="image_transport/compressedDepth_sub" type="compressed_depth_image_transport::CompressedDepthSubscriber" base_class_type="image_transport::SubscriberPlugin">
++    <description>
++      This plugin decodes a compressed depth images.
++    </description>
++  </class>
++</library>
+--- /dev/null
++++ ros-noetic-compressed-depth-image-transport-1.15.0/include/compressed_depth_image_transport/codec.h
+@@ -0,0 +1,57 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++*
++*  Copyright (c) 2012, Willow Garage.
++*  Copyright (c) 2016, Google, Inc.
++*  All rights reserved.
++*
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++*
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++*
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++
++#include <opencv2/core/core.hpp>
++
++#include "sensor_msgs/CompressedImage.h"
++#include "sensor_msgs/Image.h"
++#include "sensor_msgs/image_encodings.h"
++
++// Encoding and decoding of compressed depth images.
++namespace compressed_depth_image_transport
++{
++
++// Returns a null pointer on bad input.
++sensor_msgs::Image::Ptr decodeCompressedDepthImage(const sensor_msgs::CompressedImage& compressed_image);
++
++// Compress a depth image. Returns a null pointer on bad input.
++sensor_msgs::CompressedImage::Ptr encodeCompressedDepthImage(
++    const sensor_msgs::Image& message,
++    const std::string& compression_format,
++    double depth_max,
++    double depth_quantization,
++    int png_level);
++
++}  // namespace compressed_depth_image_transport
+--- /dev/null
++++ ros-noetic-compressed-depth-image-transport-1.15.0/include/compressed_depth_image_transport/compressed_depth_publisher.h
+@@ -0,0 +1,70 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++* 
++*  Copyright (c) 2012, Willow Garage, Inc.
++*  All rights reserved.
++* 
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++* 
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++* 
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++
++#include "image_transport/simple_publisher_plugin.h"
++#include <sensor_msgs/CompressedImage.h>
++#include <dynamic_reconfigure/server.h>
++#include <compressed_depth_image_transport/CompressedDepthPublisherConfig.h>
++
++namespace compressed_depth_image_transport {
++
++class CompressedDepthPublisher : public image_transport::SimplePublisherPlugin<sensor_msgs::CompressedImage>
++{
++public:
++  virtual ~CompressedDepthPublisher() {}
++
++  virtual std::string getTransportName() const
++  {
++    return "compressedDepth";
++  }
++
++protected:
++  // Overridden to set up reconfigure server
++  virtual void advertiseImpl(ros::NodeHandle &nh, const std::string &base_topic, uint32_t queue_size,
++                             const image_transport::SubscriberStatusCallback  &user_connect_cb,
++                             const image_transport::SubscriberStatusCallback  &user_disconnect_cb,
++                             const ros::VoidPtr &tracked_object, bool latch);
++  
++  virtual void publish(const sensor_msgs::Image& message,
++                       const PublishFn& publish_fn) const;
++
++  typedef compressed_depth_image_transport::CompressedDepthPublisherConfig Config;
++  typedef dynamic_reconfigure::Server<Config> ReconfigureServer;
++  boost::shared_ptr<ReconfigureServer> reconfigure_server_;
++  Config config_;
++
++  void configCb(Config& config, uint32_t level);
++};
++
++} //namespace compressed_depth_image_transport
+--- /dev/null
++++ ros-noetic-compressed-depth-image-transport-1.15.0/include/compressed_depth_image_transport/compressed_depth_subscriber.h
+@@ -0,0 +1,55 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++* 
++*  Copyright (c) 2012, Willow Garage, Inc.
++*  All rights reserved.
++* 
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++* 
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++* 
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++
++#include "image_transport/simple_subscriber_plugin.h"
++#include <sensor_msgs/CompressedImage.h>
++
++namespace compressed_depth_image_transport {
++
++class CompressedDepthSubscriber : public image_transport::SimpleSubscriberPlugin<sensor_msgs::CompressedImage>
++{
++public:
++  virtual ~CompressedDepthSubscriber() {}
++
++  virtual std::string getTransportName() const
++  {
++    return "compressedDepth";
++  }
++
++protected:
++  virtual void internalCallback(const sensor_msgs::CompressedImageConstPtr& message,
++                                const Callback& user_cb);
++};
++
++} //namespace compressed_depth_image_transport
+--- /dev/null
++++ ros-noetic-compressed-depth-image-transport-1.15.0/include/compressed_depth_image_transport/compression_common.h
+@@ -0,0 +1,58 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++* 
++*  Copyright (c) 2012, Willow Garage, Inc.
++*  All rights reserved.
++* 
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++* 
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++* 
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++
++#ifndef COMPRESSED_DEPTH_IMAGE_TRANSPORT_COMPRESSION_COMMON
++#define COMPRESSED_DEPTH_IMAGE_TRANSPORT_COMPRESSION_COMMON
++
++namespace compressed_depth_image_transport
++{
++
++// Compression formats
++enum compressionFormat
++{
++  UNDEFINED = -1, INV_DEPTH
++};
++
++// Compression configuration
++struct ConfigHeader
++{
++  // compression format
++  compressionFormat format;
++  // quantization parameters (used in depth image compression)
++  float depthParam[2];
++};
++
++} //namespace compressed_depth_image_transport
++
++#endif
+--- /dev/null
++++ ros-noetic-compressed-depth-image-transport-1.15.0/include/compressed_depth_image_transport/rvl_codec.h
+@@ -0,0 +1,33 @@
++#ifndef COMPRESSED_DEPTH_IMAGE_TRANSPORT_RVL_CODEC_H_
++#define COMPRESSED_DEPTH_IMAGE_TRANSPORT_RVL_CODEC_H_
++
++namespace compressed_depth_image_transport {
++
++class RvlCodec {
++ public:
++  RvlCodec();
++  // Compress input data into output. The size of output can be equal to
++  // (1.5 * numPixels + 4) in the worst case.
++  int CompressRVL(const unsigned short* input, unsigned char* output,
++                  int numPixels);
++  // Decompress input data into output. The size of output must be
++  // equal to numPixels.
++  void DecompressRVL(const unsigned char* input, unsigned short* output,
++                     int numPixels);
++
++ private:
++  RvlCodec(const RvlCodec&);
++  RvlCodec& operator=(const RvlCodec&);
++
++  void EncodeVLE(int value);
++  int DecodeVLE();
++
++  int *buffer_;
++  int *pBuffer_;
++  int word_;
++  int nibblesWritten_;
++};
++
++}  // namespace compressed_depth_image_transport
++
++#endif  // COMPRESSED_DEPTH_IMAGE_TRANSPORT_RVL_CODEC_H_
+--- /dev/null
++++ ros-noetic-compressed-depth-image-transport-1.15.0/package.xml
+@@ -0,0 +1,29 @@
++<package>
++  <name>compressed_depth_image_transport</name>
++  <version>1.15.0</version>
++  <description>
++    Compressed_depth_image_transport provides a plugin to image_transport for transparently sending
++    depth images (raw, floating-point) using PNG compression.
++  </description>
++  <maintainer email="kenjibrameld@gmail.com">Kenji Brameld</maintainer>
++  <license>BSD</license>
++
++  <url type="website">http://www.ros.org/wiki/image_transport_plugins</url>
++  <author>Julius Kammerl</author>
++  <author>David Gossow</author>
++
++  <buildtool_depend>catkin</buildtool_depend>
++
++  <build_depend>cv_bridge</build_depend>
++  <build_depend>dynamic_reconfigure</build_depend>
++  <build_depend>image_transport</build_depend>
++
++  <run_depend>cv_bridge</run_depend>
++  <run_depend>dynamic_reconfigure</run_depend>
++  <run_depend>image_transport</run_depend>
++
++  <export>
++    <rviz plugin="${prefix}/plugin_description.xml"/>
++    <image_transport plugin="${prefix}/compressed_depth_plugins.xml" />
++  </export>
++</package>
+--- /dev/null
++++ ros-noetic-compressed-depth-image-transport-1.15.0/src/codec.cpp
+@@ -0,0 +1,411 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++*
++*  Copyright (c) 2012 Willow Garage.
++*  Copyright (c) 2016 Google, Inc.
++*  All rights reserved.
++*
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++*
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++*
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++
++#include <limits>
++#include <string>
++#include <vector>
++
++#include <opencv2/highgui/highgui.hpp>
++
++#include "cv_bridge/cv_bridge.h"
++#include "compressed_depth_image_transport/codec.h"
++#include "compressed_depth_image_transport/compression_common.h"
++#include "compressed_depth_image_transport/rvl_codec.h"
++#include "ros/ros.h"
++
++// If OpenCV3
++#ifndef CV_VERSION_EPOCH
++#include <opencv2/imgcodecs.hpp>
++
++// If OpenCV4
++#if CV_VERSION_MAJOR > 3
++#include <opencv2/imgcodecs/legacy/constants_c.h>
++#endif
++#endif
++
++namespace enc = sensor_msgs::image_encodings;
++using namespace cv;
++
++// Encoding and decoding of compressed depth images.
++namespace compressed_depth_image_transport
++{
++
++sensor_msgs::Image::Ptr decodeCompressedDepthImage(const sensor_msgs::CompressedImage& message)
++{
++  cv_bridge::CvImagePtr cv_ptr(new cv_bridge::CvImage);
++
++  // Copy message header
++  cv_ptr->header = message.header;
++
++  // Assign image encoding
++  const size_t split_pos = message.format.find(';');
++  const std::string image_encoding = message.format.substr(0, split_pos);
++  std::string compression_format;
++  // Older version of compressed_depth_image_transport supports only png.
++  if (split_pos == std::string::npos) {
++    compression_format = "png";
++  } else {
++    std::string format = message.format.substr(split_pos);
++    if (format.find("compressedDepth png") != std::string::npos) {
++      compression_format = "png";
++    } else if (format.find("compressedDepth rvl") != std::string::npos) {
++      compression_format = "rvl";
++    } else if (format.find("compressedDepth") != std::string::npos && format.find("compressedDepth ") == std::string::npos) {
++      compression_format = "png";
++    } else {
++      ROS_ERROR("Unsupported image format: %s", message.format.c_str());
++      return sensor_msgs::Image::Ptr();
++    }
++  }
++
++  cv_ptr->encoding = image_encoding;
++
++  // Decode message data
++  if (message.data.size() > sizeof(ConfigHeader))
++  {
++
++    // Read compression type from stream
++    ConfigHeader compressionConfig;
++    memcpy(&compressionConfig, &message.data[0], sizeof(compressionConfig));
++
++    // Get compressed image data
++    const std::vector<uint8_t> imageData(message.data.begin() + sizeof(compressionConfig), message.data.end());
++
++    // Depth map decoding
++    float depthQuantA, depthQuantB;
++
++    // Read quantization parameters
++    depthQuantA = compressionConfig.depthParam[0];
++    depthQuantB = compressionConfig.depthParam[1];
++
++    if (enc::bitDepth(image_encoding) == 32)
++    {
++      cv::Mat decompressed;
++      if (compression_format == "png") {
++        try
++        {
++          // Decode image data
++          decompressed = cv::imdecode(imageData, cv::IMREAD_UNCHANGED);
++        }
++        catch (cv::Exception& e)
++        {
++          ROS_ERROR("%s", e.what());
++          return sensor_msgs::Image::Ptr();
++        }
++      } else if (compression_format == "rvl") {
++        const unsigned char *buffer = imageData.data();
++        uint32_t cols, rows;
++        memcpy(&cols, &buffer[0], 4);
++        memcpy(&rows, &buffer[4], 4);
++        decompressed = Mat(rows, cols, CV_16UC1);
++        RvlCodec rvl;
++        rvl.DecompressRVL(&buffer[8], decompressed.ptr<unsigned short>(), cols * rows);
++      } else {
++        return sensor_msgs::Image::Ptr();
++      }
++
++      size_t rows = decompressed.rows;
++      size_t cols = decompressed.cols;
++
++      if ((rows > 0) && (cols > 0))
++      {
++        cv_ptr->image = Mat(rows, cols, CV_32FC1);
++
++        // Depth conversion
++        MatIterator_<float> itDepthImg = cv_ptr->image.begin<float>(),
++                            itDepthImg_end = cv_ptr->image.end<float>();
++        MatConstIterator_<unsigned short> itInvDepthImg = decompressed.begin<unsigned short>(),
++                                          itInvDepthImg_end = decompressed.end<unsigned short>();
++
++        for (; (itDepthImg != itDepthImg_end) && (itInvDepthImg != itInvDepthImg_end); ++itDepthImg, ++itInvDepthImg)
++        {
++          // check for NaN & max depth
++          if (*itInvDepthImg)
++          {
++            *itDepthImg = depthQuantA / ((float)*itInvDepthImg - depthQuantB);
++          }
++          else
++          {
++            *itDepthImg = std::numeric_limits<float>::quiet_NaN();
++          }
++        }
++
++        // Publish message to user callback
++        return cv_ptr->toImageMsg();
++      }
++    }
++    else
++    {
++      // Decode raw image
++      if (compression_format == "png") {
++        try
++        {
++          cv_ptr->image = cv::imdecode(imageData, CV_LOAD_IMAGE_UNCHANGED);
++        }
++        catch (cv::Exception& e)
++        {
++          ROS_ERROR("%s", e.what());
++          return sensor_msgs::Image::Ptr();
++        }
++      } else if (compression_format == "rvl") {
++        const unsigned char *buffer = imageData.data();
++        uint32_t cols, rows;
++        memcpy(&cols, &buffer[0], 4);
++        memcpy(&rows, &buffer[4], 4);
++        cv_ptr->image = Mat(rows, cols, CV_16UC1);
++        RvlCodec rvl;
++        rvl.DecompressRVL(&buffer[8], cv_ptr->image.ptr<unsigned short>(), cols * rows);
++      } else {
++        return sensor_msgs::Image::Ptr();
++      }
++
++      size_t rows = cv_ptr->image.rows;
++      size_t cols = cv_ptr->image.cols;
++
++      if ((rows > 0) && (cols > 0))
++      {
++        // Publish message to user callback
++        return cv_ptr->toImageMsg();
++      }
++    }
++  }
++  return sensor_msgs::Image::Ptr();
++}
++
++sensor_msgs::CompressedImage::Ptr encodeCompressedDepthImage(
++    const sensor_msgs::Image& message,
++    const std::string& compression_format,
++    double depth_max, double depth_quantization, int png_level)
++{
++
++  // Compressed image message
++  sensor_msgs::CompressedImage::Ptr compressed(new sensor_msgs::CompressedImage());
++  compressed->header = message.header;
++  compressed->format = message.encoding;
++
++  // Compression settings
++  std::vector<int> params;
++
++  // Bit depth of image encoding
++  int bitDepth = enc::bitDepth(message.encoding);
++  int numChannels = enc::numChannels(message.encoding);
++
++  // Image compression configuration
++  ConfigHeader compressionConfig {};
++  compressionConfig.format = INV_DEPTH;
++
++  // Compressed image data
++  std::vector<uint8_t> compressedImage;
++
++  // Update ros message format header
++  compressed->format += "; compressedDepth " + compression_format;
++
++  // Check input format
++  params.reserve(2);
++  params.emplace_back(cv::IMWRITE_PNG_COMPRESSION);
++  params.emplace_back(png_level);
++
++  if ((bitDepth == 32) && (numChannels == 1))
++  {
++    float depthZ0 = depth_quantization;
++    float depthMax = depth_max;
++
++    // OpenCV-ROS bridge
++    cv_bridge::CvImagePtr cv_ptr;
++    try
++    {
++      cv_ptr = cv_bridge::toCvCopy(message);
++    }
++    catch (cv_bridge::Exception& e)
++    {
++      ROS_ERROR("%s", e.what());
++      return sensor_msgs::CompressedImage::Ptr();
++    }
++
++    const Mat& depthImg = cv_ptr->image;
++    size_t rows = depthImg.rows;
++    size_t cols = depthImg.cols;
++
++    if ((rows > 0) && (cols > 0))
++    {
++      // Allocate matrix for inverse depth (disparity) coding
++      Mat invDepthImg(rows, cols, CV_16UC1);
++
++      // Inverse depth quantization parameters
++      float depthQuantA = depthZ0 * (depthZ0 + 1.0f);
++      float depthQuantB = 1.0f - depthQuantA / depthMax;
++
++      // Matrix iterators
++      MatConstIterator_<float> itDepthImg = depthImg.begin<float>(),
++                               itDepthImg_end = depthImg.end<float>();
++      MatIterator_<unsigned short> itInvDepthImg = invDepthImg.begin<unsigned short>(),
++                                   itInvDepthImg_end = invDepthImg.end<unsigned short>();
++
++      // Quantization
++      for (; (itDepthImg != itDepthImg_end) && (itInvDepthImg != itInvDepthImg_end); ++itDepthImg, ++itInvDepthImg)
++      {
++        // check for NaN & max depth
++        if (*itDepthImg < depthMax)
++        {
++          *itInvDepthImg = depthQuantA / *itDepthImg + depthQuantB;
++        }
++        else
++        {
++          *itInvDepthImg = 0;
++        }
++      }
++
++      // Add coding parameters to header
++      compressionConfig.depthParam[0] = depthQuantA;
++      compressionConfig.depthParam[1] = depthQuantB;
++
++      // Compress quantized disparity image
++      if (compression_format == "png") {
++        try
++        {
++          if (cv::imencode(".png", invDepthImg, compressedImage, params))
++          {
++            float cRatio = (float)(cv_ptr->image.rows * cv_ptr->image.cols * cv_ptr->image.elemSize())
++                / (float)compressedImage.size();
++            ROS_DEBUG("Compressed Depth Image Transport - Compression: 1:%.2f (%lu bytes)", cRatio, compressedImage.size());
++          }
++          else
++          {
++            ROS_ERROR("cv::imencode (png) failed on input image");
++            return sensor_msgs::CompressedImage::Ptr();
++          }
++        }
++        catch (cv::Exception& e)
++        {
++          ROS_ERROR("%s", e.msg.c_str());
++          return sensor_msgs::CompressedImage::Ptr();
++        }
++      } else if (compression_format == "rvl") {
++        int numPixels = invDepthImg.rows * invDepthImg.cols;
++        // In the worst case, RVL compression results in ~1.5x larger data.
++        compressedImage.resize(3 * numPixels + 12);
++        uint32_t cols = invDepthImg.cols;
++        uint32_t rows = invDepthImg.rows;
++        memcpy(&compressedImage[0], &cols, 4);
++        memcpy(&compressedImage[4], &rows, 4);
++        RvlCodec rvl;
++        int compressedSize = rvl.CompressRVL(invDepthImg.ptr<unsigned short>(), &compressedImage[8], numPixels);
++        compressedImage.resize(8 + compressedSize);
++      }
++    }
++  }
++  // Raw depth map compression
++  else if ((bitDepth == 16) && (numChannels == 1))
++  {
++    // OpenCV-ROS bridge
++    cv_bridge::CvImagePtr cv_ptr;
++    try
++    {
++      cv_ptr = cv_bridge::toCvCopy(message);
++    }
++    catch (Exception& e)
++    {
++      ROS_ERROR("%s", e.msg.c_str());
++      return sensor_msgs::CompressedImage::Ptr();
++    }
++
++    const Mat& depthImg = cv_ptr->image;
++    size_t rows = depthImg.rows;
++    size_t cols = depthImg.cols;
++
++    if ((rows > 0) && (cols > 0))
++    {
++      unsigned short depthMaxUShort = static_cast<unsigned short>(depth_max * 1000.0f);
++
++      // Matrix iterators
++      MatIterator_<unsigned short> itDepthImg = cv_ptr->image.begin<unsigned short>(),
++                                    itDepthImg_end = cv_ptr->image.end<unsigned short>();
++
++      // Max depth filter
++      for (; itDepthImg != itDepthImg_end; ++itDepthImg)
++      {
++        if (*itDepthImg > depthMaxUShort)
++          *itDepthImg = 0;
++      }
++
++      // Compress raw depth image
++      if (compression_format == "png") {
++        if (cv::imencode(".png", cv_ptr->image, compressedImage, params))
++        {
++          float cRatio = (float)(cv_ptr->image.rows * cv_ptr->image.cols * cv_ptr->image.elemSize())
++              / (float)compressedImage.size();
++          ROS_DEBUG("Compressed Depth Image Transport - Compression: 1:%.2f (%lu bytes)", cRatio, compressedImage.size());
++        }
++        else
++        {
++          ROS_ERROR("cv::imencode (png) failed on input image");
++          return sensor_msgs::CompressedImage::Ptr();
++        }
++      } else if (compression_format == "rvl") {
++        int numPixels = cv_ptr->image.rows * cv_ptr->image.cols;
++        // In the worst case, RVL compression results in ~1.5x larger data.
++        compressedImage.resize(3 * numPixels + 12);
++        uint32_t cols = cv_ptr->image.cols;
++        uint32_t rows = cv_ptr->image.rows;
++        memcpy(&compressedImage[0], &cols, 4);
++        memcpy(&compressedImage[4], &rows, 4);
++        RvlCodec rvl;
++        int compressedSize = rvl.CompressRVL(cv_ptr->image.ptr<unsigned short>(), &compressedImage[8], numPixels);
++        compressedImage.resize(8 + compressedSize);
++      }
++    }
++  }
++  else
++  {
++    ROS_ERROR("Compressed Depth Image Transport - Compression requires single-channel 32bit-floating point or 16bit raw depth images (input format is: %s).", message.encoding.c_str());
++    return sensor_msgs::CompressedImage::Ptr();
++  }
++
++  if (compressedImage.size() > 0)
++  {
++    // Add configuration to binary output
++    compressed->data.resize(sizeof(ConfigHeader));
++    memcpy(&compressed->data[0], &compressionConfig, sizeof(ConfigHeader));
++
++    // Add compressed binary data to messages
++    compressed->data.insert(compressed->data.end(), compressedImage.begin(), compressedImage.end());
++
++    return compressed;
++  }
++
++  return sensor_msgs::CompressedImage::Ptr();
++}
++
++}  // namespace compressed_depth_image_transport
+--- /dev/null
++++ ros-noetic-compressed-depth-image-transport-1.15.0/src/compressed_depth_publisher.cpp
+@@ -0,0 +1,85 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++*
++*  Copyright (c) 2012, Willow Garage, Inc.
++*  All rights reserved.
++*
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++*
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++*
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++
++#include "compressed_depth_image_transport/compressed_depth_publisher.h"
++#include <cv_bridge/cv_bridge.h>
++#include <sensor_msgs/image_encodings.h>
++#include <opencv2/highgui/highgui.hpp>
++#include <boost/make_shared.hpp>
++
++#include "compressed_depth_image_transport/codec.h"
++#include "compressed_depth_image_transport/compression_common.h"
++
++#include <vector>
++#include <sstream>
++
++using namespace cv;
++using namespace std;
++
++namespace enc = sensor_msgs::image_encodings;
++
++namespace compressed_depth_image_transport
++{
++
++void CompressedDepthPublisher::advertiseImpl(ros::NodeHandle &nh, const std::string &base_topic, uint32_t queue_size,
++                                        const image_transport::SubscriberStatusCallback &user_connect_cb,
++                                        const image_transport::SubscriberStatusCallback &user_disconnect_cb,
++                                        const ros::VoidPtr &tracked_object, bool latch)
++{
++  typedef image_transport::SimplePublisherPlugin<sensor_msgs::CompressedImage> Base;
++  Base::advertiseImpl(nh, base_topic, queue_size, user_connect_cb, user_disconnect_cb, tracked_object, latch);
++
++  // Set up reconfigure server for this topic
++  reconfigure_server_ = boost::make_shared<ReconfigureServer>(this->nh());
++  ReconfigureServer::CallbackType f = boost::bind(&CompressedDepthPublisher::configCb, this, boost::placeholders::_1, boost::placeholders::_2);
++  reconfigure_server_->setCallback(f);
++}
++
++void CompressedDepthPublisher::configCb(Config& config, uint32_t level)
++{
++  config_ = config;
++}
++
++void CompressedDepthPublisher::publish(const sensor_msgs::Image& message, const PublishFn& publish_fn) const
++{
++  sensor_msgs::CompressedImage::Ptr compressed_image =
++      encodeCompressedDepthImage(message, config_.format, config_.depth_max, config_.depth_quantization, config_.png_level);
++
++  if (compressed_image)
++  {
++    publish_fn(*compressed_image);
++  }
++}
++
++} //namespace compressed_depth_image_transport
+--- /dev/null
++++ ros-noetic-compressed-depth-image-transport-1.15.0/src/compressed_depth_subscriber.cpp
+@@ -0,0 +1,53 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++*
++*  Copyright (c) 2012, Willow Garage, Inc.
++*  All rights reserved.
++*
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++*
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++*
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++
++#include "compressed_depth_image_transport/compressed_depth_subscriber.h"
++
++#include "compressed_depth_image_transport/codec.h"
++#include "compressed_depth_image_transport/compression_common.h"
++
++namespace compressed_depth_image_transport
++{
++
++void CompressedDepthSubscriber::internalCallback(const sensor_msgs::CompressedImageConstPtr& message,
++                                            const Callback& user_cb)
++{
++  sensor_msgs::Image::Ptr image = decodeCompressedDepthImage(*message);
++  if (image)
++  {
++    user_cb(image);
++  }
++}
++
++} //namespace compressed_depth_image_transport
+--- /dev/null
++++ ros-noetic-compressed-depth-image-transport-1.15.0/src/manifest.cpp
+@@ -0,0 +1,41 @@
++/*********************************************************************
++* Software License Agreement (BSD License)
++* 
++*  Copyright (c) 2012, Willow Garage, Inc.
++*  All rights reserved.
++* 
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted provided that the following conditions
++*  are met:
++* 
++*   * Redistributions of source code must retain the above copyright
++*     notice, this list of conditions and the following disclaimer.
++*   * Redistributions in binary form must reproduce the above
++*     copyright notice, this list of conditions and the following
++*     disclaimer in the documentation and/or other materials provided
++*     with the distribution.
++*   * Neither the name of the Willow Garage nor the names of its
++*     contributors may be used to endorse or promote products derived
++*     from this software without specific prior written permission.
++* 
++*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++*  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++*  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++*  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++*  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
++*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++*  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++*  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++*  POSSIBILITY OF SUCH DAMAGE.
++*********************************************************************/
++
++#include <pluginlib/class_list_macros.hpp>
++#include "compressed_depth_image_transport/compressed_depth_publisher.h"
++#include "compressed_depth_image_transport/compressed_depth_subscriber.h"
++
++PLUGINLIB_EXPORT_CLASS( compressed_depth_image_transport::CompressedDepthPublisher, image_transport::PublisherPlugin)
++
++PLUGINLIB_EXPORT_CLASS( compressed_depth_image_transport::CompressedDepthSubscriber, image_transport::SubscriberPlugin)
+--- /dev/null
++++ ros-noetic-compressed-depth-image-transport-1.15.0/src/rvl_codec.cpp
+@@ -0,0 +1,92 @@
++// The following code is a C++ wrapper of the code presented by
++// Andrew D. Wilson in "Fast Lossless Depth Image Compression" at SIGCHI'17.
++// The original code is licensed under the MIT License.
++
++#include "compressed_depth_image_transport/rvl_codec.h"
++
++namespace compressed_depth_image_transport {
++
++RvlCodec::RvlCodec() {}
++
++void RvlCodec::EncodeVLE(int value) {
++  do {
++    int nibble = value & 0x7;        // lower 3 bits
++    if (value >>= 3) nibble |= 0x8;  // more to come
++    word_ <<= 4;
++    word_ |= nibble;
++    if (++nibblesWritten_ == 8)  // output word
++    {
++      *pBuffer_++ = word_;
++      nibblesWritten_ = 0;
++      word_ = 0;
++    }
++  } while (value);
++}
++
++int RvlCodec::DecodeVLE() {
++  unsigned int nibble;
++  int value = 0, bits = 29;
++  do {
++    if (!nibblesWritten_) {
++      word_ = *pBuffer_++;  // load word
++      nibblesWritten_ = 8;
++    }
++    nibble = word_ & 0xf0000000;
++    value |= (nibble << 1) >> bits;
++    word_ <<= 4;
++    nibblesWritten_--;
++    bits -= 3;
++  } while (nibble & 0x80000000);
++  return value;
++}
++
++int RvlCodec::CompressRVL(const unsigned short* input, unsigned char* output,
++                          int numPixels) {
++  buffer_ = pBuffer_ = (int*)output;
++  nibblesWritten_ = 0;
++  const unsigned short* end = input + numPixels;
++  unsigned short previous = 0;
++  while (input != end) {
++    int zeros = 0, nonzeros = 0;
++    for (; (input != end) && !*input; input++, zeros++)
++      ;
++    EncodeVLE(zeros);  // number of zeros
++    for (const unsigned short* p = input; (p != end) && *p++; nonzeros++)
++      ;
++    EncodeVLE(nonzeros);  // number of nonzeros
++    for (int i = 0; i < nonzeros; i++) {
++      unsigned short current = *input++;
++      int delta = current - previous;
++      int positive = (delta << 1) ^ (delta >> 31);
++      EncodeVLE(positive);  // nonzero value
++      previous = current;
++    }
++  }
++  if (nibblesWritten_)  // last few values
++    *pBuffer_++ = word_ << 4 * (8 - nibblesWritten_);
++  return int((unsigned char*)pBuffer_ - (unsigned char*)buffer_);  // num bytes
++}
++
++void RvlCodec::DecompressRVL(const unsigned char* input, unsigned short* output,
++                             int numPixels) {
++  buffer_ = pBuffer_ = const_cast<int*>(reinterpret_cast<const int*>(input));
++  nibblesWritten_ = 0;
++  unsigned short current, previous = 0;
++  int numPixelsToDecode = numPixels;
++  while (numPixelsToDecode) {
++    int zeros = DecodeVLE();  // number of zeros
++    numPixelsToDecode -= zeros;
++    for (; zeros; zeros--) *output++ = 0;
++    int nonzeros = DecodeVLE();  // number of nonzeros
++    numPixelsToDecode -= nonzeros;
++    for (; nonzeros; nonzeros--) {
++      int positive = DecodeVLE();  // nonzero value
++      int delta = (positive >> 1) ^ -(positive & 1);
++      current = previous + delta;
++      *output++ = current;
++      previous = current;
++    }
++  }
++}
++
++}  // namespace compressed_depth_image_transport
+--- /dev/null
++++ ros-noetic-compressed-depth-image-transport-1.15.0/test/rvl_codec_test.cpp
+@@ -0,0 +1,56 @@
++#include "compressed_depth_image_transport/rvl_codec.h"
++#include <gtest/gtest.h>
++
++TEST(RvlCodecTest, reciprocalTestEmpty) {
++  const int size = 1000000;
++  std::vector<unsigned short> original(size);
++  std::vector<unsigned char> compressed(3 * size + 4);
++  std::vector<unsigned short> decompressed(size);
++  compressed_depth_image_transport::RvlCodec rvl;
++
++  // Constant depth.
++  const int validDepth = 42;
++  std::fill(original.begin(), original.end(), validDepth);
++  rvl.CompressRVL(&original[0], &compressed[0], size);
++  rvl.DecompressRVL(&compressed[0], &decompressed[0], size);
++  EXPECT_TRUE(std::equal(original.begin(), original.end(), decompressed.begin()));
++
++  // Totally invalid depth.
++  const int invalidDepth = 0;
++  std::fill(original.begin(), original.end(), invalidDepth);
++  rvl.CompressRVL(&original[0], &compressed[0], size);
++  rvl.DecompressRVL(&compressed[0], &decompressed[0], size);
++  EXPECT_TRUE(std::equal(original.begin(), original.end(), decompressed.begin()));
++
++  // Empty depth.
++  EXPECT_EQ(rvl.CompressRVL(NULL, NULL, 0), 0);
++  rvl.DecompressRVL(NULL, NULL, 0);  // should not die.
++}
++
++TEST(RvlCodecTest, reciprocalTestRandom) {
++  const int size = 1000000;
++  std::vector<unsigned short> original(size);
++  std::vector<unsigned char> compressed(3 * size + 4);
++  std::vector<unsigned short> decompressed(size);
++  compressed_depth_image_transport::RvlCodec rvl;
++
++  // Populate depths with random size of runs with random values.
++  for (int i = 0; i < size;) {
++    int length = std::min<int>(rand() % 10, size - i);
++    int value = rand() % 10;
++    std::fill(&original[i], &original[i] + length, value);
++    i += length;
++  }
++
++  const int compressedSize =
++      rvl.CompressRVL(&original[0], &compressed[0], size);
++  EXPECT_GT(compressedSize, 0);
++  EXPECT_LT(compressedSize, compressed.size());
++  rvl.DecompressRVL(&compressed[0], &decompressed[0], size);
++  EXPECT_TRUE(std::equal(original.begin(), original.end(), decompressed.begin()));
++}
++
++int main(int argc, char** argv) {
++  testing::InitGoogleTest(&argc, argv);
++  return RUN_ALL_TESTS();
++}
